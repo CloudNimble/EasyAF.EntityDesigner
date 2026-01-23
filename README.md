@@ -21,12 +21,12 @@ We've updated the code for modern .NET, stripped out the unnecessary crap, simpl
 
 # Why Now?
 
-There are situations where the current designer won't even open your EDMX file, and Microsoft is not accepting new PRs.
+There are situations where the current designer won't even open your EDMX file, and [Microsoft is not accepting new PRs](https://github.com/dotnet/ef6tools/issues/83).
 
 At CloudNimble, we are EDMXperts. We have been leveraging the format in EF 6, OData, and EF Core to power robust code-generated .NET solutions for almost 15 years.
 
-Simply put, we wanted to be able to open EXMD files in our own projects and have the Designer work properly.
+Simply put, we wanted to be able to open EDMX files in our own projects and have the Designer work properly.
 
 ## Use Cases
 
-Modern Entity Designer 2026 supports a wide-range of features to help you maintain EDMX-based solutions, including EasyAF for database-first development with Entity Framework Core.
+Modern Entity Designer 2026 supports a wide-range of features to help you maintain EDMX-based solutions, including [EasyAF](https://easyaf.dev) for database-first development with Entity Framework Core.
