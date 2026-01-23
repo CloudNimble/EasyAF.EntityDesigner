@@ -89,6 +89,7 @@
 		<PackageVersion Include="Moq" Version="$(MoqPackageVersion)" />
 		<PackageVersion Include="NerdBank.GitVersioning" Version="$(NerdbankGitVersioningVersion)" />
 		<PackageVersion Include="NerdBank.Streams" Version="2.11.79" />
+		<PackageVersion Include="System.Resources.Extensions" Version="9.0.0" />
 		<PackageVersion Include="System.Text.Json" Version="8.0.5" />
 		<PackageVersion Include="VsWebSite.Interop" Version="$(VsWebSiteInteropPackageVersion)" />
 		<PackageVersion Include="VsWebSite.Interop90" Version="$(VsWebSiteInteropPackageVersion)" />

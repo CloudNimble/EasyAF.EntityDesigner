@@ -1,0 +1,25 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="Directory.Packages.Props" />
+    <File Path="nuget.config" />
+    <File Path="README.md" />
+    <File Path="test/EFTools/InProcTests/EFDesignerInProcTests.testsettings" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="test/EFTools/FunctionalTests/FunctionalTests.csproj" Id="d43b0b37-b24f-4b4f-a314-75c48131ce04" />
+    <Project Path="test/EFTools/InProcTests/InProcTests.csproj" Id="85a3a202-1727-4ac9-88cd-0531f9855895" />
+    <Project Path="test/EFTools/TestInfrastructure/TestInfrastructure.csproj" Id="59a6ab41-2aca-4949-8fc8-dff1229d5a81" />
+    <Project Path="test/EFTools/UnitTests/UnitTests.csproj" Id="7facae3c-c4d1-4ab1-8775-01f7e34f5769" />
+    <Project Path="tools/VsIdeHostAdapter/Framework/VsIdeTestHostFramework.csproj" Id="614ac98e-a68e-4eb4-af27-1cedba7ca3b4" />
+  </Folder>
+  <Project Path="src/Microsoft.VisualStudio.Data.Tools.Design.XmlCore/Microsoft.VisualStudio.Data.Tools.Design.XmlCore.csproj" />
+  <Project Path="src/Microsoft.Data.Tools.Design.XmlCore/Microsoft.Data.Tools.Design.XmlCore.csproj" />
+  <Project Path="src/Microsoft.Data.Entity.Design/Microsoft.Data.Entity.Design.csproj" />
+  <Project Path="src/Microsoft.Data.Entity.Design.BootstrapPackage/Microsoft.Data.Entity.Design.BootstrapPackage.csproj" Id="fc48cb33-a0d9-49ed-841d-cc88fd3d761d" />
+  <Project Path="src/Microsoft.Data.Entity.Design.DatabaseGeneration/Microsoft.Data.Entity.Design.DatabaseGeneration.csproj" />
+  <Project Path="src/Microsoft.Data.Entity.Design.EntityDesigner/Microsoft.Data.Entity.Design.EntityDesigner.csproj" Id="488b84c2-9358-4b90-bc2d-ed688939e6bb" />
+  <Project Path="src/Microsoft.Data.Entity.Design.VersioningFacade/Microsoft.Data.Entity.Design.VersioningFacade.csproj" />
+  <Project Path="src/Microsoft.Data.Entity.Design.Extensibility/Microsoft.Data.Entity.Design.Extensibility.csproj" />
+  <Project Path="src/Microsoft.Data.Entity.Design.Model/Microsoft.Data.Entity.Design.Model.csproj" />
+  <Project Path="src/Microsoft.Data.Entity.Design.Package/Microsoft.Data.Entity.Design.Package.csproj" Id="c7198bdf-eb70-44d3-ba61-45cc552248e4" />
+</Solution>

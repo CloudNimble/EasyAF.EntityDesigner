@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <!-- Assembly signing -->
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)..\src\EFTools\ModernEntityDesigner2026.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+</Project>

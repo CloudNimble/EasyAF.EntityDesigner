@@ -1,0 +1,211 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Microsoft.Data.Entity.Design</RootNamespace>
+    <AssemblyName>Microsoft.Data.Entity.Design</AssemblyName>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <NoWarn>$(NoWarn);VSTHRD010;VSSDK006;VSTHRD001</NoWarn>
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+    <!-- Exclude VS item template files (contain $tokens$, not actual code) -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);VisualStudio\InTheBoxItemTemplates\**\*.cs;VisualStudio\InTheBoxItemTemplates\**\*.vb</DefaultItemExcludes>
+    <!-- Required for non-string resources (images, icons) in resx files -->
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+  </PropertyGroup>
+
+  <!-- Assembly Guid for COM interop -->
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.InteropServices.GuidAttribute">
+      <_Parameter1>af5600cc-afa7-4835-8ab7-ad8c7d68235e</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <!-- Windows Workflow Foundation for T4 templating activities -->
+  <ItemGroup>
+    <Reference Include="System.Activities" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" />
+    <PackageReference Include="Microsoft.Data.ConnectionUI" />
+    <PackageReference Include="System.Resources.Extensions" />
+    <PackageReference Include="Microsoft.Internal.VisualStudio.Interop" />
+    <PackageReference Include="Microsoft.VisualStudio.ComponentModelHost" />
+    <PackageReference Include="Microsoft.VisualStudio.Data.Core" />
+    <PackageReference Include="Microsoft.VisualStudio.Data.Framework" />
+    <PackageReference Include="Microsoft.VisualStudio.Data.Services" />
+    <PackageReference Include="Microsoft.VisualStudio.DataTools.Interop" />
+    <PackageReference Include="Microsoft.VisualStudio.DataDesign.Common" />
+    <PackageReference Include="Microsoft.VisualStudio.Imaging" />
+    <PackageReference Include="Microsoft.VisualStudio.Interop" />
+    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk" />
+    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams" />
+    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams.GraphObject" />
+    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Shell" />
+    <PackageReference Include="Microsoft.VisualStudio.Package.LanguageService.15.0" />
+    <PackageReference Include="Microsoft.VisualStudio.ProjectAggregator" />
+    <PackageReference Include="Microsoft.VisualStudio.Shell.15.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Shell.Design" />
+    <PackageReference Include="Microsoft.VisualStudio.TemplateWizardInterface" />
+    <PackageReference Include="Microsoft.VisualStudio.TextTemplating" />
+    <PackageReference Include="Microsoft.VisualStudio.TextTemplating.Interfaces" />
+    <PackageReference Include="Microsoft.VisualStudio.TextTemplating.VSHost" />
+    <PackageReference Include="Microsoft.VisualStudio.Utilities" />
+    <PackageReference Include="Microsoft.VisualStudio.Validation" />
+    <PackageReference Include="Microsoft.VisualStudio.XmlEditor" />
+    <PackageReference Include="Microsoft.VSDesigner" />
+    <PackageReference Include="Microsoft.WizardFramework" />
+    <PackageReference Include="VsWebSite.Interop" />
+    <PackageReference Include="VsWebSite.Interop90" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Microsoft.VisualStudio.Data.Tools.Design.XmlCore\Microsoft.VisualStudio.Data.Tools.Design.XmlCore.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.VersioningFacade\Microsoft.Data.Entity.Design.VersioningFacade.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Tools.Design.XmlCore\Microsoft.Data.Tools.Design.XmlCore.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.DatabaseGeneration\Microsoft.Data.Entity.Design.DatabaseGeneration.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.Extensibility\Microsoft.Data.Entity.Design.Extensibility.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.Model\Microsoft.Data.Entity.Design.Model.csproj" />
+  </ItemGroup>
+
+  <!-- T4 Templates -->
+  <ItemGroup>
+    <None Update="CodeGeneration\Generators\GeneratedCode\DefaultCSharpContextGenerator.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>DefaultCSharpContextGenerator.cs</LastGenOutput>
+      <CustomToolNamespace>Microsoft.Data.Entity.Design.CodeGeneration</CustomToolNamespace>
+    </None>
+    <None Update="CodeGeneration\Generators\GeneratedCode\DefaultCSharpEntityTypeGenerator.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>DefaultCSharpEntityTypeGenerator.cs</LastGenOutput>
+      <CustomToolNamespace>Microsoft.Data.Entity.Design.CodeGeneration</CustomToolNamespace>
+    </None>
+    <None Update="CodeGeneration\Generators\GeneratedCode\DefaultVBContextGenerator.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>DefaultVBContextGenerator.cs</LastGenOutput>
+      <CustomToolNamespace>Microsoft.Data.Entity.Design.CodeGeneration</CustomToolNamespace>
+    </None>
+    <None Update="CodeGeneration\Generators\GeneratedCode\DefaultVBEntityTypeGenerator.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>DefaultVBEntityTypeGenerator.cs</LastGenOutput>
+      <CustomToolNamespace>Microsoft.Data.Entity.Design.CodeGeneration</CustomToolNamespace>
+    </None>
+    <None Update="VisualStudio\InTheBoxItemTemplates\DbContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DbContext.txt</LastGenOutput>
+    </None>
+    <None Update="VisualStudio\InTheBoxItemTemplates\CodeFirst.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CodeFirst.txt</LastGenOutput>
+    </None>
+    <None Include="workflows\TablePerTypeStrategy.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TextTemplates\**\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <!-- Embedded Resources -->
+  <ItemGroup>
+    <EmbeddedResource Update="Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="TemplateResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TemplateResources.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Microsoft.Data.Entity.Design.Templates</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Update="UI\Views\Dialogs\DialogsResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogsResource.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Microsoft.Data.Entity.Design.UI.Views.Dialogs</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Update="VisualStudio\ModelWizard\Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="VisualStudio\SingleFileGenerator\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <!-- Intellisense files -->
+  <ItemGroup>
+    <IntellisenseFiles Include="IntellisenseFiles\**\*.xml" />
+  </ItemGroup>
+
+  <!-- Build targets for templates -->
+  <PropertyGroup>
+    <BuildDependsOn>$(BuildDependsOn);CreateTemplatesAndPackages</BuildDependsOn>
+  </PropertyGroup>
+
+  <Target Name="PrepareForPackaging">
+    <PropertyGroup>
+      <TargetTemplateDir>$(TargetDir)EntityDesigner\Templates</TargetTemplateDir>
+      <TargetIntellisenseDir>$(TargetDir)EntityDesigner\Intellisense</TargetIntellisenseDir>
+      <TargetItemTemplateFilesDir>$(TargetDir)ItemTemplateFilesDir</TargetItemTemplateFilesDir>
+      <TargetDBContextNuGetPackagesDir>$(TargetDir)DBContextNuGetPackagesDir</TargetDBContextNuGetPackagesDir>
+      <CSZip>$(TargetTemplateDir)\AdoNetEntityDataModelCSharp.zip</CSZip>
+      <VBZip>$(TargetTemplateDir)\AdoNetEntityDataModelVB.zip</VBZip>
+      <CSASPZip>$(TargetTemplateDir)\AdoNetEntityDataModelCSharp_ASPNET.zip</CSASPZip>
+      <VBASPZip>$(TargetTemplateDir)\AdoNetEntityDataModelVB_ASPNET.zip</VBASPZip>
+      <CSDir>$(TargetItemTemplateFilesDir)\CSharp\Data\1033\EF_EDM</CSDir>
+      <VBDir>$(TargetItemTemplateFilesDir)\VisualBasic\Data\1033\EF_EDM</VBDir>
+      <CSASPDir>$(TargetItemTemplateFilesDir)\Web\CSharp\1033\EF_EDM</CSASPDir>
+      <VBASPDir>$(TargetItemTemplateFilesDir)\Web\VisualBasic\1033\EF_EDM</VBASPDir>
+      <VersionedItemTemplateDir>VisualStudio\ItemTemplate\VersionedTemplates\</VersionedItemTemplateDir>
+      <ItemTemplateDir>VisualStudio\ItemTemplate\</ItemTemplateDir>
+    </PropertyGroup>
+    <MakeDir Directories="$(VersionedItemTemplateDir)" />
+    <MakeDir Directories="$(TargetTemplateDir)" />
+    <MakeDir Directories="$(TargetItemTemplateFilesDir)" />
+    <MakeDir Directories="$(TargetDBContextNuGetPackagesDir)" />
+  </Target>
+
+  <Target Name="UpdateTemplateVersion" DependsOnTargets="PrepareForPackaging">
+    <ItemGroup>
+      <Template Include="VisualStudio\ItemTemplate\ModelObjectItemCS.vstemplate" />
+      <Template Include="VisualStudio\ItemTemplate\ModelObjectItemVB.vstemplate" />
+      <Template Include="VisualStudio\ItemTemplate\ModelObjectItemCS_ASPNET.vstemplate" />
+      <Template Include="VisualStudio\ItemTemplate\ModelObjectItemVB_ASPNET.vstemplate" />
+    </ItemGroup>
+    <RegexReplaceInFile InputFileName="%(Template.Identity)" OutputFileName="$(VersionedItemTemplateDir)$([System.IO.Path]::GetFileName(%(Template.Identity)))" Patterns="EFDESIGNERVERSIONTOKEN" Replacements="$(AssemblyVersion)" />
+  </Target>
+
+  <Target Name="PrepareTemplatesForSetup" DependsOnTargets="PrepareForPackaging">
+    <ItemGroup>
+      <InTheBoxItemTemplateFiles Include="VisualStudio\InTheBoxItemTemplates\DBContext\**\*.*" />
+      <InTheBoxItemTemplateFiles Include="VisualStudio\InTheBoxItemTemplates\CodeFirst\**\*.*" />
+      <InTheBoxItemTemplateFiles Include="VisualStudio\InTheBoxItemTemplates\*.vstman" />
+    </ItemGroup>
+    <MakeDir Directories="@(InTheBoxItemTemplateFiles->'$(TargetItemTemplateFilesDir)\%(RecursiveDir)')" />
+    <RegexReplaceInFile Condition="'%(Extension)' == '.vstemplate'" InputFileName="%(InTheBoxItemTemplateFiles.Identity)" OutputFileName="@(InTheBoxItemTemplateFiles->'$(TargetItemTemplateFilesDir)\%(RecursiveDir)%(Filename)%(Extension)')" Patterns="NUGETEFTOOLSPACKAGESREGKEYNAMETOKEN;EFPACKAGEVERSION;EFDESIGNERVERSIONTOKEN" Replacements="EntityFrameworkVisualStudio17Tools;$(EF6NuGetPackageVersion);$(AssemblyVersion)" />
+    <Copy Condition="'%(Extension)' != '.vstemplate'" SourceFiles="@(InTheBoxItemTemplateFiles)" DestinationFiles="@(InTheBoxItemTemplateFiles->'$(TargetItemTemplateFilesDir)\%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
+
+  <Target Name="CreateTemplatesAndPackages" DependsOnTargets="UpdateTemplateVersion;PrepareTemplatesForSetup">
+    <ItemGroup>
+      <CommonTemplateFile Include="$(ItemTemplateDir)ProjectItem.edmx" />
+      <CommonTemplateFile Include="$(ItemTemplateDir)ProjectItem.edmx.diagram" />
+    </ItemGroup>
+    <Zip InputFileNames="$(VersionedItemTemplateDir)ModelObjectItemCS.vstemplate;@(CommonTemplateFile)" OutputFileName="$(CSZip)" OverwriteExistingFile="true" />
+    <Zip InputFileNames="$(VersionedItemTemplateDir)ModelObjectItemVB.vstemplate;@(CommonTemplateFile)" OutputFileName="$(VBZip)" OverwriteExistingFile="true" />
+    <Zip InputFileNames="$(VersionedItemTemplateDir)ModelObjectItemCS_ASPNET.vstemplate;@(CommonTemplateFile)" OutputFileName="$(CSASPZip)" OverwriteExistingFile="true" />
+    <Zip InputFileNames="$(VersionedItemTemplateDir)ModelObjectItemVB_ASPNET.vstemplate;@(CommonTemplateFile)" OutputFileName="$(VBASPZip)" OverwriteExistingFile="true" />
+    <Copy SourceFiles="@(IntellisenseFiles)" DestinationFiles="@(IntellisenseFiles->'$(TargetIntellisenseDir)\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <ItemGroup>
+      <ADONETCS Include="$(VersionedItemTemplateDir)ModelObjectItemCS.vstemplate;@(CommonTemplateFile)" />
+      <ADONETVB Include="$(VersionedItemTemplateDir)ModelObjectItemVB.vstemplate;@(CommonTemplateFile)" />
+      <ADONETCS_ASPNET Include="$(VersionedItemTemplateDir)ModelObjectItemCS_ASPNET.vstemplate;@(CommonTemplateFile)" />
+      <ADONETVB_ASPNET Include="$(VersionedItemTemplateDir)ModelObjectItemVB_ASPNET.vstemplate;@(CommonTemplateFile)" />
+    </ItemGroup>
+    <Copy SourceFiles="@(ADONETCS)" DestinationFiles="@(ADONETCS->'$(CSDir)\%(Filename)%(Extension)')" />
+    <Copy SourceFiles="@(ADONETVB)" DestinationFiles="@(ADONETVB->'$(VBDir)\%(Filename)%(Extension)')" />
+    <Copy SourceFiles="@(ADONETCS_ASPNET)" DestinationFiles="@(ADONETCS_ASPNET->'$(CSASPDir)\%(Filename)%(Extension)')" />
+    <Copy SourceFiles="@(ADONETVB_ASPNET)" DestinationFiles="@(ADONETVB_ASPNET->'$(VBASPDir)\%(Filename)%(Extension)')" />
+  </Target>
+
+</Project>

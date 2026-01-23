@@ -1,25 +1,32 @@
-# Entity Framework 6
+# Microsoft's Entity Framework Designer is dead.
 
-Entity Framework 6 (EF6) is an object-relational mapper that enables .NET developers to work with relational data using domain-specific objects. It eliminates the need for most of the data-access code that developers usually need to write.
+Yet it still ships inside Visual Studio 2026, broken and out of date. Unable to work with moderm projects or SQL providers.
 
-Entity Framework 6 is developed by the Entity Framework team in collaboration with a community of open source developers.
+So we've taken matters into our own hands.
 
-## EF6 here, EF Core elsewhere
+# Modern Entity Designer 2026
 
-This repository is for the Entity Framework 6 runtime and Visual Studio tools. Entity Framework Core is a lightweight and extensible version of Entity Framework and is maintained at https://github.com/aspnet/EntityFrameworkCore.
+Modern Entity Designer 2026 is a stripped down, refactored, modernized version of Microsoft EDMX Designer.
 
-## EF6 PowerTools development has moved
+We've updated the code for modern .NET, stripped out the unnecessary crap, simplified the build process, fixed a bunch of bugs, and added a ton of new features.
 
-Further development of the EF6 PowerTools is happening in a community-driven project, the [EF6 PowerTools Community Edition](https://github.com/ErikEJ/EntityFramework6PowerTools).
+| Feature Supported            | Microsoft In-Box Designer | Modern Entity Designer 2026 |
+| ---------------------------- | ------------------------- | --------------------------- |
+| .NET Framework 4.8           | ✅                         | ✅                           |
+| .NET 8 / 9 / 10 / 11         | ❌                         | ✅                           |
+| `Microsoft.Data.SqlProvider` | ❌                         | ✅                           |
+| SDK-Style Projects           | ❌                         | ✅                           |
+| SVG Export                   | ❌                         | ✅                           |
+| Mermaid Diagram Export       | ❌                         | ✅                           |
 
-## How do I use EF
+# Why Now?
 
-If you want to use an officially supported Entity Framework release to develop your applications then head to https://docs.microsoft.com/ef/ef6/ where you can find installation information, documentation, tutorials, samples, and videos.
+There are situations where the current designer won't even open your EDMX file, and Microsoft is not accepting new PRs.
 
-If you want to try out the latest changes that have not been officially released yet, you can choose to [build the code](https://github.com/aspnet/EntityFramework6/wiki/Building-the-Runtime). We regularily also make [nightly builds](https://github.com/aspnet/EntityFramework6/wiki/Nightly-Builds) of the Entity Framework codebase available.
+At CloudNimble, we are EDMXperts. We have been leveraging the format in EF 6, OData, and EF Core to power robust code-generated .NET solutions for almost 15 years.
 
-## How do I contribute
+Simply put, we wanted to be able to open EXMD files in our own projects and have the Designer work properly.
 
-There are lots of ways to [contribute to the Entity Framework project](https://github.com/aspnet/EntityFramework6/wiki/Contributing) including testing out nighty builds, reporting bugs, and contributing code.
+## Use Cases
 
-All code submissions will be rigorously reviewed and tested by the Entity Framework team, and only those that meet an extremely high bar for both quality and design/roadmap appropriateness will be merged into the source.
+Modern Entity Designer 2026 supports a wide-range of features to help you maintain EDMX-based solutions, including EasyAF for database-first development with Entity Framework Core.

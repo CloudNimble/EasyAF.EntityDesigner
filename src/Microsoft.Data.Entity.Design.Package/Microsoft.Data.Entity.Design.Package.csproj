@@ -1,0 +1,184 @@
+<Project Sdk="CodingWithCalvin.VsixSdk/0.3.0">
+
+  <PropertyGroup>
+    <!-- Opt out of Central Package Management - VsixSdk manages its own package versions -->
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+    <TargetFramework>net48</TargetFramework>
+    <!-- Disable auto-inclusion of embedded resources to avoid duplicates -->
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    <!-- Disable auto-inclusion of VSCT files - we manually specify which ones to compile -->
+    <EnableDefaultVsctItems>false</EnableDefaultVsctItems>
+    <RootNamespace>Microsoft.Data.Entity.Design.Package</RootNamespace>
+    <AssemblyName>Microsoft.Data.Entity.Design.Package</AssemblyName>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <ApplicationIcon>Resources\File.ico</ApplicationIcon>
+
+    <!-- VSIX settings -->
+    <GeneratePkgDefFile>true</GeneratePkgDefFile>
+    <UseCodebase>true</UseCodebase>
+    <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
+    <IncludeDebugSymbolsInVSIXContainer>false</IncludeDebugSymbolsInVSIXContainer>
+    <IncludeDebugSymbolsInLocalVSIXDeployment>true</IncludeDebugSymbolsInLocalVSIXDeployment>
+
+    <!-- Warnings -->
+    <NoWarn>$(NoWarn);VSTHRD010;VSSDK006;VSTHRD001;1591;1573;1572;1570;1711;1712;1587;1584;1571;1589</NoWarn>
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+
+    <!-- Debugging -->
+    <StartAction>Program</StartAction>
+    <StartProgram Condition="'$(DevEnvDir)' != ''">$(DevEnvDir)devenv.exe</StartProgram>
+    <StartArguments>/rootsuffix Exp /log</StartArguments>
+  </PropertyGroup>
+
+  <!-- Package References - explicit versions required since CPM is disabled -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Internal.VisualStudio.Interop" Version="17.10.39524" />
+    <PackageReference Include="Microsoft.VisualStudio.ComponentModelHost" Version="17.10.191" />
+    <PackageReference Include="Microsoft.VisualStudio.DataDesign.Interfaces" Version="17.10.40130" />
+    <PackageReference Include="Microsoft.VisualStudio.Interop" Version="17.10.40130" />
+    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk" Version="17.10.40171" />
+    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams" Version="17.10.40171" />
+    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams.GraphObject" Version="17.10.40171" />
+    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Shell" Version="17.10.40171" />
+    <PackageReference Include="Microsoft.VisualStudio.Package.LanguageService.15.0" Version="17.10.40119" />
+    <PackageReference Include="Microsoft.VisualStudio.Shell.15.0" Version="17.10.40130" />
+    <PackageReference Include="Microsoft.VisualStudio.Shell.Design" Version="17.10.40119" />
+    <PackageReference Include="Microsoft.VisualStudio.TemplateWizardInterface" Version="17.10.39524" />
+    <PackageReference Include="Microsoft.VisualStudio.TextTemplating.Interfaces" Version="17.10.40130" />
+    <PackageReference Include="Microsoft.VisualStudio.TextTemplating.VSHost" Version="17.10.40125" />
+    <PackageReference Include="Microsoft.VisualStudio.Utilities" Version="17.10.40130" />
+    <PackageReference Include="Microsoft.VSDesigner" Version="17.10.40133" />
+    <PackageReference Include="Nerdbank.Streams" Version="2.11.79" />
+    <PackageReference Include="VsWebSite.Interop" Version="17.10.40086" />
+    <PackageReference Update="NerdBank.GitVersioning" Version="3.7.115" />
+  </ItemGroup>
+
+  <!-- Framework References -->
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="ReachFramework" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+
+  <!-- Project References -->
+  <ItemGroup>
+    <ProjectReference Include="..\Microsoft.VisualStudio.Data.Tools.Design.XmlCore\Microsoft.VisualStudio.Data.Tools.Design.XmlCore.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Tools.Design.XmlCore\Microsoft.Data.Tools.Design.XmlCore.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.EntityDesigner\Microsoft.Data.Entity.Design.EntityDesigner.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.Extensibility\Microsoft.Data.Entity.Design.Extensibility.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.Model\Microsoft.Data.Entity.Design.Model.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design\Microsoft.Data.Entity.Design.csproj" />
+  </ItemGroup>
+
+  <!-- VSCT Command Table -->
+  <ItemGroup>
+    <VSCTCompile Include="Commands.vsct">
+      <ResourceName>EntityDesigner.ctmenu</ResourceName>
+    </VSCTCompile>
+  </ItemGroup>
+
+  <!-- T4 Templates -->
+  <ItemGroup>
+    <None Update="GeneratedCode\CommandSet.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CommandSet.cs</LastGenOutput>
+    </None>
+    <None Update="GeneratedCode\Constants.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Constants.cs</LastGenOutput>
+    </None>
+    <None Update="GeneratedCode\DocData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DocData.cs</LastGenOutput>
+    </None>
+    <None Update="GeneratedCode\DocView.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DocView.cs</LastGenOutput>
+    </None>
+    <None Update="GeneratedCode\EditorFactory.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EditorFactory.cs</LastGenOutput>
+    </None>
+    <None Update="GeneratedCode\ModelExplorer.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelExplorer.cs</LastGenOutput>
+    </None>
+    <None Update="GeneratedCode\ModelExplorerToolWindow.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelExplorerToolWindow.cs</LastGenOutput>
+    </None>
+    <None Update="GeneratedCode\Package.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Package.cs</LastGenOutput>
+    </None>
+    <!-- T4 template for VSCT is disabled - Commands.vsct contains all content manually maintained -->
+    <None Update="GeneratedCode\GeneratedVSCT.tt">
+      <Generator></Generator>
+      <LastGenOutput>GeneratedVSCT.vsct</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <!-- Resources -->
+  <ItemGroup>
+    <EmbeddedResource Include="VSPackage.resx">
+      <MergeWithCTO>true</MergeWithCTO>
+      <ManifestResourceName>Microsoft.Data.Entity.Design.Package.VSPackage</ManifestResourceName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\MappingDetailsBitmap.bmp" />
+    <EmbeddedResource Include="Resources\ModelBrowserBitmap.bmp" />
+    <EmbeddedResource Include="Resources\ThumbnailView.bmp" />
+    <EmbeddedResource Include="Resources\Zoom100Button.bmp" />
+    <EmbeddedResource Include="Resources\ZoomInButton.bmp" />
+    <EmbeddedResource Include="Resources\ZoomOutButton.bmp" />
+  </ItemGroup>
+
+  <!-- Content files -->
+  <ItemGroup>
+    <!-- GeneratedVSCT.vsct is excluded - Commands.vsct contains all necessary content -->
+    <Content Include="Resources\mappingdetailscommandstrip.png" />
+    <Content Include="Resources\ViewBrowserMenu.png" />
+    <Content Include="Resources\ViewMappingDetailsMenu.png" />
+    <Content Include="Resources\__TemplateIcon.ico" />
+    <None Include="PkgDefData\Microsoft.Data.Entity.Design.Package.pkgdef" />
+  </ItemGroup>
+
+  <!-- Copy Commands.vsct from VS version-specific file before build -->
+  <PropertyGroup>
+    <VsctCommandsFile>Commands_VS15.vsct</VsctCommandsFile>
+  </PropertyGroup>
+
+  <Target Name="CopyVsctFile" BeforeTargets="VSCTCompile">
+    <Copy SourceFiles="$(VsctCommandsFile)" DestinationFiles="Commands.vsct" OverwriteReadOnlyFiles="true" />
+  </Target>
+
+  <Target Name="CopyPkgDefFile" AfterTargets="Build">
+    <MakeDir Directories="$(OutputPath)PkgDefData" />
+    <PropertyGroup>
+      <PkgDefInputFile>PkgDefData\Microsoft.Data.Entity.Design.Package.pkgdef</PkgDefInputFile>
+      <PkgDefOutputFile>$(OutputPath)PkgDefData\Microsoft.Data.Entity.Design.Package.pkgdef</PkgDefOutputFile>
+    </PropertyGroup>
+    <WriteLinesToFile File="$(PkgDefOutputFile)"
+                      Lines="$([System.IO.File]::ReadAllText('$(PkgDefInputFile)').Replace('EFDESIGNERVERSIONTOKEN','$(Version)'))"
+                      Overwrite="true" />
+  </Target>
+
+</Project>

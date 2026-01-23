@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Microsoft.Data.Entity.Design.Model</RootNamespace>
+    <AssemblyName>Microsoft.Data.Entity.Design.Model</AssemblyName>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.VersioningFacade\Microsoft.Data.Entity.Design.VersioningFacade.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Tools.Design.XmlCore\Microsoft.Data.Tools.Design.XmlCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Designer\EntityDesignerDiagramConstant.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EntityDesignerDiagramConstant.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Microsoft.Data.Entity.Design.Edmx_1.xsd" />
+    <EmbeddedResource Include="Microsoft.Data.Entity.Design.Edmx_2.xsd" />
+    <EmbeddedResource Include="Microsoft.Data.Entity.Design.Edmx_3.xsd" />
+    <EmbeddedResource Update="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <Target Name="AfterBuild">
+    <Copy SourceFiles="Microsoft.Data.Entity.Design.Edmx_1.xsd" DestinationFolder="$(OutputPath)EntityDesigner\Schemas" />
+    <Copy SourceFiles="Microsoft.Data.Entity.Design.Edmx_2.xsd" DestinationFolder="$(OutputPath)EntityDesigner\Schemas" />
+    <Copy SourceFiles="Microsoft.Data.Entity.Design.Edmx_3.xsd" DestinationFolder="$(OutputPath)EntityDesigner\Schemas" />
+  </Target>
+
+</Project>

@@ -4,6 +4,14 @@
     <RepoRoot>$(MSBuildThisFileDirectory)</RepoRoot>
   </PropertyGroup>
 
+  <!-- Common assembly attributes for all projects -->
+  <PropertyGroup>
+    <Company>Microsoft Corporation</Company>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <Product>Microsoft Entity Framework</Product>
+    <NeutralLanguage>en-US</NeutralLanguage>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="NerdBank.GitVersioning" PrivateAssets="All" Condition="!Exists('packages.config')" />
   </ItemGroup>
