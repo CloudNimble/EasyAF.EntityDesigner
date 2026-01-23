@@ -26,4 +26,12 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <!-- InternalsVisibleTo for other projects that need access to internals -->
+  <ItemGroup>
+    <!-- Primary projects that depend on this assembly -->
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design, $(StrongNamePublicKey)" />
+    <!-- Legacy test projects -->
+    <InternalsVisibleTo Include="EFDesigner.InProcTests, $(StrongNamePublicKey)" />
+  </ItemGroup>
+
 </Project>

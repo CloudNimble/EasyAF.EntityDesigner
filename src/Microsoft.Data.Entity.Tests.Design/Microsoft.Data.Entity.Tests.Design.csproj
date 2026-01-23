@@ -1,0 +1,53 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Microsoft.Data.Entity.Tests.Design</RootNamespace>
+    <AssemblyName>Microsoft.Data.Entity.Tests.Design</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" />
+    <PackageReference Include="Microsoft.VisualStudio.Data.Core" />
+    <PackageReference Include="Microsoft.VisualStudio.DataTools.Interop" />
+    <PackageReference Include="Microsoft.VisualStudio.Interop" />
+    <PackageReference Include="Microsoft.VisualStudio.Shell.15.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Shell.Design" />
+    <PackageReference Include="Microsoft.VisualStudio.TemplateWizardInterface" />
+    <PackageReference Include="Microsoft.VisualStudio.TextTemplating" />
+    <PackageReference Include="Microsoft.VisualStudio.TextTemplating.Interfaces" />
+    <PackageReference Include="Microsoft.VisualStudio.Utilities" />
+    <PackageReference Include="Microsoft.VSDesigner" />
+    <PackageReference Include="Microsoft.WizardFramework" />
+    <PackageReference Include="VsWebSite.Interop" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design\Microsoft.Data.Entity.Design.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.Extensibility\Microsoft.Data.Entity.Design.Extensibility.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.Package\Microsoft.Data.Entity.Design.Package.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.VersioningFacade\Microsoft.Data.Entity.Design.VersioningFacade.csproj" />
+  </ItemGroup>
+
+  <!-- Linked content files for ConfigurationFileSchemaTests -->
+  <ItemGroup>
+    <None Include="..\..\src\setup\EFToolsMsi\XmlSchemas\EntityFrameworkConfig_6_1_4.xsd">
+      <Link>EntityFrameworkConfig_6_1_4.xsd</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="..\..\src\setup\EFToolsMsi\XmlSchemas\EntityFrameworkCatalog.xml">
+      <Link>EntityFrameworkCatalog.xml</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

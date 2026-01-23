@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <RootNamespace>Microsoft.Data.Entity.Tests.Shared</RootNamespace>
+        <AssemblyName>Microsoft.Data.Entity.Tests.Shared</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Internal.VisualStudio.Interop" />
+        <PackageReference Include="Microsoft.VisualStudio.Interop" />
+        <PackageReference Include="Microsoft.VisualStudio.Shell.15.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="Microsoft.CSharp" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Drawing" />
+        <Reference Include="System.Windows.Forms" />
+        <Reference Include="System.Xml.Linq" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Microsoft.VisualStudio.Data.Tools.Design.XmlCore\Microsoft.VisualStudio.Data.Tools.Design.XmlCore.csproj" />
+        <ProjectReference Include="..\Microsoft.Data.Tools.Design.XmlCore\Microsoft.Data.Tools.Design.XmlCore.csproj" />
+        <ProjectReference Include="..\Microsoft.Data.Entity.Design.Model\Microsoft.Data.Entity.Design.Model.csproj" />
+        <ProjectReference Include="..\Microsoft.Data.Entity.Design\Microsoft.Data.Entity.Design.csproj" />
+        <ProjectReference Include="..\Microsoft.VisualStudio.TestTools.VsIdeTesting\Microsoft.VisualStudio.TestTools.VsIdeTesting.csproj" />
+    </ItemGroup>
+
+</Project>

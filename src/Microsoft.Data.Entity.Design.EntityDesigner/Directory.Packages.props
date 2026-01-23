@@ -1,0 +1,6 @@
+<Project>
+  <!-- Opt out of CPM for this old-style project -->
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+</Project>

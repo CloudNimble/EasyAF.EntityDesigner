@@ -23,13 +23,13 @@ namespace Microsoft.Data.Entity.Design.Package
         public const string Language = "en-US";
 
         /// <summary>The publisher/author of the extension.</summary>
-        public const string Publisher = "Microsoft Corp.";
+        public const string Publisher = "CloudNimble";
 
         /// <summary>The display name of the extension.</summary>
-        public const string DisplayName = "Microsoft Data Entity Design Package";
+        public const string DisplayName = "Modern Entity Designer 2026";
 
         /// <summary>The description of the extension.</summary>
-        public const string Description = "Microsoft Data Entity Design Package";
+        public const string Description = "Modern Entity Designer 2026 - A community-maintained Entity Framework designer for Visual Studio";
 
         /// <summary>URL for more information about the extension.</summary>
         public const string MoreInfo = "";

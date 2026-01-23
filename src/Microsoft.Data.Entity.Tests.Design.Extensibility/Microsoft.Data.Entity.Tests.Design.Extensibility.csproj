@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Microsoft.Data.Entity.Tests.Design.Extensibility</RootNamespace>
+    <AssemblyName>Microsoft.Data.Entity.Tests.Design.Extensibility</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.Extensibility\Microsoft.Data.Entity.Design.Extensibility.csproj" />
+  </ItemGroup>
+
+</Project>

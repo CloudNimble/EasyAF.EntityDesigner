@@ -49,22 +49,22 @@
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Internal.VisualStudio.Interop" />
-    <PackageReference Include="System.Resources.Extensions" />
-    <PackageReference Include="Microsoft.VisualStudio.Interop" />
-    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk" />
-    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams" />
-    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams.GraphObject" />
-    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Shell" />
-    <PackageReference Include="Microsoft.VisualStudio.Package.LanguageService.15.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Shell.15.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Shell.Framework" />
-    <PackageReference Include="Microsoft.VisualStudio.TextTemplating.Interfaces" />
-    <PackageReference Include="Microsoft.VisualStudio.TextTemplating.VSHost" />
-    <PackageReference Include="Microsoft.VisualStudio.XmlEditor" />
-    <PackageReference Include="Microsoft.XmlEditor" />
-    <PackageReference Include="Nerdbank.Streams" />
-    <PackageReference Include="VsWebSite.Interop" />
+    <PackageReference Include="Microsoft.Internal.VisualStudio.Interop" Version="17.10.39524" />
+    <PackageReference Include="System.Resources.Extensions" Version="9.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Interop" Version="17.10.40130" />
+    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk" Version="17.10.40171" />
+    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams" Version="17.10.40171" />
+    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams.GraphObject" Version="17.10.40171" />
+    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Shell" Version="17.10.40171" />
+    <PackageReference Include="Microsoft.VisualStudio.Package.LanguageService.15.0" Version="17.10.40119" />
+    <PackageReference Include="Microsoft.VisualStudio.Shell.15.0" Version="17.10.40130" />
+    <PackageReference Include="Microsoft.VisualStudio.Shell.Framework" Version="17.10.40130" />
+    <PackageReference Include="Microsoft.VisualStudio.TextTemplating.Interfaces" Version="17.10.40130" />
+    <PackageReference Include="Microsoft.VisualStudio.TextTemplating.VSHost" Version="17.10.40125" />
+    <PackageReference Include="Microsoft.VisualStudio.XmlEditor" Version="17.10.34810.168" />
+    <PackageReference Include="Microsoft.XmlEditor" Version="17.10.40088" />
+    <PackageReference Include="Nerdbank.Streams" Version="2.11.79" />
+    <PackageReference Include="VsWebSite.Interop" Version="17.10.40086" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
@@ -81,7 +81,6 @@
     <Compile Include="CustomCode\Export\ExportFormat.cs" />
     <Compile Include="CustomCode\Export\Svg\SvgStylesheetManager.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Properties\InternalsVisibleTo.cs" />
     <Compile Include="CustomCode\ConnectionBuilders\InheritanceToolConnectAction.cs" />
     <Compile Include="CustomCode\Connectors\AssociationConnector.cs" />
     <Compile Include="CustomCode\Connectors\InheritanceConnector.cs" />

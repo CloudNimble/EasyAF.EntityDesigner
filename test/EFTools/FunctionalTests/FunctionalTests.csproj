@@ -32,7 +32,7 @@
     <ProjectReference Include="..\..\..\src\Microsoft.Data.Entity.Design.Extensibility\Microsoft.Data.Entity.Design.Extensibility.csproj" />
     <ProjectReference Include="..\..\..\src\Microsoft.Data.Entity.Design.Model\Microsoft.Data.Entity.Design.Model.csproj" />
     <ProjectReference Include="..\..\..\src\Microsoft.Data.Entity.Design\Microsoft.Data.Entity.Design.csproj" />
-    <ProjectReference Include="..\TestInfrastructure\TestInfrastructure.csproj" />
+    <ProjectReference Include="..\..\..\src\Microsoft.Data.Entity.Tests.Shared\Microsoft.Data.Entity.Tests.Shared.csproj" />
   </ItemGroup>
 
   <!-- Copy TestArtifacts to output directory after build -->

@@ -1,33 +1,95 @@
 <Project>
 
-  <!-- Import parent Directory.Build.props -->
-  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+    <!-- Import parent Directory.Build.props -->
+    <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
 
-  <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
-    <RuntimeIdentifier>win</RuntimeIdentifier>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- Project type detection -->
+    <PropertyGroup>
+        <IsTestProject Condition="$(MSBuildProjectName.ToLower().Contains('.tests.'))">true</IsTestProject>
+        <IsPrimaryProject Condition=" '$(IsTestProject)' != 'true' ">true</IsPrimaryProject>
+    </PropertyGroup>
 
-    <!-- Output paths - don't append framework/runtime to output -->
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <!-- Primary project settings -->
+    <PropertyGroup Condition=" '$(IsPrimaryProject)' == 'true' ">
+        <TargetFramework>net48</TargetFramework>
+        <RuntimeIdentifier>win</RuntimeIdentifier>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
-    <!-- Assembly signing -->
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)ModernEntityDesigner2026.snk</AssemblyOriginatorKeyFile>
-    <StrongNamePublicKey>PublicKey=0024000004800000940000000602000000240000525341310004000001000100bdad90aba264d2a3a04c8fc0dac87ce45d32a8c5a642c6c92910d9cf7bdab903154d88bf2fd1e1837f6bc967956c9f344909c5d9f3a5a07cffcb97e67595326b7f3a25ee11d9ff863c0c8775fc9dd6ed223496fe66e4e9bc279c2fad6618977d57cafc2c71608f8f676a86eae562045943383e7fd3b86e8d4105bc23362e09b0</StrongNamePublicKey>
+        <!-- Output paths - don't append framework/runtime to output -->
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
 
-    <!-- Suppress common documentation warnings -->
-    <NoWarn>$(NoWarn);1591;1573;1572;1570;1711;1712;1587;1584;1571;1589</NoWarn>
+        <!-- Suppress common documentation warnings -->
+        <NoWarn>$(NoWarn);1591;1573;1572;1570;1711;1712;1587;1584;1571;1589</NoWarn>
 
-    <!-- VS version constants for conditional compilation (VS12ORNEWER for VS 2013+) -->
-    <DefineConstants>$(DefineConstants);VS12ORNEWER</DefineConstants>
-  </PropertyGroup>
+        <!-- VS version constants for conditional compilation (VS12ORNEWER for VS 2013+) -->
+        <DefineConstants>$(DefineConstants);VS12ORNEWER</DefineConstants>
+    </PropertyGroup>
 
-  <!-- Additional assembly attributes for EFTools projects -->
-  <PropertyGroup>
-    <Description>$(AssemblyName).dll</Description>
-    <CLSCompliant>false</CLSCompliant>
-  </PropertyGroup>
+    <!-- Test project settings -->
+    <PropertyGroup Condition=" '$(IsTestProject)' == 'true' ">
+        <TargetFramework>net48</TargetFramework>
+        <RuntimeIdentifier>win</RuntimeIdentifier>
+        <IsPackable>false</IsPackable>
+
+        <!-- Output paths - don't append framework/runtime to output -->
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+
+        <!-- Suppress test-specific warnings -->
+        <NoWarn>$(NoWarn);CA1001;CA1707;CA2007;CA1801</NoWarn>
+    </PropertyGroup>
+
+    <!-- Assembly signing (applies to all projects) -->
+    <PropertyGroup>
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)ModernEntityDesigner.snk</AssemblyOriginatorKeyFile>
+        <StrongNamePublicKey>PublicKey=0024000004800000940000000602000000240000525341310004000001000100bdad90aba264d2a3a04c8fc0dac87ce45d32a8c5a642c6c92910d9cf7bdab903154d88bf2fd1e1837f6bc967956c9f344909c5d9f3a5a07cffcb97e67595326b7f3a25ee11d9ff863c0c8775fc9dd6ed223496fe66e4e9bc279c2fad6618977d57cafc2c71608f8f676a86eae562045943383e7fd3b86e8d4105bc23362e09b0</StrongNamePublicKey>
+    </PropertyGroup>
+
+    <!-- Additional assembly attributes for EFTools projects -->
+    <PropertyGroup>
+        <Description>$(AssemblyName).dll</Description>
+        <CLSCompliant>false</CLSCompliant>
+    </PropertyGroup>
+
+
+
+    <!-- InternalsVisibleTo for primary projects to expose internals to test projects -->
+    <ItemGroup Condition=" '$(IsPrimaryProject)' == 'true' ">
+        <!-- Microsoft.Data.Entity.Design.* -> Microsoft.Data.Entity.Tests.Design.* -->
+        <InternalsVisibleTo Include="$(AssemblyName.Replace('Microsoft.Data.Entity.Design', 'Microsoft.Data.Entity.Tests.Design')), $(StrongNamePublicKey)"
+                            Condition="$(AssemblyName.StartsWith('Microsoft.Data.Entity.Design'))" />
+        <!-- Microsoft.Data.Tools.Design.* -> Microsoft.Data.Tools.Tests.Design.* -->
+        <InternalsVisibleTo Include="$(AssemblyName.Replace('Microsoft.Data.Tools.Design', 'Microsoft.Data.Tools.Tests.Design')), $(StrongNamePublicKey)"
+                            Condition="$(AssemblyName.StartsWith('Microsoft.Data.Tools.Design'))" />
+        <!-- Microsoft.VisualStudio.Data.Tools.Design.* -> Microsoft.VisualStudio.Data.Tools.Tests.Design.* -->
+        <InternalsVisibleTo Include="$(AssemblyName.Replace('Microsoft.VisualStudio.Data.Tools.Design', 'Microsoft.VisualStudio.Data.Tools.Tests.Design')), $(StrongNamePublicKey)"
+                            Condition="$(AssemblyName.StartsWith('Microsoft.VisualStudio.Data.Tools.Design'))" />
+        <!-- All primary projects -> Microsoft.Data.Entity.Tests.Shared -->
+        <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Shared, $(StrongNamePublicKey)" />
+        <!-- Moq dynamic proxy for mocking internal types -->
+        <InternalsVisibleTo Include="DynamicProxyGenAssembly2, PublicKey=0024000004800000940000000602000000240000525341310004000001000100c547cac37abd99c8db225ef2f6c8a3602f3b3606cc9891605d02baa56104f4cfc0734aa39b93bf7852f7d9266654753cc297e7d2edfe0bac1cdcf9f717241550e0a7b191195b7667bb4f64bcb8e2121380fd1d9d46ad2d92d2d15605093924cceaf74c4861eff62abf69b9291ed0a340e113be11e6a7d3113e92484cf7045cc7" />
+    </ItemGroup>
+
+    <ItemGroup Condition=" $(IsTestProject) != 'true' and $(IsSampleProject) != 'true' and $(IsTemplateProject) != 'true' ">
+        <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
+    </ItemGroup>
+
+    <!-- Test project package references -->
+    <ItemGroup Condition=" '$(IsTestProject)' == 'true' ">
+        <PackageReference Include="FluentAssertions" />
+        <PackageReference Include="FluentAssertions.Analyzers" PrivateAssets="All" />
+        <PackageReference Include="Moq" />
+        <PackageReference Include="MSTest" />
+
+        <!-- Enable parallel test execution in MSTest 4 and later -->
+        <AssemblyAttribute Include="Microsoft.VisualStudio.TestTools.UnitTesting.Parallelize">
+            <_Parameter1>Workers = 0</_Parameter1>
+            <_Parameter1_IsLiteral>true</_Parameter1_IsLiteral>
+            <_Parameter2>Scope = Microsoft.VisualStudio.TestTools.UnitTesting.ExecutionScope.MethodLevel</_Parameter2>
+            <_Parameter2_IsLiteral>true</_Parameter2_IsLiteral>
+        </AssemblyAttribute>
+    </ItemGroup>
 
 </Project>

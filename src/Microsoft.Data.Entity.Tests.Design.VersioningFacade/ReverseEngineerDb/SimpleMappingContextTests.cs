@@ -1,0 +1,270 @@
+﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
+{
+    using System.Data.Entity.Core.Metadata.Edm;
+    using System.Linq;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FluentAssertions;
+
+    [TestClass]
+    public class SimpleMappingContextTests
+    {
+        [TestMethod, Ignore("Different API Visiblity between official dll and locally built")]
+        public void Store_model_initialized()
+        {
+            //var storeModel = new EdmModel(DataSpace.SSpace);
+            //var mappingContext = new SimpleMappingContext(storeModel, true);
+            //mappingContext.StoreModel.Should().BeSameAs(storeModel);
+            //mappingContext.IncludeForeignKeyProperties.Should().BeTrue();
+        }
+
+        [TestMethod, Ignore("Different API Visiblity between official dll and locally built")]
+        public void Can_add_get_error()
+        {
+            //var mappingContext = new SimpleMappingContext(new EdmModel(DataSpace.SSpace), true);
+            //Assert.Empty(mappingContext.Errors);
+
+            //var error = new EdmSchemaError("bar", 0xF00, EdmSchemaErrorSeverity.Warning);
+            //mappingContext.Errors.Add(error);
+
+            //Assert.Same(error, mappingContext.Errors.Single());
+        }
+
+        [TestMethod, Ignore("Different API Visiblity between official dll and locally built")]
+        public void Can_add_and_get_property_mapping()
+        {
+            //var p1 = EdmProperty.CreatePrimitive("p1", PrimitiveType.GetEdmPrimitiveType(PrimitiveTypeKind.Int32));
+            //var p2 = EdmProperty.CreatePrimitive("p2", PrimitiveType.GetEdmPrimitiveType(PrimitiveTypeKind.Int32));
+
+            //var mappingContext = new SimpleMappingContext(new EdmModel(DataSpace.SSpace), true);
+            //mappingContext.AddMapping(p1, p2);
+            //mappingContext[p1].Should().BeSameAs(p2);
+        }
+
+        [TestMethod, Ignore("Different API visiblity between official dlls and locally built one")]
+        public void Can_add_and_get_entity_type_mapping()
+        {
+            //var e1 = CreateEntityType("e1");
+            //var e2 = CreateEntityType("e2");
+
+            //var mappingContext = new SimpleMappingContext(new EdmModel(DataSpace.SSpace), true);
+            //Assert.Empty(mappingContext.ConceptualEntityTypes());
+            //mappingContext.AddMapping(e1, e2);
+            //mappingContext[e1].Should().BeSameAs(e2);
+            //Assert.Same(e2, mappingContext.ConceptualEntityTypes().Single());
+        }
+
+        [TestMethod, Ignore("Different API Visiblity between official dll and locally built")]
+        public void Can_add_and_get_entity_set_mapping()
+        {
+            //var dummy = CreateEntityType("e");
+            //var es1 = EntitySet.Create("es1", null, null, null, dummy, null);
+            //var es2 = EntitySet.Create("es2", null, null, null, dummy, null);
+
+            //var mappingContext = new SimpleMappingContext(new EdmModel(DataSpace.SSpace), true);
+            //mappingContext.AddMapping(es1, es2);
+            //mappingContext[es1].Should().BeSameAs(es2);
+
+            //EntitySet outEntitySet;
+
+            //mappingContext.TryGetValue(es1, out outEntitySet.Should().BeTrue());
+            //outEntitySet.Should().BeSameAs(es2);
+
+            //mappingContext.TryGetValue(es2, out outEntitySet.Should().BeFalse());
+            //outEntitySet.Should().BeNull();
+        }
+
+        [TestMethod, Ignore("Different API Visiblity between official dll and locally built")]
+        public void Can_add_and_get_entity_container_mapping()
+        {
+            //var es1 = EntitySet.Create("es1", null, null, null, CreateEntityType("e"), null);
+            //var ec1 = EntityContainer.Create("ec1", DataSpace.CSpace, new[] { es1 }, null, null);
+
+            //var es2 = EntitySet.Create("es1", null, null, null, CreateEntityType("e"), null);
+            //var ec2 = EntityContainer.Create("ec2", DataSpace.CSpace, new[] { es2 }, null, null);
+
+            //var mappingContext = new SimpleMappingContext(new EdmModel(DataSpace.SSpace), true);
+            //mappingContext.AddMapping(ec1, ec2);
+            //mappingContext[ec1].Should().BeSameAs(ec2);
+        }
+
+        [TestMethod, Ignore("Different API Visiblity between official dll and locally built")]
+        public void Can_add_and_get_association_type_mapping()
+        {
+            //var at1 = AssociationType.Create("at1", "ns", false, DataSpace.CSpace, null, null, null, null);
+            //var at2 = AssociationType.Create("at2", "ns", false, DataSpace.CSpace, null, null, null, null);
+
+            //var mappingContext = new SimpleMappingContext(new EdmModel(DataSpace.SSpace), true);
+            //mappingContext.AddMapping(at1, at2);
+
+            //mappingContext[at1].Should().BeSameAs(at2);
+        }
+
+        [TestMethod, Ignore("Different API Visiblity between official dll and locally built")]
+        public void Can_add_and_get_association_set_mapping()
+        {
+            //var at1 = AssociationType.Create("at1", "ns", false, DataSpace.CSpace, null, null, null, null);
+            //var at2 = AssociationType.Create("at2", "ns", false, DataSpace.CSpace, null, null, null, null);
+            //var as1 = AssociationSet.Create("as1", at1, null, null, null);
+            //var as2 = AssociationSet.Create("as2", at2, null, null, null);
+
+            //var mappingContext = new SimpleMappingContext(new EdmModel(DataSpace.SSpace), true);
+            //mappingContext.AddMapping(as1, as2);
+
+            //mappingContext[as1].Should().BeSameAs(as2);
+        }
+
+        [TestMethod, Ignore("Different API Visiblity between official dll and locally built")]
+        public void Can_add_and_get_association_end_member_mapping()
+        {
+            //var et1 = CreateEntityType("et1");
+            //var et2 = CreateEntityType("et2");
+            //var aem1 = AssociationEndMember.Create("aem1", et1.GetReferenceType(), RelationshipMultiplicity.One, OperationAction.None, null);
+            //var aem2 = AssociationEndMember.Create("aem2", et2.GetReferenceType(), RelationshipMultiplicity.One, OperationAction.None, null);
+
+            //var mappingContext = new SimpleMappingContext(new EdmModel(DataSpace.SSpace), true);
+            //mappingContext.AddMapping(aem1, aem2);
+
+            //mappingContext[aem1].Should().BeSameAs(aem2);
+        }
+
+        [TestMethod, Ignore("Different API Visiblity between official dll and locally built")]
+        public void Can_add_and_get_association_set_end_mapping()
+        {
+            //var et1 = CreateEntityType("et1");
+            //var et2 = CreateEntityType("et2");
+            //var es1 = EntitySet.Create("es1", null, null, null, et1, null);
+            //var es2 = EntitySet.Create("es2", null, null, null, et2, null);
+            //var aem1 = AssociationEndMember.Create("aem1", et1.GetReferenceType(), RelationshipMultiplicity.One, OperationAction.None, null);
+            //var aem2 = AssociationEndMember.Create("aem2", et2.GetReferenceType(), RelationshipMultiplicity.One, OperationAction.None, null);
+            //var at1 = AssociationType.Create("at1", "ns", false, DataSpace.CSpace, aem1, aem2, null, null);
+            //var as1 = AssociationSet.Create("as1", at1, es1, es2, null);
+
+            //as1.AssociationSetEnds.Count.Should().Be(2);
+            //var ase1 = as1.AssociationSetEnds[0];
+            //var ase2 = as1.AssociationSetEnds[1];
+
+            //var mappingContext = new SimpleMappingContext(new EdmModel(DataSpace.SSpace), true);
+            //mappingContext.AddMapping(ase1, ase2);
+
+            //mappingContext[ase1].Should().BeSameAs(ase2);
+        }
+
+        [TestMethod, Ignore("Different API Visiblity between official dll and locally built")]
+        public void Can_add_get_association_type_mapping()
+        {
+            //var storeAssociationType =
+            //    AssociationType.Create("storeAssociationType", "ns.Store", false, DataSpace.SSpace, null, null, null, null);
+            //var conceptualAssociationType =
+            //    AssociationType.Create("conceptualAssociationType", "ns", false, DataSpace.CSpace, null, null, null, null);
+
+            //var mappingContext = new SimpleMappingContext(new EdmModel(DataSpace.SSpace), true);
+            //mappingContext.AddMapping(storeAssociationType, conceptualAssociationType);
+
+            //mappingContext[storeAssociationType].Should().BeSameAs(conceptualAssociationType);
+
+            //AssociationType outAssociationType;
+            //mappingContext.TryGetValue(storeAssociationType, out outAssociationType.Should().BeTrue());
+            //outAssociationType.Should().BeSameAs(conceptualAssociationType);
+
+            //mappingContext.TryGetValue(conceptualAssociationType, out outAssociationType.Should().BeFalse());
+            //outAssociationType.Should().BeNull();
+        }
+
+        [TestMethod, Ignore("Different API Visiblity between official dll and locally built")]
+        public void Can_add_get_association_set_mapping()
+        {
+            //var storeAssociationSet =
+            //    AssociationSet.Create(
+            //        "storeAssociationSet",
+            //        AssociationType.Create("storeAssociationType", "ns.Store", false, DataSpace.SSpace, null, null, null, null),
+            //        null, null, null);
+
+            //var conceptualAssociationSet =
+            //    AssociationSet.Create(
+            //        "conceptualAssociationSet",
+            //        AssociationType.Create("conceptualAssociationType", "ns", false, DataSpace.CSpace, null, null, null, null),
+            //        null, null, null);
+
+            //var mappingContext = new SimpleMappingContext(new EdmModel(DataSpace.SSpace), true);
+            //mappingContext.AddMapping(storeAssociationSet, conceptualAssociationSet);
+
+            //mappingContext[storeAssociationSet].Should().BeSameAs(conceptualAssociationSet);
+        }
+
+        [TestMethod, Ignore("Different API Visiblity between official dll and locally built")]
+        public void Can_add_and_get_function_mapping()
+        {
+            //var storeFunction = EdmFunction.Create("fs", "ns", DataSpace.SSpace, new EdmFunctionPayload(), null);
+            //var functionImport = EdmFunction.Create("fs", "ns", DataSpace.SSpace, new EdmFunctionPayload(), null);
+
+            //var mappingContext = new SimpleMappingContext(new EdmModel(DataSpace.SSpace), true);
+            //Assert.Empty(mappingContext.MappedStoreFunctions());
+
+            //mappingContext.AddMapping(storeFunction, functionImport);
+            //mappingContext[storeFunction].Should().BeSameAs(functionImport);
+            //Assert.Same(storeFunction, mappingContext.MappedStoreFunctions().Single());
+        }
+
+        [TestMethod, Ignore("Different API Visiblity between official dll and locally built")]
+        public void Removing_entity_set_mapping_removes_corresponding_entity_type()
+        {
+            //var storeEntity = CreateEntityType("storeEntity");
+            //var modelEntity = CreateEntityType("modelEntity");
+            //var storeEntitySet = EntitySet.Create("storeEntitySet", null, null, null, storeEntity, null);
+            //var modelEntitySet = EntitySet.Create("modelEntitySet", null, null, null, modelEntity, null);
+
+            //var mappingContext = new SimpleMappingContext(new EdmModel(DataSpace.SSpace), true);
+            //mappingContext.AddMapping(storeEntity, modelEntity);
+            //mappingContext.AddMapping(storeEntitySet, modelEntitySet);
+
+            //Assert.Same(modelEntitySet, mappingContext.ConceptualEntitySets().Single());
+            //Assert.Same(modelEntity, mappingContext.ConceptualEntityTypes().Single());
+
+            //mappingContext.RemoveMapping(storeEntitySet);
+
+            //Assert.Empty(mappingContext.ConceptualEntitySets());
+            //Assert.Empty(mappingContext.ConceptualEntityTypes());
+        }
+
+        [TestMethod, Ignore("Different API Visiblity between official dll and locally built")]
+        public void Can_add_and_get_mapping_for_collapsed_entity_sets()
+        {
+            //var storeEntity = CreateEntityType("storeEntity");
+            //var storeEntitySet = EntitySet.Create("storeEntitySet", null, null, null, storeEntity, null);
+            //var collapsibleAssociationSet = new CollapsibleEntityAssociationSets(storeEntitySet);
+
+            //var associationType = AssociationType.Create("modelAssociationType", "ns", false, DataSpace.CSpace, null, null, null, null);
+            //var associationSet = AssociationSet.Create("modelAssociationType", associationType, null, null, null);
+
+            //var mappingContext = new SimpleMappingContext(new EdmModel(DataSpace.SSpace), true);
+            //mappingContext.AddMapping(collapsibleAssociationSet, associationSet);
+
+            //mappingContext[collapsibleAssociationSet].Should().BeSameAs(associationSet);
+        }
+
+        [TestMethod, Ignore("Different API Visiblity between official dll and locally built")]
+        public void ConceptualAssociationSets_returns_associationsets_for_collapsed_entity_sets()
+        {
+            //var storeEntity = CreateEntityType("storeEntity");
+            //var storeEntitySet = EntitySet.Create("storeEntitySet", null, null, null, storeEntity, null);
+            //var collapsibleAssociationSet = new CollapsibleEntityAssociationSets(storeEntitySet);
+
+            //var associationType = AssociationType.Create("modelAssociationType", "ns", false, DataSpace.CSpace, null, null, null, null);
+            //var associationSet = AssociationSet.Create("modelAssociationType", associationType, null, null, null);
+
+            //var mappingContext = new SimpleMappingContext(new EdmModel(DataSpace.SSpace), true);
+            //Assert.Empty(mappingContext.ConceptualAssociationSets());
+
+            //mappingContext.AddMapping(collapsibleAssociationSet, associationSet);
+            //Assert.Equal(1, mappingContext.ConceptualAssociationSets().Count());
+            //Assert.Same(associationSet, mappingContext.ConceptualAssociationSets().Single());
+        }
+
+        private static EntityType CreateEntityType(string name)
+        {
+            return EntityType.Create(name, "ns", DataSpace.CSpace, null, null, null);
+        }
+    }
+}

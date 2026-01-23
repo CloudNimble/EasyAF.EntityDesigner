@@ -208,4 +208,18 @@
     <Copy SourceFiles="@(ADONETVB_ASPNET)" DestinationFiles="@(ADONETVB_ASPNET->'$(VBASPDir)\%(Filename)%(Extension)')" />
   </Target>
 
+  <!-- InternalsVisibleTo for other projects that need access to internals -->
+  <ItemGroup>
+    <!-- Primary projects that depend on this assembly -->
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Package, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.EntityDesigner, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.DataSourceWizardExtension, $(StrongNamePublicKey)" />
+    <!-- Legacy test projects -->
+    <InternalsVisibleTo Include="EFDesigner.InProcTests, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="EFDesigner.FunctionalTests, $(StrongNamePublicKey)" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
 </Project>

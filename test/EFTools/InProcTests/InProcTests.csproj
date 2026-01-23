@@ -44,8 +44,8 @@
     <ProjectReference Include="..\..\..\src\Microsoft.Data.Entity.Design.Model\Microsoft.Data.Entity.Design.Model.csproj" />
     <ProjectReference Include="..\..\..\src\Microsoft.Data.Entity.Design.Package\Microsoft.Data.Entity.Design.Package.csproj" />
     <ProjectReference Include="..\..\..\src\Microsoft.Data.Entity.Design\Microsoft.Data.Entity.Design.csproj" />
-    <ProjectReference Include="..\..\..\tools\VsIdeHostAdapter\Framework\VsIdeTestHostFramework.csproj" />
-    <ProjectReference Include="..\TestInfrastructure\TestInfrastructure.csproj" />
+    <ProjectReference Include="..\..\..\src\Microsoft.VisualStudio.TestTools.VsIdeTesting\Microsoft.VisualStudio.TestTools.VsIdeTesting.csproj" />
+    <ProjectReference Include="..\..\..\src\Microsoft.Data.Entity.Tests.Shared\Microsoft.Data.Entity.Tests.Shared.csproj" />
   </ItemGroup>
 
   <!-- Embedded resources for test baselines and test data -->

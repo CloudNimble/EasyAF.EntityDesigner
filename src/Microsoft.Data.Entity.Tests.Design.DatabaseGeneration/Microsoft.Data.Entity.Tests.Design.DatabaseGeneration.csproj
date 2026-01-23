@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Microsoft.Data.Entity.Tests.Design.DatabaseGeneration</RootNamespace>
+    <AssemblyName>Microsoft.Data.Entity.Tests.Design.DatabaseGeneration</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Data.Entity" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.DatabaseGeneration\Microsoft.Data.Entity.Design.DatabaseGeneration.csproj" />
+  </ItemGroup>
+
+</Project>

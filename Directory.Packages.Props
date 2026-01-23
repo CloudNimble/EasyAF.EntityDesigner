@@ -41,6 +41,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageVersion Include="EntityFramework" Version="$(EntityFrameworkPackageVersion)" />
+		<PackageVersion Include="Microsoft.EntityFramework.SqlServer" Version="$(EntityFrameworkPackageVersion)" />
 		<PackageVersion Include="EntityFramework.SqlServerCompact" Version="$(EntityFrameworkPackageVersion)" />
 		<PackageVersion Include="MessagePack" Version="$(MessagePackPackageVersion)" />
 		<PackageVersion Include="Microsoft.Data.ConnectionUI" Version="17.10.40129" />
@@ -96,6 +97,14 @@
 		<PackageVersion Include="xunit" Version="$(XunitPackageVersion)" />
 		<PackageVersion Include="xunit.extensions" Version="$(XunitPackageVersion)" />
 		<PackageVersion Include="xunit.runner.visualstudio" Version="2.0.0" />
+		<!-- Test packages -->
+		<PackageVersion Include="FluentAssertions" Version="8.2.0" />
+		<PackageVersion Include="FluentAssertions.Analyzers" Version="0.34.0" />
+		<PackageVersion Include="MSTest" Version="3.7.3" />
+		<PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
+		<PackageVersion Include="Microsoft.VisualStudio.QualityTools.Common" Version="$(MicrosoftVisualStudioQualityToolsPackageVersion)" />
+		<PackageVersion Include="Microsoft.VisualStudio.QualityTools.ExecutionCommon" Version="$(MicrosoftVisualStudioQualityToolsPackageVersion)" />
+		<PackageVersion Include="Microsoft.VisualStudio.QualityTools.Vsip" Version="$(MicrosoftVisualStudioQualityToolsPackageVersion)" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageVersion Include="Microsoft.VisualStudioEng.MicroBuild.Core" Version="$(MicrosoftVisualStudioEngMicroBuildCorePackageVersion)" />

@@ -13,7 +13,7 @@
 
     <!-- Assembly signing -->
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)..\..\src\EFTools\ModernEntityDesigner2026.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)..\..\src\ModernEntityDesigner.snk</AssemblyOriginatorKeyFile>
 
     <!-- Suppress common warnings -->
     <NoWarn>$(NoWarn);VSTHRD010;1762</NoWarn>

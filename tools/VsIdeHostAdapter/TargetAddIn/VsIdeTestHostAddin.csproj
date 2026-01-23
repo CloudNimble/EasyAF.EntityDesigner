@@ -88,9 +88,9 @@
     <EmbeddedResource Include="HostSide\VsIdeHostAdapterRunConfigControl.resx" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Framework\VsIdeTestHostFramework.csproj">
+    <ProjectReference Include="..\..\..\src\Microsoft.VisualStudio.TestTools.VsIdeTesting\Microsoft.VisualStudio.TestTools.VsIdeTesting.csproj">
       <Project>{614ac98e-a68e-4eb4-af27-1cedba7ca3b4}</Project>
-      <Name>VsIdeTestHostFramework</Name>
+      <Name>Microsoft.VisualStudio.TestTools.VsIdeTesting</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
