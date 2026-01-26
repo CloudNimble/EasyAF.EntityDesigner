@@ -58,10 +58,14 @@
         <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
 
         <!-- Suppress common documentation warnings -->
-        <NoWarn>$(NoWarn);1591;1573;1572;1570;1711;1712;1587;1584;1571;1589</NoWarn>
+        <!-- NU1603: Transitive dependency version resolution (compatible version found) -->
+        <NoWarn>$(NoWarn);1591;1573;1572;1570;1711;1712;1587;1584;1571;1589;NU1603</NoWarn>
 
         <!-- VS version constants for conditional compilation (VS12ORNEWER for VS 2013+) -->
         <DefineConstants>$(DefineConstants);VS12ORNEWER</DefineConstants>
+
+        <!-- Suppress x64/AnyCPU mismatch warning - VS is always x64 so this is safe -->
+        <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
     </PropertyGroup>
 
     <!-- Test project settings -->
@@ -77,6 +81,9 @@
 
         <!-- Suppress test-specific warnings -->
         <NoWarn>$(NoWarn);CA1001;CA1707;CA2007;CA1801</NoWarn>
+
+        <!-- Suppress x64/AnyCPU mismatch warning - VS is always x64 so this is safe -->
+        <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
     </PropertyGroup>
 
     <!-- Assembly signing (applies to all projects) -->

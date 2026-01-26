@@ -29,3 +29,7 @@ Storage.dat
 *.sln.ide
 .vs/
 /copy-to-vs.ps1
+/Test1/Test1Package.cs
+/Test1/Test1.csproj
+/Test1
+*.vsix

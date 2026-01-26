@@ -105,6 +105,12 @@
     </None>
   </ItemGroup>
 
+  <!-- WPF Resource images (must be Build Action = Resource for XAML references) -->
+  <ItemGroup>
+    <Resource Include="Resources\**\*.png" />
+    <Resource Include="Resources\Images\search.ico" />
+  </ItemGroup>
+
   <!-- Embedded Resources -->
   <ItemGroup>
     <EmbeddedResource Update="Resources.resx">
