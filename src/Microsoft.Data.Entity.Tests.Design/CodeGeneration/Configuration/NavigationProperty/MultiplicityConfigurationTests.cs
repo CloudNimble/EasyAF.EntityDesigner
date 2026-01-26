@@ -34,7 +34,7 @@ namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
                 };
             var code = new CSharpCodeHelper();
 
-            configuration.GetMethodChain(code).Should().Be(
+            configuration.GetMethodChain(code).Replace("\r\n", "\n").Should().Be(
                 @".Entity<Entity1>()
                 .HasMany(e => e.Entity2s)
                 .WithMany(e => e.Entity1s)");
@@ -59,7 +59,7 @@ namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
                 };
             var code = new CSharpCodeHelper();
 
-            configuration.GetMethodChain(code).Should().Be(
+            configuration.GetMethodChain(code).Replace("\r\n", "\n").Should().Be(
                 @".Entity<Entity1>()
                 .HasMany(e => e.Entity2s)
                 .WithRequired(e => e.Entity1)");
@@ -84,7 +84,7 @@ namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
                 };
             var code = new CSharpCodeHelper();
 
-            configuration.GetMethodChain(code).Should().Be(
+            configuration.GetMethodChain(code).Replace("\r\n", "\n").Should().Be(
                 @".Entity<Entity1>()
                 .HasMany(e => e.Entity2s)
                 .WithOptional(e => e.Entity1)");
@@ -109,7 +109,7 @@ namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
                 };
             var code = new CSharpCodeHelper();
 
-            configuration.GetMethodChain(code).Should().Be(
+            configuration.GetMethodChain(code).Replace("\r\n", "\n").Should().Be(
                 @".Entity<Entity1>()
                 .HasRequired(e => e.Entity2)
                 .WithMany(e => e.Entity1s)");
@@ -134,7 +134,7 @@ namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
                 };
             var code = new CSharpCodeHelper();
 
-            configuration.GetMethodChain(code).Should().Be(
+            configuration.GetMethodChain(code).Replace("\r\n", "\n").Should().Be(
                 @".Entity<Entity1>()
                 .HasRequired(e => e.Entity2)
                 .WithOptional(e => e.Entity1)");
@@ -159,7 +159,7 @@ namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
                 };
             var code = new CSharpCodeHelper();
 
-            configuration.GetMethodChain(code).Should().Be(
+            configuration.GetMethodChain(code).Replace("\r\n", "\n").Should().Be(
                 @".Entity<Entity1>()
                 .HasOptional(e => e.Entity2)
                 .WithMany(e => e.Entity1s)");
@@ -184,7 +184,7 @@ namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
                 };
             var code = new CSharpCodeHelper();
 
-            configuration.GetMethodChain(code).Should().Be(
+            configuration.GetMethodChain(code).Replace("\r\n", "\n").Should().Be(
                 @".Entity<Entity1>()
                 .HasOptional(e => e.Entity2)
                 .WithRequired(e => e.Entity1)");

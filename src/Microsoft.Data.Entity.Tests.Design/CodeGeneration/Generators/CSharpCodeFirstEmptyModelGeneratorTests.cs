@@ -3,6 +3,7 @@
 namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration.Generators
 {
     using System.Globalization;
+    using System.Text.RegularExpressions;
     using FluentAssertions;
     using Microsoft.Data.Entity.Design.CodeGeneration;
     using Microsoft.Data.Entity.Design.CodeGeneration.Generators;
@@ -12,20 +13,23 @@ namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration.Generators
     [TestClass]
     public class CSharpCodeFirstEmptyModelGeneratorTests
     {
+        private static string NormalizeCode(string code) =>
+            Regex.Replace(code.Replace("\r\n", "\n"), @"[ \t]+\n", "\n");
+
         [TestMethod]
         public void CSharpCodeFirstEmptyModelGenerator_generates_code()
         {
-            var generatedCode = new CSharpCodeFirstEmptyModelGenerator()
-                .Generate(null, "ConsoleApplication.Data", "MyContext", "MyContextConnString");
+            var generatedCode = NormalizeCode(new CSharpCodeFirstEmptyModelGenerator()
+                .Generate(null, "ConsoleApplication.Data", "MyContext", "MyContextConnString"));
 
-            var ctorComment =
+            var ctorComment = NormalizeCode(
                 string.Format(
                     CultureInfo.CurrentCulture,
                     Resources.CodeFirstCodeFile_CtorComment_CS,
                     "MyContext",
-                    "ConsoleApplication.Data");
+                    "ConsoleApplication.Data"));
 
-            generatedCode.Should().Be(@"namespace ConsoleApplication.Data
+            var expected = NormalizeCode(@"namespace ConsoleApplication.Data
 {
     using System;
     using System.Data.Entity;
@@ -39,7 +43,7 @@ namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration.Generators
         {
         }
 
-        " + Resources.CodeFirstCodeFile_DbSetComment_CS + @"
+        " + NormalizeCode(Resources.CodeFirstCodeFile_DbSetComment_CS) + @"
 
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
     }
@@ -50,6 +54,8 @@ namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration.Generators
     //    public string Name { get; set; }
     //}
 }");
+
+            generatedCode.Should().Be(expected);
         }
     }
 }

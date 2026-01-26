@@ -84,7 +84,7 @@ namespace Microsoft.Data.Entity.Tests.Design.Model.Entity
             using (var storageModel = new StorageEntityModel(enityDesignArtifiact, tmpElement))
             {
                 storageModel.SetXObject(null);
-                storageModel.XNamespace.Should().Be("http://schemas.microsoft.com/ado/2009/11/edm/ssdl");
+                storageModel.XNamespace.NamespaceName.Should().Be("http://schemas.microsoft.com/ado/2009/11/edm/ssdl");
 
                 // resetting the element is required for clean up
                 storageModel.SetXObject(tmpElement);

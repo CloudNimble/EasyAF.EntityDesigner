@@ -3,8 +3,9 @@
 namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.Metadata
 {
     using System.Data.Entity.Core.Metadata.Edm;
+    using Microsoft.Data.Entity.Design.VersioningFacade.Metadata;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentAssertions;
+    using FluentAssertions;
 
     [TestClass]
     public class EdmTypeExtensionsTests

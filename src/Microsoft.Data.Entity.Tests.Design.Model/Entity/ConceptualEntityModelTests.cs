@@ -49,7 +49,7 @@ namespace Microsoft.Data.Entity.Tests.Design.Model.Entity
             using (var conceptualModel = new ConceptualEntityModel(enityDesignArtifiact, tmpElement))
             {
                 conceptualModel.SetXObject(null);
-                conceptualModel.XNamespace.Should().Be("http://schemas.microsoft.com/ado/2009/11/edm");
+                conceptualModel.XNamespace.NamespaceName.Should().Be("http://schemas.microsoft.com/ado/2009/11/edm");
 
                 // resetting the element is required for clean up
                 conceptualModel.SetXObject(tmpElement);

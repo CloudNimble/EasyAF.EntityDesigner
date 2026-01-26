@@ -7,8 +7,6 @@ namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade
     using System;
     using System.Data.Entity.Core.Common;
     using System.Data.Entity.Core.Common.CommandTrees;
-    using System.Globalization;
-    using Microsoft.Data.Entity.Design.VersioningFacade.LegacyProviderWrapper;
     using Moq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using FluentAssertions;
@@ -20,13 +18,10 @@ namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade
         private const string SqlClientInvariantName = "System.Data.SqlClient";
 
         [TestMethod]
-        public void Legacy_provider_services_resolved_by_default()
+        public void Unregistered_provider_returns_null()
         {
             var resolver = new DbProviderServicesResolver();
-            var providerServices = resolver.GetService(typeof(DbProviderServices), SqlClientInvariantName);
-
-            providerServices.Should().NotBeNull();
-            providerServices.Should().BeOfType<LegacyDbProviderServicesWrapper>();
+            resolver.GetService(typeof(DbProviderServices), "UnknownProvider").Should().BeNull();
         }
 
         [TestMethod]
@@ -35,15 +30,13 @@ namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade
             var resolver = new DbProviderServicesResolver();
             resolver.Register(Utils.SqlProviderServicesType, SqlClientInvariantName);
 
-            // Verify the provider is resolved - either directly as SqlProviderServices or via wrapper
             var registeredService = resolver.GetService(typeof(DbProviderServices), SqlClientInvariantName);
             registeredService.Should().NotBeNull();
             registeredService.GetType().Name.Should().Be("SqlProviderServices");
 
             resolver.Unregister(SqlClientInvariantName);
 
-            resolver.GetService(typeof(DbProviderServices), SqlClientInvariantName)
-                .Should().BeOfType<LegacyDbProviderServicesWrapper>();
+            resolver.GetService(typeof(DbProviderServices), SqlClientInvariantName).Should().BeNull();
         }
 
         [TestMethod]
@@ -51,9 +44,7 @@ namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade
         {
             var resolver = new DbProviderServicesResolver();
             resolver.Unregister(SqlClientInvariantName);
-
-            resolver.GetService(typeof(DbProviderServices), SqlClientInvariantName)
-                .Should().BeOfType<LegacyDbProviderServicesWrapper>();
+            resolver.GetService(typeof(DbProviderServices), SqlClientInvariantName).Should().BeNull();
         }
 
         [TestMethod]
@@ -65,70 +56,46 @@ namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade
             resolver.Register(mockProviderServices.Object.GetType(), SqlClientInvariantName);
             resolver.Register(Utils.SqlProviderServicesType, SqlClientInvariantName);
 
-            // Verify the provider is resolved - should be SqlProviderServices after replacement
             var service = resolver.GetService(typeof(DbProviderServices), SqlClientInvariantName);
             service.Should().NotBeNull();
             service.GetType().Name.Should().Be("SqlProviderServices");
 
             resolver.Unregister(SqlClientInvariantName);
-
-            resolver.GetService(typeof(DbProviderServices), SqlClientInvariantName)
-                .Should().BeOfType<LegacyDbProviderServicesWrapper>();
+            resolver.GetService(typeof(DbProviderServices), SqlClientInvariantName).Should().BeNull();
         }
 
         [TestMethod]
-        public void Resolving_provider_without_static_Instance_field_or_property_falls_back_to_legacy_resolver()
+        public void Resolving_provider_without_static_Instance_field_or_property_returns_null()
         {
             var mockProviderServices = new Mock<DbProviderServices>();
 
             var resolver = new DbProviderServicesResolver();
             resolver.Register(mockProviderServices.Object.GetType(), "fakeProvider");
 
-            // When provider has no Instance member, resolver falls back to LegacyDbProviderServicesResolver
-            // which throws because "fakeProvider" is not registered with ADO.NET
-            Action act = () => resolver.GetService(typeof(DbProviderServices), "fakeProvider");
-            act.Should().Throw<InvalidOperationException>()
-                .Where(e => e.Message.Contains("fakeProvider") && e.Message.Contains("not registered"));
+            resolver.GetService(typeof(DbProviderServices), "fakeProvider").Should().BeNull();
         }
 
         private class ProviderFake : DbProviderServices
         {
-            public static object Instance
-            {
-                get { return new object(); }
-            }
+            public static object Instance => new object();
 
-            #region Not Implemented
+            public override DbCommandDefinition CreateDbCommandDefinition(DbProviderManifest providerManifest, DbCommandTree commandTree)
+                => throw new NotImplementedException();
 
-            protected override DbCommandDefinition CreateDbCommandDefinition(DbProviderManifest providerManifest, DbCommandTree commandTree)
-            {
-                throw new NotImplementedException();
-            }
+            public override string GetDbProviderManifestToken(SystemDataCommon.DbConnection connection)
+                => throw new NotImplementedException();
 
-            protected override string GetDbProviderManifestToken(SystemDataCommon.DbConnection connection)
-            {
-                throw new NotImplementedException();
-            }
-
-            protected override DbProviderManifest GetDbProviderManifest(string manifestToken)
-            {
-                throw new NotImplementedException();
-            }
-
-            #endregion
+            public override DbProviderManifest GetDbProviderManifest(string manifestToken)
+                => throw new NotImplementedException();
         }
 
         [TestMethod]
-        public void Resolving_provider_whose_Instance_returns_non_DbProviderServices_falls_back_to_legacy_resolver()
+        public void Resolving_provider_whose_Instance_returns_non_DbProviderServices_returns_null()
         {
             var resolver = new DbProviderServicesResolver();
             resolver.Register(typeof(ProviderFake), "fakeProvider");
 
-            // When Instance returns non-DbProviderServices, resolver falls back to LegacyDbProviderServicesResolver
-            // which throws because "fakeProvider" is not registered with ADO.NET
-            Action act = () => resolver.GetService(typeof(DbProviderServices), "fakeProvider");
-            act.Should().Throw<InvalidOperationException>()
-                .Where(e => e.Message.Contains("fakeProvider") && e.Message.Contains("not registered"));
+            resolver.GetService(typeof(DbProviderServices), "fakeProvider").Should().BeNull();
         }
 
         [TestMethod]

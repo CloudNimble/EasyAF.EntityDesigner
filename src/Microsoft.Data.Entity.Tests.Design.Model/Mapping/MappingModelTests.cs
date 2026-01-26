@@ -49,7 +49,7 @@ namespace Microsoft.Data.Entity.Tests.Design.Model.Mapping
             using (var mappingModel = new MappingModel(enityDesignArtifiact, tmpElement))
             {
                 mappingModel.SetXObject(null);
-                mappingModel.XNamespace.Should().Be("http://schemas.microsoft.com/ado/2009/11/mapping/cs");
+                mappingModel.XNamespace.NamespaceName.Should().Be("http://schemas.microsoft.com/ado/2009/11/mapping/cs");
 
                 // resetting the element is required for clean up
                 mappingModel.SetXObject(tmpElement);

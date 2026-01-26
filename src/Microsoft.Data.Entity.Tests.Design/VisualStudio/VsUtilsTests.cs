@@ -11,7 +11,6 @@ namespace Microsoft.Data.Entity.Tests.Design.VisualStudio
     using System.Linq;
     using EnvDTE;
     using Microsoft.Data.Entity.Design.VersioningFacade;
-    using Microsoft.Data.Entity.Design.VersioningFacade.LegacyProviderWrapper;
     using Microsoft.VisualStudio.Shell.Design;
     using Microsoft.VisualStudio.Shell.Interop;
     using Moq;
@@ -591,27 +590,11 @@ namespace Microsoft.Data.Entity.Tests.Design.VisualStudio
         }
 
         [TestMethod]
-        public void EnsureProvider_unregisters_provider_when_useLegacyProvider()
-        {
-            // Use reflection to get SqlProviderServices type since compile assets are excluded
-            var sqlProviderServicesType = Type.GetType(
-                "System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer",
-                throwOnError: true);
-            DependencyResolver.RegisterProvider(sqlProviderServicesType, "System.Data.SqlClient");
-
-            VsUtils.EnsureProvider("System.Data.SqlClient", true, Mock.Of<Project>(), Mock.Of<IServiceProvider>());
-
-            DependencyResolver.GetService<DbProviderServices>("System.Data.SqlClient")
-                .Should().BeOfType<LegacyDbProviderServicesWrapper>();
-        }
-
-        [TestMethod]
-        public void EnsureProvider_registers_provider_when_not_useLegacyProvider()
+        public void EnsureProvider_registers_modern_provider()
         {
             VsUtils.EnsureProvider("System.Data.SqlClient", false, Mock.Of<Project>(), Mock.Of<IServiceProvider>());
             try
             {
-                // Use reflection to get SqlProviderServices.Instance since compile assets are excluded
                 var sqlProviderServicesType = Type.GetType(
                     "System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer",
                     throwOnError: true);

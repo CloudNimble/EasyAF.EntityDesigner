@@ -11,6 +11,7 @@ namespace Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb
     using System.Diagnostics;
     using System.Globalization;
     using System.Linq;
+    using MetadataItemHelper = Microsoft.Data.Entity.Design.VersioningFacade.Metadata.MetadataItemHelper;
     using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb.SchemaDiscovery;
 
     internal class StoreModelBuilder

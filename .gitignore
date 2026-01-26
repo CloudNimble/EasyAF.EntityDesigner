@@ -28,3 +28,4 @@ Index.dat
 Storage.dat
 *.sln.ide
 .vs/
+/copy-to-vs.ps1

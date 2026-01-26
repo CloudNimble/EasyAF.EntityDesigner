@@ -12,25 +12,26 @@ namespace Microsoft.Data.Entity.Tests.Design.EntityDesigner.View.Export
     using FluentAssertions;
 
     [TestClass]
-    public class SvgShapeRendererTests : IDisposable
+    public class SvgShapeRendererTests
     {
-        private readonly SvgIconManager _iconManager;
-        private readonly SvgShapeRenderer _renderer;
-        private readonly Store _store;
+        private SvgIconManager _iconManager;
+        private SvgShapeRenderer _renderer;
+        private Store _store;
 
-        public SvgShapeRendererTests()
+        [TestInitialize]
+        public void TestInitialize()
         {
             _iconManager = new SvgIconManager();
             _renderer = new SvgShapeRenderer(_iconManager);
-            _store = DslTestHelper.CreateStore();
         }
 
-        public void Dispose()
+        private Store GetStore() => _store ??= DslTestHelper.CreateStore();
+
+        [TestCleanup]
+        public void TestCleanup()
         {
-            if (_store != null)
-            {
-                _store.Dispose();
-            }
+            try { _store?.Dispose(); } catch { }
+            _store = null;
         }
 
         #region RenderCompartmentHeader Tests
@@ -219,7 +220,7 @@ namespace Microsoft.Data.Entity.Tests.Design.EntityDesigner.View.Export
         [TestMethod]
         public void GetPropertyDisplayText_with_scalar_property_returns_name()
         {
-            var prop = DslTestHelper.CreateScalarProperty(_store, "CustomerName", "String", false);
+            var prop = DslTestHelper.CreateScalarProperty(GetStore(), "CustomerName", "String", false);
 
             var result = _renderer.GetPropertyDisplayText(prop, isScalarProperty: true, showTypes: false);
 
@@ -229,7 +230,7 @@ namespace Microsoft.Data.Entity.Tests.Design.EntityDesigner.View.Export
         [TestMethod]
         public void GetPropertyDisplayText_with_scalar_property_and_show_types_returns_name_and_type()
         {
-            var prop = DslTestHelper.CreateScalarProperty(_store, "CustomerName", "String", false);
+            var prop = DslTestHelper.CreateScalarProperty(GetStore(), "CustomerName", "String", false);
 
             var result = _renderer.GetPropertyDisplayText(prop, isScalarProperty: true, showTypes: true);
 
@@ -239,7 +240,7 @@ namespace Microsoft.Data.Entity.Tests.Design.EntityDesigner.View.Export
         [TestMethod]
         public void GetPropertyDisplayText_with_navigation_property_returns_name()
         {
-            var prop = DslTestHelper.CreateNavigationProperty(_store, "Orders");
+            var prop = DslTestHelper.CreateNavigationProperty(GetStore(), "Orders");
 
             var result = _renderer.GetPropertyDisplayText(prop, isScalarProperty: false, showTypes: false);
 
@@ -249,7 +250,7 @@ namespace Microsoft.Data.Entity.Tests.Design.EntityDesigner.View.Export
         [TestMethod]
         public void GetPropertyDisplayText_with_complex_property_returns_name()
         {
-            var prop = DslTestHelper.CreateComplexProperty(_store, "Address");
+            var prop = DslTestHelper.CreateComplexProperty(GetStore(), "Address");
 
             var result = _renderer.GetPropertyDisplayText(prop, isScalarProperty: true, showTypes: false);
 
@@ -274,7 +275,7 @@ namespace Microsoft.Data.Entity.Tests.Design.EntityDesigner.View.Export
         [TestMethod]
         public void RenderPropertyIcon_uses_PropertyKey_icon_for_entity_key()
         {
-            var prop = DslTestHelper.CreateScalarProperty(_store, "Id", "Int32", isKey: true);
+            var prop = DslTestHelper.CreateScalarProperty(GetStore(), "Id", "Int32", isKey: true);
             var sb = new StringBuilder();
 
             _renderer.RenderPropertyIcon(sb, 10, 20, prop);
@@ -286,7 +287,7 @@ namespace Microsoft.Data.Entity.Tests.Design.EntityDesigner.View.Export
         [TestMethod]
         public void RenderPropertyIcon_uses_Property_icon_for_non_key_scalar()
         {
-            var prop = DslTestHelper.CreateScalarProperty(_store, "Name", "String", isKey: false);
+            var prop = DslTestHelper.CreateScalarProperty(GetStore(), "Name", "String", isKey: false);
             var sb = new StringBuilder();
 
             _renderer.RenderPropertyIcon(sb, 10, 20, prop);
@@ -298,7 +299,7 @@ namespace Microsoft.Data.Entity.Tests.Design.EntityDesigner.View.Export
         [TestMethod]
         public void RenderPropertyIcon_uses_ComplexProperty_icon_for_complex_property()
         {
-            var prop = DslTestHelper.CreateComplexProperty(_store, "Address");
+            var prop = DslTestHelper.CreateComplexProperty(GetStore(), "Address");
             var sb = new StringBuilder();
 
             _renderer.RenderPropertyIcon(sb, 10, 20, prop);
@@ -310,7 +311,7 @@ namespace Microsoft.Data.Entity.Tests.Design.EntityDesigner.View.Export
         [TestMethod]
         public void RenderPropertyIcon_uses_NavigationProperty_icon_for_navigation_property()
         {
-            var prop = DslTestHelper.CreateNavigationProperty(_store, "Orders");
+            var prop = DslTestHelper.CreateNavigationProperty(GetStore(), "Orders");
             var sb = new StringBuilder();
 
             _renderer.RenderPropertyIcon(sb, 10, 20, prop);

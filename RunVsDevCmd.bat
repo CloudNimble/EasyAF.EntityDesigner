@@ -1,1 +1,0 @@
-powershell -executionPolicy bypass -noexit -file ".\RunVsDevCmd.ps1"

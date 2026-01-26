@@ -4,25 +4,15 @@
     <RootNamespace>Microsoft.Data.Entity.Tests.Design.VersioningFacade</RootNamespace>
   </PropertyGroup>
 
-  <!-- Publicize EntityFramework paths (same as main project) -->
-  <PropertyGroup>
-    <PublicizedDir>$(MSBuildThisFileDirectory)..\..\obj\publicized\</PublicizedDir>
-    <EFPublicizedPath>$(PublicizedDir)EntityFramework.dll</EFPublicizedPath>
-  </PropertyGroup>
-
   <ItemGroup>
-    <!-- EntityFramework.SqlServer provides runtime SQL Server support -->
-    <!-- Exclude compile assets - we use publicized version -->
-    <PackageReference Include="EntityFramework" ExcludeAssets="compile" />
+    <PackageReference Include="EntityFramework" />
     <PackageReference Include="Microsoft.EntityFramework.SqlServer" />
   </ItemGroup>
 
-  <!-- Add publicized EntityFramework as a direct reference for compilation -->
+  <!-- Publicize EntityFramework internals at compile-time -->
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>$(EFPublicizedPath)</HintPath>
-      <Private>false</Private>
-    </Reference>
+    <PackageReference Include="Krafs.Publicizer" PrivateAssets="all" />
+    <Publicize Include="EntityFramework" />
   </ItemGroup>
 
   <ItemGroup>

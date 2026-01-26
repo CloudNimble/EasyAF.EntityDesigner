@@ -52,6 +52,8 @@
         <PackageVersion Include="Oracle.ManagedDataAccess.EntityFramework" Version="23.7.0" />
         <!-- ILRepack for merging EF assemblies -->
         <PackageVersion Include="ILRepack.Lib.MSBuild.Task" Version="2.0.34.2" />
+        <!-- Publicize EntityFramework internals for compile-time access -->
+        <PackageVersion Include="Krafs.Publicizer" Version="2.3.0" />
         <PackageVersion Include="MessagePack" Version="$(MessagePackPackageVersion)" />
         <PackageVersion Include="Microsoft.Data.ConnectionUI" Version="17.10.40129" />
         <PackageVersion Include="Microsoft.Internal.VisualStudio.Interop" Version="$(MicrosoftInternalVisualStudioInteropPackageVersion)" />

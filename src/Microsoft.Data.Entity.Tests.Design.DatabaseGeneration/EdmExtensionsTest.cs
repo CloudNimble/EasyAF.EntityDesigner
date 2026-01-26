@@ -15,7 +15,6 @@ namespace Microsoft.Data.Entity.Tests.Design.DatabaseGeneration
     using Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators;
     using Microsoft.Data.Entity.Design.DatabaseGeneration.Properties;
     using Microsoft.Data.Entity.Design.VersioningFacade;
-    using Microsoft.Data.Entity.Design.VersioningFacade.LegacyProviderWrapper;
     using Moq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using FluentAssertions;
@@ -73,11 +72,13 @@ namespace Microsoft.Data.Entity.Tests.Design.DatabaseGeneration
 
         public EdmExtensionTests()
         {
-            var providerServices =
-                new LegacyDbProviderServicesWrapper(
-                    ((Legacy.DbProviderServices)
-                     ((IServiceProvider)Legacy.DbProviderFactories.GetFactory("System.Data.SqlClient"))
-                         .GetService(typeof(Legacy.DbProviderServices))));
+            // Get SqlProviderServices.Instance via reflection to avoid compile-time dependency
+            var sqlProviderServicesType = Type.GetType(
+                "System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer",
+                throwOnError: true);
+            var instanceProperty = sqlProviderServicesType.GetProperty("Instance",
+                System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
+            var providerServices = (DbProviderServices)instanceProperty.GetValue(null);
 
             var mockResolver = new Mock<IDbDependencyResolver>();
             mockResolver.Setup(
