@@ -16,6 +16,7 @@
         <ApplicationIcon>Resources\File.ico</ApplicationIcon>
         <UseWPF>true</UseWPF>
         <UseWindowsForms>true</UseWindowsForms>
+        <CLSCompliant>true</CLSCompliant>
 
         <!-- VSIX settings -->
         <CreateVsixContainer>true</CreateVsixContainer>
@@ -56,10 +57,11 @@
         <PackageReference Include="Microsoft.VisualStudio.ComponentModelHost" Version="17.10.191" />
         <PackageReference Include="Microsoft.VisualStudio.DataDesign.Interfaces" Version="17.10.40130" />
         <PackageReference Include="Microsoft.VisualStudio.Interop" Version="17.10.40130" />
-        <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk" Version="17.10.40171" />
-        <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams" Version="17.10.40171" />
-        <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams.GraphObject" Version="17.10.40171" />
-        <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Shell" Version="17.10.40171" />
+        <!-- VS Modeling SDK - don't copy to output, VS provides these -->
+        <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk" Version="17.10.40171" ExcludeAssets="runtime" />
+        <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams" Version="17.10.40171" ExcludeAssets="runtime" />
+        <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams.GraphObject" Version="17.10.40171" ExcludeAssets="runtime" />
+        <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Shell" Version="17.10.40171" ExcludeAssets="runtime" />
         <PackageReference Include="Microsoft.VisualStudio.Package.LanguageService.15.0" Version="17.10.40119" />
         <PackageReference Include="Microsoft.VisualStudio.Shell.15.0" Version="17.10.40130" />
         <PackageReference Include="Microsoft.VisualStudio.Shell.Design" Version="17.10.40119" />
@@ -96,14 +98,26 @@
         <Reference Include="WindowsFormsIntegration" />
     </ItemGroup>
 
-    <!-- Project References -->
+    <!-- Project References - include outputs in VSIX -->
     <ItemGroup>
-        <ProjectReference Include="..\Microsoft.VisualStudio.Data.Tools.Design.XmlCore\Microsoft.VisualStudio.Data.Tools.Design.XmlCore.csproj" />
-        <ProjectReference Include="..\Microsoft.Data.Tools.Design.XmlCore\Microsoft.Data.Tools.Design.XmlCore.csproj" />
-        <ProjectReference Include="..\Microsoft.Data.Entity.Design.EntityDesigner\Microsoft.Data.Entity.Design.EntityDesigner.csproj" />
-        <ProjectReference Include="..\Microsoft.Data.Entity.Design.Extensibility\Microsoft.Data.Entity.Design.Extensibility.csproj" />
-        <ProjectReference Include="..\Microsoft.Data.Entity.Design.Model\Microsoft.Data.Entity.Design.Model.csproj" />
-        <ProjectReference Include="..\Microsoft.Data.Entity.Design\Microsoft.Data.Entity.Design.csproj" />
+        <ProjectReference Include="..\Microsoft.VisualStudio.Data.Tools.Design.XmlCore\Microsoft.VisualStudio.Data.Tools.Design.XmlCore.csproj">
+            <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
+        </ProjectReference>
+        <ProjectReference Include="..\Microsoft.Data.Tools.Design.XmlCore\Microsoft.Data.Tools.Design.XmlCore.csproj">
+            <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
+        </ProjectReference>
+        <ProjectReference Include="..\Microsoft.Data.Entity.Design.EntityDesigner\Microsoft.Data.Entity.Design.EntityDesigner.csproj">
+            <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
+        </ProjectReference>
+        <ProjectReference Include="..\Microsoft.Data.Entity.Design.Extensibility\Microsoft.Data.Entity.Design.Extensibility.csproj">
+            <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
+        </ProjectReference>
+        <ProjectReference Include="..\Microsoft.Data.Entity.Design.Model\Microsoft.Data.Entity.Design.Model.csproj">
+            <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
+        </ProjectReference>
+        <ProjectReference Include="..\Microsoft.Data.Entity.Design\Microsoft.Data.Entity.Design.csproj">
+            <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
+        </ProjectReference>
     </ItemGroup>
 
     <!-- Copy manual pkgdef to intermediate output and include in VSIX -->
@@ -116,6 +130,33 @@
         <!-- Add pkgdef to VSIX -->
         <ItemGroup>
             <VSIXSourceItem Include="$(PkgDefIntermediateFile)">
+                <VSIXSubPath></VSIXSubPath>
+            </VSIXSourceItem>
+        </ItemGroup>
+    </Target>
+
+    <!-- Include project reference outputs in VSIX -->
+    <Target Name="IncludeProjectReferencesInVSIX" BeforeTargets="GetVsixSourceItems">
+        <ItemGroup>
+            <VSIXSourceItem Include="..\Microsoft.Data.Entity.Design\bin\$(Configuration)\Microsoft.Data.Entity.Design.dll">
+                <VSIXSubPath></VSIXSubPath>
+            </VSIXSourceItem>
+            <VSIXSourceItem Include="..\Microsoft.Data.Entity.Design.Model\bin\$(Configuration)\Microsoft.Data.Entity.Design.Model.dll">
+                <VSIXSubPath></VSIXSubPath>
+            </VSIXSourceItem>
+            <VSIXSourceItem Include="..\Microsoft.Data.Entity.Design.EntityDesigner\bin\$(Configuration)\Microsoft.Data.Entity.Design.EntityDesigner.dll">
+                <VSIXSubPath></VSIXSubPath>
+            </VSIXSourceItem>
+            <VSIXSourceItem Include="..\Microsoft.Data.Entity.Design.Extensibility\bin\$(Configuration)\Microsoft.Data.Entity.Design.Extensibility.dll">
+                <VSIXSubPath></VSIXSubPath>
+            </VSIXSourceItem>
+            <VSIXSourceItem Include="..\Microsoft.Data.Entity.Design.VersioningFacade\bin\$(Configuration)\Microsoft.Data.Entity.Design.VersioningFacade.dll">
+                <VSIXSubPath></VSIXSubPath>
+            </VSIXSourceItem>
+            <VSIXSourceItem Include="..\Microsoft.Data.Tools.Design.XmlCore\bin\$(Configuration)\Microsoft.Data.Tools.Design.XmlCore.dll">
+                <VSIXSubPath></VSIXSubPath>
+            </VSIXSourceItem>
+            <VSIXSourceItem Include="..\Microsoft.VisualStudio.Data.Tools.Design.XmlCore\bin\$(Configuration)\Microsoft.VisualStudio.Data.Tools.Design.XmlCore.dll">
                 <VSIXSubPath></VSIXSubPath>
             </VSIXSourceItem>
         </ItemGroup>
@@ -183,6 +224,7 @@
             <Generator></Generator>
         </EmbeddedResource>
         <EmbeddedResource Include="Resources.resx">
+            <ManifestResourceName>Microsoft.Data.Entity.Design.Package.Resources</ManifestResourceName>
             <Generator>ResXFileCodeGenerator</Generator>
             <LastGenOutput>Resources.Designer.cs</LastGenOutput>
         </EmbeddedResource>
@@ -202,15 +244,6 @@
         <Content Include="Resources\__TemplateIcon.ico" />
         <None Include="PkgDefData\Microsoft.Data.Entity.Design.Package.pkgdef" />
     </ItemGroup>
-
-    <!-- Copy Commands.vsct from VS version-specific file before build -->
-    <PropertyGroup>
-        <VsctCommandsFile>Commands_VS15.vsct</VsctCommandsFile>
-    </PropertyGroup>
-
-    <Target Name="CopyVsctFile" BeforeTargets="VSCTCompile">
-        <Copy SourceFiles="$(VsctCommandsFile)" DestinationFiles="Commands.vsct" OverwriteReadOnlyFiles="true" />
-    </Target>
 
 
     <!-- Import VSSDK targets for VSIX creation -->

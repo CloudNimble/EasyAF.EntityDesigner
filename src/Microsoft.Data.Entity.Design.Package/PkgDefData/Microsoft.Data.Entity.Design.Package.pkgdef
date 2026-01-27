@@ -1,4 +1,13 @@
-// Register Data Entity Design Package as a DSL package 
+// Auto-load when .edmx file is selected (modern pattern - replaces separate BootstrapPackage)
+[$RootKey$\AutoLoadPackages\{e000c7e5-dba5-4682-abe0-7f6ce57b236d}]
+"{8889e051-b7f9-4781-bb33-2a36a9bdb3a5}"=dword:00000002
+
+[$RootKey$\UIContextRules\{e000c7e5-dba5-4682-abe0-7f6ce57b236d}]
+@="Auto load Entity Data Model Package"
+"Expression"="DotEdmx"
+"DotEdmx"="HierSingleSelectionName:.edmx$"
+
+// Register Data Entity Design Package as a DSL package
 [$RootKey$\DslTools\Packages\{8889e051-b7f9-4781-bb33-2a36a9bdb3a5}]
 @="Microsoft.Data.Entity.Design.Package.MicrosoftDataEntityDesignPackage"
 
@@ -22,7 +31,7 @@
 @="Microsoft.Data.Entity.Design.Package.MicrosoftDataEntityDesignPackage"
 "Assembly"="Microsoft.Data.Entity.Design.Package, version=EFDESIGNERVERSIONTOKEN, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
 "Class"="Microsoft.Data.Entity.Design.Package.MicrosoftDataEntityDesignPackage"
-"CodeBase"="$RootFolder$Common7\IDE\Microsoft.Data.Entity.Design.Package.dll"
+"CodeBase"="$PackageFolder$\\Microsoft.Data.Entity.Design.Package.dll"
 "InprocServer32"="%SystemRoot%\\system32\\mscoree.dll"
 
 // Register Toolbox Items 
@@ -174,7 +183,7 @@
 // Register the FallbackT4VSHostProcessor for T4 Templates 
 [$RootKey$\TextTemplating\DirectiveProcessors\T4VSHost]
 "Class"="Microsoft.Data.Entity.Design.VisualStudio.Directives.FallbackT4VSHostProcessor"
-"CodeBase"="$RootFolder$Common7\IDE\Microsoft.Data.Entity.Design.dll"
+"CodeBase"="$PackageFolder$\\Microsoft.Data.Entity.Design.dll"
 
 // Enables the EntityDataSource connection wizard to work against Entity Framework 5 by registering a dependency
 // assembly codebase in the registry to hint Visual Studio (or its express flavors) as to where to go look for

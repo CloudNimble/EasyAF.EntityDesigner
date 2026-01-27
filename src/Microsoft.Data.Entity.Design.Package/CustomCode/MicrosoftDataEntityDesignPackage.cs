@@ -42,6 +42,15 @@ namespace Microsoft.Data.Entity.Design.Package
     [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
     [SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable")]
     [ProvideEditorLogicalView(typeof(MicrosoftDataEntityDesignEditorFactory), PackageConstants.guidLogicalViewString, IsTrusted = true)]
+    // Auto-load when .edmx file is selected (modern pattern - no separate bootstrap package needed)
+    [ProvideAutoLoad(PackageConstants.UICONTEXT_AddNewEntityDataModel, PackageAutoLoadFlags.BackgroundLoad)]
+#pragma warning disable VSSDK006 // Check services exist - this is a UIContextRule, not a service check
+    [ProvideUIContextRule(PackageConstants.UICONTEXT_AddNewEntityDataModel,
+        name: "Auto load Entity Data Model Package",
+        expression: "DotEdmx",
+        termNames: new[] { "DotEdmx" },
+        termValues: new[] { "HierSingleSelectionName:.edmx$" })]
+#pragma warning restore VSSDK006
     internal sealed partial class MicrosoftDataEntityDesignPackage : IEdmPackage, IVsTrackProjectRetargetingEvents
     {
         [SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields", Justification = "Used by Visual Studio")]

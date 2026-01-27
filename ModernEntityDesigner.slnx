@@ -1,6 +1,5 @@
 <Solution>
   <Folder Name="/Core/">
-    <Project Path="src/Microsoft.Data.Entity.Design.BootstrapPackage/Microsoft.Data.Entity.Design.BootstrapPackage.csproj" Id="fc48cb33-a0d9-49ed-841d-cc88fd3d761d" />
     <Project Path="src/Microsoft.Data.Entity.Design.DatabaseGeneration/Microsoft.Data.Entity.Design.DatabaseGeneration.csproj" />
     <Project Path="src/Microsoft.Data.Entity.Design.EntityDesigner/Microsoft.Data.Entity.Design.EntityDesigner.csproj" Id="488b84c2-9358-4b90-bc2d-ed688939e6bb" />
     <Project Path="src/Microsoft.Data.Entity.Design.Extensibility/Microsoft.Data.Entity.Design.Extensibility.csproj" />
