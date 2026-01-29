@@ -33,5 +33,7 @@ Storage.dat
 /Test1/Test1.csproj
 /Test1
 *.vsix
+# VSIX build artifacts (generated files - source.extension.vsixmanifest is the source file)
+/src/Microsoft.Data.Entity.Design.Package/extension.vsixmanifest
 /src/Microsoft.Data.Entity.Design.Package/merged.source.extension.vsixmanifest
-/src/Microsoft.Data.Entity.Design.Package/source.extension.vsixmanifest
+/src/Microsoft.Data.Entity.Design.Package/fullproject.xml

@@ -393,7 +393,7 @@ namespace Microsoft.Data.Entity.Design.Package
                     $"SerializerLocator: {(this.SerializerLocator == null ? "(null)" : "OK")}\n" +
                     $"serializationResult: {(serializationResult == null ? "(null)" : "OK")}\n\n" +
                     $"Stack trace:\n{ex.StackTrace}";
-                System.Diagnostics.Debug.WriteLine($"[ModernEntityDesigner] {msg}");
+                System.Diagnostics.Debug.WriteLine($"[EasyAF.EntityDesigner] {msg}");
                 global::System.Windows.Forms.MessageBox.Show(msg, "EF6 Tools Debug", global::System.Windows.Forms.MessageBoxButtons.OK, global::System.Windows.Forms.MessageBoxIcon.Error);
                 throw;
             }

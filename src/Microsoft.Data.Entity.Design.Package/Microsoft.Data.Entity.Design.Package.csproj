@@ -20,7 +20,7 @@
 
         <!-- VSIX settings -->
         <CreateVsixContainer>true</CreateVsixContainer>
-        <TargetVsixContainerName>ModernEntityDesigner.vsix</TargetVsixContainerName>
+        <TargetVsixContainerName>EasyAF.EntityDesigner.vsix</TargetVsixContainerName>
         <DeployExtension>true</DeployExtension>
         <!-- Template output directory for VSSDK - use absolute path since IntermediateOutputPath isn't set yet -->
         <TemplateOutputDirectory>$(MSBuildProjectDirectory)\obj\$(Configuration)\</TemplateOutputDirectory>
@@ -42,6 +42,11 @@
         <StartProgram Condition="'$(DevEnvDir)' != ''">$(DevEnvDir)devenv.exe</StartProgram>
         <StartArguments>/rootsuffix Exp /log</StartArguments>
     </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="merged.source.extension.vsixmanifest" />
+      <None Remove="**\*.vsix" />
+    </ItemGroup>
 
     <!-- InternalsVisibleTo for test projects -->
     <ItemGroup>
@@ -244,6 +249,12 @@
         <None Include="PkgDefData\Microsoft.Data.Entity.Design.Package.pkgdef" />
     </ItemGroup>
 
+
+    <!-- Define output paths before VSSDK import (VSSDK evaluates too early in SDK-style projects) -->
+    <PropertyGroup>
+        <IntermediateOutputPath Condition="'$(IntermediateOutputPath)' == ''">obj\$(Configuration)\</IntermediateOutputPath>
+        <OutDir Condition="'$(OutDir)' == ''">bin\$(Configuration)\</OutDir>
+    </PropertyGroup>
 
     <!-- Import VSSDK targets for VSIX creation -->
     <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />

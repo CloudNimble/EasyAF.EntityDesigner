@@ -22,17 +22,17 @@ namespace Microsoft.Data.Entity.Design.VersioningFacade
         /// </summary>
         static DependencyResolver()
         {
-            System.Diagnostics.Debug.WriteLine("[ModernEntityDesigner] DependencyResolver static ctor: START");
+            System.Diagnostics.Debug.WriteLine("[EasyAF.EntityDesigner] DependencyResolver static ctor: START");
 
             // Initialize static fields first
             PluralizationService = new EnglishPluralizationService();
-            System.Diagnostics.Debug.WriteLine("[ModernEntityDesigner] DependencyResolver static ctor: PluralizationService initialized");
+            System.Diagnostics.Debug.WriteLine("[EasyAF.EntityDesigner] DependencyResolver static ctor: PluralizationService initialized");
 
             ProviderServicesResolver = new DbProviderServicesResolver();
-            System.Diagnostics.Debug.WriteLine("[ModernEntityDesigner] DependencyResolver static ctor: ProviderServicesResolver initialized");
+            System.Diagnostics.Debug.WriteLine("[EasyAF.EntityDesigner] DependencyResolver static ctor: ProviderServicesResolver initialized");
 
             // Load SqlProviderServices at runtime to support SQL Server.
-            System.Diagnostics.Debug.WriteLine("[ModernEntityDesigner] DependencyResolver static ctor: Pre-registering SQL Server providers");
+            System.Diagnostics.Debug.WriteLine("[EasyAF.EntityDesigner] DependencyResolver static ctor: Pre-registering SQL Server providers");
             Type sqlProviderType = Type.GetType(
                 "System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer");
 
@@ -42,16 +42,16 @@ namespace Microsoft.Data.Entity.Design.VersioningFacade
                 // Prefer Microsoft.Data.SqlClient (modern) but also support System.Data.SqlClient (legacy)
                 ProviderServicesResolver.Register(sqlProviderType, "Microsoft.Data.SqlClient");
                 ProviderServicesResolver.Register(sqlProviderType, "System.Data.SqlClient");
-                System.Diagnostics.Debug.WriteLine("[ModernEntityDesigner] DependencyResolver static ctor: SQL Server provider pre-registered for Microsoft.Data.SqlClient and System.Data.SqlClient");
+                System.Diagnostics.Debug.WriteLine("[EasyAF.EntityDesigner] DependencyResolver static ctor: SQL Server provider pre-registered for Microsoft.Data.SqlClient and System.Data.SqlClient");
             }
             else
             {
-                System.Diagnostics.Debug.WriteLine("[ModernEntityDesigner] DependencyResolver static ctor: SqlProviderServices not found - SQL Server will use fallback resolution");
+                System.Diagnostics.Debug.WriteLine("[EasyAF.EntityDesigner] DependencyResolver static ctor: SqlProviderServices not found - SQL Server will use fallback resolution");
             }
 
             // Initialize Instance LAST to ensure all dependencies are ready
             Instance = new DependencyResolver();
-            System.Diagnostics.Debug.WriteLine("[ModernEntityDesigner] DependencyResolver static ctor: Instance initialized - END");
+            System.Diagnostics.Debug.WriteLine("[EasyAF.EntityDesigner] DependencyResolver static ctor: Instance initialized - END");
         }
 
         private DependencyResolver()
