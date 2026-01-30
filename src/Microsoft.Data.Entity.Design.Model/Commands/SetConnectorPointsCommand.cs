@@ -3,7 +3,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.Data.Entity.Design.Model.Designer;
 
 namespace Microsoft.Data.Entity.Design.Model.Commands

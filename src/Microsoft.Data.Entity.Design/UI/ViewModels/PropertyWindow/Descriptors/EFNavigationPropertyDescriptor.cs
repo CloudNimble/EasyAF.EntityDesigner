@@ -2,7 +2,6 @@
 
 using System.ComponentModel;
 using System.Globalization;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;

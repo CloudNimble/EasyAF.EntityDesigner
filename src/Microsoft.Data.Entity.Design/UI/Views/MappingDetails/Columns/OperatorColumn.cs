@@ -3,7 +3,6 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Base.Shell;
 using Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails;
 using Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails.Associations;

@@ -5,12 +5,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Forms;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Base.Shell;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails;
 using Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails.Tables;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Microsoft.Data.Entity.Design.UI.Views.MappingDetails.Columns
 {

@@ -3,9 +3,11 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
+using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Tools.XmlDesignerBase.Model;
 using Microsoft.VisualStudio.OLE.Interop;
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.XmlEditor;
 using IServiceProvider = System.IServiceProvider;
 using XmlModel = Microsoft.Data.Tools.XmlDesignerBase.Model.XmlModel;
@@ -117,8 +119,7 @@ namespace Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio
             // is still being loaded. This caused multiple asserts when opening a project after VS was closed when edmx file was active/opened
             // See http://entityframework.codeplex.com/workitem/1163 for more details and repro steps.
             var solution = (IVsSolution)_services.GetService(typeof (IVsSolution));
-            object propertyValue;
-            if(solution != null && NativeMethods.Succeeded(solution.GetProperty((int)__VSPROPID2.VSPROPID_IsSolutionOpeningDocs, out propertyValue)))
+            if (solution != null && NativeMethods.Succeeded(solution.GetProperty((int)__VSPROPID2.VSPROPID_IsSolutionOpeningDocs, out object propertyValue)))
             {
                 skipChecks = true;
             }
@@ -128,11 +129,8 @@ namespace Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio
             if (!skipChecks
                 && sourceUri.LocalPath.EndsWith(".edmx", StringComparison.OrdinalIgnoreCase))
             {
-                IVsUIHierarchy hier;
-                uint itemId;
-                IVsWindowFrame windowFrame;
                 var isDocumentOpen = VsShellUtilities.IsDocumentOpen(
-                    _services, sourceUri.LocalPath, Guid.Empty, out hier, out itemId, out windowFrame);
+                    _services, sourceUri.LocalPath, Guid.Empty, out IVsUIHierarchy hier, out uint itemId, out IVsWindowFrame windowFrame);
 
                 Debug.Assert(isDocumentOpen, "Running Document Table does not contain document in GetXmlModel()");
                 if (isDocumentOpen)

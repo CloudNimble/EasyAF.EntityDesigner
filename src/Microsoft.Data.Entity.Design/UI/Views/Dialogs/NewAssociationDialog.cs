@@ -8,7 +8,6 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Designer;
 using Microsoft.Data.Entity.Design.Model.Entity;

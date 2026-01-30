@@ -5,9 +5,7 @@ using System.Activities;
 using System.Activities.Hosting;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.VersioningFacade;
 using Microsoft.Data.Entity.Design.VisualStudio.TextTemplating;
 

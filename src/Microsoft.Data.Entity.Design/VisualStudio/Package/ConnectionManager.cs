@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using EnvDTE;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Designer;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Common;
@@ -15,7 +14,6 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.Entity.Core.EntityClient;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Linq;

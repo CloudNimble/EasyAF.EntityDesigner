@@ -7,7 +7,6 @@ using System.Data;
 using System.Data.Common;
 using System.Data.Entity.Core.EntityClient;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.VersioningFacade;
 using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb;

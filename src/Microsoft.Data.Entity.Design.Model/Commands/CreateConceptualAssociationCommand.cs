@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure.Pluralization;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using Microsoft.Data.Entity.Design.Model.Designer;
 using Microsoft.Data.Entity.Design.Model.Entity;

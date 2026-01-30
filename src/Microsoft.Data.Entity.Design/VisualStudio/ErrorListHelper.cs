@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using EnvDTE;
 using Microsoft.Data.Tools.XmlDesignerBase.Base.Util;

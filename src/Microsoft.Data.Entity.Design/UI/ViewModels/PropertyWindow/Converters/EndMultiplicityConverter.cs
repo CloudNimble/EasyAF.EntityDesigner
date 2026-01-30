@@ -3,7 +3,6 @@
 using System;
 using System.Diagnostics;
 using System.Globalization;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors;

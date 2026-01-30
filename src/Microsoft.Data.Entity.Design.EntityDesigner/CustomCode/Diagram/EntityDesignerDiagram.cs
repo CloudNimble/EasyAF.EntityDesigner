@@ -32,7 +32,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -555,11 +554,18 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.View
         {
             base.OnAssociated(e);
 
+            // Pre-load themed property icons for the diagram.
+            // Use WhiteSmoke as that's the default compartment fill color defined in the DSL.
+            if (!DiagramImageHelper.Instance.IsLoaded)
+            {
+                DiagramImageHelper.Instance.Load(Color.WhiteSmoke);
+            }
+
             // Initialize and add LinkLabels to diagram watermark
             if (e.DiagramView != null)
             {
                 // OnAssociated gets called when the document gets loaded as well as reloaded. This means that
-                // we need to reset the watermark before we refresh the link labels associated with them. 
+                // we need to reset the watermark before we refresh the link labels associated with them.
                 // Resetting the watermark does the appropriate steps to check if the artifact is designer safe, etc.
                 // to determine what watermark to display.
                 if (e.DiagramView.Watermark != null)
@@ -577,8 +583,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.View
         /// </summary>
         protected override void OnDisassociated(DiagramAssociationEventArgs e)
         {
-            if (e.DiagramView != null
-                && e.DiagramView.Selection != null)
+            if (e?.DiagramView?.Selection is not null)
             {
                 e.DiagramView.Selection.ShapeSelectionChanged -= diagramView_OnShapeSelectionChanged;
             }
@@ -592,8 +597,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.View
         /// </summary>
         private void diagramView_OnShapeSelectionChanged(object sender, EventArgs e)
         {
-            if (ActiveDiagramView != null
-                && ActiveDiagramView.Selection != null)
+            if (ActiveDiagramView?.Selection is not null)
             {
                 DiagramItemCollection shapesToBeEmphasized = new DiagramItemCollection();
                 var selectedShapes = ActiveDiagramView.Selection;
@@ -686,7 +690,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.View
         {
             // The way the DSL code is implemented, we need to set HasWatermark to false and then to true to get the watermark text to change.
             // if we are in the middle of creating diagram, ActiveDiagramView will be null. 
-            if (diagramView != null)
+            if (diagramView is not null)
             {
                 diagramView.HasWatermark = false;
                 diagramView.HasWatermark = true;
@@ -789,9 +793,8 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.View
         {
             if (sender is LinkLabel linkLabel)
             {
-                if (e.Link.LinkData is Guid)
+                if (e.Link.LinkData is Guid toolWindow)
                 {
-                    Guid toolWindow = (Guid)e.Link.LinkData;
                     if (toolWindow != Guid.Empty)
                     {
                         IUIService uiService = Services.ServiceProvider.GetService(typeof(IUIService)) as IUIService;
@@ -1849,7 +1852,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.View
 
         private static void SetColorTheme(StyleSet styleSet)
         {
-            // TODO: Without this some test in ViewModel.Tests.csproj are failing because apparently they are non runing in VS. We should fix the tests and shouldn't need this anymore. 
+            // TODO: Without this some test in ViewModel.Tests.csproj are failing because apparently they are non runing in VS. We should fix the tests and shouldn't need this anymore.
             if (!IsThemeServiceAvailable())
             {
                 return;
@@ -1863,6 +1866,8 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.View
             EntityTypeShape.IsColorThemeSet = false;
             // Notify AssociationConnector that changes will require updating themable colors on next painting.
             AssociationConnector.IsColorThemeSet = false;
+            // Reload property icons with the new theme colors.
+            DiagramImageHelper.Instance.OnThemeChanged(Color.WhiteSmoke);
         }
 
         /// <summary>

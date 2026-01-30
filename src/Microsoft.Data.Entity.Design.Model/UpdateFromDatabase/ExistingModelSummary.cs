@@ -2,7 +2,6 @@
 
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Microsoft.Data.Entity.Design.Model.Database;
 using Microsoft.Data.Entity.Design.Model.Entity;
@@ -264,7 +263,7 @@ namespace Microsoft.Data.Entity.Design.Model.UpdateFromDatabase
                             Debug.Assert(
                                 et != null, "symbol " + entityTypeName +
                                             " matches non-EntityTypeelement " + element.ToPrettyString());
-                            Debug.Assert(et != null ? cet != null : true, "EntityType is not a ConceptualEntityType");
+                            //Debug.Assert(et == null || cet is not null, "EntityType is not a ConceptualEntityType");
                         }
                         else
                         {

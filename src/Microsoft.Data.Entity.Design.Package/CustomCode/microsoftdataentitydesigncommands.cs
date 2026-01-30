@@ -2,7 +2,6 @@
 
 using System;
 using System.ComponentModel.Design;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Microsoft.Data.Entity.Design.Package
 {

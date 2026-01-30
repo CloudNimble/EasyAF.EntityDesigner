@@ -4,14 +4,12 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Forms;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Base.Shell;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails;
 using Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails.Functions;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Microsoft.Data.Entity.Design.UI.Views.MappingDetails.Columns
 {

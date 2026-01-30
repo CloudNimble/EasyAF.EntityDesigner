@@ -3,7 +3,6 @@
 using System;
 using System.Collections;
 using System.ComponentModel.Design;
-using System.Diagnostics.CodeAnalysis;
 using System.Windows.Forms;
 using Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid;
 

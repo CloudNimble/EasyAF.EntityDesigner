@@ -4,7 +4,6 @@ using EFVisitor = Microsoft.Data.Entity.Design.Model.Visitor.Visitor;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Xml.Linq;
 using Microsoft.Data.Entity.Design.Model.Visitor;

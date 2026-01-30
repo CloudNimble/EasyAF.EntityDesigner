@@ -4,7 +4,6 @@ using System;
 using System.Activities;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using EnvDTE;
 using Microsoft.Data.Entity.Design.Extensibility;

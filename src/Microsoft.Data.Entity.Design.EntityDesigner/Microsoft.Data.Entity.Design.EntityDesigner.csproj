@@ -84,8 +84,7 @@
 
   <!-- Content files -->
   <ItemGroup>
-    <Content Include="Resources\*.bmp" />
-    <Content Include="Resources\*.gif" />
+    <Content Include="Resources\*.png" />
     <Content Update="GeneratedCode\EntityFrameworkSchema.xsd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

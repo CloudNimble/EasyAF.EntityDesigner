@@ -27,10 +27,6 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.View
         internal static readonly string NavigationCompartmentName = "Navigation";
         internal static readonly Color TransparentColor = Color.Magenta;
 
-        private static Image _keyPropertyBitmap;
-        private static Image _propertyBitmap;
-        private static Image _complexPropertyBitmap;
-        private static Image _navigationPropertyBitmap;
         private bool _isAdjustedForFillColor;
 
         internal class EntityChevronButtonField : ChevronButtonField
@@ -235,7 +231,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.View
             return source;
         }
 
-        // bitmaps are cached to avoid deserializing the resources more than once and creating multiple instances in memory 
+        // bitmaps are cached to avoid deserializing the resources more than once and creating multiple instances in memory
         private static readonly Bitmap EntityGlyph = MakeBitmapTransparent(EntityDesignerRes.EntityGlyph);
         private static readonly Bitmap BaseTypeIcon = MakeBitmapTransparent(EntityDesignerRes.BaseTypeIcon);
         private static readonly Bitmap ChevronExpanded = MakeBitmapTransparent(EntityDesignerRes.ChevronExpanded);
@@ -357,47 +353,47 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.View
 
         /// <summary>
         ///     Provides an image to display to the left Property elements in the EntityShape.
-        ///     It caches the bitmaps for performance reasons.
+        ///     Uses pre-cached icons from DiagramImageHelper for performance.
         /// </summary>
         private Image PropertyDisplayImageGetter(ModelElement element)
         {
-            if (element is Property)
+            if (element is ScalarProperty scalarProperty)
             {
-                if (element is ScalarProperty scalarProperty)
-                {
-                    if (scalarProperty.EntityKey)
-                    {
-                        return _keyPropertyBitmap ??=
-                                ThemeUtils.GetThemedButtonImage(
-                                    EntityDesignerRes.PropertyPK,
-                                    PropertiesCompartment.CompartmentFillColor);
-                    }
-                    return _propertyBitmap ??=
-                            ThemeUtils.GetThemedButtonImage(
-                                EntityDesignerRes.Property,
-                                PropertiesCompartment.CompartmentFillColor);
-                }
-                Debug.Assert(element is ComplexProperty, "Unknown property type");
-                return _complexPropertyBitmap ??=
-                        ThemeUtils.GetThemedButtonImage(
-                            EntityDesignerRes.ComplexProperty,
-                            PropertiesCompartment.CompartmentFillColor);
+                bool isAt100Zoom = IsAt100PercentZoom();
+                return scalarProperty.EntityKey
+                    ? (isAt100Zoom ? DiagramImageHelper.Instance.PropertyPKIcon100 : DiagramImageHelper.Instance.PropertyPKIconNormal)
+                    : (isAt100Zoom ? DiagramImageHelper.Instance.PropertyIcon100 : DiagramImageHelper.Instance.PropertyIconNormal);
             }
+
+            if (element is ComplexProperty)
+            {
+                bool isAt100Zoom = IsAt100PercentZoom();
+                return isAt100Zoom ? DiagramImageHelper.Instance.ComplexPropertyIcon100 : DiagramImageHelper.Instance.ComplexPropertyIconNormal;
+            }
+
             return null;
         }
 
         /// <summary>
+        ///     Checks if the diagram is currently at 100% zoom.
+        /// </summary>
+        private bool IsAt100PercentZoom()
+        {
+            const float zoomTolerance = 0.001f;
+            var zoomFactor = Diagram?.ActiveDiagramView?.DiagramClientView?.ZoomFactor ?? 1.0f;
+            return Math.Abs(zoomFactor - 1.0f) < zoomTolerance;
+        }
+
+        /// <summary>
         ///     Provides an image to display to the left NavigationProperty elements in the EntityShape.
-        ///     It caches the bitmaps for performance reasons.
+        ///     Uses pre-cached icons from DiagramImageHelper for performance.
         /// </summary>
         private Image NavigationDisplayImageGetter(ModelElement element)
         {
-            if (element is NavigationProperty property)
+            if (element is NavigationProperty)
             {
-                return _navigationPropertyBitmap ??=
-                        ThemeUtils.GetThemedButtonImage(
-                            EntityDesignerRes.NavigationProperty,
-                            NavigationCompartment.CompartmentFillColor);
+                bool isAt100Zoom = IsAt100PercentZoom();
+                return isAt100Zoom ? DiagramImageHelper.Instance.NavigationPropertyIcon100 : DiagramImageHelper.Instance.NavigationPropertyIconNormal;
             }
             return null;
         }

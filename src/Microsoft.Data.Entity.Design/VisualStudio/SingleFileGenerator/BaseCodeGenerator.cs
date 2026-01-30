@@ -2,11 +2,9 @@
 
 using System;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.Data.Entity.Design;
 
 namespace Microsoft.Data.Entity.Design.VisualStudio.SingleFileGenerator
 {

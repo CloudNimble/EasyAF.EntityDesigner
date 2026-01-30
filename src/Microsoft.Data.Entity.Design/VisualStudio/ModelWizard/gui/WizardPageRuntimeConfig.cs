@@ -2,11 +2,9 @@
 
 using System;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.VersioningFacade;
 using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
 using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Gui.ViewModels;

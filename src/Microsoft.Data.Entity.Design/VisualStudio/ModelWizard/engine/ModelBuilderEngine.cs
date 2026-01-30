@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Data.Entity.Design;
 using WizardResources = Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Properties.Resources;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using System;

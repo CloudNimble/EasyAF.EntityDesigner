@@ -3,7 +3,6 @@
 using System;
 using System.Data.Entity.Core.EntityClient;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using EnvDTE;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Entity;

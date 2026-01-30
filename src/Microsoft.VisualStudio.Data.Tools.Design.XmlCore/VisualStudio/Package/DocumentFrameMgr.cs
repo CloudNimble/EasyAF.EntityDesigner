@@ -2,7 +2,6 @@
 
 using System;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Tools.XmlDesignerBase.Base.Util;

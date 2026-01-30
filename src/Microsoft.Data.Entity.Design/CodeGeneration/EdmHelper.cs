@@ -3,7 +3,6 @@
 using System.Collections.Generic;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Infrastructure;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Microsoft.Data.Entity.Design.CodeGeneration

@@ -3,7 +3,6 @@
 using System;
 using System.Globalization;
 using System.Xaml;
-using Microsoft.Data.Entity.Design;
 
 namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
 {

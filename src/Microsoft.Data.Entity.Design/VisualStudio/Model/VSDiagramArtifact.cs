@@ -2,7 +2,6 @@
 
 using System;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Tools.XmlDesignerBase.Model;
 using Microsoft.VisualStudio;

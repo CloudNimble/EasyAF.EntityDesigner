@@ -11,6 +11,7 @@ using Microsoft.Data.Entity.Design.Common;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Mapping;
 using Microsoft.Data.Entity.Design.Model.Validation;
+using Microsoft.Data.Entity.Design.Model.Visitor;
 using Microsoft.Data.Entity.Design.VersioningFacade;
 using Microsoft.Data.Tools.XmlDesignerBase.Model;
 

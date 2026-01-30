@@ -2,9 +2,7 @@
 
 using System;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using EnvDTE;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Entity.Design.Model.Eventing;
 

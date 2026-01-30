@@ -46,6 +46,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.View
         private void Initialize()
         {
             ListField.AlternateFontId = new StyleSetResourceId(string.Empty, "ShapeTextBoldUnderline");
+            //Debug.WriteLine($"[EasyAF.EntityDesigner] ListField.DefaultItemIndent: {ListField.DefaultItemIndent}");
         }
 
         protected override void InitializeResources(StyleSet classStyleSet)
@@ -55,12 +56,12 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.View
             // Custom Font Settings.
             // Create a diagram shape text that has been bolded and underlined.
             var diagram = Diagram;
-            Debug.Assert(diagram != null, "Unable to find instance of Diagram from CompartmentList instance.");
-            if (diagram != null)
+            Debug.Assert(diagram is not null, "Unable to find instance of Diagram from CompartmentList instance.");
+            if (diagram is not null)
             {
                 var fontSettings = diagram.StyleSet.GetOverriddenFontSettings(DiagramFonts.ShapeText);
-                Debug.Assert(fontSettings != null, "Why Diagram doesn't contains FontSettings for ShapeText?");
-                if (fontSettings != null)
+                Debug.Assert(fontSettings is not null, "Why Diagram doesn't contains FontSettings for ShapeText?");
+                if (fontSettings is not null)
                 {
                     fontSettings.Bold = true;
                     fontSettings.Underline = true;
@@ -79,15 +80,17 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.View
         public override void GetItemDrawInfo(ListField listField, int row, ItemDrawInfo itemDrawInfo)
         {
             base.GetItemDrawInfo(listField, row, itemDrawInfo);
-            Debug.Assert(ParentShape != null, "ElementListCompartment should be contained in another shape.");
-            if (ParentShape != null)
+            //Debug.WriteLine($"[EasyAF.EntityDesigner] ItemDrawInfo.Indent: {itemDrawInfo.Indent}");
+            itemDrawInfo.Indent = 0.02f;
+
+            Debug.Assert(ParentShape is not null, "ElementListCompartment should be contained in another shape.");
+            if (ParentShape is not null)
             {
                 EntityTypeShape ets = ParentShape as EntityTypeShape;
                 Debug.Assert(
-                    ets != null, "Expected ElementListCompartment's parent type:EntityTypeShape , Actual:" + ParentShape.GetType().Name);
+                    ets is not null, "Expected ElementListCompartment's parent type:EntityTypeShape , Actual:" + ParentShape.GetType().Name);
 
-                if (ets != null
-                    && ets.Diagram != null)
+                if (ets?.Diagram is not null)
                 {
                     //  if the compartment list item is in the EmphasizedShapes list, then set the flag so that the item will be drawn in alternate font.
                     // (The list item's font will be bolded and underlined).

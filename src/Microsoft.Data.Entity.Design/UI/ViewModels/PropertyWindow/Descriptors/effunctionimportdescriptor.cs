@@ -3,7 +3,6 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing.Design;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;

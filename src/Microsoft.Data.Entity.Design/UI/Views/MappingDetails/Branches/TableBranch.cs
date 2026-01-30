@@ -3,8 +3,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Base.Shell;
 using Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails.Tables;
 using Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid;

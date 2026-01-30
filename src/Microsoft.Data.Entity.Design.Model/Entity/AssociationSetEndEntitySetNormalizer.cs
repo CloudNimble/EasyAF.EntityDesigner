@@ -33,10 +33,9 @@ namespace Microsoft.Data.Entity.Design.Model.Entity
             string entityContainerName = null;
             if (set.Parent is BaseEntityContainer ec)
             {
+                Debug.Assert(ec != null, "AssociationSet parent should be a subclass of BaseEntityContainer");
                 entityContainerName = ec.EntityContainerName;
             }
-
-            Debug.Assert(ec != null, "AssociationSet parent should be a subclass of BaseEntityContainer");
 
             // the normalized name for an EnitySet is 'EntityContainerName + # + EntitySetName'
             Symbol symbol = new Symbol(entityContainerName, refName);

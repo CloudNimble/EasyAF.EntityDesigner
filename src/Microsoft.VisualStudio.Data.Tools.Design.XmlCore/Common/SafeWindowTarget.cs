@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Microsoft.Data.Tools.VSXmlDesignerBase.Common

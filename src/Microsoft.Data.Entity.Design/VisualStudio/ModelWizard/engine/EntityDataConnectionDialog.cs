@@ -8,7 +8,6 @@ using Microsoft.VSDesigner.Data;
 using WizardResources = Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Properties.Resources;
 using Microsoft.VisualStudio.Data.Core;
 using Microsoft.VisualStudio.Data.Services;
-using Microsoft.VisualStudio.Shell;
 
 namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
 {

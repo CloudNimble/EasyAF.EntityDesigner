@@ -2,7 +2,6 @@
 
 using IOleServiceProvider = Microsoft.VisualStudio.OLE.Interop.IServiceProvider;
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Xml;
 using Microsoft.Data.Entity.Design.Model.Validation;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;

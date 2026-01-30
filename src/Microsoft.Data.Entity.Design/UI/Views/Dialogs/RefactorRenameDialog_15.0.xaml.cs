@@ -4,7 +4,6 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Windows;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Common;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Entity;

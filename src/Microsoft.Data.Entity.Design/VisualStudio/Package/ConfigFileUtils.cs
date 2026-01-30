@@ -6,7 +6,6 @@ using System.Diagnostics;
 using System.Xml;
 using EnvDTE;
 using EnvDTE80;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Common;
 using System.IO;
 using Microsoft.VisualStudio.TextManager.Interop;

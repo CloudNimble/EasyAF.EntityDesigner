@@ -1,7 +1,5 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.Diagnostics.CodeAnalysis;
-
 namespace Microsoft.Data.Tools.XmlDesignerBase.Model
 {
     // A local version of this struct so that our model code does not need a dependency on VS; this isn't the

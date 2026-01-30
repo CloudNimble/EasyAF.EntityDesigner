@@ -3,13 +3,11 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Xml.Linq;
 using EnvDTE;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Entity.Design.Extensibility;
 using Microsoft.Data.Entity.Design.Model;

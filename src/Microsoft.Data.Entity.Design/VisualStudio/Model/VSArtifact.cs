@@ -4,14 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using EnvDTE;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Entity.Design.Common;
 using Microsoft.Data.Entity.Design.Extensibility;
@@ -22,6 +20,7 @@ using Microsoft.Data.Entity.Design.VersioningFacade;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
 using Microsoft.Data.Tools.XmlDesignerBase.Model;
+using Microsoft.VisualStudio.Shell;
 
 namespace Microsoft.Data.Entity.Design.VisualStudio.Model
 {

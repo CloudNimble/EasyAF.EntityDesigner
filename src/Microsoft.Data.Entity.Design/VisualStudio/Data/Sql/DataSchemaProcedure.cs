@@ -4,7 +4,6 @@ using EdmxModel = Microsoft.Data.Entity.Design.Model;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Model.Database;
 using Microsoft.VisualStudio.Data.Services.RelationalObjectModel;
 

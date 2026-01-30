@@ -10,7 +10,6 @@ using Microsoft.Data.Entity.Design.Model.Validation;
 using Microsoft.Data.Tools.VSXmlDesignerBase.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling;
 using EntityDesignerRes = Microsoft.Data.Entity.Design.EntityDesigner.Properties.Resources;
-using ModelRes = Microsoft.Data.Entity.Design.Model.Resources;
 
 namespace Microsoft.Data.Entity.Design.EntityDesigner.Rules
 {

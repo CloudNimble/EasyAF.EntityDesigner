@@ -2,7 +2,6 @@
 
 using System.Collections;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Windows.Forms;
 
 namespace Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid

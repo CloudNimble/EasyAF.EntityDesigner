@@ -4,7 +4,6 @@ using XmlDesignerBaseTextSpan = Microsoft.Data.Tools.XmlDesignerBase.Model.TextS
 using VSTextSpan = Microsoft.VisualStudio.TextManager.Interop.TextSpan;
 using System;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Windows.Threading;
 using System.Xml.Linq;
 using Microsoft.Data.Entity.Design.VisualStudio;

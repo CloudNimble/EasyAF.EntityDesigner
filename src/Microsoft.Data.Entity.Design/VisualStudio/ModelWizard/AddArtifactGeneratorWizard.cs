@@ -6,7 +6,6 @@ using System.Diagnostics;
 using System.IO;
 using EnvDTE;
 using EnvDTE80;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;

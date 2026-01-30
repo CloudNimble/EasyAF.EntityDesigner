@@ -2,11 +2,9 @@
 
 using System;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Xml.Linq;
 using EnvDTE;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Extensibility;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
 

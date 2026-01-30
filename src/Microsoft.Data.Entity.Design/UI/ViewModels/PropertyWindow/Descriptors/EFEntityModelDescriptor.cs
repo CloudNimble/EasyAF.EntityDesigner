@@ -3,9 +3,7 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Entity.Design.Core.Controls;
 using Microsoft.Data.Entity.Design.Model;

@@ -4,7 +4,6 @@ using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Core.Controls;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;

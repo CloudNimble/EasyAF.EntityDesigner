@@ -6,7 +6,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using Microsoft.Data.Entity.Design.EntityDesigner.View;
 using Microsoft.VisualStudio.PlatformUI;
 
 namespace Microsoft.Data.Entity.Design.EntityDesigner.View.ContextMenu

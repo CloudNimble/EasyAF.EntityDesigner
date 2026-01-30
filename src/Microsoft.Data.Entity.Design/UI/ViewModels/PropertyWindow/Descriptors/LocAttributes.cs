@@ -2,7 +2,6 @@
 
 using System;
 using System.Resources;
-using Microsoft.Data.Entity.Design;
 
 namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors
 {

@@ -3,11 +3,9 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Reflection;
 using EnvDTE;
-using Microsoft.Data.Entity.Design;
 using WizardResources = Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Properties.Resources;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.Shell.Design;

@@ -4,7 +4,6 @@ using ModelDiagram = Microsoft.Data.Tools.Model.Diagram;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;

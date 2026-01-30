@@ -253,16 +253,16 @@ Add existing entities and relationships to this diagram by dragging them from th
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="NavigationProperty" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\navigationproperty.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\NavigationProperty.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Property" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\property.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Property.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PropertyPK" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\propertypk.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\PropertyPK.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ComplexProperty" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\complexproperty.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\ComplexProperty.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Tooltip_AssociationConnector" xml:space="preserve">
     <value>Source: {0} ({1})\nTarget: {2} ({3})</value>
@@ -540,16 +540,16 @@ The Entity Framework is not available in the target framework currently specifie
     <comment>This error is shown for resolve errors that occur during hydration of byref edmx models.</comment>
   </data>
   <data name="BaseTypeIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BaseTypeIcon.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\BaseTypeIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ChevronCollapsed" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ChevronCollapsed.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\ChevronCollapsed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ChevronExpanded" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ChevronExpanded.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\ChevronExpanded.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="EntityGlyph" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\EntityGlyph.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\EntityGlyph.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="IsInAssociationWith" xml:space="preserve">
     <value>{0} is in an association with {1}</value>

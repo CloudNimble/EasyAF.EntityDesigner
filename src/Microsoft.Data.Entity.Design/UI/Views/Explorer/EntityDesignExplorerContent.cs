@@ -2,7 +2,6 @@
 
 using System.Windows;
 using System.Windows.Controls;
-using Microsoft.Data.Entity.Design;
 
 namespace Microsoft.Data.Entity.Design.UI.Views.Explorer
 {

@@ -6,7 +6,6 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Xml;
 using EnvDTE;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.VisualStudio.Shell.Interop;
 

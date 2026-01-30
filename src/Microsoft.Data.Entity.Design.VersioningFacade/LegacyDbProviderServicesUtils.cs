@@ -2,7 +2,6 @@
 
 using System;
 using System.Data.Common;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Microsoft.Data.Entity.Design.VersioningFacade
 {

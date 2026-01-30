@@ -7,7 +7,6 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Entity.Design.Base.Shell;
 using Microsoft.Data.Entity.Design.Model.Commands;
@@ -21,7 +20,6 @@ using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Common;
 using Microsoft.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio.Utilities;
-using Package = Microsoft.VisualStudio.Shell.Package;
 
 namespace Microsoft.Data.Entity.Design.UI.Views.MappingDetails
 {

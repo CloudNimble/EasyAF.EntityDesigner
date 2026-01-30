@@ -6,7 +6,6 @@ using System.Data;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Infrastructure.Pluralization;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;

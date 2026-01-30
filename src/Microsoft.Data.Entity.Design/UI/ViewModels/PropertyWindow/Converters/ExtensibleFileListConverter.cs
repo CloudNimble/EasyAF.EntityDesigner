@@ -4,7 +4,6 @@ using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.VisualStudio;
 
 namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters

@@ -10,13 +10,10 @@ using System.IO;
 using System.Runtime.Remoting.Messaging;
 using System.Text.RegularExpressions;
 using EnvDTE;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.DatabaseGeneration;
 using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.TextTemplating.VSHost;
-using Package = Microsoft.VisualStudio.Shell.Package;
-using Resources = Microsoft.Data.Entity.Design.Resources;
 
 namespace Microsoft.Data.Entity.Design.VisualStudio.TextTemplating
 {

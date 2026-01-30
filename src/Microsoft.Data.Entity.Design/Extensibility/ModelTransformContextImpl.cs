@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml.Linq;
 using EnvDTE;
-using Microsoft.Data.Entity.Design;
 
 namespace Microsoft.Data.Entity.Design.Extensibility
 {

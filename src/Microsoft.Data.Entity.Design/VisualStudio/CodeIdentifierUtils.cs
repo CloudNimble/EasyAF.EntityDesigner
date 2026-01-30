@@ -5,7 +5,6 @@ using System.Text.RegularExpressions;
 using Microsoft.CSharp;
 using Microsoft.Data.Entity.Design.Common;
 using Microsoft.VisualBasic;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Microsoft.Data.Entity.Design.VisualStudio
 {

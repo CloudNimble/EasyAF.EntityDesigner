@@ -2,7 +2,6 @@
 
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Windows.Forms;
 using Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid;
 using Microsoft.VisualStudio.Data.Tools.Design.XmlCore;

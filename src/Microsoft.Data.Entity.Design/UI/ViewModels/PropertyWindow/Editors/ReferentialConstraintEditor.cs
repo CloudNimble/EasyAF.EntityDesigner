@@ -4,7 +4,6 @@ using System;
 using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Drawing.Design;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Eventing;

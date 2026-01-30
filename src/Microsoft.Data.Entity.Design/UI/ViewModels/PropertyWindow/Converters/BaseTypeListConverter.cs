@@ -2,7 +2,6 @@
 
 using System;
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors;
 using XmlDesignerBaseResources = Microsoft.Data.Tools.XmlDesignerBase.Resources;

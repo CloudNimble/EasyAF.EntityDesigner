@@ -4,7 +4,6 @@ using System;
 using System.Globalization;
 using System.Text;
 using Microsoft.VisualStudio.TextTemplating.VSHost;
-using Microsoft.Data.Entity.Design;
 
 namespace Microsoft.Data.Entity.Design.VisualStudio.TextTemplating
 {

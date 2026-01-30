@@ -5,8 +5,9 @@ using System.Activities;
 using System.Activities.Hosting;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Metadata.Edm;
-using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics;
 using System.Globalization;
+using System.Text;
 using Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators;
 using Microsoft.Data.Entity.Design.DatabaseGeneration.Properties;
 using Microsoft.Data.Entity.Design.VersioningFacade;
@@ -93,9 +94,8 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration.Activities
 
 #if DEBUG
             // Validate the MSL in Debug mode
-            IList<EdmSchemaError> mslErrors;
             EdmExtension.CreateStorageMappingItemCollection(
-                edmItemCollection, ssdlCollection, msl, out mslErrors);
+                edmItemCollection, ssdlCollection, msl, out IList<EdmSchemaError> mslErrors);
             if (mslErrors != null
                 && mslErrors.Count > 0)
             {

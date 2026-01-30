@@ -5,7 +5,6 @@ using VsErrorHandler = Microsoft.VisualStudio.ErrorHandler;
 using System;
 using System.CodeDom.Compiler;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using EnvDTE;
 using Microsoft.VisualStudio;
@@ -13,7 +12,6 @@ using Microsoft.VisualStudio.Designer.Interfaces;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.Data.Entity.Design;
 
 namespace Microsoft.Data.Entity.Design.VisualStudio.SingleFileGenerator
 {
