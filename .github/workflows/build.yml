@@ -1,0 +1,136 @@
+name: Build and Publish
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      publish_to_marketplace:
+        description: 'Publish to VS Marketplace'
+        required: false
+        type: boolean
+        default: false
+
+env:
+  SOLUTION_FILE: EasyAF.EntityDesigner.slnx
+  CONFIGURATION: Release
+  VSIX_PROJECT: src/Microsoft.Data.Entity.Design.Package/Microsoft.Data.Entity.Design.Package.csproj
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: windows-latest
+
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      vsix_name: ${{ steps.vsix.outputs.name }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Full history for Nerdbank.GitVersioning
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Get Version
+        id: version
+        uses: dotnet/nbgv@master
+        with:
+          setAllVars: true
+
+      - name: Restore Dependencies
+        run: dotnet restore ${{ env.SOLUTION_FILE }}
+
+      - name: Build Solution
+        run: dotnet build ${{ env.SOLUTION_FILE }} -c ${{ env.CONFIGURATION }} --no-restore
+
+      - name: Run Tests
+        run: dotnet test ${{ env.SOLUTION_FILE }} -c ${{ env.CONFIGURATION }} --no-build --verbosity normal
+
+      - name: Find VSIX
+        id: vsix
+        shell: pwsh
+        run: |
+          $vsix = Get-ChildItem -Path . -Filter "*.vsix" -Recurse | Select-Object -First 1
+          if ($vsix) {
+            Write-Output "name=$($vsix.Name)" >> $env:GITHUB_OUTPUT
+            Write-Output "path=$($vsix.FullName)" >> $env:GITHUB_OUTPUT
+            Write-Host "Found VSIX: $($vsix.FullName)"
+          } else {
+            Write-Error "No VSIX file found"
+            exit 1
+          }
+
+      - name: Upload VSIX Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: vsix-package
+          path: ${{ steps.vsix.outputs.path }}
+          retention-days: 30
+
+  publish:
+    name: Publish to VS Marketplace
+    needs: build
+    runs-on: windows-latest
+    if: |
+      github.ref == 'refs/heads/main' &&
+      github.event_name == 'workflow_dispatch' &&
+      github.event.inputs.publish_to_marketplace == 'true'
+
+    steps:
+      - name: Download VSIX Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: vsix-package
+          path: ./artifacts
+
+      - name: Publish to VS Marketplace
+        uses: cezarypiatek/VsixPublisherAction@1.1
+        with:
+          extension-file: ./artifacts/${{ needs.build.outputs.vsix_name }}
+          publish-manifest-file: '' # Uses manifest embedded in VSIX
+          personal-access-code: ${{ secrets.VS_MARKETPLACE_PAT }}
+
+  create-release:
+    name: Create GitHub Release
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download VSIX Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: vsix-package
+          path: ./artifacts
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ needs.build.outputs.version }}
+          name: v${{ needs.build.outputs.version }}
+          body: |
+            ## EasyAF Entity Designer v${{ needs.build.outputs.version }}
+
+            ### Installation
+            - Download and double-click the VSIX file, or
+            - Install from [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=CloudNimble.EasyAF-EntityDesigner)
+
+            ### What's Changed
+            See [commit history](https://github.com/${{ github.repository }}/commits/v${{ needs.build.outputs.version }}) for details.
+          files: ./artifacts/*.vsix
+          draft: false
+          prerelease: false
+          generate_release_notes: true

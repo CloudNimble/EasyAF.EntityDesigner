@@ -234,10 +234,6 @@
         </EmbeddedResource>
         <EmbeddedResource Include="Resources\MappingDetailsBitmap.bmp" />
         <EmbeddedResource Include="Resources\ModelBrowserBitmap.bmp" />
-        <EmbeddedResource Include="Resources\ThumbnailView.bmp" />
-        <EmbeddedResource Include="Resources\Zoom100Button.bmp" />
-        <EmbeddedResource Include="Resources\ZoomInButton.bmp" />
-        <EmbeddedResource Include="Resources\ZoomOutButton.bmp" />
     </ItemGroup>
 
     <!-- Content files -->

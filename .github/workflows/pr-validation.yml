@@ -1,0 +1,54 @@
+name: PR Validation
+
+on:
+  pull_request:
+    branches: [main]
+
+# Read-only permissions for PR validation
+permissions:
+  contents: read
+  pull-requests: read
+
+env:
+  SOLUTION_FILE: EasyAF.EntityDesigner.slnx
+  CONFIGURATION: Release
+
+jobs:
+  validate:
+    name: Build and Test
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Full history for Nerdbank.GitVersioning
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Restore Dependencies
+        run: dotnet restore ${{ env.SOLUTION_FILE }}
+
+      - name: Build Solution
+        run: dotnet build ${{ env.SOLUTION_FILE }} -c ${{ env.CONFIGURATION }} --no-restore
+
+      - name: Run Tests
+        run: dotnet test ${{ env.SOLUTION_FILE }} -c ${{ env.CONFIGURATION }} --no-build --verbosity normal
+
+      - name: Verify VSIX Created
+        shell: pwsh
+        run: |
+          $vsix = Get-ChildItem -Path . -Filter "*.vsix" -Recurse | Select-Object -First 1
+          if ($vsix) {
+            Write-Host "✓ VSIX created successfully: $($vsix.Name)"
+            Write-Host "  Size: $([math]::Round($vsix.Length / 1MB, 2)) MB"
+          } else {
+            Write-Error "No VSIX file found - build may have failed"
+            exit 1
+          }

@@ -20,18 +20,11 @@ using Microsoft.VisualStudio.PlatformUI;
 namespace Microsoft.Data.Entity.Design.Package
 {
     /// <summary>
-    ///     This partial class adds the PanZoom controls to the main canvas.
+    ///     This partial class adds the floating zoom control and context menu to the diagram canvas.
     /// </summary>
     internal partial class MicrosoftDataEntityDesignDocView
     {
         private readonly List<Action> _themeChangedActions = [];
-
-        private readonly ToolTip _toolTip = new ToolTip
-            {
-                AutoPopDelay = 5000,
-                InitialDelay = 1000,
-                ReshowDelay = 500
-            };
 
         private DiagramSurfaceContextMenuService _contextMenuService;
         private FloatingZoomControl _floatingZoomControl;
@@ -40,9 +33,8 @@ namespace Microsoft.Data.Entity.Design.Package
         private MenuCommandDefinition _snapToGridCommand;
 
         /// <summary>
-        ///     Override the base class method so that we can
-        ///     add controls to pan, zoom in, zoom out,
-        ///     and zoom to 100% underneath the vertical scrollbar.
+        ///     Override the base class method to add the floating zoom control,
+        ///     context menu, and theme support to the diagram view.
         /// </summary>
         public override VSDiagramView CreateDiagramView()
         {
@@ -50,12 +42,11 @@ namespace Microsoft.Data.Entity.Design.Package
             var view = base.CreateDiagramView();
             Debug.Assert(view.DiagramClientView != null, "DiagramClientView was null");
 
-            // Add handler for ZoomChanged event so we can persist 
-            // zoom level regardless where the change came form 
-            // (context menu, mouse scroll, pan/zoom panel)
+            // Add handler for ZoomChanged event so we can persist
+            // zoom level regardless of where the change came from
             view.DiagramClientView.ZoomChanged += DiagramClientView_ZoomChanged;
 
-            // Standard view contains sometimes a panel that occludes the pan button
+            // Standard view sometimes contains a phantom panel that interferes with controls
             var fantomPanel = view.Controls.OfType<Panel>().FirstOrDefault();
             if (fantomPanel != null)
             {
@@ -64,71 +55,8 @@ namespace Microsoft.Data.Entity.Design.Package
 
             var vscroll = view.Controls.OfType<VScrollBar>().FirstOrDefault();
             Debug.Assert(vscroll != null, "couldn't find the vertical scroll bar");
-            var hscroll = view.Controls.OfType<HScrollBar>().FirstOrDefault();
-            Debug.Assert(hscroll != null, "couldn't find the horizontal scroll bar");
 
-            var panelHeight = hscroll.Height;
-            var panelWidth = vscroll.Width;
-            var panelLeft = view.Width - panelWidth;
-
-            // Need to resize the vertical scrollbar
-            // every time the view is resized to account for the
-            // pan/zoom panel.
-            // NB the Resize and SizeChanged events fire too 
-            // early i.e. before the VSDiagramView has resized
-            // the vertical scroll bar.
-            view.ClientSizeChanged += (sender, e) => vscroll.Height -= panelHeight * 3;
-
-            // Create the panels from bottom to top 
-            // and set their event handlers:
-
-            // Pan panel
-            view.Controls.Add(
-                CreatePanel(
-                    panelLeft,
-                    view.Height - panelHeight,
-                    panelWidth,
-                    panelHeight,
-                    "Resources.ThumbnailView.bmp",
-                    Resources.AccName_ThumbnailView,
-                    Resources.AccDesc_ThumbnailView,
-                    mouseDownHandler: PanPanelMouseDownHandler));
-
-            // Zoom out panel
-            view.Controls.Add(
-                CreatePanel(
-                    panelLeft,
-                    view.Height - panelHeight * 2,
-                    panelWidth,
-                    panelHeight,
-                    "Resources.ZoomOutButton.bmp",
-                    Resources.AccName_ZoomOutButton,
-                    Resources.AccDesc_ZoomOutButton,
-                    mouseClickHandler: (sender, e) => view.ZoomOut()));
-
-            // Zoom to 100% panel
-            view.Controls.Add(
-                CreatePanel(
-                    panelLeft,
-                    view.Height - panelHeight * 3,
-                    panelWidth,
-                    panelHeight,
-                    "Resources.Zoom100Button.bmp",
-                    Resources.AccName_Zoom100Button,
-                    Resources.AccDesc_Zoom100Button,
-                    mouseClickHandler: (sender, e) => view.ZoomAtViewCenter(1)));
-
-            // Zoom in panel
-            view.Controls.Add(
-                CreatePanel(
-                    panelLeft,
-                    view.Height - panelHeight * 4,
-                    panelWidth,
-                    panelHeight,
-                    "Resources.ZoomInButton.bmp",
-                    Resources.AccName_ZoomInButton,
-                    Resources.AccDesc_ZoomInButton,
-                    mouseClickHandler: (sender, e) => view.ZoomIn()));
+            var scrollbarWidth = vscroll.Width;
 
             // Set theme colors before returning new view.
             UpdateTheme(view);
@@ -142,6 +70,26 @@ namespace Microsoft.Data.Entity.Design.Package
             // Add floating zoom control in the top-right corner
             _floatingZoomControl = new FloatingZoomControl();
             _floatingZoomControl.AttachToDiagramView(view);
+
+            
+            // Add Zoom to 100% command
+            _floatingZoomControl.Commands.Add(new MenuCommandDefinition(
+                "Zoom100",
+                "Zoom to 100%",
+                KnownMonikers.ViewBox,
+                () => CurrentDesigner?.ZoomAtViewCenter(1),
+                "Zoom to 100%"));
+
+            // Add Zoom to Fit command
+            _floatingZoomControl.Commands.Add(new MenuCommandDefinition(
+                "ZoomToFit",
+                "Zoom to Fit",
+                KnownMonikers.FitToScreen,
+                () => (CurrentDiagram as EntityDesignerDiagram)?.ZoomToFit(),
+                "Zoom to fit all entities"));
+
+            // Add separator before toggle commands
+            _floatingZoomControl.Commands.Add(MenuSeparatorDefinition.Instance);
 
             // Create grid toggle commands
             _showGridCommand = new MenuCommandDefinition
@@ -167,14 +115,6 @@ namespace Microsoft.Data.Entity.Design.Package
             // Add commands to the floating zoom control
             _floatingZoomControl.Commands.Add(_showGridCommand);
             _floatingZoomControl.Commands.Add(_snapToGridCommand);
-            
-            // Add Zoom to Fit command
-            _floatingZoomControl.Commands.Add(new MenuCommandDefinition(
-                "ZoomToFit",
-                "Zoom to Fit",
-                KnownMonikers.FitToScreen,
-                () => (CurrentDiagram as EntityDesignerDiagram)?.ZoomToFit(),
-                "Zoom to fit all entities"));
 
             // Add separator before expand/collapse commands
             _floatingZoomControl.Commands.Add(MenuSeparatorDefinition.Instance);
@@ -207,12 +147,12 @@ namespace Microsoft.Data.Entity.Design.Package
                 "Auto-arrange entity layout"));
 
             // Calculate margin based on scrollbar width
-            var rightMargin = panelWidth + 4;  // scrollbar width + small gap
+            var rightMargin = scrollbarWidth + 4;  // scrollbar width + small gap
 
             _floatingZoomHost = new ElementHost
             {
                 Child = _floatingZoomControl,
-                BackColor = System.Drawing.Color.Transparent,
+                BackColor = Color.Transparent,
                 AutoSize = true,
                 Height = 36,
                 Anchor = AnchorStyles.Top | AnchorStyles.Right
@@ -349,91 +289,5 @@ namespace Microsoft.Data.Entity.Design.Package
             diagram.PersistSnapToGrid();
         }
 
-        /// <summary>
-        ///     Display the pan window on the mouse down.
-        /// </summary>
-        private void PanPanelMouseDownHandler(object sender, MouseEventArgs e)
-        {
-            if (CurrentDiagram is not EntityDesignerDiagram diagram)
-            {
-                return;
-            }
-
-            // store off whether we are showing the grid
-            var showingGrid = diagram.ShowGrid;
-
-            // turn off the grid before we build our thumbnail 
-            // (without this, VS hangs while generating the thumbnail)
-            diagram.ShowGrid = false;
-
-            // we pass the parent Panel control so that the thumbnail view centers on it
-            using (ThumbnailViewForm thumbnailViewForm = 
-                new ThumbnailViewForm(((Control)sender).Parent, CurrentDesigner.DiagramClientView))
-            {
-                thumbnailViewForm.ShowDialog();
-            }
-
-            // restore the original setting
-            diagram.ShowGrid = showingGrid;
-        }
-
-        /// <summary>
-        ///     Create and return a new panel displaying the
-        ///     image in the specified resource as a background
-        ///     image.
-        /// </summary>
-        private Panel CreatePanel(
-            int left,
-            int top,
-            int width,
-            int height,
-            string imageResourceName,
-            string accessibleName,
-            string accessibleDescription,
-            EventHandler mouseClickHandler = null,
-            MouseEventHandler mouseDownHandler = null)
-        {
-            // Create a new panel to draw the image on
-            Panel panel = new Panel
-                {
-                    Left = left,
-                    Top = top,
-                    Height = height,
-                    Width = width,
-                    Anchor = AnchorStyles.Bottom | AnchorStyles.Right
-                };
-
-            Debug.Assert(imageResourceName != null, "imageResourceName != null");
-            Bitmap bitmap = new Bitmap(GetType(), imageResourceName);
-            PictureBox pictureBox = new PictureBox
-                {
-                    AccessibleName = accessibleName,
-                    AccessibleDescription = accessibleDescription,
-                    AccessibleRole = AccessibleRole.PushButton
-                };
-
-            _themeChangedActions.Add(
-                ()
-                => pictureBox.Image
-                   = ThemeUtils.GetThemedButtonImage(
-                       bitmap,
-                       EnvironmentColors.ScrollBarBackgroundColorKey));
-
-            if (mouseClickHandler != null)
-            {
-                pictureBox.Click += mouseClickHandler;
-            }
-
-            if (mouseDownHandler != null)
-            {
-                pictureBox.MouseDown += mouseDownHandler;
-            }
-
-            _toolTip.SetToolTip(pictureBox, accessibleDescription);
-
-            panel.Controls.Add(pictureBox);
-            panel.BringToFront();
-            return panel;
-        }
     }
 }
