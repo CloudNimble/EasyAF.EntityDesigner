@@ -37,7 +37,7 @@ namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
             configuration.GetMethodChain(code).Replace("\r\n", "\n").Should().Be(
                 @".Entity<Entity1>()
                 .HasMany(e => e.Entity2s)
-                .WithMany(e => e.Entity1s)");
+                .WithMany(e => e.Entity1s)".Replace("\r\n", "\n"));
         }
 
         [TestMethod]
@@ -62,7 +62,7 @@ namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
             configuration.GetMethodChain(code).Replace("\r\n", "\n").Should().Be(
                 @".Entity<Entity1>()
                 .HasMany(e => e.Entity2s)
-                .WithRequired(e => e.Entity1)");
+                .WithRequired(e => e.Entity1)".Replace("\r\n", "\n"));
         }
 
         [TestMethod]
@@ -87,7 +87,7 @@ namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
             configuration.GetMethodChain(code).Replace("\r\n", "\n").Should().Be(
                 @".Entity<Entity1>()
                 .HasMany(e => e.Entity2s)
-                .WithOptional(e => e.Entity1)");
+                .WithOptional(e => e.Entity1)".Replace("\r\n", "\n"));
         }
 
         [TestMethod]
@@ -112,7 +112,7 @@ namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
             configuration.GetMethodChain(code).Replace("\r\n", "\n").Should().Be(
                 @".Entity<Entity1>()
                 .HasRequired(e => e.Entity2)
-                .WithMany(e => e.Entity1s)");
+                .WithMany(e => e.Entity1s)".Replace("\r\n", "\n"));
         }
 
         [TestMethod]
@@ -137,7 +137,7 @@ namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
             configuration.GetMethodChain(code).Replace("\r\n", "\n").Should().Be(
                 @".Entity<Entity1>()
                 .HasRequired(e => e.Entity2)
-                .WithOptional(e => e.Entity1)");
+                .WithOptional(e => e.Entity1)".Replace("\r\n", "\n"));
         }
 
         [TestMethod]
@@ -162,7 +162,7 @@ namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
             configuration.GetMethodChain(code).Replace("\r\n", "\n").Should().Be(
                 @".Entity<Entity1>()
                 .HasOptional(e => e.Entity2)
-                .WithMany(e => e.Entity1s)");
+                .WithMany(e => e.Entity1s)".Replace("\r\n", "\n"));
         }
 
         [TestMethod]
@@ -187,7 +187,7 @@ namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
             configuration.GetMethodChain(code).Replace("\r\n", "\n").Should().Be(
                 @".Entity<Entity1>()
                 .HasOptional(e => e.Entity2)
-                .WithRequired(e => e.Entity1)");
+                .WithRequired(e => e.Entity1)".Replace("\r\n", "\n"));
         }
 
         private class Entity1
