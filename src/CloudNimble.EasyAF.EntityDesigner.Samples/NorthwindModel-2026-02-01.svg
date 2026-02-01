@@ -1,0 +1,484 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 688.00 2222.11" width="688.00" height="2222.11">
+  <title>Diagram1</title>
+  <defs>
+    <style>
+      /* Icon size classes - use CSS to define sizes once instead of on every element */
+      .icon { width: 16px; height: 16px; }
+      .icon-sm { width: 14px; height: 14px; }
+      /* Icon fill classes */
+      .icon-shadow { fill: #212121; opacity: 0.1; }
+      .icon-fill { fill: #212121; opacity: 1; }
+      .icon-accent-shadow { fill: #ffffff; opacity: 0.1; }
+      .icon-accent { fill: #ffffff; opacity: 1; }
+      .icon-blue { fill: #005dba; opacity: 1; }
+      .icon-muted { opacity: 0.75; }
+      /* Text classes */
+      .text-base { font-family: Segoe UI, Arial, sans-serif; }
+      .text-compartment { font-size: 11px; fill: #000000; }
+      .text-header { font-size: 11px; fill: #FFFFFF; }
+      .text-entity { font-size: 12px; font-weight: bold; }
+      .text-property { font-size: 11px; fill: #000000; }
+      .text-mult { font-size: 11px; fill: #000000; font-weight: bold; }
+      /* Shape classes */
+      .header-compartment { fill: #E0E0E0; height: 24px; }
+      /* Connector line styles */
+      .line { fill: none; stroke-width: 1.5px; }
+      .association { stroke: #778899; stroke-dasharray: 5,3; }
+      .inheritance { stroke: #4682B4; }
+      /* Marker styles */
+      .diamond { fill: #778899; stroke: #778899; }
+      .arrow-hollow { fill: none; stroke: #4682B4; stroke-width: 1.5px; }
+    </style>
+    <marker id="diamond" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="6.00" markerHeight="6.00" orient="auto">
+      <polygon points="6,1 11,6 6,11 1,6" class="diamond"/>
+    </marker>
+    <marker id="inheritance-arrow" viewBox="0 0 12 12" refX="12" refY="6" markerWidth="8.00" markerHeight="8.00" orient="auto">
+      <polygon points="0,0 12,6 0,12" class="arrow-hollow"/>
+    </marker>
+    <symbol id="icon-Class" viewBox="0 0 16 16" width="16" height="16">
+      <path class="icon-accent-shadow" d="M5.5.5l3,3-5,5-3-3Zm10,6-2-2-3,3,2,2Zm-5,7,2,2,3-3-2-2Z" />
+      <path class="icon-accent" d="M10.146,7.854l2,2h.708l3-3V6.146l-2-2h-.708L11.293,6H6.707L8.854,3.854V3.146l-3-3H5.146l-5,5v.708l3,3h.708L5.707,7H8v5.5l.5.5h1.793l-.147.146v.708l2,2h.708l3-3v-.708l-2-2h-.708L11.293,12H9V7h1.293l-.147.146ZM3.5,7.793,1.207,5.5,5.5,1.207,7.793,3.5Zm10,3.414L14.793,12.5,12.5,14.793,11.207,13.5Zm0-6L14.793,6.5,12.5,8.793,11.207,7.5Z" />
+    </symbol>
+    <symbol id="icon-Collapse" viewBox="0 0 16 16" width="16" height="16">
+      <path class="icon-shadow" d="M11.5,3.5v8h-8v-8Z" />
+      <path class="icon-fill" d="M11.5,3h-8L3,3.5v8l.5.5h8l.5-.5v-8ZM11,11H4V4h7ZM10,8H5V7h5Z" />
+    </symbol>
+    <symbol id="icon-NavigationProperty" viewBox="0 0 16 16" width="16" height="16">
+      <path class="icon-shadow" d="M14.5,1.5v12H9.328L6.859,11.031c.01-.033.013-.067.021-.1q.03-.123.051-.249A3.819,3.819,0,0,0,7,10,3.988,3.988,0,0,0,3.5,6.05V1.5Z" />
+      <path class="icon-fill" d="M9,14.586v.707L8.293,16H7.586l-3.3-3.3A2.969,2.969,0,0,1,3,13a3,3,0,0,1-3-3A2.969,2.969,0,0,1,.3,8.714l1.993,1.993L3.707,9.293,1.714,7.3A2.969,2.969,0,0,1,3,7a3,3,0,0,1,3,3,2.969,2.969,0,0,1-.3,1.286Z" />
+      <path class="icon-fill" d="M15,1.5v12l-.5.5H9.828l-1-1H14V2H4V6.141A3.977,3.977,0,0,0,3,6V1.5L3.5,1h11Z" />
+      <path class="icon-blue" d="M7.146,7.854l-2-2V5.146l2-2,.708.708L6.707,5H12V6H6.707L7.854,7.146Zm3.708-.708-.708.708L11.293,9H6.859A3.977,3.977,0,0,1,7,10h4.293l-1.147,1.146.708.708,2-2V9.146Z" />
+    </symbol>
+    <symbol id="icon-Property" viewBox="0 0 16 16" width="16" height="16">
+      <g class="icon-muted">
+      <path class="icon-shadow" d="M10.242,7.167c-1.722,1.75-5.418,5.45-7.191,7.1-.861.75-2.076-.651-1.418-1.4,1.671-1.75,5.418-5.449,7.14-7.1a1.078,1.078,0,0,1,.659-.25A1.026,1.026,0,0,1,10.242,7.167Z" />
+      <path class="icon-fill" d="M10.828,5.938a1.508,1.508,0,0,0-1.4-.921,1.628,1.628,0,0,0-1.005.388c-1.714,1.643-5.473,5.355-7.17,7.131a1.444,1.444,0,0,0,.187,1.973,1.5,1.5,0,0,0,1.056.47,1.352,1.352,0,0,0,.892-.346C5.254,12.9,9.051,9.09,10.61,7.506A1.45,1.45,0,0,0,10.828,5.938Zm-.942.878C8.344,8.384,4.561,12.178,2.723,13.89a.4.4,0,0,1-.571-.087C2,13.653,1.86,13.365,2,13.212c1.673-1.753,5.417-5.448,7.076-7.044a.575.575,0,0,1,.361-.151.513.513,0,0,1,.48.322A.465.465,0,0,1,9.886,6.816Z" />
+    </g>
+      <path class="icon-fill" d="M14.974,5a4,4,0,0,1-8,0,3.961,3.961,0,0,1,4-4,4.19,4.19,0,0,1,1.441.241L9.534,4.2l2.24,2.241,2.96-2.882A4.19,4.19,0,0,1,14.974,5Z" />
+    </symbol>
+    <symbol id="icon-PropertyKey" viewBox="0 0 16 16" width="16" height="16">
+      <g class="icon-muted">
+      <path class="icon-shadow" d="M8,8.451c-1.883,1.894-4.507,4.5-5.92,5.816-.861.75-2.077-.651-1.418-1.4,1.335-1.4,3.981-4.026,5.875-5.874A3.924,3.924,0,0,0,8,8.451Z" />
+      <path class="icon-fill" d="M8.475,8.679c-1.83,1.842-4.561,4.56-6.057,5.954a1.352,1.352,0,0,1-.892.346,1.5,1.5,0,0,1-1.056-.47,1.444,1.444,0,0,1-.187-1.973c1.383-1.448,4.122-4.167,6.022-6.018a3.9,3.9,0,0,0,.506.9c-1.858,1.817-4.466,4.408-5.791,5.8-.134.153.009.441.158.591a.4.4,0,0,0,.57.087C3.173,12.563,5.755,10,7.567,8.174A4,4,0,0,0,8.475,8.679Z" />
+    </g>
+      <path class="icon-fill" d="M14,5A4,4,0,0,1,6,5a3.961,3.961,0,0,1,4-4,4.19,4.19,0,0,1,1.441.241L8.559,4.2,10.8,6.441l2.959-2.882A4.19,4.19,0,0,1,14,5Z" />
+      <path class="icon-shadow" d="M14.769,14.769a2.5,2.5,0,0,1-3.535,0A2.462,2.462,0,0,1,10.716,14H7.637l-1-1,1-1h3.079a2.457,2.457,0,0,1,.518-.767,2.5,2.5,0,0,1,3.535,3.535Z" />
+      <path class="icon-fill" d="M7.284,14.355l-1-1v-.707l1-1,.353-.146h2.771a2.9,2.9,0,0,1,.472-.622,3,3,0,1,1,0,4.243,2.948,2.948,0,0,1-.472-.622H7.637ZM7.345,13l.5.5h2.872l.458.3a2,2,0,1,0,.413-2.214,1.986,1.986,0,0,0-.413.614l-.458.3H7.844Zm6.717.354a.5.5,0,1,1,0-.707A.5.5,0,0,1,14.062,13.355Z" />
+    </symbol>
+  </defs>
+  <g id="assoc_Order_OrderDetail" class="association-connector">
+    <path d="M 384.00 229.51 L 448.00 229.51" class="line association" marker-start="url(#diamond)" marker-end="url(#diamond)"/>
+    <text x="388.00" y="245.51" class="text-base text-mult">1</text>
+    <text x="444.00" y="245.51" class="text-base text-mult" text-anchor="end">*</text>
+  </g>
+  <g id="assoc_Product_OrderDetail" class="association-connector">
+    <path d="M 384.00 1904.90 L 488.00 1904.90 L 488.00 251.03" class="line association" marker-start="url(#diamond)" marker-end="url(#diamond)"/>
+    <text x="388.00" y="1920.90" class="text-base text-mult">1</text>
+    <text x="496.00" y="263.03" class="text-base text-mult">*</text>
+  </g>
+  <g id="assoc_Shipper_Order" class="association-connector">
+    <path d="M 168.00 935.42 L 241.50 935.42 L 257.50 935.42 L 269.00 935.42 L 269.00 646.10" class="line association" marker-start="url(#diamond)" marker-end="url(#diamond)"/>
+    <text x="172.00" y="951.42" class="text-base text-mult">0..1</text>
+    <text x="277.00" y="658.10" class="text-base text-mult">*</text>
+  </g>
+  <g id="assoc_Supplier_Product" class="association-connector">
+    <path d="M 168.00 1838.90 L 232.00 1838.90" class="line association" marker-start="url(#diamond)" marker-end="url(#diamond)"/>
+    <text x="172.00" y="1854.90" class="text-base text-mult">0..1</text>
+    <text x="228.00" y="1854.90" class="text-base text-mult" text-anchor="end">*</text>
+  </g>
+  <g id="assoc_Region_Territory" class="association-connector">
+    <path d="M 456.00 804.59 L 480.00 804.59 L 496.00 804.59 L 596.00 804.59 L 596.00 526.11" class="line association" marker-start="url(#diamond)" marker-end="url(#diamond)"/>
+    <text x="460.00" y="820.59" class="text-base text-mult">1</text>
+    <text x="604.00" y="538.11" class="text-base text-mult">*</text>
+  </g>
+  <g id="assoc_Category_Product" class="association-connector">
+    <path d="M 168.00 2042.90 L 232.00 2042.90" class="line association" marker-start="url(#diamond)" marker-end="url(#diamond)"/>
+    <text x="172.00" y="2058.90" class="text-base text-mult">0..1</text>
+    <text x="228.00" y="2058.90" class="text-base text-mult" text-anchor="end">*</text>
+  </g>
+  <g id="assoc_Customer_Order" class="association-connector">
+    <path d="M 168.00 1307.67 L 249.50 1307.67 L 249.50 646.10" class="line association" marker-start="url(#diamond)" marker-end="url(#diamond)"/>
+    <text x="172.00" y="1323.67" class="text-base text-mult">0..1</text>
+    <text x="257.50" y="658.10" class="text-base text-mult">*</text>
+  </g>
+  <g id="assoc_Employee_Employee" class="association-connector">
+    <path d="M 71.06 671.94 L 71.06 691.94 L 113.93 691.94 L 113.93 671.94" class="line association" marker-start="url(#diamond)" marker-end="url(#diamond)"/>
+    <text x="79.06" y="683.94" class="text-base text-mult">0..1</text>
+    <text x="121.93" y="683.94" class="text-base text-mult">*</text>
+  </g>
+  <g id="assoc_Employee_Order" class="association-connector">
+    <path d="M 168.00 427.05 L 232.00 427.05" class="line association" marker-start="url(#diamond)" marker-end="url(#diamond)"/>
+    <text x="172.00" y="443.05" class="text-base text-mult">0..1</text>
+    <text x="228.00" y="443.05" class="text-base text-mult" text-anchor="end">*</text>
+  </g>
+  <g id="assoc_Employee_Territory" class="association-connector">
+    <path d="M 168.00 658.02 L 241.50 658.02 L 257.50 658.02 L 261.00 658.02 L 277.00 658.02 L 480.00 658.02 L 496.00 658.02 L 557.00 658.02 L 557.00 526.11" class="line association" marker-start="url(#diamond)" marker-end="url(#diamond)"/>
+    <text x="172.00" y="674.02" class="text-base text-mult">*</text>
+    <text x="565.00" y="538.11" class="text-base text-mult">*</text>
+  </g>
+  <g id="entity_OrderDetail" class="entity-shape">
+    <rect x="452.00" y="20.00" width="144.00" height="227.03" rx="3.00" fill="#007ACC" stroke="#1AA3FF" stroke-width="1"/>
+    <path d="M 455.00 20.00 L 593.00 20.00 L 593.00 50.00 L 455.00 50.00 Z" fill="#000000" fill-opacity="0.2"/>
+    <text x="480.00" y="39.20" fill="#FFFFFF" class="text-base text-entity">OrderDetail</text>
+    <use href="#icon-Class" x="460.00" y="27.00" class="icon"/>
+    <rect x="452.00" y="50.00" width="144.00" class="header-compartment"/>
+    <use href="#icon-Collapse" x="454.00" y="55.00" class="icon-sm"/>
+    <text x="472.00" y="65.85" class="text-base text-compartment">Properties</text>
+    <rect x="452.00" y="74.00" width="144.00" height="94.00" fill="#FFFFFF"/>
+    <line x1="452.00" y1="74.00" x2="596.00" y2="74.00" stroke="#000000" stroke-width="1" stroke-opacity="0.3"/>
+    <use href="#icon-PropertyKey" x="456.00" y="78.00" class="icon-sm"/>
+    <text x="476.00" y="88.85" class="text-base text-property">OrderID</text>
+    <use href="#icon-PropertyKey" x="456.00" y="96.00" class="icon-sm"/>
+    <text x="476.00" y="106.85" class="text-base text-property">ProductID</text>
+    <use href="#icon-Property" x="456.00" y="114.00" class="icon-sm"/>
+    <text x="476.00" y="124.85" class="text-base text-property">UnitPrice</text>
+    <use href="#icon-Property" x="456.00" y="132.00" class="icon-sm"/>
+    <text x="476.00" y="142.85" class="text-base text-property">Quantity</text>
+    <use href="#icon-Property" x="456.00" y="150.00" class="icon-sm"/>
+    <text x="476.00" y="160.85" class="text-base text-property">Discount</text>
+    <rect x="452.00" y="166.00" width="144.00" class="header-compartment"/>
+    <use href="#icon-Collapse" x="454.00" y="171.00" class="icon-sm"/>
+    <text x="472.00" y="181.85" class="text-base text-compartment">Navigation Properties</text>
+    <rect x="452.00" y="190.00" width="144.00" height="40.00" fill="#FFFFFF"/>
+    <line x1="452.00" y1="190.00" x2="596.00" y2="190.00" stroke="#000000" stroke-width="1" stroke-opacity="0.3"/>
+    <use href="#icon-NavigationProperty" x="456.00" y="194.00" class="icon-sm"/>
+    <text x="476.00" y="204.85" class="text-base text-property">Order</text>
+    <use href="#icon-NavigationProperty" x="456.00" y="212.00" class="icon-sm"/>
+    <text x="476.00" y="222.85" class="text-base text-property">Product</text>
+  </g>
+  <g id="entity_Order" class="entity-shape">
+    <rect x="236.00" y="212.00" width="144.00" height="430.10" rx="3.00" fill="#007ACC" stroke="#1AA3FF" stroke-width="1"/>
+    <path d="M 239.00 212.00 L 377.00 212.00 L 377.00 242.00 L 239.00 242.00 Z" fill="#000000" fill-opacity="0.2"/>
+    <text x="264.00" y="231.20" fill="#FFFFFF" class="text-base text-entity">Order</text>
+    <use href="#icon-Class" x="244.00" y="219.00" class="icon"/>
+    <rect x="236.00" y="242.00" width="144.00" class="header-compartment"/>
+    <use href="#icon-Collapse" x="238.00" y="247.00" class="icon-sm"/>
+    <text x="256.00" y="257.85" class="text-base text-compartment">Properties</text>
+    <rect x="236.00" y="266.00" width="144.00" height="256.00" fill="#FFFFFF"/>
+    <line x1="236.00" y1="266.00" x2="380.00" y2="266.00" stroke="#000000" stroke-width="1" stroke-opacity="0.3"/>
+    <use href="#icon-PropertyKey" x="240.00" y="270.00" class="icon-sm"/>
+    <text x="260.00" y="280.85" class="text-base text-property">OrderID</text>
+    <use href="#icon-Property" x="240.00" y="288.00" class="icon-sm"/>
+    <text x="260.00" y="298.85" class="text-base text-property">CustomerID</text>
+    <use href="#icon-Property" x="240.00" y="306.00" class="icon-sm"/>
+    <text x="260.00" y="316.85" class="text-base text-property">EmployeeID</text>
+    <use href="#icon-Property" x="240.00" y="324.00" class="icon-sm"/>
+    <text x="260.00" y="334.85" class="text-base text-property">OrderDate</text>
+    <use href="#icon-Property" x="240.00" y="342.00" class="icon-sm"/>
+    <text x="260.00" y="352.85" class="text-base text-property">RequiredDate</text>
+    <use href="#icon-Property" x="240.00" y="360.00" class="icon-sm"/>
+    <text x="260.00" y="370.85" class="text-base text-property">ShippedDate</text>
+    <use href="#icon-Property" x="240.00" y="378.00" class="icon-sm"/>
+    <text x="260.00" y="388.85" class="text-base text-property">ShipVia</text>
+    <use href="#icon-Property" x="240.00" y="396.00" class="icon-sm"/>
+    <text x="260.00" y="406.85" class="text-base text-property">Freight</text>
+    <use href="#icon-Property" x="240.00" y="414.00" class="icon-sm"/>
+    <text x="260.00" y="424.85" class="text-base text-property">ShipName</text>
+    <use href="#icon-Property" x="240.00" y="432.00" class="icon-sm"/>
+    <text x="260.00" y="442.85" class="text-base text-property">ShipAddress</text>
+    <use href="#icon-Property" x="240.00" y="450.00" class="icon-sm"/>
+    <text x="260.00" y="460.85" class="text-base text-property">ShipCity</text>
+    <use href="#icon-Property" x="240.00" y="468.00" class="icon-sm"/>
+    <text x="260.00" y="478.85" class="text-base text-property">ShipRegion</text>
+    <use href="#icon-Property" x="240.00" y="486.00" class="icon-sm"/>
+    <text x="260.00" y="496.85" class="text-base text-property">ShipPostalCode</text>
+    <use href="#icon-Property" x="240.00" y="504.00" class="icon-sm"/>
+    <text x="260.00" y="514.85" class="text-base text-property">ShipCountry</text>
+    <rect x="236.00" y="520.00" width="144.00" class="header-compartment"/>
+    <use href="#icon-Collapse" x="238.00" y="525.00" class="icon-sm"/>
+    <text x="256.00" y="535.85" class="text-base text-compartment">Navigation Properties</text>
+    <rect x="236.00" y="544.00" width="144.00" height="76.00" fill="#FFFFFF"/>
+    <line x1="236.00" y1="544.00" x2="380.00" y2="544.00" stroke="#000000" stroke-width="1" stroke-opacity="0.3"/>
+    <use href="#icon-NavigationProperty" x="240.00" y="548.00" class="icon-sm"/>
+    <text x="260.00" y="558.85" class="text-base text-property">OrderDetails</text>
+    <use href="#icon-NavigationProperty" x="240.00" y="566.00" class="icon-sm"/>
+    <text x="260.00" y="576.85" class="text-base text-property">Shipper</text>
+    <use href="#icon-NavigationProperty" x="240.00" y="584.00" class="icon-sm"/>
+    <text x="260.00" y="594.85" class="text-base text-property">Customer</text>
+    <use href="#icon-NavigationProperty" x="240.00" y="602.00" class="icon-sm"/>
+    <text x="260.00" y="612.85" class="text-base text-property">Employee</text>
+  </g>
+  <g id="entity_Product" class="entity-shape">
+    <rect x="236.00" y="1736.00" width="144.00" height="337.80" rx="3.00" fill="#007ACC" stroke="#1AA3FF" stroke-width="1"/>
+    <path d="M 239.00 1736.00 L 377.00 1736.00 L 377.00 1766.00 L 239.00 1766.00 Z" fill="#000000" fill-opacity="0.2"/>
+    <text x="264.00" y="1755.20" fill="#FFFFFF" class="text-base text-entity">Product</text>
+    <use href="#icon-Class" x="244.00" y="1743.00" class="icon"/>
+    <rect x="236.00" y="1766.00" width="144.00" class="header-compartment"/>
+    <use href="#icon-Collapse" x="238.00" y="1771.00" class="icon-sm"/>
+    <text x="256.00" y="1781.85" class="text-base text-compartment">Properties</text>
+    <rect x="236.00" y="1790.00" width="144.00" height="184.00" fill="#FFFFFF"/>
+    <line x1="236.00" y1="1790.00" x2="380.00" y2="1790.00" stroke="#000000" stroke-width="1" stroke-opacity="0.3"/>
+    <use href="#icon-PropertyKey" x="240.00" y="1794.00" class="icon-sm"/>
+    <text x="260.00" y="1804.85" class="text-base text-property">ProductID</text>
+    <use href="#icon-Property" x="240.00" y="1812.00" class="icon-sm"/>
+    <text x="260.00" y="1822.85" class="text-base text-property">ProductName</text>
+    <use href="#icon-Property" x="240.00" y="1830.00" class="icon-sm"/>
+    <text x="260.00" y="1840.85" class="text-base text-property">SupplierID</text>
+    <use href="#icon-Property" x="240.00" y="1848.00" class="icon-sm"/>
+    <text x="260.00" y="1858.85" class="text-base text-property">CategoryID</text>
+    <use href="#icon-Property" x="240.00" y="1866.00" class="icon-sm"/>
+    <text x="260.00" y="1876.85" class="text-base text-property">QuantityPerUnit</text>
+    <use href="#icon-Property" x="240.00" y="1884.00" class="icon-sm"/>
+    <text x="260.00" y="1894.85" class="text-base text-property">UnitPrice</text>
+    <use href="#icon-Property" x="240.00" y="1902.00" class="icon-sm"/>
+    <text x="260.00" y="1912.85" class="text-base text-property">UnitsInStock</text>
+    <use href="#icon-Property" x="240.00" y="1920.00" class="icon-sm"/>
+    <text x="260.00" y="1930.85" class="text-base text-property">UnitsOnOrder</text>
+    <use href="#icon-Property" x="240.00" y="1938.00" class="icon-sm"/>
+    <text x="260.00" y="1948.85" class="text-base text-property">ReorderLevel</text>
+    <use href="#icon-Property" x="240.00" y="1956.00" class="icon-sm"/>
+    <text x="260.00" y="1966.85" class="text-base text-property">Discontinued</text>
+    <rect x="236.00" y="1972.00" width="144.00" class="header-compartment"/>
+    <use href="#icon-Collapse" x="238.00" y="1977.00" class="icon-sm"/>
+    <text x="256.00" y="1987.85" class="text-base text-compartment">Navigation Properties</text>
+    <rect x="236.00" y="1996.00" width="144.00" height="58.00" fill="#FFFFFF"/>
+    <line x1="236.00" y1="1996.00" x2="380.00" y2="1996.00" stroke="#000000" stroke-width="1" stroke-opacity="0.3"/>
+    <use href="#icon-NavigationProperty" x="240.00" y="2000.00" class="icon-sm"/>
+    <text x="260.00" y="2010.85" class="text-base text-property">OrderDetails</text>
+    <use href="#icon-NavigationProperty" x="240.00" y="2018.00" class="icon-sm"/>
+    <text x="260.00" y="2028.85" class="text-base text-property">Supplier</text>
+    <use href="#icon-NavigationProperty" x="240.00" y="2036.00" class="icon-sm"/>
+    <text x="260.00" y="2046.85" class="text-base text-property">Category</text>
+  </g>
+  <g id="entity_Region" class="entity-shape">
+    <rect x="308.00" y="728.00" width="144.00" height="153.19" rx="3.00" fill="#007ACC" stroke="#1AA3FF" stroke-width="1"/>
+    <path d="M 311.00 728.00 L 449.00 728.00 L 449.00 758.00 L 311.00 758.00 Z" fill="#000000" fill-opacity="0.2"/>
+    <text x="336.00" y="747.20" fill="#FFFFFF" class="text-base text-entity">Region</text>
+    <use href="#icon-Class" x="316.00" y="735.00" class="icon"/>
+    <rect x="308.00" y="758.00" width="144.00" class="header-compartment"/>
+    <use href="#icon-Collapse" x="310.00" y="763.00" class="icon-sm"/>
+    <text x="328.00" y="773.85" class="text-base text-compartment">Properties</text>
+    <rect x="308.00" y="782.00" width="144.00" height="40.00" fill="#FFFFFF"/>
+    <line x1="308.00" y1="782.00" x2="452.00" y2="782.00" stroke="#000000" stroke-width="1" stroke-opacity="0.3"/>
+    <use href="#icon-PropertyKey" x="312.00" y="786.00" class="icon-sm"/>
+    <text x="332.00" y="796.85" class="text-base text-property">RegionID</text>
+    <use href="#icon-Property" x="312.00" y="804.00" class="icon-sm"/>
+    <text x="332.00" y="814.85" class="text-base text-property">RegionDescription</text>
+    <rect x="308.00" y="820.00" width="144.00" class="header-compartment"/>
+    <use href="#icon-Collapse" x="310.00" y="825.00" class="icon-sm"/>
+    <text x="328.00" y="835.85" class="text-base text-compartment">Navigation Properties</text>
+    <rect x="308.00" y="844.00" width="144.00" height="22.00" fill="#FFFFFF"/>
+    <line x1="308.00" y1="844.00" x2="452.00" y2="844.00" stroke="#000000" stroke-width="1" stroke-opacity="0.3"/>
+    <use href="#icon-NavigationProperty" x="312.00" y="848.00" class="icon-sm"/>
+    <text x="332.00" y="858.85" class="text-base text-property">Territories</text>
+  </g>
+  <g id="entity_Shipper" class="entity-shape">
+    <rect x="20.00" y="812.00" width="144.00" height="171.65" rx="3.00" fill="#007ACC" stroke="#1AA3FF" stroke-width="1"/>
+    <path d="M 23.00 812.00 L 161.00 812.00 L 161.00 842.00 L 23.00 842.00 Z" fill="#000000" fill-opacity="0.2"/>
+    <text x="48.00" y="831.20" fill="#FFFFFF" class="text-base text-entity">Shipper</text>
+    <use href="#icon-Class" x="28.00" y="819.00" class="icon"/>
+    <rect x="20.00" y="842.00" width="144.00" class="header-compartment"/>
+    <use href="#icon-Collapse" x="22.00" y="847.00" class="icon-sm"/>
+    <text x="40.00" y="857.85" class="text-base text-compartment">Properties</text>
+    <rect x="20.00" y="866.00" width="144.00" height="58.00" fill="#FFFFFF"/>
+    <line x1="20.00" y1="866.00" x2="164.00" y2="866.00" stroke="#000000" stroke-width="1" stroke-opacity="0.3"/>
+    <use href="#icon-PropertyKey" x="24.00" y="870.00" class="icon-sm"/>
+    <text x="44.00" y="880.85" class="text-base text-property">ShipperID</text>
+    <use href="#icon-Property" x="24.00" y="888.00" class="icon-sm"/>
+    <text x="44.00" y="898.85" class="text-base text-property">CompanyName</text>
+    <use href="#icon-Property" x="24.00" y="906.00" class="icon-sm"/>
+    <text x="44.00" y="916.85" class="text-base text-property">Phone</text>
+    <rect x="20.00" y="922.00" width="144.00" class="header-compartment"/>
+    <use href="#icon-Collapse" x="22.00" y="927.00" class="icon-sm"/>
+    <text x="40.00" y="937.85" class="text-base text-compartment">Navigation Properties</text>
+    <rect x="20.00" y="946.00" width="144.00" height="22.00" fill="#FFFFFF"/>
+    <line x1="20.00" y1="946.00" x2="164.00" y2="946.00" stroke="#000000" stroke-width="1" stroke-opacity="0.3"/>
+    <use href="#icon-NavigationProperty" x="24.00" y="950.00" class="icon-sm"/>
+    <text x="44.00" y="960.85" class="text-base text-property">Orders</text>
+  </g>
+  <g id="entity_Supplier" class="entity-shape">
+    <rect x="20.00" y="1604.00" width="144.00" height="337.80" rx="3.00" fill="#007ACC" stroke="#1AA3FF" stroke-width="1"/>
+    <path d="M 23.00 1604.00 L 161.00 1604.00 L 161.00 1634.00 L 23.00 1634.00 Z" fill="#000000" fill-opacity="0.2"/>
+    <text x="48.00" y="1623.20" fill="#FFFFFF" class="text-base text-entity">Supplier</text>
+    <use href="#icon-Class" x="28.00" y="1611.00" class="icon"/>
+    <rect x="20.00" y="1634.00" width="144.00" class="header-compartment"/>
+    <use href="#icon-Collapse" x="22.00" y="1639.00" class="icon-sm"/>
+    <text x="40.00" y="1649.85" class="text-base text-compartment">Properties</text>
+    <rect x="20.00" y="1658.00" width="144.00" height="220.00" fill="#FFFFFF"/>
+    <line x1="20.00" y1="1658.00" x2="164.00" y2="1658.00" stroke="#000000" stroke-width="1" stroke-opacity="0.3"/>
+    <use href="#icon-PropertyKey" x="24.00" y="1662.00" class="icon-sm"/>
+    <text x="44.00" y="1672.85" class="text-base text-property">SupplierID</text>
+    <use href="#icon-Property" x="24.00" y="1680.00" class="icon-sm"/>
+    <text x="44.00" y="1690.85" class="text-base text-property">CompanyName</text>
+    <use href="#icon-Property" x="24.00" y="1698.00" class="icon-sm"/>
+    <text x="44.00" y="1708.85" class="text-base text-property">ContactName</text>
+    <use href="#icon-Property" x="24.00" y="1716.00" class="icon-sm"/>
+    <text x="44.00" y="1726.85" class="text-base text-property">ContactTitle</text>
+    <use href="#icon-Property" x="24.00" y="1734.00" class="icon-sm"/>
+    <text x="44.00" y="1744.85" class="text-base text-property">Address</text>
+    <use href="#icon-Property" x="24.00" y="1752.00" class="icon-sm"/>
+    <text x="44.00" y="1762.85" class="text-base text-property">City</text>
+    <use href="#icon-Property" x="24.00" y="1770.00" class="icon-sm"/>
+    <text x="44.00" y="1780.85" class="text-base text-property">Region</text>
+    <use href="#icon-Property" x="24.00" y="1788.00" class="icon-sm"/>
+    <text x="44.00" y="1798.85" class="text-base text-property">PostalCode</text>
+    <use href="#icon-Property" x="24.00" y="1806.00" class="icon-sm"/>
+    <text x="44.00" y="1816.85" class="text-base text-property">Country</text>
+    <use href="#icon-Property" x="24.00" y="1824.00" class="icon-sm"/>
+    <text x="44.00" y="1834.85" class="text-base text-property">Phone</text>
+    <use href="#icon-Property" x="24.00" y="1842.00" class="icon-sm"/>
+    <text x="44.00" y="1852.85" class="text-base text-property">Fax</text>
+    <use href="#icon-Property" x="24.00" y="1860.00" class="icon-sm"/>
+    <text x="44.00" y="1870.85" class="text-base text-property">HomePage</text>
+    <rect x="20.00" y="1876.00" width="144.00" class="header-compartment"/>
+    <use href="#icon-Collapse" x="22.00" y="1881.00" class="icon-sm"/>
+    <text x="40.00" y="1891.85" class="text-base text-compartment">Navigation Properties</text>
+    <rect x="20.00" y="1900.00" width="144.00" height="22.00" fill="#FFFFFF"/>
+    <line x1="20.00" y1="1900.00" x2="164.00" y2="1900.00" stroke="#000000" stroke-width="1" stroke-opacity="0.3"/>
+    <use href="#icon-NavigationProperty" x="24.00" y="1904.00" class="icon-sm"/>
+    <text x="44.00" y="1914.85" class="text-base text-property">Products</text>
+  </g>
+  <g id="entity_Territory" class="entity-shape">
+    <rect x="524.00" y="332.00" width="144.00" height="190.11" rx="3.00" fill="#007ACC" stroke="#1AA3FF" stroke-width="1"/>
+    <path d="M 527.00 332.00 L 665.00 332.00 L 665.00 362.00 L 527.00 362.00 Z" fill="#000000" fill-opacity="0.2"/>
+    <text x="552.00" y="351.20" fill="#FFFFFF" class="text-base text-entity">Territory</text>
+    <use href="#icon-Class" x="532.00" y="339.00" class="icon"/>
+    <rect x="524.00" y="362.00" width="144.00" class="header-compartment"/>
+    <use href="#icon-Collapse" x="526.00" y="367.00" class="icon-sm"/>
+    <text x="544.00" y="377.85" class="text-base text-compartment">Properties</text>
+    <rect x="524.00" y="386.00" width="144.00" height="58.00" fill="#FFFFFF"/>
+    <line x1="524.00" y1="386.00" x2="668.00" y2="386.00" stroke="#000000" stroke-width="1" stroke-opacity="0.3"/>
+    <use href="#icon-PropertyKey" x="528.00" y="390.00" class="icon-sm"/>
+    <text x="548.00" y="400.85" class="text-base text-property">TerritoryID</text>
+    <use href="#icon-Property" x="528.00" y="408.00" class="icon-sm"/>
+    <text x="548.00" y="418.85" class="text-base text-property">TerritoryDescription</text>
+    <use href="#icon-Property" x="528.00" y="426.00" class="icon-sm"/>
+    <text x="548.00" y="436.85" class="text-base text-property">RegionID</text>
+    <rect x="524.00" y="442.00" width="144.00" class="header-compartment"/>
+    <use href="#icon-Collapse" x="526.00" y="447.00" class="icon-sm"/>
+    <text x="544.00" y="457.85" class="text-base text-compartment">Navigation Properties</text>
+    <rect x="524.00" y="466.00" width="144.00" height="40.00" fill="#FFFFFF"/>
+    <line x1="524.00" y1="466.00" x2="668.00" y2="466.00" stroke="#000000" stroke-width="1" stroke-opacity="0.3"/>
+    <use href="#icon-NavigationProperty" x="528.00" y="470.00" class="icon-sm"/>
+    <text x="548.00" y="480.85" class="text-base text-property">Region</text>
+    <use href="#icon-NavigationProperty" x="528.00" y="488.00" class="icon-sm"/>
+    <text x="548.00" y="498.85" class="text-base text-property">Employees</text>
+  </g>
+  <g id="entity_Category" class="entity-shape">
+    <rect x="20.00" y="2012.00" width="144.00" height="190.11" rx="3.00" fill="#007ACC" stroke="#1AA3FF" stroke-width="1"/>
+    <path d="M 23.00 2012.00 L 161.00 2012.00 L 161.00 2042.00 L 23.00 2042.00 Z" fill="#000000" fill-opacity="0.2"/>
+    <text x="48.00" y="2031.20" fill="#FFFFFF" class="text-base text-entity">Category</text>
+    <use href="#icon-Class" x="28.00" y="2019.00" class="icon"/>
+    <rect x="20.00" y="2042.00" width="144.00" class="header-compartment"/>
+    <use href="#icon-Collapse" x="22.00" y="2047.00" class="icon-sm"/>
+    <text x="40.00" y="2057.85" class="text-base text-compartment">Properties</text>
+    <rect x="20.00" y="2066.00" width="144.00" height="76.00" fill="#FFFFFF"/>
+    <line x1="20.00" y1="2066.00" x2="164.00" y2="2066.00" stroke="#000000" stroke-width="1" stroke-opacity="0.3"/>
+    <use href="#icon-PropertyKey" x="24.00" y="2070.00" class="icon-sm"/>
+    <text x="44.00" y="2080.85" class="text-base text-property">CategoryID</text>
+    <use href="#icon-Property" x="24.00" y="2088.00" class="icon-sm"/>
+    <text x="44.00" y="2098.85" class="text-base text-property">CategoryName</text>
+    <use href="#icon-Property" x="24.00" y="2106.00" class="icon-sm"/>
+    <text x="44.00" y="2116.85" class="text-base text-property">Description</text>
+    <use href="#icon-Property" x="24.00" y="2124.00" class="icon-sm"/>
+    <text x="44.00" y="2134.85" class="text-base text-property">Picture</text>
+    <rect x="20.00" y="2140.00" width="144.00" class="header-compartment"/>
+    <use href="#icon-Collapse" x="22.00" y="2145.00" class="icon-sm"/>
+    <text x="40.00" y="2155.85" class="text-base text-compartment">Navigation Properties</text>
+    <rect x="20.00" y="2164.00" width="144.00" height="22.00" fill="#FFFFFF"/>
+    <line x1="20.00" y1="2164.00" x2="164.00" y2="2164.00" stroke="#000000" stroke-width="1" stroke-opacity="0.3"/>
+    <use href="#icon-NavigationProperty" x="24.00" y="2168.00" class="icon-sm"/>
+    <text x="44.00" y="2178.85" class="text-base text-property">Products</text>
+  </g>
+  <g id="entity_Customer" class="entity-shape">
+    <rect x="20.00" y="1148.00" width="144.00" height="319.33" rx="3.00" fill="#007ACC" stroke="#1AA3FF" stroke-width="1"/>
+    <path d="M 23.00 1148.00 L 161.00 1148.00 L 161.00 1178.00 L 23.00 1178.00 Z" fill="#000000" fill-opacity="0.2"/>
+    <text x="48.00" y="1167.20" fill="#FFFFFF" class="text-base text-entity">Customer</text>
+    <use href="#icon-Class" x="28.00" y="1155.00" class="icon"/>
+    <rect x="20.00" y="1178.00" width="144.00" class="header-compartment"/>
+    <use href="#icon-Collapse" x="22.00" y="1183.00" class="icon-sm"/>
+    <text x="40.00" y="1193.85" class="text-base text-compartment">Properties</text>
+    <rect x="20.00" y="1202.00" width="144.00" height="202.00" fill="#FFFFFF"/>
+    <line x1="20.00" y1="1202.00" x2="164.00" y2="1202.00" stroke="#000000" stroke-width="1" stroke-opacity="0.3"/>
+    <use href="#icon-PropertyKey" x="24.00" y="1206.00" class="icon-sm"/>
+    <text x="44.00" y="1216.85" class="text-base text-property">CustomerID</text>
+    <use href="#icon-Property" x="24.00" y="1224.00" class="icon-sm"/>
+    <text x="44.00" y="1234.85" class="text-base text-property">CompanyName</text>
+    <use href="#icon-Property" x="24.00" y="1242.00" class="icon-sm"/>
+    <text x="44.00" y="1252.85" class="text-base text-property">ContactName</text>
+    <use href="#icon-Property" x="24.00" y="1260.00" class="icon-sm"/>
+    <text x="44.00" y="1270.85" class="text-base text-property">ContactTitle</text>
+    <use href="#icon-Property" x="24.00" y="1278.00" class="icon-sm"/>
+    <text x="44.00" y="1288.85" class="text-base text-property">Address</text>
+    <use href="#icon-Property" x="24.00" y="1296.00" class="icon-sm"/>
+    <text x="44.00" y="1306.85" class="text-base text-property">City</text>
+    <use href="#icon-Property" x="24.00" y="1314.00" class="icon-sm"/>
+    <text x="44.00" y="1324.85" class="text-base text-property">Region</text>
+    <use href="#icon-Property" x="24.00" y="1332.00" class="icon-sm"/>
+    <text x="44.00" y="1342.85" class="text-base text-property">PostalCode</text>
+    <use href="#icon-Property" x="24.00" y="1350.00" class="icon-sm"/>
+    <text x="44.00" y="1360.85" class="text-base text-property">Country</text>
+    <use href="#icon-Property" x="24.00" y="1368.00" class="icon-sm"/>
+    <text x="44.00" y="1378.85" class="text-base text-property">Phone</text>
+    <use href="#icon-Property" x="24.00" y="1386.00" class="icon-sm"/>
+    <text x="44.00" y="1396.85" class="text-base text-property">Fax</text>
+    <rect x="20.00" y="1402.00" width="144.00" class="header-compartment"/>
+    <use href="#icon-Collapse" x="22.00" y="1407.00" class="icon-sm"/>
+    <text x="40.00" y="1417.85" class="text-base text-compartment">Navigation Properties</text>
+    <rect x="20.00" y="1426.00" width="144.00" height="22.00" fill="#FFFFFF"/>
+    <line x1="20.00" y1="1426.00" x2="164.00" y2="1426.00" stroke="#000000" stroke-width="1" stroke-opacity="0.3"/>
+    <use href="#icon-NavigationProperty" x="24.00" y="1430.00" class="icon-sm"/>
+    <text x="44.00" y="1440.85" class="text-base text-property">Orders</text>
+  </g>
+  <g id="entity_Employee" class="entity-shape">
+    <rect x="20.00" y="164.00" width="144.00" height="503.94" rx="3.00" fill="#007ACC" stroke="#1AA3FF" stroke-width="1"/>
+    <path d="M 23.00 164.00 L 161.00 164.00 L 161.00 194.00 L 23.00 194.00 Z" fill="#000000" fill-opacity="0.2"/>
+    <text x="48.00" y="183.20" fill="#FFFFFF" class="text-base text-entity">Employee</text>
+    <use href="#icon-Class" x="28.00" y="171.00" class="icon"/>
+    <rect x="20.00" y="194.00" width="144.00" class="header-compartment"/>
+    <use href="#icon-Collapse" x="22.00" y="199.00" class="icon-sm"/>
+    <text x="40.00" y="209.85" class="text-base text-compartment">Properties</text>
+    <rect x="20.00" y="218.00" width="144.00" height="328.00" fill="#FFFFFF"/>
+    <line x1="20.00" y1="218.00" x2="164.00" y2="218.00" stroke="#000000" stroke-width="1" stroke-opacity="0.3"/>
+    <use href="#icon-PropertyKey" x="24.00" y="222.00" class="icon-sm"/>
+    <text x="44.00" y="232.85" class="text-base text-property">EmployeeID</text>
+    <use href="#icon-Property" x="24.00" y="240.00" class="icon-sm"/>
+    <text x="44.00" y="250.85" class="text-base text-property">LastName</text>
+    <use href="#icon-Property" x="24.00" y="258.00" class="icon-sm"/>
+    <text x="44.00" y="268.85" class="text-base text-property">FirstName</text>
+    <use href="#icon-Property" x="24.00" y="276.00" class="icon-sm"/>
+    <text x="44.00" y="286.85" class="text-base text-property">Title</text>
+    <use href="#icon-Property" x="24.00" y="294.00" class="icon-sm"/>
+    <text x="44.00" y="304.85" class="text-base text-property">TitleOfCourtesy</text>
+    <use href="#icon-Property" x="24.00" y="312.00" class="icon-sm"/>
+    <text x="44.00" y="322.85" class="text-base text-property">BirthDate</text>
+    <use href="#icon-Property" x="24.00" y="330.00" class="icon-sm"/>
+    <text x="44.00" y="340.85" class="text-base text-property">HireDate</text>
+    <use href="#icon-Property" x="24.00" y="348.00" class="icon-sm"/>
+    <text x="44.00" y="358.85" class="text-base text-property">Address</text>
+    <use href="#icon-Property" x="24.00" y="366.00" class="icon-sm"/>
+    <text x="44.00" y="376.85" class="text-base text-property">City</text>
+    <use href="#icon-Property" x="24.00" y="384.00" class="icon-sm"/>
+    <text x="44.00" y="394.85" class="text-base text-property">Region</text>
+    <use href="#icon-Property" x="24.00" y="402.00" class="icon-sm"/>
+    <text x="44.00" y="412.85" class="text-base text-property">PostalCode</text>
+    <use href="#icon-Property" x="24.00" y="420.00" class="icon-sm"/>
+    <text x="44.00" y="430.85" class="text-base text-property">Country</text>
+    <use href="#icon-Property" x="24.00" y="438.00" class="icon-sm"/>
+    <text x="44.00" y="448.85" class="text-base text-property">HomePhone</text>
+    <use href="#icon-Property" x="24.00" y="456.00" class="icon-sm"/>
+    <text x="44.00" y="466.85" class="text-base text-property">Extension</text>
+    <use href="#icon-Property" x="24.00" y="474.00" class="icon-sm"/>
+    <text x="44.00" y="484.85" class="text-base text-property">Photo</text>
+    <use href="#icon-Property" x="24.00" y="492.00" class="icon-sm"/>
+    <text x="44.00" y="502.85" class="text-base text-property">Notes</text>
+    <use href="#icon-Property" x="24.00" y="510.00" class="icon-sm"/>
+    <text x="44.00" y="520.85" class="text-base text-property">ReportsTo</text>
+    <use href="#icon-Property" x="24.00" y="528.00" class="icon-sm"/>
+    <text x="44.00" y="538.85" class="text-base text-property">PhotoPath</text>
+    <rect x="20.00" y="544.00" width="144.00" class="header-compartment"/>
+    <use href="#icon-Collapse" x="22.00" y="549.00" class="icon-sm"/>
+    <text x="40.00" y="559.85" class="text-base text-compartment">Navigation Properties</text>
+    <rect x="20.00" y="568.00" width="144.00" height="76.00" fill="#FFFFFF"/>
+    <line x1="20.00" y1="568.00" x2="164.00" y2="568.00" stroke="#000000" stroke-width="1" stroke-opacity="0.3"/>
+    <use href="#icon-NavigationProperty" x="24.00" y="572.00" class="icon-sm"/>
+    <text x="44.00" y="582.85" class="text-base text-property">EmployeesReportingTo</text>
+    <use href="#icon-NavigationProperty" x="24.00" y="590.00" class="icon-sm"/>
+    <text x="44.00" y="600.85" class="text-base text-property">EmployeeReportsTo</text>
+    <use href="#icon-NavigationProperty" x="24.00" y="608.00" class="icon-sm"/>
+    <text x="44.00" y="618.85" class="text-base text-property">Orders</text>
+    <use href="#icon-NavigationProperty" x="24.00" y="626.00" class="icon-sm"/>
+    <text x="44.00" y="636.85" class="text-base text-property">Territories</text>
+  </g>
+</svg>

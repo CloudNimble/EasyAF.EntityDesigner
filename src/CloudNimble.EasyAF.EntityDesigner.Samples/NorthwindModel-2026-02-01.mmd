@@ -1,0 +1,134 @@
+﻿erDiagram
+    Order ||--o{ OrderDetail : FK_Order_Details_Orders
+    Product ||--o{ OrderDetail : FK_Order_Details_Products
+    Shipper |o--o{ Order : FK_Orders_Shippers
+    Supplier |o--o{ Product : FK_Products_Suppliers
+    Region ||--o{ Territory : FK_Territories_Region
+    Category |o--o{ Product : FK_Products_Categories
+    Customer |o--o{ Order : FK_Orders_Customers
+    Employee |o--o{ Employee : FK_Employees_Employees
+    Employee |o--o{ Order : FK_Orders_Employees
+    Employee }o--o{ Territory : EmployeeTerritories
+
+    OrderDetail {
+        property OrderID PK
+        property ProductID PK
+        property UnitPrice
+        property Quantity
+        property Discount
+        navigation Order
+        navigation Product
+    }
+    Order {
+        property OrderID PK
+        property CustomerID
+        property EmployeeID
+        property OrderDate
+        property RequiredDate
+        property ShippedDate
+        property ShipVia
+        property Freight
+        property ShipName
+        property ShipAddress
+        property ShipCity
+        property ShipRegion
+        property ShipPostalCode
+        property ShipCountry
+        navigation OrderDetails
+        navigation Shipper
+        navigation Customer
+        navigation Employee
+    }
+    Product {
+        property ProductID PK
+        property ProductName
+        property SupplierID
+        property CategoryID
+        property QuantityPerUnit
+        property UnitPrice
+        property UnitsInStock
+        property UnitsOnOrder
+        property ReorderLevel
+        property Discontinued
+        navigation OrderDetails
+        navigation Supplier
+        navigation Category
+    }
+    Region {
+        property RegionID PK
+        property RegionDescription
+        navigation Territories
+    }
+    Shipper {
+        property ShipperID PK
+        property CompanyName
+        property Phone
+        navigation Orders
+    }
+    Supplier {
+        property SupplierID PK
+        property CompanyName
+        property ContactName
+        property ContactTitle
+        property Address
+        property City
+        property Region
+        property PostalCode
+        property Country
+        property Phone
+        property Fax
+        property HomePage
+        navigation Products
+    }
+    Territory {
+        property TerritoryID PK
+        property TerritoryDescription
+        property RegionID
+        navigation Region
+        navigation Employees
+    }
+    Category {
+        property CategoryID PK
+        property CategoryName
+        property Description
+        property Picture
+        navigation Products
+    }
+    Customer {
+        property CustomerID PK
+        property CompanyName
+        property ContactName
+        property ContactTitle
+        property Address
+        property City
+        property Region
+        property PostalCode
+        property Country
+        property Phone
+        property Fax
+        navigation Orders
+    }
+    Employee {
+        property EmployeeID PK
+        property LastName
+        property FirstName
+        property Title
+        property TitleOfCourtesy
+        property BirthDate
+        property HireDate
+        property Address
+        property City
+        property Region
+        property PostalCode
+        property Country
+        property HomePhone
+        property Extension
+        property Photo
+        property Notes
+        property ReportsTo
+        property PhotoPath
+        navigation EmployeesReportingTo
+        navigation EmployeeReportsTo
+        navigation Orders
+        navigation Territories
+    }

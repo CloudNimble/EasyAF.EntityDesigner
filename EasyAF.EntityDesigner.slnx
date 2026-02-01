@@ -12,6 +12,9 @@
     <Project Path="src/Microsoft.Data.Tools.Design.XmlCore/Microsoft.Data.Tools.Design.XmlCore.csproj" />
     <Project Path="src/Microsoft.VisualStudio.Data.Tools.Design.XmlCore/Microsoft.VisualStudio.Data.Tools.Design.XmlCore.csproj" />
   </Folder>
+  <Folder Name="/Samples/">
+    <Project Path="src/CloudNimble.EasyAF.EntityDesigner.Samples/CloudNimble.EasyAF.EntityDesigner.Samples.csproj" Id="bbd18da9-d8e4-4059-bba4-d021ed36a14e" />
+  </Folder>
   <Folder Name="/Solution Items/">
     <File Path="nuget.config" />
     <File Path="README.md" />
