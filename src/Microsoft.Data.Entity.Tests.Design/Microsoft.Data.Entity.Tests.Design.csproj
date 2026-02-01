@@ -43,15 +43,17 @@
     <!-- Package excluded - incompatible with .NET SDK 10 resource serialization -->
     <!-- <ProjectReference Include="..\Microsoft.Data.Entity.Design.Package\Microsoft.Data.Entity.Design.Package.csproj" /> -->
     <ProjectReference Include="..\Microsoft.Data.Entity.Design.VersioningFacade\Microsoft.Data.Entity.Design.VersioningFacade.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Tests.Shared\Microsoft.Data.Entity.Tests.Shared.csproj" />
   </ItemGroup>
 
-  <!-- Linked content files for ConfigurationFileSchemaTests -->
+
+  <!-- Schema files for ConfigurationFileSchemaTests - copied to output root -->
   <ItemGroup>
-    <None Include="..\..\src\setup\EFToolsMsi\XmlSchemas\EntityFrameworkConfig_6_1_4.xsd">
+    <None Include="TestData\EntityFrameworkConfig_6_1_4.xsd">
       <Link>EntityFrameworkConfig_6_1_4.xsd</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="..\..\src\setup\EFToolsMsi\XmlSchemas\EntityFrameworkCatalog.xml">
+    <Content Include="TestData\EntityFrameworkCatalog.xml">
       <Link>EntityFrameworkCatalog.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

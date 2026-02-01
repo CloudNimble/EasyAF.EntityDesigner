@@ -3,8 +3,12 @@ name: Build and Publish
 on:
   push:
     branches: [main]
+    paths:
+      - 'src/**'
   pull_request:
     branches: [main]
+    paths:
+      - 'src/**'
   workflow_dispatch:
     inputs:
       publish_to_marketplace:
@@ -18,7 +22,7 @@ permissions:
   actions: write
 
 env:
-  SOLUTION_FILE: EasyAF.EntityDesigner.slnx
+  SOLUTION_FILE: src/EasyAF.EntityDesigner.slnx
   CONFIGURATION: Release
   VSIX_PROJECT: src/Microsoft.Data.Entity.Design.Package/Microsoft.Data.Entity.Design.Package.csproj
 
@@ -123,7 +127,7 @@ jobs:
         uses: cezarypiatek/VsixPublisherAction@1.1
         with:
           extension-file: ./artifacts/${{ needs.build.outputs.vsix_name }}
-          publish-manifest-file: ./publishManifest.json
+          publish-manifest-file: ./src/Microsoft.Data.Entity.Design.Package/publishManifest.json
           personal-access-code: ${{ secrets.VS_MARKETPLACE_PAT }}
 
   create-release:

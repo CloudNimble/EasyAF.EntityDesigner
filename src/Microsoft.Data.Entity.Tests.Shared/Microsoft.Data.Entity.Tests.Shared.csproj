@@ -7,6 +7,14 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <!-- Allow test projects to access internal test helpers -->
+        <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design, $(StrongNamePublicKey)" />
+        <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.Package, $(StrongNamePublicKey)" />
+        <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.EntityDesigner, $(StrongNamePublicKey)" />
+        <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.Model, $(StrongNamePublicKey)" />
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="Microsoft.Internal.VisualStudio.Interop" />
         <PackageReference Include="Microsoft.VisualStudio.Interop" />
         <PackageReference Include="Microsoft.VisualStudio.Shell.15.0" />

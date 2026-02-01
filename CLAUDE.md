@@ -8,7 +8,7 @@
 ## Building the Project
 
 ```bash
-dotnet build EasyAF.EntityDesigner.slnx -c Release
+dotnet build src/EasyAF.EntityDesigner.slnx -c Release
 ```
 
 ## Cleaning the Project
@@ -20,7 +20,7 @@ dotnet easyaf cleanup
 ## Running Unit Tests
 
 ```bash
-dotnet test EasyAF.EntityDesigner.slnx -c Release
+dotnet test src/EasyAF.EntityDesigner.slnx -c Release
 ```
 
 Note: Use Release mode to avoid Debug.Assert triggers during testing.

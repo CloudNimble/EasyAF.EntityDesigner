@@ -1,0 +1,36 @@
+<Solution>
+  <Folder Name="/Core/">
+    <Project Path="Microsoft.Data.Entity.Design.DatabaseGeneration/Microsoft.Data.Entity.Design.DatabaseGeneration.csproj" />
+    <Project Path="Microsoft.Data.Entity.Design.EntityDesigner/Microsoft.Data.Entity.Design.EntityDesigner.csproj" Id="488b84c2-9358-4b90-bc2d-ed688939e6bb" />
+    <Project Path="Microsoft.Data.Entity.Design.Extensibility/Microsoft.Data.Entity.Design.Extensibility.csproj" />
+    <Project Path="Microsoft.Data.Entity.Design.Model/Microsoft.Data.Entity.Design.Model.csproj" />
+    <Project Path="Microsoft.Data.Entity.Design.Package/Microsoft.Data.Entity.Design.Package.csproj">
+      <Deploy />
+    </Project>
+    <Project Path="Microsoft.Data.Entity.Design.VersioningFacade/Microsoft.Data.Entity.Design.VersioningFacade.csproj" />
+    <Project Path="Microsoft.Data.Entity.Design/Microsoft.Data.Entity.Design.csproj" />
+    <Project Path="Microsoft.Data.Tools.Design.XmlCore/Microsoft.Data.Tools.Design.XmlCore.csproj" />
+    <Project Path="Microsoft.VisualStudio.Data.Tools.Design.XmlCore/Microsoft.VisualStudio.Data.Tools.Design.XmlCore.csproj" />
+  </Folder>
+  <Folder Name="/Samples/">
+    <Project Path="CloudNimble.EasyAF.EntityDesigner.Samples/CloudNimble.EasyAF.EntityDesigner.Samples.csproj" Id="bbd18da9-d8e4-4059-bba4-d021ed36a14e" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path="NuGet.config" />
+    <File Path="../README.md" />
+    <File Path="Directory.Build.props" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="Microsoft.Data.Entity.Tests.Design.DatabaseGeneration/Microsoft.Data.Entity.Tests.Design.DatabaseGeneration.csproj" />
+    <Project Path="Microsoft.Data.Entity.Tests.Design.EntityDesigner/Microsoft.Data.Entity.Tests.Design.EntityDesigner.csproj" />
+    <Project Path="Microsoft.Data.Entity.Tests.Design.Extensibility/Microsoft.Data.Entity.Tests.Design.Extensibility.csproj" />
+    <Project Path="Microsoft.Data.Entity.Tests.Design.Model/Microsoft.Data.Entity.Tests.Design.Model.csproj" />
+    <Project Path="Microsoft.Data.Entity.Tests.Design.Package/Microsoft.Data.Entity.Tests.Design.Package.csproj" />
+    <Project Path="Microsoft.Data.Entity.Tests.Design.VersioningFacade/Microsoft.Data.Entity.Tests.Design.VersioningFacade.csproj" />
+    <Project Path="Microsoft.Data.Entity.Tests.Design/Microsoft.Data.Entity.Tests.Design.csproj" />
+    <Project Path="Microsoft.Data.Entity.Tests.Shared/Microsoft.Data.Entity.Tests.Shared.csproj" Id="59a6ab41-2aca-4949-8fc8-dff1229d5a81" />
+    <Project Path="Microsoft.Data.Tools.Tests.Design.XmlCore/Microsoft.Data.Tools.Tests.Design.XmlCore.csproj" />
+    <Project Path="Microsoft.VisualStudio.Data.Tools.Tests.Design.XmlCore/Microsoft.VisualStudio.Data.Tools.Tests.Design.XmlCore.csproj" />
+    <Project Path="Microsoft.VisualStudio.TestTools.VsIdeTesting/Microsoft.VisualStudio.TestTools.VsIdeTesting.csproj" Id="614ac98e-a68e-4eb4-af27-1cedba7ca3b4" />
+  </Folder>
+</Solution>
