@@ -44,6 +44,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="EasyAF.EntityDesigner.Northwind1.png" />
+      <None Remove="LICENSE.txt" />
       <None Remove="merged.source.extension.vsixmanifest" />
       <None Remove="**\*.vsix" />
     </ItemGroup>
@@ -237,6 +239,12 @@
 
     <!-- Content files -->
     <ItemGroup>
+        <Content Include="EasyAF.EntityDesigner.Northwind1.png">
+          <IncludeInVSIX>true</IncludeInVSIX>
+        </Content>
+        <Content Include="LICENSE.txt">
+          <IncludeInVSIX>true</IncludeInVSIX>
+        </Content>
         <Content Include="Resources\mappingdetailscommandstrip.png" />
         <Content Include="Resources\ViewBrowserMenu.png" />
         <Content Include="Resources\ViewMappingDetailsMenu.png" />

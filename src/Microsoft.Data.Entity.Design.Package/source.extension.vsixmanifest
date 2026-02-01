@@ -4,10 +4,10 @@
         <!-- The version number is supplied via GetVsixVersion in Directory.Build.targets. -->
         <Identity Id="a3f44f1e-1863-4e1b-97b7-2f4c4a59ba59" Version="17.0" Language="en-US" Publisher="CloudNimble" />
         <DisplayName>EasyAF Entity Designer</DisplayName>
-        <Description xml:space="preserve">EasyAF EntityDesigner is a modern replacement for </Description>
-        <PackageId>CloudNimble.EasyAF.EntityDesigner</PackageId>
-        <AllowClientRole>true</AllowClientRole>
+        <Description xml:space="preserve">EasyAF.EntityDesigner is a modern evolution of Microsoft's EDMX experience that works with EF 6.5 and SDK-style projects targeting .NET Framework AND .NET 8+.A modern</Description>
         <MoreInfo>https://easyaf.dev/designer</MoreInfo>
+        <License>LICENSE.txt</License>
+        <PreviewImage>EasyAF.EntityDesigner.Northwind1.png</PreviewImage>
         <Tags>EDMX, Entity Designer, Entity Framework 6</Tags>
     </Metadata>
     <Installation SystemComponent="false">
