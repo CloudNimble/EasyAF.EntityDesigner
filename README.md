@@ -33,7 +33,7 @@ It's now refreshed with a lighter codebase, modern UI enhanced by WPF, and a bev
 ### Works with .NET 10 + SDK-style Projects + `Microsoft.Data.SqlClient`
 <img width="1571" height="1056" alt="Opening the sample Northwind.edmx file targeting Microsoft.Data.SqlClient in a .NET 10 SDK style project" src="https://github.com/user-attachments/assets/39f13201-5118-486e-9d27-162c31a91c38" />
 
-### Exports to SVG
+### Exports to Crystal-Clear SVG
 <img alt="Exported Northwind SVG" src="https://raw.githubusercontent.com/CloudNimble/EasyAF.EntityDesigner/refs/heads/main/src/CloudNimble.EasyAF.EntityDesigner.Samples/NorthwindModel-2026-02-01.svg" />
 
 # Why Now?
