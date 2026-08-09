@@ -1356,6 +1356,14 @@ namespace Microsoft.Data.Entity.Design.VisualStudio
             // Check whether project item is a  linked item
             var isLinkItem = false;
 
+            // SDK-style projects do not always expose the DTE automation property collection, in which case there is
+            // no IsLink property to read and the item is not a link. Without this the null dereference below throws
+            // out of command status handlers, where the shell swallows it and the command silently never appears.
+            if (projectItem?.Properties is null)
+            {
+                return false;
+            }
+
             // immediately state false if this is a website project since websites don't
             // support this. The DTE calls after this will throw COM Exceptions if we continue.
             // As of build 20815.00

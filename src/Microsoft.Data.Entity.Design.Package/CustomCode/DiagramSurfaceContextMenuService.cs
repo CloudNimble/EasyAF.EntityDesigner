@@ -6,6 +6,7 @@ using Microsoft.Data.Entity.Design.EntityDesigner.View;
 using Microsoft.Data.Entity.Design.EntityDesigner.View.ContextMenu;
 using Microsoft.Data.Entity.Design.EntityDesigner.View.Export;
 using Microsoft.Data.Entity.Design.EntityDesigner.ViewModel;
+using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio;
@@ -82,6 +83,7 @@ namespace Microsoft.Data.Entity.Design.Package
 
         // Shared command references for diagram surface menu
         private MenuCommandDefinition _showDataTypesCommand;
+        private MenuCommandDefinition _moveDiagramsToSeparateFileCommand;
 
         private bool _isDisposed;
 
@@ -405,6 +407,19 @@ namespace Microsoft.Data.Entity.Design.Package
             };
             _diagramSurfaceMenu.MenuItems.Add(_showDataTypesCommand);
 
+            // Move Diagrams to Separate File. This shares the group above rather than getting its own: the item is
+            // hidden once the diagrams already live in a .edmx.diagram file, and a dedicated group would leave two
+            // adjacent separators behind whenever that happens.
+            _moveDiagramsToSeparateFileCommand = new MenuCommandDefinition(
+                "MoveDiagramsToSeparateFile",
+                "Move Diagrams to Separate File",
+                KnownMonikers.MoveToFolder,
+                "Move the diagram layout out of the EDMX and into a separate .edmx.diagram file")
+            {
+                IsVisible = false
+            };
+            _diagramSurfaceMenu.MenuItems.Add(_moveDiagramsToSeparateFileCommand);
+
             // Separator
             _diagramSurfaceMenu.MenuItems.Add(MenuSeparatorDefinition.Instance);
 
@@ -501,6 +516,15 @@ namespace Microsoft.Data.Entity.Design.Package
             {
                 _showDataTypesCommand.IsChecked = diagram.DisplayNameAndType;
             }
+
+            // Shares its eligibility rules with the Model Browser command so the two never disagree about whether the
+            // move is on offer.
+            if (_moveDiagramsToSeparateFileCommand != null)
+            {
+                var artifact = diagram.GetModel()?.EditingContext?.GetEFArtifactService()?.Artifact as EntityDesignArtifact;
+                _moveDiagramsToSeparateFileCommand.IsVisible =
+                    MicrosoftDataEntityDesignCommandSet.CanMoveDiagramsToSeparateFile(artifact, out _);
+            }
         }
 
         private void OnDiagramSurfaceMenuActionExecuted(object sender, MenuActionEventArgs e)
@@ -564,6 +588,10 @@ namespace Microsoft.Data.Entity.Design.Package
                 // Show Data Types toggle
                 case "ShowDataTypes":
                     ExecuteToggleShowDataTypes(diagram);
+                    break;
+
+                case "MoveDiagramsToSeparateFile":
+                    ExecuteMoveDiagramsToSeparateFile(diagram);
                     break;
 
                 // Select All
@@ -1608,6 +1636,20 @@ namespace Microsoft.Data.Entity.Design.Package
                     }
                 }
             }
+        }
+
+        private void ExecuteMoveDiagramsToSeparateFile(EntityDesignerDiagram diagram)
+        {
+            var artifact = diagram.GetModel()?.EditingContext?.GetEFArtifactService()?.Artifact;
+            if (artifact is null)
+            {
+                return;
+            }
+
+            // Calls the command set directly rather than going through the shell command table: the OLE command's
+            // status handler is scoped to the Diagrams node in the Model Browser, so it reports the command hidden
+            // when the click came from the designer surface.
+            MicrosoftDataEntityDesignCommandSet.MoveDiagramsToSeparateFile(artifact.Uri.LocalPath);
         }
 
         private void ExecuteShowMappingDetails()
