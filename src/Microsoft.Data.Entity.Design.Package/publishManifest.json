@@ -7,7 +7,7 @@
   ],
   "private": false,
   "identity": {
-    "internalName": "EasyAFEntityDesigner",
+    "internalName": "EasyAF-EntityDesigner",
     "tags": [
       "Entity Framework",
       "Entity Designer",
