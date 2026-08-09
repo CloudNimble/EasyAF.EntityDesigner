@@ -23,10 +23,19 @@ using ModelChangeEventArgs = Microsoft.Data.Entity.Design.VisualStudio.Package.M
 
 namespace Microsoft.Data.Entity.Design.Package
 {
+    // Transient because this package cannot service a shell-initiated restore of this window. The shell asks for a
+    // persisted frame through IVsPackage.CreateTool, which reaches ModelingPackage.CreateToolWindow - a non-virtual
+    // method that resolves persistence slots only against the registry AddToolWindow fills. That registry is typed to
+    // the DSL SDK's ToolWindow, and EntityDesignExplorerWindow is a plain shell ToolWindowPane, so the slot cannot be
+    // registered and the restore throws ArgumentNullException into the window's own frame. Marking the window
+    // transient keeps it out of the persisted layout, so that path is never taken; it is still opened on demand
+    // through FindToolWindow, which honours this attribute, and ProvideToolWindowVisibility below already ties it to
+    // the EDMX editor context.
     [ProvideToolWindow(typeof(EntityDesignExplorerWindow),
         MultiInstances = false,
         Style = VsDockStyle.Tabbed,
         Orientation = ToolWindowOrientation.Right,
+        Transient = true,
         Window = "{3AE79031-E1BC-11D0-8F78-00A0C9110057}")]
     [ProvideToolWindowVisibility(typeof(EntityDesignExplorerWindow), Constants.MicrosoftDataEntityDesignEditorFactoryId)]
     [ProvideToolWindow(typeof(MappingDetailsWindow),
@@ -94,6 +103,10 @@ namespace Microsoft.Data.Entity.Design.Package
                 ModelGenErrorCache = new ModelGenErrorCache();
                 ConnectionManager = new ConnectionManager();
 
+                // Only MappingDetailsWindow is registered here: ModelingPackage's tool window registry, and the
+                // GetToolWindow lookup that reads it, are typed to the DSL SDK's ToolWindow. EntityDesignExplorerWindow
+                // is a plain shell ToolWindowPane, so it is resolved through FindToolWindow and its ProvideToolWindow
+                // attribute instead.
                 AddToolWindow(typeof(MappingDetailsWindow));
 
                 // Register for VS Events
@@ -402,7 +415,7 @@ namespace Microsoft.Data.Entity.Design.Package
         {
             get
             {
-                if (_explorerWindow == null)
+                if (_explorerWindow is null)
                 {
                     using (DpiAwareness.EnterDpiScope(DpiAwarenessContext.SystemAware))
                     {

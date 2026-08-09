@@ -4285,56 +4285,159 @@ namespace Microsoft.Data.Entity.Design.Package
         /// </summary>
         internal void OnStatusMoveDiagramsToSeparateFile(object sender, EventArgs e)
         {
-            if (sender is MenuCommand cmd)
+            if (sender is not MenuCommand cmd)
             {
-                cmd.Enabled = cmd.Visible = false;
-
-                // check whether the EDMX Project Item is a link.
-                var uri = Utils.FileName2Uri(CurrentDocData.FileName);
-                var artifactProjectItem = VsUtils.GetProjectItemForDocument(uri.LocalPath, Services.ServiceProvider);
-
-                if (artifactProjectItem != null
-                    && VsUtils.IsLinkProjectItem(artifactProjectItem) == false)
-                {
-                    // Only show if the diagram artifact is not null
-                    var modelManager = PackageManager.Package.ModelManager;
-                    EntityDesignArtifact artifact = modelManager.GetArtifact(uri) as EntityDesignArtifact;
-                    Debug.Assert(artifact != null, "There is no EntityDesignArtifact with URI:" + uri.LocalPath + " in modelmanager.");
-
-                    if (artifact != null
-                        && artifact.DiagramArtifact == null)
-                    {
-                        cmd.Enabled = cmd.Visible = true;
-                    }
-                }
+                return;
             }
+
+            cmd.Enabled = cmd.Visible = false;
+
+            // Offered on the Diagrams container node only. The command moves every diagram in the model, so offering
+            // it on an individual diagram would imply it moves just that one. This is the common case for the command
+            // being hidden and is not logged below.
+            if (SelectedExplorerItem is not ExplorerDiagrams)
+            {
+                return;
+            }
+
+            // Past this point the user is on the node where the command belongs, so each reason it stays hidden is
+            // recorded rather than left for someone to work out from an absent menu item.
+            if (CurrentDocData is null)
+            {
+                VsUtils.LogToActivityLog("MoveDiagramsToSeparateFile hidden: there is no current doc data.");
+                return;
+            }
+
+            var uri = Utils.FileName2Uri(CurrentDocData.FileName);
+            var artifact = PackageManager.Package.ModelManager.GetArtifact(uri) as EntityDesignArtifact;
+
+            if (!CanMoveDiagramsToSeparateFile(artifact, out var reason))
+            {
+                VsUtils.LogToActivityLog($"MoveDiagramsToSeparateFile hidden: {reason}.");
+                return;
+            }
+
+            cmd.Enabled = cmd.Visible = true;
+
+            // The registered status handler chain runs IsArtifactDesignerSafeAndEditSafeHandler after this method and
+            // can still hide the command, so record what that check will decide.
+            VsUtils.LogToActivityLog(
+                $"MoveDiagramsToSeparateFile shown; designerSafeAndEditSafe={IsArtifactDesignerSafeAndEditSafe()}");
         }
 
         internal void OnMenuMoveDiagramsToSeparateFile(object sender, EventArgs e)
         {
+            // Take the file name once, before anything else. DoMigrate reloads the artifact and resets the current
+            // context, and CurrentDocData resolves through the shell's selection service every time it is read - so
+            // reading it again afterwards can come back null and take the whole command down with it.
+            if (CurrentDocData is null)
+            {
+                VsUtils.LogToActivityLog(
+                    "MoveDiagramsToSeparateFile: there is no current doc data.", __ACTIVITYLOG_ENTRYTYPE.ALE_WARNING);
+                return;
+            }
+
+            MoveDiagramsToSeparateFile(CurrentDocData.FileName);
+        }
+
+        /// <summary>
+        ///     Determines whether the diagrams in an artifact can be moved out into a sibling .edmx.diagram file.
+        /// </summary>
+        /// <param name="artifact">The artifact whose diagrams would be moved. May be null.</param>
+        /// <param name="reason">When this returns false, a lower-case phrase describing what disqualified the artifact.</param>
+        /// <returns><see langword="true" /> when the move is available, otherwise <see langword="false" />.</returns>
+        /// <remarks>
+        ///     Shared by the Model Browser command's status handler and the designer surface context menu so both offer
+        ///     the command under identical conditions. Callers add their own context checks on top - the Model Browser
+        ///     only offers it on the Diagrams node, for instance - but the rules about the artifact itself live here.
+        /// </remarks>
+        internal static bool CanMoveDiagramsToSeparateFile(EntityDesignArtifact artifact, out string reason)
+        {
+            if (artifact is null)
+            {
+                reason = "there is no EntityDesignArtifact for the document";
+                return false;
+            }
+
+            if (artifact.DiagramArtifact is not null)
+            {
+                reason = "the diagrams are already in a separate file";
+                return false;
+            }
+
+            // A linked EDMX cannot have a sibling diagram file added alongside it.
+            var artifactProjectItem = VsUtils.GetProjectItemForDocument(artifact.Uri.LocalPath, Services.ServiceProvider);
+            if (artifactProjectItem is null)
+            {
+                reason = $"no project item was found for '{artifact.Uri.LocalPath}'";
+                return false;
+            }
+
+            if (VsUtils.IsLinkProjectItem(artifactProjectItem))
+            {
+                reason = "the EDMX is a linked project item";
+                return false;
+            }
+
+            reason = null;
+
+            return true;
+        }
+
+        /// <summary>
+        ///     Moves every diagram out of an EDMX file and into a sibling .edmx.diagram file, after confirming with the user.
+        /// </summary>
+        /// <param name="edmxFileName">Full path of the EDMX file whose diagrams should be moved.</param>
+        /// <remarks>
+        ///     Shared by the Model Browser command and the designer surface context menu. It takes a file name rather than
+        ///     reading the current document itself because the migration reloads the artifact and resets the current
+        ///     context, after which any ambient "current document" lookup can come back null.
+        /// </remarks>
+        internal static void MoveDiagramsToSeparateFile(string edmxFileName)
+        {
+            if (string.IsNullOrWhiteSpace(edmxFileName))
+            {
+                VsUtils.LogToActivityLog(
+                    "MoveDiagramsToSeparateFile: no EDMX file name was supplied.", __ACTIVITYLOG_ENTRYTYPE.ALE_WARNING);
+                return;
+            }
+
             var result = VsUtils.ShowMessageBox(
                 Services.ServiceProvider, Resources.MoveDiagramNodesWarning
                 , OLEMSGBUTTON.OLEMSGBUTTON_YESNO, OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_SECOND, OLEMSGICON.OLEMSGICON_WARNING);
 
-            if (result == DialogResult.Yes)
+            if (result != DialogResult.Yes)
             {
-                var uri = Utils.FileName2Uri(CurrentDocData.FileName);
-                var editingContext = PackageManager.Package.DocumentFrameMgr.EditingContextManager.GetNewOrExistingContext(uri);
-                Debug.Assert(editingContext != null, "EditingContext for artifact with uri: " + uri + " is not available.");
-                if (editingContext != null)
-                {
-                    var efArtifactService = editingContext.GetEFArtifactService();
-                    EntityDesignArtifact entityDesignArtifact = efArtifactService.Artifact as EntityDesignArtifact;
-
-                    // Don't need to put the transaction name in resource string table since we clear the VS undo stack after the command is executed.
-                    CommandProcessorContext cpc = new CommandProcessorContext(
-                        editingContext, EfiTransactionOriginator.EntityDesignerOriginatorId, "MoveDiagrams");
-                    MigrateDiagramInformationCommand.DoMigrate(cpc, entityDesignArtifact);
-                    // Save the EDMX file.
-                    RunningDocumentTable rdt = new RunningDocumentTable(Services.ServiceProvider);
-                    rdt.SaveFileIfDirty(CurrentDocData.FileName);
-                }
+                return;
             }
+
+            var uri = Utils.FileName2Uri(edmxFileName);
+
+            var editingContext = PackageManager.Package.DocumentFrameMgr?.EditingContextManager.GetNewOrExistingContext(uri);
+            if (editingContext is null)
+            {
+                VsUtils.LogToActivityLog(
+                    $"MoveDiagramsToSeparateFile: no editing context is available for '{uri}'.",
+                    __ACTIVITYLOG_ENTRYTYPE.ALE_ERROR);
+                return;
+            }
+
+            if (editingContext.GetEFArtifactService()?.Artifact is not EntityDesignArtifact entityDesignArtifact)
+            {
+                VsUtils.LogToActivityLog(
+                    $"MoveDiagramsToSeparateFile: the editing context for '{uri}' holds no EntityDesignArtifact.",
+                    __ACTIVITYLOG_ENTRYTYPE.ALE_ERROR);
+                return;
+            }
+
+            // Don't need to put the transaction name in resource string table since we clear the VS undo stack after the command is executed.
+            CommandProcessorContext cpc = new CommandProcessorContext(
+                editingContext, EfiTransactionOriginator.EntityDesignerOriginatorId, "MoveDiagrams");
+            MigrateDiagramInformationCommand.DoMigrate(cpc, entityDesignArtifact);
+
+            // Save the EDMX file.
+            RunningDocumentTable rdt = new RunningDocumentTable(Services.ServiceProvider);
+            rdt.SaveFileIfDirty(edmxFileName);
         }
 
         #endregion
