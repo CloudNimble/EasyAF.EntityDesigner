@@ -243,48 +243,6 @@ namespace Microsoft.Data.Entity.Design.VisualStudio
             return sb.ToString();
         }
 
-        internal static bool IsDataServicesEdmx(string fileName)
-        {
-            if (string.IsNullOrEmpty(fileName))
-            {
-                return false;
-            }
-
-            FileInfo fileInfo = new FileInfo(fileName);
-            if (!fileInfo.Exists)
-            {
-                return false;
-            }
-
-            try
-            {
-                return IsDataServicesEdmx(XDocument.Load(fileInfo.FullName));
-            }
-            catch (XmlException)
-            {
-                // no-op, keep going on exception
-            }
-
-            return false;
-        }
-
-        internal static bool IsDataServicesEdmx(XDocument inputXml)
-        {
-            Debug.Assert(inputXml != null, "inputXml != null");
-
-            foreach (XNamespace namespaceName in SchemaManager.GetEDMXNamespaceNames())
-            {
-                var rootEdmxElement = inputXml.Element(namespaceName + "Edmx");
-                if (rootEdmxElement != null
-                    && rootEdmxElement.Element(namespaceName + "DataServices") != null)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
         // <summary>
         //     Gets the target SCHEMA VERSION of the project's installed runtime, or if none,
         //     of the latest runtime available on the project's target framework.
@@ -388,12 +346,6 @@ namespace Microsoft.Data.Entity.Design.VisualStudio
                         try
                         {
                             var projectItem = VsUtils.GetProjectItem(hierarchy, vsFileInfo.ItemId);
-
-                            // Dev 10 bug 648969: skip the process for astoria edmx file.
-                            if (EdmUtils.IsDataServicesEdmx(projectItem.get_FileNames(1)))
-                            {
-                                continue;
-                            }
 
                             // Check whether project item is a linked item
                             var isLinkItem = VsUtils.IsLinkProjectItem(projectItem);

@@ -63,6 +63,40 @@ namespace Microsoft.Data.Entity.Design.VisualStudio
         private static readonly string OutputWindowPaneTitle = Resources.EDMOutputWindowPaneTitle;
         internal static readonly string DevEnvDirMacroName = "DevEnvDir";
 
+        /// <summary>
+        ///     The activity log source used for all Entity Designer entries.
+        /// </summary>
+        internal const string ActivityLogSource = "EF6Tools";
+
+        /// <summary>
+        ///     Writes an entry to the Visual Studio activity log, which is captured when devenv is started with /log.
+        /// </summary>
+        /// <param name="message">The message to record.</param>
+        /// <param name="entryType">The severity of the entry. Defaults to <see cref="__ACTIVITYLOG_ENTRYTYPE.ALE_INFORMATION" />.</param>
+        /// <remarks>
+        ///     Use this for anything a user or maintainer would need in order to diagnose a failure after the fact.
+        ///     The message also goes to the debug output, because the activity log is only written when devenv is
+        ///     started with /log: a developer attached to the experimental instance needs to see it too.
+        /// </remarks>
+        internal static void LogToActivityLog(
+            string message, __ACTIVITYLOG_ENTRYTYPE entryType = __ACTIVITYLOG_ENTRYTYPE.ALE_INFORMATION)
+        {
+            // Compiled out of Release, but this is the sink a developer running under the debugger actually watches.
+            Debug.WriteLine($"[{ActivityLogSource}] {message}");
+
+            try
+            {
+                if (Services.ServiceProvider?.GetService(typeof(SVsActivityLog)) is IVsActivityLog activityLog)
+                {
+                    activityLog.LogEntry((uint)entryType, ActivityLogSource, message);
+                }
+            }
+            catch (Exception)
+            {
+                // Logging must never take down the operation it is reporting on.
+            }
+        }
+
         // <summary>
         //     Finds the first ProjectItem with the specified name in the given ProjectItems.
         // </summary>

@@ -129,9 +129,6 @@
   <data name="DatabaseObjectNameFormat" xml:space="preserve">
     <value>{0}::{1}</value>
   </data>
-  <data name="DataServicesNodeWarning" xml:space="preserve">
-    <value>This file contains DataServices element and cannot be opened in the Entity Designer.</value>
-  </data>
   <data name="Default_Alias" xml:space="preserve">
     <value>Self</value>
   </data>
@@ -195,6 +192,33 @@
   </data>
   <data name="EscherValidation_UsingNotSupported" xml:space="preserve">
     <value>Using elements are not supported in the Entity Designer.</value>
+  </data>
+  <data name="EscherValidation_Structural_MissingConceptualModel" xml:space="preserve">
+    <value>The Entity Designer cannot open this model because it has no conceptual model (CSDL). Verify that the edmx:ConceptualModels section contains a Schema element in the expected namespace.</value>
+  </data>
+  <data name="EscherValidation_Structural_MissingDesigner" xml:space="preserve">
+    <value>The Entity Designer cannot open this model because it has no Designer section. Verify that the edmx file contains a Designer element in the expected namespace.</value>
+  </data>
+  <data name="EscherValidation_Structural_MissingDiagrams" xml:space="preserve">
+    <value>The Entity Designer cannot open this model because its Designer section has no Diagrams element. Add an empty Diagrams element to the Designer section and reopen the model.</value>
+  </data>
+  <data name="EscherValidation_Structural_MissingMappingModel" xml:space="preserve">
+    <value>The Entity Designer cannot open this model because it has no mapping model (MSL). Verify that the edmx:Mappings section contains a Mapping element in the expected namespace.</value>
+  </data>
+  <data name="EscherValidation_Structural_MissingStorageModel" xml:space="preserve">
+    <value>The Entity Designer cannot open this model because it has no storage model (SSDL). Verify that the edmx:StorageModels section contains a Schema element in the expected namespace.</value>
+  </data>
+  <data name="EscherValidation_Structural_MultipleEntityContainers" xml:space="preserve">
+    <value>The Entity Designer cannot open this model because its conceptual model declares {0} EntityContainer elements. Exactly one is supported.</value>
+  </data>
+  <data name="EscherValidation_Structural_XmlNotValid" xml:space="preserve">
+    <value>The Entity Designer cannot open this model because the XML in the file is not valid. Correct the XML errors and reopen the model.</value>
+  </data>
+  <data name="EscherValidation_Structural_XmlNotValidDetail" xml:space="preserve">
+    <value>The Entity Designer cannot open this model because the XML in the file is not valid: {0}</value>
+  </data>
+  <data name="EscherValidation_Structural_XmlSchemaErrorLocation" xml:space="preserve">
+    <value>{0} (line {1}, position {2})</value>
   </data>
   <data name="INVALID_FORMAT" xml:space="preserve">
     <value>Value '{0}' is not valid.</value>

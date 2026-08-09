@@ -279,6 +279,11 @@ namespace Microsoft.Data.Entity.Design.Package
                 DocData.SetDocDataDirty(isDocDataDirty);
                 IsLoading = false;
             }
+
+            // The model diagram is loaded during the doc data's OnDocumentLoaded, which runs after this method, so
+            // subscribe for that notification rather than testing the state here.
+            HookModelDiagramLoaded();
+
             return ret;
         }
 
@@ -312,6 +317,12 @@ namespace Microsoft.Data.Entity.Design.Package
                 // Dispose the context menu service
                 _contextMenuService?.Dispose();
                 _contextMenuService = null;
+
+                // The doc data outlives the view, so leaving this hooked would keep the view alive.
+                if (DocData is MicrosoftDataEntityDesignDocData docData)
+                {
+                    docData.ModelDiagramLoaded -= ModelDiagramLoaded_Handler;
+                }
             }
             base.Dispose(disposing);
         }

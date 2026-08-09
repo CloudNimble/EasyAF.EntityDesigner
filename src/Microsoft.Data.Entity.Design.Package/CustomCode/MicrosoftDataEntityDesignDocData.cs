@@ -479,10 +479,14 @@ namespace Microsoft.Data.Entity.Design.Package
         {
             try
             {
-                System.Diagnostics.Debug.WriteLine("[EasyAF.EntityDesigner] OnDocumentLoaded START");
+                VsUtils.LogToActivityLog("OnDocumentLoaded START");
                 base.OnDocumentLoaded();
 
-                System.Diagnostics.Debug.WriteLine($"[EasyAF.EntityDesigner] OnDocumentLoaded: Model={Model}, IsDesignerSafe={Model?.IsDesignerSafe}");
+                // IsDesignerSafe gates diagram creation below, so record it: when it is false the designer opens blank
+                // and this entry is the only record of why nothing was drawn.
+                VsUtils.LogToActivityLog(
+                    $"OnDocumentLoaded: Model={Model}, IsDesignerSafe={Model?.IsDesignerSafe}",
+                    Model?.IsDesignerSafe == true ? __ACTIVITYLOG_ENTRYTYPE.ALE_INFORMATION : __ACTIVITYLOG_ENTRYTYPE.ALE_WARNING);
                 if (Model != null
                     && Model.IsDesignerSafe)
                 {
@@ -507,11 +511,11 @@ namespace Microsoft.Data.Entity.Design.Package
 
                 // Set the instance of this class in DiagramManagerContextItem.
                 EditingContext.Items.GetValue<DiagramManagerContextItem>().SetViewManager(this);
-                System.Diagnostics.Debug.WriteLine("[EasyAF.EntityDesigner] OnDocumentLoaded END");
+                VsUtils.LogToActivityLog("OnDocumentLoaded END");
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"[EasyAF.EntityDesigner] OnDocumentLoaded EXCEPTION: {ex}");
+                VsUtils.LogToActivityLog($"OnDocumentLoaded EXCEPTION: {ex}", __ACTIVITYLOG_ENTRYTYPE.ALE_ERROR);
                 VsUtils.ShowErrorDialog($"Error in OnDocumentLoaded: {ex.Message}\n\nStack trace:\n{ex.StackTrace}");
                 throw;
             }
@@ -576,17 +580,27 @@ namespace Microsoft.Data.Entity.Design.Package
                             }
 
                             _isDiagramLoaded = true;
+                            ModelDiagramLoaded?.Invoke(this, EventArgs.Empty);
                         }
                     }
                 }
             }
         }
 
+        /// <summary>
+        ///     Raised once the model diagram is loaded and the designer is able to service commands.
+        /// </summary>
+        /// <remarks>
+        ///     This happens during OnDocumentLoaded, which runs after the doc view's LoadView, so a view cannot
+        ///     discover the state by checking <see cref="IsModelDiagramLoaded" /> at load time.
+        /// </remarks>
+        internal event EventHandler ModelDiagramLoaded;
+
         protected override int LoadDocData(string fileName, bool isReload)
         {
             try
             {
-                System.Diagnostics.Debug.WriteLine($"[EasyAF.EntityDesigner] LoadDocData START: fileName={fileName}, isReload={isReload}");
+                VsUtils.LogToActivityLog($"LoadDocData START: fileName={fileName}, isReload={isReload}");
                 EntityDesignerViewModel.EntityShapeLocationSeed = 0;
                 var ret = base.LoadDocData(fileName, isReload);
 
@@ -622,12 +636,12 @@ namespace Microsoft.Data.Entity.Design.Package
                         }
                     }
                 }
-                System.Diagnostics.Debug.WriteLine($"[EasyAF.EntityDesigner] LoadDocData END: ret={ret}");
+                VsUtils.LogToActivityLog($"LoadDocData END: ret={ret}");
                 return ret;
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"[EasyAF.EntityDesigner] LoadDocData EXCEPTION: {ex}");
+                VsUtils.LogToActivityLog($"LoadDocData EXCEPTION: {ex}", __ACTIVITYLOG_ENTRYTYPE.ALE_ERROR);
                 VsUtils.ShowErrorDialog($"Error loading EDMX file: {ex.Message}\n\nStack trace:\n{ex.StackTrace}");
                 throw;
             }

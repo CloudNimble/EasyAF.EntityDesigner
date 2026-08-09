@@ -1,16 +1,8 @@
-# Microsoft's Entity Framework Designer is dead.
-
-Yet it still ships inside Visual Studio 2026, broken and out of date. Unable to work with moderm projects or SQL providers. And [not accepting new PRs](https://github.com/dotnet/ef6tools/issues/83).
-
-Microsoft's (understandable but still annoying) corporate calculus is leaving developers high and dry.
-
-So the EDMXperts at CloudNimble have taken matters into our own hands.
-
 # Welcome to the EasyAF Entity Designer
 
 [**EasyAF**](https://easyaf.dev) is CloudNimble's platform for warp-speed application development with .NET, powered by EDMX.
 
-**EasyAF.EntityDesigner** is a modern evolution of Microsoft's EDMX experience that works with EF 6.5 and SDK-style projects targeting .NET Framework _AND_ .NET 8+.
+**EasyAF.EntityDesigner** is a modern evolution of Microsoft's original EDMX experience that works with EF 6.5 and SDK-style projects targeting .NET Framework _AND_ .NET 8+.
 
 We've stripped it down and removed all the legacy code, dependencies, and ugly WinForms UI that bogged it down.
 

@@ -26,42 +26,6 @@ namespace Microsoft.Data.Entity.Tests.Design.VisualStudio
     public class EdmUtilsTests
     {
         [TestMethod]
-        public void IsDataServicesEdmx_returns_false_for_invalid_or_non_existing_path()
-        {
-            EdmUtils.IsDataServicesEdmx((string)null).Should().BeFalse();
-            EdmUtils.IsDataServicesEdmx(string.Empty).Should().BeFalse();
-            EdmUtils.IsDataServicesEdmx(Guid.NewGuid().ToString()).Should().BeFalse();
-        }
-
-        [TestMethod]
-        public void IsDataServicesEdmx_returns_false_for_invalid_Xml_file()
-        {
-            EdmUtils.IsDataServicesEdmx(GetType().Assembly.Location).Should().BeFalse();
-        }
-
-        [TestMethod]
-        public void IsDataServicesEdmx_returns_true_for_known_data_services_edmx()
-        {
-            const string edmxTemplate = "<Edmx xmlns=\"{0}\"><DataServices /></Edmx>";
-
-            foreach (var edmxNs in SchemaManager.GetEDMXNamespaceNames())
-            {
-                EdmUtils.IsDataServicesEdmx(
-                    XDocument.Parse(
-                        string.Format(edmxTemplate, edmxNs))).Should().BeTrue();
-            }
-        }
-
-        [TestMethod]
-        public void IsDataServicesEdmx_returns_false_for_no_data_services_edmx()
-        {
-            EdmUtils.IsDataServicesEdmx(XDocument.Parse("<Edmx xmlns=\"abc\"><DataServices /></Edmx>")).Should().BeFalse();
-
-            EdmUtils.IsDataServicesEdmx(
-                XDocument.Parse("<Edmx xmlns=\"http://schemas.microsoft.com/ado/2009/11/edmx\" />")).Should().BeFalse();
-        }
-
-        [TestMethod]
         public void SafeLoadXmlFromString_throws_if_xml_contains_entities()
         {
             Action act = () => EdmUtils.SafeLoadXmlFromString(

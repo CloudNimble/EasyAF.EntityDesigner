@@ -65,14 +65,6 @@ namespace Microsoft.Data.Entity.Design.Model
         {
             var artifact = artifactSet.GetEntityDesignArtifact();
 
-            // XSD prevents an EDMX from having both a DataServices node and a Runtime node
-            // don't validate DataServices
-            if (artifact != null
-                && artifact.DataServicesNodePresent)
-            {
-                return;
-            }
-
             if (doEscherValidation)
             {
                 EscherModelValidator.ValidateEscherModel(artifactSet, false);

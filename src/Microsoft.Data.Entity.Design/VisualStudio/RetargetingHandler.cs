@@ -51,9 +51,8 @@ namespace Microsoft.Data.Entity.Design.VisualStudio
                 {
                     var projectItem = VsUtils.GetProjectItem(_hierarchy, vsFileInfo.ItemId);
 
-                    // skip the process for astoria edmx file or a linked edmx file
-                    if (IsDataServicesEdmx(projectItem.get_FileNames(1))
-                        || VsUtils.IsLinkProjectItem(projectItem))
+                    // skip the process for a linked edmx file
+                    if (VsUtils.IsLinkProjectItem(projectItem))
                     {
                         continue;
                     }
@@ -82,14 +81,6 @@ namespace Microsoft.Data.Entity.Design.VisualStudio
         {
             // since this is about retargeting EDMX files on disk, no need to process other file extensions from any converters
             return new VSFileFinder(EntityDesignArtifact.ExtensionEdmx).FindInProject(_hierarchy);
-        }
-
-        // protected virtual to allow mocking
-        protected virtual bool IsDataServicesEdmx(string filePath)
-        {
-            Debug.Assert(!string.IsNullOrWhiteSpace(filePath), "Invalid filePath");
-
-            return EdmUtils.IsDataServicesEdmx(filePath);
         }
 
         // protected virtual virtual to allow mocking

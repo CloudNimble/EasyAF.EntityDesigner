@@ -1555,4 +1555,10 @@ Full error message:
   <data name="EnumDialog_EnumTypeMemberHelpText" xml:space="preserve">
     <value>Start typing or press 'F2' to edit</value>
   </data>
+  <data name="XmlValidation_ExceptionDuringValidation" xml:space="preserve">
+    <value>the document could not be validated. {0}</value>
+  </data>
+  <data name="XmlValidation_UnsupportedSchemaVersion" xml:space="preserve">
+    <value>the Entity Framework schema version '{0}' is not one this designer can validate against.</value>
+  </data>
 </root>

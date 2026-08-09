@@ -87,17 +87,6 @@ namespace Microsoft.Data.Entity.Design.UI.Views.Explorer
         /// <summary>
         ///     This API supports the Entity Framework infrastructure and is not intended to be used directly from your code.
         /// </summary>
-        public static bool HasLoadException
-        {
-            get
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
-        ///     This API supports the Entity Framework infrastructure and is not intended to be used directly from your code.
-        /// </summary>
         public void Dispose()
         {
             Dispose(true);

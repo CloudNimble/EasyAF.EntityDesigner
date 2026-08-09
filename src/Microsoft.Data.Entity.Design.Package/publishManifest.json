@@ -5,13 +5,19 @@
     "Data",
     "Modeling"
   ],
+  "private": false,
   "identity": {
-    "internalName": "EasyAF-EntityDesigner"
+    "internalName": "EasyAFEntityDesigner",
+    "tags": [
+      "Entity Framework",
+      "Entity Designer",
+      "EasyAF",
+      "EDMX"
+    ]
   },
   "overview": "../../README.md",
   "priceCategory": "free",
   "publisher": "CloudNimble",
-  "private": false,
   "qna": true,
   "repo": "https://github.com/CloudNimble/EasyAF.EntityDesigner"
 }

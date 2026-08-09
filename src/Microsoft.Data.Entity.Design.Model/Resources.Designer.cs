@@ -133,15 +133,6 @@ namespace Microsoft.Data.Entity.Design.Model {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This file contains DataServices element and cannot be opened in the Entity Designer..
-        /// </summary>
-        internal static string DataServicesNodeWarning {
-            get {
-                return ResourceManager.GetString("DataServicesNodeWarning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Self.
         /// </summary>
         internal static string Default_Alias {
@@ -356,7 +347,88 @@ namespace Microsoft.Data.Entity.Design.Model {
                 return ResourceManager.GetString("EscherValidation_MultipleEntitySetsPerType", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to The Entity Designer cannot open this model because it has no conceptual model (CSDL). Verify that the edmx:ConceptualModels section contains a Schema element in the expected namespace..
+        /// </summary>
+        internal static string EscherValidation_Structural_MissingConceptualModel {
+            get {
+                return ResourceManager.GetString("EscherValidation_Structural_MissingConceptualModel", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The Entity Designer cannot open this model because it has no Designer section. Verify that the edmx file contains a Designer element in the expected namespace..
+        /// </summary>
+        internal static string EscherValidation_Structural_MissingDesigner {
+            get {
+                return ResourceManager.GetString("EscherValidation_Structural_MissingDesigner", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The Entity Designer cannot open this model because its Designer section has no Diagrams element. Add an empty Diagrams element to the Designer section and reopen the model..
+        /// </summary>
+        internal static string EscherValidation_Structural_MissingDiagrams {
+            get {
+                return ResourceManager.GetString("EscherValidation_Structural_MissingDiagrams", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The Entity Designer cannot open this model because it has no mapping model (MSL). Verify that the edmx:Mappings section contains a Mapping element in the expected namespace..
+        /// </summary>
+        internal static string EscherValidation_Structural_MissingMappingModel {
+            get {
+                return ResourceManager.GetString("EscherValidation_Structural_MissingMappingModel", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The Entity Designer cannot open this model because it has no storage model (SSDL). Verify that the edmx:StorageModels section contains a Schema element in the expected namespace..
+        /// </summary>
+        internal static string EscherValidation_Structural_MissingStorageModel {
+            get {
+                return ResourceManager.GetString("EscherValidation_Structural_MissingStorageModel", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The Entity Designer cannot open this model because its conceptual model declares {0} EntityContainer elements. Exactly one is supported..
+        /// </summary>
+        internal static string EscherValidation_Structural_MultipleEntityContainers {
+            get {
+                return ResourceManager.GetString("EscherValidation_Structural_MultipleEntityContainers", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The Entity Designer cannot open this model because the XML in the file is not valid. Correct the XML errors and reopen the model..
+        /// </summary>
+        internal static string EscherValidation_Structural_XmlNotValid {
+            get {
+                return ResourceManager.GetString("EscherValidation_Structural_XmlNotValid", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The Entity Designer cannot open this model because the XML in the file is not valid: {0}.
+        /// </summary>
+        internal static string EscherValidation_Structural_XmlNotValidDetail {
+            get {
+                return ResourceManager.GetString("EscherValidation_Structural_XmlNotValidDetail", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} (line {1}, position {2}).
+        /// </summary>
+        internal static string EscherValidation_Structural_XmlSchemaErrorLocation {
+            get {
+                return ResourceManager.GetString("EscherValidation_Structural_XmlSchemaErrorLocation", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to The type of property {0} is undefined. A type must be provided for this property..
         /// </summary>
