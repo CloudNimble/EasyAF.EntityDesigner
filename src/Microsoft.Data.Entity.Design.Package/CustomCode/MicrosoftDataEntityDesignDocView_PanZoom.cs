@@ -171,6 +171,10 @@ namespace Microsoft.Data.Entity.Design.Package
             view.Controls.Add(_floatingZoomHost);
             _floatingZoomHost.BringToFront();
 
+            // The model diagram is not loaded yet at this point, so the commands start disabled and are enabled once
+            // the designer is actually able to service them.
+            UpdateCommandAvailability();
+
             return view;
         }
 
@@ -208,6 +212,10 @@ namespace Microsoft.Data.Entity.Design.Package
         /// </summary>
         private void DiagramClientView_ZoomChanged(object sender, DiagramEventArgs e)
         {
+            // Re-evaluate before the guard below: this is the point at which the model diagram has typically finished
+            // loading, and the commands need to be enabled once it has.
+            UpdateCommandAvailability();
+
             // make sure that the Model Diagram has already been created or translated before persisting ZoomLevel
             if (CurrentDiagram is not EntityDesignerDiagram diagram
                 || DocData is not MicrosoftDataEntityDesignDocData docData
@@ -227,6 +235,86 @@ namespace Microsoft.Data.Entity.Design.Package
             {
                 VsUtils.ShowErrorDialog(fileNotEditableException.Message);
             }
+        }
+
+        /// <summary>
+        ///     Gets a value indicating whether a designer instance is loaded and able to service commands.
+        /// </summary>
+        /// <remarks>
+        ///     The floating zoom control is created with the view, which happens even for a model that never becomes
+        ///     designer-safe. Until the model diagram is loaded there is nothing behind the commands to act on.
+        /// </remarks>
+        private bool IsDesignerAvailable
+        {
+            get
+            {
+                return CurrentDiagram is EntityDesignerDiagram
+                       && DocData is MicrosoftDataEntityDesignDocData docData
+                       && docData.IsModelDiagramLoaded;
+            }
+        }
+
+        /// <summary>
+        ///     Subscribes to the doc data's model-diagram-loaded notification and evaluates availability immediately.
+        /// </summary>
+        /// <remarks>
+        ///     The doc view's LoadView runs before the doc data's OnDocumentLoaded, so the model diagram is never
+        ///     loaded yet at the point the view would naturally check. Evaluating immediately as well as on the event
+        ///     covers a reload, where the diagram is already loaded by the time the view is rebuilt.
+        /// </remarks>
+        private void HookModelDiagramLoaded()
+        {
+            if (DocData is MicrosoftDataEntityDesignDocData docData)
+            {
+                docData.ModelDiagramLoaded -= ModelDiagramLoaded_Handler;
+                docData.ModelDiagramLoaded += ModelDiagramLoaded_Handler;
+            }
+
+            UpdateCommandAvailability();
+        }
+
+        /// <summary>
+        ///     Handles the doc data reporting that the model diagram finished loading.
+        /// </summary>
+        /// <param name="sender">The doc data raising the notification.</param>
+        /// <param name="e">Unused.</param>
+        private void ModelDiagramLoaded_Handler(object sender, EventArgs e)
+        {
+            UpdateCommandAvailability();
+        }
+
+        /// <summary>
+        ///     Enables or disables the floating zoom control's commands to match whether a designer instance is loaded.
+        /// </summary>
+        /// <remarks>
+        ///     Without this the commands stay enabled over a blank designer, and invoking one reaches code that
+        ///     assumes a model diagram exists.
+        /// </remarks>
+        private void UpdateCommandAvailability()
+        {
+            if (_floatingZoomControl is null)
+            {
+                return;
+            }
+
+            var isAvailable = IsDesignerAvailable;
+
+            // Record each part of the predicate, so a control that is unexpectedly disabled says which condition
+            // was not met rather than leaving the next person to guess.
+            VsUtils.LogToActivityLog(
+                $"UpdateCommandAvailability: isAvailable={isAvailable}, "
+                + $"diagramIsEntityDesignerDiagram={CurrentDiagram is EntityDesignerDiagram}, "
+                + $"docDataIsEscherDocData={DocData is MicrosoftDataEntityDesignDocData}, "
+                + $"isModelDiagramLoaded={(DocData as MicrosoftDataEntityDesignDocData)?.IsModelDiagramLoaded}");
+            foreach (var command in _floatingZoomControl.Commands)
+            {
+                if (command is MenuCommandDefinition menuCommand)
+                {
+                    menuCommand.IsEnabled = isAvailable;
+                }
+            }
+
+            _floatingZoomControl.IsEnabled = isAvailable;
         }
 
         /// <summary>

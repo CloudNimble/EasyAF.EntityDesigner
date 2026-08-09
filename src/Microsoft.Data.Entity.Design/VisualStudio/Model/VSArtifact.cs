@@ -21,6 +21,7 @@ using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
 using Microsoft.Data.Tools.XmlDesignerBase.Model;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 
 namespace Microsoft.Data.Entity.Design.VisualStudio.Model
 {
@@ -131,51 +132,92 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.Model
             // Now update the VS error list with all of the errors we want to display, which are now in the EFArtifactSet.  
             //
             var errorInfos = ArtifactSet.GetAllErrors();
-            if (errorInfos.Count > 0)
+            if (errorInfos.Count == 0)
             {
-                var currentProject = VSHelpers.GetProjectForDocument(Uri.LocalPath, PackageManager.Package);
-                if (currentProject != null)
+                return;
+            }
+
+            var currentProject = VSHelpers.GetProjectForDocument(Uri.LocalPath, PackageManager.Package);
+            var hierarchy = currentProject is null ? null : VsUtils.GetVsHierarchy(currentProject, Services.ServiceProvider);
+
+            // The document may not belong to a loaded project, or the project's hierarchy may not be resolvable.
+            // Fall back to the doc data's own hierarchy so that the errors are still reported: previously both of
+            // these cases fell out of the method silently, leaving a designer-unsafe artifact with no explanation.
+            if (hierarchy is null)
+            {
+                AddErrorInfosUsingDocData(errorInfos);
+                return;
+            }
+
+            VSFileFinder fileFinder = new VSFileFinder(Uri.LocalPath);
+            fileFinder.FindInProject(hierarchy);
+
+            Debug.Assert(fileFinder.MatchingFiles.Count <= 1, "Unexpected count of matching files in project");
+
+            // if the EDMX file is not part of the project.
+            if (fileFinder.MatchingFiles.Count == 0)
+            {
+                AddErrorInfosUsingDocData(errorInfos);
+                return;
+            }
+
+            foreach (var vsFileInfo in fileFinder.MatchingFiles)
+            {
+                if (vsFileInfo.Hierarchy != hierarchy)
                 {
-                    var hierarchy = VsUtils.GetVsHierarchy(currentProject, Services.ServiceProvider);
-                    if (hierarchy != null)
-                    {
-                        VSFileFinder fileFinder = new VSFileFinder(Uri.LocalPath);
-                        fileFinder.FindInProject(hierarchy);
-
-                        Debug.Assert(fileFinder.MatchingFiles.Count <= 1, "Unexpected count of matching files in project");
-
-                        // if the EDMX file is not part of the project.
-                        if (fileFinder.MatchingFiles.Count == 0)
-                        {
-                            IEntityDesignDocData docData = VSHelpers.GetDocData(PackageManager.Package, Uri.LocalPath) as IEntityDesignDocData;
-                            ErrorListHelper.AddErrorInfosToErrorList(errorInfos, docData.Hierarchy, docData.ItemId);
-                        }
-                        else
-                        {
-                            foreach (var vsFileInfo in fileFinder.MatchingFiles)
-                            {
-                                if (vsFileInfo.Hierarchy == VsUtils.GetVsHierarchy(currentProject, Services.ServiceProvider))
-                                {
-                                    var errorList = ErrorListHelper.GetSingleDocErrorList(vsFileInfo.Hierarchy, vsFileInfo.ItemId);
-                                    if (errorList != null)
-                                    {
-                                        errorList.Clear();
-                                        ErrorListHelper.AddErrorInfosToErrorList(errorInfos, vsFileInfo.Hierarchy, vsFileInfo.ItemId);
-                                    }
-                                    else
-                                    {
-                                        Debug.Fail("errorList is null!");
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    continue;
                 }
+
+                var errorList = ErrorListHelper.GetSingleDocErrorList(vsFileInfo.Hierarchy, vsFileInfo.ItemId);
+                if (errorList is null)
+                {
+                    Debug.Fail("errorList is null!");
+                    continue;
+                }
+
+                errorList.Clear();
+                ErrorListHelper.AddErrorInfosToErrorList(errorInfos, vsFileInfo.Hierarchy, vsFileInfo.ItemId);
             }
         }
 
-        internal override bool IsXmlValid()
+        // <summary>
+        //     Reports validation errors against the doc data's own hierarchy. Used when the document's project or
+        //     hierarchy cannot be resolved, so that a designer-unsafe artifact still surfaces a reason to the user
+        //     instead of opening blank against an empty Error List.
+        // </summary>
+        private void AddErrorInfosUsingDocData(ICollection<ErrorInfo> errorInfos)
         {
+            if (VSHelpers.GetDocData(PackageManager.Package, Uri.LocalPath) is not IEntityDesignDocData docData)
+            {
+                var message = "Could not resolve an IEntityDesignDocData for '" + Uri.LocalPath + "'; " + errorInfos.Count
+                              + " validation error(s) will not be shown.";
+                VsUtils.LogToActivityLog(message, __ACTIVITYLOG_ENTRYTYPE.ALE_ERROR);
+                Debug.Fail(message);
+                return;
+            }
+
+            if (docData.Hierarchy is null)
+            {
+                var message = "IEntityDesignDocData.Hierarchy is null for '" + Uri.LocalPath + "'; " + errorInfos.Count
+                              + " validation error(s) will not be shown.";
+                VsUtils.LogToActivityLog(message, __ACTIVITYLOG_ENTRYTYPE.ALE_ERROR);
+                Debug.Fail(message);
+                return;
+            }
+
+            VsUtils.LogToActivityLog(
+                "Reporting " + errorInfos.Count + " validation error(s) for '" + Uri.LocalPath
+                + "' against the document's own hierarchy; the document could not be matched to a project.",
+                __ACTIVITYLOG_ENTRYTYPE.ALE_WARNING);
+
+            ErrorListHelper.AddErrorInfosToErrorList(errorInfos, docData.Hierarchy, docData.ItemId);
+        }
+
+        internal override bool IsXmlValid(out IList<string> validationErrors)
+        {
+            var errors = new List<string>();
+            validationErrors = errors;
+
             // If there is a VSXmlModelProvider, we should be able to find a docdata for it.
             // In any other case, it doesn't matter whether there is document data or not.
             var docData = VSHelpers.GetDocData(PackageManager.Package, Uri.LocalPath);
@@ -225,11 +267,21 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.Model
 
                     xmldoc.Validate(svec.ValidationCallBack);
 
+                    errors.AddRange(svec.Errors);
                     return svec.ErrorCount == 0;
                 }
+
+                // The schema version is not one we can validate against, so we cannot vouch for the document.
+                errors.Add(
+                    string.Format(
+                        CultureInfo.CurrentCulture, Resources.XmlValidation_UnsupportedSchemaVersion,
+                        documentSchemaVersion is null ? "(none)" : documentSchemaVersion.ToString()));
             }
-            catch
+            catch (Exception ex)
             {
+                // Loading or validating threw. Report why rather than reporting a bare "the XML is not valid": the
+                // exception message is the only description of the failure that exists.
+                errors.Add(string.Format(CultureInfo.CurrentCulture, Resources.XmlValidation_ExceptionDuringValidation, ex.Message));
             }
 
             return false;

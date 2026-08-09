@@ -4267,5 +4267,23 @@ namespace Microsoft.Data.Entity.Design {
                 return ResourceManager.GetString("VSUtils_InnerExceptionErrorFormat", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to the document could not be validated. {0}.
+        /// </summary>
+        internal static string XmlValidation_ExceptionDuringValidation {
+            get {
+                return ResourceManager.GetString("XmlValidation_ExceptionDuringValidation", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to the Entity Framework schema version &apos;{0}&apos; is not one this designer can validate against..
+        /// </summary>
+        internal static string XmlValidation_UnsupportedSchemaVersion {
+            get {
+                return ResourceManager.GetString("XmlValidation_UnsupportedSchemaVersion", resourceCulture);
+            }
+        }
     }
 }

@@ -31,16 +31,6 @@
       <!-- Converters ********************************************** -->
       <conv:IndentToMarginConverter x:Key="IndentToMarginConverter"/>
 
-      <conv:SwitchConverter x:Key="NegateConverter" DefaultValue="{StaticResource BooleanFalseValue}">
-        <conv:SwitchCase In="{StaticResource BooleanFalseValue}" Out="{StaticResource BooleanTrueValue}"/>
-        <conv:SwitchCase In="{StaticResource BooleanTrueValue}" Out="{StaticResource BooleanFalseValue}"/>
-      </conv:SwitchConverter>
-
-      <conv:SwitchConverter x:Key="BoolToHiddenConverter" DefaultValue="{x:Static Visibility.Hidden}">
-        <conv:SwitchCase In="{StaticResource BooleanFalseValue}" Out="{x:Static Visibility.Visible}"/>
-        <conv:SwitchCase In="{StaticResource BooleanTrueValue}" Out="{x:Static Visibility.Hidden}"/>
-      </conv:SwitchConverter>
-
       <!-- Selector for Hierarchical Data Templates -->
       <xdb:ExplorerTemplateSelector x:Key="ExplorerSelector" />
 
@@ -766,7 +756,6 @@
                     DropDownOpened=     "OnDropDownOpened"
                     KeyDown=            "OnKeyDownHandler"
                     IsEditable=         "True"
-                    IsEnabled=          "{Binding HasLoadException, Converter={StaticResource NegateConverter}}"
                     IsTextSearchEnabled="False"
                     StaysOpenOnEdit=    "True" />
           <!-- Note: searchPrompt will only be visible if searchBox.IsHitTestVisible is set to false -->
@@ -863,8 +852,7 @@
   </Border>
 
   <xdb:SearchAdornerDecorator Grid.Row= "2"
-                             x:Name="searchAdornerDecorator"
-                             Visibility="{Binding Path=HasLoadException, Converter={StaticResource BoolToHiddenConverter}}">
+                             x:Name="searchAdornerDecorator">
     <Grid>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="*"/>

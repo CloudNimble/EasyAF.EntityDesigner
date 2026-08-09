@@ -9,7 +9,17 @@ using FluentAssertions;
 
 namespace Microsoft.Data.Entity.Tests.Design.EntityDesigner.View.Export
 {
+    /// <summary>
+    ///     Tests for <see cref="SvgShapeRenderer" />.
+    /// </summary>
+    /// <remarks>
+    ///     These tests are not parallelized. The test projects opt into method-level parallelism, but the tests here
+    ///     construct DSL <see cref="Store" /> instances, and the modeling SDK builds its domain model metadata in
+    ///     process-wide static caches on first use. Running them concurrently races that initialization and fails a
+    ///     different test on roughly half of all runs.
+    /// </remarks>
     [TestClass]
+    [DoNotParallelize]
     public class SvgShapeRendererTests
     {
         private SvgIconManager _iconManager;

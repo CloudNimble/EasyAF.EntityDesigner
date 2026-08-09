@@ -33,7 +33,8 @@ namespace Microsoft.Data.Entity.Design.Common
         internal static readonly int FATAL_RESOLVE_ERROR = ERROR_NUMBER_BASE + 16;
         internal static readonly int TOO_MANY_DOCUMENTATION_ELEMENTS = ERROR_NUMBER_BASE + 17;
         internal static readonly int TOO_MANY_ENTITY_CONTAINER_ELEMENTS = ERROR_NUMBER_BASE + 18;
-        internal static readonly int DATA_SERVICES_NODE_DETECTED = ERROR_NUMBER_BASE + 19;
+        // ERROR_NUMBER_BASE + 19 was DATA_SERVICES_NODE_DETECTED; WCF Data Services edmx files are no longer
+        // recognized. The value is left unused so the remaining codes keep their existing numbers.
         internal static readonly int NON_QUALIFIED_ELEMENT = ERROR_NUMBER_BASE + 20;
         internal static readonly int DUPLICATED_ELEMENT_ENCOUNTERED = ERROR_NUMBER_BASE + 21;
         internal static readonly int UNEXPECTED_ELEMENT_ENCOUNTERED = ERROR_NUMBER_BASE + 22;
@@ -62,6 +63,16 @@ namespace Microsoft.Data.Entity.Design.Common
         internal static readonly int ESCHER_VALIDATOR_CIRCULAR_COMPLEX_TYPE_DEFINITION = ESCHER_VALIDATOR_ERROR_NUMBER_BASE + 13;
         internal static readonly int ESCHER_VALIDATOR_UNDEFINED_COMPLEX_PROPERTY_TYPE = ESCHER_VALIDATOR_ERROR_NUMBER_BASE + 14;
         internal static readonly int ESCHER_VALIDATOR_ENUM_PROPERTY_WITH_STOREGENERATEDPATTERN = ESCHER_VALIDATOR_ERROR_NUMBER_BASE + 15;
+
+        // Structural pre-conditions the designer requires before it can render an artifact. Each one is reported
+        // individually so that an artifact which opens in the XML editor always states which requirement it failed.
+        internal static readonly int ESCHER_VALIDATOR_STRUCTURAL_XML_NOT_VALID = ESCHER_VALIDATOR_ERROR_NUMBER_BASE + 16;
+        internal static readonly int ESCHER_VALIDATOR_STRUCTURAL_MISSING_DESIGNER = ESCHER_VALIDATOR_ERROR_NUMBER_BASE + 17;
+        internal static readonly int ESCHER_VALIDATOR_STRUCTURAL_MISSING_DIAGRAMS = ESCHER_VALIDATOR_ERROR_NUMBER_BASE + 18;
+        internal static readonly int ESCHER_VALIDATOR_STRUCTURAL_MISSING_CONCEPTUAL_MODEL = ESCHER_VALIDATOR_ERROR_NUMBER_BASE + 19;
+        internal static readonly int ESCHER_VALIDATOR_STRUCTURAL_MULTIPLE_ENTITY_CONTAINERS = ESCHER_VALIDATOR_ERROR_NUMBER_BASE + 20;
+        internal static readonly int ESCHER_VALIDATOR_STRUCTURAL_MISSING_STORAGE_MODEL = ESCHER_VALIDATOR_ERROR_NUMBER_BASE + 21;
+        internal static readonly int ESCHER_VALIDATOR_STRUCTURAL_MISSING_MAPPING_MODEL = ESCHER_VALIDATOR_ERROR_NUMBER_BASE + 22;
 
         internal static readonly int RUNTIME_VALIDATION_EXCEPTION_BASE = 12000;
         internal static readonly int RUNTIME_VALIDATOR_EXCEPTION_OCCURRED_DURING_RUNTIME_VALIDATION = RUNTIME_VALIDATION_EXCEPTION_BASE + 5;

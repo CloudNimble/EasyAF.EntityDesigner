@@ -35,9 +35,6 @@ namespace Microsoft.Data.Entity.Design.Model
         private ConceptualEntityModel _conceptualEntityModel;
         private StorageEntityModel _storageEntityModel;
 
-        // this will be set to true if the file contains DataServices element
-        private bool _dataServicesNodePresent;
-
         /// <summary>
         ///     True if this artifact is free from errors that prevent it from being used in the designer
         /// </summary>
@@ -108,11 +105,6 @@ namespace Microsoft.Data.Entity.Design.Model
                     yield return _storageEntityModel;
                 }
             }
-        }
-
-        internal bool DataServicesNodePresent
-        {
-            get { return _dataServicesNodePresent; }
         }
 
         internal override Version SchemaVersion
@@ -360,19 +352,6 @@ namespace Microsoft.Data.Entity.Design.Model
                         designerElementProcessed = true;
 
                         ParseDesignerInfoRoot(elem2);
-                    }
-                    else if (elem2.Name.LocalName == "DataServices")
-                    {
-                        if (!CheckForCorrectNamespace(elem2, SchemaManager.GetEDMXNamespaceNames()))
-                        {
-                            continue;
-                        }
-
-                        _dataServicesNodePresent = true;
-                        ErrorInfo error = new ErrorInfo(
-                            ErrorInfo.Severity.WARNING, Resources.DataServicesNodeWarning, this, ErrorCodes.DATA_SERVICES_NODE_DETECTED,
-                            ErrorClass.ParseError);
-                        AddParseErrorForObject(this, error);
                     }
                     else
                     {
@@ -698,14 +677,6 @@ namespace Microsoft.Data.Entity.Design.Model
         /// </summary>
         internal void DetermineIfArtifactIsStructurallySafe()
         {
-            // XSD prevents an EDMX from having both a DataServices node and a Runtime node
-            // don't validate DataServices EDMX files
-            if (DataServicesNodePresent)
-            {
-                _isStructurallySafe = false;
-                return;
-            }
-
             // reset the value to true first - then determine if not safe below.
             _isStructurallySafe = true;
             EntityDesignArtifactSet artifactSet = (EntityDesignArtifactSet)ArtifactSet;
@@ -731,28 +702,78 @@ namespace Microsoft.Data.Entity.Design.Model
                 }
             }
 
+            // Each structural pre-condition below is checked independently rather than as an else-if chain, and each
+            // one that fails records its own error. Previously any single failure silently set the flag and the user
+            // was left with a blank designer and nothing in the Error List explaining which requirement was unmet.
+
             // the XML editor will "fix-up" parser errors for us, so we parse again just to be sure that there are none
-            if (_isStructurallySafe && IsXmlValid() == false)
+            if (IsXmlValid(out var xmlValidationErrors) == false)
             {
                 _isStructurallySafe = false;
+
+                // Report each reason the XML was rejected. Reporting only the fact of the failure leaves the user with
+                // a document that will not open and nothing to correct.
+                if (xmlValidationErrors.Count == 0)
+                {
+                    AddStructuralError(
+                        Resources.EscherValidation_Structural_XmlNotValid, ErrorCodes.ESCHER_VALIDATOR_STRUCTURAL_XML_NOT_VALID);
+                }
+                else
+                {
+                    foreach (var xmlValidationError in xmlValidationErrors)
+                    {
+                        AddStructuralError(
+                            string.Format(
+                                CultureInfo.CurrentCulture, Resources.EscherValidation_Structural_XmlNotValidDetail, xmlValidationError),
+                            ErrorCodes.ESCHER_VALIDATOR_STRUCTURAL_XML_NOT_VALID);
+                    }
+                }
             }
-            else if (DesignerInfo == null
-                     || DesignerInfo.Diagrams == null)
+
+            if (DesignerInfo == null)
             {
-                // if the edmx file is missing Designer or Diagrams element it's not designer safe
                 _isStructurallySafe = false;
+                AddStructuralError(
+                    Resources.EscherValidation_Structural_MissingDesigner, ErrorCodes.ESCHER_VALIDATOR_STRUCTURAL_MISSING_DESIGNER);
             }
-            else if (ConceptualModel == null
-                     || ConceptualModel.EntityContainerCount > 1)
+            else if (DesignerInfo.Diagrams == null)
             {
-                // if the edmx file is missing ConceptualModel or it has multiple EntityContainers it's not designer safe
                 _isStructurallySafe = false;
+                AddStructuralError(
+                    Resources.EscherValidation_Structural_MissingDiagrams, ErrorCodes.ESCHER_VALIDATOR_STRUCTURAL_MISSING_DIAGRAMS);
             }
-            else if (MappingModel == null
-                     || StorageModel == null)
+
+            if (ConceptualModel == null)
             {
-                // if the edmx file is missing MappingModel or StorageModel it's not designer safe
                 _isStructurallySafe = false;
+                AddStructuralError(
+                    Resources.EscherValidation_Structural_MissingConceptualModel,
+                    ErrorCodes.ESCHER_VALIDATOR_STRUCTURAL_MISSING_CONCEPTUAL_MODEL);
+            }
+            else if (ConceptualModel.EntityContainerCount > 1)
+            {
+                _isStructurallySafe = false;
+                AddStructuralError(
+                    string.Format(
+                        CultureInfo.CurrentCulture, Resources.EscherValidation_Structural_MultipleEntityContainers,
+                        ConceptualModel.EntityContainerCount),
+                    ErrorCodes.ESCHER_VALIDATOR_STRUCTURAL_MULTIPLE_ENTITY_CONTAINERS);
+            }
+
+            if (StorageModel == null)
+            {
+                _isStructurallySafe = false;
+                AddStructuralError(
+                    Resources.EscherValidation_Structural_MissingStorageModel,
+                    ErrorCodes.ESCHER_VALIDATOR_STRUCTURAL_MISSING_STORAGE_MODEL);
+            }
+
+            if (MappingModel == null)
+            {
+                _isStructurallySafe = false;
+                AddStructuralError(
+                    Resources.EscherValidation_Structural_MissingMappingModel,
+                    ErrorCodes.ESCHER_VALIDATOR_STRUCTURAL_MISSING_MAPPING_MODEL);
             }
 
             //
@@ -763,6 +784,20 @@ namespace Microsoft.Data.Entity.Design.Model
                 artifactSet.ClearErrors(ErrorClass.Runtime_MSL);
                 artifactSet.ClearErrors(ErrorClass.Runtime_ViewGen);
             }
+        }
+
+        /// <summary>
+        ///     Records a structural pre-condition failure against this artifact so that it reaches the Error List.
+        ///     Structural failures force the document into the XML editor, so without an error the user sees a blank
+        ///     designer with no stated reason.
+        /// </summary>
+        /// <param name="message">The user-facing description of the requirement that was not met.</param>
+        /// <param name="errorCode">The <see cref="ErrorCodes" /> value identifying the failed requirement.</param>
+        private void AddStructuralError(string message, int errorCode)
+        {
+            // The artifact itself is the item the error is reported against: EFArtifactSet.AddError indexes errors by
+            // ErrorInfo.Item.Artifact, so the itemPath-only overload of ErrorInfo cannot be used here.
+            ArtifactSet?.AddError(new ErrorInfo(ErrorInfo.Severity.ERROR, message, this, errorCode, ErrorClass.Escher_CSDL));
         }
 
         internal virtual void DetermineIfArtifactIsVersionSafe()
@@ -776,10 +811,20 @@ namespace Microsoft.Data.Entity.Design.Model
                              && CompareNamespaces(MappingModel, SchemaManager.GetMSLNamespaceName(SchemaVersion));
         }
 
-        internal virtual bool IsXmlValid()
+        /// <summary>
+        ///     Determines whether the document's XML is valid, reporting the reasons when it is not.
+        /// </summary>
+        /// <param name="validationErrors">Receives a description of each reason the XML was rejected. Never null.</param>
+        /// <returns><c>true</c> if the XML is valid; otherwise <c>false</c>.</returns>
+        /// <remarks>
+        ///     A document whose XML is not valid opens in the XML editor instead of the designer, so the caller is
+        ///     expected to surface these descriptions: the user cannot act on the bare fact that validation failed.
+        /// </remarks>
+        internal virtual bool IsXmlValid(out IList<string> validationErrors)
         {
-            // since the xml editor will fix-up parser errors, we can't detect if the xml will parse.  This method  is 
+            // since the xml editor will fix-up parser errors, we can't detect if the xml will parse.  This method  is
             // overriden in VSArtifact to see if the xml will parse.
+            validationErrors = [];
             return true;
         }
 

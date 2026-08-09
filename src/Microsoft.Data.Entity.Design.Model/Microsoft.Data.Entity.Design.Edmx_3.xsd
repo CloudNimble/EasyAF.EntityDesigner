@@ -59,13 +59,16 @@
       <xs:element name="Designer" type="edmx:TDesigner" minOccurs="0" maxOccurs="1" />
     </xs:sequence>
   </xs:group>
+  <!-- The Designer section's children may appear in any order. The designer parses them by name rather than by
+       position, so ordering carries no meaning. This is xs:choice rather than xs:all because XSD 1.0 does not permit
+       a wildcard inside xs:all; the consequence is that cardinality is not enforced here. -->
   <xs:complexType name="TDesigner">
-    <xs:sequence>
-      <xs:element name="Connection" type="edmx:TConnection" minOccurs="0" maxOccurs="1" />
-      <xs:element name="Options" type="edmx:TOptions" minOccurs="0" maxOccurs="1" />
-      <xs:element name="Diagrams" type="edmx:TDiagrams" minOccurs="0" maxOccurs="1" />
-      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
-    </xs:sequence>
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="Connection" type="edmx:TConnection" />
+      <xs:element name="Options" type="edmx:TOptions" />
+      <xs:element name="Diagrams" type="edmx:TDiagrams" />
+      <xs:any namespace="##other" processContents="lax" />
+    </xs:choice>
   </xs:complexType>
   <xs:complexType name="TOptions">
     <xs:sequence>

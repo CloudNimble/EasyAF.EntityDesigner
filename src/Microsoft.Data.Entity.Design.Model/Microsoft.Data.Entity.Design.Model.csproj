@@ -20,8 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Microsoft.Data.Entity.Design.Edmx_1.xsd" />
-    <EmbeddedResource Include="Microsoft.Data.Entity.Design.Edmx_2.xsd" />
     <EmbeddedResource Include="Microsoft.Data.Entity.Design.Edmx_3.xsd" />
     <EmbeddedResource Update="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -30,8 +28,6 @@
   </ItemGroup>
 
   <Target Name="AfterBuild">
-    <Copy SourceFiles="Microsoft.Data.Entity.Design.Edmx_1.xsd" DestinationFolder="$(OutputPath)EntityDesigner\Schemas" />
-    <Copy SourceFiles="Microsoft.Data.Entity.Design.Edmx_2.xsd" DestinationFolder="$(OutputPath)EntityDesigner\Schemas" />
     <Copy SourceFiles="Microsoft.Data.Entity.Design.Edmx_3.xsd" DestinationFolder="$(OutputPath)EntityDesigner\Schemas" />
   </Target>
 

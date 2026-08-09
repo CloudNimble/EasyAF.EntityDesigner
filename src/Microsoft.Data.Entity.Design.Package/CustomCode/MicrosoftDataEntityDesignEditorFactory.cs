@@ -42,12 +42,6 @@ namespace Microsoft.Data.Entity.Design.Package
                 if (o is ProjectItem projectItem
                     && VsUtils.EntityFrameworkSupportedInProject(projectItem.ContainingProject, ServiceProvider, allowMiscProject: false))
                 {
-                    if (EdmUtils.IsDataServicesEdmx(projectItem.get_FileNames(1)))
-                    {
-                        // if the EDMX has a data services node, don't add the SingleFileGenerator, etc.
-                        return VSConstants.S_OK;
-                    }
-
                     pHier.GetSite(out IOleServiceProvider oleSP);
                     using (ServiceProvider sp = new ServiceProvider(oleSP))
                     {
