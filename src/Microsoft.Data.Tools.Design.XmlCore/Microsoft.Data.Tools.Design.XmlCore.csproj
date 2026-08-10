@@ -3,21 +3,16 @@
   <PropertyGroup>
     <RootNamespace>Microsoft.Data.Tools.XmlDesignerBase</RootNamespace>
     <AssemblyName>Microsoft.Data.Tools.Design.XmlCore</AssemblyName>
-    <UseWPF>true</UseWPF>
-    <UseWindowsForms>true</UseWindowsForms>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <NoWarn>$(NoWarn);VSTHRD001;VSSDK006</NoWarn>
-  </PropertyGroup>
 
-<!-- WPF ThemeInfo attribute -->
-  <ItemGroup>
-    <AssemblyAttribute Include="System.Windows.ThemeInfoAttribute">
-      <_Parameter1>System.Windows.ResourceDictionaryLocation.None</_Parameter1>
-      <_Parameter1_IsLiteral>true</_Parameter1_IsLiteral>
-      <_Parameter2>System.Windows.ResourceDictionaryLocation.SourceAssembly</_Parameter2>
-      <_Parameter2_IsLiteral>true</_Parameter2_IsLiteral>
-    </AssemblyAttribute>
-  </ItemGroup>
+    <!-- Clears the net48 default from Directory.Build.props so TargetFrameworks below applies. -->
+    <TargetFramework></TargetFramework>
+    <TargetFrameworks>netstandard2.0;net10.0</TargetFrameworks>
+    <RuntimeIdentifier></RuntimeIdentifier>
+    <!-- Directory.Build.props flattens output, which collides when multi-targeting. -->
+    <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="Resources.resx">

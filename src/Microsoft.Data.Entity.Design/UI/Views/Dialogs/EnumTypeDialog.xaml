@@ -8,7 +8,7 @@
                  xmlns:shell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
                  xmlns:ded="clr-namespace:Microsoft.Data.Entity.Design"
                  xmlns:vm="clr-namespace:Microsoft.Data.Entity.Design.UI.ViewModels"
-                 xmlns:core-controls="clr-namespace:Microsoft.Data.Entity.Design.Core.Controls;assembly=Microsoft.Data.Tools.Design.XmlCore"
+                 xmlns:core-controls="clr-namespace:Microsoft.Data.Entity.Design.Core.Controls;assembly=Microsoft.VisualStudio.Data.Tools.Design.XmlCore"
                  mc:Ignorable="d"
                  d:DesignWidth="450"
                  d:DesignHeight="575"
