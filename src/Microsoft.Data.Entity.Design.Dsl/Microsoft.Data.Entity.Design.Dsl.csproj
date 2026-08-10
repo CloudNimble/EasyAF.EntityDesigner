@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <RootNamespace>Microsoft.Data.Entity.Design.EntityDesigner</RootNamespace>
-    <AssemblyName>Microsoft.Data.Entity.Design.EntityDesigner</AssemblyName>
+    <AssemblyName>Microsoft.Data.Entity.Design.Dsl</AssemblyName>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
     <NoWarn>$(NoWarn);VSTHRD010;VSSDK006;VSTHRD001;CS3014</NoWarn>
@@ -10,8 +10,8 @@
     <!-- Required for non-string resources (images, icons) in resx files -->
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
     <!-- Assembly properties -->
-    <Title>Microsoft.Data.Entity.Design.EntityDesigner</Title>
-    <Description>Microsoft.Data.Entity.Design.EntityDesigner.dll</Description>
+    <Title>Microsoft.Data.Entity.Design.Dsl</Title>
+    <Description>Microsoft.Data.Entity.Design.Dsl.dll</Description>
     <!-- DSL-generated code is not CLS-compliant -->
     <CLSCompliant>false</CLSCompliant>
   </PropertyGroup>

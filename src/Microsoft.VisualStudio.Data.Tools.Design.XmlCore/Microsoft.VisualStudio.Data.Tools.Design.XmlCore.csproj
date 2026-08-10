@@ -57,7 +57,7 @@
   <ItemGroup>
     <InternalsVisibleTo Include="Microsoft.Data.Entity.Design, $(StrongNamePublicKey)" />
     <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Package, $(StrongNamePublicKey)" />
-    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.EntityDesigner, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Dsl, $(StrongNamePublicKey)" />
     <!-- Test projects -->
     <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design, $(StrongNamePublicKey)" />
     <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.Dsl, $(StrongNamePublicKey)" />

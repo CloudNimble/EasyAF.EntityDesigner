@@ -209,7 +209,7 @@
   <ItemGroup>
     <!-- Primary projects that depend on this assembly -->
     <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Package, $(StrongNamePublicKey)" />
-    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.EntityDesigner, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Dsl, $(StrongNamePublicKey)" />
     <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.DataSourceWizardExtension, $(StrongNamePublicKey)" />
     <!-- Test projects -->
     <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design, $(StrongNamePublicKey)" />

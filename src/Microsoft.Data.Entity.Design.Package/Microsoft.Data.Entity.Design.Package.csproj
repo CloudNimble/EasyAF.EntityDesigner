@@ -154,7 +154,7 @@
             <!--<VSIXSourceItem Include="..\Microsoft.Data.Entity.Design.Model\bin\$(Configuration)\Microsoft.Data.Entity.Design.Model.dll">
                 <VSIXSubPath></VSIXSubPath>
             </VSIXSourceItem>-->
-            <VSIXSourceItem Include="..\Microsoft.Data.Entity.Design.Dsl\bin\$(Configuration)\Microsoft.Data.Entity.Design.EntityDesigner.dll">
+            <VSIXSourceItem Include="..\Microsoft.Data.Entity.Design.Dsl\bin\$(Configuration)\Microsoft.Data.Entity.Design.Dsl.dll">
                 <VSIXSubPath></VSIXSubPath>
             </VSIXSourceItem>
             <!-- Extensibility multi-targets, so its output is under a framework subfolder rather than at this flat

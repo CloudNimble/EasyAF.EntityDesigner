@@ -48,28 +48,28 @@
 [$RootKey$\Packages\{8889E051-B7F9-4781-BB33-2A36A9BDB3A5}\Toolbox\DefaultContent]
 
 [$RootKey$\Packages\{8889E051-B7F9-4781-BB33-2A36A9BDB3A5}\Toolbox\DefaultContent\DE3C632C3FEAC5C355DA182A9B9F875]
-@="@Entity FrameworkToolboxTab;Microsoft.Data.Entity.Design.EntityDesigner.dll"
+@="@Entity FrameworkToolboxTab;Microsoft.Data.Entity.Design.Dsl.dll"
 "UniqueID"="Microsoft.Data.Entity.Design.Package.Entity FrameworkToolboxTab"
 
 [$RootKey$\Packages\{8889E051-B7F9-4781-BB33-2A36A9BDB3A5}\Toolbox\DefaultContent\DE3C632C3FEAC5C355DA182A9B9F875\BEC239151C59BC3DB41C03C3169DA1]
-@="@AssociationToolToolboxItem;Microsoft.Data.Entity.Design.EntityDesigner.dll"
-"BitmapResourceID"="@AssociationToolToolboxBitmap;Microsoft.Data.Entity.Design.EntityDesigner.dll"
+@="@AssociationToolToolboxItem;Microsoft.Data.Entity.Design.Dsl.dll"
+"BitmapResourceID"="@AssociationToolToolboxBitmap;Microsoft.Data.Entity.Design.Dsl.dll"
 "Formats"="CF_TOOLBOXITEMCONTAINER,CF_TOOLBOXITEMCONTAINER_HASH,CF_TOOLBOXITEMCONTAINER_CONTENTS"
 "HelpKeyword"=""
 "TransparentColor"=dword:00ff00ff
 "UniqueID"="Microsoft.Data.Entity.Design.Package.AssociationToolToolboxItem"
 
 [$RootKey$\Packages\{8889E051-B7F9-4781-BB33-2A36A9BDB3A5}\Toolbox\DefaultContent\DE3C632C3FEAC5C355DA182A9B9F875\D6F894FAEE744F1C45D37A95ED62FB8]
-@="@InheritanceToolToolboxItem;Microsoft.Data.Entity.Design.EntityDesigner.dll"
-"BitmapResourceID"="@InheritanceToolToolboxBitmap;Microsoft.Data.Entity.Design.EntityDesigner.dll"
+@="@InheritanceToolToolboxItem;Microsoft.Data.Entity.Design.Dsl.dll"
+"BitmapResourceID"="@InheritanceToolToolboxBitmap;Microsoft.Data.Entity.Design.Dsl.dll"
 "Formats"="CF_TOOLBOXITEMCONTAINER,CF_TOOLBOXITEMCONTAINER_HASH,CF_TOOLBOXITEMCONTAINER_CONTENTS"
 "HelpKeyword"=""
 "TransparentColor"=dword:00ff00ff
 "UniqueID"="Microsoft.Data.Entity.Design.Package.InheritanceToolToolboxItem"
 
 [$RootKey$\Packages\{8889E051-B7F9-4781-BB33-2A36A9BDB3A5}\Toolbox\DefaultContent\DE3C632C3FEAC5C355DA182A9B9F875\DC8AD58BD9D7759EA45FCEB1587784D]
-@="@EntityToolToolboxItem;Microsoft.Data.Entity.Design.EntityDesigner.dll"
-"BitmapResourceID"="@EntityToolToolboxBitmap;Microsoft.Data.Entity.Design.EntityDesigner.dll"
+@="@EntityToolToolboxItem;Microsoft.Data.Entity.Design.Dsl.dll"
+"BitmapResourceID"="@EntityToolToolboxBitmap;Microsoft.Data.Entity.Design.Dsl.dll"
 "Formats"="CF_TOOLBOXITEMCONTAINER,CF_TOOLBOXITEMCONTAINER_HASH,CF_TOOLBOXITEMCONTAINER_CONTENTS"
 "HelpKeyword"=""
 "TransparentColor"=dword:00ff00ff
