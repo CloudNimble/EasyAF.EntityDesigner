@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using Microsoft.Data.Entity.Design.EntityDesigner.View.Export;
+using Microsoft.Data.Entity.Design.Dsl.View.Export;
 using Microsoft.Data.Entity.Tools.Export;
 using Microsoft.Data.Entity.Tools.Commands.Root;
 using Microsoft.Extensions.DependencyInjection;

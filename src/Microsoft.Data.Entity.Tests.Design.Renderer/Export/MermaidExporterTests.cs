@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
-using Microsoft.Data.Entity.Design.EntityDesigner.View.Export;
+using Microsoft.Data.Entity.Design.Dsl.View.Export;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 

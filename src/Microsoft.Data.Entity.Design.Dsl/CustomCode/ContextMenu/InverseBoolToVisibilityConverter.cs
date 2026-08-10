@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.View.ContextMenu
+namespace Microsoft.Data.Entity.Design.Dsl.View.ContextMenu
 {
     /// <summary>
     /// Converts a boolean to the inverse Visibility (true = Collapsed, false = Visible).

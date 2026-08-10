@@ -1,2 +1,2 @@
 <#@ include file="%DslTemplatesSrc%\Dsl\DomainModelCodeGenerator.tt" #>
-<#@ Dsl processor="DslDirectiveProcessor" requires="fileName='..\..\Microsoft.Data.Entity.Design.EntityDesigner\DslDefinition.dsl'" #>
+<#@ Dsl processor="DslDirectiveProcessor" requires="fileName='..\..\Microsoft.Data.Entity.Design.Dsl\DslDefinition.dsl'" #>

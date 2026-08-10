@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Globalization;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
-using EntityDesignerRes = Microsoft.Data.Entity.Design.EntityDesigner.Properties.Resources;
+using EntityDesignerRes = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.View
+namespace Microsoft.Data.Entity.Design.Dsl.View
 {
     [DomainObjectId("53d36908-9892-4495-8754-da5f4d7969d4")]
     internal class EntityTypeElementListCompartment : ElementListCompartment

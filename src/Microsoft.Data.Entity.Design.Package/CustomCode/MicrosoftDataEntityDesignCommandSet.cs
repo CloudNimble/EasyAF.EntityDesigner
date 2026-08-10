@@ -12,10 +12,10 @@ using System.Linq;
 using System.Windows.Forms;
 using EnvDTE;
 using Microsoft.Data.Tools.XmlDesignerBase.Base.Util;
-using Microsoft.Data.Entity.Design.EntityDesigner.Dialogs;
-using Microsoft.Data.Entity.Design.EntityDesigner.Utils;
-using Microsoft.Data.Entity.Design.EntityDesigner.View;
-using Microsoft.Data.Entity.Design.EntityDesigner.ViewModel;
+using Microsoft.Data.Entity.Design.Dsl.Dialogs;
+using Microsoft.Data.Entity.Design.Dsl.Utils;
+using Microsoft.Data.Entity.Design.Dsl.View;
+using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Extensibility;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
@@ -40,11 +40,11 @@ using Microsoft.VisualStudio.Modeling.Shell;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Command = Microsoft.Data.Entity.Design.Model.Commands.Command;
-using ComplexProperty = Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.ComplexProperty;
+using ComplexProperty = Microsoft.Data.Entity.Design.Dsl.ViewModel.ComplexProperty;
 using Diagram = Microsoft.Data.Entity.Design.Model.Designer.Diagram;
 using EntityDesignerSelection = Microsoft.Data.Entity.Design.UI.Views.EntityDesigner.EntityDesignerSelection;
-using Property = Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Property;
-using ScalarProperty = Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.ScalarProperty;
+using Property = Microsoft.Data.Entity.Design.Dsl.ViewModel.Property;
+using ScalarProperty = Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty;
 
 namespace Microsoft.Data.Entity.Design.Package
 {

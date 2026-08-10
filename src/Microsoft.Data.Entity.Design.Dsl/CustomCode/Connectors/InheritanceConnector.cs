@@ -1,12 +1,12 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Globalization;
-using Microsoft.Data.Entity.Design.EntityDesigner.ViewModel;
+using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.VisualStudio.Modeling.Diagrams.GraphObject;
 using Microsoft.VisualStudio.Modeling.Immutability;
-using EntityDesignerRes = Microsoft.Data.Entity.Design.EntityDesigner.Properties.Resources;
+using EntityDesignerRes = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.View
+namespace Microsoft.Data.Entity.Design.Dsl.View
 {
     partial class InheritanceConnector
     {

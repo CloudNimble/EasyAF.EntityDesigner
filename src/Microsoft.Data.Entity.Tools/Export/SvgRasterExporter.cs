@@ -3,8 +3,8 @@
 using System;
 using System.IO;
 using System.Text;
-using Microsoft.Data.Entity.Design.EntityDesigner.View;
-using Microsoft.Data.Entity.Design.EntityDesigner.View.Export;
+using Microsoft.Data.Entity.Design.Dsl.View;
+using Microsoft.Data.Entity.Design.Dsl.View.Export;
 using SkiaSharp;
 using Svg.Skia;
 

@@ -2,7 +2,7 @@
 
 using Microsoft.VisualStudio.Modeling.Diagrams;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.CustomCode.Utils
+namespace Microsoft.Data.Entity.Design.Dsl.CustomCode.Utils
 {
     /// <summary>
     ///     Helper extension method for NodeShape objects

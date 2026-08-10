@@ -1,11 +1,11 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.EntityDesigner.Rules;
+using Microsoft.Data.Entity.Design.Dsl.Rules;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.UI.Views.Dialogs;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.ModelChanges
+namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
 {
     internal class Association_AddFromDialog : ViewModelChange
     {

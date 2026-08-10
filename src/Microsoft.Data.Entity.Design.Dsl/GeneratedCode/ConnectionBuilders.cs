@@ -11,7 +11,7 @@
 using DslModeling = global::Microsoft.VisualStudio.Modeling;
 using DslDiagrams = global::Microsoft.VisualStudio.Modeling.Diagrams;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner
+namespace Microsoft.Data.Entity.Design.Dsl
 {
 	/// <summary>
 	/// ConnectionBuilder class to provide logic for constructing connections between elements.
@@ -28,7 +28,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 		public static bool CanAcceptSource(DslModeling::ModelElement candidate)
 		{
 			if (candidate == null) return false;
-			else if (candidate is global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType)
+			else if (candidate is global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType)
 			{ 
 				return true;
 			}
@@ -45,7 +45,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 		public static bool CanAcceptTarget(DslModeling::ModelElement candidate)
 		{
 			if (candidate == null) return false;
-			else if (candidate is global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType)
+			else if (candidate is global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType)
 			{ 
 				return true;
 			}
@@ -84,9 +84,9 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 			}
 			else // Check combinations
 			{
-				if (candidateSource is global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType)
+				if (candidateSource is global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType)
 				{
-					if (candidateTarget is global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType)
+					if (candidateTarget is global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType)
 					{
 						return true;
 					}
@@ -119,13 +119,13 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 			
 			if (CanAcceptSourceAndTarget(source, target))
 			{
-				if (source is global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType)
+				if (source is global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType)
 				{
-					if (target is global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType)
+					if (target is global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType)
 					{
-						global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType sourceAccepted = (global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType)source;
-						global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType targetAccepted = (global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType)target;
-						DslModeling::ElementLink result = new global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Association(sourceAccepted, targetAccepted);
+						global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType sourceAccepted = (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType)source;
+						global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType targetAccepted = (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType)target;
+						DslModeling::ElementLink result = new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association(sourceAccepted, targetAccepted);
 						if (DslModeling::DomainClassInfo.HasNameProperty(result))
 						{
 							DslModeling::DomainClassInfo.SetUniqueName(result);
@@ -155,7 +155,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 		public static bool CanAcceptSource(DslModeling::ModelElement candidate)
 		{
 			if (candidate == null) return false;
-			else if (candidate is global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType)
+			else if (candidate is global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType)
 			{ 
 				return true;
 			}
@@ -172,7 +172,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 		public static bool CanAcceptTarget(DslModeling::ModelElement candidate)
 		{
 			if (candidate == null) return false;
-			else if (candidate is global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType)
+			else if (candidate is global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType)
 			{ 
 				return true;
 			}
@@ -211,14 +211,14 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 			}
 			else // Check combinations
 			{
-				if (candidateSource is global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType)
+				if (candidateSource is global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType)
 				{
-					if (candidateTarget is global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType)
+					if (candidateTarget is global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType)
 					{
-						global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType sourceEntityType = (global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType)candidateSource;
-						global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType targetEntityType = (global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType)candidateTarget;
-						if(targetEntityType == null || global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Inheritance.GetLinkToBaseType(targetEntityType) != null) return false;
-						if(targetEntityType == null || sourceEntityType == null || global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Inheritance.GetLinks(sourceEntityType, targetEntityType).Count > 0) return false;
+						global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType sourceEntityType = (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType)candidateSource;
+						global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType targetEntityType = (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType)candidateTarget;
+						if(targetEntityType == null || global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.GetLinkToBaseType(targetEntityType) != null) return false;
+						if(targetEntityType == null || sourceEntityType == null || global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.GetLinks(sourceEntityType, targetEntityType).Count > 0) return false;
 						return true;
 					}
 				}
@@ -250,13 +250,13 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 			
 			if (CanAcceptSourceAndTarget(source, target))
 			{
-				if (source is global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType)
+				if (source is global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType)
 				{
-					if (target is global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType)
+					if (target is global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType)
 					{
-						global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType sourceAccepted = (global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType)source;
-						global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType targetAccepted = (global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType)target;
-						DslModeling::ElementLink result = new global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Inheritance(sourceAccepted, targetAccepted);
+						global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType sourceAccepted = (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType)source;
+						global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType targetAccepted = (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType)target;
+						DslModeling::ElementLink result = new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance(sourceAccepted, targetAccepted);
 						if (DslModeling::DomainClassInfo.HasNameProperty(result))
 						{
 							DslModeling::DomainClassInfo.SetUniqueName(result);
@@ -286,7 +286,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 		/// </summary>
 		public AssociationToolConnectAction(DslDiagrams::Diagram diagram): base(diagram, true) 
 		{
-			global::System.Resources.ResourceManager resourceManager = global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager;
+			global::System.Resources.ResourceManager resourceManager = global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager;
 			global::System.Globalization.CultureInfo resourceCulture = global::System.Globalization.CultureInfo.CurrentUICulture;
 
 			byte[] sourceCursorBytes = (byte[])resourceManager.GetObject("AssociationToolSourceCursor", resourceCulture);
@@ -502,7 +502,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 		/// </summary>
 		public InheritanceToolConnectAction(DslDiagrams::Diagram diagram): base(diagram, true) 
 		{
-			global::System.Resources.ResourceManager resourceManager = global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager;
+			global::System.Resources.ResourceManager resourceManager = global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager;
 			global::System.Globalization.CultureInfo resourceCulture = global::System.Globalization.CultureInfo.CurrentUICulture;
 
 			byte[] sourceCursorBytes = (byte[])resourceManager.GetObject("InheritanceToolSourceCursor", resourceCulture);

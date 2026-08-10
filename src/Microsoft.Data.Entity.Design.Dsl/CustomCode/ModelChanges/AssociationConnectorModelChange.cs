@@ -1,9 +1,9 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.EntityDesigner.Rules;
-using Microsoft.Data.Entity.Design.EntityDesigner.View;
+using Microsoft.Data.Entity.Design.Dsl.Rules;
+using Microsoft.Data.Entity.Design.Dsl.View;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.ModelChanges
+namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
 {
     internal abstract class AssociationConnectorModelChange : ViewModelChange
     {

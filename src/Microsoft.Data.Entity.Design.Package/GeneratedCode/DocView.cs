@@ -58,7 +58,7 @@ namespace Microsoft.Data.Entity.Design.Package
 			DslModeling::Partition diagramPartition = docData.GetDiagramPartition();
 			if (diagramPartition != null)
 			{
-				global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.EntityDesigner.View.EntityDesignerDiagram> diagrams = docData.GetDiagramPartition().ElementDirectory.FindElements<global::Microsoft.Data.Entity.Design.EntityDesigner.View.EntityDesignerDiagram>();
+				global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram> diagrams = docData.GetDiagramPartition().ElementDirectory.FindElements<global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram>();
 				if (diagrams.Count > 0)
 				{
 					global::System.Diagnostics.Debug.Assert(diagrams.Count == 1, "Found more than one diagram, using the first one found.");
@@ -84,7 +84,7 @@ namespace Microsoft.Data.Entity.Design.Package
 		{
 			get
 			{
-				return global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignToolboxHelper.DefaultToolboxTabName;
+				return global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignToolboxHelper.DefaultToolboxTabName;
 			}
 		}
 		
@@ -95,7 +95,7 @@ namespace Microsoft.Data.Entity.Design.Package
 		{
 			get
 			{
-				return global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignToolboxHelper.DefaultToolboxTabToolboxItemsCount;			
+				return global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignToolboxHelper.DefaultToolboxTabToolboxItemsCount;			
 			}
 		}
 		

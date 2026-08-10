@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.View.Export
+namespace Microsoft.Data.Entity.Design.Dsl.View.Export
 {
     /// <summary>
     /// Manages SVG icon loading from embedded resources and converts them to reusable symbols.

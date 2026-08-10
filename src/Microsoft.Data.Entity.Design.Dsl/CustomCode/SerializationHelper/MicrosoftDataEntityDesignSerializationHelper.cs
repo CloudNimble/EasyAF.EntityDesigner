@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
-using Microsoft.Data.Entity.Design.EntityDesigner.CustomSerializer;
-using Microsoft.Data.Entity.Design.EntityDesigner.Utils;
-using Microsoft.Data.Entity.Design.EntityDesigner.View;
-using Microsoft.Data.Entity.Design.EntityDesigner.ViewModel;
+using Microsoft.Data.Entity.Design.Dsl.CustomSerializer;
+using Microsoft.Data.Entity.Design.Dsl.Utils;
+using Microsoft.Data.Entity.Design.Dsl.View;
+using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
@@ -19,7 +19,7 @@ using Microsoft.VisualStudio.Modeling.Validation;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.XmlEditor;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner
+namespace Microsoft.Data.Entity.Design.Dsl
 {
     public sealed partial class MicrosoftDataEntityDesignSerializationHelper
     {

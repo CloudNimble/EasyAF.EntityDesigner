@@ -3,7 +3,7 @@ using System;
 using System.Drawing;
 using System.Globalization;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.View.Export
+namespace Microsoft.Data.Entity.Design.Dsl.View.Export
 {
     /// <summary>
     /// Manages CSS stylesheet definitions for SVG export.

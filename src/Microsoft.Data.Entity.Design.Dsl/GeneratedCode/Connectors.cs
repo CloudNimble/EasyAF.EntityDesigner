@@ -11,14 +11,14 @@ using DslModeling = global::Microsoft.VisualStudio.Modeling;
 using DslDesign = global::Microsoft.VisualStudio.Modeling.Design;
 using DslDiagrams = global::Microsoft.VisualStudio.Modeling.Diagrams;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.View
+namespace Microsoft.Data.Entity.Design.Dsl.View
 {
 	/// <summary>
 	/// DomainClass InheritanceConnector
 	/// </summary>
-	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.EntityDesigner.View.InheritanceConnector.DisplayName", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.EntityDesigner.View.InheritanceConnector.Description", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel))]
+	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.View.InheritanceConnector.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.View.InheritanceConnector.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel))]
 	[DslModeling::DomainObjectId("bc29ae42-ae95-434c-8b7c-166482d358f9")]
 	internal partial class InheritanceConnector : DslDiagrams::BinaryLinkShape
 	{
@@ -155,14 +155,14 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.View
 		#endregion
 	}
 }
-namespace Microsoft.Data.Entity.Design.EntityDesigner.View
+namespace Microsoft.Data.Entity.Design.Dsl.View
 {
 	/// <summary>
 	/// Double-derived base class for DomainClass AssociationConnector
 	/// </summary>
-	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.EntityDesigner.View.AssociationConnector.DisplayName", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.EntityDesigner.View.AssociationConnector.Description", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel))]
+	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.View.AssociationConnector.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.View.AssociationConnector.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel))]
 	[DslModeling::DomainObjectId("9239a0fb-b26c-4db1-8324-f7c1a75e7499")]
 	internal abstract partial class AssociationConnectorBase : DslDiagrams::BinaryLinkShape
 	{
@@ -315,7 +315,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.View
 			base.InitializeDecorators(shapeFields, decorators);
 			
 			DslDiagrams::TextField field1 = new DslDiagrams::TextField("SourceEndDisplayText");
-			field1.DefaultText = global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("AssociationConnectorSourceEndDisplayTextDefaultText");
+			field1.DefaultText = global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("AssociationConnectorSourceEndDisplayTextDefaultText");
 			field1.DefaultFocusable = true;
 			field1.DefaultAutoSize = true;
 			field1.AnchoringBehavior.MinimumHeightInLines = 1;
@@ -326,7 +326,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.View
 			decorators.Add(decorator1);
 				
 			DslDiagrams::TextField field2 = new DslDiagrams::TextField("TargetEndDisplayText");
-			field2.DefaultText = global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("AssociationConnectorTargetEndDisplayTextDefaultText");
+			field2.DefaultText = global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("AssociationConnectorTargetEndDisplayTextDefaultText");
 			field2.DefaultFocusable = true;
 			field2.DefaultAutoSize = true;
 			field2.AnchoringBehavior.MinimumHeightInLines = 1;

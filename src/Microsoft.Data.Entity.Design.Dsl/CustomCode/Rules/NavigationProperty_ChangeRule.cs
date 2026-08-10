@@ -1,19 +1,19 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using EDMModelUtils = Microsoft.Data.Entity.Design.Model.ModelHelper;
-using EntityDesignerRes = Microsoft.Data.Entity.Design.EntityDesigner.Properties.Resources;
+using EntityDesignerRes = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
 using ModelRes = Microsoft.Data.Entity.Design.Model.Resources;
 using System;
 using System.Diagnostics;
 using System.Globalization;
-using Microsoft.Data.Entity.Design.EntityDesigner.ModelChanges;
-using Microsoft.Data.Entity.Design.EntityDesigner.Utils;
-using Microsoft.Data.Entity.Design.EntityDesigner.ViewModel;
+using Microsoft.Data.Entity.Design.Dsl.ModelChanges;
+using Microsoft.Data.Entity.Design.Dsl.Utils;
+using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model.Validation;
 using Microsoft.Data.Tools.VSXmlDesignerBase.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.Rules
+namespace Microsoft.Data.Entity.Design.Dsl.Rules
 {
     /// <summary>
     ///     Rule fired when an NavigationProperty changes

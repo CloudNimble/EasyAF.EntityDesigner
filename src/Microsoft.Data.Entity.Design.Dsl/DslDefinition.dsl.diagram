@@ -1,39 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <microsoft.VisualStudio.Modeling.DslDesigner.DslDesignerDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 30.248258160352705, 23.914866536458348" isCompleteView="false" name="DslDefinition">
-  <DslMoniker Name="/Microsoft.Data.Entity.Design.EntityDesigner/MicrosoftDataEntityDesign" />
+  <DslMoniker Name="/Microsoft.Data.Entity.Design.Dsl/MicrosoftDataEntityDesign" />
   <nestedChildShapes>
     <microsoft.VisualStudio.Modeling.DslDesigner.DomainModelElements Id="4d7ce9f5-c553-44f3-8ceb-57963db0e233" absoluteBounds="0, 0, 9.0879918545484557, 23.914866536458348">
       <nestedChildShapes>
         <microsoft.VisualStudio.Modeling.DslDesigner.RelationshipShape Id="c6fbe0b1-4b9f-45d6-bea5-f68cba9501fc" isExpanded="false" absoluteBounds="4.95, 14.512124023437503, 1.35, 0.25">
-          <DomainRelationshipMoniker Name="/Microsoft.Data.Entity.Design.EntityDesigner.ViewModel/EntityTypeHasProperties" />
+          <DomainRelationshipMoniker Name="/Microsoft.Data.Entity.Design.Dsl.ViewModel/EntityTypeHasProperties" />
           <relativeChildShapes />
           <nestedChildShapes>
             <elementListCompartment Id="4a7e0a17-f433-4fed-8397-36e0dd5f1c22" absoluteBounds="4.965, 14.7721240234375, 1.3200000000000003, 0.2493896484375" name="Properties" titleTextColor="Black" itemTextColor="Black" />
           </nestedChildShapes>
         </microsoft.VisualStudio.Modeling.DslDesigner.RelationshipShape>
         <microsoft.VisualStudio.Modeling.DslDesigner.RelationshipShape Id="677a98bf-8538-45fe-a1d6-d1330b690334" isExpanded="false" absoluteBounds="1.6, 11.645830078125, 1.35, 0.25">
-          <DomainRelationshipMoniker Name="/Microsoft.Data.Entity.Design.EntityDesigner/EntityDesignerViewModelHasEntityTypes" />
+          <DomainRelationshipMoniker Name="/Microsoft.Data.Entity.Design.Dsl/EntityDesignerViewModelHasEntityTypes" />
           <relativeChildShapes />
           <nestedChildShapes>
             <elementListCompartment Id="2c1b06f3-35a1-41cc-bddf-f523436c53a0" absoluteBounds="1.6150000000000002, 11.905830078124998, 1.3200000000000003, 0.2493896484375" name="Properties" titleTextColor="Black" itemTextColor="Black" />
           </nestedChildShapes>
         </microsoft.VisualStudio.Modeling.DslDesigner.RelationshipShape>
         <microsoft.VisualStudio.Modeling.DslDesigner.RelationshipShape Id="55f8eb07-9ecb-4517-b3da-d82a8c76713f" absoluteBounds="4.95, 13.025830078125003, 1.3500000000000005, 1.1862939453124994">
-          <DomainRelationshipMoniker Name="/Microsoft.Data.Entity.Design.EntityDesigner.ViewModel/Association" />
+          <DomainRelationshipMoniker Name="/Microsoft.Data.Entity.Design.Dsl.ViewModel/Association" />
           <relativeChildShapes />
           <nestedChildShapes>
             <elementListCompartment Id="ec9d37ad-e80c-4abb-a674-cc872fff4908" absoluteBounds="4.965, 13.285830078125, 1.3200000000000003, 0.8262939453125" name="Properties" titleTextColor="Black" itemTextColor="Black" />
           </nestedChildShapes>
         </microsoft.VisualStudio.Modeling.DslDesigner.RelationshipShape>
         <microsoft.VisualStudio.Modeling.DslDesigner.RelationshipShape Id="b2e2bd24-b465-42d6-82e6-8c6ae05f8146" isExpanded="false" absoluteBounds="4.95, 15.202124023437504, 1.35, 0.25">
-          <DomainRelationshipMoniker Name="/Microsoft.Data.Entity.Design.EntityDesigner.ViewModel/EntityTypeHasNavigationProperties" />
+          <DomainRelationshipMoniker Name="/Microsoft.Data.Entity.Design.Dsl.ViewModel/EntityTypeHasNavigationProperties" />
           <relativeChildShapes />
           <nestedChildShapes>
             <elementListCompartment Id="4449575a-7309-4182-a2ea-5954c997d703" absoluteBounds="4.965, 15.462124023437506, 1.3200000000000003, 0.2493896484375" name="Properties" titleTextColor="Black" itemTextColor="Black" />
           </nestedChildShapes>
         </microsoft.VisualStudio.Modeling.DslDesigner.RelationshipShape>
         <microsoft.VisualStudio.Modeling.DslDesigner.RelationshipShape Id="cc13f1d5-1003-40bd-9a47-16964f1e2561" isExpanded="false" absoluteBounds="4.95, 12.335830078125001, 1.35, 0.25">
-          <DomainRelationshipMoniker Name="/Microsoft.Data.Entity.Design.EntityDesigner.ViewModel/Inheritance" />
+          <DomainRelationshipMoniker Name="/Microsoft.Data.Entity.Design.Dsl.ViewModel/Inheritance" />
           <relativeChildShapes />
           <nestedChildShapes>
             <elementListCompartment Id="60c4934c-a75b-475e-8be7-30b512a676a6" absoluteBounds="4.965, 12.595830078125, 1.3200000000000003, 0.2493896484375" name="Properties" titleTextColor="Black" itemTextColor="Black" />
@@ -310,79 +310,79 @@
           <Roots>
             <RootNode Id="62add439-904d-4ef5-825e-1476ae69a113">
               <Class>
-                <DomainClassMoniker Name="/Microsoft.Data.Entity.Design.EntityDesigner.ViewModel/NameableItem" />
+                <DomainClassMoniker Name="/Microsoft.Data.Entity.Design.Dsl.ViewModel/NameableItem" />
               </Class>
             </RootNode>
             <RootNode Id="efed7166-1a05-412f-9d53-3ab50f293791">
               <Class>
-                <DomainRelationshipMoniker Name="/Microsoft.Data.Entity.Design.EntityDesigner.ViewModel/Inheritance" />
+                <DomainRelationshipMoniker Name="/Microsoft.Data.Entity.Design.Dsl.ViewModel/Inheritance" />
               </Class>
             </RootNode>
             <RootNode Id="15431ee3-d570-4715-9352-4d887500a22b">
               <Class>
-                <DomainRelationshipMoniker Name="/Microsoft.Data.Entity.Design.EntityDesigner.ViewModel/Association" />
+                <DomainRelationshipMoniker Name="/Microsoft.Data.Entity.Design.Dsl.ViewModel/Association" />
               </Class>
             </RootNode>
             <RootNode Id="798fdc7e-2af5-42e9-bffe-a023bd3bdd56">
               <Class>
-                <DomainClassMoniker Name="/Microsoft.Data.Entity.Design.EntityDesigner.ViewModel/EntityDesignerViewModel" />
+                <DomainClassMoniker Name="/Microsoft.Data.Entity.Design.Dsl.ViewModel/EntityDesignerViewModel" />
               </Class>
             </RootNode>
           </Roots>
           <Arcs>
             <SourceRoleNode Id="d7bb832d-f714-423d-990a-eb9f457b0049" IsLeaf="true">
               <Role>
-                <DomainRoleMoniker Name="/Microsoft.Data.Entity.Design.EntityDesigner.ViewModel/EntityTypeHasProperties/EntityType" />
+                <DomainRoleMoniker Name="/Microsoft.Data.Entity.Design.Dsl.ViewModel/EntityTypeHasProperties/EntityType" />
               </Role>
             </SourceRoleNode>
             <SourceRoleNode Id="b7096df6-b3c6-474a-9e82-0f85f995a1d1">
               <Role>
-                <DomainRoleMoniker Name="/Microsoft.Data.Entity.Design.EntityDesigner/EntityDesignerViewModelHasEntityTypes/EntityDesignerViewModel" />
+                <DomainRoleMoniker Name="/Microsoft.Data.Entity.Design.Dsl/EntityDesignerViewModelHasEntityTypes/EntityDesignerViewModel" />
               </Role>
             </SourceRoleNode>
             <InheritanceNode Id="5cbbf250-c275-4d32-be3b-f378d137eceb">
               <InheritanceLink>
-                <ClassHasBaseClassMoniker Name="/Microsoft.Data.Entity.Design.EntityDesigner.ViewModel/PropertyBase" />
+                <ClassHasBaseClassMoniker Name="/Microsoft.Data.Entity.Design.Dsl.ViewModel/PropertyBase" />
               </InheritanceLink>
             </InheritanceNode>
             <InheritanceNode Id="1408cc0b-5988-4eef-a026-c71bbc32bf66">
               <InheritanceLink>
-                <ClassHasBaseClassMoniker Name="/Microsoft.Data.Entity.Design.EntityDesigner.ViewModel/Property" />
+                <ClassHasBaseClassMoniker Name="/Microsoft.Data.Entity.Design.Dsl.ViewModel/Property" />
               </InheritanceLink>
             </InheritanceNode>
             <InheritanceNode Id="77f17508-c8e5-4f06-aa81-3123551fd28c">
               <InheritanceLink>
-                <ClassHasBaseClassMoniker Name="/Microsoft.Data.Entity.Design.EntityDesigner.ViewModel/NavigationProperty" />
+                <ClassHasBaseClassMoniker Name="/Microsoft.Data.Entity.Design.Dsl.ViewModel/NavigationProperty" />
               </InheritanceLink>
             </InheritanceNode>
             <SourceRoleNode Id="03e2946f-1a58-458e-951c-304ed8421571" IsLeaf="true">
               <Role>
-                <DomainRoleMoniker Name="/Microsoft.Data.Entity.Design.EntityDesigner.ViewModel/Association/SourceEntityType" />
+                <DomainRoleMoniker Name="/Microsoft.Data.Entity.Design.Dsl.ViewModel/Association/SourceEntityType" />
               </Role>
             </SourceRoleNode>
             <SourceRoleNode Id="7a998909-438b-49f8-8409-de3d62d1f0c4" IsLeaf="true">
               <Role>
-                <DomainRoleMoniker Name="/Microsoft.Data.Entity.Design.EntityDesigner.ViewModel/EntityTypeHasNavigationProperties/EntityType" />
+                <DomainRoleMoniker Name="/Microsoft.Data.Entity.Design.Dsl.ViewModel/EntityTypeHasNavigationProperties/EntityType" />
               </Role>
             </SourceRoleNode>
             <InheritanceNode Id="233a79f6-b2a4-4eb9-97ab-bf66ef9832cf" IsLeaf="true">
               <InheritanceLink>
-                <ClassHasBaseClassMoniker Name="/Microsoft.Data.Entity.Design.EntityDesigner.ViewModel/EntityType" />
+                <ClassHasBaseClassMoniker Name="/Microsoft.Data.Entity.Design.Dsl.ViewModel/EntityType" />
               </InheritanceLink>
             </InheritanceNode>
             <SourceRoleNode Id="1cdafa74-6b50-4aa7-aaa6-6eccd8f62426" IsLeaf="true">
               <Role>
-                <DomainRoleMoniker Name="/Microsoft.Data.Entity.Design.EntityDesigner.ViewModel/Inheritance/SourceEntityType" />
+                <DomainRoleMoniker Name="/Microsoft.Data.Entity.Design.Dsl.ViewModel/Inheritance/SourceEntityType" />
               </Role>
             </SourceRoleNode>
             <InheritanceNode Id="4b0e4d58-f8a9-4585-bd37-09c9bbaca8fe">
               <InheritanceLink>
-                <ClassHasBaseClassMoniker Name="/Microsoft.Data.Entity.Design.EntityDesigner.ViewModel/ComplexProperty" />
+                <ClassHasBaseClassMoniker Name="/Microsoft.Data.Entity.Design.Dsl.ViewModel/ComplexProperty" />
               </InheritanceLink>
             </InheritanceNode>
             <InheritanceNode Id="6d63ba28-6889-4a85-903d-114505abc257">
               <InheritanceLink>
-                <ClassHasBaseClassMoniker Name="/Microsoft.Data.Entity.Design.EntityDesigner.ViewModel/ScalarProperty" />
+                <ClassHasBaseClassMoniker Name="/Microsoft.Data.Entity.Design.Dsl.ViewModel/ScalarProperty" />
               </InheritanceLink>
             </InheritanceNode>
           </Arcs>
@@ -393,22 +393,22 @@
           <Roots>
             <RootNode Id="d16cafbe-8dc1-4620-a681-0d69bb70181a">
               <Class>
-                <DiagramMoniker Name="/Microsoft.Data.Entity.Design.EntityDesigner.View/EntityDesignerDiagram" />
+                <DiagramMoniker Name="/Microsoft.Data.Entity.Design.Dsl.View/EntityDesignerDiagram" />
               </Class>
             </RootNode>
             <RootNode Id="7b508fd6-2aba-448b-9cd7-68734b778234">
               <Class>
-                <CompartmentShapeMoniker Name="/Microsoft.Data.Entity.Design.EntityDesigner.View/EntityTypeShape" />
+                <CompartmentShapeMoniker Name="/Microsoft.Data.Entity.Design.Dsl.View/EntityTypeShape" />
               </Class>
             </RootNode>
             <RootNode Id="2c6346c3-8660-46e0-9596-c62b060fec19">
               <Class>
-                <ConnectorMoniker Name="/Microsoft.Data.Entity.Design.EntityDesigner.View/InheritanceConnector" />
+                <ConnectorMoniker Name="/Microsoft.Data.Entity.Design.Dsl.View/InheritanceConnector" />
               </Class>
             </RootNode>
             <RootNode Id="038702ee-3ae8-4655-a356-6f0a450e7802">
               <Class>
-                <ConnectorMoniker Name="/Microsoft.Data.Entity.Design.EntityDesigner.View/AssociationConnector" />
+                <ConnectorMoniker Name="/Microsoft.Data.Entity.Design.Dsl.View/AssociationConnector" />
               </Class>
             </RootNode>
           </Roots>

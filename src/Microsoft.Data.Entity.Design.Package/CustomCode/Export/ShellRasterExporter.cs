@@ -6,7 +6,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.View.Export
+namespace Microsoft.Data.Entity.Design.Dsl.View.Export
 {
     /// <summary>
     /// Exports diagrams to raster image formats using the DSL SDK, which is what the designer has always used and

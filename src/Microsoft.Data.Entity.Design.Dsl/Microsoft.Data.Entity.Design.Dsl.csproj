@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>Microsoft.Data.Entity.Design.EntityDesigner</RootNamespace>
+    <RootNamespace>Microsoft.Data.Entity.Design.Dsl</RootNamespace>
     <AssemblyName>Microsoft.Data.Entity.Design.Dsl</AssemblyName>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>

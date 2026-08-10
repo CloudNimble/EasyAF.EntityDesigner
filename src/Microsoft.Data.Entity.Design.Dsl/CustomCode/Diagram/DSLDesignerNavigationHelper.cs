@@ -10,7 +10,7 @@ using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Shell;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.View
+namespace Microsoft.Data.Entity.Design.Dsl.View
 {
     /// <summary>
     ///     This class will set the focus on the "most-appropriate" DSL node for the give EFObject in the diagrams.

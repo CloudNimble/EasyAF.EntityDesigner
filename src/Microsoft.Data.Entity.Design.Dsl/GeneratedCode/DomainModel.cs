@@ -10,14 +10,14 @@
 using DslModeling = global::Microsoft.VisualStudio.Modeling;
 using DslDesign = global::Microsoft.VisualStudio.Modeling.Design;
 using DslDiagrams = global::Microsoft.VisualStudio.Modeling.Diagrams;
-namespace Microsoft.Data.Entity.Design.EntityDesigner
+namespace Microsoft.Data.Entity.Design.Dsl
 {
     /// <summary>
 	/// DomainModel MicrosoftDataEntityDesignDomainModel
 	/// ADO.NET Entity Framework Designer
 	/// </summary>
-	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel.DisplayName", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel.Description", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
+	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
 	[global::System.CLSCompliant(true)]
 	[DslModeling::DependsOnDomainModel(typeof(global::Microsoft.VisualStudio.Modeling.CoreDomainModel))]
 	[DslModeling::DependsOnDomainModel(typeof(global::Microsoft.VisualStudio.Modeling.Diagrams.CoreDesignSurfaceDomainModel))]
@@ -65,31 +65,31 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 		{
 			return new global::System.Type[]
 			{
-				typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.NameableItem),
-				typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityDesignerViewModel),
-				typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType),
-				typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Property),
-				typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.PropertyBase),
-				typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.NavigationProperty),
-				typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.ComplexProperty),
-				typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.ScalarProperty),
-				typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasProperties),
+				typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem),
+				typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel),
+				typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType),
+				typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property),
+				typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.PropertyBase),
+				typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty),
+				typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ComplexProperty),
+				typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty),
+				typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties),
 				typeof(EntityDesignerViewModelHasEntityTypes),
-				typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Association),
-				typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasNavigationProperties),
-				typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Inheritance),
-				typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.EntityDesignerDiagram),
-				typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.InheritanceConnector),
-				typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.AssociationConnector),
-				typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.EntityTypeShape),
-				typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.FixUpDiagram),
-				typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.DecoratorPropertyChanged),
-				typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.ConnectorRolePlayerChanged),
-				typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.CompartmentItemAddRule),
-				typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.CompartmentItemDeleteRule),
-				typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.CompartmentItemRolePlayerChangeRule),
-				typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.CompartmentItemRolePlayerPositionChangeRule),
-				typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.CompartmentItemChangeRule),
+				typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association),
+				typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties),
+				typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance),
+				typeof(global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram),
+				typeof(global::Microsoft.Data.Entity.Design.Dsl.View.InheritanceConnector),
+				typeof(global::Microsoft.Data.Entity.Design.Dsl.View.AssociationConnector),
+				typeof(global::Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape),
+				typeof(global::Microsoft.Data.Entity.Design.Dsl.View.FixUpDiagram),
+				typeof(global::Microsoft.Data.Entity.Design.Dsl.View.DecoratorPropertyChanged),
+				typeof(global::Microsoft.Data.Entity.Design.Dsl.View.ConnectorRolePlayerChanged),
+				typeof(global::Microsoft.Data.Entity.Design.Dsl.View.CompartmentItemAddRule),
+				typeof(global::Microsoft.Data.Entity.Design.Dsl.View.CompartmentItemDeleteRule),
+				typeof(global::Microsoft.Data.Entity.Design.Dsl.View.CompartmentItemRolePlayerChangeRule),
+				typeof(global::Microsoft.Data.Entity.Design.Dsl.View.CompartmentItemRolePlayerPositionChangeRule),
+				typeof(global::Microsoft.Data.Entity.Design.Dsl.View.CompartmentItemChangeRule),
 			};
 		}
 		/// <summary>
@@ -100,17 +100,17 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 		{
 			return new DomainMemberInfo[]
 			{
-				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.NameableItem), "Name", global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.NameableItem.NameDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.NameableItem.NamePropertyHandler)),
-				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityDesignerViewModel), "Namespace", global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityDesignerViewModel.NamespaceDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityDesignerViewModel.NamespacePropertyHandler)),
-				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType), "BaseTypeName", global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType.BaseTypeNameDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType.BaseTypeNamePropertyHandler)),
-				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType), "HasBaseType", global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType.HasBaseTypeDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType.HasBaseTypePropertyHandler)),
-				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Property), "Type", global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Property.TypeDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Property.TypePropertyHandler)),
-				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.ScalarProperty), "EntityKey", global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.ScalarProperty.EntityKeyDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.ScalarProperty.EntityKeyPropertyHandler)),
-				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Association), "Name", global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Association.NameDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Association.NamePropertyHandler)),
-				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Association), "SourceMultiplicity", global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Association.SourceMultiplicityDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Association.SourceMultiplicityPropertyHandler)),
-				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Association), "TargetMultiplicity", global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Association.TargetMultiplicityDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Association.TargetMultiplicityPropertyHandler)),
-				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.EntityDesignerDiagram), "Title", global::Microsoft.Data.Entity.Design.EntityDesigner.View.EntityDesignerDiagram.TitleDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.EntityDesignerDiagram.TitlePropertyHandler)),
-				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.EntityTypeShape), "FillColor", global::Microsoft.Data.Entity.Design.EntityDesigner.View.EntityTypeShape.FillColorDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.EntityTypeShape.FillColorPropertyHandler)),
+				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem), "Name", global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem.NameDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem.NamePropertyHandler)),
+				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel), "Namespace", global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel.NamespaceDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel.NamespacePropertyHandler)),
+				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType), "BaseTypeName", global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType.BaseTypeNameDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType.BaseTypeNamePropertyHandler)),
+				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType), "HasBaseType", global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType.HasBaseTypeDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType.HasBaseTypePropertyHandler)),
+				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property), "Type", global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property.TypeDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property.TypePropertyHandler)),
+				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty), "EntityKey", global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty.EntityKeyDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty.EntityKeyPropertyHandler)),
+				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association), "Name", global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.NameDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.NamePropertyHandler)),
+				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association), "SourceMultiplicity", global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.SourceMultiplicityDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.SourceMultiplicityPropertyHandler)),
+				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association), "TargetMultiplicity", global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.TargetMultiplicityDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.TargetMultiplicityPropertyHandler)),
+				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram), "Title", global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram.TitleDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram.TitlePropertyHandler)),
+				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape), "FillColor", global::Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape.FillColorDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape.FillColorPropertyHandler)),
 			};
 		}
 		/// <summary>
@@ -121,16 +121,16 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 		{
 			return new DomainRolePlayerInfo[]
 			{
-				new DomainRolePlayerInfo(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasProperties), "EntityType", global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasProperties.EntityTypeDomainRoleId),
-				new DomainRolePlayerInfo(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasProperties), "Property", global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasProperties.PropertyDomainRoleId),
+				new DomainRolePlayerInfo(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties), "EntityType", global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.EntityTypeDomainRoleId),
+				new DomainRolePlayerInfo(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties), "Property", global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.PropertyDomainRoleId),
 				new DomainRolePlayerInfo(typeof(EntityDesignerViewModelHasEntityTypes), "EntityDesignerViewModel", EntityDesignerViewModelHasEntityTypes.EntityDesignerViewModelDomainRoleId),
 				new DomainRolePlayerInfo(typeof(EntityDesignerViewModelHasEntityTypes), "EntityType", EntityDesignerViewModelHasEntityTypes.EntityTypeDomainRoleId),
-				new DomainRolePlayerInfo(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Association), "SourceEntityType", global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Association.SourceEntityTypeDomainRoleId),
-				new DomainRolePlayerInfo(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Association), "TargetEntityType", global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Association.TargetEntityTypeDomainRoleId),
-				new DomainRolePlayerInfo(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasNavigationProperties), "EntityType", global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasNavigationProperties.EntityTypeDomainRoleId),
-				new DomainRolePlayerInfo(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasNavigationProperties), "NavigationProperty", global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasNavigationProperties.NavigationPropertyDomainRoleId),
-				new DomainRolePlayerInfo(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Inheritance), "SourceEntityType", global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Inheritance.SourceEntityTypeDomainRoleId),
-				new DomainRolePlayerInfo(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Inheritance), "TargetEntityType", global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Inheritance.TargetEntityTypeDomainRoleId),
+				new DomainRolePlayerInfo(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association), "SourceEntityType", global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.SourceEntityTypeDomainRoleId),
+				new DomainRolePlayerInfo(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association), "TargetEntityType", global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.TargetEntityTypeDomainRoleId),
+				new DomainRolePlayerInfo(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties), "EntityType", global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.EntityTypeDomainRoleId),
+				new DomainRolePlayerInfo(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties), "NavigationProperty", global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.NavigationPropertyDomainRoleId),
+				new DomainRolePlayerInfo(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance), "SourceEntityType", global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.SourceEntityTypeDomainRoleId),
+				new DomainRolePlayerInfo(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance), "TargetEntityType", global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.TargetEntityTypeDomainRoleId),
 			};
 		}
 		#endregion
@@ -151,15 +151,15 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 			if (createElementMap == null)
 			{
 				createElementMap = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(12);
-				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityDesignerViewModel), 0);
-				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType), 1);
-				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.NavigationProperty), 2);
-				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.ComplexProperty), 3);
-				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.ScalarProperty), 4);
-				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.EntityDesignerDiagram), 5);
-				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.InheritanceConnector), 6);
-				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.AssociationConnector), 7);
-				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.EntityTypeShape), 8);
+				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel), 0);
+				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType), 1);
+				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty), 2);
+				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ComplexProperty), 3);
+				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty), 4);
+				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram), 5);
+				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.InheritanceConnector), 6);
+				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.AssociationConnector), 7);
+				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape), 8);
 			}
 			int index;
 			if (!createElementMap.TryGetValue(elementType, out index))
@@ -167,21 +167,21 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 				// construct exception error message		
 				string exceptionError = string.Format(
 								global::System.Globalization.CultureInfo.CurrentCulture,
-								global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("UnrecognizedElementType"),
+								global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("UnrecognizedElementType"),
 								elementType.Name);
 				throw new global::System.ArgumentException(exceptionError, "elementType");
 			}
 			switch (index)
 			{
-				case 0: return new global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityDesignerViewModel(partition, propertyAssignments);
-				case 1: return new global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType(partition, propertyAssignments);
-				case 2: return new global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.NavigationProperty(partition, propertyAssignments);
-				case 3: return new global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.ComplexProperty(partition, propertyAssignments);
-				case 4: return new global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.ScalarProperty(partition, propertyAssignments);
-				case 5: return new global::Microsoft.Data.Entity.Design.EntityDesigner.View.EntityDesignerDiagram(partition, propertyAssignments);
-				case 6: return new global::Microsoft.Data.Entity.Design.EntityDesigner.View.InheritanceConnector(partition, propertyAssignments);
-				case 7: return new global::Microsoft.Data.Entity.Design.EntityDesigner.View.AssociationConnector(partition, propertyAssignments);
-				case 8: return new global::Microsoft.Data.Entity.Design.EntityDesigner.View.EntityTypeShape(partition, propertyAssignments);
+				case 0: return new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel(partition, propertyAssignments);
+				case 1: return new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType(partition, propertyAssignments);
+				case 2: return new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty(partition, propertyAssignments);
+				case 3: return new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ComplexProperty(partition, propertyAssignments);
+				case 4: return new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty(partition, propertyAssignments);
+				case 5: return new global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram(partition, propertyAssignments);
+				case 6: return new global::Microsoft.Data.Entity.Design.Dsl.View.InheritanceConnector(partition, propertyAssignments);
+				case 7: return new global::Microsoft.Data.Entity.Design.Dsl.View.AssociationConnector(partition, propertyAssignments);
+				case 8: return new global::Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape(partition, propertyAssignments);
 				default: return null;
 			}
 		}
@@ -204,11 +204,11 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 			if (createElementLinkMap == null)
 			{
 				createElementLinkMap = new global::System.Collections.Generic.Dictionary<global::System.Type, int>(5);
-				createElementLinkMap.Add(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasProperties), 0);
+				createElementLinkMap.Add(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties), 0);
 				createElementLinkMap.Add(typeof(EntityDesignerViewModelHasEntityTypes), 1);
-				createElementLinkMap.Add(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Association), 2);
-				createElementLinkMap.Add(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasNavigationProperties), 3);
-				createElementLinkMap.Add(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Inheritance), 4);
+				createElementLinkMap.Add(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association), 2);
+				createElementLinkMap.Add(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties), 3);
+				createElementLinkMap.Add(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance), 4);
 			}
 			int index;
 			if (!createElementLinkMap.TryGetValue(elementLinkType, out index))
@@ -216,18 +216,18 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 				// construct exception error message
 				string exceptionError = string.Format(
 								global::System.Globalization.CultureInfo.CurrentCulture,
-								global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("UnrecognizedElementLinkType"),
+								global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("UnrecognizedElementLinkType"),
 								elementLinkType.Name);
 				throw new global::System.ArgumentException(exceptionError, "elementLinkType");
 			
 			}
 			switch (index)
 			{
-				case 0: return new global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasProperties(partition, roleAssignments, propertyAssignments);
+				case 0: return new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties(partition, roleAssignments, propertyAssignments);
 				case 1: return new EntityDesignerViewModelHasEntityTypes(partition, roleAssignments, propertyAssignments);
-				case 2: return new global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Association(partition, roleAssignments, propertyAssignments);
-				case 3: return new global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasNavigationProperties(partition, roleAssignments, propertyAssignments);
-				case 4: return new global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Inheritance(partition, roleAssignments, propertyAssignments);
+				case 2: return new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association(partition, roleAssignments, propertyAssignments);
+				case 3: return new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties(partition, roleAssignments, propertyAssignments);
+				case 4: return new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance(partition, roleAssignments, propertyAssignments);
 				default: return null;
 			}
 		}
@@ -239,7 +239,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 		/// <summary>
 		/// The base name of this model's resources.
 		/// </summary>
-		public const string ResourceBaseName = "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx";
+		public const string ResourceBaseName = "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx";
 		
 		/// <summary>
 		/// Gets the DomainModel's ResourceManager. If the ResourceManager does not already exist, then it is created.
@@ -347,14 +347,14 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 			if(store == null) throw new global::System.ArgumentNullException("store");
 			
 			DslModeling::RuleManager ruleManager = store.RuleManager;
-			ruleManager.EnableRule(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.FixUpDiagram));
-			ruleManager.EnableRule(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.DecoratorPropertyChanged));
-			ruleManager.EnableRule(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.ConnectorRolePlayerChanged));
-			ruleManager.EnableRule(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.CompartmentItemAddRule));
-			ruleManager.EnableRule(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.CompartmentItemDeleteRule));
-			ruleManager.EnableRule(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.CompartmentItemRolePlayerChangeRule));
-			ruleManager.EnableRule(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.CompartmentItemRolePlayerPositionChangeRule));
-			ruleManager.EnableRule(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.CompartmentItemChangeRule));
+			ruleManager.EnableRule(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.FixUpDiagram));
+			ruleManager.EnableRule(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.DecoratorPropertyChanged));
+			ruleManager.EnableRule(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.ConnectorRolePlayerChanged));
+			ruleManager.EnableRule(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.CompartmentItemAddRule));
+			ruleManager.EnableRule(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.CompartmentItemDeleteRule));
+			ruleManager.EnableRule(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.CompartmentItemRolePlayerChangeRule));
+			ruleManager.EnableRule(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.CompartmentItemRolePlayerPositionChangeRule));
+			ruleManager.EnableRule(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.CompartmentItemChangeRule));
 		}
 		
 		/// <summary>
@@ -365,14 +365,14 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 			if(store == null) throw new global::System.ArgumentNullException("store");
 			
 			DslModeling::RuleManager ruleManager = store.RuleManager;
-			ruleManager.DisableRule(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.FixUpDiagram));
-			ruleManager.DisableRule(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.DecoratorPropertyChanged));
-			ruleManager.DisableRule(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.ConnectorRolePlayerChanged));
-			ruleManager.DisableRule(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.CompartmentItemAddRule));
-			ruleManager.DisableRule(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.CompartmentItemDeleteRule));
-			ruleManager.DisableRule(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.CompartmentItemRolePlayerChangeRule));
-			ruleManager.DisableRule(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.CompartmentItemRolePlayerPositionChangeRule));
-			ruleManager.DisableRule(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.View.CompartmentItemChangeRule));
+			ruleManager.DisableRule(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.FixUpDiagram));
+			ruleManager.DisableRule(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.DecoratorPropertyChanged));
+			ruleManager.DisableRule(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.ConnectorRolePlayerChanged));
+			ruleManager.DisableRule(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.CompartmentItemAddRule));
+			ruleManager.DisableRule(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.CompartmentItemDeleteRule));
+			ruleManager.DisableRule(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.CompartmentItemRolePlayerChangeRule));
+			ruleManager.DisableRule(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.CompartmentItemRolePlayerPositionChangeRule));
+			ruleManager.DisableRule(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.CompartmentItemChangeRule));
 		}
 		#endregion
 	}
@@ -408,9 +408,9 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 		public MicrosoftDataEntityDesignDeleteClosureBase()
 		{
 			#region Initialize DomainData Table
-			DomainRoles.Add(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasProperties.PropertyDomainRoleId, true);
-			DomainRoles.Add(global::Microsoft.Data.Entity.Design.EntityDesigner.EntityDesignerViewModelHasEntityTypes.EntityTypeDomainRoleId, true);
-			DomainRoles.Add(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasNavigationProperties.NavigationPropertyDomainRoleId, true);
+			DomainRoles.Add(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.PropertyDomainRoleId, true);
+			DomainRoles.Add(global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes.EntityTypeDomainRoleId, true);
+			DomainRoles.Add(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.NavigationPropertyDomainRoleId, true);
 			#endregion
 		}
 		/// <summary>

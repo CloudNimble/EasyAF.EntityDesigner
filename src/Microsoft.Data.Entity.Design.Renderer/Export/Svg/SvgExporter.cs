@@ -6,7 +6,7 @@ using System.IO;
 using System.Text;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.View.Export
+namespace Microsoft.Data.Entity.Design.Dsl.View.Export
 {
     /// <summary>
     /// Exports an EntityDesignerDiagram to SVG format.

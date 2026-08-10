@@ -2,12 +2,12 @@
 
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.Data.Entity.Design.EntityDesigner.ModelChanges;
-using Microsoft.Data.Entity.Design.EntityDesigner.Utils;
+using Microsoft.Data.Entity.Design.Dsl.ModelChanges;
+using Microsoft.Data.Entity.Design.Dsl.Utils;
 using Microsoft.Data.Tools.VSXmlDesignerBase.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
+namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 {
     [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
     internal partial class Property

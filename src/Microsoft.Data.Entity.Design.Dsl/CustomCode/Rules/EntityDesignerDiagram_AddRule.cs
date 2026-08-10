@@ -1,10 +1,10 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.EntityDesigner.View;
+using Microsoft.Data.Entity.Design.Dsl.View;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.Rules
+namespace Microsoft.Data.Entity.Design.Dsl.Rules
 {
     /// <summary>
     ///     After a shape is added to the diagram, keep track of it

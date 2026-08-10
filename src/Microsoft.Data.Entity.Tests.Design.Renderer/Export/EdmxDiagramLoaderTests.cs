@@ -3,7 +3,7 @@
 using System.IO;
 using System.Linq;
 using FluentAssertions;
-using Microsoft.Data.Entity.Design.EntityDesigner.View;
+using Microsoft.Data.Entity.Design.Dsl.View;
 using Microsoft.Data.Entity.Design.Renderer.Headless;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

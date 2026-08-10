@@ -3,7 +3,7 @@
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Tools.VSXmlDesignerBase.VisualStudio.Modeling;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.Rules
+namespace Microsoft.Data.Entity.Design.Dsl.Rules
 {
     internal abstract class ViewModelChange : CommonViewModelChange
     {

@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
-using Microsoft.Data.Entity.Design.EntityDesigner.CustomCode.Utils;
-using Microsoft.Data.Entity.Design.EntityDesigner.CustomSerializer;
-using Microsoft.Data.Entity.Design.EntityDesigner.ViewModel;
+using Microsoft.Data.Entity.Design.Dsl.CustomCode.Utils;
+using Microsoft.Data.Entity.Design.Dsl.CustomSerializer;
+using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Entity.Design.UI.Views.Dialogs;
@@ -16,9 +16,9 @@ using Microsoft.VisualStudio.Modeling.Diagrams.GraphObject;
 using Microsoft.VisualStudio.Modeling.Immutability;
 using Microsoft.VisualStudio.PlatformUI;
 using DesignRes = Microsoft.Data.Entity.Design.Resources;
-using EntityDesignerRes = Microsoft.Data.Entity.Design.EntityDesigner.Properties.Resources;
+using EntityDesignerRes = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.View
+namespace Microsoft.Data.Entity.Design.Dsl.View
 {
     partial class AssociationConnector
     {

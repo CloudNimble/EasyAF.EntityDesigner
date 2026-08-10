@@ -4,11 +4,11 @@ using EDMModelHelper = Microsoft.Data.Entity.Design.Model.ModelHelper;
 using System.Diagnostics;
 using System.IO;
 using Microsoft.Data.Entity.Design.Base.Context;
-using Microsoft.Data.Entity.Design.EntityDesigner.CustomSerializer;
-using Microsoft.Data.Entity.Design.EntityDesigner.View;
+using Microsoft.Data.Entity.Design.Dsl.CustomSerializer;
+using Microsoft.Data.Entity.Design.Dsl.View;
 using Microsoft.VisualStudio.Modeling;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.Utils
+namespace Microsoft.Data.Entity.Design.Dsl.Utils
 {
     internal static class ModelUtils
     {

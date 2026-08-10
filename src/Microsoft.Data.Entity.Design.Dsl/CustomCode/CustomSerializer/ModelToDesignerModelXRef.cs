@@ -4,15 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Base.Context;
-using Microsoft.Data.Entity.Design.EntityDesigner.ViewModel;
+using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.VisualStudio.Modeling;
 using Association = Microsoft.Data.Entity.Design.Model.Entity.Association;
-using EntityType = Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType;
+using EntityType = Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType;
 using NavigationProperty = Microsoft.Data.Entity.Design.Model.Entity.NavigationProperty;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.CustomSerializer
+namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
 {
     internal class ModelToDesignerModelXRef : ContextItem
     {

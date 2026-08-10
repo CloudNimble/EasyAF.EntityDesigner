@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.EntityDesigner;
-using Microsoft.Data.Entity.Design.EntityDesigner.ViewModel;
+using Microsoft.Data.Entity.Design.Dsl;
+using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.VisualStudio.Modeling;
 
 namespace Microsoft.Data.Entity.Tests.Design.Dsl.View.Export

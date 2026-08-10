@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.EntityDesigner.View;
+using Microsoft.Data.Entity.Design.Dsl.View;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.View.Export
+namespace Microsoft.Data.Entity.Design.Dsl.View.Export
 {
     /// <summary>
     ///     Writes a diagram to a raster image file.

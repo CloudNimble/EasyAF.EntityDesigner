@@ -6,7 +6,7 @@ using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.VisualStudio.Modeling;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
+namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 {
     /// <summary>
     ///     DSL allows us to override the functionality that picks a unique name for a new, nameable domain object.

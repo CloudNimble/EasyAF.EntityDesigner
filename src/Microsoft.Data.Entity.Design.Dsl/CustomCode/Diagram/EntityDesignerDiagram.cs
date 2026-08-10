@@ -2,11 +2,11 @@
 
 using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Entity.Design.Base.Shell;
-using Microsoft.Data.Entity.Design.EntityDesigner.CustomCode.Utils;
-using Microsoft.Data.Entity.Design.EntityDesigner.ModelChanges;
-using Microsoft.Data.Entity.Design.EntityDesigner.Rules;
-using Microsoft.Data.Entity.Design.EntityDesigner.Utils;
-using Microsoft.Data.Entity.Design.EntityDesigner.ViewModel;
+using Microsoft.Data.Entity.Design.Dsl.CustomCode.Utils;
+using Microsoft.Data.Entity.Design.Dsl.ModelChanges;
+using Microsoft.Data.Entity.Design.Dsl.Rules;
+using Microsoft.Data.Entity.Design.Dsl.Utils;
+using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;
@@ -37,16 +37,16 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
-using EntityDesignerRes = Microsoft.Data.Entity.Design.EntityDesigner.Properties.Resources;
+using EntityDesignerRes = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
 using ModelAssociation = Microsoft.Data.Entity.Design.Model.Entity.Association;
 using ModelDiagram = Microsoft.Data.Entity.Design.Model.Designer.Diagram;
-using ViewModelEntityType = Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType;
-using ViewModelNavigationProperty = Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.NavigationProperty;
-using ViewModelProperty = Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Property;
-using ViewModelPropertyBase = Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.PropertyBase;
+using ViewModelEntityType = Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType;
+using ViewModelNavigationProperty = Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty;
+using ViewModelProperty = Microsoft.Data.Entity.Design.Dsl.ViewModel.Property;
+using ViewModelPropertyBase = Microsoft.Data.Entity.Design.Dsl.ViewModel.PropertyBase;
 using VSPackage = Microsoft.VisualStudio.Shell.Package;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.View
+namespace Microsoft.Data.Entity.Design.Dsl.View
 {
     partial class EntityDesignerDiagram : IViewDiagram
     {

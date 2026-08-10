@@ -8,7 +8,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using Microsoft.VisualStudio.PlatformUI;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.View.ContextMenu
+namespace Microsoft.Data.Entity.Design.Dsl.View.ContextMenu
 {
     /// <summary>
     /// A Windows 11-style context menu for the Entity Designer diagram surface.

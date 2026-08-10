@@ -1,11 +1,11 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.EntityDesigner.View;
-using Microsoft.Data.Entity.Design.EntityDesigner.ViewModel;
+using Microsoft.Data.Entity.Design.Dsl.View;
+using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model.Commands;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.ModelChanges
+namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
 {
     internal class AssociationConnectorDelete : AssociationConnectorModelChange
     {

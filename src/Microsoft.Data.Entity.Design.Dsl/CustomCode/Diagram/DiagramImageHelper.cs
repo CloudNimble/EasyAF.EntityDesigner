@@ -3,9 +3,9 @@
 using System.Collections.Generic;
 using System.Drawing;
 using Microsoft.Data.Entity.Design.VisualStudio;
-using EntityDesignerRes = Microsoft.Data.Entity.Design.EntityDesigner.Properties.Resources;
+using EntityDesignerRes = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.View
+namespace Microsoft.Data.Entity.Design.Dsl.View
 {
     /// <summary>
     /// Contains the set of header icons for an entity type shape, colorized to match the header text.

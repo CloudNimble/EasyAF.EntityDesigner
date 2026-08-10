@@ -2,9 +2,9 @@
 
 using System.Collections.Generic;
 using Microsoft.VisualStudio.Modeling.Diagrams;
-using EntityDesignerRes = Microsoft.Data.Entity.Design.EntityDesigner.Properties.Resources;
+using EntityDesignerRes = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.View
+namespace Microsoft.Data.Entity.Design.Dsl.View
 {
     internal class AutoArrangeHelper
     {

@@ -2,7 +2,7 @@
 
 using System.Drawing;
 using System.Text;
-using Microsoft.Data.Entity.Design.EntityDesigner.View.Export;
+using Microsoft.Data.Entity.Design.Dsl.View.Export;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;

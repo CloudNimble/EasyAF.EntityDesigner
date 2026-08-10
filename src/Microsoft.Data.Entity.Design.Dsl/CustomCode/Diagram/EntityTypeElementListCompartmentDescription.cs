@@ -3,7 +3,7 @@
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.View
+namespace Microsoft.Data.Entity.Design.Dsl.View
 {
     internal class EntityTypeElementListCompartmentDescription : ElementListCompartmentDescription
     {

@@ -26,27 +26,27 @@ namespace Microsoft.Data.Entity.Design.Package
 	/// </summary>
 	[VSShell::DefaultRegistryRoot("Software\\Microsoft\\VisualStudio\\10.0")]
 	[VSShell::PackageRegistration(RegisterUsing = VSShell::RegistrationMethod.Assembly, UseManagedResourcesOnly = true)]
-	[VSShell::ProvideStaticToolboxGroup("@Entity FrameworkToolboxTab;Microsoft.Data.Entity.Design.EntityDesigner.dll", "Microsoft.Data.Entity.Design.Package.Entity FrameworkToolboxTab")]
+	[VSShell::ProvideStaticToolboxGroup("@Entity FrameworkToolboxTab;Microsoft.Data.Entity.Design.Dsl.dll", "Microsoft.Data.Entity.Design.Package.Entity FrameworkToolboxTab")]
 	[VSShell::ProvideStaticToolboxItem("Microsoft.Data.Entity.Design.Package.Entity FrameworkToolboxTab",
-					"@EntityToolToolboxItem;Microsoft.Data.Entity.Design.EntityDesigner.dll", 
+					"@EntityToolToolboxItem;Microsoft.Data.Entity.Design.Dsl.dll", 
 					"Microsoft.Data.Entity.Design.Package.EntityToolToolboxItem", 
 					"CF_TOOLBOXITEMCONTAINER,CF_TOOLBOXITEMCONTAINER_HASH,CF_TOOLBOXITEMCONTAINER_CONTENTS", 
 					"vs.edm.common.entitytypes", 
-					"@EntityToolToolboxBitmap;Microsoft.Data.Entity.Design.EntityDesigner.dll", 
+					"@EntityToolToolboxBitmap;Microsoft.Data.Entity.Design.Dsl.dll", 
 					0xff00ff)]
 	[VSShell::ProvideStaticToolboxItem("Microsoft.Data.Entity.Design.Package.Entity FrameworkToolboxTab",
-					"@AssociationToolToolboxItem;Microsoft.Data.Entity.Design.EntityDesigner.dll", 
+					"@AssociationToolToolboxItem;Microsoft.Data.Entity.Design.Dsl.dll", 
 					"Microsoft.Data.Entity.Design.Package.AssociationToolToolboxItem", 
 					"CF_TOOLBOXITEMCONTAINER,CF_TOOLBOXITEMCONTAINER_HASH,CF_TOOLBOXITEMCONTAINER_CONTENTS", 
 					"vs.edm.common.associations", 
-					"@AssociationToolToolboxBitmap;Microsoft.Data.Entity.Design.EntityDesigner.dll", 
+					"@AssociationToolToolboxBitmap;Microsoft.Data.Entity.Design.Dsl.dll", 
 					0xff00ff)]
 	[VSShell::ProvideStaticToolboxItem("Microsoft.Data.Entity.Design.Package.Entity FrameworkToolboxTab",
-					"@InheritanceToolToolboxItem;Microsoft.Data.Entity.Design.EntityDesigner.dll", 
+					"@InheritanceToolToolboxItem;Microsoft.Data.Entity.Design.Dsl.dll", 
 					"Microsoft.Data.Entity.Design.Package.InheritanceToolToolboxItem", 
 					"CF_TOOLBOXITEMCONTAINER,CF_TOOLBOXITEMCONTAINER_HASH,CF_TOOLBOXITEMCONTAINER_CONTENTS", 
 					"vs.edm.common.inheritancerelationships", 
-					"@InheritanceToolToolboxBitmap;Microsoft.Data.Entity.Design.EntityDesigner.dll", 
+					"@InheritanceToolToolboxBitmap;Microsoft.Data.Entity.Design.Dsl.dll", 
 					0xff00ff)]
 	[VSShell::ProvideEditorFactory(typeof(MicrosoftDataEntityDesignEditorFactory), 103, TrustLevel = VSShellInterop::__VSEDITORTRUSTLEVEL.ETL_AlwaysTrusted)]
 	[VSShell::ProvideEditorExtension(typeof(MicrosoftDataEntityDesignEditorFactory), "." + Constants.DesignerFileExtension, 50)]
@@ -62,7 +62,7 @@ namespace Microsoft.Data.Entity.Design.Package
 	[DslShell::ProvideXmlEditorChooserBlockSxSWithXmlEditor(@"MicrosoftDataEntityDesign", typeof(MicrosoftDataEntityDesignEditorFactory))]
 	internal abstract partial class MicrosoftDataEntityDesignPackageBase : DslShell::ModelingPackage
 	{
-		protected global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignToolboxHelper toolboxHelper;	
+		protected global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignToolboxHelper toolboxHelper;	
 		
 		/// <summary>
 		/// Initialization method called by the package base class when this package is loaded.
@@ -75,7 +75,7 @@ namespace Microsoft.Data.Entity.Design.Package
 			this.RegisterEditorFactory(new MicrosoftDataEntityDesignEditorFactory(this));
 			
 			// Initialize the toolbox helper
-			toolboxHelper = new global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignToolboxHelper(this);
+			toolboxHelper = new global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignToolboxHelper(this);
 
 			// Create the command set that handles menu commands provided by this package.
 			MicrosoftDataEntityDesignCommandSet commandSet = new MicrosoftDataEntityDesignCommandSet(this);
@@ -145,7 +145,7 @@ namespace Microsoft.Data.Entity.Design.Package
 	/// [VSShell::ProvideLoadKey("Standard", Constants.ProductVersion, Constants.ProductName, Constants.CompanyName, 1)]
 	/// </remarks>
 	[VSShell::ProvideToolboxItems(1)]
-	//[VSTextTemplatingHost::ProvideDirectiveProcessor(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.EntityFrameworkDirectiveProcessor), global::Microsoft.Data.Entity.Design.EntityDesigner.EntityFrameworkDirectiveProcessor.EntityFrameworkDirectiveProcessorName, "A directive processor that provides access to EntityFramework files")]
+	//[VSTextTemplatingHost::ProvideDirectiveProcessor(typeof(global::Microsoft.Data.Entity.Design.Dsl.EntityFrameworkDirectiveProcessor), global::Microsoft.Data.Entity.Design.Dsl.EntityFrameworkDirectiveProcessor.EntityFrameworkDirectiveProcessorName, "A directive processor that provides access to EntityFramework files")]
 	[global::System.Runtime.InteropServices.Guid(Constants.MicrosoftDataEntityDesignPackageId)]
 	internal sealed partial class MicrosoftDataEntityDesignPackage : MicrosoftDataEntityDesignPackageBase
 	{

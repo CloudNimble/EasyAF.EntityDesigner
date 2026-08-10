@@ -184,21 +184,21 @@ namespace Microsoft.Data.Entity.Design.Package
                 var projectKind = VsUtils.GetProjectKind(project);
                 if (projectKind == VsUtils.ProjectKind.CSharp)
                 {
-                    itemTemplateZipFile = EntityDesigner.Utils.Constants.AdoNetEntityDataModelCSharp;
+                    itemTemplateZipFile = Dsl.Utils.Constants.AdoNetEntityDataModelCSharp;
                 }
                 else if (projectKind == VsUtils.ProjectKind.VB)
                 {
-                    itemTemplateZipFile = EntityDesigner.Utils.Constants.AdoNetEntityDataModelVB;
+                    itemTemplateZipFile = Dsl.Utils.Constants.AdoNetEntityDataModelVB;
                 }
                 else if (projectKind == VsUtils.ProjectKind.Web)
                 {
                     if (VsUtils.IsWebSiteVBProject(project))
                     {
-                        itemTemplateZipFile = EntityDesigner.Utils.Constants.AdoNetEntityDataModelAspNetVB;
+                        itemTemplateZipFile = Dsl.Utils.Constants.AdoNetEntityDataModelAspNetVB;
                     }
                     else if (VsUtils.IsWebSiteCSharpProject(project))
                     {
-                        itemTemplateZipFile = EntityDesigner.Utils.Constants.AdoNetEntityDataModelAspNetCSharp;
+                        itemTemplateZipFile = Dsl.Utils.Constants.AdoNetEntityDataModelAspNetCSharp;
                     }
                 }
 

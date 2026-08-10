@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.View.ContextMenu
+namespace Microsoft.Data.Entity.Design.Dsl.View.ContextMenu
 {
     /// <summary>
     /// Converts null or empty strings to Collapsed visibility, otherwise Visible.

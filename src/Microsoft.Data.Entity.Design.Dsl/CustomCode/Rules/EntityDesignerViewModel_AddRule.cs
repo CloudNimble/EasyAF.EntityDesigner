@@ -2,11 +2,11 @@
 
 using System;
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.EntityDesigner.Utils;
-using Microsoft.Data.Entity.Design.EntityDesigner.ViewModel;
+using Microsoft.Data.Entity.Design.Dsl.Utils;
+using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.VisualStudio.Modeling;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.Rules
+namespace Microsoft.Data.Entity.Design.Dsl.Rules
 {
     /// <summary>
     ///     Rule fired when a ConceptualModel is created

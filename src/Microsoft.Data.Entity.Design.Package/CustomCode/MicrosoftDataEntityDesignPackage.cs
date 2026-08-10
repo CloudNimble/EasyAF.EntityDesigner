@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Windows.Threading;
-using Microsoft.Data.Entity.Design.EntityDesigner.View;
+using Microsoft.Data.Entity.Design.Dsl.View;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.UI.Views.MappingDetails;
 using Microsoft.Data.Entity.Design.VisualStudio;

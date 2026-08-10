@@ -5,7 +5,7 @@ using System.Linq;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
+namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 {
     internal static class DomainClassExtension
     {

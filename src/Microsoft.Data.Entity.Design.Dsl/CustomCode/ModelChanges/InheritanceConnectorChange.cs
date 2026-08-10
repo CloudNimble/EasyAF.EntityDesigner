@@ -3,13 +3,13 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.EntityDesigner.ViewModel;
+using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Designer;
 using Microsoft.VisualStudio.Modeling.Diagrams;
-using InheritanceConnector = Microsoft.Data.Entity.Design.EntityDesigner.View.InheritanceConnector;
+using InheritanceConnector = Microsoft.Data.Entity.Design.Dsl.View.InheritanceConnector;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.ModelChanges
+namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
 {
     internal class InheritanceConnectorChange : InheritanceConnectorModelChange
     {

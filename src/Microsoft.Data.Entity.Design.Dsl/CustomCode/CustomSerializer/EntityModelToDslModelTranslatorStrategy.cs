@@ -10,9 +10,9 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using Microsoft.Data.Entity.Design.Base.Context;
-using Microsoft.Data.Entity.Design.EntityDesigner.ModelChanges;
-using Microsoft.Data.Entity.Design.EntityDesigner.View;
-using Microsoft.Data.Entity.Design.EntityDesigner.ViewModel;
+using Microsoft.Data.Entity.Design.Dsl.ModelChanges;
+using Microsoft.Data.Entity.Design.Dsl.View;
+using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;
@@ -20,17 +20,17 @@ using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Tools.Dsl.ModelTranslator;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Diagrams.GraphObject;
-using EntityDesignerResources = Microsoft.Data.Entity.Design.EntityDesigner.Properties.Resources;
+using EntityDesignerResources = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
 using ModelAssociation = Microsoft.Data.Entity.Design.Model.Entity.Association;
 using ModelEntityType = Microsoft.Data.Entity.Design.Model.Entity.EntityType;
 using ModelNavigationProperty = Microsoft.Data.Entity.Design.Model.Entity.NavigationProperty;
 using ModelProperty = Microsoft.Data.Entity.Design.Model.Entity.Property;
-using ViewModelAssociation = Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Association;
-using ViewModelEntityType = Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType;
-using ViewModelNavigationProperty = Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.NavigationProperty;
-using ViewModelProperty = Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Property;
+using ViewModelAssociation = Microsoft.Data.Entity.Design.Dsl.ViewModel.Association;
+using ViewModelEntityType = Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType;
+using ViewModelNavigationProperty = Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty;
+using ViewModelProperty = Microsoft.Data.Entity.Design.Dsl.ViewModel.Property;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.CustomSerializer
+namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
 {
     internal class EntityModelToDslModelTranslatorStrategy : BaseTranslatorStrategy
     {

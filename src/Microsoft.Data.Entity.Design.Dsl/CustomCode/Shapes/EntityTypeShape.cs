@@ -7,8 +7,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
-using Microsoft.Data.Entity.Design.EntityDesigner.CustomCode.Utils;
-using Microsoft.Data.Entity.Design.EntityDesigner.ViewModel;
+using Microsoft.Data.Entity.Design.Dsl.CustomCode.Utils;
+using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model.Designer;
 using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.VisualStudio.Modeling;
@@ -16,9 +16,9 @@ using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Immutability;
 using Microsoft.VisualStudio.PlatformUI;
 using Diagram = Microsoft.Data.Entity.Design.Model.Designer.Diagram;
-using EntityDesignerRes = Microsoft.Data.Entity.Design.EntityDesigner.Properties.Resources;
+using EntityDesignerRes = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.View
+namespace Microsoft.Data.Entity.Design.Dsl.View
 {
     [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
     internal partial class EntityTypeShape

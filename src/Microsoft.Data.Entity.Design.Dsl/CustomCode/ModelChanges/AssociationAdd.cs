@@ -1,14 +1,14 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.EntityDesigner.Rules;
-using Microsoft.Data.Entity.Design.EntityDesigner.ViewModel;
+using Microsoft.Data.Entity.Design.Dsl.Rules;
+using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;
-using Association = Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Association;
+using Association = Microsoft.Data.Entity.Design.Dsl.ViewModel.Association;
 using EntityType = Microsoft.Data.Entity.Design.Model.Entity.EntityType;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.ModelChanges
+namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
 {
     internal class AssociationAdd : ViewModelChange
     {

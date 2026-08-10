@@ -2,10 +2,10 @@
 
 using System;
 using System.Windows;
-using Microsoft.Data.Entity.Design.EntityDesigner.View;
-using Microsoft.Data.Entity.Design.EntityDesigner.View.ContextMenu;
-using Microsoft.Data.Entity.Design.EntityDesigner.View.Export;
-using Microsoft.Data.Entity.Design.EntityDesigner.ViewModel;
+using Microsoft.Data.Entity.Design.Dsl.View;
+using Microsoft.Data.Entity.Design.Dsl.View.ContextMenu;
+using Microsoft.Data.Entity.Design.Dsl.View.Export;
+using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
@@ -140,19 +140,19 @@ namespace Microsoft.Data.Entity.Design.Package
                     result.CompartmentItemIndex = itemIndex;
                     result.Shape = compartment.ParentShape;
 
-                    if (clickedItem is EntityDesigner.ViewModel.ScalarProperty scalarProp)
+                    if (clickedItem is Dsl.ViewModel.ScalarProperty scalarProp)
                     {
                         result.Target = DiagramHitTarget.ScalarProperty;
                         result.ModelElement = scalarProp;
                         return result;
                     }
-                    else if (clickedItem is EntityDesigner.ViewModel.ComplexProperty complexProp)
+                    else if (clickedItem is Dsl.ViewModel.ComplexProperty complexProp)
                     {
                         result.Target = DiagramHitTarget.ComplexProperty;
                         result.ModelElement = complexProp;
                         return result;
                     }
-                    else if (clickedItem is EntityDesigner.ViewModel.NavigationProperty navProp)
+                    else if (clickedItem is Dsl.ViewModel.NavigationProperty navProp)
                     {
                         result.Target = DiagramHitTarget.NavigationProperty;
                         result.ModelElement = navProp;
@@ -821,7 +821,7 @@ namespace Microsoft.Data.Entity.Design.Package
             _propertyMenu.MenuItems.Clear();
 
             var isScalarProperty = hitResult.Target == DiagramHitTarget.ScalarProperty;
-            var scalarProperty = hitResult.ModelElement as EntityDesigner.ViewModel.ScalarProperty;
+            var scalarProperty = hitResult.ModelElement as Dsl.ViewModel.ScalarProperty;
 
             // Top bar commands - Cut | Copy | Paste | Rename | Delete
             _propertyMenu.TopBarCommands.Add(new MenuCommandDefinition(
@@ -1915,7 +1915,7 @@ namespace Microsoft.Data.Entity.Design.Package
 
         private void ExecuteToggleEntityKey()
         {
-            if (_currentPropertyHit?.ModelElement is EntityDesigner.ViewModel.ScalarProperty scalarProperty)
+            if (_currentPropertyHit?.ModelElement is Dsl.ViewModel.ScalarProperty scalarProperty)
             {
                 scalarProperty.ChangeEntityKey();
             }
@@ -1970,7 +1970,7 @@ namespace Microsoft.Data.Entity.Design.Package
 
         private void ExecuteSelectAssociationForNavigationProperty(EntityDesignerDiagram diagram)
         {
-            if (_currentNavigationPropertyHit?.ModelElement is EntityDesigner.ViewModel.NavigationProperty navProp)
+            if (_currentNavigationPropertyHit?.ModelElement is Dsl.ViewModel.NavigationProperty navProp)
             {
                 // Find the association connector for this navigation property
                 var association = navProp.Association;

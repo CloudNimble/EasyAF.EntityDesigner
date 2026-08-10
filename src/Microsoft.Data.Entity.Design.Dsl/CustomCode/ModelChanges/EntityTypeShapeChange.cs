@@ -3,14 +3,14 @@
 using System;
 using System.Diagnostics;
 using System.Linq;
-using Microsoft.Data.Entity.Design.EntityDesigner.ViewModel;
+using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Diagram = Microsoft.Data.Entity.Design.Model.Designer.Diagram;
 using EntityType = Microsoft.Data.Entity.Design.Model.Entity.EntityType;
-using EntityTypeShape = Microsoft.Data.Entity.Design.EntityDesigner.View.EntityTypeShape;
+using EntityTypeShape = Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.ModelChanges
+namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
 {
     internal class EntityTypeShapeChange : EntityTypeShapeModelChange
     {

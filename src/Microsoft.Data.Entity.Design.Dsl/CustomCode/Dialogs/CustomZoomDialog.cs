@@ -3,7 +3,7 @@
 using System.Windows.Forms;
 using Microsoft.Data.Entity.Design.VisualStudio;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.Dialogs
+namespace Microsoft.Data.Entity.Design.Dsl.Dialogs
 {
     internal partial class CustomZoomDialog : Form
     {

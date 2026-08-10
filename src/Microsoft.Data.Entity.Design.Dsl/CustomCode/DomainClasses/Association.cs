@@ -3,12 +3,12 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Microsoft.Data.Entity.Design.EntityDesigner.ModelChanges;
-using Microsoft.Data.Entity.Design.EntityDesigner.Utils;
+using Microsoft.Data.Entity.Design.Dsl.ModelChanges;
+using Microsoft.Data.Entity.Design.Dsl.Utils;
 using Microsoft.Data.Tools.VSXmlDesignerBase.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
+namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 {
     internal partial class Association : IContainRelatedElementsToEmphasizeWhenSelected
     {

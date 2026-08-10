@@ -1,7 +1,7 @@
-<#@ Dsl processor="DslDirectiveProcessor" requires="fileName='..\..\Microsoft.Data.Entity.Design.EntityDesigner\DslDefinition.dsl'" #>
+<#@ Dsl processor="DslDirectiveProcessor" requires="fileName='..\..\Microsoft.Data.Entity.Design.Dsl\DslDefinition.dsl'" #>
 <#
 	//DSL assembly name - used for toolbox item registration. Adjust if the DSL assembly was renamed.
-	string dslAssembly = "Microsoft.Data.Entity.Design.EntityDesigner.dll";
+	string dslAssembly = "Microsoft.Data.Entity.Design.Dsl.dll";
 #>
 <#@ include file="%DslTemplatesSrc%\DslPackage\Package.tt" #>
 <#

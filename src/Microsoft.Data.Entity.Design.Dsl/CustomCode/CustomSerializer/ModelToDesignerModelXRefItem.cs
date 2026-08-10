@@ -2,11 +2,11 @@
 
 using System.Collections.Generic;
 using Microsoft.Data.Entity.Design.Base.Context;
-using Microsoft.Data.Entity.Design.EntityDesigner.ViewModel;
+using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.VisualStudio.Modeling;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.CustomSerializer
+namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
 {
     /// <summary>
     ///     This class contains XRef between DSL Model and Escher Model.

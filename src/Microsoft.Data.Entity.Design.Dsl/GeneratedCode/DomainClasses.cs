@@ -9,15 +9,15 @@
 
 using DslModeling = global::Microsoft.VisualStudio.Modeling;
 using DslDesign = global::Microsoft.VisualStudio.Modeling.Design;
-namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
+namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 {
 	/// <summary>
 	/// DomainClass NameableItem
 	/// </summary>
 	[System.ComponentModel.TypeDescriptionProvider(typeof(NameableItemDescriptionProvider))]
-	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.NameableItem.DisplayName", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.NameableItem.Description", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel))]
+	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel))]
 	[global::System.Diagnostics.DebuggerDisplay("{GetType().Name,nq} (Name = {namePropertyStorage})")]
 	[DslModeling::DomainObjectId("1f4b5cb5-f13b-48d2-8dbe-a9cc4bf162f4")]
 	internal abstract partial class NameableItem : DslModeling::ModelElement
@@ -53,10 +53,10 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 		/// <summary>
 		/// Gets or sets the value of Name domain property.
 		/// Description for
-		/// Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.NameableItem.Name
+		/// Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem.Name
 		/// </summary>
-		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.NameableItem/Name.DisplayName", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.NameableItem/Name.Description", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
+		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem/Name.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem/Name.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
 		[global::System.ComponentModel.Browsable(false)]
 		[DslModeling::ElementName(typeof(NameableItemNameProvider))]
 		[DslModeling::DomainObjectId("2bb18667-db4e-48b5-b050-ba1f2f4f5c9a")]
@@ -130,14 +130,14 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 		#endregion
 	}
 }
-namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
+namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 {
 	/// <summary>
 	/// DomainClass EntityDesignerViewModel
 	/// </summary>
-	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityDesignerViewModel.DisplayName", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityDesignerViewModel.Description", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel))]
+	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel))]
 	[DslModeling::DomainObjectId("a460641b-c69f-4e0f-8da2-fe3a96845fac")]
 	internal partial class EntityDesignerViewModel : DslModeling::ModelElement
 	{
@@ -182,10 +182,10 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 		/// <summary>
 		/// Gets or sets the value of Namespace domain property.
 		/// Description for
-		/// Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityDesignerViewModel.Namespace
+		/// Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel.Namespace
 		/// </summary>
-		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityDesignerViewModel/Namespace.DisplayName", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityDesignerViewModel/Namespace.Description", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
+		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel/Namespace.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel/Namespace.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
 		[global::System.ComponentModel.Browsable(false)]
 		[global::System.ComponentModel.ReadOnly(true)]
 		[DslModeling::DomainObjectId("4c4e5500-1eae-47ee-80ff-1045f13834d7")]
@@ -262,14 +262,14 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 		/// <summary>
 		/// Gets a list of EntityTypes.
 		/// Description for
-		/// Microsoft.Data.Entity.Design.EntityDesigner.EntityDesignerViewModelHasEntityTypes.EntityDesignerViewModel
+		/// Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes.EntityDesignerViewModel
 		/// </summary>
 		public virtual DslModeling::LinkedElementCollection<EntityType> EntityTypes
 		{
 			[global::System.Diagnostics.DebuggerStepThrough]
 			get
 			{
-				return GetRoleCollection<DslModeling::LinkedElementCollection<EntityType>, EntityType>(global::Microsoft.Data.Entity.Design.EntityDesigner.EntityDesignerViewModelHasEntityTypes.EntityDesignerViewModelDomainRoleId);
+				return GetRoleCollection<DslModeling::LinkedElementCollection<EntityType>, EntityType>(global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes.EntityDesignerViewModelDomainRoleId);
 			}
 		}
 		#endregion
@@ -293,7 +293,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 			{
 				DslModeling::DomainClassInfo rootElementDomainInfo = this.Partition.DomainDataDirectory.GetDomainClass(rootElement.DomainClassId);
 				
-				if (rootElementDomainInfo.IsDerivedFrom(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType.DomainClassId)) 
+				if (rootElementDomainInfo.IsDerivedFrom(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType.DomainClassId)) 
 				{
 					return true;
 				}
@@ -322,10 +322,10 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 			if ( sourceElement == null ) throw new global::System.ArgumentNullException("sourceElement");
 		
 				
-			global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType sourceEntityType1 = sourceElement as global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType;
+			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType sourceEntityType1 = sourceElement as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType;
 			if (sourceEntityType1 != null)
 			{
-				// Create link for path Microsoft.Data.Entity.Design.EntityDesigner.EntityDesignerViewModelHasEntityTypes.EntityTypes
+				// Create link for path Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes.EntityTypes
 				this.EntityTypes.Add(sourceEntityType1);
 
 				return;
@@ -344,15 +344,15 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 		{
 			if (sourceElement == null) throw new global::System.ArgumentNullException("sourceElement");
 				
-			global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType sourceEntityType1 = sourceElement as global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType;
+			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType sourceEntityType1 = sourceElement as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType;
 			if (sourceEntityType1 != null)
 			{
-				// Delete link for path Microsoft.Data.Entity.Design.EntityDesigner.EntityDesignerViewModelHasEntityTypes.EntityTypes
+				// Delete link for path Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes.EntityTypes
 				
-				foreach (DslModeling::ElementLink link in global::Microsoft.Data.Entity.Design.EntityDesigner.EntityDesignerViewModelHasEntityTypes.GetLinks((global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityDesignerViewModel)this, sourceEntityType1))
+				foreach (DslModeling::ElementLink link in global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes.GetLinks((global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel)this, sourceEntityType1))
 				{
 					// Delete the link, but without possible delete propagation to the element since it's moving to a new location.
-					link.Delete(global::Microsoft.Data.Entity.Design.EntityDesigner.EntityDesignerViewModelHasEntityTypes.EntityDesignerViewModelDomainRoleId, global::Microsoft.Data.Entity.Design.EntityDesigner.EntityDesignerViewModelHasEntityTypes.EntityTypeDomainRoleId);
+					link.Delete(global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes.EntityDesignerViewModelDomainRoleId, global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes.EntityTypeDomainRoleId);
 				}
 
 				return;
@@ -363,14 +363,14 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 		#endregion
 	}
 }
-namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
+namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 {
 	/// <summary>
 	/// Double-derived base class for DomainClass EntityType
 	/// </summary>
-	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType.DisplayName", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType.Description", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel))]
+	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel))]
 	[DslModeling::DomainObjectId("4b6e96fa-a795-440e-b657-dc1828d259c9")]
 	internal abstract partial class EntityTypeBase : NameableItem
 	{
@@ -401,8 +401,8 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 		/// Gets or sets the value of BaseTypeName domain property.
 		/// Computed name of the base type. Empty if no base type
 		/// </summary>
-		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType/BaseTypeName.DisplayName", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType/BaseTypeName.Description", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
+		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType/BaseTypeName.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType/BaseTypeName.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
 		[global::System.ComponentModel.Browsable(false)]
 		[global::System.ComponentModel.ReadOnly(true)]
 		[DslModeling::DomainProperty(Kind = DslModeling::DomainPropertyKind.Calculated)]
@@ -467,8 +467,8 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 		/// Gets or sets the value of HasBaseType domain property.
 		/// Indicates if this has a base type
 		/// </summary>
-		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType/HasBaseType.DisplayName", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType/HasBaseType.Description", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
+		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType/HasBaseType.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType/HasBaseType.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
 		[global::System.ComponentModel.Browsable(false)]
 		[global::System.ComponentModel.ReadOnly(true)]
 		[DslModeling::DomainProperty(Kind = DslModeling::DomainPropertyKind.Calculated)]
@@ -527,14 +527,14 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 		/// <summary>
 		/// Gets a list of Properties.
 		/// Description for
-		/// Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasProperties.EntityType
+		/// Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.EntityType
 		/// </summary>
 		public virtual DslModeling::LinkedElementCollection<Property> Properties
 		{
 			[global::System.Diagnostics.DebuggerStepThrough]
 			get
 			{
-				return GetRoleCollection<DslModeling::LinkedElementCollection<Property>, Property>(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasProperties.EntityTypeDomainRoleId);
+				return GetRoleCollection<DslModeling::LinkedElementCollection<Property>, Property>(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.EntityTypeDomainRoleId);
 			}
 		}
 		#endregion
@@ -542,19 +542,19 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 		/// <summary>
 		/// Gets or sets EntityDesignerViewModel.
 		/// Description for
-		/// Microsoft.Data.Entity.Design.EntityDesigner.EntityDesignerViewModelHasEntityTypes.EntityType
+		/// Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes.EntityType
 		/// </summary>
 		internal virtual EntityDesignerViewModel EntityDesignerViewModel
 		{
 			[global::System.Diagnostics.DebuggerStepThrough]
 			get
 			{
-				return DslModeling::DomainRoleInfo.GetLinkedElement(this, global::Microsoft.Data.Entity.Design.EntityDesigner.EntityDesignerViewModelHasEntityTypes.EntityTypeDomainRoleId) as EntityDesignerViewModel;
+				return DslModeling::DomainRoleInfo.GetLinkedElement(this, global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes.EntityTypeDomainRoleId) as EntityDesignerViewModel;
 			}
 			[global::System.Diagnostics.DebuggerStepThrough]
 			set
 			{
-				DslModeling::DomainRoleInfo.SetLinkedElement(this, global::Microsoft.Data.Entity.Design.EntityDesigner.EntityDesignerViewModelHasEntityTypes.EntityTypeDomainRoleId, value);
+				DslModeling::DomainRoleInfo.SetLinkedElement(this, global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes.EntityTypeDomainRoleId, value);
 			}
 		}
 		#endregion
@@ -563,14 +563,14 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 		/// <summary>
 		/// Gets a list of AssociationTargets.
 		/// Description for
-		/// Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Association.SourceEntityType
+		/// Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.SourceEntityType
 		/// </summary>
 		public virtual DslModeling::LinkedElementCollection<EntityType> AssociationTargets
 		{
 			[global::System.Diagnostics.DebuggerStepThrough]
 			get
 			{
-				return GetRoleCollection<DslModeling::LinkedElementCollection<EntityType>, EntityType>(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Association.SourceEntityTypeDomainRoleId);
+				return GetRoleCollection<DslModeling::LinkedElementCollection<EntityType>, EntityType>(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.SourceEntityTypeDomainRoleId);
 			}
 		}
 		#endregion
@@ -579,14 +579,14 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 		/// <summary>
 		/// Gets a list of AssociationSources.
 		/// Description for
-		/// Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Association.TargetEntityType
+		/// Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.TargetEntityType
 		/// </summary>
 		public virtual DslModeling::LinkedElementCollection<EntityType> AssociationSources
 		{
 			[global::System.Diagnostics.DebuggerStepThrough]
 			get
 			{
-				return GetRoleCollection<DslModeling::LinkedElementCollection<EntityType>, EntityType>(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Association.TargetEntityTypeDomainRoleId);
+				return GetRoleCollection<DslModeling::LinkedElementCollection<EntityType>, EntityType>(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.TargetEntityTypeDomainRoleId);
 			}
 		}
 		#endregion
@@ -595,14 +595,14 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 		/// <summary>
 		/// Gets a list of NavigationProperties.
 		/// Description for
-		/// Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasNavigationProperties.EntityType
+		/// Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.EntityType
 		/// </summary>
 		public virtual DslModeling::LinkedElementCollection<NavigationProperty> NavigationProperties
 		{
 			[global::System.Diagnostics.DebuggerStepThrough]
 			get
 			{
-				return GetRoleCollection<DslModeling::LinkedElementCollection<NavigationProperty>, NavigationProperty>(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasNavigationProperties.EntityTypeDomainRoleId);
+				return GetRoleCollection<DslModeling::LinkedElementCollection<NavigationProperty>, NavigationProperty>(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.EntityTypeDomainRoleId);
 			}
 		}
 		#endregion
@@ -611,14 +611,14 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 		/// <summary>
 		/// Gets a list of DerivedTypes.
 		/// Description for
-		/// Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Inheritance.SourceEntityType
+		/// Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.SourceEntityType
 		/// </summary>
 		public virtual DslModeling::LinkedElementCollection<EntityType> DerivedTypes
 		{
 			[global::System.Diagnostics.DebuggerStepThrough]
 			get
 			{
-				return GetRoleCollection<DslModeling::LinkedElementCollection<EntityType>, EntityType>(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Inheritance.SourceEntityTypeDomainRoleId);
+				return GetRoleCollection<DslModeling::LinkedElementCollection<EntityType>, EntityType>(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.SourceEntityTypeDomainRoleId);
 			}
 		}
 		#endregion
@@ -626,19 +626,19 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 		/// <summary>
 		/// Gets or sets BaseType.
 		/// Description for
-		/// Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Inheritance.TargetEntityType
+		/// Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.TargetEntityType
 		/// </summary>
 		internal virtual EntityType BaseType
 		{
 			[global::System.Diagnostics.DebuggerStepThrough]
 			get
 			{
-				return DslModeling::DomainRoleInfo.GetLinkedElement(this, global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Inheritance.TargetEntityTypeDomainRoleId) as EntityType;
+				return DslModeling::DomainRoleInfo.GetLinkedElement(this, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.TargetEntityTypeDomainRoleId) as EntityType;
 			}
 			[global::System.Diagnostics.DebuggerStepThrough]
 			set
 			{
-				DslModeling::DomainRoleInfo.SetLinkedElement(this, global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Inheritance.TargetEntityTypeDomainRoleId, value);
+				DslModeling::DomainRoleInfo.SetLinkedElement(this, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.TargetEntityTypeDomainRoleId, value);
 			}
 		}
 		#endregion
@@ -662,12 +662,12 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 			{
 				DslModeling::DomainClassInfo rootElementDomainInfo = this.Partition.DomainDataDirectory.GetDomainClass(rootElement.DomainClassId);
 				
-				if (rootElementDomainInfo.IsDerivedFrom(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.NavigationProperty.DomainClassId)) 
+				if (rootElementDomainInfo.IsDerivedFrom(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty.DomainClassId)) 
 				{
 					return true;
 				}
 				
-				if (rootElementDomainInfo.IsDerivedFrom(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Property.DomainClassId)) 
+				if (rootElementDomainInfo.IsDerivedFrom(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property.DomainClassId)) 
 				{
 					return true;
 				}
@@ -696,7 +696,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 			if ( sourceElement == null ) throw new global::System.ArgumentNullException("sourceElement");
 		
 				
-			global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.NavigationProperty sourceNavigationProperty1 = sourceElement as global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.NavigationProperty;
+			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty sourceNavigationProperty1 = sourceElement as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty;
 			if (sourceNavigationProperty1 != null)
 			{
 				// Create link for path EntityTypeHasNavigationProperties.NavigationProperties
@@ -705,7 +705,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 				return;
 			}
 				
-			global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Property sourceProperty2 = sourceElement as global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Property;
+			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property sourceProperty2 = sourceElement as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property;
 			if (sourceProperty2 != null)
 			{
 				// Create link for path EntityTypeHasProperties.Properties
@@ -727,29 +727,29 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 		{
 			if (sourceElement == null) throw new global::System.ArgumentNullException("sourceElement");
 				
-			global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.NavigationProperty sourceNavigationProperty1 = sourceElement as global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.NavigationProperty;
+			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty sourceNavigationProperty1 = sourceElement as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty;
 			if (sourceNavigationProperty1 != null)
 			{
 				// Delete link for path EntityTypeHasNavigationProperties.NavigationProperties
 				
-				foreach (DslModeling::ElementLink link in global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasNavigationProperties.GetLinks((global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType)this, sourceNavigationProperty1))
+				foreach (DslModeling::ElementLink link in global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.GetLinks((global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType)this, sourceNavigationProperty1))
 				{
 					// Delete the link, but without possible delete propagation to the element since it's moving to a new location.
-					link.Delete(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasNavigationProperties.EntityTypeDomainRoleId, global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasNavigationProperties.NavigationPropertyDomainRoleId);
+					link.Delete(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.EntityTypeDomainRoleId, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.NavigationPropertyDomainRoleId);
 				}
 
 				return;
 			}
 				
-			global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Property sourceProperty2 = sourceElement as global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Property;
+			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property sourceProperty2 = sourceElement as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property;
 			if (sourceProperty2 != null)
 			{
 				// Delete link for path EntityTypeHasProperties.Properties
 				
-				foreach (DslModeling::ElementLink link in global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasProperties.GetLinks((global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType)this, sourceProperty2))
+				foreach (DslModeling::ElementLink link in global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.GetLinks((global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType)this, sourceProperty2))
 				{
 					// Delete the link, but without possible delete propagation to the element since it's moving to a new location.
-					link.Delete(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasProperties.EntityTypeDomainRoleId, global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasProperties.PropertyDomainRoleId);
+					link.Delete(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.EntityTypeDomainRoleId, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.PropertyDomainRoleId);
 				}
 
 				return;
@@ -788,14 +788,14 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 		#endregion
 	}
 }
-namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
+namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 {
 	/// <summary>
 	/// DomainClass Property
 	/// </summary>
-	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Property.DisplayName", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Property.Description", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel))]
+	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.Property.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.Property.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel))]
 	[DslModeling::DomainObjectId("b88c8fdf-39e9-42fc-9ee9-43d55223619a")]
 	internal abstract partial class Property : PropertyBase
 	{
@@ -832,8 +832,8 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 		/// Specifies the EDM type of this property. The property window only displays
 		/// facets specific to this type.
 		/// </summary>
-		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Property/Type.DisplayName", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.Property/Type.Description", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
+		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.Property/Type.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.Property/Type.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
 		[global::System.ComponentModel.DefaultValue("String")]
 		[global::System.ComponentModel.Browsable(false)]
 		[global::System.ComponentModel.ReadOnly(true)]
@@ -910,32 +910,32 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 		/// <summary>
 		/// Gets or sets EntityType.
 		/// Description for
-		/// Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasProperties.Property
+		/// Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.Property
 		/// </summary>
 		internal virtual EntityType EntityType
 		{
 			[global::System.Diagnostics.DebuggerStepThrough]
 			get
 			{
-				return DslModeling::DomainRoleInfo.GetLinkedElement(this, global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasProperties.PropertyDomainRoleId) as EntityType;
+				return DslModeling::DomainRoleInfo.GetLinkedElement(this, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.PropertyDomainRoleId) as EntityType;
 			}
 			[global::System.Diagnostics.DebuggerStepThrough]
 			set
 			{
-				DslModeling::DomainRoleInfo.SetLinkedElement(this, global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasProperties.PropertyDomainRoleId, value);
+				DslModeling::DomainRoleInfo.SetLinkedElement(this, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.PropertyDomainRoleId, value);
 			}
 		}
 		#endregion
 	}
 }
-namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
+namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 {
 	/// <summary>
 	/// DomainClass PropertyBase
 	/// </summary>
-	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.PropertyBase.DisplayName", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.PropertyBase.Description", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel))]
+	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.PropertyBase.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.PropertyBase.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel))]
 	[DslModeling::DomainObjectId("57498f30-3645-4c7a-8e7a-f501e83da1b5")]
 	internal abstract partial class PropertyBase : NameableItem
 	{
@@ -957,14 +957,14 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 		#endregion
 	}
 }
-namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
+namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 {
 	/// <summary>
 	/// DomainClass NavigationProperty
 	/// </summary>
-	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.NavigationProperty.DisplayName", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.NavigationProperty.Description", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel))]
+	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel))]
 	[DslModeling::DomainObjectId("1eb61091-eaa5-4256-a931-b71c42b85a0c")]
 	internal partial class NavigationProperty : PropertyBase
 	{
@@ -998,32 +998,32 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 		/// <summary>
 		/// Gets or sets EntityType.
 		/// Description for
-		/// Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasNavigationProperties.NavigationProperty
+		/// Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.NavigationProperty
 		/// </summary>
 		internal virtual EntityType EntityType
 		{
 			[global::System.Diagnostics.DebuggerStepThrough]
 			get
 			{
-				return DslModeling::DomainRoleInfo.GetLinkedElement(this, global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasNavigationProperties.NavigationPropertyDomainRoleId) as EntityType;
+				return DslModeling::DomainRoleInfo.GetLinkedElement(this, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.NavigationPropertyDomainRoleId) as EntityType;
 			}
 			[global::System.Diagnostics.DebuggerStepThrough]
 			set
 			{
-				DslModeling::DomainRoleInfo.SetLinkedElement(this, global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityTypeHasNavigationProperties.NavigationPropertyDomainRoleId, value);
+				DslModeling::DomainRoleInfo.SetLinkedElement(this, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.NavigationPropertyDomainRoleId, value);
 			}
 		}
 		#endregion
 	}
 }
-namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
+namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 {
 	/// <summary>
 	/// DomainClass ComplexProperty
 	/// </summary>
-	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.ComplexProperty.DisplayName", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.ComplexProperty.Description", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel))]
+	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.ComplexProperty.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.ComplexProperty.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel))]
 	[DslModeling::DomainObjectId("ffb5ef4e-3b9a-4e6f-9c26-67b8f2e1f13d")]
 	internal partial class ComplexProperty : Property
 	{
@@ -1055,14 +1055,14 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 		#endregion
 	}
 }
-namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
+namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 {
 	/// <summary>
 	/// DomainClass ScalarProperty
 	/// </summary>
-	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.ScalarProperty.DisplayName", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.ScalarProperty.Description", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel))]
+	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel))]
 	[DslModeling::DomainObjectId("c4075739-14d5-40af-9cd8-0b3c73dacd4f")]
 	internal partial class ScalarProperty : Property
 	{
@@ -1107,8 +1107,8 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
 		/// <summary>
 		/// Gets or sets the value of EntityKey domain property.
 		/// </summary>
-		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.ScalarProperty/EntityKey.DisplayName", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
-		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.ScalarProperty/EntityKey.Description", typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.EntityDesigner.GeneratedCode.DomainModelResx")]
+		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty/EntityKey.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty/EntityKey.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
 		[global::System.ComponentModel.Browsable(false)]
 		[global::System.ComponentModel.ReadOnly(true)]
 		[DslModeling::DomainObjectId("a07effa9-80a6-452f-af52-e4f369f0735f")]

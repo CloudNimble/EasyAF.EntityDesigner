@@ -3,7 +3,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.View.ContextMenu
+namespace Microsoft.Data.Entity.Design.Dsl.View.ContextMenu
 {
     /// <summary>
     /// Selects the appropriate DataTemplate for menu items based on their type.

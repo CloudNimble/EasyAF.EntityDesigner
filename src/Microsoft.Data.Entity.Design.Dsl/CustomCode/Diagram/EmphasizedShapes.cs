@@ -2,7 +2,7 @@
 
 using Microsoft.VisualStudio.Modeling.Diagrams;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.View
+namespace Microsoft.Data.Entity.Design.Dsl.View
 {
     /// <summary>
     ///     Collection of diagram items that will be emphasized.

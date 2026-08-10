@@ -3,7 +3,7 @@
 using System;
 using System.IO;
 using McMaster.Extensions.CommandLineUtils;
-using Microsoft.Data.Entity.Design.EntityDesigner.View.Export;
+using Microsoft.Data.Entity.Design.Dsl.View.Export;
 using Microsoft.Data.Entity.Design.Renderer.Headless;
 
 namespace Microsoft.Data.Entity.Tools.Commands.Root

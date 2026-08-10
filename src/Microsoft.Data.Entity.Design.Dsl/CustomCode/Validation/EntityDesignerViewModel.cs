@@ -2,7 +2,7 @@
 
 using Microsoft.VisualStudio.Modeling.Validation;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
+namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 {
     [ValidationState(ValidationState.Disabled)]
     internal partial class EntityDesignerViewModel

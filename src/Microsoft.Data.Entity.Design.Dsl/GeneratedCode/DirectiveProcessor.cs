@@ -6,7 +6,7 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-namespace Microsoft.Data.Entity.Design.EntityDesigner
+namespace Microsoft.Data.Entity.Design.Dsl
 {
 	#region Using directives
 	using DslModeling = global::Microsoft.VisualStudio.Modeling;
@@ -164,13 +164,13 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 					// Create a field to store the model once it is loaded
 					global::System.CodeDom.CodeMemberField rootElement = new global::System.CodeDom.CodeMemberField();
 					rootElement.Name = providesArguments[providesModelParameter].ToLower(global::System.Globalization.CultureInfo.InvariantCulture) + "Value";
-					rootElement.Type = new global::System.CodeDom.CodeTypeReference(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityDesignerViewModel));
+					rootElement.Type = new global::System.CodeDom.CodeTypeReference(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel));
 					rootElement.Attributes = global::System.CodeDom.MemberAttributes.Private;
 
 					// Create a property for the Model that delay-loads the model
 					global::System.CodeDom.CodeMemberProperty rootElementProperty = new global::System.CodeDom.CodeMemberProperty();
 					rootElementProperty.Name = providesArguments[providesModelParameter];
-					rootElementProperty.Type = new global::System.CodeDom.CodeTypeReference(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityDesignerViewModel));
+					rootElementProperty.Type = new global::System.CodeDom.CodeTypeReference(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel));
 					rootElementProperty.Attributes = global::System.CodeDom.MemberAttributes.Private;
 					rootElementProperty.HasSet = false;
 					rootElementProperty.HasGet = true;
@@ -237,7 +237,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 				{
 					string[] domainModels = {
 						"Microsoft.VisualStudio.Modeling.Diagrams.CoreDesignSurfaceDomainModel",
-						"Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel",
+						"Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel",
 					};
 
 					global::System.CodeDom.Compiler.CodeGeneratorOptions options = new global::System.CodeDom.Compiler.CodeGeneratorOptions();
@@ -402,7 +402,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 
 			imports.Add("Microsoft.VisualStudio.Modeling");
 			imports.Add("System.CodeDom.Compiler");
-			imports.Add("Microsoft.Data.Entity.Design.EntityDesigner");
+			imports.Add("Microsoft.Data.Entity.Design.Dsl");
 
 			return imports.ToArray();
 		}

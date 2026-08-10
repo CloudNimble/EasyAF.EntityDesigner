@@ -15,7 +15,7 @@ using System.Drawing.Design;
 using System.Windows.Forms;
 using DslDiagrams = global::Microsoft.VisualStudio.Modeling.Diagrams;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner
+namespace Microsoft.Data.Entity.Design.Dsl
 {
 	/// <summary>
 	/// Helper class used to create and initialize toolbox items for this DSL.
@@ -90,7 +90,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 		{
 			get
 			{
-				return global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("Entity FrameworkToolboxTab", global::System.Globalization.CultureInfo.CurrentUICulture);
+				return global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("Entity FrameworkToolboxTab", global::System.Globalization.CultureInfo.CurrentUICulture);
 			}
 		}
 		
@@ -147,7 +147,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 			{
 				return null;
 			}
-			global::System.Resources.ResourceManager resourceManager = global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager;
+			global::System.Resources.ResourceManager resourceManager = global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager;
 			global::System.Globalization.CultureInfo resourceCulture = global::System.Globalization.CultureInfo.CurrentUICulture;
 			switch(itemId)
 			{
@@ -162,7 +162,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 						resourceManager.GetString("Entity FrameworkToolboxTab", resourceCulture), // Localized display name for the toolbox tab.
 						string.Empty, // no F1 help keyword for the toolbox item.
 						resourceManager.GetString("EntityToolToolboxTooltip", resourceCulture), // Localized tooltip text for the toolbox item.
-						CreateElementToolPrototype(store, global::Microsoft.Data.Entity.Design.EntityDesigner.ViewModel.EntityType.DomainClassId), // ElementGroupPrototype (data object) representing model element on the toolbox.
+						CreateElementToolPrototype(store, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType.DomainClassId), // ElementGroupPrototype (data object) representing model element on the toolbox.
 						new global::System.ComponentModel.ToolboxItemFilterAttribute[] { // Collection of ToolboxItemFilterAttribute objects that determine visibility of the toolbox item.
 						new global::System.ComponentModel.ToolboxItemFilterAttribute(ToolboxFilterString, global::System.ComponentModel.ToolboxItemFilterType.Require) 
 						});
@@ -235,7 +235,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 					AppDomain.CurrentDomain.DomainUnload += new EventHandler(StoreCleanUp);
 					
 					//load the domain model
-					toolboxStore.LoadDomainModels(typeof(global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel));
+					toolboxStore.LoadDomainModels(typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel));
 					
 				}
 				return toolboxStore;
@@ -275,7 +275,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner
 		{
 			DslDesign::ModelingToolboxItem item = null;
 
-			global::System.Resources.ResourceManager resourceManager = global::Microsoft.Data.Entity.Design.EntityDesigner.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager;
+			global::System.Resources.ResourceManager resourceManager = global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager;
 			global::System.Globalization.CultureInfo resourceCulture = global::System.Globalization.CultureInfo.CurrentUICulture;
 
 			System.Windows.Forms.IDataObject tbxDataObj;

@@ -3,7 +3,7 @@
 using System;
 using System.Xml.Linq;
 using Microsoft.Data.Entity.Design.Base.Context;
-using Microsoft.Data.Entity.Design.EntityDesigner.View;
+using Microsoft.Data.Entity.Design.Dsl.View;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.VersioningFacade;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;

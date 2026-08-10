@@ -4,7 +4,7 @@ using System;
 using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Tools.Dsl.ModelTranslator;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.CustomSerializer
+namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
 {
     internal class ModelTranslatorContextItem : ContextItem
     {

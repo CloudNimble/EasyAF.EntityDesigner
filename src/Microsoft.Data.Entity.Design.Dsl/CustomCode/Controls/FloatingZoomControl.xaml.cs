@@ -7,11 +7,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using Microsoft.Data.Entity.Design.EntityDesigner.View.ContextMenu;
+using Microsoft.Data.Entity.Design.Dsl.View.ContextMenu;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.PlatformUI;
 
-namespace Microsoft.Data.Entity.Design.EntityDesigner.View.Controls
+namespace Microsoft.Data.Entity.Design.Dsl.View.Controls
 {
     /// <summary>
     /// A floating zoom control bar that provides zoom in/out buttons, displays the current zoom level,
