@@ -18,16 +18,34 @@ namespace Microsoft.Data.Entity.Design.Model.Commands
 {
     internal class UpdateConceptualAndMappingModelsCommand : Command
     {
+        private readonly Action<ErrorInfo, string> _logError;
         private readonly ExistingModelSummary _preExistingModel;
         private readonly UpdatedModelSummary _modelRepresentingDatabase;
 
+        /// <summary>
+        ///     Creates the command.
+        /// </summary>
+        /// <param name="preExistingModel">Summary of the model as it stands before the update.</param>
+        /// <param name="modelRepresentingDatabase">Summary of the model implied by the database.</param>
+        /// <param name="logError">
+        ///     Reports a warning the update could not resolve, given the error and the path of the file it belongs to.
+        ///     Optional; warnings are discarded when it is not supplied.
+        /// </param>
+        /// <remarks>
+        ///     The logger is passed in because this assembly cannot see the Visual Studio error list, and the host
+        ///     that can is further up the dependency chain. It used to be reached through a mutable static, which made
+        ///     the dependency invisible to the compiler and left the callback unset - and the warnings silently
+        ///     dropped - for anything hosting this model outside Visual Studio.
+        /// </remarks>
         internal UpdateConceptualAndMappingModelsCommand(
-            ExistingModelSummary preExistingModel, UpdatedModelSummary modelRepresentingDatabase)
+            ExistingModelSummary preExistingModel, UpdatedModelSummary modelRepresentingDatabase,
+            Action<ErrorInfo, string> logError = null)
         {
             Debug.Assert(null != preExistingModel, "null preExistingModel");
             Debug.Assert(null != modelRepresentingDatabase, "null modelRepresentingDatabase");
             _preExistingModel = preExistingModel;
             _modelRepresentingDatabase = modelRepresentingDatabase;
+            _logError = logError;
         }
 
         protected override void InvokeInternal(CommandProcessorContext cpc)
@@ -1478,7 +1496,7 @@ namespace Microsoft.Data.Entity.Design.Model.Commands
         ///     Helper method to log the VS warning message given the principal and dependent properties
         ///     for which we could not find matches in the existing artifact
         /// </summary>
-        private static void LogWarningMessageForReferentialConstraintProperties(
+        private void LogWarningMessageForReferentialConstraintProperties(
             string associationName,
             EntityType principalEntityType, EntityType dependentEntityType, List<string> unfoundPrincipalProperties,
             List<string> unfoundDependentProperties)
@@ -1517,7 +1535,7 @@ namespace Microsoft.Data.Entity.Design.Model.Commands
                 ErrorInfo errorInfo = new ErrorInfo(
                     ErrorInfo.Severity.WARNING, s, errorMessageTarget, ErrorCodes.UPDATE_MODEL_FROM_DB_CANT_INCLUDE_REF_CONSTRAINT,
                     ErrorClass.Escher_UpdateModelFromDB);
-                HostContext.Instance.LogUpdateModelWizardError(errorInfo, errorMessageTarget.Uri.LocalPath);
+                _logError?.Invoke(errorInfo, errorMessageTarget.Uri.LocalPath);
             }
         }
 

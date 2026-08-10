@@ -5,16 +5,27 @@ using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Model.Designer;
 using Microsoft.Data.Entity.Design.Model.Integrity;
 using Microsoft.Data.Entity.Design.Model.UpdateFromDatabase;
+using Microsoft.Data.Entity.Design.Model.Validation;
 
 namespace Microsoft.Data.Entity.Design.Model.Commands
 {
     internal class UpdateModelFromDatabaseCommand : Command
     {
+        private readonly Action<ErrorInfo, string> _logError;
         private readonly EFArtifact _newArtifactFromDB;
 
-        internal UpdateModelFromDatabaseCommand(EFArtifact newArtifactFromDB)
+        /// <summary>
+        ///     Creates the command.
+        /// </summary>
+        /// <param name="newArtifactFromDB">The artifact reverse engineered from the current database.</param>
+        /// <param name="logError">
+        ///     Reports a warning the update could not resolve. Passed through to
+        ///     <see cref="UpdateConceptualAndMappingModelsCommand" />; warnings are discarded when it is not supplied.
+        /// </param>
+        internal UpdateModelFromDatabaseCommand(EFArtifact newArtifactFromDB, Action<ErrorInfo, string> logError = null)
         {
             _newArtifactFromDB = newArtifactFromDB;
+            _logError = logError;
         }
 
         protected override void InvokeInternal(CommandProcessorContext cpc)
@@ -53,7 +64,7 @@ namespace Microsoft.Data.Entity.Design.Model.Commands
             // C- and M- side models appropriately
             UpdatedModelSummary modelFromUpdatedDatabase = new UpdatedModelSummary(_newArtifactFromDB);
             UpdateConceptualAndMappingModelsCommand updateCsdlAndMslCommand =
-                new UpdateConceptualAndMappingModelsCommand(existingModel, modelFromUpdatedDatabase);
+                new UpdateConceptualAndMappingModelsCommand(existingModel, modelFromUpdatedDatabase, _logError);
             CommandProcessor.InvokeSingleCommand(cpc, updateCsdlAndMslCommand);
 
             // fix up Function Import parameters and add integrity checks

@@ -85,7 +85,6 @@ namespace Microsoft.Data.Entity.Design.Package
                 EFModelErrorTaskNavigator.DslDesignerOnNavigate = DSLDesignerNavigationHelper.NavigateTo;
                 // --
 
-                HostContext.Instance.LogUpdateModelWizardErrorAction = ErrorListHelper.LogUpdateModelWizardError;
                 PackageManager.Package = this;
                 _dispatcher = Dispatcher.CurrentDispatcher;
 

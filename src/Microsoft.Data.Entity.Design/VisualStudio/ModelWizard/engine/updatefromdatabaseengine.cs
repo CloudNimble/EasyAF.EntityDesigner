@@ -186,7 +186,8 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
 
                 // Update the existing artifact based on tempArtifactBasedOnDatabase
                 List<Command> commands = new List<Command>();
-                UpdateModelFromDatabaseCommand cmd = new UpdateModelFromDatabaseCommand(tempArtifactBasedOnDatabase);
+                UpdateModelFromDatabaseCommand cmd = new UpdateModelFromDatabaseCommand(
+                    tempArtifactBasedOnDatabase, ErrorListHelper.LogUpdateModelWizardError);
                 commands.Add(cmd);
 
                 // set up our post event to clear out the error list
