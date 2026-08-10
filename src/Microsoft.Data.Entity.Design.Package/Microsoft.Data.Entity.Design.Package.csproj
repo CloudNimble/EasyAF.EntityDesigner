@@ -111,7 +111,7 @@
         <ProjectReference Include="..\Microsoft.Data.Tools.Design.XmlCore\Microsoft.Data.Tools.Design.XmlCore.csproj">
             <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
         </ProjectReference>
-        <ProjectReference Include="..\Microsoft.Data.Entity.Design.EntityDesigner\Microsoft.Data.Entity.Design.EntityDesigner.csproj">
+        <ProjectReference Include="..\Microsoft.Data.Entity.Design.Dsl\Microsoft.Data.Entity.Design.Dsl.csproj">
             <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
         </ProjectReference>
         <ProjectReference Include="..\Microsoft.Data.Entity.Design.Extensibility\Microsoft.Data.Entity.Design.Extensibility.csproj">
@@ -154,7 +154,7 @@
             <!--<VSIXSourceItem Include="..\Microsoft.Data.Entity.Design.Model\bin\$(Configuration)\Microsoft.Data.Entity.Design.Model.dll">
                 <VSIXSubPath></VSIXSubPath>
             </VSIXSourceItem>-->
-            <VSIXSourceItem Include="..\Microsoft.Data.Entity.Design.EntityDesigner\bin\$(Configuration)\Microsoft.Data.Entity.Design.EntityDesigner.dll">
+            <VSIXSourceItem Include="..\Microsoft.Data.Entity.Design.Dsl\bin\$(Configuration)\Microsoft.Data.Entity.Design.EntityDesigner.dll">
                 <VSIXSubPath></VSIXSubPath>
             </VSIXSourceItem>
             <!-- Extensibility multi-targets, so its output is under a framework subfolder rather than at this flat

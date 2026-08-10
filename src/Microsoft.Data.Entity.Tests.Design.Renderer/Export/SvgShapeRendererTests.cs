@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 
-namespace Microsoft.Data.Entity.Tests.Design.EntityDesigner.View.Export
+namespace Microsoft.Data.Entity.Tests.Design.Dsl.View.Export
 {
     /// <summary>
     ///     Tests for <see cref="SvgShapeRenderer" />.

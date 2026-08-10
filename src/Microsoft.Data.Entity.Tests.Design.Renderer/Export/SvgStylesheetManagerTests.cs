@@ -4,7 +4,7 @@ using Microsoft.Data.Entity.Design.EntityDesigner.View.Export;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 
-namespace Microsoft.Data.Entity.Tests.Design.EntityDesigner.View.Export
+namespace Microsoft.Data.Entity.Tests.Design.Dsl.View.Export
 {
     [TestClass]
     public class SvgStylesheetManagerTests

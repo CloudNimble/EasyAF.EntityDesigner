@@ -4,7 +4,7 @@ using Microsoft.Data.Entity.Design.EntityDesigner;
 using Microsoft.Data.Entity.Design.EntityDesigner.ViewModel;
 using Microsoft.VisualStudio.Modeling;
 
-namespace Microsoft.Data.Entity.Tests.Design.EntityDesigner.View.Export
+namespace Microsoft.Data.Entity.Tests.Design.Dsl.View.Export
 {
     /// <summary>
     /// Helper class for creating DSL model elements in unit tests.

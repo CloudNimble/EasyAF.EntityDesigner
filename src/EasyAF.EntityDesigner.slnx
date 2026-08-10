@@ -11,7 +11,7 @@
     <Project Path="Microsoft.Data.Entity.Tools/Microsoft.Data.Entity.Tools.csproj" />
   </Folder>
   <Folder Name="/Designer/">
-    <Project Path="Microsoft.Data.Entity.Design.EntityDesigner/Microsoft.Data.Entity.Design.EntityDesigner.csproj" Id="488b84c2-9358-4b90-bc2d-ed688939e6bb" />
+    <Project Path="Microsoft.Data.Entity.Design.Dsl/Microsoft.Data.Entity.Design.Dsl.csproj" Id="488b84c2-9358-4b90-bc2d-ed688939e6bb" />
     <Project Path="Microsoft.Data.Entity.Design.Extensibility/Microsoft.Data.Entity.Design.Extensibility.csproj" />
     <Project Path="Microsoft.Data.Entity.Design/Microsoft.Data.Entity.Design.csproj" />
     <Project Path="Microsoft.VisualStudio.Data.Tools.Design.XmlCore/Microsoft.VisualStudio.Data.Tools.Design.XmlCore.csproj" />
@@ -30,7 +30,7 @@
   </Folder>
   <Folder Name="/Tests/">
     <Project Path="Microsoft.Data.Entity.Tests.Design.DatabaseGeneration/Microsoft.Data.Entity.Tests.Design.DatabaseGeneration.csproj" />
-    <Project Path="Microsoft.Data.Entity.Tests.Design.EntityDesigner/Microsoft.Data.Entity.Tests.Design.EntityDesigner.csproj" />
+    <Project Path="Microsoft.Data.Entity.Tests.Design.Dsl/Microsoft.Data.Entity.Tests.Design.Dsl.csproj" />
     <Project Path="Microsoft.Data.Entity.Tests.Design.Extensibility/Microsoft.Data.Entity.Tests.Design.Extensibility.csproj" />
     <Project Path="Microsoft.Data.Entity.Tests.Design.Model/Microsoft.Data.Entity.Tests.Design.Model.csproj" />
     <Project Path="Microsoft.Data.Entity.Tests.Design.Package/Microsoft.Data.Entity.Tests.Design.Package.csproj" />
