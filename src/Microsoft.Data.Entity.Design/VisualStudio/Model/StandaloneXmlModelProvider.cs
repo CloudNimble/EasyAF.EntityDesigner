@@ -13,6 +13,7 @@ using Microsoft.Data.Entity.Design.Extensibility;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.Data.Tools.XmlDesignerBase.Model.StandAlone;
+using Microsoft.VisualStudio.Shell.Interop;
 
 namespace Microsoft.Data.Entity.Design.VisualStudio.Model
 {
@@ -175,10 +176,15 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.Model
                         transformContext = new ModelTransformContextImpl(
                             projectItem, targetSchemaVersion, originalDocument);
                     }
-                    catch (XmlException)
+                    catch (XmlException ex)
                     {
-                        // If there's an error here, don't do anything. We will want to gracefully step out of the extension loading
-                        // since the designer itself won't load.
+                        // Step out of extension loading gracefully: the document does not parse, so the designer will
+                        // not load it either and will report the XML problem itself. Adding a second user-facing error
+                        // would just duplicate that, but the activity log records why no extension ran - otherwise an
+                        // extension author sees their transform silently skipped with nothing to go on.
+                        VsUtils.LogToActivityLog(
+                            $"Skipped model transform extensions for '{filePath}': the file is not well-formed XML. {ex.Message}",
+                            __ACTIVITYLOG_ENTRYTYPE.ALE_WARNING);
                     }
                 }
 
@@ -188,36 +194,39 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.Model
                     // now dispatch to those that want to work on EDMX files
                     VSArtifact.DispatchToSerializationExtensions(serializers, transformContext, true);
 
-                    // TODO: this does not seem to be correct if severity is Message or Warning
-                    if (transformContext.Errors.Count == 0)
-                    {
-                        // see if any extension changed things. Note that we need to compare the serialization of
-                        // the XDocuments together since the original buffer may have different whitespace after creating the XDocument.
-                        // TODO: Why not use XNode.DeepEquals()?
-                        string newBufferContents;
-                        using (Utf8StringWriter currentDocWriter = new Utf8StringWriter())
-                        {
-                            transformContext.CurrentDocument.Save(currentDocWriter, SaveOptions.None);
-                            newBufferContents = currentDocWriter.ToString();
-                        }
-
-                        string originalBufferContents;
-                        using (Utf8StringWriter originalDocWriter = new Utf8StringWriter())
-                        {
-                            originalDocument.Save(originalDocWriter, SaveOptions.None);
-                            originalBufferContents = originalDocWriter.ToString();
-                        }
-
-                        if (!string.Equals(originalBufferContents, newBufferContents, StringComparison.Ordinal))
-                        {
-                            documentViaExtensions = newBufferContents;
-                            return true;
-                        }
-                    }
-                    else
+                    // Only a genuine Error discards the extension's work. Previously any entry at any severity did,
+                    // so an extension that logged a Message or a Warning had its transform thrown away and the user
+                    // was left with a model that looked untouched. Every entry still reaches the Error List through
+                    // the finally block below, whatever the severity, so nothing is lost by continuing here.
+                    if (transformContext.Errors.Any(e => e.Severity == ExtensionErrorSeverity.Error))
                     {
                         errors.AddRange(transformContext.Errors);
+
                         return false;
+                    }
+
+                    // see if any extension changed things. Note that we need to compare the serialization of
+                    // the XDocuments together since the original buffer may have different whitespace after creating the XDocument.
+                    // TODO: Why not use XNode.DeepEquals()?
+                    string newBufferContents;
+                    using (Utf8StringWriter currentDocWriter = new Utf8StringWriter())
+                    {
+                        transformContext.CurrentDocument.Save(currentDocWriter, SaveOptions.None);
+                        newBufferContents = currentDocWriter.ToString();
+                    }
+
+                    string originalBufferContents;
+                    using (Utf8StringWriter originalDocWriter = new Utf8StringWriter())
+                    {
+                        originalDocument.Save(originalDocWriter, SaveOptions.None);
+                        originalBufferContents = originalDocWriter.ToString();
+                    }
+
+                    if (!string.Equals(originalBufferContents, newBufferContents, StringComparison.Ordinal))
+                    {
+                        documentViaExtensions = newBufferContents;
+
+                        return true;
                     }
                 }
             }

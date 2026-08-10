@@ -122,6 +122,8 @@
              centrally would move it for the VSIX as well. -->
         <PackageVersion Include="McMaster.Extensions.Hosting.CommandLine" Version="4.1.1" />
         <PackageVersion Include="Svg.Skia" Version="2.0.0.4" />
+        <!-- MEF. A GAC reference on .NET Framework, a package everywhere else. -->
+        <PackageVersion Include="System.ComponentModel.Composition" Version="8.0.0" />
         <PackageVersion Include="System.Drawing.Common" Version="9.0.0" />
         <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
         <PackageVersion Include="Microsoft.Extensions.Hosting" Version="8.0.1" />

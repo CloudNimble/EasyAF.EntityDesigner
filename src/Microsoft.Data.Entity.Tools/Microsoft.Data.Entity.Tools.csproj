@@ -20,7 +20,6 @@
     <ItemGroup>
         <PackageReference Include="McMaster.Extensions.Hosting.CommandLine" />
         <PackageReference Include="Svg.Skia" />
-        
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
         <PackageReference Include="Microsoft.Extensions.Hosting" />
         <PackageReference Include="Microsoft.Extensions.Logging" />

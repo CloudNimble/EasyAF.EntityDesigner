@@ -376,11 +376,17 @@ namespace Microsoft.Data.Entity.Design.VisualStudio
                     }
                     filePath ??= projectItem.Name;
 
+                    // Line and Column are -1 when the extension did not tie the error to a position in the document.
+                    // Handing that to a TextSpan gives the Error List a negative origin to navigate to, so fall back
+                    // to the start of the file instead.
+                    var line = Math.Max(error.Line, 0);
+                    var column = Math.Max(error.Column, 0);
+
                     TextSpan textSpan = new TextSpan();
-                    textSpan.iStartLine = error.Line;
-                    textSpan.iStartIndex = error.Column;
-                    textSpan.iEndLine = error.Line;
-                    textSpan.iEndIndex = error.Column;
+                    textSpan.iStartLine = line;
+                    textSpan.iStartIndex = column;
+                    textSpan.iEndLine = line;
+                    textSpan.iEndIndex = column;
                     errorList.AddItem(
                         EFModelErrorTaskFactory.CreateErrorTask(
                             filePath, error.Message, textSpan, category, hierarchy, itemId, MARKERTYPE.MARKER_OTHER_ERROR));

@@ -1,33 +1,42 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <RootNamespace>Microsoft.Data.Entity.Design.Extensibility</RootNamespace>
-    <AssemblyName>Microsoft.Data.Entity.Design.Extensibility</AssemblyName>
-    <UseWPF>true</UseWPF>
-  </PropertyGroup>
+    <PropertyGroup>
+        <RootNamespace>Microsoft.Data.Entity.Design.Extensibility</RootNamespace>
+        <AssemblyName>Microsoft.Data.Entity.Design.Extensibility</AssemblyName>
 
-  <ItemGroup>
-    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design, $(StrongNamePublicKey)" />
-    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Package, $(StrongNamePublicKey)" />
-    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.VersioningFacade, $(StrongNamePublicKey)" />
-    <!-- Test projects -->
-    <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design, $(StrongNamePublicKey)" />
-    <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.Package, $(StrongNamePublicKey)" />
-  </ItemGroup>
+        <!-- Clears the net48 default from Directory.Build.props so TargetFrameworks below applies. -->
+        <TargetFramework></TargetFramework>
+        <TargetFrameworks>netstandard2.0;net10.0</TargetFrameworks>
+        <RuntimeIdentifier></RuntimeIdentifier>
+        <!-- Directory.Build.props flattens output, which collides when multi-targeting: every framework would
+             write to the same folder and overwrite the last. Each framework needs its own subfolder. -->
+        <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
 
-  <ItemGroup>
-    <Reference Include="System.ComponentModel.Composition" />
-  </ItemGroup>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.Interop" />
-  </ItemGroup>
+    <!-- MEF ships in the framework on .NET Framework and as a package elsewhere. -->
+    <ItemGroup>
+        <PackageReference Include="System.ComponentModel.Composition" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.VisualStudio.Interop" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Update="Properties\Resources.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Microsoft.Data.Entity.Design, $(StrongNamePublicKey)" />
+        <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Package, $(StrongNamePublicKey)" />
+        <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.VersioningFacade, $(StrongNamePublicKey)" />
+        <!-- Test projects -->
+        <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design, $(StrongNamePublicKey)" />
+        <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.Package, $(StrongNamePublicKey)" />
+    </ItemGroup>
 
 </Project>

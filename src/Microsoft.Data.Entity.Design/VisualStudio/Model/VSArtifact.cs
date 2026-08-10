@@ -471,60 +471,78 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.Model
             ICollection<Lazy<IModelConversionExtension, IEntityDesignerConversionData>> exports, string fileExtension,
             ModelConversionExtensionContext context, bool loading)
         {
-            List<string> converters = new List<string>();
+            // Every matching converter is collected before any of them runs. A converter *is* the interpretation of
+            // its file format, so two registered for the same extension are competing alternatives rather than
+            // pipeline stages - there is no correct order for them and the second would be handed EDMX when its
+            // contract says it receives the custom format. Discovering that up front also means the failure happens
+            // before any extension has mutated the document, instead of half way through.
+            var matches = exports?
+                .Where(export => IsConverterForExtension(export.Metadata.FileExtension, fileExtension))
+                .ToList() ?? [];
 
-            if (exports != null)
-            {
-                foreach (var exportInfo in exports)
-                {
-                    var converterFileExtension = exportInfo.Metadata.FileExtension;
-                    if (converterFileExtension != null
-                        && !converterFileExtension.StartsWith(".", StringComparison.Ordinal))
-                    {
-                        converterFileExtension = "." + converterFileExtension;
-                    }
-
-                    if (string.Equals(fileExtension, converterFileExtension, StringComparison.OrdinalIgnoreCase))
-                    {
-                        if (converters.Count > 0)
-                        {
-                            break;
-                        }
-
-                        var extension = exportInfo.Value;
-                        if (loading)
-                        {
-                            extension.OnAfterFileLoaded(context);
-                        }
-                        else
-                        {
-                            extension.OnBeforeFileSaved(context);
-                        }
-
-                        converters.Add(extension.GetType().FullName);
-                    }
-                }
-            }
-
-            if (converters.Count == 0)
+            if (matches.Count == 0)
             {
                 throw new InvalidOperationException(Resources.Extensibility_NoConverterForExtension);
             }
-            else if (converters.Count > 1)
-            {
-                var convs = string.Empty;
-                for (var i = 0; i < converters.Count; i++)
-                {
-                    if (i != 0)
-                    {
-                        convs += ", ";
-                    }
-                    convs += converters[i];
-                }
 
-                var message = string.Format(CultureInfo.CurrentCulture, Resources.Extensibility_TooManyConverters, convs);
-                throw new InvalidOperationException(message);
+            if (matches.Count > 1)
+            {
+                throw new InvalidOperationException(
+                    string.Format(CultureInfo.CurrentCulture, Resources.Extensibility_TooManyConverters, DescribeConverters(matches)));
             }
+
+            // Only now is the single winner instantiated, so a rejected converter is never constructed.
+            var extension = matches[0].Value;
+
+            if (loading)
+            {
+                extension.OnAfterFileLoaded(context);
+            }
+            else
+            {
+                extension.OnBeforeFileSaved(context);
+            }
+        }
+
+        // <summary>
+        //     Builds the list of conflicting converters for the "too many converters" message.
+        // </summary>
+        // <remarks>
+        //     Named from MEF metadata rather than the exported type, because reading the type would mean
+        //     instantiating converters that are about to be rejected. LayerName is optional, so converters that did
+        //     not declare one are identified by position.
+        // </remarks>
+        private static string DescribeConverters(
+            IList<Lazy<IModelConversionExtension, IEntityDesignerConversionData>> converters)
+        {
+            return string.Join(
+                ", ",
+                converters.Select(
+                    (converter, index) => string.IsNullOrWhiteSpace(converter.Metadata.LayerName)
+                        ? string.Format(CultureInfo.CurrentCulture, "#{0}", index + 1)
+                        : converter.Metadata.LayerName));
+        }
+
+        // <summary>
+        //     Determines whether a converter's declared file extension matches the file being loaded.
+        // </summary>
+        // <remarks>
+        //     Extensions may be declared with or without the leading dot, so the converter's value is normalized
+        //     before comparison. The file extension supplied by the caller always includes it.
+        // </remarks>
+        private static bool IsConverterForExtension(string converterFileExtension, string fileExtension)
+        {
+            if (converterFileExtension is null)
+            {
+                return false;
+            }
+
+            if (!converterFileExtension.StartsWith(".", StringComparison.Ordinal))
+            {
+                converterFileExtension = "." + converterFileExtension;
+            }
+
+            return string.Equals(fileExtension, converterFileExtension, StringComparison.OrdinalIgnoreCase);
         }
 
         internal override List<EdmSchemaError> GetModelGenErrors()
