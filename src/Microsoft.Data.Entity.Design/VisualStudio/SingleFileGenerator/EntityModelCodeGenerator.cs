@@ -13,7 +13,7 @@ using Microsoft.Data.Tools.XmlDesignerBase.Base.Util;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Designer;
 using Microsoft.Data.Entity.Design.Model.Validation;
-using Microsoft.Data.Entity.Design.VersioningFacade.LegacyCodegen;
+using Microsoft.Data.Entity.Design.VersioningFacade;
 using Microsoft.Data.Entity.Design.VisualStudio.Model;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio;
@@ -185,55 +185,15 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.SingleFileGenerator
                         }
                     }
 
-                    // First check if the 'CodeGenerationStrategy' option is set to 'Default'. 
-                    // If there's no or empty value, we assume 'Default'.
-                    var codeGenStrategy = ModelHelper.GetDesignerPropertyValueFromArtifact(
-                        OptionsDesignerInfo.ElementName, OptionsDesignerInfo.AttributeCodeGenerationStrategy, artifact);
-                    if (String.IsNullOrEmpty(codeGenStrategy)
-                        || codeGenStrategy.Equals(Resources.Default))
-                    {
-                        // navigate to the conceptual element
-                        var cModel = artifact.ConceptualModel();
-                        if (cModel != null)
-                        {
-                            IList<EdmSchemaError> generatorErrors;
-
-                            using (StringWriter output = new StringWriter(CultureInfo.InvariantCulture))
-                            {
-                                // set up namespace to use for code-gen. defaultNamespace is computed by VS to account for
-                                // folder path in the project, custom tool namespace, and differences between C#, VB, and web-site projects.
-                                defaultNamespace = GetCodeNamespace(defaultNamespace, artifact);
-
-                                // generate code
-                                generatorErrors =
-                                    new LegacyCodeGenerationDriver(languageOption, artifact.SchemaVersion)
-                                        .GenerateCode(artifact, defaultNamespace, output);
-
-                                generatedCode = output.ToString();
-                            }
-
-                            // TODO: pass on validation to our designer so that we validate the MSL and SSDL in addition to the CSDL
-                            // Insert new errors into the ErrorList window
-                            ProcessErrors(generatorErrors, projectItemUri, artifact);
-
-                            if (generatorErrors.Count > 0
-                                || string.IsNullOrEmpty(generatedCode))
-                            {
-                                // We do not want to bring the error list to the front if there are code generation errors
-                                // since this could interrupt the editing of the model.
-                                // in case of errors generate a comment in the code which will indicate 
-                                // that the file failed to generate properly
-                                generatedCode = GetCodeGenerationErrorComment(languageOption, inputFileName);
-                            }
-
-                            generatedBytes = Utils.StringToBytes(generatedCode, Encoding.UTF8);
-                        }
-                    }
-                    else
-                    {
-                        generatedCode = GetCodeGenerationDisabledComment(languageOption, inputFileName);
-                        generatedBytes = Utils.StringToBytes(generatedCode, Encoding.UTF8);
-                    }
+                    // This custom tool no longer emits classes for any strategy. It used to run the ObjectContext
+                    // generator by default, which came from the .NET Framework's in-box System.Data.Entity.Design and
+                    // produced ObjectContext derived classes that nobody targets any more. DbContext generation
+                    // replaces it, and that cannot come from here: a single file generator produces exactly one file,
+                    // while DbContext generation produces a context plus a file per entity type. It is delivered by
+                    // the EF 6.x DbContext Generator item template instead, which is how Entity Framework itself
+                    // shipped it. The comment below tells anyone who opens the generated file where the code went.
+                    generatedCode = GetCodeGenerationDisabledComment(languageOption, inputFileName);
+                    generatedBytes = Utils.StringToBytes(generatedCode, Encoding.UTF8);
                 }
                 catch (Exception e)
                 {

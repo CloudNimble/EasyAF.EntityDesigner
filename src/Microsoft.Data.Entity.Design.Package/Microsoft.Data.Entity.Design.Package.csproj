@@ -160,9 +160,11 @@
             <!--<VSIXSourceItem Include="..\Microsoft.Data.Entity.Design.Extensibility\bin\$(Configuration)\Microsoft.Data.Entity.Design.Extensibility.dll">
                 <VSIXSubPath></VSIXSubPath>
             </VSIXSourceItem>-->
-            <VSIXSourceItem Include="..\Microsoft.Data.Entity.Design.VersioningFacade\bin\$(Configuration)\Microsoft.Data.Entity.Design.VersioningFacade.dll">
+            <!-- VersioningFacade multi-targets, so its output is under a framework subfolder rather than at this flat
+                 path. Commented out to let the ProjectReference's BuiltProjectOutputGroup resolve the right one. -->
+            <!--<VSIXSourceItem Include="..\Microsoft.Data.Entity.Design.VersioningFacade\bin\$(Configuration)\Microsoft.Data.Entity.Design.VersioningFacade.dll">
                 <VSIXSubPath></VSIXSubPath>
-            </VSIXSourceItem>
+            </VSIXSourceItem>-->
             <!-- XmlCore multi-targets, so its output is under a framework subfolder rather than at this flat path.
                  Commented out to let the ProjectReference's BuiltProjectOutputGroup resolve the right one. -->
             <!--<VSIXSourceItem Include="..\Microsoft.Data.Tools.Design.XmlCore\bin\$(Configuration)\Microsoft.Data.Tools.Design.XmlCore.dll">
