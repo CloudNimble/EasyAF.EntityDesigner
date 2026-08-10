@@ -12,16 +12,34 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.View.Export
     {
         private readonly SvgExporter _svgExporter;
         private readonly MermaidExporter _mermaidExporter;
-        private readonly RasterExporter _rasterExporter;
+        private readonly IRasterExporter _rasterExporter;
 
         /// <summary>
-        /// Initializes a new instance of the ExportManager class.
+        /// Initializes a new instance of the ExportManager class supporting only the vector formats.
         /// </summary>
         public ExportManager()
+            : this(null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the ExportManager class with a raster exporter.
+        /// </summary>
+        /// <param name="rasterExporter">
+        /// Produces raster images. When null, only SVG and Mermaid are available and requesting a raster format
+        /// throws <see cref="NotSupportedException"/>.
+        /// </param>
+        /// <remarks>
+        /// There is no raster default because every implementation carries a dependency this assembly should not
+        /// take on. Visual Studio supplies <c>ShellRasterExporter</c>, which calls <c>Diagram.CreateBitmap</c> so
+        /// images match what the designer has always produced, and needs a running shell. The command line tool
+        /// supplies one built on a rasteriser it references itself. See <see cref="IRasterExporter"/>.
+        /// </remarks>
+        public ExportManager(IRasterExporter rasterExporter)
         {
             _svgExporter = new SvgExporter();
             _mermaidExporter = new MermaidExporter();
-            _rasterExporter = new RasterExporter();
+            _rasterExporter = rasterExporter;
         }
 
         /// <summary>
@@ -56,6 +74,12 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.View.Export
                 case ExportFormat.Bmp:
                 case ExportFormat.Gif:
                 case ExportFormat.Tiff:
+                    if (_rasterExporter is null)
+                    {
+                        throw new NotSupportedException(
+                            $"Export format {options.Format} needs a raster exporter, and this host did not supply one.");
+                    }
+
                     _rasterExporter.Export(diagram, options);
                     break;
 

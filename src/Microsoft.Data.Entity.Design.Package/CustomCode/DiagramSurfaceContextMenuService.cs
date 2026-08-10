@@ -1591,7 +1591,7 @@ namespace Microsoft.Data.Entity.Design.Package
             if (dialog.ShowDialog() == true)
             {
                 var options = dialog.CreateExportOptions();
-                var exportManager = new ExportManager();
+                var exportManager = new ExportManager(new ShellRasterExporter());
                 exportManager.Export(diagram, options);
             }
         }

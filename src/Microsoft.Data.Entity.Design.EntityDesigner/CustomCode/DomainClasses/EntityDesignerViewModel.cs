@@ -183,14 +183,28 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.ViewModel
                 _editingContext.Disposing -= OnContextDisposing;
                 _editingContext.Reloaded -= OnContextReloaded;
             }
-            PackageManager.Package.ModelManager.ModelChangesCommitted -= OnModelChangesCommitted;
+
+            // IsLoaded rather than a null check on Package: the Package getter asserts when nothing has been loaded,
+            // which puts a modal dialog on screen in Debug builds. See RegisterEventDelegates.
+            if (PackageManager.IsLoaded)
+            {
+                PackageManager.Package.ModelManager.ModelChangesCommitted -= OnModelChangesCommitted;
+            }
         }
 
         private void RegisterEventDelegates()
         {
             if (_editingContext != null)
             {
-                PackageManager.Package.ModelManager.ModelChangesCommitted += OnModelChangesCommitted;
+                // There is no package when the view model is built outside Visual Studio, which is how the headless
+                // renderer works. Nothing is listening for committed changes in that case, and the renderer only
+                // reads the model, so skipping the subscription costs nothing. IsLoaded is used rather than a null
+                // check on Package because the Package getter asserts, which shows a modal dialog in Debug builds.
+                if (PackageManager.IsLoaded)
+                {
+                    PackageManager.Package.ModelManager.ModelChangesCommitted += OnModelChangesCommitted;
+                }
+
                 _editingContext.Disposing += OnContextDisposing;
                 _editingContext.Reloaded += OnContextReloaded;
             }

@@ -6,7 +6,6 @@ using System.IO;
 using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Entity.Design.EntityDesigner.CustomSerializer;
 using Microsoft.Data.Entity.Design.EntityDesigner.View;
-using Microsoft.Data.Entity.Design.EntityDesigner.View.Export;
 using Microsoft.VisualStudio.Modeling;
 
 namespace Microsoft.Data.Entity.Design.EntityDesigner.Utils
@@ -48,63 +47,6 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.Utils
             }
 
             return tx;
-        }
-
-        /// <summary>
-        ///     Exports the diagram as an image
-        /// </summary>
-        internal static void ExportDiagram(EntityDesignerDiagram diagram)
-        {
-            if (diagram == null)
-            {
-                return;
-            }
-
-            var childShapes = diagram.NestedChildShapes;
-            Debug.Assert(childShapes != null && childShapes.Count > 0, "Diagram '" + diagram.Title + "' is empty");
-
-            if (childShapes == null || childShapes.Count == 0)
-            {
-                return;
-            }
-
-            // Get model name from EDMX file name (without extension)
-            var modelName = "EntityModel";
-            try
-            {
-                var viewModel = diagram.GetModel();
-                if (viewModel != null && viewModel.EditingContext != null)
-                {
-                    var artifactService = viewModel.EditingContext.GetEFArtifactService();
-                    if (artifactService != null && artifactService.Artifact != null)
-                    {
-                        var filePath = artifactService.Artifact.Uri.LocalPath;
-                        if (!string.IsNullOrEmpty(filePath))
-                        {
-                            modelName = Path.GetFileNameWithoutExtension(filePath);
-                        }
-                    }
-                }
-            }
-            catch
-            {
-                // Fall back to diagram title if we can't get the file name
-                if (!string.IsNullOrEmpty(diagram.Title))
-                {
-                    modelName = diagram.Title;
-                }
-            }
-
-            ExportDiagramDialog dlg = new ExportDiagramDialog(modelName, diagram.DisplayNameAndType);
-            if (dlg.ShowModal() != true)
-            {
-                return;
-            }
-
-            // Create export options and use ExportManager to handle the export
-            var options = dlg.CreateExportOptions();
-            ExportManager exportManager = new ExportManager();
-            exportManager.Export(diagram, options);
         }
 
         internal static bool IsUniqueName(ModelElement elementToCheck, string proposedName, EditingContext context)

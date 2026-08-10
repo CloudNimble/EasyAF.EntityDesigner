@@ -29,7 +29,12 @@
   <!-- InternalsVisibleTo for projects that need access to internal types -->
   <ItemGroup>
     <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Package, $(StrongNamePublicKey)" />
+    <!-- The renderer works directly against the DSL shapes and connectors, which are internal to this assembly, and
+         the command line tool implements IRasterExporter against the same diagram type. -->
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Renderer, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Tools, $(StrongNamePublicKey)" />
     <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.EntityDesigner, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.Renderer, $(StrongNamePublicKey)" />
   </ItemGroup>
 
   <ItemGroup>
@@ -93,7 +98,6 @@
   <!-- Embedded Resources -->
   <ItemGroup>
     <EmbeddedResource Include="Resources\*.cur" />
-    <EmbeddedResource Include="CustomCode\Export\Svg\Icons\*.svg" />
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

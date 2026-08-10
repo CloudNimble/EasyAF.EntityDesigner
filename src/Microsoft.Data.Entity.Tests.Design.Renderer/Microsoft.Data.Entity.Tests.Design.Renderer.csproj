@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Microsoft.Data.Entity.Tests.Design.Renderer</RootNamespace>
+    <AssemblyName>Microsoft.Data.Entity.Tests.Design.Renderer</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk" />
+    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.EntityDesigner\Microsoft.Data.Entity.Design.EntityDesigner.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.Model\Microsoft.Data.Entity.Design.Model.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.Renderer\Microsoft.Data.Entity.Design.Renderer.csproj" />
+  </ItemGroup>
+
+</Project>

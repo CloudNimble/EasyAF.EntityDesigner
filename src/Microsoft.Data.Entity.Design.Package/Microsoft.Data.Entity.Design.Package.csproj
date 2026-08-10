@@ -117,6 +117,9 @@
         <ProjectReference Include="..\Microsoft.Data.Entity.Design.Extensibility\Microsoft.Data.Entity.Design.Extensibility.csproj">
             <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
         </ProjectReference>
+        <ProjectReference Include="..\Microsoft.Data.Entity.Design.Renderer\Microsoft.Data.Entity.Design.Renderer.csproj">
+            <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
+        </ProjectReference>
         <ProjectReference Include="..\Microsoft.Data.Entity.Design.Model\Microsoft.Data.Entity.Design.Model.csproj">
             <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
         </ProjectReference>

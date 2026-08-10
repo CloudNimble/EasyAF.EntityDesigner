@@ -1987,7 +1987,7 @@ namespace Microsoft.Data.Entity.Design.Package
                     VsUtils.ShowErrorDialog(String.Format(CultureInfo.CurrentCulture, Resources.Error_EmptyDiagram, diagram.Title));
                     return;
                 }
-                ModelUtils.ExportDiagram(diagram);
+                DiagramExportHelper.ExportDiagram(diagram);
             }
         }
 

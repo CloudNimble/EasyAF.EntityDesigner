@@ -672,6 +672,27 @@ namespace Microsoft.Data.Entity.Design.Model
         }
 
         /// <summary>
+        ///     Determines whether the artifact can be drawn, and marks it designer safe when it can.
+        /// </summary>
+        /// <returns><see langword="true" /> when the artifact has everything rendering needs.</returns>
+        /// <remarks>
+        ///     This is a deliberately weaker test than <see cref="DetermineIfArtifactIsDesignerSafe" />, for callers
+        ///     that render a diagram rather than edit a model. The full check runs
+        ///     <see cref="DetermineIfArtifactIsStructurallySafe" />, which invokes the runtime metadata validator and
+        ///     therefore requires the model's ADO.NET provider to be registered on the current machine. Producing a
+        ///     picture needs neither a provider nor a valid mapping - only namespaces that match the schema version
+        ///     and a conceptual model to draw - so requiring them would refuse perfectly renderable models on any
+        ///     machine where the provider is not installed.
+        /// </remarks>
+        internal bool DetermineIfArtifactIsRenderSafe()
+        {
+            DetermineIfArtifactIsVersionSafe();
+            IsDesignerSafe = IsVersionSafe && ConceptualModel is not null;
+
+            return IsDesignerSafe;
+        }
+
+        /// <summary>
         ///     This will do analysis to determine if a document should be opened
         ///     only in the XmlEditor.
         /// </summary>

@@ -9,9 +9,10 @@ using Microsoft.VisualStudio.Modeling.Diagrams;
 namespace Microsoft.Data.Entity.Design.EntityDesigner.View.Export
 {
     /// <summary>
-    /// Exports diagrams to raster image formats (PNG, JPEG, BMP, GIF, TIFF).
+    /// Exports diagrams to raster image formats using the DSL SDK, which is what the designer has always used and
+    /// therefore what Visual Studio users expect. Requires a running shell: Diagram.CreateBitmap resolves SVsUIShell.
     /// </summary>
-    internal class RasterExporter
+    internal sealed class ShellRasterExporter : IRasterExporter
     {
         /// <summary>
         /// Exports the diagram to a raster image file.

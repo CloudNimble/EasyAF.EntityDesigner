@@ -8,7 +8,7 @@
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                  xmlns:vs="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0"
                  xmlns:shell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
-                 xmlns:props="clr-namespace:Microsoft.Data.Entity.Design.EntityDesigner.Properties"
+                 xmlns:props="clr-namespace:Microsoft.Data.Entity.Design.EntityDesigner.Properties;assembly=Microsoft.Data.Entity.Design.EntityDesigner"
                  mc:Ignorable="d"
                  d:DesignWidth="450"
                  d:DesignHeight="210"

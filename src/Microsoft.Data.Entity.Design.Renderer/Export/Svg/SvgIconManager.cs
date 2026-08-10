@@ -18,7 +18,7 @@ namespace Microsoft.Data.Entity.Design.EntityDesigner.View.Export
     {
         private const double DefaultIconSize = 16.0;
         private const string IconPrefix = "icon-";
-        private const string IconResourcePath = ".CustomCode.Export.Svg.Icons.";
+        private const string IconResourcePath = ".Export.Svg.Icons.";
 
         private readonly Dictionary<string, string> _iconSymbols;
         private readonly HashSet<string> _usedIcons;

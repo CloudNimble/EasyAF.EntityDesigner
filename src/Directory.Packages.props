@@ -116,6 +116,16 @@
         <PackageVersion Include="Microsoft.VisualStudio.QualityTools.ExecutionCommon" Version="$(MicrosoftVisualStudioQualityToolsPackageVersion)" />
         <PackageVersion Include="Microsoft.VisualStudio.QualityTools.Vsip" Version="$(MicrosoftVisualStudioQualityToolsPackageVersion)" />
         <PackageVersion Include="Microsoft.VisualStudioEng.MicroBuild.Core" Version="$(MicrosoftVisualStudioEngMicroBuildCorePackageVersion)" />
+
+        <!-- Command line tool. These all ship netstandard2.0 assets, so they resolve on net48. Held at 8.x to match
+             the System.Text.Json version pinned above: the 9.x line requires System.Text.Json 9, and bumping that
+             centrally would move it for the VSIX as well. -->
+        <PackageVersion Include="McMaster.Extensions.Hosting.CommandLine" Version="4.1.1" />
+        <PackageVersion Include="Svg.Skia" Version="2.0.0.4" />
+        <PackageVersion Include="System.Drawing.Common" Version="9.0.0" />
+        <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+        <PackageVersion Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
+        <PackageVersion Include="Microsoft.Extensions.Logging" Version="8.0.1" />
     </ItemGroup>
 
 </Project>
