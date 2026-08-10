@@ -17,7 +17,6 @@ namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors
     internal interface IEFOptionsDesignerDescriptorAddOn
     {
         bool ValidateOnBuild { get; set; }
-        string DatabaseGenerationWorkflow { get; set; }
         string DDLGenerationTemplate { get; set; }
         bool PluralizeNewObjects { get; set; }
         string DatabaseSchemaName { get; set; }
@@ -193,31 +192,6 @@ namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors
             }
         }
 
-        public string DatabaseGenerationWorkflow
-        {
-            get
-            {
-                if (TypedEFElement != null
-                    && TypedEFElement.DatabaseGenerationWorkflow != null
-                    && TypedEFElement.DatabaseGenerationWorkflow.ValueAttr != null
-                    && String.IsNullOrEmpty(TypedEFElement.DatabaseGenerationWorkflow.ValueAttr.Value) == false)
-                {
-                    return TypedEFElement.DatabaseGenerationWorkflow.ValueAttr.Value;
-                }
-                return DatabaseGenerationEngine.DefaultWorkflowPath;
-            }
-            set
-            {
-                var cmd = ModelHelper.CreateSetDesignerPropertyCommandInsideDesignerInfo(
-                    TypedEFElement, OptionsDesignerInfo.AttributeDatabaseGenerationWorkflow, value);
-                if (cmd != null)
-                {
-                    var cpc = PropertyWindowViewModelHelper.GetCommandProcessorContext();
-                    CommandProcessor.InvokeSingleCommand(cpc, cmd);
-                }
-            }
-        }
-
         public string DDLGenerationTemplate
         {
             get
@@ -317,10 +291,6 @@ namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors
             if (propertyDescriptorMethodName.Equals("PluralizeNewObjects"))
             {
                 return OptionsDesignerInfo.EnablePluralizationDefault;
-            }
-            if (propertyDescriptorMethodName.Equals("DatabaseGenerationWorkflow"))
-            {
-                return DatabaseGenerationEngine.DefaultWorkflowPath;
             }
             if (propertyDescriptorMethodName.Equals("DDLGenerationTemplate"))
             {

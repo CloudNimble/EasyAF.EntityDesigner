@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
-using System.Activities;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Diagnostics;
@@ -10,7 +9,9 @@ using System.Globalization;
 using System.IO;
 using System.Security;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Data.Entity.Design.DatabaseGeneration;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.UI.Views.Dialogs;
 using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
@@ -22,17 +23,15 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Gui
 {
     internal partial class WizardPageDbGenSummary : WizardPageBase
     {
-        internal WorkflowApplication _workflowInstance;
+        private CancellationTokenSource _generationCancellation;
         private Label _statusLabel;
         private SynchronizationContext _synchronizationContext;
         private bool _addedDbConfigPage;
-        private bool _onWorkflowCleanup;
         private string _ddlFileExtension;
 
         // TODO: create strongly-typed properties in an options page type to store this information
         private const string RegKeyNameDdlOverwriteWarning = "DbGenShowOverwriteDDLWarning";
         private const string RegKeyNameEdmxOverwriteWarning = "DbGenShowEdmxOverwriteWarning";
-        private const string RegKeyNameCustomWorkflowWarning = "DbGenShowCustomWorkflowWarning";
 
         internal WizardPageDbGenSummary(ModelBuilderWizardForm wizard)
             : base(wizard)
@@ -64,13 +63,11 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Gui
         {
             base.OnActivated();
 
-            _onWorkflowCleanup = false;
-
             Debug.Assert(
-                !Wizard.MovingNext || _workflowInstance == null,
-                "Possible memory leak: We should have destroyed the old workflow instance when activating WizardPageDbGenSummary");
+                !Wizard.MovingNext || _generationCancellation is null,
+                "Possible memory leak: We should have cancelled the old generation when activating WizardPageDbGenSummary");
 
-            if (_workflowInstance == null)
+            if (_generationCancellation is null)
             {
                 if (LocalDataUtil.IsSqlMobileConnectionString(Wizard.ModelBuilderSettings.DesignTimeProviderInvariantName))
                 {
@@ -118,10 +115,8 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Gui
                 }
 
                 var existingSsdl = Wizard.ModelBuilderSettings.Artifact.GetSsdlAsString();
-                var existingMsl = Wizard.ModelBuilderSettings.Artifact.GetMslAsString();
 
-                // Attempt to get the workflow path, template path, and database schema name from the artifact. If we don't find them, we'll use defaults.
-                var workflowPath = DatabaseGenerationEngine.GetWorkflowPathFromArtifact(Wizard.ModelBuilderSettings.Artifact);
+                // Attempt to get the template path and database schema name from the artifact. If we don't find them, we'll use defaults.
                 var templatePath = DatabaseGenerationEngine.GetTemplatePathFromArtifact(Wizard.ModelBuilderSettings.Artifact);
                 var databaseSchemaName = DatabaseGenerationEngine.GetDatabaseSchemaNameFromArtifact(Wizard.ModelBuilderSettings.Artifact);
 
@@ -129,114 +124,101 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Gui
                 // responding to workflow events (since they are executed in a separate thread)
                 _synchronizationContext = SynchronizationContext.Current;
 
-                // Invoke the Pipeline/Workflow. The Workflow engine will automatically wrap this in a background thread
-                try
-                {
-                    using (new VsUtils.HourglassHelper())
-                    {
-                        var resolvedWorkflowFileInfo = DatabaseGenerationEngine.ResolveAndValidateWorkflowPath(
-                            Wizard.Project,
-                            workflowPath);
+                // Generation is synchronous, so run it on the thread pool to keep the wizard responsive. The Workflow
+                // engine used to provide the background thread implicitly.
+                var artifactPath = Wizard.ModelBuilderSettings.Artifact.Uri.LocalPath;
+                var project = Wizard.Project;
+                var initialCatalog = Wizard.ModelBuilderSettings.InitialCatalog;
+                var providerInvariantName = Wizard.ModelBuilderSettings.RuntimeProviderInvariantName;
+                var connectionString = Wizard.ModelBuilderSettings.AppConfigConnectionString;
+                var providerManifestToken = Wizard.ModelBuilderSettings.ProviderManifestToken;
+                var schemaVersion = Wizard.ModelBuilderSettings.Artifact.SchemaVersion;
 
-                        var resolvedDefaultPath = VsUtils.ResolvePathWithMacro(
-                            null, DatabaseGenerationEngine.DefaultWorkflowPath,
-                            new Dictionary<string, string>
-                                {
-                                    { ExtensibleFileManager.EFTOOLS_USER_MACRONAME, ExtensibleFileManager.UserEFToolsDir.FullName },
-                                    { ExtensibleFileManager.EFTOOLS_VS_MACRONAME, ExtensibleFileManager.VSEFToolsDir.FullName }
-                                });
+                _generationCancellation = new CancellationTokenSource();
+                var cancellationToken = _generationCancellation.Token;
 
-                        // Display a security warning if the workflow path specified is different from the default
-                        if (!resolvedWorkflowFileInfo.FullName.Equals(
-                            Path.GetFullPath(resolvedDefaultPath), StringComparison.OrdinalIgnoreCase))
-                        {
-                            var displayCustomWorkflowWarning = true;
-                            try
-                            {
-                                var customWorkflowWarningString = EdmUtils.GetUserSetting(RegKeyNameCustomWorkflowWarning);
-                                if (false == String.IsNullOrEmpty(customWorkflowWarningString)
-                                    && false == Boolean.TryParse(customWorkflowWarningString, out displayCustomWorkflowWarning))
-                                {
-                                    displayCustomWorkflowWarning = true;
-                                }
-                                if (displayCustomWorkflowWarning)
-                                {
-                                    var cancelledDuringCustomWorkflowWarning = DismissableWarningDialog
-                                        .ShowWarningDialogAndSaveDismissOption(
-                                            Resources.DatabaseCreation_CustomWorkflowWarningTitle,
-                                            Resources.DatabaseCreation_WarningCustomWorkflow,
-                                            RegKeyNameCustomWorkflowWarning,
-                                            DismissableWarningDialog.ButtonMode.OkCancel);
-                                    if (cancelledDuringCustomWorkflowWarning)
-                                    {
-                                        HandleError(
-                                            String.Format(
-                                                CultureInfo.CurrentCulture, Resources.DatabaseCreation_CustomWorkflowCancelled,
-                                                resolvedWorkflowFileInfo.FullName), false);
-                                        return;
-                                    }
-                                }
-                            }
-                            catch (SecurityException e)
-                            {
-                                // We should at least alert the user of why this is failing so they can take steps to fix it.
-                                VsUtils.ShowMessageBox(
-                                    Services.ServiceProvider,
-                                    String.Format(
-                                        CultureInfo.CurrentCulture, Resources.ErrorReadingWritingUserSetting,
-                                        RegKeyNameCustomWorkflowWarning, e.Message),
-                                    OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                                    OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST,
-                                    OLEMSGICON.OLEMSGICON_WARNING);
-                            }
-                        }
-
-                        _workflowInstance = DatabaseGenerationEngine.CreateDatabaseScriptGenerationWorkflow(
-                            _synchronizationContext,
-                            Wizard.Project,
-                            Wizard.ModelBuilderSettings.Artifact.Uri.LocalPath,
-                            resolvedWorkflowFileInfo,
-                            templatePath,
-                            edm,
-                            existingSsdl,
-                            existingMsl,
-                            databaseSchemaName,
-                            Wizard.ModelBuilderSettings.InitialCatalog,
-                            Wizard.ModelBuilderSettings.RuntimeProviderInvariantName,
-                            Wizard.ModelBuilderSettings.AppConfigConnectionString,
-                            Wizard.ModelBuilderSettings.ProviderManifestToken,
-                            Wizard.ModelBuilderSettings.Artifact.SchemaVersion,
-                            _workflowInstance_WorkflowCompleted,
-                            _workflowInstance_UnhandledException);
-                    }
-
-                    Wizard.ModelBuilderSettings.WorkflowInstance = _workflowInstance;
-
-                    _workflowInstance.Run();
-                }
-                catch (Exception e)
-                {
-                    HandleError(e.Message, true);
-
-                    if (_workflowInstance != null)
-                    {
-                        CleanupWorkflow();
-                    }
-                }
+                Task.Run(
+                    () => DatabaseGenerationEngine.GenerateDatabaseScript(
+                        _synchronizationContext,
+                        project,
+                        artifactPath,
+                        templatePath,
+                        edm,
+                        existingSsdl,
+                        databaseSchemaName,
+                        initialCatalog,
+                        providerInvariantName,
+                        connectionString,
+                        providerManifestToken,
+                        schemaVersion))
+                    .ContinueWith(
+                        task => OnGenerationCompleted(task, cancellationToken),
+                        TaskScheduler.Default);
             }
         }
 
-        private UnhandledExceptionAction _workflowInstance_UnhandledException(WorkflowApplicationUnhandledExceptionEventArgs e)
+        // <summary>
+        //     Marshals the result of database script generation back onto the UI thread.
+        // </summary>
+        // <remarks>
+        //     Replaces the WorkflowApplication Completed and OnUnhandledException callbacks. Cancellation is checked
+        //     against the token captured when the run started, so a run abandoned by navigating back cannot post
+        //     results over a newer one.
+        // </remarks>
+        private void OnGenerationCompleted(Task<DatabaseScript> task, CancellationToken cancellationToken)
         {
             _synchronizationContext.Post(
                 state =>
                     {
-                        if (e.UnhandledException != null)
+                        // If we navigated away from this page, the run is stale: leave the buttons to whoever
+                        // cancelled it and discard the output.
+                        if (cancellationToken.IsCancellationRequested)
                         {
-                            HandleError(e.UnhandledException.Message, true);
+                            return;
                         }
+
+                        if (task.IsFaulted)
+                        {
+                            // AggregateException.Message enumerates every inner exception, which reads poorly in a
+                            // dialog; the first inner exception is the one the generators actually threw.
+                            Exception exception = task.Exception.InnerException ?? task.Exception;
+                            HandleError(exception.Message, true);
+                            return;
+                        }
+
+                        var script = task.Result;
+
+                        // Hide the status message on the DDL tab
+                        HideStatus();
+
+                        SummaryTabs.Enabled = true;
+                        txtSaveDdlAs.Enabled = true;
+
+                        // Immediately enable the Finish button now that generation has succeeded. We also enable going
+                        // back to the connection page and cancelling out of the wizard completely.
+                        Wizard.EnableButton(ButtonType.Previous, true);
+                        Wizard.EnableButton(ButtonType.Next, false);
+                        Wizard.EnableButton(ButtonType.Finish, true);
+                        Wizard.EnableButton(ButtonType.Cancel, true);
+
+                        if (!String.IsNullOrEmpty(script.Ssdl))
+                        {
+                            Wizard.ModelBuilderSettings.SsdlStringReader = new StringReader(script.Ssdl);
+                        }
+
+                        if (!String.IsNullOrEmpty(script.Msl))
+                        {
+                            Wizard.ModelBuilderSettings.MslStringReader = new StringReader(script.Msl);
+                        }
+
+                        if (!String.IsNullOrEmpty(script.Ddl))
+                        {
+                            Wizard.ModelBuilderSettings.DdlStringReader = new StringReader(script.Ddl);
+                            InferTablesAndDisplayDDL(script.Ddl);
+                        }
+
+                        txtSaveDdlAs.Focus();
                     }, null);
-            return UnhandledExceptionAction.Terminate;
         }
 
         // <summary>
@@ -501,19 +483,34 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Gui
             tabPage.Controls.SetChildIndex(_statusLabel, 0);
         }
 
+        // <summary>
+        //     Abandons an in-flight generation run and restores the buttons for navigating back.
+        // </summary>
+        // <remarks>
+        //     Generation cannot be interrupted once started, so this signals the token rather than killing the work:
+        //     the run finishes on the thread pool and its continuation discards the result. The old
+        //     WorkflowApplication.Abort had the same practical effect.
+        // </remarks>
         private void CleanupWorkflow()
         {
-            if (_workflowInstance != null)
+            if (_generationCancellation is null)
             {
-                _onWorkflowCleanup = true;
-                _workflowInstance.Abort();
-                _workflowInstance = null;
+                return;
             }
+
+            _generationCancellation.Cancel();
+            _generationCancellation.Dispose();
+            _generationCancellation = null;
+
+            Wizard.EnableButton(ButtonType.Previous, false);
+            Wizard.EnableButton(ButtonType.Next, true);
+            Wizard.EnableButton(ButtonType.Finish, false);
+            Wizard.EnableButton(ButtonType.Cancel, true);
         }
 
         private void HandleError(string message, bool displayErrorDialog)
         {
-            // The workflow encountered a termination exception
+            // Generation failed
             if (displayErrorDialog)
             {
                 VsUtils.ShowErrorDialog(message);
@@ -526,85 +523,6 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Gui
             Wizard.EnableButton(ButtonType.Next, false);
             Wizard.EnableButton(ButtonType.Finish, false);
             Wizard.EnableButton(ButtonType.Cancel, true);
-        }
-
-        // <summary>
-        //     This method gets called when the workflow completes or gets terminated
-        // </summary>
-        private void _workflowInstance_WorkflowCompleted(WorkflowApplicationCompletedEventArgs e)
-        {
-            _synchronizationContext.Post(
-                state =>
-                    {
-                        // If we are just cleaning up the workflow, no need to do anything
-                        // except enable the appropriate buttons (we might be heading to the
-                        // previous page)
-                        if (_onWorkflowCleanup)
-                        {
-                            Wizard.EnableButton(ButtonType.Previous, false);
-                            Wizard.EnableButton(ButtonType.Next, true);
-                            Wizard.EnableButton(ButtonType.Finish, false);
-                            Wizard.EnableButton(ButtonType.Cancel, true);
-                            _onWorkflowCleanup = false;
-
-                            return;
-                        }
-
-                        // If there was an exception, then the UnhandledException handler should have
-                        // already handled it.
-                        if (e.TerminationException == null)
-                        {
-                            // The workflow has completed successfully
-
-                            // Hide the status message on the DDL tab
-                            HideStatus();
-
-                            SummaryTabs.Enabled = true;
-                            txtSaveDdlAs.Enabled = true;
-
-                            // Immediately enable the Finish button if we've gotten a hold of the WorkflowInstance
-                            // We also enable going back to the connection page and cancelling out of the wizard completely
-                            Wizard.EnableButton(ButtonType.Previous, true);
-                            Wizard.EnableButton(ButtonType.Next, false);
-                            Wizard.EnableButton(ButtonType.Finish, true);
-                            Wizard.EnableButton(ButtonType.Cancel, true);
-
-                            // Examine the SSDL output. Display an error if we can't find it.
-                            var ssdlOutput = String.Empty;
-                            if (e.Outputs.TryGetValue(DatabaseGeneration.EdmConstants.ssdlOutputName, out object ssdlOutputObj)
-                                && ssdlOutputObj != null
-                                && !String.IsNullOrEmpty(ssdlOutput = ssdlOutputObj as string))
-                            {
-                                Wizard.ModelBuilderSettings.SsdlStringReader = new StringReader(ssdlOutput);
-                            }
-
-                            // Examine the MSL output. Display an error if we can't find it.
-                            var mslOutput = String.Empty;
-                            if (e.Outputs.TryGetValue(DatabaseGeneration.EdmConstants.mslOutputName, out object mslOutputObj)
-                                && mslOutputObj != null
-                                && !String.IsNullOrEmpty(mslOutput = mslOutputObj as string))
-                            {
-                                Wizard.ModelBuilderSettings.MslStringReader = new StringReader(mslOutput);
-                            }
-
-                            // Examine the DDL output. Display an error if we can't find it.
-                            var ddlOutput = String.Empty;
-                            if (e.Outputs.TryGetValue(DatabaseGeneration.EdmConstants.ddlOutputName, out object ddlOutputObj)
-                                && ddlOutputObj != null
-                                && !String.IsNullOrEmpty(ddlOutput = ddlOutputObj as string))
-                            {
-                                Wizard.ModelBuilderSettings.DdlStringReader = new StringReader(ddlOutput);
-                            }
-
-                            // Display the DDL in the textbox
-                            if (!String.IsNullOrEmpty(ddlOutput))
-                            {
-                                InferTablesAndDisplayDDL(ddlOutput);
-                            }
-
-                            txtSaveDdlAs.Focus();
-                        }
-                    }, null);
         }
 
         private void InferTablesAndDisplayDDL(string ddl)

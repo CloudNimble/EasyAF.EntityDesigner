@@ -1,8 +1,6 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
-using System.Activities;
-using System.Activities.Hosting;
 using System.Collections.Generic;
 using System.Data.Entity.Core;
 using System.Data.Entity.Core.Common;
@@ -19,9 +17,8 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators
     /// <summary>
     ///     Generates store schema definition language (SSDL) based on the provided conceptual schema definition language (CSDL).
     /// </summary>
-    public class CsdlToSsdl : IGenerateActivityOutput
+    public class CsdlToSsdl : ISchemaGenerator
     {
-        private OutputGeneratorActivity _activity;
         private static string _ssdlUri, _essgUri;
         private static XNamespace _ssdl, _essg;
         private const string _storeGeneratedPattern = "StoreGeneratedPattern";
@@ -48,31 +45,26 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators
 
         #endregion Test code only
 
-        #region IGenerateActivityOutput Members
+        #region ISchemaGenerator Members
 
         // TODO perhaps build an in-memory "inference" model that keeps track of the assumptions we make (association/entity type names, etc.)
         /// <summary>
         ///     Generates store schema definition language (SSDL) based on the provided conceptual schema definition language (CSDL).
         /// </summary>
-        /// <typeparam name="T"> The type of the activity output. </typeparam>
-        /// <param name="owningActivity"> The currently executing activity. </param>
-        /// <param name="context"> The activity context that contains the state of the workflow. </param>
-        /// <param name="inputs"> Contains the incoming CSDL. </param>
-        /// <returns> Store schema definition language (SSDL) of type T based on the provided conceptual schema definition language (CSDL). </returns>
-        public T GenerateActivityOutput<T>(
-            OutputGeneratorActivity owningActivity, NativeActivityContext context, IDictionary<string, object> inputs) where T : class
+        /// <param name="edmItemCollection">The conceptual model to generate a store model for.</param>
+        /// <param name="edmParameterBag">
+        ///     Supplies the provider invariant name, provider manifest token, target Entity Framework version, and database
+        ///     schema name that the generated SSDL depends on.
+        /// </param>
+        /// <returns> Store schema definition language (SSDL) based on the provided conceptual schema definition language (CSDL). </returns>
+        public string Generate(EdmItemCollection edmItemCollection, EdmParameterBag edmParameterBag)
         {
-            _activity = owningActivity;
-
-            // First attempt to get the CSDL represented by the EdmItemCollection from the inputs
-            inputs.TryGetValue(EdmConstants.csdlInputName, out object o);
-            if (o is not EdmItemCollection edmItemCollection)
+            if (edmItemCollection is null)
             {
                 throw new InvalidOperationException(Resources.ErrorCouldNotFindCSDL);
             }
 
-            var symbolResolver = context.GetExtension<SymbolResolver>();
-            if (symbolResolver[typeof(EdmParameterBag).Name] is not EdmParameterBag edmParameterBag)
+            if (edmParameterBag is null)
             {
                 throw new InvalidOperationException(Resources.ErrorNoEdmParameterBag);
             }
@@ -173,7 +165,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators
                 throw new ArgumentException(
                     String.Format(CultureInfo.CurrentCulture, Resources.ErrorSerializing_CsdlToSsdl, e.Message), e);
             }
-            return serializedSchemaElement as T;
+            return serializedSchemaElement;
         }
 
         #endregion

@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
-using System.Activities;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -134,8 +133,6 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
             get { return _applicationType; }
             set { _applicationType = value; }
         }
-
-        internal WorkflowApplication WorkflowInstance { get; set; }
 
         internal string ProviderManifestToken { get; set; }
 

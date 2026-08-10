@@ -1,9 +1,6 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
-using System.Activities;
-using System.Activities.Hosting;
-using System.Activities.XamlIntegration;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Diagnostics;
@@ -12,10 +9,10 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Xaml;
 using System.Xml;
 using EnvDTE;
 using Microsoft.Data.Entity.Design.DatabaseGeneration;
+using Microsoft.Data.Entity.Design.VisualStudio.TextTemplating;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Designer;
@@ -30,29 +27,15 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
 {
     internal class DatabaseGenerationEngine : DatabaseEngineBase
     {
-        private static string _defaultWorkflowPath;
         private static string _defaultTemplatePath;
-        private static ExtensibleFileManager _workflowFileManager;
         private static ExtensibleFileManager _templateFileManager;
-        private const string XamlExtension = ".xaml";
         private const string TtExtension = ".tt";
-        private const string DefaultWorkflowName = "TablePerTypeStrategy.xaml";
         private const string DefaultTemplateName = "SSDLToSQL10.tt";
         private const string DefaultDatabaseSchema = "dbo";
 
         internal static readonly string _dbGenFolderName = "DBGen";
         internal static readonly string _ddlFileExtension = ".sql";
         internal static readonly string _sqlceFileExtension = ".sqlce";
-
-        internal static string DefaultWorkflowPath
-        {
-            get
-            {
-                _defaultWorkflowPath ??= Path.Combine(
-                        Path.Combine(ExtensibleFileManager.VSEFToolsMacro, _dbGenFolderName), DefaultWorkflowName);
-                return _defaultWorkflowPath;
-            }
-        }
 
         internal static string DefaultTemplatePath
         {
@@ -61,15 +44,6 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
                 _defaultTemplatePath ??= Path.Combine(
                         Path.Combine(ExtensibleFileManager.VSEFToolsMacro, _dbGenFolderName), DefaultTemplateName);
                 return _defaultTemplatePath;
-            }
-        }
-
-        internal static ExtensibleFileManager WorkflowFileManager
-        {
-            get
-            {
-                _workflowFileManager ??= new ExtensibleFileManager(_dbGenFolderName, XamlExtension);
-                return _workflowFileManager;
             }
         }
 
@@ -322,20 +296,6 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
             }
         }
 
-        internal static string GetWorkflowPathFromArtifact(EFArtifact artifact)
-        {
-            var workflowPath = ModelHelper.GetDesignerPropertyValueFromArtifact(
-                OptionsDesignerInfo.ElementName, OptionsDesignerInfo.AttributeDatabaseGenerationWorkflow, artifact);
-            if (String.IsNullOrEmpty(workflowPath))
-            {
-                // There is probably not a DesignerProperty under the DesignerInfoPropertySet or there may not even
-                // be a DesignerInfoPropertySet under the DesignerInfo. In this case, we will just use the default value
-                // of the workflow path.
-                workflowPath = DefaultWorkflowPath;
-            }
-            return workflowPath;
-        }
-
         internal static string GetTemplatePathFromArtifact(EFArtifact artifact)
         {
             var templatePath = ModelHelper.GetDesignerPropertyValueFromArtifact(
@@ -490,110 +450,50 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
 #endif
         }
 
-        internal static FileInfo ResolveAndValidateWorkflowPath(Project project, string unresolvedPath)
-        {
-            // Resolve and validate the workflow file path
-            PathValidationErrorMessages errorMessages = new PathValidationErrorMessages
-                {
-                    NullFile = Resources.DatabaseCreation_ErrorWorkflowPathNotSet,
-                    NonValid = Resources.DatabaseCreation_ErrorNonValidWorkflowUri,
-                    ParseError = Resources.DatabaseCreation_ExceptionParsingWorkflowFilePath,
-                    NonFile = Resources.DatabaseCreation_NonFileWorkflow,
-                    NotInProject = Resources.DatabaseCreation_ErrorWorkflowFileNotInProject,
-                    NonExistant = Resources.DatabaseCreation_WorkflowFileNotExists
-                };
-
-            return ResolveAndValidatePath(
-                project,
-                unresolvedPath,
-                errorMessages);
-        }
-
         // <summary>
-        //     Create the WF workflow application used by the Database Script Generation wizard:
-        //     1. Deserialize the XAML file specified by the user
-        //     2. Add inputs
-        //     3. Add parameters to the EdmParameterBag, added to the workflow via an extension
+        //     Generate the SSDL, MSL and DDL for the Database Script Generation wizard.
         // </summary>
-        // <param name="syncContext">SynchronizationContext of VS's UI thread that can be used by the workflow to spawn UIs</param>
+        // <remarks>
+        //     This replaces a Windows Workflow application deserialized from TablePerTypeStrategy.xaml. That graph
+        //     sequenced two activities — infer SSDL and MSL from the CSDL, then render DDL from the SSDL — which
+        //     DatabaseScriptGenerator now does directly. Callers are responsible for moving this off the UI thread;
+        //     the workflow runtime used to do that implicitly.
+        // </remarks>
+        // <param name="syncContext">SynchronizationContext of VS's UI thread that generators can use to spawn UIs</param>
         // <param name="project"></param>
         // <param name="artifactPath"></param>
-        // <param name="workflowFileInfo"></param>
-        // <param name="templatePath">DDL template path. We will resolve/validate this at runtime within the appropriate TemplateActivity</param>
+        // <param name="templatePath">DDL template path. We will resolve/validate this at runtime within the DDL generator</param>
         // <param name="edmItemCollection"></param>
         // <param name="existingSsdl"></param>
-        // <param name="existingMsl"></param>
         // <param name="databaseSchemaName"></param>
         // <param name="databaseName"></param>
         // <param name="providerInvariantName"></param>
         // <param name="providerConnectionString"></param>
         // <param name="providerManifestToken"></param>
         // <param name="targetVersion"></param>
-        // <param name="workflowCompletedHandler"></param>
-        // <param name="unhandledExceptionHandler"></param>
-        internal static WorkflowApplication CreateDatabaseScriptGenerationWorkflow(
+        internal static DatabaseScript GenerateDatabaseScript(
             SynchronizationContext syncContext,
             Project project,
             string artifactPath,
-            FileInfo workflowFileInfo,
             string templatePath,
             EdmItemCollection edmItemCollection,
             string existingSsdl,
-            string existingMsl,
             string databaseSchemaName,
             string databaseName,
             string providerInvariantName,
             string providerConnectionString,
             string providerManifestToken,
-            Version targetVersion,
-            Action<WorkflowApplicationCompletedEventArgs> workflowCompletedHandler,
-            Func<WorkflowApplicationUnhandledExceptionEventArgs, UnhandledExceptionAction> unhandledExceptionHandler)
+            Version targetVersion)
         {
-            // Inputs are specific to the workflow. No need to provide a strongly typed bag here
-            // because the workflow has to define these.
-            Dictionary<string, object> inputs = new Dictionary<string, object>
-                {
-                    { DatabaseGeneration.EdmConstants.csdlInputName, edmItemCollection },
-                    { DatabaseGeneration.EdmConstants.existingSsdlInputName, existingSsdl },
-                    { DatabaseGeneration.EdmConstants.existingMslInputName, existingMsl }
-                };
-
             // Initialize the AssemblyLoader. This will cache project/website references and proffer assembly
-            // references to the XamlSchemaContext as well as the OutputGeneratorActivities
+            // references to the generators.
             DatabaseGenerationAssemblyLoader assemblyLoader = new DatabaseGenerationAssemblyLoader(project, VsUtils.GetVisualStudioInstallDir());
 
-            // Parameters can be used throughout the workflow. These are more ubiquitous than inputs and
-            // so they do not need to be defined ahead of time in the workflow.
-            EdmParameterBag edmWorkflowSymbolResolver = new EdmParameterBag(
+            EdmParameterBag parameters = new EdmParameterBag(
                 syncContext, assemblyLoader, targetVersion, providerInvariantName, providerManifestToken, providerConnectionString,
                 databaseSchemaName, databaseName, templatePath, artifactPath);
 
-            // Deserialize the XAML file into a Activity
-            System.Activities.Activity modelFirstWorkflowElement;
-            using (var stream = workflowFileInfo.OpenRead())
-            {
-                using (
-                    XamlXmlReader xamlXmlReader = new XamlXmlReader(XmlReader.Create(stream), new DatabaseGenerationXamlSchemaContext(assemblyLoader))
-                    )
-                {
-                    modelFirstWorkflowElement = ActivityXamlServices.Load(xamlXmlReader);
-                }
-            }
-
-            // Create a WorkflowInstance from the WorkflowElement and pass in the inputs
-            WorkflowApplication workflowInstance = new WorkflowApplication(modelFirstWorkflowElement, inputs);
-
-            // Attach a SymbolResolver for external parameters; this is like the ParameterBag
-            SymbolResolver symbolResolver = new SymbolResolver
-            {
-                { typeof(EdmParameterBag).Name, edmWorkflowSymbolResolver }
-            };
-
-            workflowInstance.Extensions.Add(symbolResolver);
-            workflowInstance.Completed = workflowCompletedHandler;
-            workflowInstance.OnUnhandledException = unhandledExceptionHandler;
-
-            return workflowInstance;
+            return new DatabaseScriptGenerator(new SsdlToDdlGenerator()).Generate(edmItemCollection, existingSsdl, parameters);
         }
 
         // <summary>

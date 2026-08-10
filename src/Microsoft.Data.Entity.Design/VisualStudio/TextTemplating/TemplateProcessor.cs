@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
-using System.Activities;
-using System.Activities.Hosting;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -18,88 +16,96 @@ using Microsoft.VisualStudio.TextTemplating.VSHost;
 namespace Microsoft.Data.Entity.Design.VisualStudio.TextTemplating
 {
     /// <summary>
-    ///     TemplateActivity that allows the transformation of a T4 template within a WF workflow.
-    ///     NOTE that this class should avoid any dependencies on any instance types (especially types instantiated by the
-    ///     Entity Designer) in the Microsoft.Data.Entity.Design.* namespace except for
-    ///     Microsoft.Data.Entity.Design.CreateDatabase.
-    ///     This class exists in this project because of VS dependencies.
+    ///     Runs a T4 template through Visual Studio's text templating service.
     /// </summary>
-    public abstract class TemplateActivity : NativeActivity
+    /// <remarks>
+    ///     <para>
+    ///         This was <c>TemplateActivity</c>, a Windows Workflow <c>NativeActivity</c>. The workflow context supplied
+    ///         nothing but the template path and the parameter bag, both of which are now ordinary arguments.
+    ///     </para>
+    ///     <para>
+    ///         Template inputs travel through <see cref="CallContext" /> because that is the channel the VS text
+    ///         templating host exposes to a running template; the slots are always freed, even when the template throws.
+    ///     </para>
+    /// </remarks>
+    public class TemplateProcessor
     {
-        private static readonly Regex _assemblyDirectiveRegex = new Regex(@"<#@\s*assembly\s+name=""(.*\$\(.*\).*)""\s*#>");
+        #region Fields
+
         private const string AssemblyDirectiveFormat = @"<#@ assembly name=""{0}"" #>";
-        private string _edmxPath;
+        private static readonly Regex _assemblyDirectiveRegex = new Regex(@"<#@\s*assembly\s+name=""(.*\$\(.*\).*)""\s*#>");
+
+        private readonly string _displayName;
+        private readonly string _edmxPath;
+
+        #endregion
+
+        #region Constructors
 
         /// <summary>
-        ///     The output of the template that is specified by the <see cref="TemplatePath" /> property.
+        ///     Creates a <see cref="TemplateProcessor" />.
         /// </summary>
-        protected string TemplateOutput { get; set; }
-
-        /// <summary>
-        ///     The path of the text template being processed.
-        /// </summary>
-        public InArgument<string> TemplatePath { get; set; }
-
-        /// <summary>
-        ///     Populates an <see cref="System.Collections.IDictionary" /> that is used to provide inputs to a text template. This method can be overridden in derived classes to provide custom inputs.
-        ///     These inputs are placed into <see cref="CallContext" /> for use by the text template.
-        /// </summary>
-        /// <param name="context">The state of the current activity.</param>
-        /// <param name="inputs">A dictionary that relates input names to input values for use by a text template.</param>
-        protected abstract void OnGetTemplateInputs(NativeActivityContext context, IDictionary<string, object> inputs);
-
-        /// <summary>
-        ///     Transforms a text template that is specified in the <see cref="TemplatePath" /> property by calling the Visual Studio STextTemplatingService.
-        /// </summary>
-        /// <param name="context">The state of the current activity.</param>
-        protected override void Execute(NativeActivityContext context)
+        /// <param name="edmxPath">The .edmx file the generation was launched from. Used to resolve project macros. May be <see langword="null" />.</param>
+        /// <param name="displayName">A name for this step, used in error messages.</param>
+        public TemplateProcessor(string edmxPath, string displayName)
         {
-            Dictionary<string, object> templateInputs = new Dictionary<string, object>();
+            _edmxPath = edmxPath;
+            _displayName = displayName;
+        }
 
-            var symbolResolver = context.GetExtension<SymbolResolver>();
-            if (symbolResolver[typeof(EdmParameterBag).Name] is not EdmParameterBag edmParameterBag)
-            {
-                throw new InvalidOperationException(Resources.DatabaseCreation_ErrorNoEdmParameterBag);
-            }
+        #endregion
 
-            // Add the EDMX path as a template input if it was populated as a parameter to the workflow
-            _edmxPath = edmParameterBag.GetParameter<string>(EdmParameterBag.ParameterName.EdmxPath);
-            if (_edmxPath != null)
-            {
-                templateInputs.Add(EdmParameterBag.ParameterName.EdmxPath.ToString(), _edmxPath);
-            }
+        #region Public Methods
 
-            // Call OnGetTemplateInputs, which will ask any derived class for inputs they would like the
-            // templates to have access to
-            OnGetTemplateInputs(context, templateInputs);
-
-            // Retrieve the template name specified on the workflow file
-            var unresolvedTemplatePath = TemplatePath.Get(context);
-            if (String.IsNullOrEmpty(unresolvedTemplatePath))
+        /// <summary>
+        ///     Processes a T4 template, making <paramref name="templateInputs" /> available to it.
+        /// </summary>
+        /// <param name="templatePath">The template's file path, which may contain project-based macros such as <c>$(DevEnvDir)</c>.</param>
+        /// <param name="templateInputs">Values the template reads from <see cref="CallContext" />.</param>
+        /// <returns>The output of processing the template.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///     Thrown when the template path is not set, the text templating service is unavailable, or the template
+        ///     reports errors.
+        /// </exception>
+        public string Process(string templatePath, IDictionary<string, object> templateInputs)
+        {
+            if (String.IsNullOrWhiteSpace(templatePath))
             {
                 throw new InvalidOperationException(
-                    String.Format(CultureInfo.CurrentCulture, Resources.DatabaseCreation_ErrorTemplatePathNotSet, DisplayName));
+                    String.Format(CultureInfo.CurrentCulture, Resources.DatabaseCreation_ErrorTemplatePathNotSet, _displayName));
             }
 
-            // Add the template inputs to CallContext
-            foreach (var inputName in templateInputs.Keys)
+            var inputs = templateInputs ?? new Dictionary<string, object>();
+
+            // The EDMX path is offered to every template, not just the ones that ask for it.
+            if (_edmxPath is not null
+                && !inputs.ContainsKey(EdmParameterBag.ParameterName.EdmxPath.ToString()))
             {
-                CallContext.LogicalSetData(inputName, templateInputs[inputName]);
+                inputs.Add(EdmParameterBag.ParameterName.EdmxPath.ToString(), _edmxPath);
+            }
+
+            foreach (var inputName in inputs.Keys)
+            {
+                CallContext.LogicalSetData(inputName, inputs[inputName]);
             }
 
             try
             {
-                TemplateOutput = ProcessTemplate(unresolvedTemplatePath);
+                return ProcessTemplate(templatePath);
             }
             finally
             {
                 // We have to make sure we clear the CallContext data slots we set
-                foreach (var inputName in templateInputs.Keys)
+                foreach (var inputName in inputs.Keys)
                 {
                     CallContext.FreeNamedDataSlot(inputName);
                 }
             }
         }
+
+        #endregion
+
+        #region Private Methods
 
         /// <summary>
         ///     Process a T4 template using Visual Studio's text templating service, given a path that could contain macros (i.e. "$(DevEnvDir)\...").
@@ -107,7 +113,7 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.TextTemplating
         /// </summary>
         /// <param name="templatePath">Template's file path which may contain project-based macros</param>
         /// <returns>The output of processing the template.</returns>
-        protected string ProcessTemplate(string templatePath)
+        private string ProcessTemplate(string templatePath)
         {
             // Attempt to resolve the full template path if it contains any macros, using
             // the edmx path to get the project and using the project's defined macros.
@@ -124,17 +130,17 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.TextTemplating
             DatabaseGenerationEngine.PathValidationErrorMessages errorMessages = new DatabaseGenerationEngine.PathValidationErrorMessages
                 {
                     NullFile = String.Format(
-                        CultureInfo.CurrentCulture, Resources.DatabaseCreation_ErrorTemplatePathNotSet, DisplayName),
+                        CultureInfo.CurrentCulture, Resources.DatabaseCreation_ErrorTemplatePathNotSet, _displayName),
                     NonValid = String.Format(
-                        CultureInfo.CurrentCulture, Resources.DatabaseCreation_ErrorTemplatePathNotValid, DisplayName),
+                        CultureInfo.CurrentCulture, Resources.DatabaseCreation_ErrorTemplatePathNotValid, _displayName),
                     ParseError = String.Format(
-                        CultureInfo.CurrentCulture, Resources.DatabaseCreation_ExceptionParsingTemplateFilePath, DisplayName),
+                        CultureInfo.CurrentCulture, Resources.DatabaseCreation_ExceptionParsingTemplateFilePath, _displayName),
                     NonFile = String.Format(
-                        CultureInfo.CurrentCulture, Resources.DatabaseCreation_ErrorTemplatePathNonFile, DisplayName),
+                        CultureInfo.CurrentCulture, Resources.DatabaseCreation_ErrorTemplatePathNonFile, _displayName),
                     NotInProject = String.Format(
-                        CultureInfo.CurrentCulture, Resources.DatabaseCreation_ErrorTemplateFileNotInProject, DisplayName),
+                        CultureInfo.CurrentCulture, Resources.DatabaseCreation_ErrorTemplateFileNotInProject, _displayName),
                     NonExistant = String.Format(
-                        CultureInfo.CurrentCulture, Resources.DatabaseCreation_TemplateFileNotExists, DisplayName)
+                        CultureInfo.CurrentCulture, Resources.DatabaseCreation_TemplateFileNotExists, _displayName)
                 };
 
             var templateFileInfo = DatabaseGenerationEngine.ResolveAndValidatePath(
@@ -144,7 +150,7 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.TextTemplating
 
             var resolvedTemplatePath = templateFileInfo.FullName;
 
-            // The workflow will catch any IO exceptions and wrap them in a friendly message
+            // Callers catch any IO exceptions and wrap them in a friendly message
             var templateContents = File.ReadAllText(resolvedTemplatePath);
 
             // Since we are leveraging the VS T4 Host, we will have to ask the environment how to resolve any other assemblies.
@@ -177,18 +183,18 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.TextTemplating
 
             ITextTemplating textTemplatingService = Microsoft.VisualStudio.Shell.Package.GetGlobalService(typeof(STextTemplating)) as ITextTemplating;
             Debug.Assert(textTemplatingService != null, "ITextTemplating could not be found from the IServiceProvider");
-            if (textTemplatingService == null)
+            if (textTemplatingService is null)
             {
                 throw new InvalidOperationException(
                     String.Format(
                         CultureInfo.CurrentCulture, Resources.DatabaseCreation_ErrorTextTemplatingServiceNotFound, resolvedTemplatePath));
             }
+
             // Process the template, keeping track of errors
             TemplateCallback templateCallback = new TemplateCallback();
-            var templateOutput = String.Empty;
 
             textTemplatingService.BeginErrorSession();
-            templateOutput = textTemplatingService.ProcessTemplate(resolvedTemplatePath, templateContents, templateCallback, null);
+            var templateOutput = textTemplatingService.ProcessTemplate(resolvedTemplatePath, templateContents, templateCallback, null);
             if (textTemplatingService.EndErrorSession())
             {
                 throw new InvalidOperationException(
@@ -196,7 +202,10 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.TextTemplating
                         CultureInfo.CurrentCulture, Resources.TemplateErrorsEncountered, resolvedTemplatePath,
                         templateCallback.ErrorStringBuilder));
             }
+
             return templateOutput;
         }
+
+        #endregion
     }
 }

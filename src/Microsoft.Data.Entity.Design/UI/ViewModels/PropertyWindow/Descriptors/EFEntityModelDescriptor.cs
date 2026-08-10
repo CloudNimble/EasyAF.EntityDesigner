@@ -302,26 +302,6 @@ namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors
         }
 
         [LocCategory("PropertyWindow_Category_DatabaseScriptGeneration")]
-        [LocDisplayName("PropertyWindow_DisplayName_DatabaseGenerationWorkflow")]
-        [LocDescription("PropertyWindow_Description_DatabaseGenerationWorkflow")]
-        [TypeConverter(typeof(DbGenWorkflowFileListConverter))]
-        public string DatabaseGenerationWorkflow
-        {
-            get
-            {
-                if (_EFOptionsDesignerInfoDescriptor != null)
-                {
-                    return _EFOptionsDesignerInfoDescriptor.DatabaseGenerationWorkflow;
-                }
-                return DatabaseGenerationEngine.DefaultWorkflowPath;
-            }
-            set
-            {
-                _EFOptionsDesignerInfoDescriptor?.DatabaseGenerationWorkflow = value;
-            }
-        }
-
-        [LocCategory("PropertyWindow_Category_DatabaseScriptGeneration")]
         [LocDisplayName("PropertyWindow_DisplayName_DDLGenerationTemplate")]
         [LocDescription("PropertyWindow_Description_DDLGenerationTemplate")]
         [TypeConverter(typeof(DbGenTemplateFileListConverter))]

@@ -20,11 +20,6 @@
     </AssemblyAttribute>
   </ItemGroup>
 
-  <!-- Windows Workflow Foundation for T4 templating activities -->
-  <ItemGroup>
-    <Reference Include="System.Activities" />
-  </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.ConnectionUI" />
     <PackageReference Include="System.Resources.Extensions" />
@@ -96,9 +91,6 @@
     <None Update="VisualStudio\InTheBoxItemTemplates\CodeFirst.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CodeFirst.txt</LastGenOutput>
-    </None>
-    <None Include="workflows\TablePerTypeStrategy.xaml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TextTemplates\**\*.*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
