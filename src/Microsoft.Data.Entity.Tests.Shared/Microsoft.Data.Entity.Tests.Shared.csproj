@@ -32,7 +32,7 @@
         <ProjectReference Include="..\Microsoft.VisualStudio.Data.Tools.Design.XmlCore\Microsoft.VisualStudio.Data.Tools.Design.XmlCore.csproj" />
         <ProjectReference Include="..\Microsoft.Data.Tools.Design.XmlCore\Microsoft.Data.Tools.Design.XmlCore.csproj" />
         <ProjectReference Include="..\Microsoft.Data.Entity.Design.Model\Microsoft.Data.Entity.Design.Model.csproj" />
-        <ProjectReference Include="..\Microsoft.Data.Entity.Design\Microsoft.Data.Entity.Design.csproj" />
+        <ProjectReference Include="..\Microsoft.VisualStudio.Data.Entity.Design\Microsoft.VisualStudio.Data.Entity.Design.csproj" />
         <ProjectReference Include="..\Microsoft.VisualStudio.TestTools.VsIdeTesting\Microsoft.VisualStudio.TestTools.VsIdeTesting.csproj" />
     </ItemGroup>
 

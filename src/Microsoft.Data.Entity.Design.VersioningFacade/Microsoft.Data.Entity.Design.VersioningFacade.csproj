@@ -43,7 +43,7 @@
     <!-- InternalsVisibleTo for projects that need access to internal types -->
     <ItemGroup>
         <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Model, $(StrongNamePublicKey)" />
-        <InternalsVisibleTo Include="Microsoft.Data.Entity.Design, $(StrongNamePublicKey)" />
+        <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.Design, $(StrongNamePublicKey)" />
         <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.DatabaseGeneration, $(StrongNamePublicKey)" />
         <!-- Test projects -->
         <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design, $(StrongNamePublicKey)" />

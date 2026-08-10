@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
 using System.Globalization;
@@ -56,7 +56,7 @@ namespace Microsoft.Data.Entity.Tests.Shared
             _designPackageResourceLookup = new AssemblyResourceLookup(
                 Assembly.LoadFile(filepath), "Microsoft.Data.Entity.Design.Package.Resources");
 
-            filepath = Path.Combine(_vsInstallDir, "Microsoft.Data.Entity.Design.dll");
+            filepath = Path.Combine(_vsInstallDir, "Microsoft.VisualStudio.Data.Entity.Design.dll");
             _modelWizardResourceLookup = new AssemblyResourceLookup(
                 Assembly.LoadFile(filepath), "Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Properties.Resources");
             _viewsDialogsResourceLookup = new AssemblyResourceLookup(
@@ -91,7 +91,7 @@ namespace Microsoft.Data.Entity.Tests.Shared
 
         /// <summary>
         ///     Look up resource string in all relevant resource tables for the
-        ///     Microsoft.Data.Entity.Design.dll reference file.
+        ///     Microsoft.VisualStudio.Data.Entity.Design.dll reference file.
         /// </summary>
         /// <param name="key">Resource string key</param>
         /// <returns>Real display string</returns>

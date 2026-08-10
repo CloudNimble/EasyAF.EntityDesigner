@@ -13,7 +13,7 @@
   <Folder Name="/Designer/">
     <Project Path="Microsoft.Data.Entity.Design.Dsl/Microsoft.Data.Entity.Design.Dsl.csproj" Id="488b84c2-9358-4b90-bc2d-ed688939e6bb" />
     <Project Path="Microsoft.Data.Entity.Design.Extensibility/Microsoft.Data.Entity.Design.Extensibility.csproj" />
-    <Project Path="Microsoft.Data.Entity.Design/Microsoft.Data.Entity.Design.csproj" />
+    <Project Path="Microsoft.VisualStudio.Data.Entity.Design/Microsoft.VisualStudio.Data.Entity.Design.csproj" />
     <Project Path="Microsoft.VisualStudio.Data.Tools.Design.XmlCore/Microsoft.VisualStudio.Data.Tools.Design.XmlCore.csproj" />
   </Folder>
   <Folder Name="/Output/">

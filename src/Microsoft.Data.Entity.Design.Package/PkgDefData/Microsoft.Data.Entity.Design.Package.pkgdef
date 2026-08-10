@@ -190,7 +190,7 @@
 // Register the FallbackT4VSHostProcessor for T4 Templates 
 [$RootKey$\TextTemplating\DirectiveProcessors\T4VSHost]
 "Class"="Microsoft.Data.Entity.Design.VisualStudio.Directives.FallbackT4VSHostProcessor"
-"CodeBase"="$PackageFolder$\\Microsoft.Data.Entity.Design.dll"
+"CodeBase"="$PackageFolder$\\Microsoft.VisualStudio.Data.Entity.Design.dll"
 
 // Enables the EntityDataSource connection wizard to work against Entity Framework 5 by registering a dependency
 // assembly codebase in the registry to hint Visual Studio (or its express flavors) as to where to go look for

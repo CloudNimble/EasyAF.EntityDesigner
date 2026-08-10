@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Microsoft.Data.Entity.Design\Microsoft.Data.Entity.Design.csproj" />
+    <ProjectReference Include="..\Microsoft.VisualStudio.Data.Entity.Design\Microsoft.VisualStudio.Data.Entity.Design.csproj" />
     <ProjectReference Include="..\Microsoft.Data.Entity.Design.Extensibility\Microsoft.Data.Entity.Design.Extensibility.csproj" />
     <ProjectReference Include="..\Microsoft.Data.Entity.Design.Package\Microsoft.Data.Entity.Design.Package.csproj" />
     <ProjectReference Include="..\Microsoft.Data.Entity.Design.VersioningFacade\Microsoft.Data.Entity.Design.VersioningFacade.csproj" />

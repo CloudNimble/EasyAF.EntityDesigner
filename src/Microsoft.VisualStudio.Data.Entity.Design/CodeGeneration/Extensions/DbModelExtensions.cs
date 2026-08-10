@@ -1,0 +1,55 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using System.Collections.Generic;
+using System.Data.Entity.Core.Common;
+using System.Data.Entity.Core.Mapping;
+using System.Data.Entity.Core.Metadata.Edm;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Infrastructure.DependencyResolution;
+using System.Diagnostics;
+using System.Linq;
+
+namespace Microsoft.Data.Entity.Design.CodeGeneration.Extensions
+{
+    internal static class DbModelExtensions
+    {
+        private static readonly IDictionary<DbProviderInfo, DbProviderManifest> _providerManifestCache =
+            new Dictionary<DbProviderInfo, DbProviderManifest>();
+
+        public static DbProviderManifest GetProviderManifest(
+            this DbModel model,
+            IDbDependencyResolver dependencyResolver)
+        {
+            Debug.Assert(model != null, "model is null.");
+            Debug.Assert(dependencyResolver != null, "dependencyResolver is null.");
+
+            if (model.ProviderManifest != null)
+            {
+                return model.ProviderManifest;
+            }
+
+            if (!_providerManifestCache.TryGetValue(model.ProviderInfo, out DbProviderManifest providerManifest))
+            {
+                providerManifest = dependencyResolver
+                    .GetService<DbProviderServices>(model.ProviderInfo.ProviderInvariantName)
+                    .GetProviderManifest(model.ProviderInfo.ProviderManifestToken);
+                _providerManifestCache.Add(model.ProviderInfo, providerManifest);
+            }
+
+            return providerManifest;
+        }
+
+        public static EdmProperty GetColumn(this DbModel model, EdmProperty property)
+        {
+            var entityType = property.DeclaringType;
+            var entitySet = model.ConceptualModel.Container.EntitySets.First(s => s.ElementType == entityType);
+
+            return model.ConceptualToStoreMapping
+                .EntitySetMappings.First(m => m.EntitySet == entitySet)
+                .EntityTypeMappings.First()
+                .Fragments.First()
+                .PropertyMappings.OfType<ScalarPropertyMapping>().First(m => m.Property == property)
+                .Column;
+        }
+    }
+}

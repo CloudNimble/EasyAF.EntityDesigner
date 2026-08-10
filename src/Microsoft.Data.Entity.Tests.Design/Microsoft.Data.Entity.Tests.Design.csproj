@@ -38,7 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Microsoft.Data.Entity.Design\Microsoft.Data.Entity.Design.csproj" />
+    <ProjectReference Include="..\Microsoft.VisualStudio.Data.Entity.Design\Microsoft.VisualStudio.Data.Entity.Design.csproj" />
     <ProjectReference Include="..\Microsoft.Data.Entity.Design.Extensibility\Microsoft.Data.Entity.Design.Extensibility.csproj" />
     <!-- Package excluded - incompatible with .NET SDK 10 resource serialization -->
     <!-- <ProjectReference Include="..\Microsoft.Data.Entity.Design.Package\Microsoft.Data.Entity.Design.Package.csproj" /> -->

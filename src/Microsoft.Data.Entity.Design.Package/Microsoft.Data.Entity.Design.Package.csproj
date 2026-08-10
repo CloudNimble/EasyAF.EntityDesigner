@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <!-- VSSDK path for targets import -->
@@ -123,7 +123,7 @@
         <ProjectReference Include="..\Microsoft.Data.Entity.Design.Model\Microsoft.Data.Entity.Design.Model.csproj">
             <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
         </ProjectReference>
-        <ProjectReference Include="..\Microsoft.Data.Entity.Design\Microsoft.Data.Entity.Design.csproj">
+        <ProjectReference Include="..\Microsoft.VisualStudio.Data.Entity.Design\Microsoft.VisualStudio.Data.Entity.Design.csproj">
             <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
         </ProjectReference>
     </ItemGroup>
@@ -146,7 +146,7 @@
     <!-- Include project reference outputs in VSIX -->
     <Target Name="IncludeProjectReferencesInVSIX" BeforeTargets="GetVsixSourceItems">
         <ItemGroup>
-            <VSIXSourceItem Include="..\Microsoft.Data.Entity.Design\bin\$(Configuration)\Microsoft.Data.Entity.Design.dll">
+            <VSIXSourceItem Include="..\Microsoft.VisualStudio.Data.Entity.Design\bin\$(Configuration)\Microsoft.VisualStudio.Data.Entity.Design.dll">
                 <VSIXSubPath></VSIXSubPath>
             </VSIXSourceItem>
             <!-- Model multi-targets, so its output is under a framework subfolder rather than at this flat path.
