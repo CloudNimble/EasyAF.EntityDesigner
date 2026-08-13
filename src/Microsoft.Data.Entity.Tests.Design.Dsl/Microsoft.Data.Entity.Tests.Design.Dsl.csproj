@@ -1,6 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <!-- Builds a DSL Store, which is not safe to use concurrently. See Directory.Build.props. -->
+    <UsesDslStore>true</UsesDslStore>
     <RootNamespace>Microsoft.Data.Entity.Tests.Design.Dsl</RootNamespace>
     <AssemblyName>Microsoft.Data.Entity.Tests.Design.Dsl</AssemblyName>
   </PropertyGroup>

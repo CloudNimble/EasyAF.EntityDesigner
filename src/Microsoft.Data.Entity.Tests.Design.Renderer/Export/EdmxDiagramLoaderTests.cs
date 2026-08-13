@@ -13,7 +13,6 @@ namespace Microsoft.Data.Entity.Tests.Design.Renderer.Export
     ///     Covers loading an EDMX into a laid out, routed diagram with no Visual Studio present.
     /// </summary>
     [TestClass]
-    [DoNotParallelize]
     public class EdmxDiagramLoaderTests
     {
         public TestContext TestContext { get; set; }

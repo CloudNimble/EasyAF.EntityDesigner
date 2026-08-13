@@ -23,7 +23,6 @@ namespace Microsoft.Data.Entity.Tests.Design.Dsl.View.Export
     ///     connectors on its own, which is a substantially different piece of work.
     /// </remarks>
     [TestClass]
-    [DoNotParallelize]
     public class HeadlessRoutingSpikeTests
     {
         public TestContext TestContext { get; set; }

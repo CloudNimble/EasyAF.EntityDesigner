@@ -116,9 +116,22 @@ MSTest will not run a `static` test method. It emits `MSTEST0003` (98 warnings) 
 
 **Fix:** delete the `static` keyword. There is no evidence they were failing — they simply stopped being collected when the framework changed under them. Worth checking whether any other `[Fact]` to `[TestMethod]` conversion in that batch carried a similar signature assumption.
 
-### 2.3 Store-building tests race under parallelism
+### 2.3 Store-building tests race under parallelism — FIXED
 
-Not currently failing, but latent. Constructing a DSL `Store` mutates process-wide state through `DomainXmlSerializerDirectory.InternalAddBehavior`, so two tests doing it concurrently fail with a null reference or `Collection was modified`. Every Store-building test class needs `[DoNotParallelize]`. Currently correct in `EdmxDiagramLoaderTests`, `HeadlessRoutingSpikeTests`, `SvgShapeRendererTests` and `EntityDesignerSurfaceTransactionTests`; any new one will hit it.
+**The Visual Studio Modeling SDK cannot be driven from more than one thread in a process.** It assumes a single threaded host and keeps unsynchronized process wide state in at least two places:
+
+- `DomainXmlSerializerDirectory.InternalAddBehavior`, reached from `CoreDesignSurfaceSerializationHelperBase.InitializeSerialization` during **store construction**.
+- `StoreDiagramMappingData.GetInstance(Store)`, a static `Dictionary` keyed by `Store` that `DiagramCommittingRule.TransactionCommitting` writes to on **every transaction commit**.
+
+Symptoms are a `NullReferenceException` from `Dictionary.Insert`, `Collection was modified; enumeration operation may not execute`, or a torn dictionary that crashes the test host outright.
+
+**Locking store construction is not sufficient, and this was measured rather than assumed.** With a lock around `new Store(...)` and parallelism otherwise enabled, 12 runs produced 7 clean, 1 with a single failure, 1 with two, and one host crash. The commit path still raced, because the state is mutated from inside SDK rules that no amount of care at our call sites can guard.
+
+The constraint is therefore declared **per assembly**, in `Directory.Build.props`: a test project sets `UsesDslStore` to opt out of the blanket `[Parallelize(MethodLevel)]` and receive `[DoNotParallelize]` instead. `Microsoft.Data.Entity.Tests.Design.Dsl` and `Microsoft.Data.Entity.Tests.Design.Renderer` set it.
+
+This replaces per-class `[DoNotParallelize]`, which was the previous approach on four classes. Per class only works if every future author remembers, and the failures are intermittent enough to survive review — the same trap that produced this entry.
+
+Verified: 12 consecutive runs of the Dsl suite and 8 of the Renderer suite, all deterministic.
 
 ## 3. Build warnings — 181
 

@@ -126,12 +126,27 @@
         <PackageReference Include="MSTest" />
 
         <!-- Enable parallel test execution in MSTest 4 and later -->
-        <AssemblyAttribute Include="Microsoft.VisualStudio.TestTools.UnitTesting.Parallelize">
+        <AssemblyAttribute Condition=" '$(UsesDslStore)' != 'true' "
+                           Include="Microsoft.VisualStudio.TestTools.UnitTesting.Parallelize">
             <_Parameter1>Workers = 0</_Parameter1>
             <_Parameter1_IsLiteral>true</_Parameter1_IsLiteral>
             <_Parameter2>Scope = Microsoft.VisualStudio.TestTools.UnitTesting.ExecutionScope.MethodLevel</_Parameter2>
             <_Parameter2_IsLiteral>true</_Parameter2_IsLiteral>
         </AssemblyAttribute>
+
+        <!-- Test assemblies that build a DSL Store cannot run tests concurrently, so they opt out by setting
+             UsesDslStore. The Visual Studio Modeling SDK assumes a single threaded host and keeps unsynchronized
+             process wide state: StoreDiagramMappingData holds a static Dictionary keyed by Store which
+             DiagramCommittingRule writes to on every transaction commit, and store construction mutates a shared
+             serializer registry through DomainXmlSerializerDirectory.InternalAddBehavior. Concurrent access
+             produces null references, "Collection was modified", or a torn dictionary that crashes the test host.
+
+             This is declared per assembly rather than per class on purpose. [DoNotParallelize] on individual
+             classes only works if every future author remembers it, and the failures are intermittent enough to
+             pass code review. Locking store construction is not sufficient either - it was tried, and the commit
+             path still raced. -->
+        <AssemblyAttribute Condition=" '$(UsesDslStore)' == 'true' "
+                           Include="Microsoft.VisualStudio.TestTools.UnitTesting.DoNotParallelize" />
     </ItemGroup>
 
 

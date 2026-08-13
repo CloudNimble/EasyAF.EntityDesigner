@@ -1,6 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <!-- Builds a DSL Store, which is not safe to use concurrently. See Directory.Build.props. -->
+    <UsesDslStore>true</UsesDslStore>
     <!-- Clears the net48 default from Directory.Build.props so TargetFrameworks below applies. -->
     <TargetFramework></TargetFramework>
     <!-- Must match the renderer: the Modeling SDK types under test are WinForms and WPF based, so a plain

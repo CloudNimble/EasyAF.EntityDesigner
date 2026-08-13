@@ -19,7 +19,6 @@ namespace Microsoft.Data.Entity.Tests.Design.Dsl.View.Export
     ///     different test on roughly half of all runs.
     /// </remarks>
     [TestClass]
-    [DoNotParallelize]
     public class SvgShapeRendererTests
     {
         private SvgIconManager _iconManager;

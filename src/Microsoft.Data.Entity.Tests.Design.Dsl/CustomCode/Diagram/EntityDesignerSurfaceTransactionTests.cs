@@ -19,14 +19,7 @@ namespace Microsoft.Data.Entity.Tests.Design.Dsl.View
     ///     committed. Committing an unchanged transaction still pushes an entry onto the undo stack, which is why
     ///     the conditional overload exists.
     /// </remarks>
-    /// <remarks>
-    ///     Not parallelised: constructing a <see cref="Store" /> mutates process wide serializer state through
-    ///     <c>DomainXmlSerializerDirectory.InternalAddBehavior</c>, so concurrent stores race and fail with a null
-    ///     reference or a modified-collection exception. Every Store building test class in this solution carries
-    ///     this attribute for the same reason.
-    /// </remarks>
     [TestClass]
-    [DoNotParallelize]
     public class EntityDesignerSurfaceTransactionTests
     {
         [TestMethod]
@@ -121,6 +114,11 @@ namespace Microsoft.Data.Entity.Tests.Design.Dsl.View
         /// <summary>
         ///     Creates a store with the Entity Designer domain model loaded.
         /// </summary>
+        /// <remarks>
+        ///     Safe without synchronization only because this assembly sets <c>UsesDslStore</c> and is therefore
+        ///     built with <c>[assembly: DoNotParallelize]</c>. See Directory.Build.props for why the Modeling SDK
+        ///     cannot be driven from more than one thread in a process.
+        /// </remarks>
         private static Store CreateStore()
         {
             return new Store(typeof(MicrosoftDataEntityDesignDomainModel));
