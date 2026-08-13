@@ -40,12 +40,12 @@ namespace Microsoft.Data.Entity.Design.Dsl
         }
 
         /// <summary>
-        ///     Helper method to create and initialize a new EntityDesignerDiagram.
+        ///     Helper method to create and initialize a new EntityDesignerSurface.
         /// </summary>
-        internal override EntityDesignerDiagram CreateDiagramHelper(Partition diagramPartition, ModelElement modelRoot)
+        internal override EntityDesignerSurface CreateDiagramHelper(Partition diagramPartition, ModelElement modelRoot)
         {
             EntityDesignerViewModel evm = modelRoot as EntityDesignerViewModel;
-            EntityDesignerDiagram diagram = new EntityDesignerDiagram(diagramPartition);
+            EntityDesignerSurface diagram = new EntityDesignerSurface(diagramPartition);
             diagram.ModelElement = evm;
             return diagram;
         }
@@ -132,7 +132,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
         }
 
         internal override void SaveDiagram(
-            SerializationResult serializationResult, EntityDesignerDiagram diagram, string diagramFileName, Encoding encoding,
+            SerializationResult serializationResult, EntityDesignerSurface diagram, string diagramFileName, Encoding encoding,
             bool writeOptionalPropertiesWithDefaultValue)
         {
             // don't save the .diagram file
@@ -140,7 +140,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
         }
 
         internal override void SaveModelAndDiagram(
-            SerializationResult serializationResult, EntityDesignerViewModel modelRoot, string modelFileName, EntityDesignerDiagram diagram,
+            SerializationResult serializationResult, EntityDesignerViewModel modelRoot, string modelFileName, EntityDesignerSurface diagram,
             string diagramFileName, Encoding encoding, bool writeOptionalPropertiesWithDefaultValue)
         {
             // only save the model
@@ -229,7 +229,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
         }
 
         /// <summary>
-        ///     This method will remove all child shapes of the EntityDesignerDiagram.
+        ///     This method will remove all child shapes of the EntityDesignerSurface.
         /// </summary>
         internal static void ClearDiagram(EntityDesignerViewModel viewModel)
         {
@@ -256,7 +256,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
                             {
                                 // don't delete our diagram, but remove every other presentation element
                                 if (melem is PresentationElement
-                                    && (melem is EntityDesignerDiagram) == false)
+                                    && (melem is EntityDesignerSurface) == false)
                                 {
                                     melem.Delete();
                                 }
@@ -385,7 +385,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
             {
                 // this path will usually only happen if an UMFDB extension has deleted the diagram node
                 // since we don't have a diagram anymore, lay it all out and create a new one
-                if (diagram.ModelElement.EntityTypes.Count < EntityDesignerDiagram.IMPLICIT_AUTO_LAYOUT_CEILING)
+                if (diagram.ModelElement.EntityTypes.Count < EntityDesignerSurface.IMPLICIT_AUTO_LAYOUT_CEILING)
                 {
                     diagram.AutoLayoutDiagram();
                 }

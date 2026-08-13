@@ -393,7 +393,7 @@
           <Roots>
             <RootNode Id="d16cafbe-8dc1-4620-a681-0d69bb70181a">
               <Class>
-                <DiagramMoniker Name="/Microsoft.Data.Entity.Design.Dsl.View/EntityDesignerDiagram" />
+                <DiagramMoniker Name="/Microsoft.Data.Entity.Design.Dsl.View/EntityDesignerSurface" />
               </Class>
             </RootNode>
             <RootNode Id="7b508fd6-2aba-448b-9cd7-68734b778234">

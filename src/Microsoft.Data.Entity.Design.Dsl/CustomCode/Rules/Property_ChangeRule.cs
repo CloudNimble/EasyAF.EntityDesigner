@@ -46,9 +46,9 @@ namespace Microsoft.Data.Entity.Design.Dsl.Rules
                 && changedProperty.EntityType.EntityDesignerViewModel != null)
             {
                 var diagram = changedProperty.EntityType.EntityDesignerViewModel.GetDiagram();
-                Debug.Assert(diagram != null, "EntityDesignerDiagram is null");
+                Debug.Assert(diagram != null, "EntityDesignerSurface is null");
 
-                // if EntityType property was changed and EntityDesignerDiagram's DisplayNameAndType flag is set to true, we need to refresh the entity shape diagram.
+                // if EntityType property was changed and EntityDesignerSurface's DisplayNameAndType flag is set to true, we need to refresh the entity shape diagram.
                 if (e.DomainProperty.Id == Property.TypeDomainPropertyId
                     && null != diagram
                     && diagram.DisplayNameAndType)

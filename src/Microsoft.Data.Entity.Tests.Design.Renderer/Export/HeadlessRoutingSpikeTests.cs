@@ -41,7 +41,7 @@ namespace Microsoft.Data.Entity.Tests.Design.Dsl.View.Export
             var diagramPartition = new Partition(store);
 
             EntityDesignerViewModel viewModel;
-            EntityDesignerDiagram diagram;
+            EntityDesignerSurface diagram;
             EntityType customer;
             EntityType order;
 
@@ -51,7 +51,7 @@ namespace Microsoft.Data.Entity.Tests.Design.Dsl.View.Export
             {
                 viewModel = new EntityDesignerViewModel(modelPartition);
 
-                diagram = new EntityDesignerDiagram(diagramPartition)
+                diagram = new EntityDesignerSurface(diagramPartition)
                 {
                     ModelElement = viewModel
                 };
@@ -61,7 +61,7 @@ namespace Microsoft.Data.Entity.Tests.Design.Dsl.View.Export
 
             // These push view model edits back into the EDMX through ViewModelChangeContext. There is no artifact
             // behind this store, so they must be off - the product disables them the same way in
-            // EntityDesignerDiagram when it is applying changes that came from the model side.
+            // EntityDesignerSurface when it is applying changes that came from the model side.
             store.RuleManager.DisableRule(typeof(global::Microsoft.Data.Entity.Design.Dsl.Rules.EntityType_AddRule));
             store.RuleManager.DisableRule(typeof(global::Microsoft.Data.Entity.Design.Dsl.Rules.Association_AddRule));
 

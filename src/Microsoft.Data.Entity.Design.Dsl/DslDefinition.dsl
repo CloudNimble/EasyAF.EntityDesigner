@@ -281,11 +281,11 @@
   </Connectors>
   <XmlSerializationBehavior Name="MicrosoftDataEntityDesignSerializationBehavior" Namespace="Microsoft.Data.Entity.Design.Dsl">
     <ClassData>
-      <XmlClassData TypeName="EntityDesignerDiagram" MonikerAttributeName="" MonikerElementName="entityDesignerDiagramMoniker" ElementName="EntityDesignerDiagram" MonikerTypeName="EntityDesignerDiagramMoniker">
-        <DiagramMoniker Name="/Microsoft.Data.Entity.Design.Dsl.View/EntityDesignerDiagram" />
+      <XmlClassData TypeName="EntityDesignerSurface" MonikerAttributeName="" MonikerElementName="entityDesignerDiagramMoniker" ElementName="EntityDesignerDiagram" MonikerTypeName="EntityDesignerSurfaceMoniker">
+        <DiagramMoniker Name="/Microsoft.Data.Entity.Design.Dsl.View/EntityDesignerSurface" />
         <ElementData>
           <XmlPropertyData XmlName="title">
-            <DomainPropertyMoniker Name="/Microsoft.Data.Entity.Design.Dsl.View/EntityDesignerDiagram/Title" />
+            <DomainPropertyMoniker Name="/Microsoft.Data.Entity.Design.Dsl.View/EntityDesignerSurface/Title" />
           </XmlPropertyData>
         </ElementData>
       </XmlClassData>
@@ -438,9 +438,9 @@
       </LinkConnectDirective>
     </ConnectionBuilder>
   </ConnectionBuilders>
-  <Diagram Id="3daa738d-a8aa-4f0c-b98b-db1382985264" Description="" Name="EntityDesignerDiagram" DisplayName="ADO.NET Entity Designer" AccessModifier="Assembly" Namespace="Microsoft.Data.Entity.Design.Dsl.View" GeneratesDoubleDerived="true" FillColor="WhiteSmoke" >
+  <Diagram Id="3daa738d-a8aa-4f0c-b98b-db1382985264" Description="" Name="EntityDesignerSurface" DisplayName="ADO.NET Entity Designer" AccessModifier="Assembly" Namespace="Microsoft.Data.Entity.Design.Dsl.View" GeneratesDoubleDerived="true" FillColor="WhiteSmoke" >
     <Properties>
-      <DomainProperty Id="83fe8dc3-d17f-471c-8bf7-128799399af3" Description="Description for Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram.Title" Name="Title" DisplayName="Title">
+      <DomainProperty Id="83fe8dc3-d17f-471c-8bf7-128799399af3" Description="Description for Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface.Title" Name="Title" DisplayName="Title">
         <Type>
           <ExternalTypeMoniker Name="/System/String" />
         </Type>
@@ -557,6 +557,6 @@
       </ConnectionTool>
     </ToolboxTab>
     <Validation UsesMenu="false" UsesOpen="true" UsesSave="true" UsesCustom="true" UsesLoad="true" />
-    <DiagramMoniker Name="/Microsoft.Data.Entity.Design.Dsl.View/EntityDesignerDiagram" />
+    <DiagramMoniker Name="/Microsoft.Data.Entity.Design.Dsl.View/EntityDesignerSurface" />
   </Designer>
 </Dsl>

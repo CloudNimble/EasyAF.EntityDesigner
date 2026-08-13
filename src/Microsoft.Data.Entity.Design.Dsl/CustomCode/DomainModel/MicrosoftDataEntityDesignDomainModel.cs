@@ -22,7 +22,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
             return new[]
                 {
                     typeof(EntityDesignerViewModel_AddRule),
-                    typeof(EntityDesignerDiagram_AddRule),
+                    typeof(EntityDesignerSurface_AddRule),
                     typeof(Association_AddRule),
                     typeof(AssociationConnector_AddRule),
                     typeof(AssociationConnector_ChangeRule),

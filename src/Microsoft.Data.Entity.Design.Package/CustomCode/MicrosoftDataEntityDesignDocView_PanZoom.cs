@@ -86,7 +86,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 "ZoomToFit",
                 "Zoom to Fit",
                 KnownMonikers.FitToScreen,
-                () => (CurrentDiagram as EntityDesignerDiagram)?.ZoomToFit(),
+                () => (CurrentDiagram as EntityDesignerSurface)?.ZoomToFit(),
                 "Zoom to fit all entities"));
 
             // Add separator before toggle commands
@@ -125,7 +125,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 "ExpandAll",
                 "Expand All",
                 KnownMonikers.ExpandAll,
-                () => (CurrentDiagram as EntityDesignerDiagram)?.ExpandAllEntityTypeShapes(),
+                () => (CurrentDiagram as EntityDesignerSurface)?.ExpandAllEntityTypeShapes(),
                 "Expand all entity shapes"));
 
             // Add Collapse All command
@@ -133,7 +133,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 "CollapseAll",
                 "Collapse All",
                 KnownMonikers.CollapseAll,
-                () => (CurrentDiagram as EntityDesignerDiagram)?.CollapseAllEntityTypeShapes(),
+                () => (CurrentDiagram as EntityDesignerSurface)?.CollapseAllEntityTypeShapes(),
                 "Collapse all entity shapes"));
 
             // Add separator before zoom/layout commands
@@ -144,7 +144,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 "Layout",
                 "Auto Layout",
                 KnownMonikers.ShowAllFiles,
-                () => (CurrentDiagram as EntityDesignerDiagram)?.AutoLayoutDiagram(),
+                () => (CurrentDiagram as EntityDesignerSurface)?.AutoLayoutDiagram(),
                 "Auto-arrange entity layout"));
 
             // Calculate margin based on scrollbar width
@@ -218,7 +218,7 @@ namespace Microsoft.Data.Entity.Design.Package
             UpdateCommandAvailability();
 
             // make sure that the Model Diagram has already been created or translated before persisting ZoomLevel
-            if (CurrentDiagram is not EntityDesignerDiagram diagram
+            if (CurrentDiagram is not EntityDesignerSurface diagram
                 || DocData is not MicrosoftDataEntityDesignDocData docData
                 || !docData.IsModelDiagramLoaded)
             {
@@ -249,7 +249,7 @@ namespace Microsoft.Data.Entity.Design.Package
         {
             get
             {
-                return CurrentDiagram is EntityDesignerDiagram
+                return CurrentDiagram is EntityDesignerSurface
                        && DocData is MicrosoftDataEntityDesignDocData docData
                        && docData.IsModelDiagramLoaded;
             }
@@ -304,7 +304,7 @@ namespace Microsoft.Data.Entity.Design.Package
             // was not met rather than leaving the next person to guess.
             VsUtils.LogToActivityLog(
                 $"UpdateCommandAvailability: isAvailable={isAvailable}, "
-                + $"diagramIsEntityDesignerDiagram={CurrentDiagram is EntityDesignerDiagram}, "
+                + $"diagramIsEntityDesignerSurface={CurrentDiagram is EntityDesignerSurface}, "
                 + $"docDataIsEscherDocData={DocData is MicrosoftDataEntityDesignDocData}, "
                 + $"isModelDiagramLoaded={(DocData as MicrosoftDataEntityDesignDocData)?.IsModelDiagramLoaded}");
             foreach (var command in _floatingZoomControl.Commands)
@@ -321,7 +321,7 @@ namespace Microsoft.Data.Entity.Design.Package
         /// <summary>
         ///     Syncs the grid toggle command states with the diagram's current settings.
         /// </summary>
-        private void SyncGridCommandStates(EntityDesignerDiagram diagram)
+        private void SyncGridCommandStates(EntityDesignerSurface diagram)
         {
             if (_showGridCommand != null && _showGridCommand.IsChecked != diagram.ShowGrid)
             {
@@ -350,7 +350,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 return;
             }
 
-            if (CurrentDiagram is not EntityDesignerDiagram diagram)
+            if (CurrentDiagram is not EntityDesignerSurface diagram)
             {
                 return;
             }
@@ -369,7 +369,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 return;
             }
 
-            if (CurrentDiagram is not EntityDesignerDiagram diagram)
+            if (CurrentDiagram is not EntityDesignerSurface diagram)
             {
                 return;
             }

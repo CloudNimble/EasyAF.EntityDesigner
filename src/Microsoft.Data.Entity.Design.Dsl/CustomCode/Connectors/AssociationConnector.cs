@@ -65,7 +65,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
             if (e.View != null)
             {
                 // If the shape is in the EmphasizedShapes list, draw the emphasis shape around the shape.
-                EntityDesignerDiagram entityDesignerDiagram = Diagram as EntityDesignerDiagram;
+                EntityDesignerSurface entityDesignerDiagram = Diagram as EntityDesignerSurface;
                 if (entityDesignerDiagram.EmphasizedShapes.Contains(new DiagramItem(this)))
                 {
                     ShapeGeometry.DoPaintEmphasis(e, this);
@@ -171,7 +171,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
             var association = ModelElement;
             if (association != null)
             {
-                if (Diagram is EntityDesignerDiagram diagram)
+                if (Diagram is EntityDesignerSurface diagram)
                 {
                     var ec = diagram.GetModel().EditingContext;
                     ModelToDesignerModelXRef xref = ModelToDesignerModelXRef.GetModelToDesignerModelXRef(ec);

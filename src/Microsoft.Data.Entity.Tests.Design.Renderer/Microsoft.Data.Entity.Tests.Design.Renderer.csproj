@@ -3,7 +3,11 @@
   <PropertyGroup>
     <!-- Clears the net48 default from Directory.Build.props so TargetFrameworks below applies. -->
     <TargetFramework></TargetFramework>
-    <TargetFrameworks>net48;net10.0</TargetFrameworks>
+    <!-- Must match the renderer: the Modeling SDK types under test are WinForms and WPF based, so a plain
+         net10.0 target cannot load System.Windows.Forms and every test that builds a Store fails. -->
+    <TargetFrameworks>net48;net10.0-windows</TargetFrameworks>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
     <RuntimeIdentifier></RuntimeIdentifier>
     <!-- Directory.Build.props flattens output, which collides when multi-targeting. -->
     <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>

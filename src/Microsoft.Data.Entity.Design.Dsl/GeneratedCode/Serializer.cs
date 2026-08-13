@@ -10387,15 +10387,15 @@ namespace Microsoft.Data.Entity.Design.Dsl
 namespace Microsoft.Data.Entity.Design.Dsl
 {
     /// <summary>
-	/// Serializer EntityDesignerDiagramSerializerBase for DomainClass Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram.
+	/// Serializer EntityDesignerSurfaceSerializerBase for DomainClass Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface.
 	/// </summary>
-	internal abstract partial class EntityDesignerDiagramSerializerBase : DslDiagrams::DiagramSerializer
+	internal abstract partial class EntityDesignerSurfaceSerializerBase : DslDiagrams::DiagramSerializer
 	{
 		#region Constructor
 		/// <summary>
-		/// EntityDesignerDiagramSerializerBase Constructor
+		/// EntityDesignerSurfaceSerializerBase Constructor
 		/// </summary>
-		protected EntityDesignerDiagramSerializerBase ()
+		protected EntityDesignerSurfaceSerializerBase ()
 			: base ()
 		{
 		}
@@ -10421,7 +10421,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	
 		#region Public Properties
 		/// <summary>
-		/// This is the XML tag name used to serialize an instance of EntityDesignerDiagram.
+		/// This is the XML tag name used to serialize an instance of EntityDesignerSurface.
 		/// </summary>
 		public override string XmlTagName
 		{
@@ -10450,16 +10450,16 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	
 		#region Read Methods
 		/// <summary>
-		/// Public Read() method that deserializes one EntityDesignerDiagram instance from XML.
+		/// Public Read() method that deserializes one EntityDesignerSurface instance from XML.
 		/// </summary>
 		/// <remarks>
 		/// When this method is called, caller guarantees that the passed-in XML reader is positioned at the open XML tag
-		/// of the EntityDesignerDiagram element that is about to be deserialized. 
+		/// of the EntityDesignerSurface element that is about to be deserialized. 
 		/// The method needs to ensure that when it returns, the reader is positioned at the open XML tag of the next sibling element,
 		/// or the close tag of the parent element (or EOF).
 		/// </remarks>
 		/// <param name="serializationContext">Serialization context.</param>
-		/// <param name="element">In-memory EntityDesignerDiagram instance that will get the deserialized data.</param>
+		/// <param name="element">In-memory EntityDesignerSurface instance that will get the deserialized data.</param>
 		/// <param name="reader">XmlReader to read serialized data from.</param>
 		public override void Read(DslModeling::SerializationContext serializationContext, DslModeling::ModelElement element, global::System.Xml.XmlReader reader)
 		{
@@ -10529,15 +10529,15 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// The caller will guarantee that the reader is positioned on the open XML tag of the current element being deserialized.
 		/// </remarks>
 		/// <param name="serializationContext">Serialization context.</param>
-		/// <param name="element">In-memory EntityDesignerDiagram instance that will get the deserialized data.</param>
+		/// <param name="element">In-memory EntityDesignerSurface instance that will get the deserialized data.</param>
 		/// <param name="reader">XmlReader to read serialized data from.</param>
 		protected override void ReadPropertiesFromAttributes(DslModeling::SerializationContext serializationContext, DslModeling::ModelElement element, global::System.Xml.XmlReader reader)
 		{
 			// Always call the base class so any extensions are deserialized
 			base.ReadPropertiesFromAttributes(serializationContext, element, reader);
 	
-			global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram instanceOfEntityDesignerDiagram = element as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram;
-			global::System.Diagnostics.Debug.Assert(instanceOfEntityDesignerDiagram != null, "Expecting an instance of EntityDesignerDiagram");
+			global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface instanceOfEntityDesignerSurface = element as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface;
+			global::System.Diagnostics.Debug.Assert(instanceOfEntityDesignerSurface != null, "Expecting an instance of EntityDesignerSurface");
 	
 			// Title
 			if (!serializationContext.Result.Failed)
@@ -10548,7 +10548,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 					global::System.String valueOfTitle;
 					if (DslModeling::SerializationUtilities.TryGetValue<global::System.String>(serializationContext, attribTitle, out valueOfTitle))
 					{
-						instanceOfEntityDesignerDiagram.Title = valueOfTitle;
+						instanceOfEntityDesignerSurface.Title = valueOfTitle;
 					}
 					else
 					{	// Invalid property value, ignored.
@@ -10572,7 +10572,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// 3) EOF.
 		/// </remarks>
 		/// <param name="serializationContext">Serialization context.</param>
-		/// <param name="element">In-memory EntityDesignerDiagram instance that will get the deserialized data.</param>
+		/// <param name="element">In-memory EntityDesignerSurface instance that will get the deserialized data.</param>
 		/// <param name="reader">XmlReader to read serialized data from.</param>
 		protected override void ReadElements(DslModeling::SerializationContext serializationContext, DslModeling::ModelElement element, global::System.Xml.XmlReader reader)
 		{
@@ -10583,8 +10583,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	
 		#region TryCreateInstance
 		/// <summary>
-		/// This method creates a correct instance of EntityDesignerDiagram based on the tag currently pointed by the reader. If the reader
-		/// is positioned at a serialized EntityDesignerDiagram, a new EntityDesignerDiagram instance will be created in the given partition, otherwise 
+		/// This method creates a correct instance of EntityDesignerSurface based on the tag currently pointed by the reader. If the reader
+		/// is positioned at a serialized EntityDesignerSurface, a new EntityDesignerSurface instance will be created in the given partition, otherwise 
 		/// null is returned.
 		/// </summary>
 		/// <remarks>
@@ -10594,7 +10594,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="serializationContext">Serialization context.</param>
 		/// <param name="reader">XmlReader to read serialized data from.</param>
 		/// <param name="partition">Partition in which new elements should be created.</param>	
-		/// <returns>Created EntityDesignerDiagram instance, or null if the reader is not pointing to a serialized EntityDesignerDiagram instance.</returns>
+		/// <returns>Created EntityDesignerSurface instance, or null if the reader is not pointing to a serialized EntityDesignerSurface instance.</returns>
 		public override DslModeling::ModelElement TryCreateInstance(DslModeling::SerializationContext serializationContext, global::System.Xml.XmlReader reader, DslModeling::Partition partition)
 		{
 			#region Check Parameters
@@ -10614,18 +10614,18 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			{
 				string localName = reader.LocalName;
 				if (string.Compare (localName, this.XmlTagName, global::System.StringComparison.CurrentCulture) == 0)
-				{	// New "EntityDesignerDiagram" instance.
+				{	// New "EntityDesignerSurface" instance.
 					result = this.CreateInstance(serializationContext, reader, partition);
 				}
 				else
-				{	// Check for derived classes of "EntityDesignerDiagram".
+				{	// Check for derived classes of "EntityDesignerSurface".
 					if (this.derivedClasses == null)
 						this.ConstructDerivedClassesLookupTable(serializationContext, partition.DomainDataDirectory);
 					global::System.Diagnostics.Debug.Assert (this.derivedClasses != null);
 					DslModeling::DomainClassInfo derivedClass = null;
 					if (this.derivedClasses.TryGetValue (localName, out derivedClass) && derivedClass != null)
 					{	// New derived class instance.
-						EntityDesignerDiagramSerializerBase derivedSerializer = serializationContext.Directory.GetSerializer(derivedClass.Id) as EntityDesignerDiagramSerializerBase;
+						EntityDesignerSurfaceSerializerBase derivedSerializer = serializationContext.Directory.GetSerializer(derivedClass.Id) as EntityDesignerSurfaceSerializerBase;
 						global::System.Diagnostics.Debug.Assert(derivedSerializer != null, "Cannot find serializer for " + derivedClass.Name + "!");
 						result = derivedSerializer.CreateInstance(serializationContext, reader, partition);
 					}
@@ -10636,8 +10636,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		}
 	
 		/// <summary>
-		/// This method creates an instance of EntityDesignerDiagram based on the tag currently pointed by the reader. The reader is guaranteed (by the caller)
-		/// to be pointed at a serialized instance of EntityDesignerDiagram.
+		/// This method creates an instance of EntityDesignerSurface based on the tag currently pointed by the reader. The reader is guaranteed (by the caller)
+		/// to be pointed at a serialized instance of EntityDesignerSurface.
 		/// </summary>
 		/// <remarks>
 		/// The caller will guarantee that the reader is positioned at open XML tag of the ModelRoot instance being read. This method should
@@ -10645,20 +10645,20 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// </remarks>
 		/// <param name="serializationContext">Serialization context.</param>
 		/// <param name="reader">XmlReader to read serialized data from.</param>
-		/// <param name="partition">Partition in which new EntityDesignerDiagram instance should be created.</param>	
-		/// <returns>Created EntityDesignerDiagram instance.</returns>
+		/// <param name="partition">Partition in which new EntityDesignerSurface instance should be created.</param>	
+		/// <returns>Created EntityDesignerSurface instance.</returns>
         protected override DslModeling::ModelElement CreateInstance(DslModeling::SerializationContext serializationContext, global::System.Xml.XmlReader reader, DslModeling::Partition partition)
 		{
-			return new global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram(partition);
+			return new global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface(partition);
 		}
 	
 		/// <summary>
-		/// Stores a mapping from XmlTagName to DomainClassInfo that derives from EntityDesignerDiagram, created on demand.
+		/// Stores a mapping from XmlTagName to DomainClassInfo that derives from EntityDesignerSurface, created on demand.
 		/// </summary>
 		private global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> derivedClasses;
 	
 		/// <summary>
-		/// Construct the apping from XmlTagName to DomainClassInfo that derives from EntityDesignerDiagram.
+		/// Construct the apping from XmlTagName to DomainClassInfo that derives from EntityDesignerSurface.
 		/// </summary>
 		/// <param name="serializationContext">Serialization context.</param>
 		/// <param name="domainDataDirectory">DomainDataDirectory to be used to discover all derived classes.</param>
@@ -10667,7 +10667,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClasses == null); // Shouldn't construct the table more than once.
 			this.derivedClasses = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -10699,7 +10699,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	
 		#region TryCreateMonikerInstance
 		/// <summary>
-		/// This method creates a Moniker of the correct derived (including EntityDesignerDiagram itself) instance of EntityDesignerDiagram based on the tag currently pointed by the reader.
+		/// This method creates a Moniker of the correct derived (including EntityDesignerSurface itself) instance of EntityDesignerSurface based on the tag currently pointed by the reader.
 		/// </summary>
 		/// <remarks>
 		/// The caller will guarantee that the reader is positioned at open XML tag of the next element being read. This method should
@@ -10733,18 +10733,18 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			{
 				string localName = reader.LocalName;
 				if (string.Compare (localName, this.MonikerTagName, global::System.StringComparison.CurrentCulture) == 0)
-				{	// New "EntityDesignerDiagram" moniker instance.
+				{	// New "EntityDesignerSurface" moniker instance.
 					result = this.CreateMonikerInstance(serializationContext, reader, sourceRolePlayer, relDomainClassId, partition);
 				}
 				else
-				{	// Check for derived classes of "EntityDesignerDiagram".
+				{	// Check for derived classes of "EntityDesignerSurface".
 					if (this.derivedClassMonikers == null)
 						this.ConstructDerivedClassMonikersLookupTable(serializationContext, partition.DomainDataDirectory);
 					global::System.Diagnostics.Debug.Assert(this.derivedClassMonikers != null);
 					DslModeling::DomainClassInfo derivedClass = null;
 					if (this.derivedClassMonikers.TryGetValue (localName, out derivedClass) && derivedClass != null)
 					{	// New derived class moniker instance.
-						EntityDesignerDiagramSerializerBase derivedSerializer = serializationContext.Directory.GetSerializer(derivedClass.Id) as EntityDesignerDiagramSerializerBase;
+						EntityDesignerSurfaceSerializerBase derivedSerializer = serializationContext.Directory.GetSerializer(derivedClass.Id) as EntityDesignerSurfaceSerializerBase;
 						global::System.Diagnostics.Debug.Assert(derivedSerializer != null, "Cannot find serializer for " + derivedClass.Name + "!");
 						result = derivedSerializer.CreateMonikerInstance(serializationContext, reader, sourceRolePlayer, relDomainClassId, partition);
 					}
@@ -10755,7 +10755,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		}
 		
 		/// <summary>
-		/// This method creates a Moniker of EntityDesignerDiagram based on the tag currently pointed by the reader.
+		/// This method creates a Moniker of EntityDesignerSurface based on the tag currently pointed by the reader.
 		/// </summary>
 		/// <remarks>
 		/// The caller will guarantee that the reader is positioned at open XML tag of the next element being read. This method should
@@ -10774,12 +10774,12 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		}
 	
 		/// <summary>
-		/// Stores a mapping from Moniker Xml tag name to DomainClassInfo that derives from EntityDesignerDiagram, created on demand.
+		/// Stores a mapping from Moniker Xml tag name to DomainClassInfo that derives from EntityDesignerSurface, created on demand.
 		/// </summary>
 		private global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> derivedClassMonikers;
 	
 		/// <summary>
-		/// Construct the mapping from Moniker Xml tag name to DomainClassInfo that derives from EntityDesignerDiagram.
+		/// Construct the mapping from Moniker Xml tag name to DomainClassInfo that derives from EntityDesignerSurface.
 		/// </summary>
 		/// <param name="serializationContext">Serialization context.</param>
 		/// <param name="domainDataDirectory">DomainDataDirectory to be used to discover all derived classes.</param>
@@ -10788,7 +10788,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClassMonikers == null); // Shouldn't construct the table more than once.
 			this.derivedClassMonikers = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -10814,24 +10814,24 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	
 		#region Write Methods
 		/// <summary>
-		/// Public WriteMoniker() method that writes a monikerized EntityDesignerDiagram instance into XML.
+		/// Public WriteMoniker() method that writes a monikerized EntityDesignerSurface instance into XML.
 		/// </summary>
 		/// <param name="serializationContext">Serialization context.</param>
-		/// <param name="element">EntityDesignerDiagram instance to be monikerized.</param>
+		/// <param name="element">EntityDesignerSurface instance to be monikerized.</param>
 		/// <param name="writer">XmlWriter to write serialized data to.</param>
-		/// <param name="sourceRolePlayer">Source element that references the EntityDesignerDiagram instance being monikerized.</param>
-		/// <param name="relSerializer">Serializer that handles the relationship connecting the source element to the EntityDesignerDiagram instance being monikerized.</param>
+		/// <param name="sourceRolePlayer">Source element that references the EntityDesignerSurface instance being monikerized.</param>
+		/// <param name="relSerializer">Serializer that handles the relationship connecting the source element to the EntityDesignerSurface instance being monikerized.</param>
 		public override void WriteMoniker(DslModeling::SerializationContext serializationContext, DslModeling::ModelElement element, global::System.Xml.XmlWriter writer, DslModeling::ModelElement sourceRolePlayer, DslModeling::DomainRelationshipXmlSerializer relSerializer)
 		{
-			// Instance of EntityDesignerDiagram cannot be monikerized.
+			// Instance of EntityDesignerSurface cannot be monikerized.
 			MicrosoftDataEntityDesignSerializationBehaviorSerializationMessages.CannotMonikerizeElement(serializationContext, "EntityDesignerDiagram");
 		}
 		
 		/// <summary>
-		/// Public Write() method that serializes one EntityDesignerDiagram instance into XML.
+		/// Public Write() method that serializes one EntityDesignerSurface instance into XML.
 		/// </summary>
 		/// <param name="serializationContext">Serialization context.</param>
-		/// <param name="element">EntityDesignerDiagram instance to be serialized.</param>
+		/// <param name="element">EntityDesignerSurface instance to be serialized.</param>
 		/// <param name="writer">XmlWriter to write serialized data to.</param>
 		/// <param name="rootElementSettings">
 		/// The root element settings if the passed in element is serialized as a root element in the XML. The root element contains additional
@@ -10883,20 +10883,20 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// Write all properties that need to be serialized as XML attributes.
 		/// </summary>
 		/// <param name="serializationContext">Serialization context.</param>
-		/// <param name="element">EntityDesignerDiagram instance to be serialized.</param>
+		/// <param name="element">EntityDesignerSurface instance to be serialized.</param>
 		/// <param name="writer">XmlWriter to write serialized data to.</param> 
 		protected override void WritePropertiesAsAttributes(DslModeling::SerializationContext serializationContext, DslModeling::ModelElement element, global::System.Xml.XmlWriter writer)
 		{
 			// Always call the base class so any extensions are serialized
 			base.WritePropertiesAsAttributes(serializationContext, element, writer);
 	
-			global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram instanceOfEntityDesignerDiagram = element as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram;
-			global::System.Diagnostics.Debug.Assert(instanceOfEntityDesignerDiagram != null, "Expecting an instance of EntityDesignerDiagram");
+			global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface instanceOfEntityDesignerSurface = element as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface;
+			global::System.Diagnostics.Debug.Assert(instanceOfEntityDesignerSurface != null, "Expecting an instance of EntityDesignerSurface");
 	
 			// Title
 			if (!serializationContext.Result.Failed)
 			{
-				global::System.String propValue = instanceOfEntityDesignerDiagram.Title;
+				global::System.String propValue = instanceOfEntityDesignerSurface.Title;
 				if (!serializationContext.Result.Failed)
 				{
 					if (!string.IsNullOrEmpty(propValue))
@@ -10910,7 +10910,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// This methods serializes 1) properties serialized as nested XML elements and 2) child model elements into XML. 
 		/// </summary>
 		/// <param name="serializationContext">Serialization context.</param>
-		/// <param name="element">EntityDesignerDiagram instance to be serialized.</param>
+		/// <param name="element">EntityDesignerSurface instance to be serialized.</param>
 		/// <param name="writer">XmlWriter to write serialized data to.</param>        
 		protected override void WriteElements(DslModeling::SerializationContext serializationContext, DslModeling::ModelElement element, global::System.Xml.XmlWriter writer)
 		{
@@ -10938,11 +10938,11 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	
 		#region Moniker Support
 		/// <summary>
-		/// This method calculates a moniker to a given EntityDesignerDiagram instance.
+		/// This method calculates a moniker to a given EntityDesignerSurface instance.
 		/// </summary>
 		/// <param name="directory">Directory to look up serializer based on model element type.</param>
-		/// <param name="element">EntityDesignerDiagram instance to calculate qualified name for.</param>
-		/// <returns>A fully qualified string moniker to the EntityDesignerDiagram instance.</returns>
+		/// <param name="element">EntityDesignerSurface instance to calculate qualified name for.</param>
+		/// <returns>A fully qualified string moniker to the EntityDesignerSurface instance.</returns>
 		public override string CalculateQualifiedName(DslModeling::DomainXmlSerializerDirectory directory, DslModeling::ModelElement element)
 		{
 			#region Check Parameters
@@ -10954,8 +10954,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram instance = element as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram!");
+			global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface instance = element as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface!");
 	
 			DslModeling::ModelElement container = DslModeling::DomainClassInfo.FindEmbeddingElement(instance);
 			if(container != null)
@@ -10976,7 +10976,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// returns empty string.
 		/// </summary>
 		/// <param name="directory">Directory to look up serializer based on model element type.</param>
-		/// <param name="element">EntityDesignerDiagram instance to get moniker qualifier from.</param>
+		/// <param name="element">EntityDesignerSurface instance to get moniker qualifier from.</param>
 		/// <returns>
 		/// Value of this element's moniker qualifier property, if it has one, or the value of the container's moniker qualifier property. Or empty string if this
 		/// element is not monikerized using standard /qualifier/key mechanism.
@@ -10992,8 +10992,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram instance = element as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram!");
+			global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface instance = element as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface!");
 			DslModeling::ModelElement container = DslModeling::DomainClassInfo.FindEmbeddingElement(instance);
 			if(container != null)
 			{
@@ -11010,15 +11010,15 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	}
 	
 	/// <summary>
-	/// Serializer EntityDesignerDiagramSerializer for DomainClass Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram.
+	/// Serializer EntityDesignerSurfaceSerializer for DomainClass Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface.
 	/// </summary>
-	internal partial class EntityDesignerDiagramSerializer : EntityDesignerDiagramSerializerBase
+	internal partial class EntityDesignerSurfaceSerializer : EntityDesignerSurfaceSerializerBase
 	{
 		#region Constructor
 		/// <summary>
-		/// EntityDesignerDiagramSerializer Constructor
+		/// EntityDesignerSurfaceSerializer Constructor
 		/// </summary>
-		public EntityDesignerDiagramSerializer ()
+		public EntityDesignerSurfaceSerializer ()
 			: base ()
 		{
 		}
@@ -11105,7 +11105,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape.DomainClassId, typeof(EntityTypeShapeSerializer)));
 					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Dsl.View.InheritanceConnector.DomainClassId, typeof(InheritanceConnectorSerializer)));
 					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Dsl.View.AssociationConnector.DomainClassId, typeof(AssociationConnectorSerializer)));
-					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram.DomainClassId, typeof(EntityDesignerDiagramSerializer)));
+					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface.DomainClassId, typeof(EntityDesignerSurfaceSerializer)));
 					#endregion
 					
 					// Custom ones
@@ -12007,8 +12007,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="serializationResult">Stores serialization result from the load operation.</param>
 		/// <param name="modelPartition">Partition in which the new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel instance will be created.</param>
 		/// <param name="modelFileName">Name of the file from which the global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel instance will be deserialized.</param>
-		/// <param name="diagramPartition">Partition in which the new global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram instance will be created.</param>
-		/// <param name="diagramFileName">Name of the file from which the global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram instance will be deserialized.</param>
+		/// <param name="diagramPartition">Partition in which the new global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface instance will be created.</param>
+		/// <param name="diagramFileName">Name of the file from which the global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface instance will be deserialized.</param>
 		/// <param name="serializerLocator">Used to locate any additional domain model types required to load the model. Can be null.</param>
 		/// <returns>The loaded global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel instance.</returns>
 		public DslModeling::ModelElement LoadModelAndDiagram(DslModeling::SerializationResult serializationResult, 
@@ -12028,12 +12028,12 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		}
 	
 		/// <summary>
-		/// Saves the given global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel and global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram to the given files, with specified encoding.
+		/// Saves the given global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel and global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface to the given files, with specified encoding.
 		/// </summary>
 		/// <param name="serializationResult">Stores serialization result from the save operation.</param>
 		/// <param name="modelRoot">global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel instance to be saved.</param>
 		/// <param name="modelFileName">Name of the file in which the CanonicalSampleRoot instance will be saved.</param>
-		/// <param name="diagram">global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram to be saved.</param>
+		/// <param name="diagram">global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface to be saved.</param>
 		/// <param name="diagramFileName">Name of the file in which the diagram will be saved.</param>
 		/// <param name="encoding">Encoding to use when saving the diagram.</param>
 		public void SaveModelAndDiagram(DslModeling::SerializationResult serializationResult, 
@@ -12058,7 +12058,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	
 				throw new global::System.ArgumentException(errorMessage, "modelRoot");
 			}
-			global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram typedDiagram = diagram as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram;
+			global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface typedDiagram = diagram as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface;
 			if (typedDiagram == null)
 			{
 				string errorMessage = string.Format(global::System.Globalization.CultureInfo.CurrentCulture,

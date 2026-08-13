@@ -43,7 +43,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
                 if (selectionService.CurrentDocumentView is SingleDiagramDocView singleDiagramDocView)
                 {
                     foundDSLElementMatchInDiagram = NavigateToDSLNodeInDiagram(
-                        singleDiagramDocView.Diagram as EntityDesignerDiagram, efobject);
+                        singleDiagramDocView.Diagram as EntityDesignerSurface, efobject);
                     if (foundDSLElementMatchInDiagram)
                     {
                         // The code below is added to ensure that the right doc-view is shown and activated.
@@ -67,7 +67,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
                     if (docView != null)
                     {
                         foundDSLElementMatchInDiagram = NavigateToDSLNodeInDiagram(
-                            singleDiagramDocView.Diagram as EntityDesignerDiagram, efobject);
+                            singleDiagramDocView.Diagram as EntityDesignerSurface, efobject);
                         if (foundDSLElementMatchInDiagram)
                         {
                             // The code below is added to ensure that the right doc-view is shown and activated.
@@ -83,7 +83,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         ///     This class will set the focus on the "most-appropriate" DSL node for the given EFObject and DSL Diagram.  It is assumed that the
         ///     EFObject is either a C-Space node, or an M-space node.
         /// </summary>
-        internal static bool NavigateToDSLNodeInDiagram(EntityDesignerDiagram diagram, EFObject efobject)
+        internal static bool NavigateToDSLNodeInDiagram(EntityDesignerSurface diagram, EFObject efobject)
         {
             var foundDSLElementMatchInDiagram = false;
             var context = PackageManager.Package.DocumentFrameMgr.EditingContextManager.GetNewOrExistingContext(efobject.Artifact.Uri);
@@ -245,7 +245,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         ///     Given an EFObject, return collection of DiagramItems for it.
         /// </summary>
         private static void RetrieveDiagramItemCollectionForEFObject(
-            EntityDesignerDiagram diagram, EFObject efobject, DiagramItemCollection diagramItemCollection)
+            EntityDesignerSurface diagram, EFObject efobject, DiagramItemCollection diagramItemCollection)
         {
             if (efobject == null)
             {
@@ -438,7 +438,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         /// </summary>
         /// <param name="efobject"></param>
         /// <returns></returns>
-        private static ShapeElement GetDesignerShapeElementForEFObject(EntityDesignerDiagram diagram, EFObject efobject)
+        private static ShapeElement GetDesignerShapeElementForEFObject(EntityDesignerSurface diagram, EFObject efobject)
         {
             ShapeElement shapeElement = null;
             while (shapeElement == null

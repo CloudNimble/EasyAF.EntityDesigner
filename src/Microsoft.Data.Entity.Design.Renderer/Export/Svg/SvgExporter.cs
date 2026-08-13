@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.Modeling.Diagrams;
 namespace Microsoft.Data.Entity.Design.Dsl.View.Export
 {
     /// <summary>
-    /// Exports an EntityDesignerDiagram to SVG format.
+    /// Exports an EntityDesignerSurface to SVG format.
     /// </summary>
     internal class SvgExporter
     {
@@ -32,7 +32,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View.Export
         /// </summary>
         /// <param name="diagram">The diagram to export.</param>
         /// <param name="options">The export options specifying path and settings.</param>
-        public void Export(EntityDesignerDiagram diagram, DiagramExportOptions options)
+        public void Export(EntityDesignerSurface diagram, DiagramExportOptions options)
         {
             if (diagram is null)
             {
@@ -53,7 +53,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View.Export
         /// </summary>
         /// <param name="diagram">The diagram to export.</param>
         /// <param name="filePath">The path to save the SVG file.</param>
-        public void ExportToSvg(EntityDesignerDiagram diagram, string filePath)
+        public void ExportToSvg(EntityDesignerSurface diagram, string filePath)
         {
             ExportToSvg(diagram, filePath, transparentBackground: true, showTypes: true);
         }
@@ -65,7 +65,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View.Export
         /// <param name="filePath">The path to save the SVG file.</param>
         /// <param name="transparentBackground">If true, renders with a transparent background.</param>
         /// <param name="showTypes">If true, shows data types alongside property names.</param>
-        public void ExportToSvg(EntityDesignerDiagram diagram, string filePath, bool transparentBackground, bool showTypes)
+        public void ExportToSvg(EntityDesignerSurface diagram, string filePath, bool transparentBackground, bool showTypes)
         {
             if (diagram is null)
             {
@@ -84,7 +84,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View.Export
         /// <summary>
         /// Generates SVG content for the diagram.
         /// </summary>
-        public string GenerateSvg(EntityDesignerDiagram diagram)
+        public string GenerateSvg(EntityDesignerSurface diagram)
         {
             return GenerateSvg(diagram, transparentBackground: true, showTypes: true);
         }
@@ -94,7 +94,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View.Export
         /// </summary>
         /// <param name="diagram">The diagram to export.</param>
         /// <param name="options">The export options specifying settings.</param>
-        public string GenerateSvg(EntityDesignerDiagram diagram, DiagramExportOptions options)
+        public string GenerateSvg(EntityDesignerSurface diagram, DiagramExportOptions options)
         {
             if (diagram is null)
             {
@@ -234,7 +234,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View.Export
         /// <param name="diagram">The diagram to export.</param>
         /// <param name="transparentBackground">If true, renders with a transparent background.</param>
         /// <param name="showTypes">If true, shows data types alongside property names.</param>
-        public string GenerateSvg(EntityDesignerDiagram diagram, bool transparentBackground, bool showTypes)
+        public string GenerateSvg(EntityDesignerSurface diagram, bool transparentBackground, bool showTypes)
         {
             if (diagram is null)
             {

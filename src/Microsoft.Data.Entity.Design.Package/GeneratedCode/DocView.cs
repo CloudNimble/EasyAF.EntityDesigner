@@ -58,7 +58,7 @@ namespace Microsoft.Data.Entity.Design.Package
 			DslModeling::Partition diagramPartition = docData.GetDiagramPartition();
 			if (diagramPartition != null)
 			{
-				global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram> diagrams = docData.GetDiagramPartition().ElementDirectory.FindElements<global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram>();
+				global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface> diagrams = docData.GetDiagramPartition().ElementDirectory.FindElements<global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface>();
 				if (diagrams.Count > 0)
 				{
 					global::System.Diagnostics.Debug.Assert(diagrams.Count == 1, "Found more than one diagram, using the first one found.");

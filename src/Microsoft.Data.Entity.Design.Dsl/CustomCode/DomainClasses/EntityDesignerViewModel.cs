@@ -65,15 +65,15 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
         /// </summary>
         /// <param name="diagram"></param>
         /// <returns></returns>
-        internal EntityDesignerDiagram GetDiagram()
+        internal EntityDesignerSurface GetDiagram()
         {
-            EntityDesignerDiagram diagram = null;
+            EntityDesignerSurface diagram = null;
 
             foreach (ShapeElement shape in PresentationViewsSubject.GetPresentation(this))
             {
                 if (shape.Diagram != null)
                 {
-                    diagram = shape.Diagram as EntityDesignerDiagram;
+                    diagram = shape.Diagram as EntityDesignerSurface;
                     break;
                 }
             }
@@ -317,7 +317,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
         /// </summary>
         private void ProcessModelChanges(EfiChangeGroup changeGroup)
         {
-            EntityDesignerDiagram diagram = null;
+            EntityDesignerSurface diagram = null;
             diagram = GetDiagram();
             var disableFixUpDiagramSelection = false;
 
@@ -1282,7 +1282,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
             {
                 var foundAnotherActiveDiagram = false;
                 // Check if there is any active diagram in VS.
-                foreach (var diagram in Store.ElementDirectory.FindElements<EntityDesignerDiagram>())
+                foreach (var diagram in Store.ElementDirectory.FindElements<EntityDesignerSurface>())
                 {
                     if (currentDiagram != diagram
                         && diagram.ActiveDiagramView != null

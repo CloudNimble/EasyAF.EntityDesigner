@@ -17,7 +17,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View.ContextMenu
     internal partial class DiagramSurfaceContextMenu : UserControl
     {
         private Popup _popup;
-        private EntityDesignerDiagram _diagram;
+        private EntityDesignerSurface _diagram;
         private Action _closeCallback;
         private bool _isExecutingCommand;
 
@@ -89,7 +89,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View.ContextMenu
         /// <param name="diagram">The diagram associated with this menu.</param>
         /// <param name="screenPosition">The screen coordinates where the menu should appear.</param>
         /// <param name="closeCallback">Optional callback invoked when the menu closes.</param>
-        internal void Show(EntityDesignerDiagram diagram, Point screenPosition, Action closeCallback = null)
+        internal void Show(EntityDesignerSurface diagram, Point screenPosition, Action closeCallback = null)
         {
             _diagram = diagram;
             _closeCallback = closeCallback;
@@ -132,7 +132,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View.ContextMenu
         /// <summary>
         /// Gets the currently associated diagram.
         /// </summary>
-        internal EntityDesignerDiagram Diagram => _diagram;
+        internal EntityDesignerSurface Diagram => _diagram;
 
         private void OnPopupClosed(object sender, EventArgs e)
         {

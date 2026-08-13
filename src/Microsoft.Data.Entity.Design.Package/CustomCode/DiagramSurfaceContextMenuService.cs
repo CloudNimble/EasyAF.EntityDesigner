@@ -204,7 +204,7 @@ namespace Microsoft.Data.Entity.Design.Package
         /// <param name="diagram">The diagram.</param>
         /// <param name="mousePosition">The mouse position in world coordinates.</param>
         /// <returns>True if a context menu was shown, false otherwise.</returns>
-        public bool ShowContextMenu(EntityDesignerDiagram diagram, PointD mousePosition)
+        public bool ShowContextMenu(EntityDesignerSurface diagram, PointD mousePosition)
         {
             var hitResult = HitTest(mousePosition);
 
@@ -241,7 +241,7 @@ namespace Microsoft.Data.Entity.Design.Package
         /// <summary>
         /// Shows the diagram surface context menu at the specified position.
         /// </summary>
-        private void ShowDiagramSurfaceContextMenu(EntityDesignerDiagram diagram, PointD mousePosition)
+        private void ShowDiagramSurfaceContextMenu(EntityDesignerSurface diagram, PointD mousePosition)
         {
             // Create context menu if needed
             if (_diagramSurfaceMenu == null)
@@ -261,7 +261,7 @@ namespace Microsoft.Data.Entity.Design.Package
         /// <summary>
         /// Shows the association context menu at the specified position.
         /// </summary>
-        private void ShowAssociationContextMenu(EntityDesignerDiagram diagram, AssociationConnector connector, PointD mousePosition)
+        private void ShowAssociationContextMenu(EntityDesignerSurface diagram, AssociationConnector connector, PointD mousePosition)
         {
             _currentAssociation = connector;
 
@@ -282,7 +282,7 @@ namespace Microsoft.Data.Entity.Design.Package
         /// <summary>
         /// Shows a context menu at the specified position.
         /// </summary>
-        private void ShowMenuAtPosition(DiagramSurfaceContextMenu menu, EntityDesignerDiagram diagram, PointD mousePosition)
+        private void ShowMenuAtPosition(DiagramSurfaceContextMenu menu, EntityDesignerSurface diagram, PointD mousePosition)
         {
             // Convert world coordinates to screen coordinates
             var clientPoint = _diagramClientView.WorldToDevice(mousePosition);
@@ -298,7 +298,7 @@ namespace Microsoft.Data.Entity.Design.Package
         /// <param name="diagram">The diagram.</param>
         /// <param name="mousePosition">The mouse position in world coordinates.</param>
         [Obsolete("Use ShowContextMenu instead")]
-        public void ShowCustomContextMenu(EntityDesignerDiagram diagram, PointD mousePosition)
+        public void ShowCustomContextMenu(EntityDesignerSurface diagram, PointD mousePosition)
         {
             ShowDiagramSurfaceContextMenu(diagram, mousePosition);
         }
@@ -465,7 +465,7 @@ namespace Microsoft.Data.Entity.Design.Package
         /// <summary>
         /// Updates command states for the diagram surface menu based on the current diagram state.
         /// </summary>
-        private void UpdateDiagramSurfaceCommandStates(EntityDesignerDiagram diagram)
+        private void UpdateDiagramSurfaceCommandStates(EntityDesignerSurface diagram)
         {
             if (diagram == null)
             {
@@ -487,7 +487,7 @@ namespace Microsoft.Data.Entity.Design.Package
             UpdateMenuItemStates(_diagramSurfaceMenu.MenuItems, diagram, entityCount);
         }
 
-        private void UpdateMenuItemStates(System.Collections.ObjectModel.ObservableCollection<object> items, EntityDesignerDiagram diagram, int entityCount)
+        private void UpdateMenuItemStates(System.Collections.ObjectModel.ObservableCollection<object> items, EntityDesignerSurface diagram, int entityCount)
         {
             foreach (var item in items)
             {
@@ -530,7 +530,7 @@ namespace Microsoft.Data.Entity.Design.Package
 
         private void OnDiagramSurfaceMenuActionExecuted(object sender, MenuActionEventArgs e)
         {
-            var diagram = _docView.CurrentDiagram as EntityDesignerDiagram;
+            var diagram = _docView.CurrentDiagram as EntityDesignerSurface;
             if (diagram == null)
             {
                 return;
@@ -743,7 +743,7 @@ namespace Microsoft.Data.Entity.Design.Package
         /// </summary>
         private void OnAssociationMenuActionExecuted(object sender, MenuActionEventArgs e)
         {
-            var diagram = _docView.CurrentDiagram as EntityDesignerDiagram;
+            var diagram = _docView.CurrentDiagram as EntityDesignerSurface;
             if (diagram == null || _currentAssociation == null)
             {
                 return;
@@ -794,7 +794,7 @@ namespace Microsoft.Data.Entity.Design.Package
         /// <summary>
         /// Shows the property context menu at the specified position.
         /// </summary>
-        private void ShowPropertyContextMenu(EntityDesignerDiagram diagram, DiagramHitResult hitResult, PointD mousePosition)
+        private void ShowPropertyContextMenu(EntityDesignerSurface diagram, DiagramHitResult hitResult, PointD mousePosition)
         {
             _currentPropertyHit = hitResult;
 
@@ -963,7 +963,7 @@ namespace Microsoft.Data.Entity.Design.Package
         /// </summary>
         private void OnPropertyMenuActionExecuted(object sender, MenuActionEventArgs e)
         {
-            var diagram = _docView.CurrentDiagram as EntityDesignerDiagram;
+            var diagram = _docView.CurrentDiagram as EntityDesignerSurface;
             if (diagram == null || _currentPropertyHit == null)
             {
                 return;
@@ -1040,7 +1040,7 @@ namespace Microsoft.Data.Entity.Design.Package
         /// <summary>
         /// Shows the navigation property context menu at the specified position.
         /// </summary>
-        private void ShowNavigationPropertyContextMenu(EntityDesignerDiagram diagram, DiagramHitResult hitResult, PointD mousePosition)
+        private void ShowNavigationPropertyContextMenu(EntityDesignerSurface diagram, DiagramHitResult hitResult, PointD mousePosition)
         {
             _currentNavigationPropertyHit = hitResult;
 
@@ -1150,7 +1150,7 @@ namespace Microsoft.Data.Entity.Design.Package
         /// </summary>
         private void OnNavigationPropertyMenuActionExecuted(object sender, MenuActionEventArgs e)
         {
-            var diagram = _docView.CurrentDiagram as EntityDesignerDiagram;
+            var diagram = _docView.CurrentDiagram as EntityDesignerSurface;
             if (diagram == null || _currentNavigationPropertyHit == null)
             {
                 return;
@@ -1204,7 +1204,7 @@ namespace Microsoft.Data.Entity.Design.Package
         /// <summary>
         /// Shows the entity context menu at the specified position.
         /// </summary>
-        private void ShowEntityContextMenu(EntityDesignerDiagram diagram, EntityTypeShape entityShape, PointD mousePosition)
+        private void ShowEntityContextMenu(EntityDesignerSurface diagram, EntityTypeShape entityShape, PointD mousePosition)
         {
             _currentEntityShape = entityShape;
 
@@ -1397,7 +1397,7 @@ namespace Microsoft.Data.Entity.Design.Package
         /// </summary>
         private void OnEntityMenuActionExecuted(object sender, MenuActionEventArgs e)
         {
-            var diagram = _docView.CurrentDiagram as EntityDesignerDiagram;
+            var diagram = _docView.CurrentDiagram as EntityDesignerSurface;
             if (diagram == null || _currentEntityShape == null)
             {
                 return;
@@ -1505,26 +1505,26 @@ namespace Microsoft.Data.Entity.Design.Package
 
         #region Command Execution
 
-        private void ExecuteAddEntity(EntityDesignerDiagram diagram)
+        private void ExecuteAddEntity(EntityDesignerSurface diagram)
         {
             // Use the existing AddNewEntityType method with a default position
             var dropPoint = GetCenterPoint();
             diagram.AddNewEntityType(dropPoint);
         }
 
-        private void ExecuteAddComplexType(EntityDesignerDiagram diagram)
+        private void ExecuteAddComplexType(EntityDesignerSurface diagram)
         {
             // Execute the Add Complex Type command via VS command
             ExecuteVsCommand(MicrosoftDataEntityDesignCommands.AddComplexType);
         }
 
-        private void ExecuteAddEnumType(EntityDesignerDiagram diagram)
+        private void ExecuteAddEnumType(EntityDesignerSurface diagram)
         {
             // Execute the Add Enum Type command via VS command
             ExecuteVsCommand(MicrosoftDataEntityDesignCommands.AddEnumType);
         }
 
-        private void ExecuteAddAssociation(EntityDesignerDiagram diagram)
+        private void ExecuteAddAssociation(EntityDesignerSurface diagram)
         {
             // Check if there are enough entities to create an association
             if (diagram.ModelElement.EntityTypes.Count < 1)
@@ -1541,7 +1541,7 @@ namespace Microsoft.Data.Entity.Design.Package
             diagram.AddNewAssociation(null);
         }
 
-        private void ExecuteAddInheritance(EntityDesignerDiagram diagram)
+        private void ExecuteAddInheritance(EntityDesignerSurface diagram)
         {
             // Check if there are enough entities
             if (diagram.ModelElement.EntityTypes.Count < 2)
@@ -1558,17 +1558,17 @@ namespace Microsoft.Data.Entity.Design.Package
             diagram.AddNewInheritance(null);
         }
 
-        private void ExecuteAddFunctionImport(EntityDesignerDiagram diagram)
+        private void ExecuteAddFunctionImport(EntityDesignerSurface diagram)
         {
             diagram.AddNewFunctionImport(null);
         }
 
-        private void ExecuteLayout(EntityDesignerDiagram diagram)
+        private void ExecuteLayout(EntityDesignerSurface diagram)
         {
             diagram.AutoLayoutDiagram();
         }
 
-        private void ExecuteExport(EntityDesignerDiagram diagram)
+        private void ExecuteExport(EntityDesignerSurface diagram)
         {
             // Show the export dialog directly
             var modelName = diagram.ModelElement?.Namespace ?? "EntityModel";
@@ -1597,22 +1597,22 @@ namespace Microsoft.Data.Entity.Design.Package
             }
         }
 
-        private void ExecuteCollapseAll(EntityDesignerDiagram diagram)
+        private void ExecuteCollapseAll(EntityDesignerSurface diagram)
         {
             diagram.CollapseAllEntityTypeShapes();
         }
 
-        private void ExecuteExpandAll(EntityDesignerDiagram diagram)
+        private void ExecuteExpandAll(EntityDesignerSurface diagram)
         {
             diagram.ExpandAllEntityTypeShapes();
         }
 
-        private void ExecuteZoomToFit(EntityDesignerDiagram diagram)
+        private void ExecuteZoomToFit(EntityDesignerSurface diagram)
         {
             diagram.ZoomToFit();
         }
 
-        private void ExecuteToggleShowDataTypes(EntityDesignerDiagram diagram)
+        private void ExecuteToggleShowDataTypes(EntityDesignerSurface diagram)
         {
             diagram.DisplayNameAndType = !diagram.DisplayNameAndType;
             // Update the toggle state
@@ -1622,7 +1622,7 @@ namespace Microsoft.Data.Entity.Design.Package
             }
         }
 
-        private void ExecuteSelectAll(EntityDesignerDiagram diagram)
+        private void ExecuteSelectAll(EntityDesignerSurface diagram)
         {
             // Select all shapes on the diagram
             if (diagram.ActiveDiagramView != null)
@@ -1639,7 +1639,7 @@ namespace Microsoft.Data.Entity.Design.Package
             }
         }
 
-        private void ExecuteMoveDiagramsToSeparateFile(EntityDesignerDiagram diagram)
+        private void ExecuteMoveDiagramsToSeparateFile(EntityDesignerSurface diagram)
         {
             var artifact = diagram.GetModel()?.EditingContext?.GetEFArtifactService()?.Artifact;
             if (artifact is null)
@@ -1682,25 +1682,25 @@ namespace Microsoft.Data.Entity.Design.Package
             }
         }
 
-        private void ExecuteUpdateModelFromDatabase(EntityDesignerDiagram diagram)
+        private void ExecuteUpdateModelFromDatabase(EntityDesignerSurface diagram)
         {
             // Execute the Update Model from Database wizard via VS command
             ExecuteVsCommand(MicrosoftDataEntityDesignCommands.RefreshFromDatabase);
         }
 
-        private void ExecuteGenerateDatabaseFromModel(EntityDesignerDiagram diagram)
+        private void ExecuteGenerateDatabaseFromModel(EntityDesignerSurface diagram)
         {
             // Execute the Generate Database from Model wizard via VS command
             ExecuteVsCommand(MicrosoftDataEntityDesignCommands.GenerateDatabaseScriptFromModel);
         }
 
-        private void ExecuteAddCodeGenerationItem(EntityDesignerDiagram diagram)
+        private void ExecuteAddCodeGenerationItem(EntityDesignerSurface diagram)
         {
             // Execute the Add Code Generation Item wizard via VS command
             ExecuteVsCommand(MicrosoftDataEntityDesignCommands.AddNewTemplate);
         }
 
-        private void ExecuteValidate(EntityDesignerDiagram diagram)
+        private void ExecuteValidate(EntityDesignerSurface diagram)
         {
             // Execute the Validate command via VS command
             ExecuteVsCommand(MicrosoftDataEntityDesignCommands.Validate);
@@ -1716,7 +1716,7 @@ namespace Microsoft.Data.Entity.Design.Package
             }
         }
 
-        private void ExecuteOpenXmlEditor(EntityDesignerDiagram diagram)
+        private void ExecuteOpenXmlEditor(EntityDesignerSurface diagram)
         {
             var artifact = diagram.GetModel()?.EditingContext?.GetEFArtifactService()?.Artifact;
             if (artifact == null)
@@ -1762,7 +1762,7 @@ namespace Microsoft.Data.Entity.Design.Package
             }
         }
 
-        private void ExecuteDeleteAssociation(EntityDesignerDiagram diagram, AssociationConnector connector)
+        private void ExecuteDeleteAssociation(EntityDesignerSurface diagram, AssociationConnector connector)
         {
             if (connector?.ModelElement == null)
             {
@@ -1780,7 +1780,7 @@ namespace Microsoft.Data.Entity.Design.Package
             ExecuteVsCommand(deleteCommand);
         }
 
-        private void ExecuteSelectShape(EntityDesignerDiagram diagram, EntityType entityType)
+        private void ExecuteSelectShape(EntityDesignerSurface diagram, EntityType entityType)
         {
             if (entityType == null || diagram.ActiveDiagramView == null)
             {
@@ -1799,7 +1799,7 @@ namespace Microsoft.Data.Entity.Design.Package
             }
         }
 
-        private void ExecuteSelectProperty(EntityDesignerDiagram diagram, EntityType entityType, NavigationProperty navProperty)
+        private void ExecuteSelectProperty(EntityDesignerSurface diagram, EntityType entityType, NavigationProperty navProperty)
         {
             if (entityType == null || navProperty == null || diagram.ActiveDiagramView == null)
             {
@@ -1841,7 +1841,7 @@ namespace Microsoft.Data.Entity.Design.Package
             }
 
             // Select the connector first so ShowInEdmExplorer knows what to show
-            var diagram = _docView.CurrentDiagram as EntityDesignerDiagram;
+            var diagram = _docView.CurrentDiagram as EntityDesignerSurface;
             if (diagram?.ActiveDiagramView != null)
             {
                 var diagramItem = new DiagramItem(connector);
@@ -1861,7 +1861,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 return;
             }
 
-            var diagram = _docView.CurrentDiagram as EntityDesignerDiagram;
+            var diagram = _docView.CurrentDiagram as EntityDesignerSurface;
             if (diagram?.ActiveDiagramView == null)
             {
                 return;
@@ -1937,7 +1937,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 return;
             }
 
-            var diagram = _docView.CurrentDiagram as EntityDesignerDiagram;
+            var diagram = _docView.CurrentDiagram as EntityDesignerSurface;
             if (diagram?.ActiveDiagramView == null)
             {
                 return;
@@ -1969,7 +1969,7 @@ namespace Microsoft.Data.Entity.Design.Package
             ExecuteVsCommand(moveCommand);
         }
 
-        private void ExecuteSelectAssociationForNavigationProperty(EntityDesignerDiagram diagram)
+        private void ExecuteSelectAssociationForNavigationProperty(EntityDesignerSurface diagram)
         {
             if (_currentNavigationPropertyHit?.ModelElement is Dsl.ViewModel.NavigationProperty navProp)
             {
@@ -2000,7 +2000,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 return;
             }
 
-            var diagram = _docView.CurrentDiagram as EntityDesignerDiagram;
+            var diagram = _docView.CurrentDiagram as EntityDesignerSurface;
             if (diagram?.ActiveDiagramView == null)
             {
                 return;

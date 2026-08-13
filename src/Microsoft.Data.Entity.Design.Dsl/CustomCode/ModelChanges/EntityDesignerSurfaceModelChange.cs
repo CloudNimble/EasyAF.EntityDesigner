@@ -5,21 +5,21 @@ using Microsoft.Data.Entity.Design.Dsl.View;
 
 namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
 {
-    internal abstract class EntityDesignerDiagramModelChange : ViewModelChange
+    internal abstract class EntityDesignerSurfaceModelChange : ViewModelChange
     {
-        private readonly EntityDesignerDiagram _diagram;
+        private readonly EntityDesignerSurface _diagram;
 
         internal override bool IsDiagramChange
         {
             get { return true; }
         }
 
-        protected EntityDesignerDiagramModelChange(EntityDesignerDiagram diagram)
+        protected EntityDesignerSurfaceModelChange(EntityDesignerSurface diagram)
         {
             _diagram = diagram;
         }
 
-        public EntityDesignerDiagram Diagram
+        public EntityDesignerSurface Diagram
         {
             get { return _diagram; }
         }

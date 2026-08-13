@@ -11,18 +11,18 @@ using DslModeling = global::Microsoft.VisualStudio.Modeling;
 using DslDesign = global::Microsoft.VisualStudio.Modeling.Design;
 using DslDiagrams = global::Microsoft.VisualStudio.Modeling.Diagrams;
 
-[module: global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Scope = "type", Target = "Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram")]
+[module: global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Scope = "type", Target = "Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface")]
 
 namespace Microsoft.Data.Entity.Design.Dsl.View
 {
 	/// <summary>
-	/// Double-derived base class for DomainClass EntityDesignerDiagram
+	/// Double-derived base class for DomainClass EntityDesignerSurface
 	/// </summary>
-	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
-	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
 	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel))]
 	[DslModeling::DomainObjectId("3daa738d-a8aa-4f0c-b98b-db1382985264")]
-	internal abstract partial class EntityDesignerDiagramBase : DslDiagrams::Diagram
+	internal abstract partial class EntityDesignerSurfaceBase : DslDiagrams::Diagram
 	{
 		#region Diagram boilerplate
 		private static DslDiagrams::StyleSet classStyleSet;
@@ -486,7 +486,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 		#region Constructors, domain class Id
 	
 		/// <summary>
-		/// EntityDesignerDiagram domain class Id.
+		/// EntityDesignerSurface domain class Id.
 		/// </summary>
 		public static readonly new global::System.Guid DomainClassId = new global::System.Guid(0x3daa738d, 0xa8aa, 0x4f0c, 0xb9, 0x8b, 0xdb, 0x13, 0x82, 0x98, 0x52, 0x64);
 		/// <summary>
@@ -494,7 +494,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 		/// </summary>
 		/// <param name="partition">Partition where new element is to be created.</param>
 		/// <param name="propertyAssignments">List of domain property id/value pairs to set once the element is created.</param>
-		protected EntityDesignerDiagramBase(DslModeling::Partition partition, DslModeling::PropertyAssignment[] propertyAssignments)
+		protected EntityDesignerSurfaceBase(DslModeling::Partition partition, DslModeling::PropertyAssignment[] propertyAssignments)
 			: base(partition, propertyAssignments)
 		{
 		}
@@ -514,10 +514,10 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 		/// <summary>
 		/// Gets or sets the value of Title domain property.
 		/// Description for
-		/// Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram.Title
+		/// Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface.Title
 		/// </summary>
-		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram/Title.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
-		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram/Title.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface/Title.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface/Title.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Dsl.GeneratedCode.DomainModelResx")]
 		[DslModeling::DomainObjectId("83fe8dc3-d17f-471c-8bf7-128799399af3")]
 		public global::System.String Title
 		{
@@ -533,19 +533,19 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 			}
 		}
 		/// <summary>
-		/// Value handler for the EntityDesignerDiagram.Title domain property.
+		/// Value handler for the EntityDesignerSurface.Title domain property.
 		/// </summary>
-		internal sealed partial class TitlePropertyHandler : DslModeling::DomainPropertyValueHandler<EntityDesignerDiagramBase, global::System.String>
+		internal sealed partial class TitlePropertyHandler : DslModeling::DomainPropertyValueHandler<EntityDesignerSurfaceBase, global::System.String>
 		{
 			private TitlePropertyHandler() { }
 		
 			/// <summary>
-			/// Gets the singleton instance of the EntityDesignerDiagram.Title domain property value handler.
+			/// Gets the singleton instance of the EntityDesignerSurface.Title domain property value handler.
 			/// </summary>
 			public static readonly TitlePropertyHandler Instance = new TitlePropertyHandler();
 		
 			/// <summary>
-			/// Gets the Id of the EntityDesignerDiagram.Title domain property.
+			/// Gets the Id of the EntityDesignerSurface.Title domain property.
 			/// </summary>
 			public sealed override global::System.Guid DomainPropertyId
 			{
@@ -561,7 +561,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 			/// </summary>
 			/// <param name="element">Element which owns the property.</param>
 			/// <returns>Property value.</returns>
-			public override sealed global::System.String GetValue(EntityDesignerDiagramBase element)
+			public override sealed global::System.String GetValue(EntityDesignerSurfaceBase element)
 			{
 				if (element == null) throw new global::System.ArgumentNullException("element");
 				return element.titlePropertyStorage;
@@ -572,7 +572,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 			/// </summary>
 			/// <param name="element">Element which owns the property.</param>
 			/// <param name="newValue">New property value.</param>
-			public override sealed void SetValue(EntityDesignerDiagramBase element, global::System.String newValue)
+			public override sealed void SetValue(EntityDesignerSurfaceBase element, global::System.String newValue)
 			{
 				if (element == null) throw new global::System.ArgumentNullException("element");
 		
@@ -589,10 +589,10 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 		#endregion
 	}
 	/// <summary>
-	/// DomainClass EntityDesignerDiagram
+	/// DomainClass EntityDesignerSurface
 	/// </summary>
 			
-	internal partial class EntityDesignerDiagram : EntityDesignerDiagramBase
+	internal partial class EntityDesignerSurface : EntityDesignerSurfaceBase
 	{
 		#region Constructors
 		/// <summary>
@@ -600,7 +600,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 		/// </summary>
 		/// <param name="store">Store where new element is to be created.</param>
 		/// <param name="propertyAssignments">List of domain property id/value pairs to set once the element is created.</param>
-		public EntityDesignerDiagram(DslModeling::Store store, params DslModeling::PropertyAssignment[] propertyAssignments)
+		public EntityDesignerSurface(DslModeling::Store store, params DslModeling::PropertyAssignment[] propertyAssignments)
 			: this(store != null ? store.DefaultPartitionForClass(DomainClassId) : null, propertyAssignments)
 		{
 		}
@@ -610,7 +610,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 		/// </summary>
 		/// <param name="partition">Partition where new element is to be created.</param>
 		/// <param name="propertyAssignments">List of domain property id/value pairs to set once the element is created.</param>
-		public EntityDesignerDiagram(DslModeling::Partition partition, params DslModeling::PropertyAssignment[] propertyAssignments)
+		public EntityDesignerSurface(DslModeling::Partition partition, params DslModeling::PropertyAssignment[] propertyAssignments)
 			: base(partition, propertyAssignments)
 		{
 		}
@@ -1092,7 +1092,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 					DslDiagrams::BinaryLinkShape linkShape = connectorLink.Presentation as DslDiagrams::BinaryLinkShape;
 					if (linkShape != null)
 					{
-						global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram diagram = linkShape.Diagram as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram;
+						global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface diagram = linkShape.Diagram as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface;
 						if (diagram != null)
 						{
 							if (e.NewRolePlayer != null)

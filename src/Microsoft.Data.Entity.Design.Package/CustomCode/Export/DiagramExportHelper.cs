@@ -23,7 +23,7 @@ namespace Microsoft.Data.Entity.Design.Package
         ///     Prompts the user for export settings and writes the diagram to the file they choose.
         /// </summary>
         /// <param name="diagram">The diagram to export. Nothing happens if it is null or empty.</param>
-        internal static void ExportDiagram(EntityDesignerDiagram diagram)
+        internal static void ExportDiagram(EntityDesignerSurface diagram)
         {
             if (diagram is null)
             {
@@ -50,7 +50,7 @@ namespace Microsoft.Data.Entity.Design.Package
         /// <summary>
         ///     Gets the name to seed the export file name with, preferring the EDMX file name over the diagram title.
         /// </summary>
-        private static string GetModelName(EntityDesignerDiagram diagram)
+        private static string GetModelName(EntityDesignerSurface diagram)
         {
             try
             {

@@ -400,7 +400,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
             return viewNavProp;
         }
 
-        private static EntityDesignerDiagram TranslateDiagramValues(EntityDesignerViewModel viewModel, DesignerModel.Diagram modelDiagram)
+        private static EntityDesignerSurface TranslateDiagramValues(EntityDesignerViewModel viewModel, DesignerModel.Diagram modelDiagram)
         {
             var diagram = viewModel.GetDiagram();
 
@@ -557,7 +557,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
         ///     Note that we don't assert if we didn't find the corresponding model diagram element.
         ///     In this case, we let DSL to auto layout the shape.
         /// </summary>
-        internal static void TranslateDiagram(EntityDesignerDiagram diagram, DesignerModel.Diagram modelDiagram)
+        internal static void TranslateDiagram(EntityDesignerSurface diagram, DesignerModel.Diagram modelDiagram)
         {
             var viewModel = diagram.ModelElement;
             viewModel.ModelXRef.Add(modelDiagram, diagram, viewModel.EditingContext);
@@ -643,7 +643,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
             }
         }
 
-        internal static void CreateDefaultDiagram(EditingContext context, EntityDesignerDiagram diagram)
+        internal static void CreateDefaultDiagram(EditingContext context, EntityDesignerSurface diagram)
         {
             var service = context.GetEFArtifactService();
             var artifact = service.Artifact;
@@ -654,7 +654,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
             DelegateCommand cmd = new DelegateCommand(
                 () =>
                     {
-                        EntityDesignerDiagramAdd.StaticInvoke(cpc, diagram);
+                        EntityDesignerSurfaceAdd.StaticInvoke(cpc, diagram);
 
                         foreach (var shapeElement in diagram.NestedChildShapes)
                         {

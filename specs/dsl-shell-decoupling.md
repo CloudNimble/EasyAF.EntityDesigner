@@ -144,5 +144,15 @@ Steps 1 through 5 are independently landable and each keeps the tree green.
 
 - **`TransformAll` overwrites outputs even for templates that fail.** Regenerate only from a clean tree, and check `git diff` before trusting the result.
 - **`EntityDesignerViewModel.RegisterEventDelegates`** subscribes to `PackageManager.Package.ModelManager.ModelChangesCommitted`, guarded by `PackageManager.IsLoaded`. It must invert to an event the Package subscribes to. The guard must stay a check on `IsLoaded`, never a null check on `Package` — the `Package` getter asserts, which puts a modal dialog on screen in Debug builds and hangs a build agent.
-- **The net10 target does not run yet.** `edmx render` builds for `net10.0-windows`, starts, reaches `RenderCommand.OnExecute`, then fails with `This is a reference assembly.` A Visual Studio SDK dependency resolves to a compile-only asset under the .NET 10 TFM. This is independent of the decoupling and blocks shipping `Microsoft.Data.Entity.Tools` as a real `dotnet tool`. Unresolved.
+- **The net10 blocker is caused by the coupling this work removes.** `edmx render` on `net10.0-windows` fails with `This is a reference assembly.` The renderer tests pin it down exactly:
+
+  ```
+  System.InvalidOperationException: This is a reference assembly.
+     at Microsoft.VisualStudio.Shell.ThreadHelper.CheckAccess()
+     at Microsoft.VisualStudio.Shell.Package.GetGlobalService(Type serviceType)
+  ```
+
+  That is `IsThemeServiceAvailable()` in the surface — `VSPackage.GetGlobalService(typeof(SVsUIShell))` — reached from `SetColorTheme` via the `InitializeResources` override. `Microsoft.VisualStudio.Shell` resolves to a compile-only asset under .NET 10, so merely *touching* it throws.
+
+  Moving theming out (work item 4 above) should therefore also unblock the real `dotnet tool`, because nothing on the headless path would call into `Microsoft.VisualStudio.Shell` at all. Treat that as a hypothesis to confirm, not a promise: 135 of 138 renderer tests already pass on net10, and the 3 failures are all this one call chain.
 - **Scope discipline.** The `EntityDesignerViewModel` / `ModelXRef` layer stays. Only its shell dependencies leave. Collapsing that layer is a separate question and touches every rule and every `ModelChange`.

@@ -13,7 +13,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.Rules
     ///     (This used to include relations, but that doesn't seem to be needed)
     /// </summary>
     [RuleOn(typeof(ShapeElement), FireTime = TimeToFire.TopLevelCommit, Priority = DiagramFixupConstants.AddShapeRulePriority)]
-    internal sealed class EntityDesignerDiagram_AddRule : AddRule
+    internal sealed class EntityDesignerSurface_AddRule : AddRule
     {
         public override void ElementAdded(ElementAddedEventArgs e)
         {
@@ -32,7 +32,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.Rules
             }
 
             // layout this new shape
-            if (addedShape.Diagram is EntityDesignerDiagram diagram
+            if (addedShape.Diagram is EntityDesignerSurface diagram
                 && diagram.Arranger != null)
             {
                 diagram.Arranger.Add(addedShape, false);

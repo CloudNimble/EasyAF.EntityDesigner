@@ -22,6 +22,6 @@ namespace Microsoft.Data.Entity.Design.Dsl.View.Export
         /// </summary>
         /// <param name="diagram">The diagram to export.</param>
         /// <param name="options">The export options, including the destination path and image format.</param>
-        void Export(EntityDesignerDiagram diagram, DiagramExportOptions options);
+        void Export(EntityDesignerSurface diagram, DiagramExportOptions options);
     }
 }

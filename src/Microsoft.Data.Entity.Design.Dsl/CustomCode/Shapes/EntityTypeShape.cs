@@ -157,9 +157,9 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
             get { return ModelElement as EntityType; }
         }
 
-        public new EntityDesignerDiagram Diagram
+        public new EntityDesignerSurface Diagram
         {
-            get { return base.Diagram as EntityDesignerDiagram; }
+            get { return base.Diagram as EntityDesignerSurface; }
         }
 
         public override bool HasToolTip

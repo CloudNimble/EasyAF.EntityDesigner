@@ -19,7 +19,7 @@ using Utils = Microsoft.Data.Tools.XmlDesignerBase.Base.Util.Utils;
 namespace Microsoft.Data.Entity.Design.Renderer.Headless
 {
     /// <summary>
-    ///     Loads an EDMX file into a fully populated, laid out and routed <see cref="EntityDesignerDiagram" /> without
+    ///     Loads an EDMX file into a fully populated, laid out and routed <see cref="EntityDesignerSurface" /> without
     ///     a Visual Studio shell.
     /// </summary>
     /// <remarks>
@@ -51,7 +51,7 @@ namespace Microsoft.Data.Entity.Design.Renderer.Headless
         /// <summary>
         ///     Gets the populated, routed diagram.
         /// </summary>
-        public EntityDesignerDiagram Diagram { get; }
+        public EntityDesignerSurface Diagram { get; }
 
         /// <summary>
         ///     Gets the name of the diagram that was rendered.
@@ -63,7 +63,7 @@ namespace Microsoft.Data.Entity.Design.Renderer.Headless
         /// </summary>
         internal LoadedDiagram(
             EntityDesignArtifact artifact, EntityDesignModelManager modelManager, HeadlessDiagramStore store,
-            EntityDesignerDiagram diagram, string diagramName)
+            EntityDesignerSurface diagram, string diagramName)
         {
             Artifact = artifact;
             _modelManager = modelManager;
@@ -89,7 +89,7 @@ namespace Microsoft.Data.Entity.Design.Renderer.Headless
     }
 
     /// <summary>
-    ///     Builds <see cref="EntityDesignerDiagram" /> instances from EDMX files with no Visual Studio present.
+    ///     Builds <see cref="EntityDesignerSurface" /> instances from EDMX files with no Visual Studio present.
     /// </summary>
     internal static class EdmxDiagramLoader
     {

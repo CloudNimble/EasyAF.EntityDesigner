@@ -7,9 +7,9 @@ using Microsoft.Data.Entity.Design.Model.Commands;
 
 namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
 {
-    internal class EntityDesignerDiagramAdd : EntityDesignerDiagramModelChange
+    internal class EntityDesignerSurfaceAdd : EntityDesignerSurfaceModelChange
     {
-        internal EntityDesignerDiagramAdd(EntityDesignerDiagram diagram)
+        internal EntityDesignerSurfaceAdd(EntityDesignerSurface diagram)
             : base(diagram)
         {
         }
@@ -19,7 +19,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
             StaticInvoke(cpc, Diagram);
         }
 
-        internal static void StaticInvoke(CommandProcessorContext cpc, EntityDesignerDiagram diagram)
+        internal static void StaticInvoke(CommandProcessorContext cpc, EntityDesignerSurface diagram)
         {
             var viewModel = diagram.ModelElement;
             Debug.Assert(viewModel != null, "Why Diagram's Model Element is null?");

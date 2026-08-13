@@ -861,7 +861,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EntityDesignerDiagram.
+        ///   Looks up a localized string similar to EntityDesignerSurface.
         /// </summary>
         public static string ExportImage_DefaultFileName {
             get {

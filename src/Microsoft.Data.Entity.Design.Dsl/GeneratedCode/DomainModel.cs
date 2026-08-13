@@ -78,7 +78,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association),
 				typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties),
 				typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance),
-				typeof(global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram),
+				typeof(global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface),
 				typeof(global::Microsoft.Data.Entity.Design.Dsl.View.InheritanceConnector),
 				typeof(global::Microsoft.Data.Entity.Design.Dsl.View.AssociationConnector),
 				typeof(global::Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape),
@@ -109,7 +109,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association), "Name", global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.NameDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.NamePropertyHandler)),
 				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association), "SourceMultiplicity", global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.SourceMultiplicityDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.SourceMultiplicityPropertyHandler)),
 				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association), "TargetMultiplicity", global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.TargetMultiplicityDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.TargetMultiplicityPropertyHandler)),
-				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram), "Title", global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram.TitleDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram.TitlePropertyHandler)),
+				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface), "Title", global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface.TitleDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface.TitlePropertyHandler)),
 				new DomainMemberInfo(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape), "FillColor", global::Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape.FillColorDomainPropertyId, typeof(global::Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape.FillColorPropertyHandler)),
 			};
 		}
@@ -156,7 +156,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty), 2);
 				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ComplexProperty), 3);
 				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty), 4);
-				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram), 5);
+				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface), 5);
 				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.InheritanceConnector), 6);
 				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.AssociationConnector), 7);
 				createElementMap.Add(typeof(global::Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape), 8);
@@ -178,7 +178,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				case 2: return new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty(partition, propertyAssignments);
 				case 3: return new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ComplexProperty(partition, propertyAssignments);
 				case 4: return new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty(partition, propertyAssignments);
-				case 5: return new global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram(partition, propertyAssignments);
+				case 5: return new global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface(partition, propertyAssignments);
 				case 6: return new global::Microsoft.Data.Entity.Design.Dsl.View.InheritanceConnector(partition, propertyAssignments);
 				case 7: return new global::Microsoft.Data.Entity.Design.Dsl.View.AssociationConnector(partition, propertyAssignments);
 				case 8: return new global::Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape(partition, propertyAssignments);

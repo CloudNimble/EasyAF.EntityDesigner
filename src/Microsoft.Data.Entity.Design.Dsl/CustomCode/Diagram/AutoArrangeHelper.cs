@@ -52,7 +52,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
             _autoArrangeInfo.End();
         }
 
-        public void TransactionCommit(EntityDesignerDiagram diagram)
+        public void TransactionCommit(EntityDesignerSurface diagram)
         {
             //If this is a Drag & Drop from the SE transaction, then arrange the new elements
             if (_autoArrangeInfo.Tracking)

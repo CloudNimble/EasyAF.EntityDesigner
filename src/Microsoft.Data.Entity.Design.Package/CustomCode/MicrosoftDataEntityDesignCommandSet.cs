@@ -646,16 +646,16 @@ namespace Microsoft.Data.Entity.Design.Package
         ///     Returns the ConceptualDiagram, null if the current selection is not a ConceptualDiagram
         /// </summary>
         /// <returns></returns>
-        internal EntityDesignerDiagram GetDiagram()
+        internal EntityDesignerSurface GetDiagram()
         {
             if (SingleSelection != null)
             {
-                EntityDesignerDiagram diagram = SingleSelection as EntityDesignerDiagram;
+                EntityDesignerSurface diagram = SingleSelection as EntityDesignerSurface;
                 if (null == diagram)
                 {
                     if (CurrentMicrosoftDataEntityDesignDocView != null)
                     {
-                        diagram = CurrentMicrosoftDataEntityDesignDocView.CurrentDiagram as EntityDesignerDiagram;
+                        diagram = CurrentMicrosoftDataEntityDesignDocView.CurrentDiagram as EntityDesignerSurface;
                     }
                 }
 
@@ -934,7 +934,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 Debug.Assert(docView != null, "Why there is no current doc view?");
                 if (docView != null)
                 {
-                    diagram = docView.CurrentDiagram as EntityDesignerDiagram;
+                    diagram = docView.CurrentDiagram as EntityDesignerSurface;
                 }
             }
 
@@ -998,7 +998,7 @@ namespace Microsoft.Data.Entity.Design.Package
             if (sender is MenuCommand cmd)
             {
                 cmd.Visible = IsSingleSelection() && (IsOurDiagramSelected() || SelectedEntityTypeShape != null);
-                cmd.Enabled = !EntityDesignerDiagram.IsEmptyDiagram(GetDiagram());
+                cmd.Enabled = !EntityDesignerSurface.IsEmptyDiagram(GetDiagram());
             }
         }
 
@@ -1030,7 +1030,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 if (diagram != null)
                 {
                     cmd.Visible = IsSingleSelection() && (IsOurDiagramSelected() || SelectedEntityTypeShape != null);
-                    cmd.Enabled = !EntityDesignerDiagram.IsEmptyDiagram(diagram) && diagram.ModelElement.EntityTypes.Count > 1;
+                    cmd.Enabled = !EntityDesignerSurface.IsEmptyDiagram(diagram) && diagram.ModelElement.EntityTypes.Count > 1;
                 }
                 else
                 {
@@ -1462,12 +1462,12 @@ namespace Microsoft.Data.Entity.Design.Package
         private void AppendDeleteCommands(List<EFElement> toBeDeletedElements, ICollection<Command> commands)
         {
             // Get the active diagram from active doc view. We could not use GetDiagram() because there should be no focused diagram when this menu is launched.
-            EntityDesignerDiagram entityDesignerDiagram = null;
+            EntityDesignerSurface entityDesignerDiagram = null;
             MicrosoftDataEntityDesignDocView docView = CurrentDocView as MicrosoftDataEntityDesignDocView;
             Debug.Assert(docView != null, "Why there is no active doc view?");
             if (docView != null)
             {
-                entityDesignerDiagram = docView.CurrentDiagram as EntityDesignerDiagram;
+                entityDesignerDiagram = docView.CurrentDiagram as EntityDesignerSurface;
             }
 
             Debug.Assert(entityDesignerDiagram != null, "Unable to find diagram instance.");
@@ -1616,7 +1616,7 @@ namespace Microsoft.Data.Entity.Design.Package
             }
         }
 
-        private EFObject GetModelObjectFromSelectionForRefactor(EntityDesignerDiagram diagram)
+        private EFObject GetModelObjectFromSelectionForRefactor(EntityDesignerSurface diagram)
         {
             if (diagram.ActiveDiagramView != null
                 && CurrentSelection.Count == 1)
@@ -2212,7 +2212,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 if (SingleSelection == null
                     && SelectedExplorerItem != null)
                 {
-                    if (CurrentMicrosoftDataEntityDesignDocView.CurrentDiagram is EntityDesignerDiagram dslDiagram)
+                    if (CurrentMicrosoftDataEntityDesignDocView.CurrentDiagram is EntityDesignerSurface dslDiagram)
                     {
                         if (SelectedExplorerItem is ExplorerEntityTypeShape)
                         {
@@ -2651,7 +2651,7 @@ namespace Microsoft.Data.Entity.Design.Package
                     && diagram != null)
                 {
                     cmd.Visible = IsOurDiagramSelected();
-                    cmd.Enabled = !EntityDesignerDiagram.IsEmptyDiagram(diagram);
+                    cmd.Enabled = !EntityDesignerSurface.IsEmptyDiagram(diagram);
                 }
                 else
                 {
@@ -3909,7 +3909,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 if (SingleSelection == null
                     && SelectedExplorerItem != null)
                 {
-                    if (CurrentMicrosoftDataEntityDesignDocView.CurrentDiagram is EntityDesignerDiagram dslDiagram)
+                    if (CurrentMicrosoftDataEntityDesignDocView.CurrentDiagram is EntityDesignerSurface dslDiagram)
                     {
                         var efElement = SelectedExplorerItem.ModelItem;
 
@@ -4145,7 +4145,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 // Note that this command is only available for Entity-Type-Shape. For any other types it should not be available.
                 // We also update the behavior of what the user can select in the diagram.
                 // The user cannot select Entity-Type-Shapes and other types at the same time.
-                // Please see EntityDesignerDiagramSelectionRules class for more information.
+                // Please see EntityDesignerSurfaceSelectionRules class for more information.
                 if (SelectedEntityTypeShapes.Count > 0)
                 {
                     Debug.Assert(

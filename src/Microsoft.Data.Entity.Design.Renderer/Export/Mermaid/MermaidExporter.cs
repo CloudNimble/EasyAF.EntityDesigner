@@ -11,7 +11,7 @@ using Microsoft.VisualStudio.Modeling.Diagrams;
 namespace Microsoft.Data.Entity.Design.Dsl.View.Export
 {
     /// <summary>
-    /// Exports an EntityDesignerDiagram to Mermaid ER diagram format.
+    /// Exports an EntityDesignerSurface to Mermaid ER diagram format.
     /// </summary>
     internal class MermaidExporter
     {
@@ -20,7 +20,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View.Export
         /// </summary>
         /// <param name="diagram">The diagram to export.</param>
         /// <param name="options">The export options specifying path and settings.</param>
-        public void Export(EntityDesignerDiagram diagram, DiagramExportOptions options)
+        public void Export(EntityDesignerSurface diagram, DiagramExportOptions options)
         {
             if (diagram == null)
             {
@@ -41,7 +41,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View.Export
         /// </summary>
         /// <param name="diagram">The diagram to export.</param>
         /// <param name="filePath">The path to save the Mermaid file.</param>
-        public void ExportToMermaid(EntityDesignerDiagram diagram, string filePath)
+        public void ExportToMermaid(EntityDesignerSurface diagram, string filePath)
         {
             ExportToMermaid(diagram, filePath, showTypes: true);
         }
@@ -52,7 +52,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View.Export
         /// <param name="diagram">The diagram to export.</param>
         /// <param name="filePath">The path to save the Mermaid file.</param>
         /// <param name="showTypes">If true, shows data types alongside property names.</param>
-        public void ExportToMermaid(EntityDesignerDiagram diagram, string filePath, bool showTypes)
+        public void ExportToMermaid(EntityDesignerSurface diagram, string filePath, bool showTypes)
         {
             if (diagram == null)
             {
@@ -71,7 +71,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View.Export
         /// <summary>
         /// Generates Mermaid ER diagram content for the diagram.
         /// </summary>
-        public string GenerateMermaid(EntityDesignerDiagram diagram)
+        public string GenerateMermaid(EntityDesignerSurface diagram)
         {
             return GenerateMermaid(diagram, showTypes: true);
         }
@@ -81,7 +81,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View.Export
         /// </summary>
         /// <param name="diagram">The diagram to export.</param>
         /// <param name="showTypes">If true, shows data types alongside property names.</param>
-        public string GenerateMermaid(EntityDesignerDiagram diagram, bool showTypes)
+        public string GenerateMermaid(EntityDesignerSurface diagram, bool showTypes)
         {
             if (diagram == null)
             {

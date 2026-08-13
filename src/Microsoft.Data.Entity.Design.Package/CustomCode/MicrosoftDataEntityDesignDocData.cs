@@ -546,7 +546,7 @@ namespace Microsoft.Data.Entity.Design.Package
                             if (artifact.DesignerInfo().Diagrams.FirstDiagram == null)
                             {
                                 // layout is very slow.  Only auto-layout if less than a max number of types
-                                if (diagram.ModelElement.EntityTypes.Count < EntityDesignerDiagram.IMPLICIT_AUTO_LAYOUT_CEILING)
+                                if (diagram.ModelElement.EntityTypes.Count < EntityDesignerSurface.IMPLICIT_AUTO_LAYOUT_CEILING)
                                 {
                                     diagram.AutoLayoutDiagram();
                                 }

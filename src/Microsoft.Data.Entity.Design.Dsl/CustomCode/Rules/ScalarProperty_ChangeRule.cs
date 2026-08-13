@@ -39,7 +39,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.Rules
                 && changedProperty.EntityType.EntityDesignerViewModel != null)
             {
                 var diagram = changedProperty.EntityType.EntityDesignerViewModel.GetDiagram();
-                Debug.Assert(diagram != null, "EntityDesignerDiagram is null");
+                Debug.Assert(diagram != null, "EntityDesignerSurface is null");
 
                 // if EntityKey property changed, we need to invalidate properties compartment for this property to refresh the icon
                 if (e.DomainProperty.Id == ScalarProperty.EntityKeyDomainPropertyId)

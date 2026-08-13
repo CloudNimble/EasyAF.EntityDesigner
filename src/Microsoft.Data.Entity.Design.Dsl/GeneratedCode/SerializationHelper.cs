@@ -569,12 +569,12 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// both can be saved without error before writing the content to disk, so we serialize the model into a in-memory stream first.
 		/// </summary>
 		/// <param name="serializationResult">Stores serialization result from the save operation.</param>
-		/// <param name="diagram">EntityDesignerDiagram to be saved.</param>
+		/// <param name="diagram">EntityDesignerSurface to be saved.</param>
 		/// <param name="diagramFileName">Name of the file in which the diagram will be saved.</param>
 		/// <param name="encoding">Encoding to use when saving the diagram.</param>
 		/// <param name="writeOptionalPropertiesWithDefaultValue">Whether optional properties with default value will be saved.</param>
-		/// <returns>In-memory stream containing the serialized EntityDesignerDiagram instance.</returns>
-		private global::System.IO.MemoryStream InternalSaveDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram diagram, string diagramFileName, global::System.Text.Encoding encoding, bool writeOptionalPropertiesWithDefaultValue)
+		/// <returns>In-memory stream containing the serialized EntityDesignerSurface instance.</returns>
+		private global::System.IO.MemoryStream InternalSaveDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface diagram, string diagramFileName, global::System.Text.Encoding encoding, bool writeOptionalPropertiesWithDefaultValue)
 		{
 			#region Check Parameters
 			global::System.Diagnostics.Debug.Assert(serializationResult != null);
@@ -614,7 +614,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// </summary>
 		/// <param name="store">The new EntityDesignerViewModel instance will be created into the default partition of this store.</param>
 		/// <param name="modelFileName">Name of the file from which the EntityDesignerViewModel instance will be deserialized.</param>
-		/// <param name="diagramFileName">Name of the file from which the EntityDesignerDiagram instance will be deserialized.</param>
+		/// <param name="diagramFileName">Name of the file from which the EntityDesignerSurface instance will be deserialized.</param>
 		/// <param name="schemaResolver">
 		/// An ISchemaResolver that allows the serializer to do schema validation on the root element (and everything inside it).
 		/// If null is passed, schema validation will not be performed.
@@ -635,7 +635,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="serializationResult">Stores serialization result from the load operation.</param>
 		/// <param name="store">The new EntityDesignerViewModel instance will be created into the default partition of this store.</param>
 		/// <param name="modelFileName">Name of the file from which the EntityDesignerViewModel instance will be deserialized.</param>
-		/// <param name="diagramFileName">Name of the file from which the EntityDesignerDiagram instance will be deserialized.</param>
+		/// <param name="diagramFileName">Name of the file from which the EntityDesignerSurface instance will be deserialized.</param>
 		/// <param name="schemaResolver">
 		/// An ISchemaResolver that allows the serializer to do schema validation on the root element (and everything inside it).
 		/// If null is passed, schema validation will not be performed.
@@ -662,8 +662,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="serializationResult">Stores serialization result from the load operation.</param>
 		/// <param name="modelPartition">Partition in which the new EntityDesignerViewModel instance will be created.</param>
 		/// <param name="modelFileName">Name of the file from which the EntityDesignerViewModel instance will be deserialized.</param>
-		/// <param name="diagramPartition">Partition in which the new EntityDesignerDiagram instance will be created.</param>
-		/// <param name="diagramFileName">Name of the file from which the EntityDesignerDiagram instance will be deserialized.</param>
+		/// <param name="diagramPartition">Partition in which the new EntityDesignerSurface instance will be created.</param>
+		/// <param name="diagramFileName">Name of the file from which the EntityDesignerSurface instance will be deserialized.</param>
 		/// <param name="schemaResolver">
 		/// An ISchemaResolver that allows the serializer to do schema validation on the root element (and everything inside it).
 		/// If null is passed, schema validation will not be performed.
@@ -702,10 +702,10 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				return modelRoot;
 			}
 	
-			global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram diagram = null;
+			global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface diagram = null;
 			DslModeling::DomainXmlSerializerDirectory directory = this.GetDirectory(diagramPartition.Store);
-			DslModeling::DomainClassXmlSerializer diagramSerializer = directory.GetSerializer(global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram.DomainClassId);
-			global::System.Diagnostics.Debug.Assert(diagramSerializer != null, "Cannot find serializer for EntityDesignerDiagram");
+			DslModeling::DomainClassXmlSerializer diagramSerializer = directory.GetSerializer(global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface.DomainClassId);
+			global::System.Diagnostics.Debug.Assert(diagramSerializer != null, "Cannot find serializer for EntityDesignerSurface");
 			if (diagramSerializer != null)
 			{
 				if(!global::System.IO.File.Exists(diagramFileName))
@@ -734,7 +734,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 									using (global::System.Xml.XmlReader reader = global::System.Xml.XmlReader.Create(fileStream, settings))
 									{
 										reader.MoveToContent();
-										diagram = diagramSerializer.TryCreateInstance(serializationContext, reader, diagramPartition) as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram;
+										diagram = diagramSerializer.TryCreateInstance(serializationContext, reader, diagramPartition) as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface;
 										if (diagram != null)
 										{
 											this.ReadRootElement(serializationContext, diagram, reader, schemaResolver);
@@ -796,11 +796,11 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		}
 	
 		/// <summary>
-		/// Helper method to create and initialize a new EntityDesignerDiagram.
+		/// Helper method to create and initialize a new EntityDesignerSurface.
 		/// </summary>
-		internal virtual global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram CreateDiagramHelper(DslModeling::Partition diagramPartition, DslModeling::ModelElement modelRoot)
+		internal virtual global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface CreateDiagramHelper(DslModeling::Partition diagramPartition, DslModeling::ModelElement modelRoot)
 		{
-			global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram diagram = new global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram(diagramPartition);
+			global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface diagram = new global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface(diagramPartition);
 			return diagram;
 		}
 		
@@ -812,9 +812,9 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="serializationResult">Stores serialization result from the save operation.</param>
 		/// <param name="modelRoot">EntityDesignerViewModel instance to be saved.</param>
 		/// <param name="modelFileName">Name of the file in which the CanonicalSampleRoot instance will be saved.</param>
-		/// <param name="diagram">EntityDesignerDiagram to be saved.</param>
+		/// <param name="diagram">EntityDesignerSurface to be saved.</param>
 		/// <param name="diagramFileName">Name of the file in which the diagram will be saved.</param>
-		internal virtual void SaveModelAndDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel modelRoot, string modelFileName, global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram diagram, string diagramFileName)
+		internal virtual void SaveModelAndDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel modelRoot, string modelFileName, global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface diagram, string diagramFileName)
 		{
 			this.SaveModelAndDiagram(serializationResult, modelRoot, modelFileName, diagram, diagramFileName, global::System.Text.Encoding.UTF8, false);
 		}
@@ -825,25 +825,25 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="serializationResult">Stores serialization result from the save operation.</param>
 		/// <param name="modelRoot">EntityDesignerViewModel instance to be saved.</param>
 		/// <param name="modelFileName">Name of the file in which the CanonicalSampleRoot instance will be saved.</param>
-		/// <param name="diagram">EntityDesignerDiagram to be saved.</param>
+		/// <param name="diagram">EntityDesignerSurface to be saved.</param>
 		/// <param name="diagramFileName">Name of the file in which the diagram will be saved.</param>
 		/// <param name="writeOptionalPropertiesWithDefaultValue">Whether optional properties with default value will be saved.</param>
-		internal virtual void SaveModelAndDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel modelRoot, string modelFileName, global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram diagram, string diagramFileName, bool writeOptionalPropertiesWithDefaultValue)
+		internal virtual void SaveModelAndDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel modelRoot, string modelFileName, global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface diagram, string diagramFileName, bool writeOptionalPropertiesWithDefaultValue)
 		{
 			this.SaveModelAndDiagram(serializationResult, modelRoot, modelFileName, diagram, diagramFileName, global::System.Text.Encoding.UTF8, writeOptionalPropertiesWithDefaultValue);
 		}
 	
 		/// <summary>
-		/// Saves the given EntityDesignerViewModel and EntityDesignerDiagram to the given files, with specified encoding.
+		/// Saves the given EntityDesignerViewModel and EntityDesignerSurface to the given files, with specified encoding.
 		/// </summary>
 		/// <param name="serializationResult">Stores serialization result from the save operation.</param>
 		/// <param name="modelRoot">EntityDesignerViewModel instance to be saved.</param>
 		/// <param name="modelFileName">Name of the file in which the CanonicalSampleRoot instance will be saved.</param>
-		/// <param name="diagram">EntityDesignerDiagram to be saved.</param>
+		/// <param name="diagram">EntityDesignerSurface to be saved.</param>
 		/// <param name="diagramFileName">Name of the file in which the diagram will be saved.</param>
 		/// <param name="encoding">Encoding to use when saving the diagram.</param>
 		/// <param name="writeOptionalPropertiesWithDefaultValue">Whether optional properties with default value will be saved.</param>
-		internal virtual void SaveModelAndDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel modelRoot, string modelFileName, global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram diagram, string diagramFileName, global::System.Text.Encoding encoding, bool writeOptionalPropertiesWithDefaultValue)
+		internal virtual void SaveModelAndDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel modelRoot, string modelFileName, global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface diagram, string diagramFileName, global::System.Text.Encoding encoding, bool writeOptionalPropertiesWithDefaultValue)
 		{
 			#region Check Parameters
 			if (serializationResult == null)
@@ -900,9 +900,9 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// be written out.
 		/// </summary>
 		/// <param name="serializationResult">Stores serialization result from the save operation.</param>
-		/// <param name="diagram">EntityDesignerDiagram to be saved.</param>
+		/// <param name="diagram">EntityDesignerSurface to be saved.</param>
 		/// <param name="diagramFileName">Name of the file in which the diagram will be saved.</param>
-		internal virtual void SaveDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram diagram, string diagramFileName)
+		internal virtual void SaveDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface diagram, string diagramFileName)
 		{
 			this.SaveDiagram(serializationResult, diagram, diagramFileName, global::System.Text.Encoding.UTF8, false);
 		}
@@ -911,23 +911,23 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// Saves the given diagram to the given file, with default encoding (UTF-8).
 		/// </summary>
 		/// <param name="serializationResult">Stores serialization result from the save operation.</param>
-		/// <param name="diagram">EntityDesignerDiagram to be saved.</param>
+		/// <param name="diagram">EntityDesignerSurface to be saved.</param>
 		/// <param name="diagramFileName">Name of the file in which the diagram will be saved.</param>
 		/// <param name="writeOptionalPropertiesWithDefaultValue">Whether optional properties with default value will be saved.</param>
-		internal virtual void SaveDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram diagram, string diagramFileName, bool writeOptionalPropertiesWithDefaultValue)
+		internal virtual void SaveDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface diagram, string diagramFileName, bool writeOptionalPropertiesWithDefaultValue)
 		{
 			this.SaveDiagram(serializationResult, diagram, diagramFileName, global::System.Text.Encoding.UTF8, writeOptionalPropertiesWithDefaultValue);
 		}
 	
 		/// <summary>
-		/// Saves the given EntityDesignerDiagram to the given file, with specified encoding.
+		/// Saves the given EntityDesignerSurface to the given file, with specified encoding.
 		/// </summary>
 		/// <param name="serializationResult">Stores serialization result from the save operation.</param>
-		/// <param name="diagram">EntityDesignerDiagram to be saved.</param>
+		/// <param name="diagram">EntityDesignerSurface to be saved.</param>
 		/// <param name="diagramFileName">Name of the file in which the diagram will be saved.</param>
 		/// <param name="encoding">Encoding to use when saving the diagram.</param>
 		/// <param name="writeOptionalPropertiesWithDefaultValue">Whether optional properties with default value will be saved.</param>
-		internal virtual void SaveDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram diagram, string diagramFileName, global::System.Text.Encoding encoding, bool writeOptionalPropertiesWithDefaultValue)
+		internal virtual void SaveDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface diagram, string diagramFileName, global::System.Text.Encoding encoding, bool writeOptionalPropertiesWithDefaultValue)
 		{
 			#region Check Parameters
 			if (serializationResult == null)

@@ -485,21 +485,21 @@
     <value>Microsoft Data Entity Design Explorer</value>
     <comment>Model Explorer Toolwindow title</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram.Description" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface.Description" xml:space="preserve">
     <value></value>
-    <comment>Description for DomainClass &apos;EntityDesignerDiagram&apos;</comment>
+    <comment>Description for DomainClass &apos;EntityDesignerSurface&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface.DisplayName" xml:space="preserve">
     <value>ADO.NET Entity Designer</value>
-    <comment>DisplayName for DomainClass &apos;EntityDesignerDiagram&apos;</comment>
+    <comment>DisplayName for DomainClass &apos;EntityDesignerSurface&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram/Title.Description" xml:space="preserve">
-    <value>Description for Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram.Title</value>
-    <comment>Description for DomainProperty &apos;Title&apos; on DomainClass &apos;EntityDesignerDiagram&apos;</comment>
+  <data name="Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface/Title.Description" xml:space="preserve">
+    <value>Description for Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface.Title</value>
+    <comment>Description for DomainProperty &apos;Title&apos; on DomainClass &apos;EntityDesignerSurface&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram/Title.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface/Title.DisplayName" xml:space="preserve">
     <value>Title</value>
-    <comment>DisplayName for DomainProperty &apos;Title&apos; on DomainClass &apos;EntityDesignerDiagram&apos;</comment>
+    <comment>DisplayName for DomainProperty &apos;Title&apos; on DomainClass &apos;EntityDesignerSurface&apos;</comment>
   </data>
   <data name="Entity FrameworkToolboxTab" xml:space="preserve">
     <value>Entity Framework</value>

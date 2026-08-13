@@ -31,7 +31,7 @@ namespace Microsoft.Data.Entity.Tools.Export
         /// <param name="diagram">The diagram to export.</param>
         /// <param name="options">The export options, including the destination path and image format.</param>
         /// <exception cref="InvalidOperationException">The generated SVG could not be rasterised.</exception>
-        public void Export(EntityDesignerDiagram diagram, DiagramExportOptions options)
+        public void Export(EntityDesignerSurface diagram, DiagramExportOptions options)
         {
             if (diagram is null)
             {

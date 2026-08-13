@@ -435,7 +435,7 @@ Add existing entities and relationships to this diagram by dragging them from th
     <value>Overwrite existing file</value>
   </data>
   <data name="ExportImage_DefaultFileName" xml:space="preserve">
-    <value>EntityDesignerDiagram</value>
+    <value>EntityDesignerSurface</value>
   </data>
   <data name="ExportImage_SelectLocation" xml:space="preserve">
     <value>Select export location</value>

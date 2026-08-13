@@ -483,7 +483,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 global::System.Collections.Generic.IList<DslDiagrams::PresentationElement> diagrams = DslDiagrams::PresentationViewsSubject.GetPresentation(modelRoot);
                 if (diagrams.Count > 0)
                 {
-                    global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram diagram = diagrams[0] as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram;
+                    global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface diagram = diagrams[0] as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface;
                     if (diagram != null)
                     {
                         diagram.SubscribeCompartmentItemsEvents();
@@ -581,7 +581,7 @@ namespace Microsoft.Data.Entity.Design.Package
             global::System.Collections.Generic.IList<DslDiagrams::PresentationElement> diagrams = DslDiagrams::PresentationViewsSubject.GetPresentation(this.RootElement);
             if (diagrams.Count > 0 && (!saveAs || this.diagramDocumentLockHolder == null))
             {
-                global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram diagram = diagrams[0] as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram;
+                global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface diagram = diagrams[0] as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface;
                 if (diagram != null)
                 {
                     string diagramFileName = fileName + this.DiagramExtension;
@@ -653,7 +653,7 @@ namespace Microsoft.Data.Entity.Design.Package
             global::System.Collections.Generic.IList<DslDiagrams::PresentationElement> diagrams = DslDiagrams::PresentationViewsSubject.GetPresentation(this.RootElement);
             if (diagrams.Count > 0)
             {
-                global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram diagram = diagrams[0] as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerDiagram;
+                global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface diagram = diagrams[0] as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface;
                 if (diagram != null)
                 {
                     try

@@ -76,7 +76,7 @@ namespace Microsoft.Data.Entity.Design.Renderer.Headless
         /// <summary>
         ///     Gets the diagram shapes and connectors are created on, or null until <see cref="AttachDiagram" /> runs.
         /// </summary>
-        public EntityDesignerDiagram Diagram { get; private set; }
+        public EntityDesignerSurface Diagram { get; private set; }
 
         /// <summary>
         ///     Gets the partition holding the diagram and its shapes.
@@ -117,7 +117,7 @@ namespace Microsoft.Data.Entity.Design.Renderer.Headless
         /// </summary>
         /// <param name="viewModel">The view model the diagram presents.</param>
         /// <returns>The diagram that was created.</returns>
-        public EntityDesignerDiagram AttachDiagram(EntityDesignerViewModel viewModel)
+        public EntityDesignerSurface AttachDiagram(EntityDesignerViewModel viewModel)
         {
             if (viewModel is null)
             {
@@ -126,7 +126,7 @@ namespace Microsoft.Data.Entity.Design.Renderer.Headless
 
             Transact(
                 "Create diagram",
-                () => Diagram = new EntityDesignerDiagram(DiagramPartition) { ModelElement = viewModel });
+                () => Diagram = new EntityDesignerSurface(DiagramPartition) { ModelElement = viewModel });
 
             return Diagram;
         }

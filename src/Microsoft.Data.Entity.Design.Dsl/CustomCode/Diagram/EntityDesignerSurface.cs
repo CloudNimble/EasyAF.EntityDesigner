@@ -50,7 +50,7 @@ using VSPackage = Microsoft.VisualStudio.Shell.Package;
 
 namespace Microsoft.Data.Entity.Design.Dsl.View
 {
-    partial class EntityDesignerDiagram : IViewDiagram
+    partial class EntityDesignerSurface : IViewDiagram
     {
         private const int undefinedZoomLevel = -1;
         internal const int IMPLICIT_AUTO_LAYOUT_CEILING = 1000;
@@ -325,7 +325,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         /// </summary>
         /// <param name="diagram"></param>
         /// <returns></returns>
-        internal static bool IsEmptyDiagram(EntityDesignerDiagram diagram)
+        internal static bool IsEmptyDiagram(EntityDesignerSurface diagram)
         {
             return (diagram != null) && (diagram.NestedChildShapes.Count == 0);
         }
@@ -1351,7 +1351,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
                 {
                     Debug.Assert(
                         false,
-                        typeof(EntityDesignerDiagram).Name + " could not determine Version for path "
+                        typeof(EntityDesignerSurface).Name + " could not determine Version for path "
                         + artifactService.Artifact.Uri.LocalPath);
                     return;
                 }
@@ -1442,15 +1442,15 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         {
             get
             {
-                return new EntityDesignerDiagramSelectionRules(this);
+                return new EntityDesignerSurfaceSelectionRules(this);
             }
         }
 
-        public class EntityDesignerDiagramSelectionRules : DiagramSelectionRules
+        public class EntityDesignerSurfaceSelectionRules : DiagramSelectionRules
         {
-            private readonly EntityDesignerDiagram _diagram;
+            private readonly EntityDesignerSurface _diagram;
 
-            public EntityDesignerDiagramSelectionRules(EntityDesignerDiagram diagram)
+            public EntityDesignerSurfaceSelectionRules(EntityDesignerSurface diagram)
             {
                 _diagram = diagram;
             }
@@ -1716,7 +1716,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
             {
                 // Now, for all entitytypes, ensure that an entitytype shape is created.
                 if (efArtifact.ConceptualModel() != null
-                    && Diagram is EntityDesignerDiagram dslDiagram)
+                    && Diagram is EntityDesignerSurface dslDiagram)
                 {
                     HashSet<Model.Entity.EntityType> entityTypesMaterializedAsShapes = new HashSet<Model.Entity.EntityType>();
                     foreach (
@@ -1766,7 +1766,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
             {
                 // Now, for all associations, ensure that an association connector is created.
                 if (efArtifact.ConceptualModel() != null
-                    && Diagram is EntityDesignerDiagram dslDiagram)
+                    && Diagram is EntityDesignerSurface dslDiagram)
                 {
                     HashSet<ModelAssociation> associationsMaterializedAsConnectors = new HashSet<ModelAssociation>();
                     foreach (

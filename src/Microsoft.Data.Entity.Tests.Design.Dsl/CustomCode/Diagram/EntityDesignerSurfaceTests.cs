@@ -18,11 +18,11 @@ using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 namespace Microsoft.Data.Entity.Tests.Design.Dsl.View
 {
     /// <summary>
-    ///     Tests for EntityDesignerDiagram.
+    ///     Tests for EntityDesignerSurface.
     ///     Note: Only UPGRADE to Version3 (EF6) is now supported. Downgrade tests have been removed.
     /// </summary>
     [TestClass]
-    public class EntityDesignerDiagramTests
+    public class EntityDesignerSurfaceTests
     {
         [TestMethod]
         public void ReversionModel_upgrades_model_namespaces_to_Version3()
@@ -62,7 +62,7 @@ namespace Microsoft.Data.Entity.Tests.Design.Dsl.View
                 mockArtifact.Object.IsDirty.Should().BeFalse();
 
                 // Upgrade from V2 to V3
-                EntityDesignerDiagram.ReversionModel(
+                EntityDesignerSurface.ReversionModel(
                     mockPackage.Object, mockEditingContext.Object, mockArtifact.Object, EntityFrameworkVersion.Version3);
 
                 mockArtifact.Object.IsDirty.Should().BeTrue();

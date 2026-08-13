@@ -93,7 +93,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 }
 
                 // At this point DSL diagram should have been set.
-                EntityDesignerDiagram diagram = Diagram as EntityDesignerDiagram;
+                EntityDesignerSurface diagram = Diagram as EntityDesignerSurface;
                 Debug.Assert(diagram != null, "Why does the DSL diagram is null?");
 
                 if (modelDiagram != null
@@ -108,11 +108,11 @@ namespace Microsoft.Data.Entity.Design.Package
         /// <summary>
         ///     Helper method to retrieve/create DSL Diagram for the view.
         /// </summary>
-        private EntityDesignerDiagram GetNewOrExistingViewDiagram()
+        private EntityDesignerSurface GetNewOrExistingViewDiagram()
         {
-            EntityDesignerDiagram diagram = null;
+            EntityDesignerSurface diagram = null;
 
-            // Check whether the EntityDesignerDiagram exists.
+            // Check whether the EntityDesignerSurface exists.
             MicrosoftDataEntityDesignDocDataBase docData = DocData as MicrosoftDataEntityDesignDocDataBase;
             diagram = GetExistingViewDiagram(docData, _diagramId);
 
@@ -159,10 +159,10 @@ namespace Microsoft.Data.Entity.Design.Package
             return diagram;
         }
 
-        internal static EntityDesignerDiagram GetExistingViewDiagram(MicrosoftDataEntityDesignDocDataBase docData, string diagramId)
+        internal static EntityDesignerSurface GetExistingViewDiagram(MicrosoftDataEntityDesignDocDataBase docData, string diagramId)
         {
-            EntityDesignerDiagram diagram = null;
-            var diagrams = docData.GetDiagramPartition().ElementDirectory.FindElements<EntityDesignerDiagram>();
+            EntityDesignerSurface diagram = null;
+            var diagrams = docData.GetDiagramPartition().ElementDirectory.FindElements<EntityDesignerSurface>();
             if (diagrams.Count > 0)
             {
                 if (String.IsNullOrEmpty(diagramId) == false)
@@ -178,10 +178,10 @@ namespace Microsoft.Data.Entity.Design.Package
             return diagram;
         }
 
-        private EntityDesignerDiagram CreateDslDiagram(EntityDesignerViewModel evm)
+        private EntityDesignerSurface CreateDslDiagram(EntityDesignerViewModel evm)
         {
             MicrosoftDataEntityDesignDocDataBase docData = DocData as MicrosoftDataEntityDesignDocDataBase;
-            EntityDesignerDiagram diagram = null;
+            EntityDesignerSurface diagram = null;
             Debug.Assert(docData != null, "DocData is not a type of MicrosoftDataEntityDesignDocDataBase");
             if (docData != null)
             {
@@ -231,7 +231,7 @@ namespace Microsoft.Data.Entity.Design.Package
                     return false;
                 }
 
-                if (Diagram is EntityDesignerDiagram entityDiagram && entityDiagram.ModelElement.EditingContext is null)
+                if (Diagram is EntityDesignerSurface entityDiagram && entityDiagram.ModelElement.EditingContext is null)
                 {
                     // The editing context is null. This will cause downstream calls to throw exceptions.
                     // It is unknown why this happens sometimes, but seems to have something to do with designers being open on project load.
@@ -261,8 +261,8 @@ namespace Microsoft.Data.Entity.Design.Package
                 }
 
                 // Listen to Diagram Title change event so we can update our window caption with the information.
-                EntityDesignerDiagram entityDesignerDiagram = Diagram as EntityDesignerDiagram;
-                Debug.Assert(entityDesignerDiagram != null, "The diagram is not the type of EntityDesignerDiagram");
+                EntityDesignerSurface entityDesignerDiagram = Diagram as EntityDesignerSurface;
+                Debug.Assert(entityDesignerDiagram != null, "The diagram is not the type of EntityDesignerSurface");
                 entityDesignerDiagram?.OnDiagramTitleChanged += OnDiagramTitleChanged;
                 UpdateWindowFrameCaption();
             }
@@ -294,7 +294,7 @@ namespace Microsoft.Data.Entity.Design.Package
         /// </summary>
         private void UpdateWindowFrameCaption()
         {
-            if (Diagram is EntityDesignerDiagram entityDesignerDiagram)
+            if (Diagram is EntityDesignerSurface entityDesignerDiagram)
             {
                 if (!String.IsNullOrEmpty(entityDesignerDiagram.Title))
                 {
@@ -338,7 +338,7 @@ namespace Microsoft.Data.Entity.Design.Package
             // Check if we have a context menu service
             if (_contextMenuService != null)
             {
-                var diagram = CurrentDiagram as EntityDesignerDiagram;
+                var diagram = CurrentDiagram as EntityDesignerSurface;
                 if (diagram != null)
                 {
                     // Try to show a custom context menu based on what was clicked
@@ -424,7 +424,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 // the scope of this 'all' list should be the selectable shapes in the designer
                 // so let the base class count these
                 var count = base.CountAllObjects();
-                if (count > (EntityDesignerDiagram.IMPLICIT_AUTO_LAYOUT_CEILING / 2))
+                if (count > (EntityDesignerSurface.IMPLICIT_AUTO_LAYOUT_CEILING / 2))
                 {
                     // if there are too many objects, just tell the system that we have 1 item
                     // which will cause only the selected item to show up in the drop-down list on top
