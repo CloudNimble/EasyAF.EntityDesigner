@@ -124,4 +124,41 @@
     </None>
   </ItemGroup>
 
+  <!-- Makes `msbuild /t:TransformAll` regenerate GeneratedCode\*.cs from DslDefinition.dsl outside the IDE.
+       TransformOnBuild is deliberately left off: the generated code is checked in, and regeneration needs
+       DslTemplatesSrc plus the DSL SDK's DslDirectiveProcessor, neither of which a plain build should require. -->
+  <PropertyGroup>
+    <!-- Environment variables arrive as properties, so capture this before the default below overwrites it.
+         It is the only way to tell whether the template host will actually see %DslTemplatesSrc%. -->
+    <DslTemplatesSrcFromEnvironment>$(DslTemplatesSrc)</DslTemplatesSrcFromEnvironment>
+    <DslSdkPath Condition="'$(DslSdkPath)' == ''">$(VsInstallRoot)\Common7\IDE\Extensions\Microsoft\DSL SDK\DSL Designer\$(VisualStudioVersion)</DslSdkPath>
+    <!-- The GeneratedCode templates include %DslTemplatesSrc%\Dsl\*.tt, and those in turn include Dsl\*.tt
+         relative to the include search path, so both point at the TextTemplates folder itself. -->
+    <DslTemplatesSrc Condition="'$(DslTemplatesSrc)' == ''">$(DslSdkPath)\TextTemplates</DslTemplatesSrc>
+    <IncludeFolders Condition="'$(IncludeFolders)' == ''">$(DslTemplatesSrc)</IncludeFolders>
+    <!-- The TextTemplating targets only add PublicAssemblies and PrivateAssemblies to the transform's
+         reference path when this is set, and DslDirectiveProcessor needs the Modeling SDK from there. -->
+    <VsIdePath Condition="'$(VsIdePath)' == ''">$(VsInstallRoot)\Common7\IDE</VsIdePath>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Resolves the `Dsl` directive that reads DslDefinition.dsl. Registered in Visual Studio's private
+         registry hive, so it has to be named explicitly for a command line transform. -->
+    <DirectiveProcessor Include="DslDirectiveProcessor">
+      <Class>Microsoft.VisualStudio.Modeling.DslDefinition.DslDirectiveProcessor</Class>
+      <CodeBase>$(DslSdkPath)\Microsoft.VisualStudio.Modeling.Sdk.DslDefinition.dll</CodeBase>
+    </DirectiveProcessor>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TextTemplating\Microsoft.TextTemplating.targets"
+          Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TextTemplating\Microsoft.TextTemplating.targets')" />
+
+  <!-- The templates include %DslTemplatesSrc%\Dsl\*.tt. The text templating host expands real environment
+       variables there, not MSBuild properties, and MSBuild's property function allowlist blocks
+       System.Environment::SetEnvironmentVariable, so the variable has to come from the environment.
+       Without it the include path stays literal and every transform fails - but the task still overwrites
+       its outputs first, so fail before that happens rather than after. -->
+  <Target Name="CheckDslTemplatesSrcEnvironment" BeforeTargets="TransformAll;TransformDslTemplates">
+    <Error Condition="'$(DslTemplatesSrcFromEnvironment)' == ''"
+           Text="Set the DslTemplatesSrc environment variable before regenerating: &quot;$(DslTemplatesSrc)&quot;. The text templating host expands it inside the templates' include directives, and it cannot be supplied as an MSBuild property." />
+  </Target>
+
 </Project>
