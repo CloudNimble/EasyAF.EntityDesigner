@@ -41,9 +41,16 @@ The WPF export dialog and its orchestration (`DiagramExportHelper`) live in the 
 
 ## Framework constraint
 
-The Modeling SDK packages ship assemblies for .NET Framework 4.7.2 only, so the renderer and everything downstream of it are pinned to net48. `dotnet tool install` requires a .NET Core target, so `Microsoft.Data.Entity.Tools` is a plain executable rather than a packed tool. Making it a real dotnet tool would require a two process design: a net10 front end shelling out to a net48 worker.
+The Modeling SDK packages ship assemblies for .NET Framework 4.7.2 only. That does **not** pin the renderer to net48. .NET 10 references and calls .NET Framework assemblies on Windows, so `Microsoft.Data.Entity.Design.Renderer` and `Microsoft.Data.Entity.Tools` both multi-target `net48;net10.0-windows`, and a real `dotnet tool` needs no two process design. An earlier version of this document claimed otherwise and was wrong.
 
-Windows only, for the same reason.
+The desktop TFM is required, not optional: the Modeling SDK assemblies are WinForms and WPF based, so a plain `net10.0` target resolves no `System.Windows.Forms` and fails at load.
+
+Windows only, because the Modeling SDK is.
+
+Two things that bite on the way to a working executable:
+
+- **Bitness.** The `GraphObject` layout engine has an x64 native dependency. Without an explicit `PlatformTarget`, an AnyCPU exe defaults to `Prefer32Bit`, launches 32 bit, and dies with a `BadImageFormatException`. `Microsoft.Data.Entity.Tools` sets `PlatformTarget=x64`.
+- **Reference assemblies.** The net10 build currently starts, reaches `RenderCommand.OnExecute`, then throws `This is a reference assembly.` — a Visual Studio SDK dependency resolving to a compile-only asset under the .NET 10 TFM. **Unresolved.** net48 renders correctly.
 
 ## The load sequence
 
