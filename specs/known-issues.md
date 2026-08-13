@@ -2,7 +2,7 @@
 
 Everything currently between this repository and "builds clean and all tests pass, every time".
 
-Measured against `2d94be6` with `dotnet build -c Release --no-incremental` and `dotnet test -c Release`. The solution **compiles with 0 errors**; everything below is warnings, test failures, or tests that silently do not run.
+Measured with `dotnet build -c Release --no-incremental` and `dotnet test -c Release`. The solution **compiles with 0 errors**; everything below is warnings, test failures, or tests that silently do not run. Items marked FIXED have been resolved since the list was first taken at `2d94be6`; their entries are kept because the reasoning behind the fix is worth having.
 
 ## Summary
 
@@ -11,7 +11,7 @@ Measured against `2d94be6` with `dotnet build -c Release --no-incremental` and `
 | Failing tests | 14 |
 | Tests disabled with `[Ignore]` | 186 |
 | Tests that never run because of an invalid signature | 17 |
-| Build warnings | 192 |
+| Build warnings | 181 |
 | Packages with known vulnerabilities | 0 — fixed, see 3.1 |
 
 ## 1. Failing tests
@@ -115,16 +115,16 @@ MSTest will not run a `static` test method. It emits `MSTEST0003` (98 warnings) 
 
 Not currently failing, but latent. Constructing a DSL `Store` mutates process-wide state through `DomainXmlSerializerDirectory.InternalAddBehavior`, so two tests doing it concurrently fail with a null reference or `Collection was modified`. Every Store-building test class needs `[DoNotParallelize]`. Currently correct in `EdmxDiagramLoaderTests`, `HeadlessRoutingSpikeTests`, `SvgShapeRendererTests` and `EntityDesignerSurfaceTransactionTests`; any new one will hit it.
 
-## 3. Build warnings — 192
+## 3. Build warnings — 181
 
 | Count | Code | What |
 |---|---|---|
 | 168 | NU1701 | package restored using `.NETFramework` fallback rather than a matching target |
 | 98 | MSTEST0003 | invalid test method signature — see 2.2 |
-| 26 | CS0436 | type conflicts with an imported type — see below |
 | 20 | SYSLIB0051 | obsolete formatter-based serialization |
 | 20 | MSB3245 | could not resolve `System.Data`, `System.Data.Entity`, `System.Drawing` |
 | 18 | NU1702 | project restored using a fallback framework |
+| 4 | CS0436 | `Krafs.Publicizer` attribute in several assemblies — see 3.2 |
 | 14 | MSB3243 | version conflict on `System.Data`, `System.Drawing`, `System.Xml.Linq` |
 | 4 | VSTHRD110 | observe the result of async calls |
 | 4 | VSTHRD002 | synchronously blocking on async work |
@@ -150,9 +150,13 @@ All four were transitive, so the fix is `PackageVersion` entries in `Directory.P
 
 Verified: restore and build clean, `edmx render Northwind.edmx` byte-identical, and the test suite unchanged at the same 14 failures.
 
-### 3.2 CS0436 duplicate type
+### 3.2 CS0436 duplicate type — FIXED
 
-`ModelBuilderWizardFormHelper` is defined twice, once in `Microsoft.Data.Entity.Tests.Design` and once in `Microsoft.Data.Entity.Tests.Design.Package`, and the projects see each other. Move it to `Microsoft.Data.Entity.Tests.Shared`, which exists for this. The remaining CS0436 is `Krafs.Publicizer` injecting `IgnoresAccessChecksToAttribute` into more than one assembly, which is expected and should be suppressed rather than fixed.
+`ModelBuilderWizardFormHelper` was defined twice, in `Microsoft.Data.Entity.Tests.Design` and again in `Microsoft.Data.Entity.Tests.Design.Package`, in the same namespace, with the projects referencing each other. The copies were byte-identical apart from a BOM, using order and a trailing newline. The Package copy is deleted; `Tests.Design.Package` already referenced `Tests.Design`, which already exposed its internals to it, so nothing else was needed.
+
+Note it could not move to `Microsoft.Data.Entity.Tests.Shared` as first suggested: it depends on `MockDTE`, which lives in `Tests.Design`, and `Tests.Design` already references `Tests.Shared` — moving it would have inverted that edge. It also cannot be made `public`, because it returns the internal `ModelBuilderWizardForm`.
+
+CS0436 drops from 26 to 4. The remaining 4 are `Krafs.Publicizer` injecting `IgnoresAccessChecksToAttribute` into more than one assembly, which is expected. They are left alone deliberately: blanket-suppressing CS0436 would also hide genuine duplicate-type mistakes like the one just fixed.
 
 ### 3.3 MSB3243 / MSB3245
 
@@ -175,7 +179,7 @@ PNG, JPEG, BMP, GIF and TIFF go through `Diagram.CreateBitmap`, which resolves `
 ## Suggested order
 
 1. **2.2** — delete `static` from 17 tests. Minutes, and it tells us whether they pass.
-2. **3.2** — move `ModelBuilderWizardFormHelper` to the shared test project. Removes 26 warnings.
+2. ~~**3.2** — duplicate `ModelBuilderWizardFormHelper`.~~ **Done.**
 3. **1.3** — one real bug, one test, self contained.
 4. **1.2 and 4.1** — fall out of `dsl-shell-decoupling.md` work item 4. No separate effort.
 5. ~~**3.1** — vulnerable packages.~~ **Done.**
