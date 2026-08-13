@@ -133,6 +133,108 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 
         #endregion
 
+        #region Transactions
+
+        /// <summary>
+        ///     Runs <paramref name="work" /> in a store transaction tagged with this surface's diagram id, and
+        ///     commits it.
+        /// </summary>
+        /// <param name="transactionName">Name of the transaction, which is what the undo stack shows.</param>
+        /// <param name="work">The mutation to perform.</param>
+        /// <remarks>
+        ///     Tagging the transaction with <see cref="EfiTransactionOriginator.TransactionOriginatorDiagramId" />
+        ///     is what tells the model layer which diagram a change came from. Forgetting it is silent, so every
+        ///     mutation on this surface goes through here rather than opening its own transaction.
+        /// </remarks>
+        /// <example>
+        ///     <code>
+        ///     InDiagramTransaction(EntityDesignerRes.Tx_LayoutDiagram, () => AutoLayoutShapeElements(shapes));
+        ///     </code>
+        /// </example>
+        internal void InDiagramTransaction(string transactionName, Action work)
+        {
+            if (work is null)
+            {
+                throw new ArgumentNullException(nameof(work));
+            }
+
+            InDiagramTransactionCore(
+                transactionName,
+                _ =>
+                {
+                    work();
+
+                    return true;
+                });
+        }
+
+        /// <summary>
+        ///     Runs <paramref name="work" /> in a store transaction tagged with this surface's diagram id, and
+        ///     commits it only if <paramref name="work" /> reports that something changed.
+        /// </summary>
+        /// <param name="transactionName">Name of the transaction, which is what the undo stack shows.</param>
+        /// <param name="work">The mutation to perform. Return false to roll back instead of committing.</param>
+        /// <remarks>
+        ///     Committing a transaction that changed nothing still pushes an entry onto the undo stack, so
+        ///     callers that may find no work to do should return false rather than commit unconditionally.
+        /// </remarks>
+        internal void InDiagramTransaction(string transactionName, Func<bool> work)
+        {
+            if (work is null)
+            {
+                throw new ArgumentNullException(nameof(work));
+            }
+
+            InDiagramTransactionCore(transactionName, _ => work());
+        }
+
+        /// <summary>
+        ///     Applies a single view model change in a store transaction tagged with this surface's diagram id.
+        /// </summary>
+        /// <param name="transactionName">Name of the transaction, which is what the undo stack shows.</param>
+        /// <param name="change">The change to enlist.</param>
+        /// <remarks>
+        ///     The change is enlisted in the transaction's <see cref="ViewModelChangeContext" />, which is what
+        ///     replays it against the underlying EDMX when the transaction commits.
+        /// </remarks>
+        internal void ApplyViewModelChange(string transactionName, ViewModelChange change)
+        {
+            if (change is null)
+            {
+                throw new ArgumentNullException(nameof(change));
+            }
+
+            InDiagramTransactionCore(
+                transactionName,
+                transaction =>
+                {
+                    ViewModelChangeContext.GetNewOrExistingContext(transaction).ViewModelChanges.Add(change);
+
+                    return true;
+                });
+        }
+
+        /// <summary>
+        ///     Opens a store transaction tagged with this surface's diagram id and commits it when
+        ///     <paramref name="work" /> returns true.
+        /// </summary>
+        /// <param name="transactionName">Name of the transaction.</param>
+        /// <param name="work">Receives the open transaction; returns whether to commit.</param>
+        private void InDiagramTransactionCore(string transactionName, Func<Transaction, bool> work)
+        {
+            using (var transaction = Store.TransactionManager.BeginTransaction(transactionName))
+            {
+                transaction.Context.Add(EfiTransactionOriginator.TransactionOriginatorDiagramId, DiagramId);
+
+                if (work(transaction))
+                {
+                    transaction.Commit();
+                }
+            }
+        }
+
+        #endregion
+
         #region Drag & Drop support
 
         /// <summary>
@@ -471,31 +573,30 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         /// <param name="isExpanded">a flag that indicates whether the shape to be expanded or not.</param>
         private void SetEntityShapesExpanded(IList<ShapeElement> shapeElements, bool isExpanded)
         {
-            var entityShapeChanged = false;
             // Put up an hourglass because this may take a while
             using (new VsUtils.HourglassHelper())
             {
-                using (var t = Store.TransactionManager.BeginTransaction(EntityDesignerRes.Tx_SetEntityTypeIsExpandedProperty))
-                {
-                    t.Context.Add(EfiTransactionOriginator.TransactionOriginatorDiagramId, DiagramId);
-
-                    foreach (var shape in shapeElements)
+                InDiagramTransaction(
+                    EntityDesignerRes.Tx_SetEntityTypeIsExpandedProperty,
+                    () =>
                     {
-                        if (shape is EntityTypeShape entityShape)
+                        var entityShapeChanged = false;
+
+                        foreach (var shape in shapeElements)
                         {
-                            if (isExpanded != entityShape.IsExpanded)
+                            if (shape is EntityTypeShape entityShape)
                             {
-                                entityShape.IsExpanded = isExpanded;
-                                entityShapeChanged = true;
+                                if (isExpanded != entityShape.IsExpanded)
+                                {
+                                    entityShape.IsExpanded = isExpanded;
+                                    entityShapeChanged = true;
+                                }
                             }
                         }
-                    }
-                    // only commit if there is a change.
-                    if (entityShapeChanged)
-                    {
-                        t.Commit();
-                    }
-                }
+
+                        // only commit if there is a change.
+                        return entityShapeChanged;
+                    });
             }
         }
 
@@ -982,10 +1083,10 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
                 const VGNodeFixedStates noMoveShapeFlags = VGNodeFixedStates.FixedPlace;
 
                 // Perform the auto layout
-                using (var t = Store.TransactionManager.BeginTransaction(EntityDesignerRes.Tx_LayoutDiagram))
+                InDiagramTransaction(
+                    EntityDesignerRes.Tx_LayoutDiagram,
+                    () =>
                 {
-                    t.Context.Add(EfiTransactionOriginator.TransactionOriginatorDiagramId, DiagramId);
-
                     using (new SaveLayoutFlags(inheritanceShapes, ignoreShapeFlags))
                     {
                         // Since the inheritance shapes will be moved later,
@@ -1022,9 +1123,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
                     }
 
                     Reroute();
-
-                    t.Commit();
-                }
+                });
             } // restore cursor
         }
 
@@ -1180,10 +1279,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
                     Arranger.Start(dropPoint);
                     Store.RuleManager.DisableRule(typeof(EntityType_AddRule));
 
-                    using var t = Store.TransactionManager.BeginTransaction(EntityDesignerRes.Tx_AddEntityType);
-                    t.Context.Add(EfiTransactionOriginator.TransactionOriginatorDiagramId, DiagramId);
-                    ViewModelChangeContext.GetNewOrExistingContext(t).ViewModelChanges.Add(new EntityType_AddFromDialog(dialog));
-                    t.Commit();
+                    ApplyViewModelChange(EntityDesignerRes.Tx_AddEntityType, new EntityType_AddFromDialog(dialog));
                 }
                 finally
                 {
@@ -1234,12 +1330,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
                 try
                 {
                     Store.RuleManager.DisableRule(typeof(Association_AddRule));
-                    using (var t = Store.TransactionManager.BeginTransaction(EntityDesignerRes.Tx_AddAssociation))
-                    {
-                        t.Context.Add(EfiTransactionOriginator.TransactionOriginatorDiagramId, DiagramId);
-                        ViewModelChangeContext.GetNewOrExistingContext(t).ViewModelChanges.Add(new Association_AddFromDialog(dialog));
-                        t.Commit();
-                    }
+                    ApplyViewModelChange(EntityDesignerRes.Tx_AddAssociation, new Association_AddFromDialog(dialog));
                 }
                 finally
                 {
@@ -1279,12 +1370,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
             var dialog = new NewInheritanceDialog(modelEntity, cets);
             if (dialog.ShowModal() == true)
             {
-                using (var t = Store.TransactionManager.BeginTransaction(EntityDesignerRes.Tx_AddInheritance))
-                {
-                    t.Context.Add(EfiTransactionOriginator.TransactionOriginatorDiagramId, DiagramId);
-                    ViewModelChangeContext.GetNewOrExistingContext(t).ViewModelChanges.Add(new Inheritance_AddFromDialog(dialog));
-                    t.Commit();
-                }
+                ApplyViewModelChange(EntityDesignerRes.Tx_AddInheritance, new Inheritance_AddFromDialog(dialog));
             }
         }
 
