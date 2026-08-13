@@ -11,8 +11,8 @@ Measured against `2d94be6` with `dotnet build -c Release --no-incremental` and `
 | Failing tests | 14 |
 | Tests disabled with `[Ignore]` | 186 |
 | Tests that never run because of an invalid signature | 17 |
-| Build warnings | 270 |
-| Packages with known vulnerabilities | 4 |
+| Build warnings | 192 |
+| Packages with known vulnerabilities | 0 — fixed, see 3.1 |
 
 ## 1. Failing tests
 
@@ -115,18 +115,15 @@ MSTest will not run a `static` test method. It emits `MSTEST0003` (98 warnings) 
 
 Not currently failing, but latent. Constructing a DSL `Store` mutates process-wide state through `DomainXmlSerializerDirectory.InternalAddBehavior`, so two tests doing it concurrently fail with a null reference or `Collection was modified`. Every Store-building test class needs `[DoNotParallelize]`. Currently correct in `EdmxDiagramLoaderTests`, `HeadlessRoutingSpikeTests`, `SvgShapeRendererTests` and `EntityDesignerSurfaceTransactionTests`; any new one will hit it.
 
-## 3. Build warnings — 270
+## 3. Build warnings — 192
 
 | Count | Code | What |
 |---|---|---|
 | 168 | NU1701 | package restored using `.NETFramework` fallback rather than a matching target |
-| 108 | NU1902 | package has a known moderate severity vulnerability |
 | 98 | MSTEST0003 | invalid test method signature — see 2.2 |
-| 30 | NU1903 | package has a known high severity vulnerability |
 | 26 | CS0436 | type conflicts with an imported type — see below |
 | 20 | SYSLIB0051 | obsolete formatter-based serialization |
 | 20 | MSB3245 | could not resolve `System.Data`, `System.Data.Entity`, `System.Drawing` |
-| 18 | NU1901 | package has a known low severity vulnerability |
 | 18 | NU1702 | project restored using a fallback framework |
 | 14 | MSB3243 | version conflict on `System.Data`, `System.Drawing`, `System.Xml.Linq` |
 | 4 | VSTHRD110 | observe the result of async calls |
@@ -134,16 +131,24 @@ Not currently failing, but latent. Constructing a DSL `Store` mutates process-wi
 | 4 | SYSLIB0003 | code access security attributes are obsolete |
 | 2 | VSSDK004, NU1603, CS0672, CA2022 | one each |
 
-### 3.1 Vulnerable packages — 4
+### 3.1 Vulnerable packages — FIXED
 
-| Severity | Package | Version |
-|---|---|---|
-| high | `MessagePack` | 2.5.187 |
-| high | `Npgsql` | 4.1.3 |
-| moderate | `Azure.Identity` | 1.10.3 |
-| moderate / low | `Microsoft.Identity.Client` | 4.56.0 |
+All 16 advisories across 4 packages are cleared. Restore and build now emit zero `NU1901`, `NU1902` and `NU1903`.
 
-`MessagePack` and `Azure.Identity` arrive transitively through the VS SDK. `Npgsql` 4.1.3 is a direct EF6 provider reference and is the most likely to be bumpable on its own.
+| Package | Was | Now | Advisories cleared |
+|---|---|---|---|
+| `MessagePack` | 2.5.187 | 2.5.302 | 11 (2 high, 9 moderate) |
+| `Npgsql` | 4.1.3 | 4.1.14 | 1 high |
+| `Azure.Identity` | 1.10.3 | 1.16.0 | 2 moderate |
+| `Microsoft.Identity.Client` | 4.56.0 | 4.87.0 | 2 (1 moderate, 1 low) |
+
+All four were transitive, so the fix is `PackageVersion` entries in `Directory.Packages.props` relying on `CentralPackageTransitivePinningEnabled`. Each is held inside the major line its consumer binds to, so the API surface does not move:
+
+- **MessagePack** stays on 2.x. StreamJsonRpc and the rest of the VS SDK bind to 2.x; 3.x is a breaking change.
+- **Npgsql** stays on 4.1.x. `EntityFramework6.Npgsql` 6.4.3 depends on Npgsql 4.1.3, and 5.x would break the EF6 provider. 4.1.14 is the last of the line.
+- **Azure.Identity** is held at 1.16.0 rather than the latest 1.x. 1.17 and later pull `Azure.Core` 1.53, which requires `System.Text.Json` 10 and would force that pin up for the VSIX as well. 1.16.0 lands on `Azure.Core` 1.47.3, needing only `System.Text.Json` 8, which the existing 9.0.0 pin satisfies.
+
+Verified: restore and build clean, `edmx render Northwind.edmx` byte-identical, and the test suite unchanged at the same 14 failures.
 
 ### 3.2 CS0436 duplicate type
 
@@ -173,7 +178,7 @@ PNG, JPEG, BMP, GIF and TIFF go through `Diagram.CreateBitmap`, which resolves `
 2. **3.2** — move `ModelBuilderWizardFormHelper` to the shared test project. Removes 26 warnings.
 3. **1.3** — one real bug, one test, self contained.
 4. **1.2 and 4.1** — fall out of `dsl-shell-decoupling.md` work item 4. No separate effort.
-5. **3.1** — bump `Npgsql`; investigate whether the VS SDK transitives can be constrained.
+5. ~~**3.1** — vulnerable packages.~~ **Done.**
 6. **1.4** — confirm the parallelism theory.
 7. **2.1** — the 186 ignored tests. Largest and least certain; needs a decision about EF6 binaries first.
 8. **1.1** — wizard page tests. Needs a design decision about VS-hosted testing.

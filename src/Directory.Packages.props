@@ -11,7 +11,9 @@
     <PropertyGroup>
         <MicrosoftVisualStudioPackageCurrent>17.10.40119</MicrosoftVisualStudioPackageCurrent>
         <EntityFrameworkPackageVersion>6.5.1</EntityFrameworkPackageVersion>
-        <MessagePackPackageVersion>2.5.187</MessagePackPackageVersion>
+        <!-- 2.5.187 carried 11 advisories, two of them high. Held on the 2.x line because StreamJsonRpc and the
+             rest of the VS SDK bind to MessagePack 2.x; 3.x is a breaking change. -->
+        <MessagePackPackageVersion>2.5.302</MessagePackPackageVersion>
         <MicrosoftInternalVisualStudioInteropPackageVersion>17.10.39524</MicrosoftInternalVisualStudioInteropPackageVersion>
         <MicrosoftIORedistPackageVersion>6.0.1</MicrosoftIORedistPackageVersion>
         <MicrosoftISqlServerPackageVersion>4.0.8876.1</MicrosoftISqlServerPackageVersion>
@@ -47,6 +49,18 @@
         <PackageVersion Include="Microsoft.EntityFramework.SqlServer" Version="$(EntityFrameworkPackageVersion)" />
         <PackageVersion Include="EntityFramework.SqlServerCompact" Version="$(EntityFrameworkPackageVersion)" />
         <PackageVersion Include="EntityFramework6.Npgsql" Version="6.4.3" />
+        <!-- Transitive pins that exist only to lift packages off known vulnerable versions. Each is held inside
+             the major line its consumer binds to, so these raise the floor without changing any API surface.
+             Npgsql: EntityFramework6.Npgsql 6.4.3 depends on Npgsql 4.1.3, which has a high severity advisory.
+             4.1.14 is the last of the 4.1 line; 5.x and later would break the EF6 provider. -->
+        <PackageVersion Include="Npgsql" Version="4.1.14" />
+        <!-- Both arrive transitively through the Visual Studio SDK. Held on their existing major lines, and both
+             still target netstandard2.0 so the net48 targets resolve them. -->
+        <!-- 1.16.0, not the latest 1.x: Azure.Identity 1.17 and later pull Azure.Core 1.53, which requires
+             System.Text.Json 10 and would force that pin up for the VSIX too. 1.16.0 lands on Azure.Core 1.47.3,
+             which needs only System.Text.Json 8. -->
+        <PackageVersion Include="Azure.Identity" Version="1.16.0" />
+        <PackageVersion Include="Microsoft.Identity.Client" Version="4.87.0" />
         <PackageVersion Include="MySql.Data.EntityFramework" Version="9.2.0" />
         <PackageVersion Include="Oracle.ManagedDataAccess.EntityFramework" Version="23.7.0" />
         <!-- ILRepack for merging EF assemblies -->
