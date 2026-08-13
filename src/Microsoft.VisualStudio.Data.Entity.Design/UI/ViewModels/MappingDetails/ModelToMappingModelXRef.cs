@@ -7,13 +7,13 @@ using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Mapping;
-using Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails.Associations;
-using Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails.FunctionImports;
-using Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails.Functions;
-using Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails.Tables;
-using Microsoft.Data.Entity.Design.UI.Views.MappingDetails;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails.Associations;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails.Functions;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails.FunctionImports;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails.Tables;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails;
 
-namespace Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails
 {
     internal class ModelToMappingModelXRef : ContextItem
     {

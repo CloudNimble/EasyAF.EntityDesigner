@@ -3,7 +3,7 @@
 using System;
 using Microsoft.VisualStudio.Shell;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio
 {
     // <summary>
     //     Wrapper around ErrorListProvider

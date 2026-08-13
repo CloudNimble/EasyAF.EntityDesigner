@@ -2,7 +2,7 @@
 
 using Microsoft.Data.Tools.XmlDesignerBase.Model;
 
-namespace Microsoft.Data.Entity.Design.Base.Host
+namespace Microsoft.VisualStudio.Data.Entity.Design.Base.Host
 {
     // <summary>
     //     The MappingDesignerContext provides contextual services to the

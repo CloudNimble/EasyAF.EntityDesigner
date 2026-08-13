@@ -6,7 +6,7 @@ using System.Globalization;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Entity;
 
-namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters
 {
     internal class MaxLengthConverter : StringConverter
     {
@@ -37,7 +37,7 @@ namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters
                     // error message
                     var attributeName = context.PropertyDescriptor.DisplayName;
                     var message = string.Format(
-                        CultureInfo.CurrentCulture, Tools.XmlDesignerBase.Resources.ConverterIncorrectValueForAttribute, stringValue, attributeName);
+                        CultureInfo.CurrentCulture, Microsoft.Data.Tools.XmlDesignerBase.Resources.ConverterIncorrectValueForAttribute, stringValue, attributeName);
                     throw new ConversionException(message);
                 }
             }

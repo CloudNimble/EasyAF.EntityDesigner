@@ -9,16 +9,16 @@ using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Designer;
 using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.Data.Tools.XmlDesignerBase.Model;
 using Microsoft.VisualStudio.Shell.Interop;
 using Moq;
 using Microsoft.Data.Entity.Tests.Design.TestHelpers;
-using Microsoft.Data.Entity.Design.VisualStudio;
 using VSLangProj;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using Resources = Microsoft.Data.Entity.Design.Resources;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio
 {

@@ -1,12 +1,13 @@
 using System;
 using System.CodeDom.Compiler;
 using System.Text;
-using Microsoft.Data.Entity.Design.CodeGeneration;
 using Microsoft.VisualStudio.TextTemplating;
 using Microsoft.VisualStudio.TextTemplating.VSHost;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
+using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Generators;
 
 namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
 {

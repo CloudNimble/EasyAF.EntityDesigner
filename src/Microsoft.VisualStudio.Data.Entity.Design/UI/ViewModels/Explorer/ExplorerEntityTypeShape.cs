@@ -5,8 +5,9 @@ using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Designer;
+using Microsoft.Data.Entity.Design.UI.ViewModels.Explorer;
 
-namespace Microsoft.Data.Entity.Design.UI.ViewModels.Explorer
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Explorer
 {
     internal class ExplorerEntityTypeShape : EntityDesignExplorerEFElement
     {

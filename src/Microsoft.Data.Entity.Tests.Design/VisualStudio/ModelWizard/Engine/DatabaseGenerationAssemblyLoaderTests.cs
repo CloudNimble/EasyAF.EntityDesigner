@@ -2,8 +2,8 @@
 
 using System.IO;
 using FluentAssertions;
-using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
 using Microsoft.Data.Entity.Tests.Design.TestHelpers;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Engine

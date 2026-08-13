@@ -8,14 +8,16 @@ using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Mapping;
 using Microsoft.Data.Entity.Design.Model.XLinqAnnotations;
-using Microsoft.Data.Entity.Design.UI.Views.Explorer;
-using Microsoft.Data.Entity.Design.VisualStudio.Model;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Model;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Explorer;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.Data.Entity.Design.VisualStudio;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio
 {
     internal delegate void NavigateTo(EFObject efobject);
 

@@ -4,14 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition.Hosting;
 using System.Linq;
+using Microsoft.Data.Entity.Design.Extensibility;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Designer;
 using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.VisualStudio.Model;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.ComponentModelHost;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Model;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 
-namespace Microsoft.Data.Entity.Design.Extensibility
+namespace Microsoft.VisualStudio.Data.Entity.Design.Extensibility
 {
     internal class EscherExtensionPointManager
     {

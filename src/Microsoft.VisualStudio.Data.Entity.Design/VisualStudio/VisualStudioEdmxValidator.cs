@@ -8,15 +8,16 @@ using System.Linq;
 using EnvDTE;
 using Microsoft.Data.Tools.XmlDesignerBase.Base.Util;
 using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.VisualStudio.Model;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Model;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using IServiceProvider = Microsoft.VisualStudio.OLE.Interop.IServiceProvider;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.Data.Entity.Design.VisualStudio;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio
 {
     internal static class VisualStudioEdmxValidator
     {

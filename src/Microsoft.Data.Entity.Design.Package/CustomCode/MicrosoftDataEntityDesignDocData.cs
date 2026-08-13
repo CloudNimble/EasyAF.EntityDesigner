@@ -24,9 +24,7 @@ using Microsoft.Data.Entity.Design.Extensibility;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Designer;
 using Microsoft.Data.Entity.Design.Model.Eventing;
-using Microsoft.Data.Entity.Design.UI.Views.Explorer;
 using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Entity.Design.VisualStudio.Model;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
 using Microsoft.Data.Tools.VSXmlDesignerBase.VisualStudio.Modeling;
@@ -39,6 +37,11 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using IServiceProvider = System.IServiceProvider;
 using Microsoft.VisualStudio.TextManager.Interop;
+using Microsoft.VisualStudio.Data.Entity.Design.Extensibility;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Model;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Explorer;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 
 namespace Microsoft.Data.Entity.Design.Package
 {

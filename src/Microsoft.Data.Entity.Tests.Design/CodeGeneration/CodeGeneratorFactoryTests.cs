@@ -2,13 +2,14 @@ using System.Collections;
 using EnvDTE;
 using FluentAssertions;
 using Microsoft.Data.Entity.Design.CodeGeneration;
-using Microsoft.Data.Entity.Design.CodeGeneration.Generators;
 using Microsoft.Data.Entity.Design.Common;
 using Microsoft.Data.Entity.Tests.Design.TestHelpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Linq;
 using VSLangProj;
+using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
+using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Generators;
 
 namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
 {

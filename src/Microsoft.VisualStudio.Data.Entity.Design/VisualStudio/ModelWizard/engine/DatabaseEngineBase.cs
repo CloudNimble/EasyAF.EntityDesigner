@@ -9,11 +9,12 @@ using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.VersioningFacade;
 using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb;
 using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Gui;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.Data.Core;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.Data.Services;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine
 {
     internal abstract class DatabaseEngineBase
     {

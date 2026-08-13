@@ -19,16 +19,18 @@ using Microsoft.Data.Entity.Design.Dsl.CustomSerializer;
 using Microsoft.Data.Entity.Design.Dsl.View;
 using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow;
 using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors;
-using Microsoft.Data.Entity.Design.UI.Views.EntityDesigner;
-using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.EntityDesigner;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.Modeling.Shell;
 using Microsoft.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio.Shell.Interop;
 using PropertyBase = Microsoft.Data.Entity.Design.Model.Entity.PropertyBase;
 using Microsoft.VisualStudio.Modeling.Diagrams;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors;
 
 namespace Microsoft.Data.Entity.Design.Package
 {

@@ -7,7 +7,7 @@ using System.Linq;
 using Microsoft.Data.Entity.Design.Model.Database;
 using Microsoft.VisualStudio.Data.Services.RelationalObjectModel;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.Data.Sql
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Data.Sql
 {
     internal class DataSchemaProcedure : DataSchemaObject, IDataSchemaProcedure
     {

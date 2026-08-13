@@ -12,18 +12,21 @@ using System.Threading;
 using System.Xml;
 using EnvDTE;
 using Microsoft.Data.Entity.Design.DatabaseGeneration;
-using Microsoft.Data.Entity.Design.VisualStudio.TextTemplating;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.TextTemplating;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Designer;
 using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Entity.Design.Model.Validation;
 using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Gui;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.Data.Entity.Design;
+using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
+using Resources = Microsoft.Data.Entity.Design.Resources;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine
 {
     internal class DatabaseGenerationEngine : DatabaseEngineBase
     {
@@ -207,7 +210,7 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
                         "We should have caught this exception '" + e.Message + "' immediately after the user clicked the 'Finish' button");
                     VsUtils.ShowErrorDialog(
                         String.Format(
-                            CultureInfo.CurrentCulture, ModelWizard.Properties.Resources.ErrorCouldNotParseDdlFileName, settings.DdlFileName,
+                            CultureInfo.CurrentCulture, Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Properties.Resources.ErrorCouldNotParseDdlFileName, settings.DdlFileName,
                             e.Message));
                     return false;
                 }

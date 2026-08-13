@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Xml;
 using EnvDTE;
 using EnvDTE80;
+using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Entity.Design.Common;
 using Microsoft.Data.Entity.Design.Extensibility;
@@ -19,20 +20,23 @@ using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Entity.Design.Model.Integrity;
 using Microsoft.Data.Entity.Design.Model.Validation;
-using Microsoft.Data.Entity.Design.VisualStudio.Model;
-using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
+using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Gui;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
 using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.Extensibility;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Model;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.Data.Services;
 using Microsoft.VisualStudio.Modeling.Shell;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.TemplateWizard;
 using Command = Microsoft.Data.Entity.Design.Model.Commands.Command;
 using IOleServiceProvider = Microsoft.VisualStudio.OLE.Interop.IServiceProvider;
+using Resources = Microsoft.Data.Entity.Design.Resources;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard
 {
     /// <summary>
     ///     Visual Studio invokes this wizard when a new item of type "ADO.NET Entity Data Model" is added
@@ -359,7 +363,7 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard
                             _edmxItem.ContainingProject,
                             string.Format(
                                 CultureInfo.CurrentCulture,
-                                Properties.Resources.WritingModelTimeMsg,
+                                Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Properties.Resources.WritingModelTimeMsg,
                                 writingModelWatch.Elapsed));
                     }
 

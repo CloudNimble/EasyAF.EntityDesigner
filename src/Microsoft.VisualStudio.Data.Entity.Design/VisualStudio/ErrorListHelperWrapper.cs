@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Microsoft.Data.Entity.Design.Model.Validation;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio
 {
     internal class ErrorListHelperWrapper : IErrorListHelper
     {

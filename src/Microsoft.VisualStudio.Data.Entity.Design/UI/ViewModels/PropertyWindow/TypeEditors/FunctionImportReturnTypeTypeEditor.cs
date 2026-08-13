@@ -7,10 +7,10 @@ using System.Drawing.Design;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Eventing;
-using Microsoft.Data.Entity.Design.UI.Util;
-using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Util;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors;
 
-namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.TypeEditors
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.TypeEditors
 {
     internal class FunctionImportReturnTypeTypeEditor : UITypeEditor
     {

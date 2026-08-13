@@ -15,6 +15,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- XmlModelProvider.GetObjectData carries a declarative CAS demand. The attribute is inert on
+         .NET Core, but the runtime still has to load the assembly that declares it. -->
+    <PackageReference Include="System.Security.Permissions" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Update="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

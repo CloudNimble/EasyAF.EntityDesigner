@@ -6,11 +6,13 @@ using System.Drawing.Design;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow;
 using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters;
-using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.TypeEditors;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.TypeEditors;
 using XmlDesignerBaseResources = Microsoft.Data.Tools.XmlDesignerBase.Resources;
 
-namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors
 {
     internal class EFFunctionImportDescriptor : EFAnnotatableElementDescriptor<FunctionImport>
     {

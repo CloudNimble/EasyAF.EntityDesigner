@@ -11,7 +11,7 @@ using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.VersioningFacade;
 using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine
 {
     internal static class DatabaseMetadataQueryTool
     {

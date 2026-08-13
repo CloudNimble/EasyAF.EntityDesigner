@@ -18,6 +18,8 @@ using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Validation;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.XmlEditor;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 
 namespace Microsoft.Data.Entity.Design.Dsl
 {

@@ -6,7 +6,8 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using FluentAssertions;
-using Microsoft.Data.Entity.Design.CodeGeneration;
+using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
+using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Discoverers.NavigationProperties;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration

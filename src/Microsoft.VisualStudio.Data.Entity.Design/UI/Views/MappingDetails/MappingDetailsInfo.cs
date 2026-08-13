@@ -4,9 +4,9 @@ using EdmPackage = Microsoft.Data.Entity.Design.VisualStudio.Package;
 using System;
 using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Base.Context;
-using Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails;
 
-namespace Microsoft.Data.Entity.Design.UI.Views.MappingDetails
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails
 {
     internal enum EntityMappingModes
     {

@@ -3,7 +3,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Core.Metadata.Edm;
 
-namespace Microsoft.Data.Entity.Design.CodeGeneration.Extensions
+namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Extensions
 {
     internal static class StoreGeneratedPatternExtensions
     {

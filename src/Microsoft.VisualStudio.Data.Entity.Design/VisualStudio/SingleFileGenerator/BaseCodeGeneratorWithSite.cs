@@ -12,8 +12,10 @@ using Microsoft.VisualStudio.Designer.Interfaces;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.Data.Entity.Design.VisualStudio.SingleFileGenerator;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.SingleFileGenerator
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.SingleFileGenerator
 {
     /// <summary>
     ///     This class exists to be cocreated a in a preprocessor build step.

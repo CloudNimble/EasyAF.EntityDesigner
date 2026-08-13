@@ -3,10 +3,11 @@
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using Microsoft.Data.Entity.Design.VisualStudio.SingleFileGenerator;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.SingleFileGenerator
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.SingleFileGenerator
 {
     /// <summary>
     ///     A managed wrapper for VS's concept of an IVsSingleFileGenerator which is

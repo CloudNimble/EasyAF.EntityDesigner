@@ -17,17 +17,22 @@ using Microsoft.Data.Entity.Design.Model.Designer;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Entity.Design.Model.Mapping;
-using Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails;
-using Microsoft.Data.Entity.Design.UI.Views.EntityDesigner;
 using Microsoft.Data.Entity.Design.UI.Views.Explorer;
-using Microsoft.Data.Entity.Design.UI.Views.MappingDetails.Columns;
 using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Modeling.Shell;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.EntityDesigner;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails.Columns;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.Data.Entity.Design;
+using Microsoft.Data.Entity.Design.UI;
+using Microsoft.Data.Entity.Design.UI.Views.MappingDetails;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails;
+using Resources = Microsoft.Data.Entity.Design.Resources;
 
-namespace Microsoft.Data.Entity.Design.UI.Views.MappingDetails
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails
 {
     // <summary>
     //     Mapping details window

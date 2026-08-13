@@ -8,8 +8,9 @@ using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Designer;
+using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow;
 
-namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors
 {
     // We need to differentiate EFEntityTypeShapeDescriptor from EFEntityTypeDescriptor because
     // There is additional property that we want to show for Entity type shape (for example: color).

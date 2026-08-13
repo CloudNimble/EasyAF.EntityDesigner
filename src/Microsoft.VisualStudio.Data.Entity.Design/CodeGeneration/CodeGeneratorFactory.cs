@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using EnvDTE;
-using Microsoft.Data.Entity.Design.CodeGeneration.Generators;
+using Microsoft.Data.Entity.Design.CodeGeneration;
+using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
 using Microsoft.Data.Entity.Design.Common;
-using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Generators;
 
-namespace Microsoft.Data.Entity.Design.CodeGeneration
+namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration
 {
     internal class CodeGeneratorFactory : ICodeGeneratorFactory
     {

@@ -4,7 +4,7 @@ using System;
 using System.Diagnostics;
 using EnvDTE;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio
 {
     // <summary>
     //     Creates an <see cref="ExecutorWrapper" /> that can be used to execute the user's code contained

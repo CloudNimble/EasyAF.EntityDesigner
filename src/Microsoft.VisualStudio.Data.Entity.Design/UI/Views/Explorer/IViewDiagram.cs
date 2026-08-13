@@ -2,7 +2,7 @@
 
 using Microsoft.Data.Entity.Design.Model;
 
-namespace Microsoft.Data.Entity.Design.UI.Views.Explorer
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Explorer
 {
     // <summary>
     //     Interface that is implemented by DSL Diagram code.

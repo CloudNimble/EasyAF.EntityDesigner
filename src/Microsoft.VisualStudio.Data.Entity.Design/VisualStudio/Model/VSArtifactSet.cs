@@ -2,9 +2,10 @@
 
 using EnvDTE;
 using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.Model
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Model
 {
     internal class VSArtifactSet : EntityDesignArtifactSet
     {

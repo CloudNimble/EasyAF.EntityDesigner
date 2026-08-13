@@ -9,20 +9,22 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using EnvDTE80;
+using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Common;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Designer;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Common;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Refactoring;
 using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TextManager.Interop;
+using Resources = Microsoft.Data.Entity.Design.Resources;
 
-namespace Microsoft.Data.Entity.Design.Refactoring
+namespace Microsoft.VisualStudio.Data.Entity.Design.Refactoring
 {
     internal class EFRefactoringOperation : RefactoringOperationBase
     {
@@ -200,7 +202,7 @@ namespace Microsoft.Data.Entity.Design.Refactoring
             using (WaitCursorHelper.NewWaitCursor())
             {
                 var artifact = _contributorInput.ObjectToBeRenamed.Artifact;
-                var artifactProjectItem = VsUtils.GetProjectItemForDocument(artifact.Uri.LocalPath, Services.ServiceProvider);
+                var artifactProjectItem = VsUtils.GetProjectItemForDocument(artifact.Uri.LocalPath, Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Services.ServiceProvider);
 
                 if (artifactProjectItem != null)
                 {

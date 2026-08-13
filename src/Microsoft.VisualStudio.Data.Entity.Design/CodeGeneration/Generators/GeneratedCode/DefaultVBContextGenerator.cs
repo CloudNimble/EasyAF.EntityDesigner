@@ -10,7 +10,10 @@
 namespace Microsoft.Data.Entity.Design.CodeGeneration
 {
     using System.Linq;
-    using Microsoft.Data.Entity.Design.CodeGeneration;
+    using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
+    using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration;
+    using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration.Properties;
+    using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration.Types;
     using System;
     
     /// <summary>

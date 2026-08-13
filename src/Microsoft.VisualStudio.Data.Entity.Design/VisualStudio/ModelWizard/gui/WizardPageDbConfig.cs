@@ -3,8 +3,6 @@
 using EnvDTE;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Validation;
-using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Data.Core;
 using Microsoft.VisualStudio.Data.Services;
@@ -24,6 +22,10 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.Windows.Forms;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.gui;
 
 namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Gui
 {

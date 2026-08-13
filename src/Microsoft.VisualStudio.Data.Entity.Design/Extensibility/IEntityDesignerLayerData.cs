@@ -2,7 +2,7 @@
 
 using System.ComponentModel;
 
-namespace Microsoft.Data.Entity.Design.Extensibility
+namespace Microsoft.VisualStudio.Data.Entity.Design.Extensibility
 {
     /// <summary>
     ///     Parent interface used by the LayerManager to distinguish different layers.

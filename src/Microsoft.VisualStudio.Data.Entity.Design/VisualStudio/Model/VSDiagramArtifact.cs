@@ -3,6 +3,7 @@
 using System;
 using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Model;
+using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Tools.XmlDesignerBase.Model;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.OLE.Interop;
@@ -10,7 +11,7 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TextManager.Interop;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.Model
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Model
 {
     internal class VSDiagramArtifact : DiagramArtifact, IVsRunningDocTableEvents2
     {

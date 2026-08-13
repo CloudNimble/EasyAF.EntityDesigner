@@ -5,9 +5,9 @@ using System.Globalization;
 using System.Text;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails;
 
-namespace Microsoft.Data.Entity.Design.UI.Views.MappingDetails.Columns
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails.Columns
 {
     internal class ColumnUtils
     {

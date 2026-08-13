@@ -34,7 +34,7 @@
         <MicrosoftVSSDKBuildToolsPackageVersion>17.10.2185</MicrosoftVSSDKBuildToolsPackageVersion>
         <MicrosoftWizardFrameworkPackageVersion>17.10.40054</MicrosoftWizardFrameworkPackageVersion>
         <MicrosoftXmlEditorPackageVersion>17.10.34810.168</MicrosoftXmlEditorPackageVersion>
-        <MoqPackageVersion>4.0.10827</MoqPackageVersion>
+        <MoqPackageVersion>4.20.72</MoqPackageVersion>
         <SystemDataSqlServerCePackageVersion>4.0.8876.1</SystemDataSqlServerCePackageVersion>
         <VsWebSiteInteropPackageVersion>17.10.40086</VsWebSiteInteropPackageVersion>
         <MicrosoftVisualStudioEngMicroBuildCorePackageVersion>1.0.0</MicrosoftVisualStudioEngMicroBuildCorePackageVersion>
@@ -101,6 +101,7 @@
         <PackageVersion Include="Moq" Version="$(MoqPackageVersion)" />
         <PackageVersion Include="NerdBank.Streams" Version="2.11.79" />
         <PackageVersion Include="System.Resources.Extensions" Version="9.0.0" />
+        <PackageVersion Include="System.Security.Permissions" Version="9.0.0" />
         <PackageVersion Include="System.Text.Json" Version="9.0.0" />
         <PackageVersion Include="VsWebSite.Interop" Version="$(VsWebSiteInteropPackageVersion)" />
         <PackageVersion Include="VsWebSite.Interop90" Version="$(VsWebSiteInteropPackageVersion)" />

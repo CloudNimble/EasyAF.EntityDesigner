@@ -5,12 +5,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Forms;
+using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Base.Shell;
 using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails;
-using Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails.Tables;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails.Tables;
 
-namespace Microsoft.Data.Entity.Design.UI.Views.MappingDetails.Columns
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails.Columns
 {
     // <summary>
     //     Based on the type of item being shown, show the correct text for the Value column.

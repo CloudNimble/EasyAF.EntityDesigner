@@ -2,8 +2,8 @@
 
 using FluentAssertions;
 using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Engine

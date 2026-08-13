@@ -14,8 +14,10 @@ using System.Windows.Forms;
 using Microsoft.Data.Entity.Design.DatabaseGeneration;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.UI.Views.Dialogs;
-using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.gui;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.WizardFramework;
 

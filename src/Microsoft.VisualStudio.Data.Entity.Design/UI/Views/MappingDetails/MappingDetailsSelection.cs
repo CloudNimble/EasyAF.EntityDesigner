@@ -4,8 +4,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Data.Entity.Design.Model;
+using Microsoft.Data.Entity.Design.UI;
 
-namespace Microsoft.Data.Entity.Design.UI.Views.MappingDetails
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails
 {
     // <summary>
     //     The class that holds the current selection in the Mapping Details window.

@@ -11,7 +11,8 @@ namespace Microsoft.Data.Entity.Design.CodeGeneration
 {
     using System.Data.Entity.Core.Metadata.Edm;
     using System.Linq;
-    using Microsoft.Data.Entity.Design.CodeGeneration;
+    using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
+    using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration;
     using System;
     
     /// <summary>

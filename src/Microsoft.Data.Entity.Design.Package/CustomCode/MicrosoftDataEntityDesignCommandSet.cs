@@ -21,17 +21,10 @@ using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Entity.Design.Model.Mapping;
-using Microsoft.Data.Entity.Design.Refactoring;
 using Microsoft.Data.Entity.Design.UI;
-using Microsoft.Data.Entity.Design.UI.Util;
 using Microsoft.Data.Entity.Design.UI.ViewModels.Explorer;
 using Microsoft.Data.Entity.Design.UI.Views.Dialogs;
-using Microsoft.Data.Entity.Design.UI.Views.Explorer;
-using Microsoft.Data.Entity.Design.UI.Views.MappingDetails;
 using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Entity.Design.VisualStudio.Model.Commands;
-using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard;
-using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Modeling.Diagrams;
@@ -42,9 +35,19 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Command = Microsoft.Data.Entity.Design.Model.Commands.Command;
 using ComplexProperty = Microsoft.Data.Entity.Design.Dsl.ViewModel.ComplexProperty;
 using Diagram = Microsoft.Data.Entity.Design.Model.Designer.Diagram;
-using EntityDesignerSelection = Microsoft.Data.Entity.Design.UI.Views.EntityDesigner.EntityDesignerSelection;
+using EntityDesignerSelection = Microsoft.VisualStudio.Data.Entity.Design.UI.Views.EntityDesigner.EntityDesignerSelection;
 using Property = Microsoft.Data.Entity.Design.Dsl.ViewModel.Property;
 using ScalarProperty = Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Explorer;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Explorer;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Model.Commands;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Util;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.Refactoring;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails;
 
 namespace Microsoft.Data.Entity.Design.Package
 {

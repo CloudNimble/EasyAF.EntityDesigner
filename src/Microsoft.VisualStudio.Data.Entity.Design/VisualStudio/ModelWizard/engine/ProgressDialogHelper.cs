@@ -10,12 +10,12 @@ using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Database;
 using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb;
-using Microsoft.Data.Entity.Design.VisualStudio.Data.Sql;
 using Microsoft.Data.Tools.VSXmlDesignerBase.VisualStudio.UI;
 using Microsoft.VisualStudio.Data.Core;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Data.Sql;
 using Microsoft.VisualStudio.Data.Services;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine
 {
     internal static class ProgressDialogHelper
     {
@@ -30,9 +30,9 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
         {
             GatherAndReturnSprocInfo args = new GatherAndReturnSprocInfo(newFunctionEntries, modelBuilderSettings);
             using (ProgressDialog pd = new ProgressDialog(
-                Design.Resources.RetrievingSprocReturnTypeProgressDialogTitle,
-                Design.Resources.RetrievingSprocReturnTypeProgressDialogDescription,
-                Design.Resources.RetrievingSprocReturnTypeProgressDialogInitialStatus, GatherAndStoreSchemaProcedureInformation, args))
+                Microsoft.Data.Entity.Design.Resources.RetrievingSprocReturnTypeProgressDialogTitle,
+                Microsoft.Data.Entity.Design.Resources.RetrievingSprocReturnTypeProgressDialogDescription,
+                Microsoft.Data.Entity.Design.Resources.RetrievingSprocReturnTypeProgressDialogInitialStatus, GatherAndStoreSchemaProcedureInformation, args))
             {
                 return pd.ShowDialog(owner);
             }
@@ -49,14 +49,14 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
             {
                 throw new ProgressDialogException(
                     string.Format(
-                        CultureInfo.CurrentCulture, Design.Resources.RetrievingSprocReturnTypeErrorMessage, "null BackgroundWorker"));
+                        CultureInfo.CurrentCulture, Microsoft.Data.Entity.Design.Resources.RetrievingSprocReturnTypeErrorMessage, "null BackgroundWorker"));
             }
 
             if (e.Argument is not GatherAndReturnSprocInfo arg)
             {
                 throw new ProgressDialogException(
                     string.Format(
-                        CultureInfo.CurrentCulture, Design.Resources.RetrievingSprocReturnTypeErrorMessage, "null DoWorkEventArgs"));
+                        CultureInfo.CurrentCulture, Microsoft.Data.Entity.Design.Resources.RetrievingSprocReturnTypeErrorMessage, "null DoWorkEventArgs"));
             }
 
             var newFunctionFilterEntries = arg.NewFunctionEntries;
@@ -64,7 +64,7 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
             {
                 throw new ProgressDialogException(
                     string.Format(
-                        CultureInfo.CurrentCulture, Design.Resources.RetrievingSprocReturnTypeErrorMessage, "null newFunctionFilterEntries"));
+                        CultureInfo.CurrentCulture, Microsoft.Data.Entity.Design.Resources.RetrievingSprocReturnTypeErrorMessage, "null newFunctionFilterEntries"));
             }
 
             var modelBuilderSettings = arg.ModelBuilderSettings;
@@ -72,7 +72,7 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
             {
                 throw new ProgressDialogException(
                     string.Format(
-                        CultureInfo.CurrentCulture, Design.Resources.RetrievingSprocReturnTypeErrorMessage, "null modelBuilderSettings"));
+                        CultureInfo.CurrentCulture, Microsoft.Data.Entity.Design.Resources.RetrievingSprocReturnTypeErrorMessage, "null modelBuilderSettings"));
             }
 
             // clear map first (if user has clicked backwards and forwards between wizard pages this can already be populated)
@@ -135,7 +135,7 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
             {
                 throw new ProgressDialogException(
                     string.Format(
-                        CultureInfo.CurrentCulture, Design.Resources.RetrievingSprocReturnTypeErrorMessage, "null IVsDataConnection"));
+                        CultureInfo.CurrentCulture, Microsoft.Data.Entity.Design.Resources.RetrievingSprocReturnTypeErrorMessage, "null IVsDataConnection"));
             }
 
             // open the database connection and collect info for each Function
@@ -172,7 +172,7 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
                             userState.CurrentIteration = numFunctionFilterEntryCurrent;
                             userState.CurrentStatusMessage = string.Format(
                                 CultureInfo.CurrentCulture,
-                                Design.Resources.RetrievingSprocReturnTypeInfoMessage,
+                                Microsoft.Data.Entity.Design.Resources.RetrievingSprocReturnTypeInfoMessage,
                                 numFunctionFilterEntryCurrent,
                                 numFunctionFilterEntries,
                                 entry.Schema,

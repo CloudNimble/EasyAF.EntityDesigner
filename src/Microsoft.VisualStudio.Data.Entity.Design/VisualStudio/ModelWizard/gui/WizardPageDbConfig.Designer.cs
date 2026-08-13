@@ -2,6 +2,7 @@
 
 namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Gui
 {
+    using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Controls;
     using System.Diagnostics.CodeAnalysis;
 
     partial class WizardPageDbConfig
@@ -36,10 +37,10 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Gui
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WizardPageDbConfig));
             System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
             System.Windows.Forms.Panel panel;
-            this.checkBoxSaveInAppConfig = new Microsoft.Data.Entity.Design.UI.Views.Controls.AutoWrapCheckBox();
-            this.disallowSensitiveInfoButton = new Microsoft.Data.Entity.Design.UI.Views.Controls.AutoWrapRadioButton();
+            this.checkBoxSaveInAppConfig = new Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Controls.AutoWrapCheckBox();
+            this.disallowSensitiveInfoButton = new Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Controls.AutoWrapRadioButton();
             this.textBoxConnectionString = new System.Windows.Forms.TextBox();
-            this.allowSensitiveInfoButton = new Microsoft.Data.Entity.Design.UI.Views.Controls.AutoWrapRadioButton();
+            this.allowSensitiveInfoButton = new Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Controls.AutoWrapRadioButton();
             this.lblPagePrompt = new System.Windows.Forms.Label();
             this.dataSourceComboBox = new System.Windows.Forms.ComboBox();
             this.newDBConnectionButton = new System.Windows.Forms.Button();
@@ -166,10 +167,10 @@ namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Gui
 
         private System.Windows.Forms.Label lblEntityConnectionString;
         private System.Windows.Forms.Label sensitiveInfoTextBox;
-        private Microsoft.Data.Entity.Design.UI.Views.Controls.AutoWrapRadioButton allowSensitiveInfoButton;
-        private Microsoft.Data.Entity.Design.UI.Views.Controls.AutoWrapRadioButton disallowSensitiveInfoButton;
+        private AutoWrapRadioButton allowSensitiveInfoButton;
+        private AutoWrapRadioButton disallowSensitiveInfoButton;
         private System.Windows.Forms.TextBox textBoxAppConfigConnectionName;
-        private Microsoft.Data.Entity.Design.UI.Views.Controls.AutoWrapCheckBox checkBoxSaveInAppConfig;
+        private AutoWrapCheckBox checkBoxSaveInAppConfig;
         private System.Windows.Forms.TextBox textBoxConnectionString;
         private System.Windows.Forms.Label lblPagePrompt;
         private System.Windows.Forms.Button newDBConnectionButton;

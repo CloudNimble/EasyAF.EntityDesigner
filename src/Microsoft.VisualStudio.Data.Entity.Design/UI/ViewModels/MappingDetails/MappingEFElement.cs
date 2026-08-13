@@ -3,11 +3,13 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
+using Resources = Microsoft.Data.Entity.Design.Resources;
 
-namespace Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails
 {
     // <summary>
     //     An enum that is passed to the GetListOfValues() method.

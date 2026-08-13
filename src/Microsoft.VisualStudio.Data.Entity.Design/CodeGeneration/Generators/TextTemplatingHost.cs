@@ -8,7 +8,7 @@ using System.Text;
 using Microsoft.VisualStudio.TextTemplating;
 using Microsoft.VisualStudio.TextTemplating.VSHost;
 
-namespace Microsoft.Data.Entity.Design.CodeGeneration
+namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Generators
 {
     internal class TextTemplatingHost : ITextTemplatingEngineHost, ITextTemplatingSessionHost
     {

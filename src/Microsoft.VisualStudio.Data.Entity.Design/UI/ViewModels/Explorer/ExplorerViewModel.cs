@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using Microsoft.Data.Entity.Design.Base.Context;
+using Microsoft.Data.Entity.Design.UI.ViewModels.Explorer;
 
-namespace Microsoft.Data.Entity.Design.UI.ViewModels.Explorer
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Explorer
 {
     // <summary>
     //     contains the ViewModel to support the Explorer View of the

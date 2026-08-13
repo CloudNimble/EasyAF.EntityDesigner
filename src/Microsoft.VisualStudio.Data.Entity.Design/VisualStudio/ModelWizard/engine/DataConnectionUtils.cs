@@ -7,12 +7,12 @@ using System.Diagnostics;
 using System.IO;
 using EnvDTE;
 using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.Data.Core;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.Data.Services;
 using Microsoft.VisualStudio.Data.Services.SupportEntities;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine
 {
     internal static class DataConnectionUtils
     {

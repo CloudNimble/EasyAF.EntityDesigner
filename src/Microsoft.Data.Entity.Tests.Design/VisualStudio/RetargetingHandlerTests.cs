@@ -12,6 +12,7 @@ using Moq;
 using Moq.Protected;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VSLangProj;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio
 {

@@ -6,7 +6,7 @@ using System.ComponentModel.Design;
 using System.Drawing.Design;
 using Microsoft.Data.Entity.Design.UI.Views.Dialogs;
 
-namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Editors
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Editors
 {
     internal class DebugViewerEditor : ObjectSelectorEditor
     {

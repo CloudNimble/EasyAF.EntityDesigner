@@ -2,7 +2,7 @@
 
 using Microsoft.Data.Entity.Design.Model.Entity;
 
-namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors
 {
     internal class EFAssociationSetDescriptor : EFAnnotatableElementDescriptor<AssociationSet>
     {

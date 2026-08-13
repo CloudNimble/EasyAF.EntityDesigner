@@ -6,10 +6,10 @@ using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
 using EnvDTE;
 using Microsoft.Data.Entity.Design.Common;
-using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 using WizardResources = Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Properties.Resources;
 
-namespace Microsoft.Data.Entity.Design.CodeGeneration
+namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration
 {
     internal class CodeFirstModelGenerator
     {

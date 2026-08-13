@@ -1,9 +1,7 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using Microsoft.Data.Entity.Design.Common;
-using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
 using WizardResources = Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Properties.Resources;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.WizardFramework;
 using System;
 using System.Collections.Generic;
@@ -15,6 +13,10 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Microsoft.VisualStudio.PlatformUI;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.gui;
 
 namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Gui
 {

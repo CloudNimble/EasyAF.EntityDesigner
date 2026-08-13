@@ -3,7 +3,11 @@
   <PropertyGroup>
     <!-- Clears the net48 default from Directory.Build.props so TargetFrameworks below applies. -->
     <TargetFramework></TargetFramework>
-    <TargetFrameworks>net48;net10.0</TargetFrameworks>
+    <!-- net10.0-windows, not net10.0: the Modeling SDK assemblies this consumes are WinForms and WPF based, so the
+         .NET 10 target needs the Windows Desktop framework reference to resolve them at runtime. -->
+    <TargetFrameworks>net48;net10.0-windows</TargetFrameworks>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
     <RuntimeIdentifier></RuntimeIdentifier>
     <!-- Directory.Build.props flattens output, which collides when multi-targeting. -->
     <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>

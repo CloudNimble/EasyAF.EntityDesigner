@@ -4,7 +4,7 @@ using Microsoft.Data.Entity.Design.Common;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Refactoring;
 
-namespace Microsoft.Data.Entity.Design.Refactoring
+namespace Microsoft.VisualStudio.Data.Entity.Design.Refactoring
 {
     internal class EFRenameContributorInput : ContributorInput
     {

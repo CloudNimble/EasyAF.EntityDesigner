@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using EnvDTE;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.Package
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package
 {
     internal class LocalDataUtil
     {

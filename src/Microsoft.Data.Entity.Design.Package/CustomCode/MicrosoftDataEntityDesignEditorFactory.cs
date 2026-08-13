@@ -9,15 +9,16 @@ using System.Xml;
 using EnvDTE;
 using EnvDTE80;
 using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
-using Microsoft.Data.Entity.Design.VisualStudio.SingleFileGenerator;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Modeling.Shell;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using VSLangProj80;
 using VsWebSite;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.SingleFileGenerator;
 
 namespace Microsoft.Data.Entity.Design.Package
 {

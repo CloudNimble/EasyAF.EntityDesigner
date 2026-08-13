@@ -7,7 +7,7 @@ using System.Globalization;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace Microsoft.Data.Entity.Design.UI.ViewModels
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Dialog
 {
     // <summary>
     //     A validation rule that makes use of the business objects IDataErrorInfo interface is applied at the property level

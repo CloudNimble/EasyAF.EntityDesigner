@@ -4,10 +4,7 @@ using System;
 using EnvDTE;
 using Microsoft.Data.Entity.Design.Common;
 using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
-using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Gui;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Moq;
 using Moq.Protected;
 using System.Collections.Generic;
@@ -18,6 +15,9 @@ using VSLangProj;
 using VsWebSite;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Gui
 {

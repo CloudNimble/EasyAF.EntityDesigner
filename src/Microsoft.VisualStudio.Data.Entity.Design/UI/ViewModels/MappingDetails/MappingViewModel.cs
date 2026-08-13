@@ -3,7 +3,7 @@
 using System;
 using Microsoft.Data.Entity.Design.Base.Context;
 
-namespace Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails
 {
     // <summary>
     //     Contains the ViewModel to support the Mapping Details View.  The root node may

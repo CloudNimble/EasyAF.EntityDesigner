@@ -3,8 +3,9 @@
 using System;
 using System.Diagnostics;
 using Microsoft.Data.Entity.Design.VersioningFacade;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine
 {
     internal class InitialModelContentsFactory : IInitialModelContentsFactory
     {

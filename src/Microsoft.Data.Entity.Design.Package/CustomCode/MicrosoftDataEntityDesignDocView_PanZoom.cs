@@ -12,6 +12,7 @@ using Microsoft.Data.Entity.Design.Dsl.View.ContextMenu;
 using Microsoft.Data.Entity.Design.Dsl.View.Controls;
 using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 using Microsoft.VisualStudio.Imaging;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Shell;

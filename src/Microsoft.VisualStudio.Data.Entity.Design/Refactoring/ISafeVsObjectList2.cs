@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace Microsoft.Data.Entity.Design.Refactoring
+namespace Microsoft.VisualStudio.Data.Entity.Design.Refactoring
 {
     // <summary>
     //     Implements a safer version of IVsObjectList for types that do no implement IVsCoTaskMemFreeMyStrings. Types that do not implement IVsCoTaskMemFreeMyStrings will

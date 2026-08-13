@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.Data.Entity.Design.Model.Database;
-using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine;
 using Microsoft.Internal.Performance;
 using Microsoft.WizardFramework;
 

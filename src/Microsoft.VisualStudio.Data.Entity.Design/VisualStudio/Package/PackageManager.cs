@@ -3,12 +3,16 @@
 using System;
 using System.Diagnostics;
 using System.Globalization;
+using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.UI.Views.MappingDetails;
+using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails;
 using Microsoft.VisualStudio.Shell.Interop;
+using Resources = Microsoft.Data.Entity.Design.Resources;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.Package
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package
 {
     internal interface IEdmPackage : IXmlDesignerPackage
     {

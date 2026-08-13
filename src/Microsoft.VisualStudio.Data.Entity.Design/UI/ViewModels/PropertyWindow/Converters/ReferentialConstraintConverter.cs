@@ -4,9 +4,9 @@ using System;
 using System.ComponentModel;
 using System.Globalization;
 using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors;
 
-namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters
 {
     internal class ReferentialConstraintConverter : TypeConverter
     {

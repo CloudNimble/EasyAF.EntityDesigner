@@ -3,11 +3,11 @@
 using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.UI.Views.Dialogs;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Common;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.OLE.Interop;
 
-namespace Microsoft.Data.Entity.Design.Refactoring
+namespace Microsoft.VisualStudio.Data.Entity.Design.Refactoring
 {
     internal class RefactorEFObject
     {

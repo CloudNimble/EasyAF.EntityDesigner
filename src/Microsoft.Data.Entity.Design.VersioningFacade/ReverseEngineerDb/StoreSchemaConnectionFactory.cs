@@ -20,6 +20,11 @@ namespace Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb
 {
     internal class StoreSchemaConnectionFactory
     {
+#if NET
+        private const string SqlClientInvariantName = "System.Data.SqlClient";
+        private static bool _sqlClientRegistrationChecked;
+#endif
+
         /// <summary>
         ///     Creates an EntityConnection loaded with the providers metadata for the latest available store schema.
         ///     Note that the targetEntityFrameworkVersion parameter uses internal EntityFramework version numbers as
@@ -72,6 +77,8 @@ namespace Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb
             Debug.Assert(!string.IsNullOrWhiteSpace(connectionString), "connectionString cannot be null or empty");
             Debug.Assert(EntityFrameworkVersion.IsValidVersion(targetSchemaVersion), "invalid targetSchemaVersion");
 
+            EnsureSqlClientRegistered();
+
             SystemDataCommon.DbProviderFactory factory;
             try
             {
@@ -108,6 +115,39 @@ namespace Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb
                 providerConnection);
         }
         
+        /// <summary>
+        ///     Registers the SQL Server ADO.NET provider factory when the runtime has no ambient registration for it.
+        /// </summary>
+        /// <remarks>
+        ///     .NET Framework discovers provider factories through machine.config, so nothing is needed there. .NET
+        ///     Core and later have no such file: a factory is only resolvable once something calls RegisterFactory,
+        ///     and without it <see cref="SystemDataCommon.DbProviderFactories.GetFactory(string)" /> throws for a name
+        ///     as ordinary as "System.Data.SqlClient". Registering here keeps headless callers - the CLI, tests -
+        ///     working without every host having to know to do it. Registration is skipped when the name already
+        ///     resolves, so a host that registered its own factory keeps it.
+        /// </remarks>
+        private static void EnsureSqlClientRegistered()
+        {
+#if NET
+            if (_sqlClientRegistrationChecked)
+            {
+                return;
+            }
+
+            _sqlClientRegistrationChecked = true;
+
+            try
+            {
+                SystemDataCommon.DbProviderFactories.GetFactory(SqlClientInvariantName);
+            }
+            catch (ArgumentException)
+            {
+                SystemDataCommon.DbProviderFactories.RegisterFactory(
+                    SqlClientInvariantName, System.Data.SqlClient.SqlClientFactory.Instance);
+            }
+#endif
+        }
+
         private static string ReplaceMdsKeywords(string connectionString)
         {
             connectionString = connectionString.Replace("Multiple Active Result Sets=", "MultipleActiveResultSets=")

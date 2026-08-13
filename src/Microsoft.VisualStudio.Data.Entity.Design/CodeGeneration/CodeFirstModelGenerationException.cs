@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using System.Runtime.Serialization;
 
-namespace Microsoft.Data.Entity.Design.CodeGeneration
+namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration
 {
     [Serializable]
     internal class CodeFirstModelGenerationException : Exception

@@ -7,9 +7,11 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Windows.Forms;
 using EnvDTE;
-using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
 using WizardResources = Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Properties.Resources;
 using Microsoft.WizardFramework;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.gui;
 
 namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Gui
 {

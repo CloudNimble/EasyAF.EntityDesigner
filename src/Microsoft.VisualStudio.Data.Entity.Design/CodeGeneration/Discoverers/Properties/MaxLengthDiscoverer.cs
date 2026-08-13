@@ -1,0 +1,44 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using System.Data.Entity.Core.Metadata.Edm;
+using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
+using System.Linq;
+using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
+using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Extensions;
+using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration;
+using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration.Properties;
+
+namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Discoverers.Properties
+{
+    internal class MaxLengthDiscoverer : LengthDiscovererBase
+    {
+        public override IConfiguration Discover(EdmProperty property, DbModel model)
+        {
+            Debug.Assert(property != null, "property is null.");
+            Debug.Assert(model != null, "model is null.");
+
+            if (!_lengthTypes.Contains(property.PrimitiveType.PrimitiveTypeKind))
+            {
+                // Doesn't apply
+                return null;
+            }
+
+            if (property.IsMaxLength
+                || !property.MaxLength.HasValue
+                || (property.MaxLength.Value == 128 && property.IsKey()))
+            {
+                // By convention
+                return null;
+            }
+
+            var configuration = property.PrimitiveType.PrimitiveTypeKind == PrimitiveTypeKind.String
+                ? new MaxLengthStringConfiguration()
+                : new MaxLengthConfiguration();
+            configuration.MaxLength = property.MaxLength.Value;
+
+            return configuration;
+        }
+    }
+}
+

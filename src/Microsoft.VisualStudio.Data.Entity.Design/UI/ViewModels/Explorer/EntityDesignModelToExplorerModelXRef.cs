@@ -6,8 +6,9 @@ using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Designer;
 using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.UI.ViewModels.Explorer;
 
-namespace Microsoft.Data.Entity.Design.UI.ViewModels.Explorer
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Explorer
 {
     internal class EntityDesignModelToExplorerModelXRef : ModelToExplorerModelXRef
     {

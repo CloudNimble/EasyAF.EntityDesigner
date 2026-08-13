@@ -4,8 +4,8 @@ using Microsoft.Data.Entity.Design.Dsl.Rules;
 using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.UI.Views;
 using Microsoft.Data.Entity.Design.UI.Views.Dialogs;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Views;
 
 namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
 {

@@ -2,7 +2,7 @@
 
 using System.Windows.Forms;
 
-namespace Microsoft.Data.Entity.Design.UI.Views.Controls
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Controls
 {
     // <summary>
     //     This class overrides the default behavior of the Up and Down arrow (cursor) keys on a radio button to call an event handler. This

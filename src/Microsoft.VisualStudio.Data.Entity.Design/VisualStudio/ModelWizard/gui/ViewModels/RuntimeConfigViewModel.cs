@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using WizardResources = Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Properties.Resources;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Gui.ViewModels
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.gui.ViewModels
 {
     internal class RuntimeConfigViewModel
     {

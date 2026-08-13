@@ -6,12 +6,13 @@ using System.Diagnostics;
 using System.IO;
 using EnvDTE;
 using EnvDTE80;
+using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Eventing;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.TemplateWizard;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard
 {
     /// <summary>
     ///     This API supports the Entity Framework infrastructure and is not intended to be used directly from your code.

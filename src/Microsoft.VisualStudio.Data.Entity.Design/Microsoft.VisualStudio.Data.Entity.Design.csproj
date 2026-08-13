@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>Microsoft.Data.Entity.Design</RootNamespace>
+    <RootNamespace>Microsoft.VisualStudio.Data.Entity.Design</RootNamespace>
     <AssemblyName>Microsoft.VisualStudio.Data.Entity.Design</AssemblyName>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>

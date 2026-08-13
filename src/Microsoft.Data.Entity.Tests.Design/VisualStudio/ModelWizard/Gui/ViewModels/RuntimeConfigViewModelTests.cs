@@ -3,9 +3,9 @@
 using System;
 using System.Linq;
 using FluentAssertions;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Gui.ViewModels;
 using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Properties;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.gui.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Gui.ViewModels

@@ -17,13 +17,17 @@ using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Entity.Design.Model.Mapping;
 using Microsoft.Data.Entity.Design.UI.Commands;
-using Microsoft.Data.Entity.Design.UI.Util;
 using Microsoft.Data.Entity.Design.UI.ViewModels;
 using Microsoft.Data.Entity.Design.UI.ViewModels.Explorer;
 using Microsoft.VisualStudio.Shell;
 using Key = System.Windows.Input.Key;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Explorer;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Util;
+using Microsoft.Data.Entity.Design.UI.Views;
+using Microsoft.Data.Entity.Design.UI.Views.Explorer;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Dialog;
 
-namespace Microsoft.Data.Entity.Design.UI.Views.Explorer
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Explorer
 {
     internal class EntityDesignExplorerFrame : ExplorerFrame
     {
@@ -272,7 +276,7 @@ namespace Microsoft.Data.Entity.Design.UI.Views.Explorer
                 {
                     CommandProcessorContext cpc = new CommandProcessorContext(
                         Context, EfiTransactionOriginator.ExplorerWindowOriginatorId,
-                        Design.Resources.Tx_AddComplexType, null, context);
+                        Microsoft.Data.Entity.Design.Resources.Tx_AddComplexType, null, context);
                     var complexType = CreateComplexTypeCommand.CreateComplexTypeWithDefaultName(cpc);
                     Debug.Assert(complexType != null, "Creating ComplexType failed");
                     NavigateToElementAndPutInRenameMode(complexType);
@@ -286,7 +290,7 @@ namespace Microsoft.Data.Entity.Design.UI.Views.Explorer
                         CommandProcessorContext cpc = new CommandProcessorContext(
                             Context,
                             EfiTransactionOriginator.ExplorerWindowOriginatorId,
-                            Design.Resources.Tx_CreateScalarProperty, null, context);
+                            Microsoft.Data.Entity.Design.Resources.Tx_CreateScalarProperty, null, context);
                         var property = CreateComplexTypePropertyCommand.CreateDefaultProperty(
                             cpc, complexType,
                             ModelConstants.DefaultPropertyType);
@@ -309,7 +313,7 @@ namespace Microsoft.Data.Entity.Design.UI.Views.Explorer
                         CommandProcessorContext cpc = new CommandProcessorContext(
                             Context,
                             EfiTransactionOriginator.ExplorerWindowOriginatorId,
-                            Design.Resources.Tx_CreateScalarProperty, null, context);
+                            Microsoft.Data.Entity.Design.Resources.Tx_CreateScalarProperty, null, context);
                         var enumType = CreateEnumTypeCommand.CreateEnumTypeWithDefaultName(cpc);
                         Debug.Assert(enumType != null, "Creating Enum failed");
                         NavigateToElementAndPutInRenameMode(enumType);
@@ -325,7 +329,7 @@ namespace Microsoft.Data.Entity.Design.UI.Views.Explorer
                         CommandProcessorContext cpc = new CommandProcessorContext(
                             Context,
                             EfiTransactionOriginator.ExplorerWindowOriginatorId,
-                            Design.Resources.Tx_CreateDiagram, null, context);
+                            Microsoft.Data.Entity.Design.Resources.Tx_CreateDiagram, null, context);
                         var diagram = CreateDiagramCommand.CreateDiagramWithDefaultName(cpc);
                         Debug.Assert(diagram != null, "The selected ExplorerEFElementItem is not type of diagram.");
                         NavigateToElementAndPutInRenameMode(diagram);

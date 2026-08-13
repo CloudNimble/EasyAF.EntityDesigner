@@ -5,15 +5,19 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Eventing;
-using Microsoft.Data.Entity.Design.UI.ViewModels.Explorer;
 using Microsoft.Data.Entity.Design.UI.Views.Explorer;
+using Microsoft.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Explorer;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Explorer;
 using Microsoft.VisualStudio.Modeling.Shell;
+using Resources = Microsoft.Data.Entity.Design.Resources;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.Package
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package
 {
     [Guid(PackageConstants.guidExplorerWindowString)]
     internal class EntityDesignExplorerWindow : ExplorerWindow

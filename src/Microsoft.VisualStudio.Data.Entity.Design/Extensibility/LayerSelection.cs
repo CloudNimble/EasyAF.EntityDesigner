@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.UI;
 
-namespace Microsoft.Data.Entity.Design.Extensibility
+namespace Microsoft.VisualStudio.Data.Entity.Design.Extensibility
 {
     internal class LayerSelection : Selection
     {

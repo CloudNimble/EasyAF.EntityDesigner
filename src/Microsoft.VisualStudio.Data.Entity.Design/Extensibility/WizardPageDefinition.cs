@@ -2,7 +2,7 @@
 
 using Microsoft.WizardFramework;
 
-namespace Microsoft.Data.Entity.Design.Extensibility
+namespace Microsoft.VisualStudio.Data.Entity.Design.Extensibility
 {
     internal class WizardPageDefinition
     {

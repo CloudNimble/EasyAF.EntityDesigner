@@ -3,7 +3,7 @@
 using System;
 using FluentAssertions;
 using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Resources = Microsoft.Data.Entity.Design.Resources;
 

@@ -8,9 +8,9 @@ using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Input;
 using System.Windows.Controls;
-using Microsoft.Data.Entity.Design.UI.ViewModels;
 using Microsoft.VisualStudio.PlatformUI;
 using EntityDesignerResources = Microsoft.Data.Entity.Design.Resources;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Dialog;
 
 namespace Microsoft.Data.Entity.Design.UI.Views.Dialogs
 {

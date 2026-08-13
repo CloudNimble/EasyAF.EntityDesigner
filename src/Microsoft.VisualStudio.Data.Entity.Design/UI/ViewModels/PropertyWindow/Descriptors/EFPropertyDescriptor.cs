@@ -5,9 +5,10 @@ using Microsoft.Data.Entity.Design.Core.Controls;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters;
+using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters;
 
-namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors
 {
     internal class EFPropertyDescriptor : EFPropertyDescriptorBase<ConceptualProperty>
     {

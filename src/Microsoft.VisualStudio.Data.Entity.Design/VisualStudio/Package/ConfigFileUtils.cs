@@ -10,8 +10,11 @@ using Microsoft.Data.Entity.Design.Common;
 using System.IO;
 using Microsoft.VisualStudio.TextManager.Interop;
 using System.Globalization;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Microsoft.Data.Entity.Design;
+using Microsoft.Data.Entity.Design.VisualStudio;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.Package
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package
 {
     internal class ConfigFileUtils
     {

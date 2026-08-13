@@ -4,8 +4,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Data.Entity.Design.Model;
+using Microsoft.Data.Entity.Design.UI;
 
-namespace Microsoft.Data.Entity.Design.UI.Views.EntityDesigner
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.EntityDesigner
 {
     internal class EntityDesignerSelection : Selection
     {

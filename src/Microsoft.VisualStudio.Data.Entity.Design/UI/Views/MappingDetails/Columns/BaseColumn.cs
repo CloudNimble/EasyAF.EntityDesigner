@@ -5,10 +5,10 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using Microsoft.Data.Entity.Design.Base.Shell;
-using Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails;
 using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails;
 
-namespace Microsoft.Data.Entity.Design.UI.Views.MappingDetails.Columns
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails.Columns
 {
     // <summary>
     //     Abstract base class for all Mapping XyzColumn classes.

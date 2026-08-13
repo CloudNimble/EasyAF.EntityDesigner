@@ -8,7 +8,7 @@ using System.Diagnostics;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine
 {
     internal class EdmxModelBuilderEngine : ModelBuilderEngine
     {

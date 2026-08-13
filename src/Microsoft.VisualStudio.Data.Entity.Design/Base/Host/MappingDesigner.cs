@@ -3,7 +3,7 @@
 using System;
 using Microsoft.Data.Entity.Design.Base.Context;
 
-namespace Microsoft.Data.Entity.Design.Base.Host
+namespace Microsoft.VisualStudio.Data.Entity.Design.Base.Host
 {
     // <summary>
     //     The mapping designer class provides a designer.  Most

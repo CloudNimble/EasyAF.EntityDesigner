@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TextTemplating;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.Directives
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.CustomDirectiveProcessor
 {
     // <summary>
     //     This is an empty directive processor only meant to support old versions of the T4

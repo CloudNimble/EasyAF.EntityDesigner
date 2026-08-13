@@ -2,9 +2,9 @@
 
 using System.Collections.Generic;
 using System.Data.Entity.Core.Metadata.Edm;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.Package
 {

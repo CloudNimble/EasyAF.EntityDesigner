@@ -16,15 +16,26 @@ namespace Microsoft.Data.Entity.Design.Model.Validation
         private static readonly FieldInfo _sourceFieldInfo;
         private static readonly FieldInfo _parentFieldInfo;
 
+        private const BindingFlags FieldFlags = BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance;
+
         static XNodeReaderLineNumberService()
         {
             var xnodeReaderType = Assembly.GetAssembly(typeof(XObject)).GetType("System.Xml.Linq.XNodeReader");
+            if (xnodeReaderType is null)
+            {
+                return;
+            }
 
-            _sourceFieldInfo = xnodeReaderType.GetField(
-                "source", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
-
-            _parentFieldInfo = xnodeReaderType.GetField(
-                "parent", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+#if NETSTANDARD2_0
+            // A .NET Standard build can be loaded by either runtime, so the name cannot be decided here: .NET
+            // Framework calls these fields "source" and "parent", while .NET Core and later prefix them with an
+            // underscore. Probe the underscore form first, since that is the runtime still being maintained.
+            _sourceFieldInfo = xnodeReaderType.GetField("_source", FieldFlags) ?? xnodeReaderType.GetField("source", FieldFlags);
+            _parentFieldInfo = xnodeReaderType.GetField("_parent", FieldFlags) ?? xnodeReaderType.GetField("parent", FieldFlags);
+#else
+            _sourceFieldInfo = xnodeReaderType.GetField("_source", FieldFlags);
+            _parentFieldInfo = xnodeReaderType.GetField("_parent", FieldFlags);
+#endif
         }
 
         internal XNodeReaderLineNumberService(XmlModelProvider xmlModelProvider, XmlReader xmlReader, Uri uri)

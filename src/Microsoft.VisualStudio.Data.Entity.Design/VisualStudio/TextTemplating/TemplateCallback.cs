@@ -3,9 +3,10 @@
 using System;
 using System.Globalization;
 using System.Text;
+using Microsoft.Data.Entity.Design;
 using Microsoft.VisualStudio.TextTemplating.VSHost;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.TextTemplating
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.TextTemplating
 {
     // <summary>
     //     TemplateCallback is used by the TextTemplatingService to handle error messages

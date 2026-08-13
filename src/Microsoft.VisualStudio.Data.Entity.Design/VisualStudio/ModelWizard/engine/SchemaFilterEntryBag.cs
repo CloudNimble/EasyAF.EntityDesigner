@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine
 {
     internal class SchemaFilterEntryBag
     {

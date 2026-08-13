@@ -9,7 +9,7 @@ using System.Windows.Controls;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Validation;
-using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 using Microsoft.VisualStudio.PlatformUI;
 using XmlDesignerBaseResources = Microsoft.Data.Tools.XmlDesignerBase.Resources;
 

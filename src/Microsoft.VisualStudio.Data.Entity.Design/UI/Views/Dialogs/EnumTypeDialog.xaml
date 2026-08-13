@@ -7,7 +7,7 @@
                  xmlns:vs="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0"
                  xmlns:shell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
                  xmlns:ded="clr-namespace:Microsoft.Data.Entity.Design"
-                 xmlns:vm="clr-namespace:Microsoft.Data.Entity.Design.UI.ViewModels"
+                 xmlns:vm="clr-namespace:Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Dialog"
                  xmlns:core-controls="clr-namespace:Microsoft.Data.Entity.Design.Core.Controls;assembly=Microsoft.VisualStudio.Data.Tools.Design.XmlCore"
                  mc:Ignorable="d"
                  d:DesignWidth="450"

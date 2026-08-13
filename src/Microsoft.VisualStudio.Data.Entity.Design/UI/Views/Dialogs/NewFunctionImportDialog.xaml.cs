@@ -19,14 +19,15 @@ using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Mapping;
 using Microsoft.Data.Entity.Design.Model.Validation;
 using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Entity.Design.VisualStudio.Data.Sql;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Common;
 using Microsoft.VisualStudio.Data.Services;
 using Microsoft.VisualStudio.PlatformUI;
 using ComplexType = Microsoft.Data.Entity.Design.Model.Entity.ComplexType;
 using EntityType = Microsoft.Data.Entity.Design.Model.Entity.EntityType;
 using XmlDesignerBaseResources = Microsoft.Data.Tools.XmlDesignerBase.Resources;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Data.Sql;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 
 namespace Microsoft.Data.Entity.Design.UI.Views.Dialogs
 {

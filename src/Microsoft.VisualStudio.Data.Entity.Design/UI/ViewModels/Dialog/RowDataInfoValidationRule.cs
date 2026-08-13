@@ -6,7 +6,7 @@ using System.Text;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace Microsoft.Data.Entity.Design.UI.ViewModels
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Dialog
 {
     internal class RowDataInfoValidationRule : ValidationRule
     {

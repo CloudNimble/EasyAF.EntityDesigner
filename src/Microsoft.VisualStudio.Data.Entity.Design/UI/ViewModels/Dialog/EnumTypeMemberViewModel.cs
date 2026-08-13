@@ -6,11 +6,13 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Validation;
+using Resources = Microsoft.Data.Entity.Design.Resources;
 
-namespace Microsoft.Data.Entity.Design.UI.ViewModels
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Dialog
 {
     internal class EnumTypeMemberViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
@@ -130,7 +132,7 @@ namespace Microsoft.Data.Entity.Design.UI.ViewModels
                         if (type != null
                             && ModelHelper.IsValidValueForType(type, Value) == false)
                         {
-                            sb.AppendLine(String.Format(CultureInfo.CurrentCulture, Model.Resources.BadEnumTypeMemberValue, Value));
+                            sb.AppendLine(String.Format(CultureInfo.CurrentCulture, Microsoft.Data.Entity.Design.Model.Resources.BadEnumTypeMemberValue, Value));
                         }
                     }
                 }

@@ -6,7 +6,7 @@ using System.Data.Entity.Infrastructure.Design;
 using System.Diagnostics;
 using System.Reflection;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio
 {
     // <summary>
     //     Used for design-time scenarios where the user's code needs to be executed inside

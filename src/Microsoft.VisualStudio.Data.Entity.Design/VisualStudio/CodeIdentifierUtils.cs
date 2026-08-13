@@ -6,7 +6,7 @@ using Microsoft.CSharp;
 using Microsoft.Data.Entity.Design.Common;
 using Microsoft.VisualBasic;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio
 {
     internal class CodeIdentifierUtils
     {

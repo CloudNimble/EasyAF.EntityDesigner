@@ -6,11 +6,13 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
-using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Gui.ViewModels;
 using WizardResources = Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Properties.Resources;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.WizardFramework;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.gui.ViewModels;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.gui;
 
 namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Gui
 {

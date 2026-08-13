@@ -14,13 +14,13 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Moq;
 using Moq.Protected;
 using Microsoft.Data.Entity.Tests.Design.TestHelpers;
-using Microsoft.Data.Entity.Design.VisualStudio;
 using VSLangProj;
 using VSLangProj80;
 using VsWebSite;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using DbProviderServices = System.Data.Entity.Core.Common.DbProviderServices;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio
 {

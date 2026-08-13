@@ -10,12 +10,12 @@ using EnvDTE;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.Shell.Interop;
 using Command = Microsoft.Data.Entity.Design.Model.Commands.Command;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.Model.Commands
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Model.Commands
 {
     // <summary>
     //     Migrate diagrams node from EDMX file to a separate file.

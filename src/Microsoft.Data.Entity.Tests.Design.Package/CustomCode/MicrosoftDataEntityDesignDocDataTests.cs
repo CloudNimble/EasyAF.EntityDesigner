@@ -12,6 +12,7 @@ using VSLangProj;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using Resources = Microsoft.Data.Entity.Design.Resources;
+using Microsoft.VisualStudio.Data.Entity.Design.Extensibility;
 
 namespace Microsoft.Data.Entity.Tests.DesignPackage.CustomCode
 {

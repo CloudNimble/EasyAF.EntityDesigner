@@ -4,15 +4,19 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Entity.Design.Model.Mapping;
 using Microsoft.Data.Entity.Design.Model.Visitor;
-using Microsoft.Data.Entity.Design.UI.Util;
+using Microsoft.Data.Entity.Design.UI;
+using Microsoft.Data.Entity.Design.UI.ViewModels.Explorer;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Util;
+using Resources = Microsoft.Data.Entity.Design.Resources;
 
-namespace Microsoft.Data.Entity.Design.UI.ViewModels.Explorer
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Explorer
 {
     // <summary>
     //     This class provides a wrapper around ExplorerViewModel so as to provide

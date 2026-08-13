@@ -6,9 +6,11 @@ using System.Diagnostics;
 using System.IO;
 using System.Xml.Linq;
 using EnvDTE;
-using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.Data.Entity.Design;
+using Microsoft.Data.Entity.Design.Extensibility;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 
-namespace Microsoft.Data.Entity.Design.Extensibility
+namespace Microsoft.VisualStudio.Data.Entity.Design.Extensibility
 {
     internal class ModelConversionContextImpl : ModelConversionExtensionContext, IDisposable
     {

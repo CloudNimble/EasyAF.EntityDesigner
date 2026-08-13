@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Microsoft.Data.Entity.Design.UI.Views.Dialogs
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs
 {
     // <summary>
     //     WPF Menus are not bound to the visual tree. A way to get around this and still

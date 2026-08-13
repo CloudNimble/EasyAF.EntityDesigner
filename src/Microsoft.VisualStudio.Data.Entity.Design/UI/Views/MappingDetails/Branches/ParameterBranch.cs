@@ -3,10 +3,11 @@
 using Microsoft.Data.Entity.Design.Base.Shell;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails.Functions;
 using Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails.Functions;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails;
 
-namespace Microsoft.Data.Entity.Design.UI.Views.MappingDetails.Branches
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails.Branches
 {
     // <summary>
     //     This branch shows the scalar property mappings.

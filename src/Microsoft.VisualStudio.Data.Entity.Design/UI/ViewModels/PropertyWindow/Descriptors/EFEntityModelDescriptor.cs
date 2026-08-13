@@ -4,6 +4,7 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
+using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Entity.Design.Core.Controls;
 using Microsoft.Data.Entity.Design.Model;
@@ -11,13 +12,16 @@ using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Designer;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Eventing;
-using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters;
+using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow;
 using Microsoft.Data.Entity.Design.VersioningFacade;
 using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
+using Resources = Microsoft.Data.Entity.Design.Resources;
 
-namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors
 {
     internal class EFEntityModelDescriptor : EFAnnotatableElementDescriptor<ConceptualEntityModel>,
                                              IEFConnectionDesignerDescriptorAddOn,
@@ -57,7 +61,7 @@ namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors
                         var project = VSHelpers.GetProjectForDocument(artifact.Uri.LocalPath, PackageManager.Package);
                         if (project != null)
                         {
-                            var appType = VsUtils.GetApplicationType(Services.ServiceProvider, project);
+                            var appType = VsUtils.GetApplicationType(Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Services.ServiceProvider, project);
                             if (appType == VisualStudioProjectSystem.Website)
                             {
                                 var mapDefault = ConnectionManager.GetMetadataArtifactProcessingDefault();
@@ -473,7 +477,7 @@ namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors
             }
 
             var originalPath = TypedEFElement.Artifact.Uri.LocalPath;
-            var project = VSHelpers.GetProjectForDocument(originalPath, Services.ServiceProvider);
+            var project = VSHelpers.GetProjectForDocument(originalPath, Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Services.ServiceProvider);
             var entityFrameworkAssemblyVersion = VsUtils.GetInstalledEntityFrameworkAssemblyVersion(project);
             return entityFrameworkAssemblyVersion != null && entityFrameworkAssemblyVersion >= RuntimeVersion.Version6;
         }

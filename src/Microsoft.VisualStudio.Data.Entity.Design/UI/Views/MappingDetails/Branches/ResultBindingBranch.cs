@@ -1,11 +1,13 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Base.Shell;
 using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails.Functions;
 using Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails.Functions;
+using Resources = Microsoft.Data.Entity.Design.Resources;
 
-namespace Microsoft.Data.Entity.Design.UI.Views.MappingDetails.Branches
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails.Branches
 {
     // <summary>
     //     This branch displays all of the conditions in for a table/entity mapping.  It also displays a

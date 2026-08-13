@@ -11,7 +11,7 @@ using EnvDTE80;
 using Microsoft.Data.Entity.Design.Common;
 using Microsoft.Data.Tools.XmlDesignerBase.Base.Util;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard
 {
     // <summary>
     //     Handles adding the DbContext item templates for code generation automatically if

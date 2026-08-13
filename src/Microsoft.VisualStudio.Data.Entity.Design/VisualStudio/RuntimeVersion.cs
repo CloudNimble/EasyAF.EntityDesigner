@@ -3,9 +3,10 @@
 using System;
 using System.Diagnostics;
 using System.Globalization;
+using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.VersioningFacade;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio
 {
     // <summary>
     //     Class for reasoning about an entity framework runtime version.

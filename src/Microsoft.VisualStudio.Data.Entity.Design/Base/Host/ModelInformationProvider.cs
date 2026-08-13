@@ -2,7 +2,7 @@
 
 using Microsoft.Data.Tools.XmlDesignerBase.Model;
 
-namespace Microsoft.Data.Entity.Design.Base.Host
+namespace Microsoft.VisualStudio.Data.Entity.Design.Base.Host
 {
     // <summary>
     //     The designer interacts with files through an abstract layer

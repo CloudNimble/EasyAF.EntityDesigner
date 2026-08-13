@@ -3,7 +3,7 @@
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Forms.Design;
-using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 using Microsoft.VisualStudio.PlatformUI;
 
 namespace Microsoft.Data.Entity.Design.UI.Views.Dialogs

@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using Microsoft.Data.Entity.Design.Model.Database;
 using Microsoft.Data.Entity.Design.Model.Entity;
 
-namespace Microsoft.Data.Entity.Design.UI.Util
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Util
 {
     internal struct EntityDesignNewFunctionImportResult
     {

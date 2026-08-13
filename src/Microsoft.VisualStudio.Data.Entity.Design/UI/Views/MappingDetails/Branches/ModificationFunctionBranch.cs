@@ -4,10 +4,11 @@ using System.Collections;
 using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Base.Shell;
 using Microsoft.Data.Entity.Design.Model.Mapping;
-using Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails.Functions;
 using Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails.Functions;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails;
 
-namespace Microsoft.Data.Entity.Design.UI.Views.MappingDetails.Branches
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails.Branches
 {
     // <summary>
     //     This branch shows 3 lines, one each for an Insert, Update and Delete function.

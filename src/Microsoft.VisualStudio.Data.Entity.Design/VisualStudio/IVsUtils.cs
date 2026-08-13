@@ -7,7 +7,7 @@ using EnvDTE;
 using Microsoft.Data.Entity.Design.Common;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio
 {
     interface IVsUtils
     {

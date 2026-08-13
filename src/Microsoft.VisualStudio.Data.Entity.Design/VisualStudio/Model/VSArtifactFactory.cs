@@ -6,7 +6,7 @@ using System.IO;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Tools.XmlDesignerBase.Model;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.Model
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Model
 {
     internal class VSArtifactFactory : IEFArtifactFactory
     {

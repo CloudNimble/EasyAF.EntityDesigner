@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
 using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb;
-using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Gui
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.gui
 {
     // <summary>
     //     Given a set of TreeViews, this will map EntityStoreSchemaFilterEntries to tree nodes and vice versa.

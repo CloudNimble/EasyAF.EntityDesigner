@@ -4,9 +4,11 @@ using System.Diagnostics;
 using System.Xml.Linq;
 using EnvDTE;
 using Microsoft.Data.Entity.Design.Extensibility;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.Extensibility;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine
 {
     internal class UpdateModelFromDBExtensionDispatcher : ModelGenerationExtensionDispatcher
     {

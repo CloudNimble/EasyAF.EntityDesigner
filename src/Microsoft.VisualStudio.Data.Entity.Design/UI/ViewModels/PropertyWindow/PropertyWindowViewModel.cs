@@ -8,8 +8,9 @@ using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Designer;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors;
 
-namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow
 {
     // <summary>
     //     provides the information required for displaying

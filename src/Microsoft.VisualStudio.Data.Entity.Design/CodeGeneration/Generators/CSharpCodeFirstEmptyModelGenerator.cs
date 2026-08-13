@@ -4,7 +4,7 @@ using System.Data.Entity.Infrastructure;
 using System.Globalization;
 using WizardResources = Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Properties.Resources;
 
-namespace Microsoft.Data.Entity.Design.CodeGeneration.Generators
+namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Generators
 {
     internal class CSharpCodeFirstEmptyModelGenerator : IContextGenerator
     {

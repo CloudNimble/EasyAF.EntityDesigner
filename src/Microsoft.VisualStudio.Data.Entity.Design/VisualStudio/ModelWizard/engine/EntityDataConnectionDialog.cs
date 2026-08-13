@@ -9,7 +9,7 @@ using WizardResources = Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Pr
 using Microsoft.VisualStudio.Data.Core;
 using Microsoft.VisualStudio.Data.Services;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine
 {
     // <summary>
     //     A wrapper around IVsDataConnectionDialog to share functionality for

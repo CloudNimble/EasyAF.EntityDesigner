@@ -6,16 +6,18 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
+using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.UI.ViewModels;
 using Microsoft.Data.Entity.Design.UI.Views.Dialogs;
-using Microsoft.Data.Entity.Design.UI.Views.Explorer;
-using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Dialog;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Explorer;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Resources = Microsoft.Data.Entity.Design.Resources;
 
-namespace Microsoft.Data.Entity.Design.UI.Util
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Util
 {
     internal static class EntityDesignViewModelHelper
     {

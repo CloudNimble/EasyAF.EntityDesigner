@@ -21,11 +21,13 @@ using System.Windows.Forms;
 using System.Xml;
 using EnvDTE;
 using EnvDTE80;
+using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Common;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Design;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -39,8 +41,9 @@ using ConfigurationManager = System.Configuration.ConfigurationManager;
 using Constants = EnvDTE.Constants;
 using PrjKind = VSLangProj.PrjKind;
 using VSErrorHandler = Microsoft.VisualStudio.ErrorHandler;
+using Resources = Microsoft.Data.Entity.Design.Resources;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio
 {
     internal enum VisualStudioProjectSystem
     {

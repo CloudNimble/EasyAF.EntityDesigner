@@ -11,11 +11,11 @@ using System.Collections.Generic;
 using System.Reflection;
 using Microsoft.Data.Entity.Tests.Design.TestHelpers;
 using Microsoft.Data.Entity.Design;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using VSLangProj;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.Package
 {

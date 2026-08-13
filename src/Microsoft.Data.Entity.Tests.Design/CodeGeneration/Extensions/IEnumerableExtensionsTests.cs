@@ -2,10 +2,10 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using Microsoft.Data.Entity.Design.CodeGeneration.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using FluentAssertions;
+using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Extensions;
 
 namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration.Extensions
 {

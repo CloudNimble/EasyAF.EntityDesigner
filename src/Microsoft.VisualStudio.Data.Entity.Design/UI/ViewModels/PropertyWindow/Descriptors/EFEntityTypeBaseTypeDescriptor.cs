@@ -3,8 +3,9 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors;
 
-namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors
 {
     internal class EFEntityTypeBaseTypeDescriptor : AttributeDescriptor<EntityTypeBaseType>
     {

@@ -8,7 +8,7 @@ using Microsoft.Data.Entity.Design.DatabaseGeneration;
 using VSLangProj80;
 using VsWebSite;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine
 {
     internal class DatabaseGenerationAssemblyLoader : IAssemblyLoader
     {

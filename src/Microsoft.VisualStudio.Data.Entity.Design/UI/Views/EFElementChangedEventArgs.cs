@@ -2,7 +2,7 @@
 
 using System;
 
-namespace Microsoft.Data.Entity.Design.UI.Views
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views
 {
     internal class EFElementChangedEventArgs : EventArgs
     {

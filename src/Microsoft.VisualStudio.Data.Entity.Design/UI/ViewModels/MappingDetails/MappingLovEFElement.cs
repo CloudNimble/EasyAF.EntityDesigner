@@ -5,7 +5,7 @@ using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Entity;
 
-namespace Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails
 {
     // <summary>
     //     This class is used to hold on object to display in a list-of-values (LOV).

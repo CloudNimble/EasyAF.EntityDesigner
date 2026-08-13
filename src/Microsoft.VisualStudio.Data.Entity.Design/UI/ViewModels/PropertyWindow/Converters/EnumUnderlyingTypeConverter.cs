@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.Data.Entity.Design.Core.Controls;
 using Microsoft.Data.Entity.Design.Model;
 
-namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters
 {
     internal class EnumUnderlyingTypeConverter : FixedListConverter<string>
     {

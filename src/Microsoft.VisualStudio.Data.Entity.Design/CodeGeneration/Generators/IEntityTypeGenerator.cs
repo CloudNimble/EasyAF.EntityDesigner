@@ -3,7 +3,7 @@
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Infrastructure;
 
-namespace Microsoft.Data.Entity.Design.CodeGeneration
+namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Generators
 {
     internal interface IEntityTypeGenerator
     {

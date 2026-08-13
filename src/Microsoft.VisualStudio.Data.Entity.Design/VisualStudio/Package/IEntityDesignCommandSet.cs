@@ -4,7 +4,7 @@ using System.ComponentModel.Design;
 using Microsoft.Data.Entity.Design.Extensibility;
 using Microsoft.VisualStudio.Modeling.Shell;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.Package
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package
 {
     internal interface IEntityDesignCommandSet
     {

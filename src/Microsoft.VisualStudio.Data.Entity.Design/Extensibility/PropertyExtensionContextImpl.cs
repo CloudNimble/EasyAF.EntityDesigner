@@ -3,10 +3,12 @@
 using System;
 using System.Diagnostics;
 using EnvDTE;
+using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Base.Context;
+using Microsoft.Data.Entity.Design.Extensibility;
 using Microsoft.Data.Entity.Design.Model.Eventing;
 
-namespace Microsoft.Data.Entity.Design.Extensibility
+namespace Microsoft.VisualStudio.Data.Entity.Design.Extensibility
 {
     // <summary>
     //     This class is used by Escher extensions to update annotation values in the EDMX.

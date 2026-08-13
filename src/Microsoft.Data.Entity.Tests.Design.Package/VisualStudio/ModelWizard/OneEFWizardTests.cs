@@ -3,12 +3,7 @@
 using System.Data.Entity.Infrastructure;
 using System.IO;
 using EnvDTE;
-using Microsoft.Data.Entity.Design.CodeGeneration;
 using Microsoft.Data.Entity.Design.Model.Validation;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard;
-using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.Data.Tools.XmlDesignerBase;
 using Microsoft.VisualStudio.Shell.Interop;
 using Moq;
@@ -22,6 +17,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using IOleServiceProvider = Microsoft.VisualStudio.OLE.Interop.IServiceProvider;
 using System.Reflection;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard
 {

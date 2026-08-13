@@ -39,7 +39,7 @@ namespace Microsoft.Data.Entity.Design.UI.Views.Dialogs {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Microsoft.Data.Entity.Design.UI.Views.Dialogs.DialogsResource", typeof(DialogsResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs.DialogsResource", typeof(DialogsResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

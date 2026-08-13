@@ -2,6 +2,7 @@
 
 using System.Windows.Forms;
 using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 
 namespace Microsoft.Data.Entity.Design.Dsl.Dialogs
 {

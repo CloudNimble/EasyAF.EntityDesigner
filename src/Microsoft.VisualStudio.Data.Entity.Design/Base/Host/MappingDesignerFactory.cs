@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-namespace Microsoft.Data.Entity.Design.Base.Host
+namespace Microsoft.VisualStudio.Data.Entity.Design.Base.Host
 {
     // <summary>
     //     This class defines an Escher service that provides a schema

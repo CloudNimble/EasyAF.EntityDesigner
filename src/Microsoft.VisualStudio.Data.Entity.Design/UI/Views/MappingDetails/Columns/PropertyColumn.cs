@@ -5,17 +5,19 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
+using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Base.Shell;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Eventing;
-using Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails;
-using Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails.Associations;
-using Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails.FunctionImports;
-using Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails.Functions;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails.Associations;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails.Functions;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails.FunctionImports;
+using Resources = Microsoft.Data.Entity.Design.Resources;
 
-namespace Microsoft.Data.Entity.Design.UI.Views.MappingDetails.Columns
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails.Columns
 {
     internal class PropertyColumn : BaseColumn
     {

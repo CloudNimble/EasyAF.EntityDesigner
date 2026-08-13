@@ -2,7 +2,7 @@
 
 using Microsoft.Data.Entity.Design.Model;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.Model
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Model
 {
     internal class VSArtifactSetFactory : IEFArtifactSetFactory
     {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine
 {
     // <summary>
     //     Aggregate the tables/views/sprocs for display in the wizard by connecting to

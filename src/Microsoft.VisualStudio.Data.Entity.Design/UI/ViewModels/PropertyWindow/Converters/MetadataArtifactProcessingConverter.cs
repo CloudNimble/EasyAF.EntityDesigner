@@ -1,11 +1,14 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Model.Designer;
-using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors;
+using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters;
 using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 
-namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters
 {
     internal class MetadataArtifactProcessingConverter : DynamicListConverter<string, EFEntityModelDescriptor>
     {
@@ -15,7 +18,7 @@ namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters
             var project = VSHelpers.GetProjectForDocument(documentPath, PackageManager.Package);
             if (project != null)
             {
-                var appType = VsUtils.GetApplicationType(Services.ServiceProvider, project);
+                var appType = VsUtils.GetApplicationType(Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Services.ServiceProvider, project);
                 if (appType != VisualStudioProjectSystem.Website)
                 {
                     AddMapping(

@@ -9,8 +9,9 @@ using EnvDTE80;
 using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Common;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Refactoring;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 
-namespace Microsoft.Data.Entity.Design.Refactoring
+namespace Microsoft.VisualStudio.Data.Entity.Design.Refactoring
 {
     internal static class CodeElementUtilities
     {

@@ -8,12 +8,14 @@ using System.IO;
 using System.Runtime.Remoting.Messaging;
 using System.Text.RegularExpressions;
 using EnvDTE;
+using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.DatabaseGeneration;
-using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
+using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.TextTemplating.VSHost;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.TextTemplating
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.TextTemplating
 {
     /// <summary>
     ///     Runs a T4 template through Visual Studio's text templating service.

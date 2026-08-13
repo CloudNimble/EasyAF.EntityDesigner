@@ -6,7 +6,7 @@ using Microsoft.Data.Entity.Design.Model.Database;
 using Microsoft.VisualStudio.Data.Services;
 using Microsoft.VisualStudio.Data.Services.SupportEntities;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.Data.Sql
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Data.Sql
 {
     internal class DataSchemaObject : IDataSchemaObject
     {

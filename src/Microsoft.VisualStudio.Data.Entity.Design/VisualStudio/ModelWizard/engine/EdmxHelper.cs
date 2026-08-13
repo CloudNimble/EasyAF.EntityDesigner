@@ -11,7 +11,7 @@ using System.Xml.Linq;
 using Microsoft.Data.Entity.Design.Common;
 using Microsoft.Data.Entity.Design.VersioningFacade.Serialization;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine
 {
     internal class EdmxHelper
     {

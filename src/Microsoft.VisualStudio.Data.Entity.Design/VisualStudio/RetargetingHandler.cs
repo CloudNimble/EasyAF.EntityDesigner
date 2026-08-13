@@ -6,10 +6,13 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Xml;
 using EnvDTE;
+using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Model;
+using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
+using Resources = Microsoft.Data.Entity.Design.Resources;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio
 {
     internal class RetargetingHandler
     {

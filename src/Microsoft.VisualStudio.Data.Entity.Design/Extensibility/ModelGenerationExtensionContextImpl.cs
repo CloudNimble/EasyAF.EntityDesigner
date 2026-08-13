@@ -3,8 +3,9 @@
 using System;
 using System.Xml.Linq;
 using EnvDTE;
+using Microsoft.Data.Entity.Design.Extensibility;
 
-namespace Microsoft.Data.Entity.Design.Extensibility
+namespace Microsoft.VisualStudio.Data.Entity.Design.Extensibility
 {
     internal class ModelGenerationExtensionContextImpl : ModelGenerationExtensionContext
     {

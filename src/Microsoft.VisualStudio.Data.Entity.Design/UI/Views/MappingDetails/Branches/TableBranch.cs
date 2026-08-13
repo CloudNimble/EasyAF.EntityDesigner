@@ -3,11 +3,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Base.Shell;
-using Microsoft.Data.Entity.Design.UI.ViewModels.MappingDetails.Tables;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails.Branches;
 using Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails.Tables;
 
-namespace Microsoft.Data.Entity.Design.UI.Views.MappingDetails.Branches
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails.Branches
 {
     // <summary>
     //     This branch shows a line for every table mapped for this entity type.  It also displays a
