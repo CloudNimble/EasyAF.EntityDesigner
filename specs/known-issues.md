@@ -8,7 +8,7 @@ Measured with `dotnet build -c Release --no-incremental` and `dotnet test -c Rel
 
 | Category | Count |
 |---|---|
-| Failing tests | 14 |
+| Failing tests | 13 |
 | Tests disabled with `[Ignore]` | 186 |
 | Tests that never run because of an invalid signature | 17 |
 | Build warnings | 181 |
@@ -59,18 +59,15 @@ System.InvalidOperationException: This is a reference assembly.
 
 `Microsoft.VisualStudio.Shell` resolves to a compile-only asset under .NET 10, so touching it at all throws. **Expected to be fixed by work item 4 of `dsl-shell-decoupling.md`**, which moves theming out of the Dsl project. Same root cause as issue 4.1 below.
 
-### 1.3 `DatabaseGenerationAssemblyLoader` null reference — 1 failure
+### 1.3 `DatabaseGenerationAssemblyLoader` null reference — FIXED
 
-`Microsoft.Data.Entity.Tests.Design` (net48): `AssemblyLoader_passed_WebsiteProject_can_find_correct_paths_to_DLLs`
+`AssemblyLoader_passed_WebsiteProject_can_find_correct_paths_to_DLLs` threw at the `foreach` over `vsWebSite.References`.
 
-```
-System.NullReferenceException
-   at DatabaseGenerationAssemblyLoader.CacheWebsiteReferences(VSWebSite vsWebSite)
-     DatabaseGenerationAssemblyLoader.cs:69
-   at DatabaseGenerationAssemblyLoader..ctor(Project, string)  line 43
-```
+The production code was fine; the defect was in `MockDTE.CreateVsWebsite`. `foreach` binds to the strongly typed `AssemblyReferences.GetEnumerator()`, not the `IEnumerable` one, and the helper set up only the latter — so the former returned null and the loop threw. `CreateVsProject2` sets up both, which is why the project-reference test alongside it always passed.
 
-Fails consistently. Not yet diagnosed — the test supplies a website project and the loader dereferences something that is null. Needs someone to read `CacheWebsiteReferences` against what the test provides.
+It also had a second, latent defect: `Returns(references.GetEnumerator())` evaluated the enumerator once at setup instead of `Returns(() => ...)`, so a second enumeration would have received an already-exhausted enumerator.
+
+`Microsoft.Data.Entity.Tests.Design` now passes 455 of 481 with 26 ignored, stable across four runs.
 
 ### 1.4 `Generate_returns_code` intermittent — 1 rare failure
 
@@ -109,7 +106,15 @@ MSTest will not run a `static` test method. It emits `MSTEST0003` (98 warnings) 
 | `VersioningFacade/ReverseEngineerDb/UniqueIdentifierServiceTests.cs` | 4 |
 | `VersioningFacade/ReverseEngineerDb/DbDatabaseMappingBuilderTests.cs` | 2 |
 
-**Fix:** delete the `static` keyword. Then find out whether they pass — some may have been made static precisely because they were failing.
+**They were not made static recently, and not to hide anything.** All 17 were already `public static void` at `721bc51` (2021-08-03), inherited from the original EF6 repository, where they were xUnit `[Fact]` methods. **xUnit runs static test methods; MSTest does not.** The January 2026 conversion from `[Fact]` to `[TestMethod]` turned a legal xUnit signature into one MSTest silently skips.
+
+| File | Static | Framework then |
+|---|---|---|
+| `OneToOneMappingBuilderTests` (now `.GenerateEdmFunctionsTests`) | 11 of 45 | xUnit `[Fact]` |
+| `UniqueIdentifierServiceTests` | 4 of 4 | xUnit `[Fact]` |
+| `DbDatabaseMappingBuilderTests` | 2 of 14 | xUnit `[Fact]` |
+
+**Fix:** delete the `static` keyword. There is no evidence they were failing — they simply stopped being collected when the framework changed under them. Worth checking whether any other `[Fact]` to `[TestMethod]` conversion in that batch carried a similar signature assumption.
 
 ### 2.3 Store-building tests race under parallelism
 
@@ -180,7 +185,7 @@ PNG, JPEG, BMP, GIF and TIFF go through `Diagram.CreateBitmap`, which resolves `
 
 1. **2.2** — delete `static` from 17 tests. Minutes, and it tells us whether they pass.
 2. ~~**3.2** — duplicate `ModelBuilderWizardFormHelper`.~~ **Done.**
-3. **1.3** — one real bug, one test, self contained.
+3. ~~**1.3** — `DatabaseGenerationAssemblyLoader` NRE.~~ **Done.**
 4. **1.2 and 4.1** — fall out of `dsl-shell-decoupling.md` work item 4. No separate effort.
 5. ~~**3.1** — vulnerable packages.~~ **Done.**
 6. **1.4** — confirm the parallelism theory.
