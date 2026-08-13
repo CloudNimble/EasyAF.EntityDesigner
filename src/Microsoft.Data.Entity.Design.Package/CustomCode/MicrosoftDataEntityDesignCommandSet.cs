@@ -42,7 +42,7 @@ using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Explorer;
 using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Explorer;
 using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Model.Commands;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
 using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.Util;
 using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;

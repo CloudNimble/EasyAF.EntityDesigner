@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Properties;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.Properties;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Moq;
 using System;
@@ -9,7 +9,7 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
 using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 

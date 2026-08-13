@@ -2,8 +2,8 @@
 
 using EnvDTE;
 using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.gui;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.Gui;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -17,7 +17,7 @@ namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Gui
             // The code below is required to avoid test failures due to:
             // Due to limitations in CLR, DynamicProxy was unable to successfully replicate non-inheritable attribute 
             // System.Security.Permissions.UIPermissionAttribute on 
-            // Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Gui.WizardPageStart.ProcessDialogChar. 
+            // Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.Gui.WizardPageStart.ProcessDialogChar. 
             // To avoid this error you can chose not to replicate this attribute type by calling
             // 'Castle.DynamicProxy.Generators.AttributesToAvoidReplicating.Add(typeof(System.Security.Permissions.UIPermissionAttribute))'.
             // 

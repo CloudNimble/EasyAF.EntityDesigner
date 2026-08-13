@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Properties {
+namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.Properties {
     using System;
     
     

@@ -13,7 +13,7 @@ using System.IO;
 using System.Linq;
 using IOleServiceProvider = Microsoft.VisualStudio.OLE.Interop.IServiceProvider;
 using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
 using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
 

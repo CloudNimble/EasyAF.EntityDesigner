@@ -21,12 +21,12 @@ using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Entity.Design.Model.Integrity;
 using Microsoft.Data.Entity.Design.Model.Validation;
 using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Gui;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.Gui;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Data.Entity.Design.Extensibility;
 using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Model;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
 using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.Data.Services;
 using Microsoft.VisualStudio.Modeling.Shell;
@@ -363,7 +363,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard
                             _edmxItem.ContainingProject,
                             string.Format(
                                 CultureInfo.CurrentCulture,
-                                Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Properties.Resources.WritingModelTimeMsg,
+                                Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.Properties.Resources.WritingModelTimeMsg,
                                 writingModelWatch.Elapsed));
                     }
 

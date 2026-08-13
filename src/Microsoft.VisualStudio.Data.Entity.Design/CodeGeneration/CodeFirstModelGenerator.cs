@@ -7,7 +7,7 @@ using System.Diagnostics;
 using EnvDTE;
 using Microsoft.Data.Entity.Design.Common;
 using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
-using WizardResources = Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Properties.Resources;
+using WizardResources = Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.Properties.Resources;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration
 {

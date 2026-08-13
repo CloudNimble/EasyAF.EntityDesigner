@@ -17,7 +17,7 @@ using Microsoft.Data.Entity.Design.VersioningFacade;
 using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters;
 using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.engine;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
 using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 using Resources = Microsoft.Data.Entity.Design.Resources;
 

@@ -2,7 +2,7 @@
 
 using System;
 using FluentAssertions;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.gui.ViewModels;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.Gui.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Resources = Microsoft.Data.Entity.Design.Resources;
 
