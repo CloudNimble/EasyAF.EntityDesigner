@@ -156,7 +156,7 @@ Measured, not estimated. Thirteen files, and the `Resources` hits in several of 
 | `Diagram/DiagramImageHelper.cs` | `ThemeUtils` (GDI rasterization) | move icons to the shell — `unified-theming.md` item 2 |
 | ~~`Diagram/DSLDesignerNavigationHelper.cs`~~ | ~~`MappingDetailsWindow`, `MappingDetailsInfo`, `EntityMappingModes`, `PackageManager`, `Services`~~ | **Done.** Split, not moved — see below |
 | `Diagram/EntityDesignerSurface.cs` | `NewEntityDialog`, `NewAssociationDialog`, `NewInheritanceDialog`, `DeleteStorageEntitySetsDialog`, `PackageManager`, `Services`, `VsUtils`, `VSArtifact`, `EdmUtils`, `EntityDesignViewModelHelper`, `IEdmPackage`, `IViewDiagram` | events for the dialogs; watermark, zoom and drag-drop already leave in step 3; `IViewDiagram` moves *into* the Dsl |
-| `DomainClasses/EntityDesignerViewModel.cs` | `PackageManager`, `Services`, `VsUtils` | push the model manager in; the `IsLoaded` guard disappears with it |
+| ~~`DomainClasses/EntityDesignerViewModel.cs`~~ | ~~`PackageManager`, `Services`, `VsUtils`~~ | **Done.** Model manager came from the artifact, not a push-in — see below |
 | `SerializationHelper/...SerializationHelper.cs` | `IEntityDesignDocData`, `PackageManager`, `VsUtils` | event: the designer asks for the document's current text, the shell answers |
 | `ModelChanges/EntityType_AddFromDialog.cs`, `AssociationModelChange.cs`, `InheritanceModelChange.cs`, `InheritanceAdd.cs` | the dialogs, `ViewUtils` | delete the three `*_AddFromDialog` classes; `ViewUtils.SetBaseEntityType` inverts |
 
@@ -170,6 +170,21 @@ The first read said "move the whole file out". That was wrong, and worth recordi
 Both VS touches came from the same place — telling the mapping details window to follow along — and both became one `MappingDetailsNavigationRequested` event. The mode-setting is the interesting half: the designer used to write `EntityMappingModes.Functions`/`Tables` directly into the shell's context. It now reports `bool? UsesFunctionMapping` instead, a fact about the model. Which tab that corresponds to, or whether the host has tabs at all, is the host's business. `null` preserves the original behaviour of leaving the existing choice alone on the association-set-mapping path.
 
 The lesson for the remaining files: count what a dependency actually *reaches for*, not how many symbols it names. A file that mentions five VS types in two lines is a two-line problem.
+
+### The view model already had the model manager
+
+The plan said "push the model manager in". It turned out nothing needed pushing. `EFArtifact` exposes its own `ModelManager`, and the view model already holds the editing context that reaches the artifact — `Model/Designer/Diagrams.cs` has been subscribing that way all along. So `PackageManager.Package.ModelManager` became `EditingContext.GetEFArtifactService()?.Artifact?.ModelManager`, cached in a field so the unsubscribe detaches from the manager it actually attached to.
+
+This is strictly more correct than what it replaced. The old code subscribed to the *package's* manager regardless of which manager built the artifact in hand, and the `PackageManager.IsLoaded` guard existed only to stop the `Package` getter from throwing a modal assert dialog outside Visual Studio. Both problems were the same problem: asking a global for something the object already had.
+
+Note the behaviour change worth watching. The renderer previously never subscribed, because `IsLoaded` was false; it now subscribes like everything else. Northwind renders byte identical on both targets, so nothing commits during a headless load — but that is a property of the current load path, not a guarantee.
+
+The other two dependencies were smaller than the inventory suggested:
+
+- `Services` — reached by a `SelectedEFObject` property that nothing called. Both apparent call sites resolve to `MicrosoftDataEntityDesignCommandSet`'s own property of the same name. Deleted.
+- `VsUtils.LogStandardError` — one call, reporting that a reload failed. Now a `DiagramReloadFailed` event carrying the already-localized message and the artifact path. The designer owns its own strings; the host owns where they go.
+
+Two of the three "dependencies" in that row were dead code and a single log line. Same lesson as the navigation split: measure the reach, not the import list.
 
 ### `IViewDiagram` moves the other way
 

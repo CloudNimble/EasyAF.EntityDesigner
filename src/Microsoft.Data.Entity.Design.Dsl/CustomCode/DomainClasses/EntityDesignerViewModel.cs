@@ -22,9 +22,6 @@ using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.Data.Tools.VSXmlDesignerBase.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
-using Microsoft.VisualStudio.Modeling.Shell;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 
 namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 {
@@ -44,6 +41,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
         public static readonly string DeleteUnmappedStorageEntitySetsProperty = "DeleteUnmappedStorageEntitySets";
 
         private EditingContext _editingContext;
+        private ModelManager _modelManager;
         private bool _reloading;
         private bool _loggedFatalError;
         private bool _shouldClearAndReloadDiagram;
@@ -154,23 +152,6 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
             }
         }
 
-        internal EFObject SelectedEFObject
-        {
-            get
-            {
-                if (Services.IMonitorSelectionService.CurrentSelectionContainer is ModelingWindowPane dslWindowPane)
-                {
-                    if (dslWindowPane.PrimarySelection is not ModelElement modelElement)
-                    {
-                        PresentationElement presentationElement = dslWindowPane.PrimarySelection as PresentationElement;
-                        modelElement = presentationElement.ModelElement;
-                    }
-                    return ModelXRef.GetExisting(modelElement);
-                }
-                return null;
-            }
-        }
-
         private void SetContext(EditingContext context)
         {
             // unregister from old context
@@ -189,11 +170,12 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
                 _editingContext.Reloaded -= OnContextReloaded;
             }
 
-            // IsLoaded rather than a null check on Package: the Package getter asserts when nothing has been loaded,
-            // which puts a modal dialog on screen in Debug builds. See RegisterEventDelegates.
-            if (PackageManager.IsLoaded)
+            // detach from the manager we actually attached to, not from whatever the context resolves to now --
+            // the artifact may already be gone by the time we are disposed.
+            if (_modelManager != null)
             {
-                PackageManager.Package.ModelManager.ModelChangesCommitted -= OnModelChangesCommitted;
+                _modelManager.ModelChangesCommitted -= OnModelChangesCommitted;
+                _modelManager = null;
             }
         }
 
@@ -201,13 +183,13 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
         {
             if (_editingContext != null)
             {
-                // There is no package when the view model is built outside Visual Studio, which is how the headless
-                // renderer works. Nothing is listening for committed changes in that case, and the renderer only
-                // reads the model, so skipping the subscription costs nothing. IsLoaded is used rather than a null
-                // check on Package because the Package getter asserts, which shows a modal dialog in Debug builds.
-                if (PackageManager.IsLoaded)
+                // The model manager comes from the artifact rather than from the package, so this works the same
+                // whether Visual Studio or the headless renderer built the model. It is null only when the context
+                // has no artifact service yet, in which case there are no committed changes to hear about.
+                _modelManager = _editingContext.GetEFArtifactService()?.Artifact?.ModelManager;
+                if (_modelManager != null)
                 {
-                    PackageManager.Package.ModelManager.ModelChangesCommitted += OnModelChangesCommitted;
+                    _modelManager.ModelChangesCommitted += OnModelChangesCommitted;
                 }
 
                 _editingContext.Disposing += OnContextDisposing;
@@ -251,9 +233,9 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
                 if (artifact != null
                     && !_loggedFatalError)
                 {
-                    VsUtils.LogStandardError(
+                    diagram?.OnDiagramReloadFailed(
                         string.Format(CultureInfo.CurrentCulture, EntityDesignerRes.Error_DiagramShouldBeReloaded, e.Message),
-                        artifact.Uri.LocalPath, 0, 0);
+                        artifact.Uri.LocalPath);
 
                     _loggedFatalError = true;
                 }

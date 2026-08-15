@@ -53,6 +53,7 @@ namespace Microsoft.Data.Entity.Design.Package
             _surface.ReferentialConstraintRequested += OnReferentialConstraintRequested;
             _surface.CircularInheritanceDetected += OnCircularInheritanceDetected;
             _surface.MappingDetailsNavigationRequested += OnMappingDetailsNavigationRequested;
+            _surface.DiagramReloadFailed += OnDiagramReloadFailed;
         }
 
         #endregion
@@ -78,6 +79,7 @@ namespace Microsoft.Data.Entity.Design.Package
             _surface.ReferentialConstraintRequested -= OnReferentialConstraintRequested;
             _surface.CircularInheritanceDetected -= OnCircularInheritanceDetected;
             _surface.MappingDetailsNavigationRequested -= OnMappingDetailsNavigationRequested;
+            _surface.DiagramReloadFailed -= OnDiagramReloadFailed;
         }
 
         #endregion
@@ -95,6 +97,14 @@ namespace Microsoft.Data.Entity.Design.Package
                     DesignRes.Error_CircularInheritanceAborted,
                     e.DerivedEntityType.LocalName.Value,
                     e.BaseEntityType.LocalName.Value));
+        }
+
+        /// <summary>
+        ///     Puts a failed designer reload on Visual Studio's error list.
+        /// </summary>
+        private void OnDiagramReloadFailed(object sender, DiagramReloadFailedEventArgs e)
+        {
+            VsUtils.LogStandardError(e.Message, e.ArtifactPath, 0, 0);
         }
 
         /// <summary>

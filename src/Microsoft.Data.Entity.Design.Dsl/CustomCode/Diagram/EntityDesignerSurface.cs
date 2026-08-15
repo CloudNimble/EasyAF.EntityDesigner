@@ -147,6 +147,11 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         internal event EventHandler<CircularInheritanceDetectedEventArgs> CircularInheritanceDetected;
 
         /// <summary>
+        ///     Raised when the designer could not rebuild itself from the model.
+        /// </summary>
+        internal event EventHandler<DiagramReloadFailedEventArgs> DiagramReloadFailed;
+
+        /// <summary>
         ///     Raised when navigation landed on a mapping element.
         /// </summary>
         internal event EventHandler<MappingDetailsNavigationRequestedEventArgs> MappingDetailsNavigationRequested;
@@ -175,6 +180,16 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         ///     Raised when a delete would leave storage entity sets unmapped.
         /// </summary>
         internal event EventHandler<UnmappedStorageEntitySetsDeletionRequestedEventArgs> UnmappedStorageEntitySetsDeletionRequested;
+
+        /// <summary>
+        ///     Reports a failed reload to the host.
+        /// </summary>
+        /// <param name="message">The localized message describing the failure.</param>
+        /// <param name="artifactPath">The local path of the artifact being rebuilt.</param>
+        internal void OnDiagramReloadFailed(string message, string artifactPath)
+        {
+            DiagramReloadFailed?.Invoke(this, new DiagramReloadFailedEventArgs(message, artifactPath));
+        }
 
         /// <summary>
         ///     Reports that navigation landed on a mapping element.
