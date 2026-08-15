@@ -28,6 +28,10 @@ using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 
 namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 {
+    /// <remarks>
+    ///     <b>Single threaded.</b> This is a DSL <c>ModelElement</c>, so it inherits the Modeling SDK's assumption
+    ///     that it is driven from one thread. See specs/threading-model.md.
+    /// </remarks>
     [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
     internal partial class EntityDesignerViewModel : IDisposable
     {

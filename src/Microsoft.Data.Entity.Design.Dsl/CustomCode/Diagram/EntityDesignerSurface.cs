@@ -50,6 +50,11 @@ using VSPackage = Microsoft.VisualStudio.Shell.Package;
 
 namespace Microsoft.Data.Entity.Design.Dsl.View
 {
+    /// <remarks>
+    ///     <b>Single threaded.</b> Committing a transaction on this surface writes a static dictionary inside the
+    ///     Modeling SDK, so two surfaces cannot be driven concurrently in one process. See
+    ///     specs/threading-model.md.
+    /// </remarks>
     partial class EntityDesignerSurface : IViewDiagram
     {
         private const int undefinedZoomLevel = -1;

@@ -35,6 +35,13 @@ namespace Microsoft.Data.Entity.Design.Renderer.Headless
     ///             shapes and connectors.
     ///         </item>
     ///     </list>
+    ///     <para>
+    ///         <b>Single threaded.</b> Only one of these may be built or driven at a time in a process. The
+    ///         Modeling SDK keeps unsynchronized process wide state — a serializer registry written during store
+    ///         construction, and a static dictionary keyed by <see cref="Store" /> written on every transaction
+    ///         commit — so concurrent use corrupts it. Rendering several diagrams at once needs one process each.
+    ///         See specs/threading-model.md.
+    ///     </para>
     /// </remarks>
     internal sealed class HeadlessDiagramStore : IDisposable
     {
