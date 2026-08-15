@@ -132,9 +132,53 @@ Beyond that: the solution builds clean, the existing test suite passes, and the 
 5. Give the surface a direct `EdmxDiagram` reference; drop the seven XRef lookups.
 6. Rename the Model types to `Edmx*`; delete the aliases they existed to work around.
 7. Rename `EntityDesignerDiagram` to `EntityDesignerSurface` via `DslDefinition.dsl` and T4 regeneration.
-8. Delete the `ProjectReference`. This is the step that either compiles or does not.
+8. Delete the `ProjectReference`, and consolidate the UI. See below.
 
 Steps 1 through 5 are independently landable and each keeps the tree green.
+
+## Step 8 in detail
+
+Two things happen together, because neither can happen alone:
+
+- The Dsl stops referencing `Microsoft.VisualStudio.Data.Entity.Design`.
+- The UI still sitting in the Dsl moves into `Microsoft.VisualStudio.Data.Entity.Design`, where the bulk of the UI already lives.
+
+**The order is forced.** The UI in the Dsl needs Dsl types — `DiagramSurfaceContextMenu` holds an `EntityDesignerSurface`, `CustomZoomDialog` uses the Dsl's own resources — so its new home must be able to reference the Dsl. That cannot happen while the Dsl references it. Cut the edge first, reverse it, then move the UI. Attempting the move first produces a circular reference; this was tried.
+
+### What the Dsl still takes from the VS project
+
+Measured, not estimated. Thirteen files, and the `Resources` hits in several of them are a false positive — that is the Dsl's own `Properties.Resources` behind the `EntityDesignerRes` alias.
+
+| File | Real dependency | Fix |
+|---|---|---|
+| `Shapes/EntityTypeShape.cs` | **none** — the using is stale | delete the using |
+| `Connectors/AssociationConnector.cs` | `ReferentialConstraintDialog` | event |
+| `Diagram/DiagramImageHelper.cs` | `ThemeUtils` (GDI rasterization) | move icons to the shell — `unified-theming.md` item 2 |
+| `Diagram/DSLDesignerNavigationHelper.cs` | `MappingDetailsWindow`, `MappingDetailsInfo`, `EntityMappingModes`, `PackageManager`, `Services` | move the whole file out; it is shell navigation, not designer logic |
+| `Diagram/EntityDesignerSurface.cs` | `NewEntityDialog`, `NewAssociationDialog`, `NewInheritanceDialog`, `DeleteStorageEntitySetsDialog`, `PackageManager`, `Services`, `VsUtils`, `VSArtifact`, `EdmUtils`, `EntityDesignViewModelHelper`, `IEdmPackage`, `IViewDiagram` | events for the dialogs; watermark, zoom and drag-drop already leave in step 3; `IViewDiagram` moves *into* the Dsl |
+| `DomainClasses/EntityDesignerViewModel.cs` | `PackageManager`, `Services`, `VsUtils` | push the model manager in; the `IsLoaded` guard disappears with it |
+| `SerializationHelper/...SerializationHelper.cs` | `IEntityDesignDocData`, `PackageManager`, `VsUtils` | event: the designer asks for the document's current text, the shell answers |
+| `ModelChanges/EntityType_AddFromDialog.cs`, `AssociationModelChange.cs`, `InheritanceModelChange.cs`, `InheritanceAdd.cs` | the dialogs, `ViewUtils` | delete the three `*_AddFromDialog` classes; `ViewUtils.SetBaseEntityType` inverts |
+
+### `IViewDiagram` moves the other way
+
+`IViewDiagram` is declared in the VS project, **implemented** by `EntityDesignerSurface`, and consumed by `IDiagramManager` and the package. A base type cannot point back at the shell, so the interface moves into the Dsl. The VS project then references the Dsl to see it — which is the direction this whole exercise establishes.
+
+### Then the UI moves
+
+Once the edge is reversed, these move to `Microsoft.VisualStudio.Data.Entity.Design`, keeping folder and namespace aligned as the rest of that project does:
+
+| From (Dsl) | To (VS project) |
+|---|---|
+| `CustomCode/ContextMenu/` — 10 files | `UI/Views/ContextMenu/` |
+| `CustomCode/Controls/FloatingZoomControl.*` | `UI/Views/Controls/` |
+| `CustomCode/Dialogs/CustomZoomDialog.*` | `UI/Views/Dialogs/` |
+
+Nothing outside those three folders references any of it, so the move itself is mechanical. Watch the `.resx`: `CustomZoomDialog` is a WinForms designer resource, and its manifest name derives from root namespace plus folder path while `ComponentResourceManager` looks it up by the type's full name. Those two must agree, or the dialog throws `MissingManifestResourceException` at runtime and nothing catches it at compile time. This exact mistake is what broke the ModelWizard pages.
+
+### Done when
+
+`Microsoft.Data.Entity.Design.Dsl.csproj` contains no `ProjectReference` to `Microsoft.VisualStudio.Data.Entity.Design.csproj`, the solution builds, and `edmx render Northwind.edmx` is byte identical on both targets.
 
 ## Risks and open items
 
