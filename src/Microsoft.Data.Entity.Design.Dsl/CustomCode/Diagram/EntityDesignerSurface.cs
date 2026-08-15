@@ -47,6 +47,7 @@ using ViewModelNavigationProperty = Microsoft.Data.Entity.Design.Dsl.ViewModel.N
 using ViewModelProperty = Microsoft.Data.Entity.Design.Dsl.ViewModel.Property;
 using ViewModelPropertyBase = Microsoft.Data.Entity.Design.Dsl.ViewModel.PropertyBase;
 using VSPackage = Microsoft.VisualStudio.Shell.Package;
+using Microsoft.Data.Entity.Design.Model.Designer;
 
 namespace Microsoft.Data.Entity.Design.Dsl.View
 {

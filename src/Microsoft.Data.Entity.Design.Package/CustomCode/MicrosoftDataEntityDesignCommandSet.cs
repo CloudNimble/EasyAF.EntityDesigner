@@ -48,6 +48,7 @@ using Microsoft.VisualStudio.Data.Entity.Design.UI.Util;
 using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 using Microsoft.VisualStudio.Data.Entity.Design.Refactoring;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails;
+using IViewDiagram = Microsoft.Data.Entity.Design.Model.Designer.IViewDiagram;
 
 namespace Microsoft.Data.Entity.Design.Package
 {
