@@ -62,6 +62,7 @@
         <PackageReference Include="Microsoft.Internal.VisualStudio.Interop" Version="17.10.39524" />
         <PackageReference Include="Microsoft.VisualStudio.ComponentModelHost" Version="17.10.191" />
         <PackageReference Include="Microsoft.VisualStudio.DataDesign.Interfaces" Version="17.10.40130" />
+        <PackageReference Include="Microsoft.XmlEditor" Version="17.10.40088" />
         <PackageReference Include="Microsoft.VisualStudio.Interop" Version="17.10.40130" />
         <!-- VS Modeling SDK - don't copy to output, VS provides these -->
         <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk" Version="17.10.40171" ExcludeAssets="runtime" />

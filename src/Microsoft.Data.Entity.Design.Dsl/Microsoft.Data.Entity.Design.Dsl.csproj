@@ -57,7 +57,6 @@
     <PackageReference Include="Microsoft.VisualStudio.TextTemplating.Interfaces" />
     <PackageReference Include="Microsoft.VisualStudio.TextTemplating.VSHost" />
     <PackageReference Include="Microsoft.VisualStudio.XmlEditor" />
-    <PackageReference Include="Microsoft.XmlEditor" />
     <PackageReference Include="Nerdbank.Streams" />
     <PackageReference Include="System.Resources.Extensions" />
     <PackageReference Include="VsWebSite.Interop" />

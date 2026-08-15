@@ -17,7 +17,6 @@ using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Validation;
 using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.XmlEditor;
 using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 
@@ -96,29 +95,18 @@ namespace Microsoft.Data.Entity.Design.Dsl
             SerializationResult serializationResult, EntityDesignerViewModel modelRoot, string fileName, Encoding encoding,
             bool writeOptionalPropertiesWithDefaultValue)
         {
-            IEntityDesignDocData docData = null;
             MemoryStream stream = null;
 
-            Debug.Assert(modelRoot.EditingContext != null, "Designer model root has a null EditingContext");
-            if (modelRoot.EditingContext != null)
-            {
-                // find our doc data; don't use the passed in fileName as this will be the new name
-                // during a SaveAs operation
-                var artifact = modelRoot.EditingContext?.GetEFArtifactService()?.Artifact;
-                if (artifact != null)
-                {
-                    docData = VSHelpers.GetDocData(PackageManager.Package, artifact.Uri.LocalPath) as IEntityDesignDocData;
-                }
+            // The document's XML is already authoritative and lives in the host's buffer, so the host hands the
+            // text over rather than the designer serializing anything. Pushing it in also settles what the old
+            // doc data lookup had to work around by hand: during a Save As the passed file name is the new name,
+            // but the text is always this document's. See specs/layer-map.md.
+            var text = DesignerStoreProperties.GetDocumentText(modelRoot.Store);
+            Debug.Assert(!string.IsNullOrEmpty(text), "The host did not supply any text to save.");
 
-                Debug.Assert(docData != null, "Couldn't locate our DocData");
-                if (docData != null)
-                {
-                    var text = docData.GetBufferTextForSaving();
-                    if (!string.IsNullOrEmpty(text))
-                    {
-                        stream = FileUtils.StringToStream(text, encoding) as MemoryStream;
-                    }
-                }
+            if (!string.IsNullOrEmpty(text))
+            {
+                stream = FileUtils.StringToStream(text, encoding) as MemoryStream;
             }
 
             // if we don't have a stream, then we couldn't serialize for some reason
@@ -142,38 +130,9 @@ namespace Microsoft.Data.Entity.Design.Dsl
             SerializationResult serializationResult, EntityDesignerViewModel modelRoot, string modelFileName, EntityDesignerSurface diagram,
             string diagramFileName, Encoding encoding, bool writeOptionalPropertiesWithDefaultValue)
         {
-            // only save the model
+            // Only save the model. Clearing the artifact's dirty flag and saving the subordinate .diagram
+            // document are the host's to do once this returns, and it does them there. See specs/layer-map.md.
             base.SaveModel(serializationResult, modelRoot, modelFileName, encoding, writeOptionalPropertiesWithDefaultValue);
-
-            if (!serializationResult.Failed)
-            {
-                // flip our dirty bit (as long as we aren't trying to save the auto-recovery backup file)
-                var artifact = modelRoot.EditingContext?.GetEFArtifactService()?.Artifact;
-                Debug.Assert(artifact != null, "Failed to get a valid EFArtifact from the context");
-
-                IEntityDesignDocData docData = null;
-                var fileName = String.Empty;
-                if (artifact != null)
-                {
-                    fileName = artifact.Uri.LocalPath;
-                }
-
-                docData = VSHelpers.GetDocData(PackageManager.Package, fileName) as IEntityDesignDocData;
-                Debug.Assert(docData != null, "Couldn't locate our DocData");
-                if (artifact != null
-                    && docData != null
-                    && !string.Equals(docData.BackupFileName, modelFileName, StringComparison.OrdinalIgnoreCase))
-                {
-                    artifact.IsDirty = false;
-                }
-
-                // SaveDiagram file if the file exists
-                // TODO: What happened if saving diagram file failed? Should we rollback the model file?
-                if (VSHelpers.GetDocData(PackageManager.Package, fileName + EntityDesignArtifact.ExtensionDiagram) is XmlModelDocData diagramDocData)
-                {
-                    diagramDocData.SaveDocData(VSSAVEFLAGS.VSSAVE_SilentSave, out diagramFileName, out int saveIsCancelled);
-                }
-            }
         }
 
         /// <summary>

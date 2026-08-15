@@ -27,6 +27,11 @@ namespace Microsoft.Data.Entity.Design.Dsl
         #region Fields
 
         /// <summary>
+        ///     Key under which the host stores the text to persist for the document being saved.
+        /// </summary>
+        internal const string DocumentTextKey = "EntityDesigner.DocumentText";
+
+        /// <summary>
         ///     Key under which the host stores the <see cref="EditingContext" /> for the document being loaded.
         /// </summary>
         internal const string EditingContextKey = "EntityDesigner.EditingContext";
@@ -63,6 +68,49 @@ namespace Microsoft.Data.Entity.Design.Dsl
             throw new InvalidOperationException(
                 $"No editing context was pushed into the store before loading. The host must set "
                 + $"Store.PropertyBag[\"{EditingContextKey}\"] before the designer loads a document.");
+        }
+
+        /// <summary>
+        ///     Reads the text the host wants persisted for this store's document.
+        /// </summary>
+        /// <param name="store">The store being saved.</param>
+        /// <returns>
+        ///     The document's text, or <see langword="null" /> if the host pushed none, which means the save
+        ///     cannot proceed.
+        /// </returns>
+        /// <remarks>
+        ///     The designer does not serialize the model on save. The document's XML is already authoritative and
+        ///     lives in the host's buffer, so the host hands the text over and the designer writes it.
+        /// </remarks>
+        internal static string GetDocumentText(Store store)
+        {
+            if (store is null)
+            {
+                throw new ArgumentNullException(nameof(store));
+            }
+
+            if (store.PropertyBag.TryGetValue(DocumentTextKey, out var value))
+            {
+                return value as string;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        ///     Pushes the text to persist for the document about to be saved into <paramref name="store" />.
+        /// </summary>
+        /// <param name="store">The store about to be saved.</param>
+        /// <param name="text">The document's current text.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="store" /> is <see langword="null" />.</exception>
+        internal static void SetDocumentText(Store store, string text)
+        {
+            if (store is null)
+            {
+                throw new ArgumentNullException(nameof(store));
+            }
+
+            store.PropertyBag[DocumentTextKey] = text;
         }
 
         /// <summary>

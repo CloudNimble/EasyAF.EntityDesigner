@@ -19,6 +19,7 @@ using Microsoft.Data.Tools.XmlDesignerBase.Base.Util;
 using Microsoft.Data.Entity.Design.Common;
 using Microsoft.Data.Entity.Design.Dsl;
 using Microsoft.Data.Entity.Design.Dsl.CustomSerializer;
+using XmlModelDocData = Microsoft.XmlEditor.XmlModelDocData;
 using Microsoft.Data.Entity.Design.Dsl.View;
 using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Extensibility;
@@ -468,9 +469,61 @@ namespace Microsoft.Data.Entity.Design.Package
                 SetRootElement(dataEntityDesignDocView.Diagram.ModelElement);
             }
 
+            // Hand the designer the text to persist. The document's XML is authoritative and lives in this
+            // buffer, so the designer serializes nothing. See specs/layer-map.md.
+            DesignerStoreProperties.SetDocumentText(Store, GetBufferTextForSaving());
+
             base.Save(fileName);
 
+            // base.Save throws when serialization failed, so reaching here means it succeeded -- the same
+            // condition the designer used to test before doing this work itself.
+            FinishSave(fileName);
+
             ProcessDependentTTFiles();
+        }
+
+        /// <summary>
+        ///     Clears the artifact's dirty flag and saves the subordinate <c>.diagram</c> document after a
+        ///     successful save.
+        /// </summary>
+        /// <param name="fileName">The file name the document was saved to.</param>
+        /// <remarks>
+        ///     Both steps used to run inside the designer's <c>SaveModelAndDiagram</c>, which had to find this doc
+        ///     data through <c>PackageManager</c> to do them. The file change notification suspension around the
+        ///     subordinate save is preserved here, because saving a file Visual Studio is watching without it
+        ///     prompts the user to reload.
+        /// </remarks>
+        private void FinishSave(string fileName)
+        {
+            var artifact = EditingContext?.GetEFArtifactService()?.Artifact;
+            Debug.Assert(artifact != null, "Failed to get a valid EFArtifact from the context");
+            if (artifact == null)
+            {
+                return;
+            }
+
+            // don't clear it when this is the auto-recovery backup being written rather than the document
+            if (!string.Equals(BackupFileName, fileName, StringComparison.OrdinalIgnoreCase))
+            {
+                artifact.IsDirty = false;
+            }
+
+            // save the .diagram file if one is open
+            // TODO: What happened if saving diagram file failed? Should we rollback the model file?
+            var diagramFileName = artifact.Uri.LocalPath + EntityDesignArtifact.ExtensionDiagram;
+            try
+            {
+                SuspendFileChangeNotification(diagramFileName);
+
+                if (VSHelpers.GetDocData(PackageManager.Package, diagramFileName) is XmlModelDocData diagramDocData)
+                {
+                    diagramDocData.SaveDocData(VSSAVEFLAGS.VSSAVE_SilentSave, out _, out int saveIsCancelled);
+                }
+            }
+            finally
+            {
+                ResumeFileChangeNotification(diagramFileName);
+            }
         }
 
         protected override bool BackupFile(string backupFileName)
