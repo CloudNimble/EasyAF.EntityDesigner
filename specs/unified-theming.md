@@ -43,7 +43,11 @@ The palette gains the slots the SVG stylesheet currently hardcodes — icon fill
 ## Work items
 
 1. **Unify the brightness math.** One implementation, used by `EntityTypeShape` and the SVG exporter. No behaviour change; prove it with a byte-identical render.
-2. **Move icon colorization out of the VS project.** `ThemeUtils.GetThemedPropertyIcon` and `GetColorizedHeaderIcon` are GDI bitmap operations with nothing Visual Studio specific in them; they belong beside `DiagramImageHelper` in the Dsl. This also removes ten VS references from the Dsl.
+2. **Move icon rasterization out of the Dsl, into the package.** `DiagramImageHelper`, the `Bitmap` fields on `EntityTypeShape`, and the icon resources are GDI, and GDI is a Windows dependency in exactly the same way `VSColorTheme` is a Visual Studio dependency. They are all paint time, and painting only ever happens inside Visual Studio — the SVG exporter has its own vector icons in `SvgIconManager` and never touches these.
+
+   So icons follow the palette: the package supplies them, the designer consumes them. `ThemeUtils` stays where it is.
+
+   **An earlier version of this plan had this backwards**, proposing to move `ThemeUtils` into the Dsl to remove a project reference. That would have traded a Visual Studio dependency for a Windows one and made the real problem worse.
 3. **Widen `DiagramPalette`** to cover every color either surface draws, including the ones currently hardcoded in the SVG stylesheet.
 4. **Make `SvgStylesheetManager` render from the palette.** Emit CSS custom properties so the stylesheet stays readable and a consumer can override a single slot without regenerating everything.
 5. **Add the setting.** `DiagramExportOptions` gains a palette for the CLI; the package maps VS theme colors as it does now. A named "modern" palette becomes the CLI default.
