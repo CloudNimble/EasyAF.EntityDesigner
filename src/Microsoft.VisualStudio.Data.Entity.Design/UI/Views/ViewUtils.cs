@@ -15,43 +15,28 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views
 {
     internal static class ViewUtils
     {
+        /// <summary>
+        ///     Sets the base type, telling the user if the change would create circular inheritance.
+        /// </summary>
+        /// <remarks>
+        ///     The edit itself lives in <see cref="InheritanceHelper.TrySetBaseEntityType" />, in the model, so the
+        ///     designer can perform it without reaching into the shell. This wrapper adds the part that genuinely
+        ///     needs a shell: showing the error.
+        /// </remarks>
         internal static bool SetBaseEntityType(
             CommandProcessorContext cpc, ConceptualEntityType derivedEntity, ConceptualEntityType baseEntity)
         {
-            if (ModelHelper.CheckForCircularInheritance(derivedEntity, baseEntity))
+            if (InheritanceHelper.TrySetBaseEntityType(cpc, derivedEntity, baseEntity))
             {
-                var message = String.Format(
+                return true;
+            }
+
+            VsUtils.ShowErrorDialog(
+                String.Format(
                     CultureInfo.CurrentCulture, Resources.Error_CircularInheritanceAborted, derivedEntity.LocalName.Value,
-                    baseEntity.LocalName.Value);
+                    baseEntity.LocalName.Value));
 
-                VsUtils.ShowErrorDialog(message);
-
-                return false;
-            }
-
-            CommandProcessor cp = new CommandProcessor(cpc);
-
-            if (derivedEntity.BaseType.Target != null)
-            {
-                // CreateInheritanceCommand works only for entities that don't have base type set
-                // so we need to remove base type first in this case
-                cp.EnqueueCommand(new DeleteInheritanceCommand(derivedEntity));
-            }
-
-            if (baseEntity != null)
-            {
-                // in case the user has chosen "(None)" then we just want to delete the existing one
-                cp.EnqueueCommand(new CreateInheritanceCommand(derivedEntity, baseEntity));
-            }
-
-            // a quick check to be sure
-            Debug.Assert(cp.CommandCount > 0, "Why didn't we enqueue at least one command?");
-            if (cp.CommandCount > 0)
-            {
-                cp.Invoke();
-            }
-
-            return true;
+            return false;
         }
 
         // Fix for Dev10 Bug 592077: Display Horizontal Scroll bar if the name exceeds the container.

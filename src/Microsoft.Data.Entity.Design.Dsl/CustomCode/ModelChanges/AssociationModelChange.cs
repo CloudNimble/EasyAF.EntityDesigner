@@ -1,40 +1,70 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using System;
 using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Dsl.Rules;
+using Microsoft.Data.Entity.Design.Dsl.View.Events;
 using Microsoft.Data.Entity.Design.Model.Commands;
-using Microsoft.Data.Entity.Design.UI.Views.Dialogs;
 
 namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
 {
-    internal class Association_AddFromDialog : ViewModelChange
+    /// <summary>
+    ///     Creates the association described by an answered <see cref="NewAssociationRequestedEventArgs" />.
+    /// </summary>
+    /// <remarks>
+    ///     Replaces <c>Association_AddFromDialog</c>, which held a live WPF dialog and read its controls from
+    ///     inside the transaction.
+    /// </remarks>
+    internal class AssociationAddFromRequest : ViewModelChange
     {
-        private readonly NewAssociationDialog _dialog;
 
-        internal Association_AddFromDialog(NewAssociationDialog dialog)
-        {
-            _dialog = dialog;
-        }
+        #region Fields
 
-        internal override void Invoke(CommandProcessorContext cpc)
-        {
-            CreateConceptualAssociationCommand cmd = new CreateConceptualAssociationCommand(
-                _dialog.AssociationName,
-                _dialog.End1Entity,
-                _dialog.End1Multiplicity,
-                _dialog.End1NavigationPropertyName,
-                _dialog.End2Entity,
-                _dialog.End2Multiplicity,
-                _dialog.End2NavigationPropertyName,
-                false, // uniquify names
-                _dialog.CreateForeignKeyProperties);
-            CommandProcessor.InvokeSingleCommand(cpc, cmd);
-            Debug.Assert(cmd.CreatedAssociation != null);
-        }
+        private readonly NewAssociationRequestedEventArgs _request;
+
+        #endregion
+
+        #region Properties
 
         internal override int InvokeOrderPriority
         {
             get { return 130; }
         }
+
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        ///     Creates a change from an answered request.
+        /// </summary>
+        /// <param name="request">The answered request describing the association to create.</param>
+        internal AssociationAddFromRequest(NewAssociationRequestedEventArgs request)
+        {
+            _request = request ?? throw new ArgumentNullException(nameof(request));
+        }
+
+        #endregion
+
+        #region Internal Methods
+
+        internal override void Invoke(CommandProcessorContext cpc)
+        {
+            CreateConceptualAssociationCommand cmd = new CreateConceptualAssociationCommand(
+                _request.AssociationName,
+                _request.End1Entity,
+                _request.End1Multiplicity,
+                _request.End1NavigationPropertyName,
+                _request.End2Entity,
+                _request.End2Multiplicity,
+                _request.End2NavigationPropertyName,
+                false, // uniquify names
+                _request.CreateForeignKeyProperties);
+            CommandProcessor.InvokeSingleCommand(cpc, cmd);
+            Debug.Assert(cmd.CreatedAssociation != null);
+        }
+
+        #endregion
+
     }
 }

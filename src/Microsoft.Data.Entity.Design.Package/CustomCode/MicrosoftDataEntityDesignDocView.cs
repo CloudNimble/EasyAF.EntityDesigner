@@ -46,6 +46,7 @@ namespace Microsoft.Data.Entity.Design.Package
         private EditingContext _context;
         private readonly string _diagramId;
         private ModelToDesignerModelXRefItem _xRef;
+        private VsDiagramRequestHandler _requestHandler;
 
         public MicrosoftDataEntityDesignDocView(ModelingDocData docData, IServiceProvider serviceProvider, string diagramId)
             : base(docData, serviceProvider)
@@ -216,6 +217,11 @@ namespace Microsoft.Data.Entity.Design.Package
                 if (Diagram != currentDiagram)
                 {
                     Diagram = currentDiagram;
+
+                    // The designer asks for user input by raising events; this is what answers them with dialogs.
+                    // Re-attached whenever the diagram changes, because a reload creates a new one.
+                    _requestHandler?.Dispose();
+                    _requestHandler = currentDiagram is null ? null : new VsDiagramRequestHandler(currentDiagram);
                 }
 
                 // Ensure that cache _xRef is cleared.
@@ -315,6 +321,10 @@ namespace Microsoft.Data.Entity.Design.Package
                     _context = null;
                     VSColorTheme.ThemeChanged -= VSColorTheme_ThemeChanged;
                 }
+
+                // Stop answering the designer's requests for user input
+                _requestHandler?.Dispose();
+                _requestHandler = null;
 
                 // Dispose the context menu service
                 _contextMenuService?.Dispose();

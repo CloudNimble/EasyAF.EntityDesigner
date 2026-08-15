@@ -4,6 +4,7 @@ using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Entity.Design.Base.Shell;
 using Microsoft.Data.Entity.Design.Dsl.CustomCode.Utils;
 using Microsoft.Data.Entity.Design.Dsl.ModelChanges;
+using Microsoft.Data.Entity.Design.Dsl.View.Events;
 using Microsoft.Data.Entity.Design.Dsl.Rules;
 using Microsoft.Data.Entity.Design.Dsl.Utils;
 using Microsoft.Data.Entity.Design.Dsl.ViewModel;
@@ -12,7 +13,6 @@ using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Entity.Design.Model.Mapping;
-using Microsoft.Data.Entity.Design.UI.Views.Dialogs;
 using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.Data.Tools.VSXmlDesignerBase.VisualStudio.Modeling;
@@ -135,6 +135,65 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
                 CommandProcessor.InvokeSingleCommand(cpc, new CreateDiagramItemForEFElementsCommand(efElementList, modelDiagram, false));
             }
             EnsureSelectionVisible();
+        }
+
+        #endregion
+
+        #region Host requests
+
+        /// <summary>
+        ///     Raised when an inheritance was abandoned because it would have been circular.
+        /// </summary>
+        internal event EventHandler<CircularInheritanceDetectedEventArgs> CircularInheritanceDetected;
+
+        /// <summary>
+        ///     Raised when the designer needs the details of a new association.
+        /// </summary>
+        internal event EventHandler<NewAssociationRequestedEventArgs> NewAssociationRequested;
+
+        /// <summary>
+        ///     Raised when the designer needs the details of a new entity type.
+        /// </summary>
+        internal event EventHandler<NewEntityTypeRequestedEventArgs> NewEntityTypeRequested;
+
+        /// <summary>
+        ///     Raised when the designer needs the base and derived types for a new inheritance.
+        /// </summary>
+        internal event EventHandler<NewInheritanceRequestedEventArgs> NewInheritanceRequested;
+
+        /// <summary>
+        ///     Raised when the user asks to edit an association's referential constraint.
+        /// </summary>
+        internal event EventHandler<ReferentialConstraintRequestedEventArgs> ReferentialConstraintRequested;
+
+        /// <summary>
+        ///     Raised when a delete would leave storage entity sets unmapped.
+        /// </summary>
+        internal event EventHandler<UnmappedStorageEntitySetsDeletionRequestedEventArgs> UnmappedStorageEntitySetsDeletionRequested;
+
+        /// <summary>
+        ///     Reports a rejected circular inheritance to the host.
+        /// </summary>
+        /// <param name="derivedEntityType">The type whose base type was being set.</param>
+        /// <param name="baseEntityType">The type that would have become the base type.</param>
+        internal void OnCircularInheritanceDetected(
+            ConceptualEntityType derivedEntityType, ConceptualEntityType baseEntityType)
+        {
+            CircularInheritanceDetected?.Invoke(
+                this, new CircularInheritanceDetectedEventArgs(derivedEntityType, baseEntityType));
+        }
+
+        /// <summary>
+        ///     Asks the host to let the user edit an association's referential constraint.
+        /// </summary>
+        /// <param name="association">The association being edited.</param>
+        /// <returns>Commands describing the user's changes; empty when nothing changed or nothing handled it.</returns>
+        internal IEnumerable<Command> RequestReferentialConstraint(ModelAssociation association)
+        {
+            var request = new ReferentialConstraintRequestedEventArgs(association);
+            ReferentialConstraintRequested?.Invoke(this, request);
+
+            return request.Commands;
         }
 
         #endregion
@@ -1277,22 +1336,26 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
             ConceptualEntityModel model = ModelElement.ModelXRef.GetExisting(ModelElement) as ConceptualEntityModel;
             Debug.Assert(model != null);
 
-            var dialog = new NewEntityDialog(model);
-            if (dialog.ShowModal() == true)
-            {
-                try
-                {
-                    Arranger.Start(dropPoint);
-                    Store.RuleManager.DisableRule(typeof(EntityType_AddRule));
+            var request = new NewEntityTypeRequestedEventArgs(model);
+            NewEntityTypeRequested?.Invoke(this, request);
 
-                    ApplyViewModelChange(EntityDesignerRes.Tx_AddEntityType, new EntityType_AddFromDialog(dialog));
-                }
-                finally
-                {
-                    Store.RuleManager.EnableRule(typeof(EntityType_AddRule));
-                    Arranger.End();
-                    EnsureSelectionVisible();
-                }
+            if (request.Cancelled)
+            {
+                return;
+            }
+
+            try
+            {
+                Arranger.Start(dropPoint);
+                Store.RuleManager.DisableRule(typeof(EntityType_AddRule));
+
+                ApplyViewModelChange(EntityDesignerRes.Tx_AddEntityType, new EntityTypeAddFromRequest(request));
+            }
+            finally
+            {
+                Store.RuleManager.EnableRule(typeof(EntityType_AddRule));
+                Arranger.End();
+                EnsureSelectionVisible();
             }
         }
 
@@ -1330,13 +1393,15 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
             ConceptualEntityModel model = modelEnd1Entity.Parent as ConceptualEntityModel;
             Debug.Assert(model != null);
 
-            var dialog = new NewAssociationDialog(model.EntityTypes(), modelEnd1Entity, modelEnd2Entity);
-            if (dialog.ShowModal() == true)
+            var request = new NewAssociationRequestedEventArgs(model.EntityTypes(), modelEnd1Entity, modelEnd2Entity);
+            NewAssociationRequested?.Invoke(this, request);
+
+            if (!request.Cancelled)
             {
                 try
                 {
                     Store.RuleManager.DisableRule(typeof(Association_AddRule));
-                    ApplyViewModelChange(EntityDesignerRes.Tx_AddAssociation, new Association_AddFromDialog(dialog));
+                    ApplyViewModelChange(EntityDesignerRes.Tx_AddAssociation, new AssociationAddFromRequest(request));
                 }
                 finally
                 {
@@ -1373,10 +1438,12 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 
             List<ConceptualEntityType> cets = new List<ConceptualEntityType>(model.EntityTypes().Cast<ConceptualEntityType>());
 
-            var dialog = new NewInheritanceDialog(modelEntity, cets);
-            if (dialog.ShowModal() == true)
+            var request = new NewInheritanceRequestedEventArgs(cets, modelEntity);
+            NewInheritanceRequested?.Invoke(this, request);
+
+            if (!request.Cancelled)
             {
-                ApplyViewModelChange(EntityDesignerRes.Tx_AddInheritance, new Inheritance_AddFromDialog(dialog));
+                ApplyViewModelChange(EntityDesignerRes.Tx_AddInheritance, new InheritanceAddFromRequest(request, this));
             }
         }
 
@@ -1748,20 +1815,19 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
                 return DialogResult.No;
             }
 
-            // show dialog giving user the choice to (a) delete only the
+            // ask the host to offer the user the choice: (a) delete only the
             // C-side objects selected, (b) to also delete any StorageEntitySets
             // which will end up unmapped, or (c) cancel the whole operation
-            var dialog = new DeleteStorageEntitySetsDialog(unmappedStorageEntitySets);
-            dialog.ShowModal();
+            var request = new UnmappedStorageEntitySetsDeletionRequestedEventArgs(unmappedStorageEntitySets);
+            UnmappedStorageEntitySetsDeletionRequested?.Invoke(this, request);
 
-            // Convert WPF UserChoice to WinForms DialogResult
-            // UserChoice: true = Yes, false = No, null = Cancelled
+            // DeleteUnmappedSets: true = Yes, false = No, null = cancelled or unhandled
             DialogResult result;
-            if (dialog.UserChoice == true)
+            if (request.DeleteUnmappedSets == true)
             {
                 result = DialogResult.Yes;
             }
-            else if (dialog.UserChoice == false)
+            else if (request.DeleteUnmappedSets == false)
             {
                 result = DialogResult.No;
             }

@@ -10,7 +10,6 @@ using Microsoft.Data.Entity.Design.Dsl.CustomSerializer;
 using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Eventing;
-using Microsoft.Data.Entity.Design.UI.Views.Dialogs;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Diagrams.GraphObject;
 using Microsoft.VisualStudio.Modeling.Immutability;
@@ -180,7 +179,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
                     Debug.Assert(modelAssociation != null, "couldn't find model association for connector");
                     if (modelAssociation != null)
                     {
-                        var commands = ReferentialConstraintDialog.LaunchReferentialConstraintDialog(modelAssociation);
+                        var commands = diagram.RequestReferentialConstraint(modelAssociation);
 
                         CommandProcessorContext cpc = new CommandProcessorContext(
                             ec, EfiTransactionOriginator.EntityDesignerOriginatorId, DesignRes.Tx_ReferentialContraint);

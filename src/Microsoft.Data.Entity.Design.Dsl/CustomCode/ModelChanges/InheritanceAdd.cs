@@ -5,7 +5,6 @@ using Microsoft.Data.Entity.Design.Dsl.Rules;
 using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.Views;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 
 namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
@@ -30,12 +29,14 @@ namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
 
             if (viewModel != null)
             {
-                if (ViewUtils.SetBaseEntityType(cpc, _derivedEntity, _baseEntity))
+                if (InheritanceHelper.TrySetBaseEntityType(cpc, _derivedEntity, _baseEntity))
                 {
                     viewModel.ModelXRef.Add(_derivedEntity.BaseType, _inheritance, viewModel.EditingContext);
                 }
                 else
                 {
+                    viewModel.GetDiagram()?.OnCircularInheritanceDetected(_derivedEntity, _baseEntity);
+
                     try
                     {
                         // setting null will clear out the selection, which may be this Inheritance thing we are deleting
