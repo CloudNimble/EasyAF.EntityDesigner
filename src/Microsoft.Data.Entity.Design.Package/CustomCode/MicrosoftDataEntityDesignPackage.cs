@@ -22,6 +22,7 @@ using ModelChangeEventArgs = Microsoft.Data.Entity.Design.VisualStudio.Package.M
 using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails;
+using Microsoft.Data.Entity.Design.Package.Theming;
 
 namespace Microsoft.Data.Entity.Design.Package
 {
@@ -60,6 +61,7 @@ namespace Microsoft.Data.Entity.Design.Package
         termValues: new[] { "HierSingleSelectionName:.edmx$" })]
     internal sealed partial class MicrosoftDataEntityDesignPackage : IEdmPackage, IVsTrackProjectRetargetingEvents
     {
+        private VsDiagramTheme _diagramTheme;
         private OleMenuCommand _viewExplorerCmd;
         private OleMenuCommand _viewMappingCmd;
         private ExplorerWindow _explorerWindow;
@@ -86,6 +88,10 @@ namespace Microsoft.Data.Entity.Design.Package
                 // HACK HACK -- find a better place to do this.
                 EFModelErrorTaskNavigator.DslDesignerOnNavigate = DSLDesignerNavigationHelper.NavigateTo;
                 // --
+
+                // Push Visual Studio's colors into the designer. The designer has no way to ask for them, which
+                // is what lets the same assembly run under the command line renderer.
+                _diagramTheme = new VsDiagramTheme();
 
                 PackageManager.Package = this;
                 _dispatcher = Dispatcher.CurrentDispatcher;
@@ -173,6 +179,8 @@ namespace Microsoft.Data.Entity.Design.Package
                 // --
 
                 // always dispose and null out items that use VS resources
+                _diagramTheme?.Dispose();
+                _diagramTheme = null;
                 _viewExplorerCmd = null;
                 _viewMappingCmd = null;
                 _explorerWindow?.Dispose();

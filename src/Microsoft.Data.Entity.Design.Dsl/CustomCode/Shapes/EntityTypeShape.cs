@@ -102,7 +102,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 
         internal static Color EmphasisShapeOutlineColor
         {
-            get { return VSColorTheme.GetThemedColor(EnvironmentColors.ClassDesignerEmphasisBorderColorKey); }
+            get { return DiagramTheme.Current.EmphasisOutline; }
         }
 
         /// <summary>

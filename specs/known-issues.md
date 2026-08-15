@@ -8,7 +8,7 @@ Measured with `dotnet build -c Release --no-incremental` and `dotnet test -c Rel
 
 | Category | Count |
 |---|---|
-| Failing tests | 13 |
+| Failing tests | 10 |
 | Tests disabled with `[Ignore]` | 186 |
 | Tests that never run because of an invalid signature | 17 |
 | Build warnings | 181 |
@@ -42,22 +42,15 @@ They construct real WinForms wizard pages, and VS's `DpiHelper` resolves image s
 
 **Options.** Move them to the `Microsoft.VisualStudio.TestTools.VsIdeTesting` host that already exists in this repo; or extract the logic under test from the form so it can be tested without constructing a control; or mark them with a category excluded from headless runs. The second is the only one that makes them fast and CI friendly, and it is real work.
 
-### 1.2 Theming reaches the VS shell on net10 — 3 failures
+### 1.2 Theming reaches the VS shell on net10 — FIXED
 
-`Microsoft.Data.Entity.Tests.Design.Renderer` (net10.0 only; net48 passes 138/138):
+Three renderer tests failed on net10 with `This is a reference assembly.` from
+`EntityDesignerSurface.IsThemeServiceAvailable()`, which resolved `SVsUIShell` through
+`Package.GetGlobalService` to decide whether it was running inside Visual Studio.
 
-- `Load_produces_a_diagram_with_positioned_shapes_and_routed_connectors`
-- `Load_renders_a_model_whose_database_provider_is_not_installed`
-- `Dsl_creates_shapes_and_routes_connectors_without_a_shell`
+Theming is now pushed in by the host rather than pulled by the designer. The Dsl declares a `DiagramPalette` of semantic colors with defaults; `Microsoft.Data.Entity.Design.Package` reads Visual Studio's theme and calls `DiagramTheme.Apply`. Nothing on a headless path touches `Microsoft.VisualStudio.Shell`, and `IsThemeServiceAvailable` is deleted — the designer no longer asks whether it is inside Visual Studio, which was never a question it should have had to answer.
 
-```
-System.InvalidOperationException: This is a reference assembly.
-   at Microsoft.VisualStudio.Shell.Package.GetGlobalService(Type serviceType)
-   at EntityDesignerSurface.IsThemeServiceAvailable()   EntityDesignerSurface.cs:1972
-   at EntityDesignerSurface.SetColorTheme(StyleSet)      EntityDesignerSurface.cs:1950
-```
-
-`Microsoft.VisualStudio.Shell` resolves to a compile-only asset under .NET 10, so touching it at all throws. **Expected to be fixed by work item 4 of `dsl-shell-decoupling.md`**, which moves theming out of the Dsl project. Same root cause as issue 4.1 below.
+`Microsoft.Data.Entity.Tests.Design.Renderer` now passes **138/138 on both net48 and net10**.
 
 ### 1.3 `DatabaseGenerationAssemblyLoader` null reference — FIXED
 
@@ -182,9 +175,11 @@ Unresolved and conflicting references to `System.Data`, `System.Data.Entity`, `S
 
 ## 4. Runtime and tooling gaps
 
-### 4.1 `edmx render` does not run on net10
+### 4.1 `edmx render` does not run on net10 — FIXED
 
-Builds and starts, reaches `RenderCommand.OnExecute`, throws `This is a reference assembly.` Same call chain as issue 1.2, and blocks shipping `Microsoft.Data.Entity.Tools` as a real `dotnet tool`. See `dsl-shell-decoupling.md`.
+Same call chain as issue 1.2, and fixed by the same change. The .NET 10 build now renders, producing a **byte-identical SVG to the net48 build** — 51 rects, 36 connector paths, 152 text elements from `Northwind.edmx`.
+
+This was the blocker on shipping `Microsoft.Data.Entity.Tools` as a real `dotnet tool`. Packaging it as one is now a packaging decision rather than a technical obstacle.
 
 ### 4.2 DSL regeneration produces code that does not compile
 
@@ -199,7 +194,7 @@ PNG, JPEG, BMP, GIF and TIFF go through `Diagram.CreateBitmap`, which resolves `
 1. **2.2** — delete `static` from 17 tests. Minutes, and it tells us whether they pass.
 2. ~~**3.2** — duplicate `ModelBuilderWizardFormHelper`.~~ **Done.**
 3. ~~**1.3** — `DatabaseGenerationAssemblyLoader` NRE.~~ **Done.**
-4. **1.2 and 4.1** — fall out of `dsl-shell-decoupling.md` work item 4. No separate effort.
+4. ~~**1.2 and 4.1** — theming reaching the VS shell.~~ **Done**, via decoupling work item 4.
 5. ~~**3.1** — vulnerable packages.~~ **Done.**
 6. **1.4** — confirm the parallelism theory.
 7. **2.1** — the 186 ignored tests. Largest and least certain; needs a decision about EF6 binaries first.

@@ -95,7 +95,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
             // If we are drawing shapes for ExportAsImage we'll need to override the theme to make the text (i.e. cardinalities) visible.
             var shapeTextColor = ForceDrawOnWhiteBackground
                 ? Color.Black
-                : VSColorTheme.GetThemedColor(EnvironmentColors.ToolWindowTextColorKey);
+                : DiagramTheme.Current.ShapeText;
             ClassStyleSet.OverrideBrushColor(DiagramBrushes.ShapeText, shapeTextColor);
             // Shouldn't need to do this unless user changes theme or we had been drawing on white background for ExportAsImage.
             IsColorThemeSet = true;

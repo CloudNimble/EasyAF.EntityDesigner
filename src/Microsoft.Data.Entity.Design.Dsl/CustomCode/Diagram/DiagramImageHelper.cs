@@ -231,8 +231,8 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         /// This is typically <see cref="Color.WhiteSmoke"/> as defined in the DSL model.
         /// </param>
         /// <remarks>
-        /// This method should be called from the theme change handler (e.g., <c>VSColorTheme.ThemeChanged</c>)
-        /// to ensure icons are properly themed for the new Visual Studio color scheme.
+        /// Called by <see cref="DiagramTheme.Apply"/> when the host supplies a new palette, so the icons are
+        /// rebuilt against whatever the compartments are now painted with. Hosts do not call this directly.
         /// </remarks>
         public void OnThemeChanged(Color compartmentFillColor)
         {

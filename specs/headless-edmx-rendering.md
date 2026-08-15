@@ -50,7 +50,7 @@ Windows only, because the Modeling SDK is.
 Two things that bite on the way to a working executable:
 
 - **Bitness.** The `GraphObject` layout engine has an x64 native dependency. Without an explicit `PlatformTarget`, an AnyCPU exe defaults to `Prefer32Bit`, launches 32 bit, and dies with a `BadImageFormatException`. `Microsoft.Data.Entity.Tools` sets `PlatformTarget=x64`.
-- **Reference assemblies.** The net10 build currently starts, reaches `RenderCommand.OnExecute`, then throws `This is a reference assembly.` — a Visual Studio SDK dependency resolving to a compile-only asset under the .NET 10 TFM. **Unresolved.** net48 renders correctly.
+- **Reference assemblies.** The net10 build used to throw `This is a reference assembly.` before rendering anything. The cause was the designer asking whether it was running inside Visual Studio — `IsThemeServiceAvailable()` resolving `SVsUIShell` through `Package.GetGlobalService` — which merely touching `Microsoft.VisualStudio.Shell` makes throw under .NET 10. **Fixed** by inverting theming: the Dsl declares a `DiagramPalette` and the VSIX pushes Visual Studio's colors in. Both targets now render byte-identical SVG.
 
 ## The load sequence
 

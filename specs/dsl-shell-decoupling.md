@@ -128,7 +128,7 @@ Beyond that: the solution builds clean, the existing test suite passes, and the 
 1. Add the transaction wrapper and convert existing call sites. No behaviour change, no moves.
 2. Invert the dialog calls; delete the three `*_AddFromDialog` classes. Dialogs move to Package.
 3. Move the watermark, zoom, drag-and-drop and context menus to Package.
-4. Resolve theming.
+4. ~~Resolve theming.~~ **Done.** The Dsl declares a `DiagramPalette` of semantic colors with defaults and a `DiagramTheme` the host pushes into; `Microsoft.Data.Entity.Design.Package` owns `VsDiagramTheme`, which reads Visual Studio's colors and subscribes to `VSColorTheme.ThemeChanged` with a matching unsubscribe on dispose. `IsThemeServiceAvailable` is deleted. This closed the three net10 renderer failures and made the .NET 10 `edmx render` work, byte-identical to net48.
 5. Give the surface a direct `EdmxDiagram` reference; drop the seven XRef lookups.
 6. Rename the Model types to `Edmx*`; delete the aliases they existed to work around.
 7. Rename `EntityDesignerDiagram` to `EntityDesignerSurface` via `DslDefinition.dsl` and T4 regeneration.

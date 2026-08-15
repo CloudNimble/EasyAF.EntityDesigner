@@ -666,7 +666,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
             // Use WhiteSmoke as that's the default compartment fill color defined in the DSL.
             if (!DiagramImageHelper.Instance.IsLoaded)
             {
-                DiagramImageHelper.Instance.Load(Color.WhiteSmoke);
+                DiagramImageHelper.Instance.Load(DiagramTheme.Current.CompartmentFill);
             }
 
             // Initialize and add LinkLabels to diagram watermark
@@ -1943,38 +1943,12 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         protected override void InitializeResources(StyleSet classStyleSet)
         {
             base.InitializeResources(classStyleSet);
-            // Set themable colors for all instances.
-            SetColorTheme(classStyleSet);
-            // Subscribe to theme changed event to update themable colors for all instances if necessary.
-            VSColorTheme.ThemeChanged += e => SetColorTheme(classStyleSet);
+
+            // Themed colors are pushed in by the host, if it has any. Registering rather than subscribing is
+            // deliberate: this used to hook the static VSColorTheme.ThemeChanged and could never unhook, because
+            // a shape class has no teardown point. See DiagramTheme.
+            DiagramTheme.Register(classStyleSet);
         }
 
-        private static void SetColorTheme(StyleSet styleSet)
-        {
-            // TODO: Without this some test in ViewModel.Tests.csproj are failing because apparently they are non runing in VS. We should fix the tests and shouldn't need this anymore.
-            if (!IsThemeServiceAvailable())
-            {
-                return;
-            }
-            // Override brush settings for this diagram background.
-            styleSet.OverrideBrushColor(
-                DiagramBrushes.DiagramBackground, VSColorTheme.GetThemedColor(EnvironmentColors.DesignerBackgroundColorKey));
-            // Override lasso color for thumbnail view.
-            styleSet.OverridePenColor(DiagramPens.ZoomLasso, VSColorTheme.GetThemedColor(EnvironmentColors.ClassDesignerLassoColorKey));
-            // Notify EntityTypeShape that changes will require updating themable colors on next painting.
-            EntityTypeShape.IsColorThemeSet = false;
-            // Notify AssociationConnector that changes will require updating themable colors on next painting.
-            AssociationConnector.IsColorThemeSet = false;
-            // Reload property icons with the new theme colors.
-            DiagramImageHelper.Instance.OnThemeChanged(Color.WhiteSmoke);
-        }
-
-        /// <summary>
-        ///     Check whether theme services are available, i.e. we are running inside VS
-        /// </summary>
-        private static bool IsThemeServiceAvailable()
-        {
-            return null != VSPackage.GetGlobalService(typeof(SVsUIShell)) as IVsUIShell5;
-        }
     }
 }
