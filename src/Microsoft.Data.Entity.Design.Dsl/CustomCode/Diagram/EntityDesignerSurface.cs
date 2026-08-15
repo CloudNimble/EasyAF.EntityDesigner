@@ -120,7 +120,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
             if (modelDiagram.IsEFObjectRepresentedInDiagram(efElement))
             {
                 /// Navigate to the "most-appropriate" DSL node for the given EFObject in the diagram.
-                DSLDesignerNavigationHelper.NavigateToDSLNodeInDiagram(this, efElement);
+                DiagramNavigator.NavigateToNodeInDiagram(this, efElement);
             }
             else
             {
@@ -147,6 +147,11 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         internal event EventHandler<CircularInheritanceDetectedEventArgs> CircularInheritanceDetected;
 
         /// <summary>
+        ///     Raised when navigation landed on a mapping element.
+        /// </summary>
+        internal event EventHandler<MappingDetailsNavigationRequestedEventArgs> MappingDetailsNavigationRequested;
+
+        /// <summary>
         ///     Raised when the designer needs the details of a new association.
         /// </summary>
         internal event EventHandler<NewAssociationRequestedEventArgs> NewAssociationRequested;
@@ -170,6 +175,19 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         ///     Raised when a delete would leave storage entity sets unmapped.
         /// </summary>
         internal event EventHandler<UnmappedStorageEntitySetsDeletionRequestedEventArgs> UnmappedStorageEntitySetsDeletionRequested;
+
+        /// <summary>
+        ///     Reports that navigation landed on a mapping element.
+        /// </summary>
+        /// <param name="mappingElement">The mapping element that was navigated to.</param>
+        /// <param name="usesFunctionMapping">
+        ///     Whether the element maps through modification functions, or <see langword="null" /> if unknown.
+        /// </param>
+        internal void OnMappingDetailsNavigationRequested(EFObject mappingElement, bool? usesFunctionMapping)
+        {
+            MappingDetailsNavigationRequested?.Invoke(
+                this, new MappingDetailsNavigationRequestedEventArgs(mappingElement, usesFunctionMapping));
+        }
 
         /// <summary>
         ///     Reports a rejected circular inheritance to the host.

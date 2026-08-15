@@ -660,11 +660,11 @@ namespace Microsoft.Data.Entity.Design.Package
 
                         // Properties do not have a corresponding ShapeElement; the instance of the DomainClass is just an item
                         // within the ElementListCompartment. Since this override only accepts a list of ShapeElements, we will
-                        // have to use the DSLDesignerNavigationHelper to create a DiagramItem that uniquely identifies the
+                        // have to use the DesignerNavigator to create a DiagramItem that uniquely identifies the
                         // list compartment item and select that.
                         if (typeDesc.WrappedItem is PropertyBase)
                         {
-                            DSLDesignerNavigationHelper.NavigateTo(typeDesc.WrappedItem);
+                            DesignerNavigator.NavigateTo(typeDesc.WrappedItem);
                         }
                         else
                         {

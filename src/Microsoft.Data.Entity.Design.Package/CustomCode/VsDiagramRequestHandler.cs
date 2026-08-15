@@ -5,7 +5,9 @@ using System.Globalization;
 using Microsoft.Data.Entity.Design.Dsl.View;
 using Microsoft.Data.Entity.Design.Dsl.View.Events;
 using Microsoft.Data.Entity.Design.UI.Views.Dialogs;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails;
 using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 using DesignRes = Microsoft.Data.Entity.Design.Resources;
 
 namespace Microsoft.Data.Entity.Design.Package
@@ -50,6 +52,7 @@ namespace Microsoft.Data.Entity.Design.Package
             _surface.UnmappedStorageEntitySetsDeletionRequested += OnUnmappedStorageEntitySetsDeletionRequested;
             _surface.ReferentialConstraintRequested += OnReferentialConstraintRequested;
             _surface.CircularInheritanceDetected += OnCircularInheritanceDetected;
+            _surface.MappingDetailsNavigationRequested += OnMappingDetailsNavigationRequested;
         }
 
         #endregion
@@ -74,6 +77,7 @@ namespace Microsoft.Data.Entity.Design.Package
             _surface.UnmappedStorageEntitySetsDeletionRequested -= OnUnmappedStorageEntitySetsDeletionRequested;
             _surface.ReferentialConstraintRequested -= OnReferentialConstraintRequested;
             _surface.CircularInheritanceDetected -= OnCircularInheritanceDetected;
+            _surface.MappingDetailsNavigationRequested -= OnMappingDetailsNavigationRequested;
         }
 
         #endregion
@@ -91,6 +95,25 @@ namespace Microsoft.Data.Entity.Design.Package
                     DesignRes.Error_CircularInheritanceAborted,
                     e.DerivedEntityType.LocalName.Value,
                     e.BaseEntityType.LocalName.Value));
+        }
+
+        /// <summary>
+        ///     Follows the designer's navigation in the mapping details window, if one is open.
+        /// </summary>
+        private void OnMappingDetailsNavigationRequested(object sender, MappingDetailsNavigationRequestedEventArgs e)
+        {
+            var context = PackageManager.Package.DocumentFrameMgr.EditingContextManager.GetNewOrExistingContext(
+                e.MappingElement.Artifact.Uri);
+            var mappingDetailsInfo = context.Items.GetValue<MappingDetailsInfo>();
+
+            if (e.UsesFunctionMapping.HasValue)
+            {
+                mappingDetailsInfo.EntityMappingMode = e.UsesFunctionMapping.Value
+                    ? EntityMappingModes.Functions
+                    : EntityMappingModes.Tables;
+            }
+
+            mappingDetailsInfo.MappingDetailsWindow?.NavigateTo(e.MappingElement);
         }
 
         /// <summary>

@@ -86,7 +86,7 @@ namespace Microsoft.Data.Entity.Design.Package
             else
             {
                 // HACK HACK -- find a better place to do this.
-                EFModelErrorTaskNavigator.DslDesignerOnNavigate = DSLDesignerNavigationHelper.NavigateTo;
+                EFModelErrorTaskNavigator.DslDesignerOnNavigate = DesignerNavigator.NavigateTo;
                 // --
 
                 // Push Visual Studio's colors into the designer. The designer has no way to ask for them, which

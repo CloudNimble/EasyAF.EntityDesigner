@@ -154,11 +154,22 @@ Measured, not estimated. Thirteen files, and the `Resources` hits in several of 
 | `Shapes/EntityTypeShape.cs` | **none** — the using is stale | delete the using |
 | `Connectors/AssociationConnector.cs` | `ReferentialConstraintDialog` | event |
 | `Diagram/DiagramImageHelper.cs` | `ThemeUtils` (GDI rasterization) | move icons to the shell — `unified-theming.md` item 2 |
-| `Diagram/DSLDesignerNavigationHelper.cs` | `MappingDetailsWindow`, `MappingDetailsInfo`, `EntityMappingModes`, `PackageManager`, `Services` | move the whole file out; it is shell navigation, not designer logic |
+| ~~`Diagram/DSLDesignerNavigationHelper.cs`~~ | ~~`MappingDetailsWindow`, `MappingDetailsInfo`, `EntityMappingModes`, `PackageManager`, `Services`~~ | **Done.** Split, not moved — see below |
 | `Diagram/EntityDesignerSurface.cs` | `NewEntityDialog`, `NewAssociationDialog`, `NewInheritanceDialog`, `DeleteStorageEntitySetsDialog`, `PackageManager`, `Services`, `VsUtils`, `VSArtifact`, `EdmUtils`, `EntityDesignViewModelHelper`, `IEdmPackage`, `IViewDiagram` | events for the dialogs; watermark, zoom and drag-drop already leave in step 3; `IViewDiagram` moves *into* the Dsl |
 | `DomainClasses/EntityDesignerViewModel.cs` | `PackageManager`, `Services`, `VsUtils` | push the model manager in; the `IsLoaded` guard disappears with it |
 | `SerializationHelper/...SerializationHelper.cs` | `IEntityDesignDocData`, `PackageManager`, `VsUtils` | event: the designer asks for the document's current text, the shell answers |
 | `ModelChanges/EntityType_AddFromDialog.cs`, `AssociationModelChange.cs`, `InheritanceModelChange.cs`, `InheritanceAdd.cs` | the dialogs, `ViewUtils` | delete the three `*_AddFromDialog` classes; `ViewUtils.SetBaseEntityType` inverts |
+
+### Navigation splits rather than moving
+
+The first read said "move the whole file out". That was wrong, and worth recording as a pattern. `DSLDesignerNavigationHelper` was two jobs sharing a file:
+
+- **Which window?** — walk the active document view, then every open view for the artifact, ask each to navigate, show the first frame that matched. Pure shell. This is now `Package/CustomCode/Navigation/DesignerNavigator.NavigateTo`.
+- **Which shape?** — resolve an m-space object to its nearest c-space object, walk the model to a shape, build a `DiagramItemCollection`, set the selection. That is 400 lines of designer logic that only *looked* shell-coupled, because of two lines reaching into `PackageManager` for the editing context. It stays in the Dsl as `DiagramNavigator.NavigateToNodeInDiagram`.
+
+Both VS touches came from the same place — telling the mapping details window to follow along — and both became one `MappingDetailsNavigationRequested` event. The mode-setting is the interesting half: the designer used to write `EntityMappingModes.Functions`/`Tables` directly into the shell's context. It now reports `bool? UsesFunctionMapping` instead, a fact about the model. Which tab that corresponds to, or whether the host has tabs at all, is the host's business. `null` preserves the original behaviour of leaving the existing choice alone on the association-set-mapping path.
+
+The lesson for the remaining files: count what a dependency actually *reaches for*, not how many symbols it names. A file that mentions five VS types in two lines is a two-line problem.
 
 ### `IViewDiagram` moves the other way
 

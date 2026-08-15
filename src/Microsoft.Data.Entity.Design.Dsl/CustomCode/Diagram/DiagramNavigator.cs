@@ -4,95 +4,38 @@ using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Mapping;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.Modeling.Diagrams;
-using Microsoft.VisualStudio.Modeling.Shell;
 
 namespace Microsoft.Data.Entity.Design.Dsl.View
 {
     /// <summary>
-    ///     This class will set the focus on the "most-appropriate" DSL node for the give EFObject in the diagrams.
-    ///     The diagram selection works as follow:
-    ///     1. Find the match dsl node match in the current active designer view.
-    ///     2. If no match is found, find it in any opened designer doc views.
+    ///     Sets the focus on the most appropriate shape for a given <see cref="EFObject" /> within one diagram.
     /// </summary>
-    internal static class DSLDesignerNavigationHelper
+    /// <remarks>
+    ///     This is diagram logic and knows nothing about windows, frames, or document views. Choosing which diagram
+    ///     to navigate belongs to the host, which walks its open views and calls
+    ///     <see cref="NavigateToNodeInDiagram" /> on each until one reports a match. See
+    ///     specs/platform-independence.md.
+    /// </remarks>
+    internal static class DiagramNavigator
     {
-        internal static void NavigateTo(EFObject efobject)
-        {
-            if (efobject.RuntimeModelRoot() == null)
-            {
-                // nothing to navigate to, so just return;
-                return;
-            }
-
-            if (efobject.RuntimeModelRoot() is StorageEntityModel)
-            {
-                // s-space object, so just return;
-                return;
-            }
-
-            var selectionService = Services.DslMonitorSelectionService;
-            Debug.Assert(selectionService != null, "Could not retrieve IMonitorSelectionService from Escher package.");
-            var foundDSLElementMatchInDiagram = false;
-            if (selectionService != null)
-            {
-                if (selectionService.CurrentDocumentView is SingleDiagramDocView singleDiagramDocView)
-                {
-                    foundDSLElementMatchInDiagram = NavigateToDSLNodeInDiagram(
-                        singleDiagramDocView.Diagram as EntityDesignerSurface, efobject);
-                    if (foundDSLElementMatchInDiagram)
-                    {
-                        // The code below is added to ensure that the right doc-view is shown and activated.
-                        singleDiagramDocView.Frame.Show();
-                        return;
-                    }
-                }
-            }
-
-            // Retrieves the doc data for the efobject.
-            ModelingDocData docdata = VSHelpers.GetDocData(Services.ServiceProvider, efobject.Uri.LocalPath) as ModelingDocData;
-            Debug.Assert(docdata != null, "Could not find get doc data for artifact with URI:" + efobject.Uri.LocalPath);
-            if (docdata != null)
-            {
-                foreach (var docView in docdata.DocViews)
-                {
-                    SingleDiagramDocView singleDiagramDocView = docView as SingleDiagramDocView;
-                    Debug.Assert(
-                        singleDiagramDocView != null,
-                        "Why the doc view is not type of SingleDiagramDocView? Actual type:" + docView.GetType().Name);
-                    if (docView != null)
-                    {
-                        foundDSLElementMatchInDiagram = NavigateToDSLNodeInDiagram(
-                            singleDiagramDocView.Diagram as EntityDesignerSurface, efobject);
-                        if (foundDSLElementMatchInDiagram)
-                        {
-                            // The code below is added to ensure that the right doc-view is shown and activated.
-                            singleDiagramDocView.Frame.Show();
-                            return;
-                        }
-                    }
-                }
-            }
-        }
-
         /// <summary>
-        ///     This class will set the focus on the "most-appropriate" DSL node for the given EFObject and DSL Diagram.  It is assumed that the
-        ///     EFObject is either a C-Space node, or an M-space node.
+        ///     Sets the focus on the most appropriate shape for the given <see cref="EFObject" /> and diagram. The
+        ///     object is assumed to be either a C-Space node or an M-Space node.
         /// </summary>
-        internal static bool NavigateToDSLNodeInDiagram(EntityDesignerSurface diagram, EFObject efobject)
+        /// <param name="diagram">The diagram to search.</param>
+        /// <param name="efobject">The object to navigate to.</param>
+        /// <returns><see langword="true" /> if a matching shape was found and selected.</returns>
+        internal static bool NavigateToNodeInDiagram(EntityDesignerSurface diagram, EFObject efobject)
         {
             var foundDSLElementMatchInDiagram = false;
-            var context = PackageManager.Package.DocumentFrameMgr.EditingContextManager.GetNewOrExistingContext(efobject.Artifact.Uri);
 
             // find the model parent (if this is a c-space object)
 
             // by default, we assume that this our c-space object
             var cspaceEFObject = efobject;
             EFObject mspaceEFObject = null;
+            bool? usesFunctionMapping = null;
             if (efobject.GetParentOfType(typeof(ConceptualEntityModel)) is not ConceptualEntityModel cModel)
             {
                 MappingModel mModel = efobject.GetParentOfType(typeof(MappingModel)) as MappingModel;
@@ -100,7 +43,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 
                 // if this is a mapping node, then we want to find the closest corresponding c-space node
                 // to which this mapping node is mapped, and set the focus on that.
-                cspaceEFObject = GetCSpaceEFObjectForMSpaceEFObject(efobject);
+                cspaceEFObject = GetCSpaceEFObjectForMSpaceEFObject(efobject, out usesFunctionMapping);
                 mspaceEFObject = efobject;
             }
 
@@ -139,10 +82,10 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
                 foundDSLElementMatchInDiagram = true;
             }
 
-            if (mspaceEFObject != null) // navigate to the item in the mapping screen (if we are doing MSL items)
+            // tell the host we landed on a mapping element, so anything showing mapping details can follow
+            if (mspaceEFObject != null)
             {
-                var mappingDetailsInfo = context.Items.GetValue<MappingDetailsInfo>();
-                mappingDetailsInfo.MappingDetailsWindow?.NavigateTo(mspaceEFObject);
+                diagram?.OnMappingDetailsNavigationRequested(mspaceEFObject, usesFunctionMapping);
             }
 
             return foundDSLElementMatchInDiagram;
@@ -154,12 +97,17 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         ///     for binding objects of the current node bound to something in c-space. If there is no such object, we
         ///     recursively call this on efobject's parent.
         /// </summary>
-        /// <param name="efobject"></param>
-        /// <returns></returns>
-        private static EFObject GetCSpaceEFObjectForMSpaceEFObject(EFObject mspaceEFObject)
+        /// <param name="mspaceEFObject">The m-space object to resolve.</param>
+        /// <param name="usesFunctionMapping">
+        ///     Receives whether the object maps through modification functions rather than tables, or
+        ///     <see langword="null" /> when the object says nothing either way.
+        /// </param>
+        /// <returns>The closest corresponding c-space object, or <see langword="null" /> if there is none.</returns>
+        private static EFObject GetCSpaceEFObjectForMSpaceEFObject(EFObject mspaceEFObject, out bool? usesFunctionMapping)
         {
             EFObject cspaceEFObject = null;
             var o = mspaceEFObject;
+            usesFunctionMapping = null;
 
             // see if this m-space object has a parent of an association set mapping.
             if (mspaceEFObject.GetParentOfType(typeof(AssociationSetMapping)) is AssociationSetMapping asm)
@@ -178,16 +126,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
             }
 
             // see if this is a node that requires the function view in the mapping pane
-            var context = PackageManager.Package.DocumentFrameMgr.EditingContextManager.GetNewOrExistingContext(mspaceEFObject.Artifact.Uri);
-            var mappingDetailsInfo = context.Items.GetValue<MappingDetailsInfo>();
-            if (mspaceEFObject.GetParentOfType(typeof(ModificationFunctionMapping)) is ModificationFunctionMapping mfm)
-            {
-                mappingDetailsInfo.EntityMappingMode = EntityMappingModes.Functions;
-            }
-            else
-            {
-                mappingDetailsInfo.EntityMappingMode = EntityMappingModes.Tables;
-            }
+            usesFunctionMapping = mspaceEFObject.GetParentOfType(typeof(ModificationFunctionMapping)) is ModificationFunctionMapping;
 
             // default case, walk up the model looking for node that has a binding bound to something in c-space.  
             while (cspaceEFObject == null
