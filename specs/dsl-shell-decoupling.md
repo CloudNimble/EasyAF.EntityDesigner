@@ -155,9 +155,9 @@ Measured, not estimated. Thirteen files, and the `Resources` hits in several of 
 | `Connectors/AssociationConnector.cs` | `ReferentialConstraintDialog` | event |
 | `Diagram/DiagramImageHelper.cs` | `ThemeUtils` (GDI rasterization) | move icons to the shell — `unified-theming.md` item 2 |
 | ~~`Diagram/DSLDesignerNavigationHelper.cs`~~ | ~~`MappingDetailsWindow`, `MappingDetailsInfo`, `EntityMappingModes`, `PackageManager`, `Services`~~ | **Done.** Split, not moved — see below |
-| `Diagram/EntityDesignerSurface.cs` | `NewEntityDialog`, `NewAssociationDialog`, `NewInheritanceDialog`, `DeleteStorageEntitySetsDialog`, `PackageManager`, `Services`, `VsUtils`, `VSArtifact`, `EdmUtils`, `EntityDesignViewModelHelper`, `IEdmPackage`, `IViewDiagram` | events for the dialogs; watermark, zoom and drag-drop already leave in step 3; `IViewDiagram` moves *into* the Dsl |
+| ~~`Diagram/EntityDesignerSurface.cs`~~ | ~~the four dialogs, `PackageManager`, `Services`, `VsUtils`, `VSArtifact`, `EdmUtils`, `EntityDesignViewModelHelper`, `IEdmPackage`, `IViewDiagram`~~ | **Done.** Dialogs and function import are events; watermark links and wait cursor moved to the shell; `IViewDiagram` moved into `Design.Model` |
 | ~~`DomainClasses/EntityDesignerViewModel.cs`~~ | ~~`PackageManager`, `Services`, `VsUtils`~~ | **Done.** Model manager came from the artifact, not a push-in — see below |
-| `SerializationHelper/...SerializationHelper.cs` | `IEntityDesignDocData`, `PackageManager`, `VsUtils` | event: the designer asks for the document's current text, the shell answers |
+| ~~`SerializationHelper/...SerializationHelper.cs`~~ | ~~`IEntityDesignDocData`, `PackageManager`, `VsUtils`~~ | **Done.** Buffer text and editing context pushed in; dirty flag and subordinate `.diagram` save moved to the shell |
 | `ModelChanges/EntityType_AddFromDialog.cs`, `AssociationModelChange.cs`, `InheritanceModelChange.cs`, `InheritanceAdd.cs` | the dialogs, `ViewUtils` | delete the three `*_AddFromDialog` classes; `ViewUtils.SetBaseEntityType` inverts |
 
 ### Navigation splits rather than moving
@@ -189,6 +189,12 @@ Two of the three "dependencies" in that row were dead code and a single log line
 ### `IViewDiagram` moves the other way
 
 `IViewDiagram` is declared in the VS project, **implemented** by `EntityDesignerSurface`, and consumed by `IDiagramManager` and the package. A base type cannot point back at the shell, so the interface moves into the Dsl. The VS project then references the Dsl to see it — which is the direction this whole exercise establishes.
+
+### What is left before the reference can go
+
+One line: `CustomZoomDialog.cs:23`, `VSHelpers.GetVSFont(Services.ServiceProvider)`. It goes with the dialog in the UI move below, so there is no separate work item for it.
+
+`DiagramImageHelper` still uses `ThemeUtils` for GDI icon rasterization, which is `unified-theming.md` item 2 and blocks the `Microsoft.VisualStudio.Data.Tools.Design.XmlCore` reference rather than this one.
 
 ### Then the UI moves
 

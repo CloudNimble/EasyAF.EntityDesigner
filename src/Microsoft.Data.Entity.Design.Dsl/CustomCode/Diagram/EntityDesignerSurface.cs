@@ -17,11 +17,6 @@ using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.Data.Tools.VSXmlDesignerBase.VisualStudio.Modeling;
 using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.Util;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Explorer;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Model;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Diagrams.GraphObject;
@@ -156,6 +151,11 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         ///     Raised when the designer needs the details of a new entity type.
         /// </summary>
         internal event EventHandler<NewEntityTypeRequestedEventArgs> NewEntityTypeRequested;
+
+        /// <summary>
+        ///     Raised when the designer needs the details of a new function import.
+        /// </summary>
+        internal event EventHandler<NewFunctionImportRequestedEventArgs> NewFunctionImportRequested;
 
         /// <summary>
         ///     Raised when the designer needs the base and derived types for a new inheritance.
@@ -1399,15 +1399,10 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
                     return;
                 }
 
-                EntityDesignViewModelHelper.CreateFunctionImport(
-                    ModelElement.EditingContext,
-                    artifactService.Artifact,
-                    null,
-                    sModel,
-                    cModel,
-                    cContainer,
-                    modelEntity,
-                    EfiTransactionOriginator.EntityDesignerOriginatorId);
+                NewFunctionImportRequested?.Invoke(
+                    this,
+                    new NewFunctionImportRequestedEventArgs(
+                        ModelElement.EditingContext, artifactService.Artifact, sModel, cModel, cContainer, modelEntity));
             }
         }
 

@@ -4,7 +4,9 @@ using System;
 using System.Globalization;
 using Microsoft.Data.Entity.Design.Dsl.View;
 using Microsoft.Data.Entity.Design.Dsl.View.Events;
+using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Entity.Design.UI.Views.Dialogs;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Util;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails;
 using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
@@ -51,6 +53,7 @@ namespace Microsoft.Data.Entity.Design.Package
 
             _surface.NewEntityTypeRequested += OnNewEntityTypeRequested;
             _surface.NewAssociationRequested += OnNewAssociationRequested;
+            _surface.NewFunctionImportRequested += OnNewFunctionImportRequested;
             _surface.NewInheritanceRequested += OnNewInheritanceRequested;
             _surface.UnmappedStorageEntitySetsDeletionRequested += OnUnmappedStorageEntitySetsDeletionRequested;
             _surface.ReferentialConstraintRequested += OnReferentialConstraintRequested;
@@ -81,6 +84,7 @@ namespace Microsoft.Data.Entity.Design.Package
 
             _surface.NewEntityTypeRequested -= OnNewEntityTypeRequested;
             _surface.NewAssociationRequested -= OnNewAssociationRequested;
+            _surface.NewFunctionImportRequested -= OnNewFunctionImportRequested;
             _surface.NewInheritanceRequested -= OnNewInheritanceRequested;
             _surface.UnmappedStorageEntitySetsDeletionRequested -= OnUnmappedStorageEntitySetsDeletionRequested;
             _surface.ReferentialConstraintRequested -= OnReferentialConstraintRequested;
@@ -220,6 +224,22 @@ namespace Microsoft.Data.Entity.Design.Package
             e.KeyPropertyName = dialog.KeyPropertyName;
             e.KeyPropertyType = dialog.KeyPropertyType;
             e.Cancelled = false;
+        }
+
+        /// <summary>
+        ///     Collects the details of a new function import and creates it.
+        /// </summary>
+        private void OnNewFunctionImportRequested(object sender, NewFunctionImportRequestedEventArgs e)
+        {
+            EntityDesignViewModelHelper.CreateFunctionImport(
+                e.EditingContext,
+                e.Artifact,
+                null,
+                e.StorageModel,
+                e.ConceptualModel,
+                e.ConceptualContainer,
+                e.ReturnEntityType,
+                EfiTransactionOriginator.EntityDesignerOriginatorId);
         }
 
         /// <summary>
