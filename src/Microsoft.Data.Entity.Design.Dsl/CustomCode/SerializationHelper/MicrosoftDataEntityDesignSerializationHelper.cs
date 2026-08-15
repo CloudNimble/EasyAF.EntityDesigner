@@ -30,12 +30,12 @@ namespace Microsoft.Data.Entity.Design.Dsl
             string diagramFileName, ISchemaResolver schemaResolver, ValidationController validationController,
             ISerializerLocator serializerLocator)
         {
-            EntityDesignerViewModel evm = null;
-            using (new VsUtils.HourglassHelper())
-            {
-                evm = LoadModel(serializationResult, modelPartition, modelFileName, schemaResolver, validationController, serializerLocator);
-                var diagram = CreateDiagramHelper(diagramPartition, evm);
-            }
+            // The host shows whatever progress affordance it has -- a wait cursor in Visual Studio, nothing at the
+            // command line -- around its own call into the load. See specs/layer-map.md.
+            var evm = LoadModel(
+                serializationResult, modelPartition, modelFileName, schemaResolver, validationController, serializerLocator);
+            CreateDiagramHelper(diagramPartition, evm);
+
             return evm;
         }
 
@@ -54,10 +54,11 @@ namespace Microsoft.Data.Entity.Design.Dsl
             SerializationResult serializationResult, Partition partition, string fileName, ISchemaResolver schemaResolver,
             ValidationController validationController, ISerializerLocator serializerLocator)
         {
-            IEntityDesignDocData docData = VSHelpers.GetDocData(PackageManager.Package, fileName) as IEntityDesignDocData;
-            docData.CreateAndLoadBuffer();
-
             EntityDesignerViewModel evm = null;
+
+            // The host prepares its own document buffer and hands in the editing context that identifies it,
+            // because the host is what owns the document. See specs/layer-map.md.
+            var context = DesignerStoreProperties.GetEditingContext(partition.Store);
 
             SerializationContext serializationContext = new SerializationContext(GetDirectory(partition.Store), fileName, serializationResult);
             TransactionContext transactionContext = new TransactionContext();
@@ -65,8 +66,6 @@ namespace Microsoft.Data.Entity.Design.Dsl
 
             using (var t = partition.Store.TransactionManager.BeginTransaction("Load Model from " + fileName, true, transactionContext))
             {
-                var uri = Tools.XmlDesignerBase.Base.Util.Utils.FileName2Uri(fileName);
-                var context = PackageManager.Package.DocumentFrameMgr.EditingContextManager.GetNewOrExistingContext(uri);
                 evm =
                     ModelTranslatorContextItem.GetEntityModelTranslator(context).TranslateModelToDslModel(null, partition) as
                     EntityDesignerViewModel;
@@ -105,7 +104,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
             {
                 // find our doc data; don't use the passed in fileName as this will be the new name
                 // during a SaveAs operation
-                var artifact = EditingContextManager.GetArtifact(modelRoot.EditingContext);
+                var artifact = modelRoot.EditingContext?.GetEFArtifactService()?.Artifact;
                 if (artifact != null)
                 {
                     docData = VSHelpers.GetDocData(PackageManager.Package, artifact.Uri.LocalPath) as IEntityDesignDocData;
@@ -149,7 +148,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
             if (!serializationResult.Failed)
             {
                 // flip our dirty bit (as long as we aren't trying to save the auto-recovery backup file)
-                var artifact = EditingContextManager.GetArtifact(modelRoot.EditingContext);
+                var artifact = modelRoot.EditingContext?.GetEFArtifactService()?.Artifact;
                 Debug.Assert(artifact != null, "Failed to get a valid EFArtifact from the context");
 
                 IEntityDesignDocData docData = null;
@@ -285,7 +284,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
             }
 
             // get our artifact
-            EntityDesignArtifact artifact = EditingContextManager.GetArtifact(viewModel.EditingContext) as EntityDesignArtifact;
+            EntityDesignArtifact artifact = viewModel.EditingContext?.GetEFArtifactService()?.Artifact as EntityDesignArtifact;
             Debug.Assert(artifact != null);
 
             SerializationResult serializationResult = new SerializationResult();
@@ -368,7 +367,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
             diagram.ResetWatermark(diagram.ActiveDiagramView);
 
             // get our artifact
-            var artifact = EditingContextManager.GetArtifact(viewModel.EditingContext);
+            var artifact = viewModel.EditingContext?.GetEFArtifactService()?.Artifact;
             Debug.Assert(artifact != null);
             if (!artifact.IsDesignerSafe)
             {

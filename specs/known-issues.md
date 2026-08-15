@@ -18,6 +18,12 @@ Measured with `dotnet build -c Release --no-incremental` and `dotnet test -c Rel
 
 ### 1.1 Wizard pages need a live VS shell — 10 failures
 
+Run the project on its own and this is a deterministic 10. Run the whole solution and the count drifts by one or two, and the extra names move between assemblies — `DispatchSaveToExtensions_invokes_serializers_if_present` in `Tests.Design.Package` one run, a pair in `Tests.Design` the next, neither reproducible in isolation.
+
+That is the same root cause as the ten, one level up: the shell statics these tests lean on (`ThreadHelper.JoinableTaskContext`, the `IVsSettingsManager` service lookup) are process-wide, and test assemblies run concurrently. Whichever assembly initialises the shell first decides what the others see. `UsesDslStore` (see `threading-model.md`) serialises tests *within* an assembly; nothing serialises them *across* assemblies.
+
+So when comparing runs, compare against a per-project baseline, not the solution total. A regression shows up as a deterministic isolated failure.
+
 `Microsoft.Data.Entity.Tests.Design.Package` (net48):
 
 - `OnActivate_result_depends_on_FileAlreadyExistsError`

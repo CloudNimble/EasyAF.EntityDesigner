@@ -17,6 +17,7 @@ using EnvDTE;
 using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Tools.XmlDesignerBase.Base.Util;
 using Microsoft.Data.Entity.Design.Common;
+using Microsoft.Data.Entity.Design.Dsl;
 using Microsoft.Data.Entity.Design.Dsl.CustomSerializer;
 using Microsoft.Data.Entity.Design.Dsl.View;
 using Microsoft.Data.Entity.Design.Dsl.ViewModel;
@@ -605,7 +606,17 @@ namespace Microsoft.Data.Entity.Design.Package
             {
                 VsUtils.LogToActivityLog($"LoadDocData START: fileName={fileName}, isReload={isReload}");
                 EntityDesignerViewModel.EntityShapeLocationSeed = 0;
-                var ret = base.LoadDocData(fileName, isReload);
+
+                int ret;
+                using (new VsUtils.HourglassHelper())
+                {
+                    // Prepare the shell's own document buffer, and hand the designer the editing context that
+                    // identifies this document. Both used to happen inside the designer's LoadModel, which had to
+                    // reach back through PackageManager to do it. See specs/layer-map.md.
+                    PrepareStoreForLoad(fileName);
+
+                    ret = base.LoadDocData(fileName, isReload);
+                }
 
                 if (UndoManager != null)
                 {
@@ -647,6 +658,32 @@ namespace Microsoft.Data.Entity.Design.Package
                 VsUtils.LogToActivityLog($"LoadDocData EXCEPTION: {ex}", __ACTIVITYLOG_ENTRYTYPE.ALE_ERROR);
                 VsUtils.ShowErrorDialog($"Error loading EDMX file: {ex.Message}\n\nStack trace:\n{ex.StackTrace}");
                 throw;
+            }
+        }
+
+        /// <summary>
+        ///     Creates the shell's text buffer for <paramref name="fileName" /> and pushes the document's editing
+        ///     context into the store, so the designer can load without reaching back into the package.
+        /// </summary>
+        /// <param name="fileName">Full path of the document about to be loaded.</param>
+        /// <remarks>
+        ///     Runs before <c>base.LoadDocData</c>, which is what eventually calls the designer's load. Both steps
+        ///     used to happen inside that load: the buffer through <see cref="CreateAndLoadBuffer" /> and the
+        ///     context by recomputing what this class already exposes as <see cref="EditingContext" />. Preparing
+        ///     the shell's own document is the shell's job. See specs/layer-map.md.
+        /// </remarks>
+        private void PrepareStoreForLoad(string fileName)
+        {
+            CreateAndLoadBuffer();
+
+            var context = EditingContextManager?.GetNewOrExistingContext(Utils.FileName2Uri(fileName));
+            Debug.Assert(context != null, "Could not obtain an editing context for " + fileName);
+            Debug.Assert(Store != null, "The store should exist by the time the document is loaded.");
+
+            if (context != null
+                && Store != null)
+            {
+                DesignerStoreProperties.SetEditingContext(Store, context);
             }
         }
 

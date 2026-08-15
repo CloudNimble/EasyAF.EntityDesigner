@@ -228,7 +228,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
             }
             catch (Exception e)
             {
-                var artifact = EditingContextManager.GetArtifact(EditingContext);
+                var artifact = EditingContext?.GetEFArtifactService()?.Artifact;
 
                 if (artifact != null
                     && !_loggedFatalError)
