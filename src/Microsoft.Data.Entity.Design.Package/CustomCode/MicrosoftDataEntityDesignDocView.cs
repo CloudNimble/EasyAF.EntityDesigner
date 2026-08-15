@@ -216,12 +216,15 @@ namespace Microsoft.Data.Entity.Design.Package
                 var currentDiagram = GetNewOrExistingViewDiagram();
                 if (Diagram != currentDiagram)
                 {
-                    Diagram = currentDiagram;
-
                     // The designer asks for user input by raising events; this is what answers them with dialogs.
                     // Re-attached whenever the diagram changes, because a reload creates a new one.
+                    //
+                    // Attached before the assignment, not after: associating the diagram with the view raises
+                    // OnAssociated, which resets the watermark and so asks its questions during the assignment.
                     _requestHandler?.Dispose();
                     _requestHandler = currentDiagram is null ? null : new VsDiagramRequestHandler(currentDiagram);
+
+                    Diagram = currentDiagram;
                 }
 
                 // Ensure that cache _xRef is cleared.

@@ -3,7 +3,7 @@
 using System;
 using System.Xml.Linq;
 using Microsoft.Data.Entity.Design.Base.Context;
-using Microsoft.Data.Entity.Design.Dsl.View;
+using Microsoft.Data.Entity.Design.Package;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.VersioningFacade;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
@@ -15,14 +15,14 @@ using FluentAssertions;
 using Microsoft.Data.Entity.Design.Model.Visitor;
 using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 
-namespace Microsoft.Data.Entity.Tests.Design.Dsl.View
+namespace Microsoft.Data.Entity.Tests.Design.Package.Watermark
 {
     /// <summary>
-    ///     Tests for EntityDesignerSurface.
+    ///     Tests for VsDiagramWatermark.
     ///     Note: Only UPGRADE to Version3 (EF6) is now supported. Downgrade tests have been removed.
     /// </summary>
     [TestClass]
-    public class EntityDesignerSurfaceTests
+    public class VsDiagramWatermarkTests
     {
         [TestMethod]
         public void ReversionModel_upgrades_model_namespaces_to_Version3()
@@ -62,7 +62,7 @@ namespace Microsoft.Data.Entity.Tests.Design.Dsl.View
                 mockArtifact.Object.IsDirty.Should().BeFalse();
 
                 // Upgrade from V2 to V3
-                EntityDesignerSurface.ReversionModel(
+                VsDiagramWatermark.ReversionModel(
                     mockPackage.Object, mockEditingContext.Object, mockArtifact.Object, EntityFrameworkVersion.Version3);
 
                 mockArtifact.Object.IsDirty.Should().BeTrue();

@@ -32,7 +32,10 @@ namespace Microsoft.Data.Entity.Design.Package
         #region Fields
 
         private readonly EntityDesignerSurface _surface;
+        private readonly VsDiagramWatermark _watermark;
         private bool _isDisposed;
+        private VsUtils.HourglassHelper _hourglass;
+        private int _longOperationDepth;
 
         #endregion
 
@@ -54,6 +57,10 @@ namespace Microsoft.Data.Entity.Design.Package
             _surface.CircularInheritanceDetected += OnCircularInheritanceDetected;
             _surface.MappingDetailsNavigationRequested += OnMappingDetailsNavigationRequested;
             _surface.DiagramReloadFailed += OnDiagramReloadFailed;
+            _surface.LongOperationStarted += OnLongOperationStarted;
+            _surface.LongOperationEnded += OnLongOperationEnded;
+
+            _watermark = new VsDiagramWatermark(surface);
         }
 
         #endregion
@@ -80,6 +87,15 @@ namespace Microsoft.Data.Entity.Design.Package
             _surface.CircularInheritanceDetected -= OnCircularInheritanceDetected;
             _surface.MappingDetailsNavigationRequested -= OnMappingDetailsNavigationRequested;
             _surface.DiagramReloadFailed -= OnDiagramReloadFailed;
+            _surface.LongOperationStarted -= OnLongOperationStarted;
+            _surface.LongOperationEnded -= OnLongOperationEnded;
+
+            _watermark.Dispose();
+
+            // a designer torn down mid-operation must not leave the wait cursor up
+            _longOperationDepth = 0;
+            _hourglass?.Dispose();
+            _hourglass = null;
         }
 
         #endregion
@@ -105,6 +121,42 @@ namespace Microsoft.Data.Entity.Design.Package
         private void OnDiagramReloadFailed(object sender, DiagramReloadFailedEventArgs e)
         {
             VsUtils.LogStandardError(e.Message, e.ArtifactPath, 0, 0);
+        }
+
+        /// <summary>
+        ///     Drops the wait cursor once the designer's operation finishes.
+        /// </summary>
+        private void OnLongOperationEnded(object sender, EventArgs e)
+        {
+            if (_longOperationDepth == 0)
+            {
+                return;
+            }
+
+            _longOperationDepth--;
+
+            if (_longOperationDepth == 0)
+            {
+                _hourglass?.Dispose();
+                _hourglass = null;
+            }
+        }
+
+        /// <summary>
+        ///     Puts up a wait cursor while the designer does something slow.
+        /// </summary>
+        /// <remarks>
+        ///     Counted rather than a simple flag: these operations nest, and the cursor must survive until the
+        ///     outermost one finishes.
+        /// </remarks>
+        private void OnLongOperationStarted(object sender, EventArgs e)
+        {
+            if (_longOperationDepth == 0)
+            {
+                _hourglass = new VsUtils.HourglassHelper();
+            }
+
+            _longOperationDepth++;
         }
 
         /// <summary>

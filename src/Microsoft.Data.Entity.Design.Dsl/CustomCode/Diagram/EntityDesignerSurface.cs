@@ -69,15 +69,6 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         private bool _disableFixUpDiagramSelection;
         private EntitiesClipboardFormat _clipboardObjects;
 
-        // indicates the action to perform when a watermark link is clicked.  "View Toolbox" is not here as it is indicated via a tool window GUID in the LinkData  
-        private enum LinkAction
-        {
-            Unknown,
-            XmlEditor,
-            Upgrade,
-            ShowModelBrowser
-        };
-
         internal event EventHandler OnDiagramTitleChanged;
 
         private readonly EmphasizedShapes _emphasizedShapes = [];
@@ -180,6 +171,57 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         ///     Raised when a delete would leave storage entity sets unmapped.
         /// </summary>
         internal event EventHandler<UnmappedStorageEntitySetsDeletionRequestedEventArgs> UnmappedStorageEntitySetsDeletionRequested;
+
+        /// <summary>
+        ///     Raised when an operation that may take a noticeable time has finished.
+        /// </summary>
+        internal event EventHandler LongOperationEnded;
+
+        /// <summary>
+        ///     Raised when an operation that may take a noticeable time is starting.
+        /// </summary>
+        internal event EventHandler LongOperationStarted;
+
+        /// <summary>
+        ///     Raised when a view's watermark needs its clickable links attached.
+        /// </summary>
+        internal event EventHandler<WatermarkLinksRequestedEventArgs> WatermarkLinksRequested;
+
+        /// <summary>
+        ///     Raised to let the host replace the watermark the designer chose.
+        /// </summary>
+        internal event EventHandler<WatermarkTextRequestedEventArgs> WatermarkTextRequested;
+
+        /// <summary>
+        ///     Marks a stretch of work that may take long enough for the host to want to say so.
+        /// </summary>
+        /// <returns>A scope that reports the end of the operation when disposed.</returns>
+        /// <remarks>
+        ///     Whether that means a wait cursor, a progress bar or nothing at all is the host's to decide. With
+        ///     nothing subscribed this costs a pair of null checks. See specs/layer-map.md.
+        /// </remarks>
+        /// <example>
+        ///     <code>
+        ///     using (BeginLongOperation())
+        ///     {
+        ///         AutoLayoutDiagram(shapes);
+        ///     }
+        ///     </code>
+        /// </example>
+        internal LongOperationScope BeginLongOperation()
+        {
+            LongOperationStarted?.Invoke(this, EventArgs.Empty);
+
+            return new LongOperationScope(this);
+        }
+
+        /// <summary>
+        ///     Reports that a long operation has finished.
+        /// </summary>
+        internal void OnLongOperationEnded()
+        {
+            LongOperationEnded?.Invoke(this, EventArgs.Empty);
+        }
 
         /// <summary>
         ///     Reports a failed reload to the host.
@@ -672,7 +714,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         private void SetEntityShapesExpanded(IList<ShapeElement> shapeElements, bool isExpanded)
         {
             // Put up an hourglass because this may take a while
-            using (new VsUtils.HourglassHelper())
+            using (BeginLongOperation())
             {
                 InDiagramTransaction(
                     EntityDesignerRes.Tx_SetEntityTypeIsExpandedProperty,
@@ -702,53 +744,53 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 
         #region Watermark
 
+        /// <remarks>
+        ///     The designer chooses from what it can see in the model, then gives the host the chance to say
+        ///     something it knows better — see <see cref="WatermarkTextRequested" />.
+        /// </remarks>
         public override string WatermarkText
         {
             get
             {
-                if (GetModel() != null
-                    && GetModel().EditingContext != null
-                    && GetModel().EditingContext.GetEFArtifactService() != null)
+                var request = new WatermarkTextRequestedEventArgs(GetModelWatermarkText());
+                WatermarkTextRequested?.Invoke(this, request);
+
+                return request.Text;
+            }
+        }
+
+        /// <summary>
+        ///     Chooses the watermark from the state of the model alone.
+        /// </summary>
+        /// <returns>The watermark text, with escaped newlines expanded.</returns>
+        private string GetModelWatermarkText()
+        {
+            if (GetModel()?.EditingContext?.GetEFArtifactService()?.Artifact is EntityDesignArtifact artifact)
+            {
+                if (!artifact.IsStructurallySafe)
                 {
-                    if (GetModel().EditingContext.GetEFArtifactService().Artifact is VSArtifact artifact)
-                    {
-                        var project = VSHelpers.GetProjectForDocument(artifact.Uri.LocalPath, PackageManager.Package);
-                        Debug.Assert(project != null);
-
-                        if (!VsUtils.EntityFrameworkSupportedInProject(
-                            project, Services.ServiceProvider, allowMiscProject: true))
-                        {
-                            return string.Format(
-                                CultureInfo.CurrentCulture,
-                                EntityDesignerRes.DesignerWatermark_EDMNotSupported,
-                                EntityDesignerRes.DesignerWatermarkXmlEditorLink).Replace(@"\n", "\n");
-                        }
-
-                        if (!artifact.IsStructurallySafe)
-                        {
-                            return string.Format(
-                                CultureInfo.CurrentCulture,
-                                EntityDesignerRes.DesignerWatermarkSafeModeErrorText,
-                                EntityDesignerRes.DesignerWatermarkXmlEditorLink).Replace(@"\n", "\n");
-                        }
-                        // if the schema version in the document is not valid for the current target framework.
-                        if (!artifact.IsVersionSafe)
-                        {
-                            return string.Format(
-                                CultureInfo.CurrentCulture,
-                                EntityDesignerRes.DesignerWatermarkUpgradeErrorText,
-                                EntityDesignerRes.DesignerWatermarkXmlEditorLink,
-                                EntityDesignerRes.DesignerWatermarkUpgradeLink).Replace(@"\n", "\n");
-                        }
-                    }
+                    return string.Format(
+                        CultureInfo.CurrentCulture,
+                        EntityDesignerRes.DesignerWatermarkSafeModeErrorText,
+                        EntityDesignerRes.DesignerWatermarkXmlEditorLink).Replace(@"\n", "\n");
                 }
 
-                return string.Format(
-                    CultureInfo.CurrentCulture,
-                    EntityDesignerRes.DesignerWatermarkText,
-                    EntityDesignerRes.DesignerWatermarkToolboxLink,
-                    EntityDesignerRes.DesignerWatermarkModelBrowserLink).Replace(@"\n", "\n");
+                // if the schema version in the document is not valid for the current target framework.
+                if (!artifact.IsVersionSafe)
+                {
+                    return string.Format(
+                        CultureInfo.CurrentCulture,
+                        EntityDesignerRes.DesignerWatermarkUpgradeErrorText,
+                        EntityDesignerRes.DesignerWatermarkXmlEditorLink,
+                        EntityDesignerRes.DesignerWatermarkUpgradeLink).Replace(@"\n", "\n");
+                }
             }
+
+            return string.Format(
+                CultureInfo.CurrentCulture,
+                EntityDesignerRes.DesignerWatermarkText,
+                EntityDesignerRes.DesignerWatermarkToolboxLink,
+                EntityDesignerRes.DesignerWatermarkModelBrowserLink).Replace(@"\n", "\n");
         }
 
         protected override void OnAssociated(DiagramAssociationEventArgs e)
@@ -900,213 +942,22 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
             }
         }
 
+        /// <summary>
+        ///     Asks the host to attach the clickable links for <paramref name="diagramView" />'s watermark.
+        /// </summary>
+        /// <param name="diagramView">The view whose watermark was rebuilt.</param>
+        /// <remarks>
+        ///     Every link the watermark offers opens a window or retargets the document, so the host owns all of
+        ///     them. With nothing subscribed the watermark is plain text. See specs/layer-map.md.
+        /// </remarks>
         internal void RefreshWatermarkLinks(DiagramView diagramView)
         {
-            diagramView.Watermark.Links.Clear();
-            AddToolboxWatermarkLink(diagramView);
-            AddModelBrowserWatermarkLink(diagramView);
-            AddXmlEditorWatermarkLink(diagramView);
-            AddUpgradeDocumentWatermarkLink(diagramView);
-
-            // ensure the colors for the watermark LinkLabel are correct by VS UX
-            VSHelpers.AssignLinkLabelColor(diagramView.Watermark);
-
-            diagramView.Watermark.LinkClicked += diagramWatermark_LinkClicked;
-        }
-
-        private static void AddToolboxWatermarkLink(DiagramView diagramView)
-        {
-            var link = AddLink(diagramView, EntityDesignerRes.DesignerWatermarkToolboxLink, StandardToolWindows.Toolbox);
-        }
-
-        private static void AddXmlEditorWatermarkLink(DiagramView diagramView)
-        {
-            var link = AddLink(diagramView, EntityDesignerRes.DesignerWatermarkXmlEditorLink, LinkAction.XmlEditor);
-        }
-
-        private static void AddUpgradeDocumentWatermarkLink(DiagramView diagramView)
-        {
-            var link = AddLink(diagramView, EntityDesignerRes.DesignerWatermarkUpgradeLink, LinkAction.Upgrade);
-        }
-
-        private static void AddModelBrowserWatermarkLink(DiagramView diagramView)
-        {
-            var link = AddLink(diagramView, EntityDesignerRes.DesignerWatermarkModelBrowserLink, LinkAction.ShowModelBrowser);
-        }
-
-        private static LinkLabel.Link AddLink(DiagramView diagramView, string linkText, object linkData)
-        {
-            LinkLabel.Link link = null;
-            diagramView.Watermark.ForeColor = SystemColors.WindowText;
-            var diagramWatermark = diagramView.Watermark;
-
-            var waterMarkBegin = diagramWatermark.Text.IndexOf(linkText, StringComparison.OrdinalIgnoreCase);
-
-            if (waterMarkBegin > 0)
+            if (diagramView?.Watermark is null)
             {
-                var waterMarkLength = linkText.Length;
-                link = new LinkLabel.Link(waterMarkBegin, waterMarkLength);
-                link.Name = linkText;
-                link.LinkData = linkData;
-
-                // Note that even if the link has the same bounds and link data, the standard Contains()
-                // operation will return FALSE based on the hashcode. Thus we need to add a key. The following
-                // debug-time check will verify that if there is a link associated with the key, it has the same
-                // bounds as the incoming link; i.e. we can't have two 'Toolbox' links in a watermark.
-#if DEBUG
-                if (diagramWatermark.Links.ContainsKey(linkText))
-                {
-                    var linkAlreadyInWatermark = diagramWatermark.Links[linkText];
-                    Debug.Assert(
-                        linkAlreadyInWatermark != null,
-                        "Attempted to do debug-time verification of link '" + linkText
-                        + "' in watermark but couldn't find the link even though there is a key for it");
-                    if (linkAlreadyInWatermark != null)
-                    {
-                        // Verify that the bounds and link data are the same
-                        Debug.Assert(
-                            linkAlreadyInWatermark.Start == link.Start && linkAlreadyInWatermark.Length == link.Length,
-                            "We found a link in the watermark associated with '" + linkText
-                            + "' but it has different bounds than the one we are trying to add. This is not allowed.");
-                        Debug.Assert(
-                            linkAlreadyInWatermark.LinkData == link.LinkData,
-                            "We found a link in the watermark associated with '" + linkText
-                            + "' but it has different link data than the one we are trying to add. This is not allowed.");
-                    }
-                }
-#endif
-                if (false == diagramWatermark.Links.ContainsKey(linkText))
-                {
-                    diagramWatermark.Links.Add(link);
-                }
+                return;
             }
 
-            return link;
-        }
-
-        /// <summary>
-        ///     Event invoked when user clicks on a link in the diagram watermark
-        ///     We show the appropriate tool window
-        /// </summary>
-        /// <param name="sender">LinkLabel</param>
-        /// <param name="e">LinkLabelLinkClickedEventArgs</param>
-        private void diagramWatermark_ToolboxLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (sender is LinkLabel linkLabel)
-            {
-                if (e.Link.LinkData is Guid toolWindow)
-                {
-                    if (toolWindow != Guid.Empty)
-                    {
-                        IUIService uiService = Services.ServiceProvider.GetService(typeof(IUIService)) as IUIService;
-                        uiService?.ShowToolWindow(toolWindow);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        ///     Event invoked when user clicks on a link in the diagram watermark
-        ///     We show the appropriate tool window
-        /// </summary>
-        /// <param name="sender">LinkLabel</param>
-        /// <param name="e">LinkLabelLinkClickedEventArgs</param>
-        private void diagramWatermark_OpenInXmlEditorLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (sender is LinkLabel linkLabel)
-            {
-                var a = GetModel().EditingContext.GetEFArtifactService().Artifact;
-
-                IServiceProvider sp = PackageManager.Package;
-                if (sp != null)
-                {
-                    // Open the referenced document using our editor.
-                    VsShellUtilities.OpenDocumentWithSpecificEditor(
-                        sp, a.Uri.LocalPath, CommonPackageConstants.xmlEditorGuid, VSConstants.LOGVIEWID_Primary, out IVsUIHierarchy hierarchy, out uint itemid,
-                        out IVsWindowFrame frame);
-                    if (frame != null)
-                    {
-                        NativeMethods.ThrowOnFailure(frame.Show());
-                    }
-                }
-            }
-        }
-
-        private void diagramWatermark_UpgradeLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            // Display hourglass since the operation may take some time especially for a large model.
-            using (new VsUtils.HourglassHelper())
-            {
-                var editingContext = GetModel().EditingContext;
-                EntityDesignArtifact entityDesignArtifact = editingContext.GetEFArtifactService().Artifact as EntityDesignArtifact;
-                Debug.Assert(entityDesignArtifact != null, "EFArtifact is not an instance of EntityDesignArtifact");
-                if (entityDesignArtifact != null)
-                {
-                    var targetSchemaVersion = EdmUtils.GetEntityFrameworkVersion(
-                        VSHelpers.GetProjectForDocument(entityDesignArtifact.Uri.LocalPath, PackageManager.Package),
-                        PackageManager.Package, useLatestIfNoEF: false);
-
-                    ReversionModel(PackageManager.Package, editingContext, entityDesignArtifact, targetSchemaVersion);
-                }
-            }
-        }
-
-        //internal for testing
-        internal static void ReversionModel(
-            IEdmPackage package, EditingContext editingContext, EntityDesignArtifact entityDesignArtifact, Version targetSchemaVersion)
-        {
-            CommandProcessorContext cpc = new CommandProcessorContext(
-                editingContext, EfiTransactionOriginator.EntityDesignerOriginatorId,
-                EntityDesignerRes.RetargetDocumentFromWatermarkTransactionName, entityDesignArtifact);
-
-            RetargetXmlNamespaceCommand.RetargetArtifactXmlNamespaces(cpc, entityDesignArtifact, targetSchemaVersion);
-
-            // The code below ensure that our mapping window works property after the command is executed.
-            Debug.Assert(package.DocumentFrameMgr != null, "Could not find the DocumentFrameMgr for this package");
-            package.DocumentFrameMgr?.SetCurrentContext(editingContext);
-        }
-
-        private void diagramWatermark_ShowModelBrowserLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Debug.Assert(PackageManager.Package != null, "Entity Designer Package is null.");
-            if (PackageManager.Package != null)
-            {
-                Debug.Assert(PackageManager.Package.ExplorerWindow != null, "Unable to get instance of Model Browser window from package.");
-                PackageManager.Package.ExplorerWindow?.Show();
-            }
-        }
-
-        private void diagramWatermark_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (e.Link.LinkData is LinkAction)
-            {
-                var linkAction = LinkAction.Unknown;
-                linkAction = (LinkAction)e.Link.LinkData;
-                if (linkAction == LinkAction.XmlEditor)
-                {
-                    diagramWatermark_OpenInXmlEditorLinkClicked(sender, e);
-                }
-                else if (linkAction == LinkAction.Upgrade)
-                {
-                    diagramWatermark_UpgradeLinkClicked(sender, e);
-                }
-                else if (linkAction == LinkAction.ShowModelBrowser)
-                {
-                    diagramWatermark_ShowModelBrowserLinkClicked(sender, e);
-                }
-                else
-                {
-                    Debug.Fail("unexpected LinkAction value in LinkData value");
-                }
-            }
-            else if (e.Link.LinkData is Guid)
-            {
-                diagramWatermark_ToolboxLinkClicked(sender, e);
-            }
-            else
-            {
-                Debug.Fail("unexpected data for LinkData");
-            }
+            WatermarkLinksRequested?.Invoke(this, new WatermarkLinksRequestedEventArgs(diagramView));
         }
 
         #endregion Watermark
@@ -1127,7 +978,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         public void AutoLayoutDiagram(IList shapes)
         {
             // Put up an hourglass because this may take a while
-            using (new VsUtils.HourglassHelper())
+            using (BeginLongOperation())
             {
                 // Inheritance lines need to be placed using a different styling
                 // so that the lines join at the same point. Sort out which shapes we have
