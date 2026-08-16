@@ -13,7 +13,7 @@ using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using Microsoft.Data.Entity.Design.Model.Visitor;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 
 namespace Microsoft.Data.Entity.Tests.Design.Package.Watermark
 {

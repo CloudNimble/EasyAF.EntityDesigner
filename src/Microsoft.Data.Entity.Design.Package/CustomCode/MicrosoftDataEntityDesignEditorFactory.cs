@@ -15,10 +15,10 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using VSLangProj80;
 using VsWebSite;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.SingleFileGenerator;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.SingleFileGenerator;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 
 namespace Microsoft.Data.Entity.Design.Package
 {
@@ -137,7 +137,7 @@ namespace Microsoft.Data.Entity.Design.Package
             // first convert the enumerable into a hash for quick lookup
             HashSet<string> websiteReferenceHash = new HashSet<string>();
             var websiteReferenceEnumerator = webSiteProject.References.GetEnumerator();
-            var netRefPath = EdmUtils.GetRuntimeAssemblyPath(webSiteProject.Project, Services.ServiceProvider);
+            var netRefPath = EdmUtils.GetRuntimeAssemblyPath(webSiteProject.Project, PackageManager.Package);
 
             while (websiteReferenceEnumerator.MoveNext())
             {

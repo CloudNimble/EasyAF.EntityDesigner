@@ -5,8 +5,9 @@ using Microsoft.Data.Entity.Design.Dsl.View;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 using Microsoft.VisualStudio.Modeling.Shell;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 
 namespace Microsoft.Data.Entity.Design.Package
 {
@@ -48,7 +49,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 return;
             }
 
-            var selectionService = Services.DslMonitorSelectionService;
+            var selectionService = PackageManager.Package.GetMonitorSelectionService();
             Debug.Assert(selectionService != null, "Could not retrieve IMonitorSelectionService from Escher package.");
             if (selectionService?.CurrentDocumentView is SingleDiagramDocView activeDocView
                 && TryNavigate(activeDocView, efobject))
@@ -57,7 +58,7 @@ namespace Microsoft.Data.Entity.Design.Package
             }
 
             // Retrieves the doc data for the efobject.
-            ModelingDocData docdata = VSHelpers.GetDocData(Services.ServiceProvider, efobject.Uri.LocalPath) as ModelingDocData;
+            ModelingDocData docdata = VSHelpers.GetDocData(PackageManager.Package, efobject.Uri.LocalPath) as ModelingDocData;
             Debug.Assert(docdata != null, "Could not find get doc data for artifact with URI:" + efobject.Uri.LocalPath);
             if (docdata == null)
             {

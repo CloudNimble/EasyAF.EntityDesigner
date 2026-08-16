@@ -10,7 +10,7 @@ using System.Windows.Threading;
 using Microsoft.Data.Entity.Design.Dsl.View;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Model;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
 using Microsoft.VisualStudio;
@@ -19,10 +19,11 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Utilities;
 using ModelChangeEventArgs = Microsoft.Data.Entity.Design.VisualStudio.Package.ModelChangeEventArgs;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails;
 using Microsoft.Data.Entity.Design.Package.Theming;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 
 namespace Microsoft.Data.Entity.Design.Package
 {
@@ -216,7 +217,6 @@ namespace Microsoft.Data.Entity.Design.Package
 
                 // clear out any static references
                 PackageManager.Package = null;
-                Services.ServiceProvider = null;
                 _dispatcher = null;
             }
             finally
@@ -246,7 +246,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 return null;
             }
 
-            var menuService = Services.OleMenuCommandService;
+            var menuService = PackageManager.Package.GetOleMenuCommandService();
             OleMenuCommand command = null;
             if (null != menuService)
             {

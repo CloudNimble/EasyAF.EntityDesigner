@@ -2,11 +2,11 @@
 
 using System;
 using EnvDTE;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.Gui;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui;
 using Microsoft.Data.Entity.Tests.Design.TestHelpers;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
 using Moq;
 using Moq.Protected;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Gui
 {

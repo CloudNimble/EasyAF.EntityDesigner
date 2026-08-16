@@ -13,9 +13,9 @@ using System.Xml.Linq;
 using Microsoft.Data.Entity.Tests.Design.TestHelpers;
 using VSLangProj;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Resources = Microsoft.Data.Entity.Design.Resources;
+using Resources = Microsoft.VisualStudio.Data.Entity.Design.Resources;
 using Microsoft.VisualStudio.Data.Entity.Design.Extensibility;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Model;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.Model
 {

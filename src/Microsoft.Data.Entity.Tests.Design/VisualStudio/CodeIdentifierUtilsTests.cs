@@ -2,7 +2,7 @@
 
 using FluentAssertions;
 using Microsoft.Data.Entity.Design.Common;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio

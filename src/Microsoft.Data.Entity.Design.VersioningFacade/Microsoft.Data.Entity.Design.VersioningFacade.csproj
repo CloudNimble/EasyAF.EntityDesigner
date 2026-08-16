@@ -53,5 +53,12 @@
         <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.VersioningFacade, $(StrongNamePublicKey)" />
         <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.DatabaseGeneration, $(StrongNamePublicKey)" />
     </ItemGroup>
+    <ItemGroup>
+      <Compile Update="Resources.VersioningFacade.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Resources.VersioningFacade.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
 
 </Project>

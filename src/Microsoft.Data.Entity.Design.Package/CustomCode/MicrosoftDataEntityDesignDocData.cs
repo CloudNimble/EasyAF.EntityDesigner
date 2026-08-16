@@ -40,10 +40,10 @@ using Microsoft.VisualStudio.Shell.Interop;
 using IServiceProvider = System.IServiceProvider;
 using Microsoft.VisualStudio.TextManager.Interop;
 using Microsoft.VisualStudio.Data.Entity.Design.Extensibility;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Model;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Explorer;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 
 namespace Microsoft.Data.Entity.Design.Package
 {
@@ -663,11 +663,6 @@ namespace Microsoft.Data.Entity.Design.Package
                 int ret;
                 using (new VsUtils.HourglassHelper())
                 {
-                    // Prepare the shell's own document buffer, and hand the designer the editing context that
-                    // identifies this document. Both used to happen inside the designer's LoadModel, which had to
-                    // reach back through PackageManager to do it. See specs/layer-map.md.
-                    PrepareStoreForLoad(fileName);
-
                     ret = base.LoadDocData(fileName, isReload);
                 }
 
@@ -715,16 +710,37 @@ namespace Microsoft.Data.Entity.Design.Package
         }
 
         /// <summary>
-        ///     Creates the shell's text buffer for <paramref name="fileName" /> and pushes the document's editing
-        ///     context into the store, so the designer can load without reaching back into the package.
+        ///     Prepares the shell's own document, then lets the designer load from it.
+        /// </summary>
+        /// <param name="fileName">Full path of the document being loaded.</param>
+        /// <param name="isReload">Whether this is a reload of an already open document.</param>
+        /// <remarks>
+        ///     <para>
+        ///         This is the point the buffer creation has to happen at, and the reason is easy to get wrong:
+        ///         <see cref="CreateAndLoadBuffer" /> reads the inherited <c>FileName</c> property, which the base
+        ///         class does not set until <c>LoadDocData</c> is under way. Doing this from an override of
+        ///         <c>LoadDocData</c> instead — before <c>base.LoadDocData</c> — leaves <c>FileName</c> empty and
+        ///         fails with "Invalid URI: The URI is empty".
+        ///     </para>
+        ///     <para>
+        ///         Both steps used to run inside the designer's own <c>LoadModel</c>, which had to reach back
+        ///         through <c>PackageManager</c> to do them. Preparing the shell's document is the shell's job;
+        ///         this override is the earliest place that can do it with a file name in hand. See
+        ///         specs/layer-map.md.
+        ///     </para>
+        /// </remarks>
+        protected override void Load(string fileName, bool isReload)
+        {
+            PrepareStoreForLoad(fileName);
+
+            base.Load(fileName, isReload);
+        }
+
+        /// <summary>
+        ///     Creates the shell's text buffer and pushes the document's editing context into the store, so the
+        ///     designer can load without reaching back into the package.
         /// </summary>
         /// <param name="fileName">Full path of the document about to be loaded.</param>
-        /// <remarks>
-        ///     Runs before <c>base.LoadDocData</c>, which is what eventually calls the designer's load. Both steps
-        ///     used to happen inside that load: the buffer through <see cref="CreateAndLoadBuffer" /> and the
-        ///     context by recomputing what this class already exposes as <see cref="EditingContext" />. Preparing
-        ///     the shell's own document is the shell's job. See specs/layer-map.md.
-        /// </remarks>
         private void PrepareStoreForLoad(string fileName)
         {
             CreateAndLoadBuffer();
@@ -1096,7 +1112,7 @@ namespace Microsoft.Data.Entity.Design.Package
         {
             get
             {
-                var selectionService = Services.DslMonitorSelectionService;
+                var selectionService = PackageManager.Package.GetMonitorSelectionService();
                 Debug.Assert(selectionService != null, "Could not retrieve IMonitorSelectionService from Escher package.");
                 if (selectionService != null)
                 {
@@ -1111,7 +1127,7 @@ namespace Microsoft.Data.Entity.Design.Package
             get
             {
                 if (VsShellUtilities.IsDocumentOpen(
-                    Services.ServiceProvider, FileName, PackageConstants.guidLogicalView, out IVsUIHierarchy hier, out uint itemId, out IVsWindowFrame pFrame))
+                    PackageManager.Package, FileName, PackageConstants.guidLogicalView, out IVsUIHierarchy hier, out uint itemId, out IVsWindowFrame pFrame))
                 {
                     if (VSConstants.S_OK == pFrame.GetProperty((int)__VSFPROPID.VSFPROPID_DocView, out object docViewObj))
                     {

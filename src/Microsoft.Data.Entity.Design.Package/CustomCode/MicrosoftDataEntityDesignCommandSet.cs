@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using DesignRes = Microsoft.VisualStudio.Data.Entity.Design.Resources;
 using ModelEntity = Microsoft.Data.Entity.Design.Model.Entity;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Entity.Design.Model.Mapping;
 using Microsoft.Data.Entity.Design.UI;
 using Microsoft.Data.Entity.Design.UI.ViewModels.Explorer;
-using Microsoft.Data.Entity.Design.UI.Views.Dialogs;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs;
 using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio;
@@ -39,16 +40,16 @@ using EntityDesignerSelection = Microsoft.VisualStudio.Data.Entity.Design.UI.Vie
 using Property = Microsoft.Data.Entity.Design.Dsl.ViewModel.Property;
 using ScalarProperty = Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Explorer;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Explorer;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Model.Commands;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.Engine;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.Util;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 using Microsoft.VisualStudio.Data.Entity.Design.Refactoring;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails;
 using IViewDiagram = Microsoft.Data.Entity.Design.Model.Designer.IViewDiagram;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model.Commands;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard;
 
 namespace Microsoft.Data.Entity.Design.Package
 {
@@ -607,7 +608,7 @@ namespace Microsoft.Data.Entity.Design.Package
                     }
                 };
 
-            var menuService = Services.OleMenuCommandService;
+            var menuService = PackageManager.Package.GetOleMenuCommandService();
             Debug.Assert(menuService != null, "Command service must not be null");
             if (menuService != null)
             {
@@ -626,7 +627,7 @@ namespace Microsoft.Data.Entity.Design.Package
 
         public bool RemoveCommand(CommandID commandIdNum)
         {
-            var menuService = Services.OleMenuCommandService;
+            var menuService = PackageManager.Package.GetOleMenuCommandService();
             Debug.Assert(menuService != null, "Command service must not be null");
             if (menuService != null)
             {
@@ -3436,7 +3437,7 @@ namespace Microsoft.Data.Entity.Design.Package
         {
             if (null != CurrentDocData)
             {
-                var project = VSHelpers.GetProjectForDocument(CurrentDocData.FileName, Services.ServiceProvider);
+                var project = VSHelpers.GetProjectForDocument(CurrentDocData.FileName, PackageManager.Package);
                 if (project != null)
                 {
                     if (!VsUtils.IsMiscellaneousProject(project))
@@ -3530,7 +3531,7 @@ namespace Microsoft.Data.Entity.Design.Package
             var uri = Utils.FileName2Uri(CurrentDocData.FileName);
             var editingContext = PackageManager.Package.DocumentFrameMgr.EditingContextManager.GetNewOrExistingContext(uri);
             CommandProcessorContext cpc = new CommandProcessorContext(
-                editingContext, EfiTransactionOriginator.EntityDesignerOriginatorId, Design.Resources.Tx_AddComplexType);
+                editingContext, EfiTransactionOriginator.EntityDesignerOriginatorId, DesignRes.Tx_AddComplexType);
             var complexType = CreateComplexTypeCommand.CreateComplexTypeWithDefaultName(cpc);
             Debug.Assert(complexType != null, "Creating ComplexType failed");
             if (complexType != null)
@@ -3721,7 +3722,7 @@ namespace Microsoft.Data.Entity.Design.Package
                                     PackageManager.Package.DocumentFrameMgr.EditingContextManager.GetNewOrExistingContext(uri);
                                 CommandProcessorContext cpc = new CommandProcessorContext(
                                     editingContext, EfiTransactionOriginator.ExplorerWindowOriginatorId,
-                                    Design.Resources.Tx_CreateScalarProperty, null, context);
+                                    DesignRes.Tx_CreateScalarProperty, null, context);
                                 var property = CreateComplexTypePropertyCommand.CreateDefaultProperty(cpc, complexType, returnType);
                                 if (property != null)
                                 {
@@ -3758,7 +3759,7 @@ namespace Microsoft.Data.Entity.Design.Package
             uint dwFilterCookie = 0;
             IVsRegisterNewDialogFilters registerNewDialogFilters = null;
 
-            var project = VSHelpers.GetProjectForDocument(CurrentDocData.FileName, Services.ServiceProvider);
+            var project = VSHelpers.GetProjectForDocument(CurrentDocData.FileName, PackageManager.Package);
             Debug.Assert(
                 project != null, "Cannot add AddNewItemDialogFilter. The project does not exist for file name " + CurrentDocData.FileName);
             if (project != null)
@@ -3772,13 +3773,13 @@ namespace Microsoft.Data.Entity.Design.Package
                         // Register my filter
                         registerNewDialogFilters.RegisterAddNewItemDialogFilter(new AddNewItemDialogFilter(), out dwFilterCookie);
 
-                        DTE dte = (DTE)Services.ServiceProvider.GetService(typeof(DTE));
+                        DTE dte = (DTE)PackageManager.Package.GetService(typeof(DTE));
 
                         // Show the "Add...New...Item" dialog via DTE
                         AddArtifactGeneratorWizard.EdmxUri = Utils.FileName2Uri(CurrentDocData.FileName);
 
                         DbContextCodeGenerator.AddAndNestCodeGenTemplates(
-                            VsUtils.GetProjectItemForDocument(CurrentDocData.FileName, Services.ServiceProvider),
+                            VsUtils.GetProjectItemForDocument(CurrentDocData.FileName, PackageManager.Package),
                             () => dte.ExecuteCommand("Project.AddNewItem", String.Empty));
                     }
                     catch (System.Runtime.InteropServices.COMException ex) when (ex.ErrorCode == OLE_E_PROMPTSAVECANCELLED)
@@ -3853,7 +3854,7 @@ namespace Microsoft.Data.Entity.Design.Package
             var uri = Utils.FileName2Uri(CurrentDocData.FileName);
             var editingContext = PackageManager.Package.DocumentFrameMgr.EditingContextManager.GetNewOrExistingContext(uri);
             CommandProcessorContext cpc = new CommandProcessorContext(
-                editingContext, EfiTransactionOriginator.EntityDesignerOriginatorId, Design.Resources.Tx_CreateDiagram);
+                editingContext, EfiTransactionOriginator.EntityDesignerOriginatorId, DesignRes.Tx_CreateDiagram);
             var diagram = CreateDiagramCommand.CreateDiagramWithDefaultName(cpc);
             return diagram;
         }
@@ -4370,7 +4371,7 @@ namespace Microsoft.Data.Entity.Design.Package
             }
 
             // A linked EDMX cannot have a sibling diagram file added alongside it.
-            var artifactProjectItem = VsUtils.GetProjectItemForDocument(artifact.Uri.LocalPath, Services.ServiceProvider);
+            var artifactProjectItem = VsUtils.GetProjectItemForDocument(artifact.Uri.LocalPath, PackageManager.Package);
             if (artifactProjectItem is null)
             {
                 reason = $"no project item was found for '{artifact.Uri.LocalPath}'";
@@ -4407,7 +4408,7 @@ namespace Microsoft.Data.Entity.Design.Package
             }
 
             var result = VsUtils.ShowMessageBox(
-                Services.ServiceProvider, Resources.MoveDiagramNodesWarning
+                PackageManager.Package, Resources.MoveDiagramNodesWarning
                 , OLEMSGBUTTON.OLEMSGBUTTON_YESNO, OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_SECOND, OLEMSGICON.OLEMSGICON_WARNING);
 
             if (result != DialogResult.Yes)
@@ -4440,7 +4441,7 @@ namespace Microsoft.Data.Entity.Design.Package
             MigrateDiagramInformationCommand.DoMigrate(cpc, entityDesignArtifact);
 
             // Save the EDMX file.
-            RunningDocumentTable rdt = new RunningDocumentTable(Services.ServiceProvider);
+            RunningDocumentTable rdt = new RunningDocumentTable(PackageManager.Package);
             rdt.SaveFileIfDirty(edmxFileName);
         }
 
@@ -4741,7 +4742,7 @@ namespace Microsoft.Data.Entity.Design.Package
                             {
                                 CommandProcessorContext cpc = new CommandProcessorContext(
                                     editingContext, EfiTransactionOriginator.EntityDesignerOriginatorId
-                                    , Design.Resources.Tx_UpdatePropertyType);
+                                    , DesignRes.Tx_UpdatePropertyType);
                                 CommandProcessor.InvokeSingleCommand(
                                     cpc, new ChangePropertyTypeCommand(modelProperty, newlyCreatedEnumType.NormalizedNameExternal));
                             }

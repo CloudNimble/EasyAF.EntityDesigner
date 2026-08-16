@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.Collections;
-using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Base.Shell;
 using Microsoft.Data.Entity.Design.Model.Mapping;
 using Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails.Functions;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails;
+using System.Collections;
+using System.Diagnostics;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails.Branches
 {

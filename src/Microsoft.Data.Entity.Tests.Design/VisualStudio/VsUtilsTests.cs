@@ -20,7 +20,7 @@ using VsWebSite;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using DbProviderServices = System.Data.Entity.Core.Common.DbProviderServices;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio
 {

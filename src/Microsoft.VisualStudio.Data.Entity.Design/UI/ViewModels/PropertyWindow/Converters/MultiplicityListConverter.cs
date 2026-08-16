@@ -3,7 +3,7 @@
 using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Core.Controls;
 using Microsoft.Data.Entity.Design.Model;
-using Resources = Microsoft.Data.Entity.Design.Resources;
+using Resources = Microsoft.VisualStudio.Data.Entity.Design.Resources;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters
 {

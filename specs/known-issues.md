@@ -8,17 +8,24 @@ Measured with `dotnet build -c Release --no-incremental` and `dotnet test -c Rel
 
 | Category | Count |
 |---|---|
-| Failing tests | 10 |
+| Failing tests | 0 — see 1.1 |
 | Tests disabled with `[Ignore]` | 186 |
 | Tests that never run because of an invalid signature | 17 |
-| Build warnings | 181 |
+| Build warnings | 284 |
 | Packages with known vulnerabilities | 0 — fixed, see 3.1 |
+| Minor defects logged for later | 6 — see section 5 |
 
 ## 1. Failing tests
 
-### 1.1 Wizard pages need a live VS shell — 10 failures
+### 1.1 Wizard pages need a live VS shell — 10 failures — FIXED
 
-Run the project on its own and this is a deterministic 10. Run the whole solution and the count drifts by one or two, and the extra names move between assemblies — `DispatchSaveToExtensions_invokes_serializers_if_present` in `Tests.Design.Package` one run, a pair in `Tests.Design` the next, neither reproducible in isolation.
+**All ten now pass.** They were fixed by deleting the `Services` service locator, not by anything aimed at the tests. That class cached its `IServiceProvider` in a `??=` static which nothing ever cleared: a `MockPackage` from one test stayed live for every test that followed, long after the test that created it had disposed it. Every call site now reads `PackageManager.Package`, which each test sets for itself.
+
+This was verified by bisection — restoring the old `Debug.Assert` in `PackageManager.Package` while keeping the locator deleted still gives 60 passed / 0 failed, so the locator was the cause and the assert change was not.
+
+The analysis below is kept because the cross-assembly interference it describes is real and still applies to anything that leans on shell statics.
+
+Run the project on its own and this used to be a deterministic 10. Run the whole solution and the count drifts by one or two, and the extra names move between assemblies — `DispatchSaveToExtensions_invokes_serializers_if_present` in `Tests.Design.Package` one run, a pair in `Tests.Design` the next, neither reproducible in isolation.
 
 That is the same root cause as the ten, one level up: the shell statics these tests lean on (`ThreadHelper.JoinableTaskContext`, the `IVsSettingsManager` service lookup) are process-wide, and test assemblies run concurrently. Whichever assembly initialises the shell first decides what the others see. `UsesDslStore` (see `threading-model.md`) serialises tests *within* an assembly; nothing serialises them *across* assemblies.
 
@@ -194,6 +201,36 @@ This was the blocker on shipping `Microsoft.Data.Entity.Tools` as a real `dotnet
 ### 4.3 Raster export does not work headless
 
 PNG, JPEG, BMP, GIF and TIFF go through `Diagram.CreateBitmap`, which resolves `SVsUIShell`. SVG and Mermaid work. See `headless-edmx-rendering.md`.
+
+## 5. Minor defects found while documenting the Manager classes
+
+Six things surfaced during the documentation sweep. All were deliberately left alone at the time — a formatting pass is the wrong place to change behaviour — and all are small enough to fix individually.
+
+### 5.1 `RdtManager.Dispose` releases nothing
+
+It asserts that its table is empty and returns. Any entry still present is an RDT edit lock whose owner is gone, so the document stays open invisibly for the rest of the Visual Studio session. Either release what remains or make the assert a real failure. `Microsoft.VisualStudio.Data.Tools.Design.XmlCore/Common/RdtManager.cs`.
+
+### 5.2 `EdmFeatureManager` is a no-op
+
+All eleven gates return `FeatureState.VisibleAndEnabled` unconditionally, because only EF6/V3 is supported and V3 is a superset of the versions the gates were written to distinguish. 148 lines that can only answer "yes". Either delete it and inline the answer, or keep it and accept it as a placeholder for a future version split. `Microsoft.Data.Entity.Design.Model/EdmFeatureManager.cs`.
+
+### 5.3 Dead branch in `EditingContextManager.GetCurrentUri`
+
+An `if (context is null)` sits inside a block only reachable when `TryGetValue` already failed, so `context` is always null there and the test always passes. Harmless, but it hides the fact that the code after it is only reachable on a map hit. `Microsoft.VisualStudio.Data.Tools.Design.XmlCore/VisualStudio/Package/EditingContextManager.cs`.
+
+### 5.4 `FeatureState.cs` holds two top-level types and no docs
+
+`FeatureState` and `FeatureSupportedStateExtensions` share a file, and the extension methods are undocumented. Same violation as the Manager classes; it simply was not on that list. `Microsoft.Data.Entity.Design.Model/FeatureState.cs`.
+
+### 5.5 `SchemaManager.GetNamespaceName` asserts, then indexes anyway
+
+For an unsupported version it `Debug.Assert`s and then indexes the dictionary regardless, so a Release build throws `KeyNotFoundException` from inside the lookup rather than failing where the bad version was supplied. The same assert-then-proceed shape that `PackageManager.Package` had. `Microsoft.Data.Entity.Design.VersioningFacade/SchemaManager.cs`.
+
+### 5.6 Rendered SVG depends on the source file's line endings
+
+`SvgStylesheetManager.GetStyleDefinitions` returns a verbatim string literal, so the newlines it emits are literally the bytes in the `.cs` file. With `* text=auto` and `core.autocrlf=true` the repository stores LF and checkout produces CRLF, which means **the rendered SVG differs depending on how the repository was cloned**. The regression baseline is therefore machine specific rather than a stable contract.
+
+Worth fixing at the point of emission — normalise the stylesheet's newlines — rather than by pinning the file's line endings. Note the output is already mixed: `<title>` ends with LF while `<defs>` ends with CRLF, so the writer is inconsistent about newlines more broadly. `Microsoft.Data.Entity.Design.Renderer/Export/Svg/SvgStylesheetManager.cs`.
 
 ## Suggested order
 

@@ -4,7 +4,7 @@ using System;
 using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Tools.XmlDesignerBase.Model;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 
 namespace Microsoft.Data.Entity.Tests.Shared.EFDesigner
 {

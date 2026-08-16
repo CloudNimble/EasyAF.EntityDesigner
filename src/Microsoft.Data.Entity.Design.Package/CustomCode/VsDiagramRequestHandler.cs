@@ -5,12 +5,12 @@ using System.Globalization;
 using Microsoft.Data.Entity.Design.Dsl.View;
 using Microsoft.Data.Entity.Design.Dsl.View.Events;
 using Microsoft.Data.Entity.Design.Model.Eventing;
-using Microsoft.Data.Entity.Design.UI.Views.Dialogs;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.Util;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
-using DesignRes = Microsoft.Data.Entity.Design.Resources;
+using DesignRes = Microsoft.VisualStudio.Data.Entity.Design.Resources;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 
 namespace Microsoft.Data.Entity.Design.Package
 {

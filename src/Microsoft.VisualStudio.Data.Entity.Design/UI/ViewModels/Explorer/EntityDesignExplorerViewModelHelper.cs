@@ -1,9 +1,5 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
 using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Entity.Design.Model;
@@ -14,7 +10,11 @@ using Microsoft.Data.Entity.Design.Model.Visitor;
 using Microsoft.Data.Entity.Design.UI;
 using Microsoft.Data.Entity.Design.UI.ViewModels.Explorer;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.Util;
-using Resources = Microsoft.Data.Entity.Design.Resources;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
+using Resources = Microsoft.VisualStudio.Data.Entity.Design.Resources;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Explorer
 {

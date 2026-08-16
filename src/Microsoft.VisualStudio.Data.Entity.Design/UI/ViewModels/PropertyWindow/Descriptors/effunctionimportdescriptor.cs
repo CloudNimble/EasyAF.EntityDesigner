@@ -1,8 +1,5 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Drawing.Design;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;
@@ -10,6 +7,9 @@ using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow;
 using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.TypeEditors;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing.Design;
 using XmlDesignerBaseResources = Microsoft.Data.Tools.XmlDesignerBase.Resources;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors

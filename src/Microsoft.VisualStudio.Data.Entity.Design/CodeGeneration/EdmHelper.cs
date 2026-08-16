@@ -1,16 +1,16 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.CodeGeneration;
 using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
-using System.Collections.Generic;
-using System.Data.Entity.Core.Metadata.Edm;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
+using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
 using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration;
 using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Discoverers;
 using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Discoverers.NavigationProperties;
 using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Discoverers.Properties;
 using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Discoverers.Types;
+using System.Collections.Generic;
+using System.Data.Entity.Core.Metadata.Edm;
+using System.Data.Entity.Infrastructure;
+using System.Linq;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration
 {

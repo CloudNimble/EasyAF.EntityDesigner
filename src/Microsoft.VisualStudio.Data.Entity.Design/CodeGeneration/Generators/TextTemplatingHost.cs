@@ -1,3 +1,5 @@
+using Microsoft.VisualStudio.TextTemplating;
+using Microsoft.VisualStudio.TextTemplating.VSHost;
 using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
@@ -5,8 +7,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TextTemplating;
-using Microsoft.VisualStudio.TextTemplating.VSHost;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Generators
 {

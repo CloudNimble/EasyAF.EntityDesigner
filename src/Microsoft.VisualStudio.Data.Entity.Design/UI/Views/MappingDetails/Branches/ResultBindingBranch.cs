@@ -5,7 +5,7 @@ using Microsoft.Data.Entity.Design.Base.Shell;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails.Functions;
-using Resources = Microsoft.Data.Entity.Design.Resources;
+using Resources = Microsoft.VisualStudio.Data.Entity.Design.Resources;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails.Branches
 {

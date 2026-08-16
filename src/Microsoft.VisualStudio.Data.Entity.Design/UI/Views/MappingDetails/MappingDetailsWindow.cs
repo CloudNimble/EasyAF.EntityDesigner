@@ -1,7 +1,26 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using VsErrorHandler = Microsoft.VisualStudio.ErrorHandler;
-using VsShell = Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.Data.Entity.Design;
+using Microsoft.Data.Entity.Design.Base.Context;
+using Microsoft.Data.Entity.Design.Base.Shell;
+using Microsoft.Data.Entity.Design.Model;
+using Microsoft.Data.Entity.Design.Model.Designer;
+using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.Model.Eventing;
+using Microsoft.Data.Entity.Design.Model.Mapping;
+using Microsoft.Data.Entity.Design.UI;
+using Microsoft.Data.Entity.Design.UI.Views.Explorer;
+using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid;
+using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.EntityDesigner;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails.Columns;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Modeling.Shell;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,27 +29,9 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Runtime.InteropServices;
-using Microsoft.Data.Entity.Design.Base.Context;
-using Microsoft.Data.Entity.Design.Base.Shell;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Designer;
-using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Model.Eventing;
-using Microsoft.Data.Entity.Design.Model.Mapping;
-using Microsoft.Data.Entity.Design.UI.Views.Explorer;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
-using Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Modeling.Shell;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.EntityDesigner;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails.Columns;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
-using Microsoft.Data.Entity.Design;
-using Microsoft.Data.Entity.Design.UI;
-using Microsoft.Data.Entity.Design.UI.Views.MappingDetails;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails;
-using Resources = Microsoft.Data.Entity.Design.Resources;
+using Resources = Microsoft.VisualStudio.Data.Entity.Design.Resources;
+using VsErrorHandler = Microsoft.VisualStudio.ErrorHandler;
+using VsShell = Microsoft.VisualStudio.Shell.Interop;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails
 {

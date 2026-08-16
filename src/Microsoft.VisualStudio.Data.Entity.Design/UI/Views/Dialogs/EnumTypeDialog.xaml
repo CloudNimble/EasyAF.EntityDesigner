@@ -1,4 +1,4 @@
-<vs:DialogWindow x:Class="Microsoft.Data.Entity.Design.UI.Views.Dialogs.EnumTypeDialog"
+<vs:DialogWindow x:Class="Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs.EnumTypeDialog"
                  x:ClassModifier="internal"
                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,7 +6,7 @@
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                  xmlns:vs="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0"
                  xmlns:shell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
-                 xmlns:ded="clr-namespace:Microsoft.Data.Entity.Design"
+                 xmlns:ded="clr-namespace:Microsoft.VisualStudio.Data.Entity.Design"
                  xmlns:vm="clr-namespace:Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Dialog"
                  xmlns:core-controls="clr-namespace:Microsoft.Data.Entity.Design.Core.Controls;assembly=Microsoft.VisualStudio.Data.Tools.Design.XmlCore"
                  mc:Ignorable="d"
@@ -27,7 +27,7 @@
     <vs:DialogWindow.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Microsoft.Data.Entity.Design;Component/Resources/EscherIcons.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Microsoft.VisualStudio.Data.Entity.Design;Component/Resources/EscherIcons.xaml"/>
         <ResourceDictionary Source="DialogStyles.xaml"/>
       </ResourceDictionary.MergedDictionaries>
 

@@ -8,12 +8,12 @@
   xmlns:xdb="clr-namespace:Microsoft.Data.Entity.Design.UI.Views.Explorer;assembly=Microsoft.VisualStudio.Data.Tools.Design.XmlCore"
   xmlns:coreCtrls="clr-namespace:Microsoft.Data.Entity.Design.Core.Controls;assembly=Microsoft.VisualStudio.Data.Tools.Design.XmlCore"
   xmlns:vsShell11="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0"
-  xmlns:Design="clr-namespace:Microsoft.Data.Entity.Design"
+  xmlns:Design="clr-namespace:Microsoft.VisualStudio.Data.Entity.Design"
   SnapsToDevicePixels="True"
   UseLayoutRounding="True"
   TextOptions.TextFormattingMode="Display"
   Background="{DynamicResource VsBrush.ToolWindowBackground}"
-  x:Class="Microsoft.Data.Entity.Design.UI.Views.Explorer.EntityDesignExplorerContent"
+  x:Class="Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Explorer.EntityDesignExplorerContent"
   KeyboardNavigation.TabNavigation="Cycle"
   KeyboardNavigation.ControlTabNavigation="None"
   >
@@ -22,7 +22,7 @@
     <ResourceDictionary>
 
       <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Microsoft.Data.Entity.Design;Component/Resources/EscherIcons.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Microsoft.VisualStudio.Data.Entity.Design;Component/Resources/EscherIcons.xaml" />
       </ResourceDictionary.MergedDictionaries>
 
       <s:Boolean x:Key="BooleanFalseValue">False</s:Boolean>

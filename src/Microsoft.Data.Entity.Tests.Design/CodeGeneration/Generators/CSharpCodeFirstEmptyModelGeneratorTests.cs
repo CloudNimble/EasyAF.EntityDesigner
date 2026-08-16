@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using FluentAssertions;
 using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.Properties;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Properties;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Generators;
 

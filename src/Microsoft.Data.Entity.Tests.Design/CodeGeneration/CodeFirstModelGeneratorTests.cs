@@ -12,7 +12,7 @@ using Microsoft.Data.Entity.Tests.Design.TestHelpers;
 using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Resources = Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.Properties.Resources;
+using Resources = Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Properties.Resources;
 
 namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
 {

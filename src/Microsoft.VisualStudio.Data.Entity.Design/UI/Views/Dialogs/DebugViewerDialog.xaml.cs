@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.VisualStudio.PlatformUI;
 using System;
 using System.Windows;
-using Microsoft.VisualStudio.PlatformUI;
 
-namespace Microsoft.Data.Entity.Design.UI.Views.Dialogs
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs
 {
     /// <summary>
     /// Displays a dialog that allows us to display debug information in modal textbox in debug builds

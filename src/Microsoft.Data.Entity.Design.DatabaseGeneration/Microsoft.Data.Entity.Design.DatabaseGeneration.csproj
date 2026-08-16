@@ -33,5 +33,12 @@
     <!-- Modern test projects -->
     <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.DatabaseGeneration, $(StrongNamePublicKey)" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
 
 </Project>

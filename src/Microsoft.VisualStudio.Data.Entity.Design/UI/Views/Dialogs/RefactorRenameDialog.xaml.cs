@@ -1,18 +1,18 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.Globalization;
-using System.IO;
-using System.Windows;
 using Microsoft.Data.Entity.Design.Common;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Validation;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.VisualStudio.PlatformUI;
+using System;
+using System.Globalization;
+using System.IO;
+using System.Windows;
 
-namespace Microsoft.Data.Entity.Design.UI.Views.Dialogs
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs
 {
     internal partial class RefactorRenameDialog : DialogWindow
     {
@@ -81,7 +81,7 @@ namespace Microsoft.Data.Entity.Design.UI.Views.Dialogs
             if (!contentValidator.IsValidAttributeValue(this.NewName, attr))
             {
                 // not valid content
-                errorMessage = Microsoft.Data.Entity.Design.Resources.RefactorRename_InvalidName;
+                errorMessage = Microsoft.VisualStudio.Data.Entity.Design.Resources.RefactorRename_InvalidName;
                 return false;
             }
 

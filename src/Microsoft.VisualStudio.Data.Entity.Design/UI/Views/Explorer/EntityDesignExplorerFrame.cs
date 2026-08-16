@@ -1,13 +1,5 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.Windows.Media;
-using Microsoft.VisualStudio.PlatformUI;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls.Primitives;
-using System.Windows.Input;
 using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Entity.Design.Core.Controls;
 using Microsoft.Data.Entity.Design.Model;
@@ -19,13 +11,21 @@ using Microsoft.Data.Entity.Design.Model.Mapping;
 using Microsoft.Data.Entity.Design.UI.Commands;
 using Microsoft.Data.Entity.Design.UI.ViewModels;
 using Microsoft.Data.Entity.Design.UI.ViewModels.Explorer;
-using Microsoft.VisualStudio.Shell;
-using Key = System.Windows.Input.Key;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Explorer;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.Util;
 using Microsoft.Data.Entity.Design.UI.Views;
 using Microsoft.Data.Entity.Design.UI.Views.Explorer;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Util;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Dialog;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Explorer;
+using Microsoft.VisualStudio.PlatformUI;
+using Microsoft.VisualStudio.Shell;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls.Primitives;
+using System.Windows.Input;
+using System.Windows.Media;
+using Key = System.Windows.Input.Key;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Explorer
 {
@@ -276,7 +276,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Explorer
                 {
                     CommandProcessorContext cpc = new CommandProcessorContext(
                         Context, EfiTransactionOriginator.ExplorerWindowOriginatorId,
-                        Microsoft.Data.Entity.Design.Resources.Tx_AddComplexType, null, context);
+                        Microsoft.VisualStudio.Data.Entity.Design.Resources.Tx_AddComplexType, null, context);
                     var complexType = CreateComplexTypeCommand.CreateComplexTypeWithDefaultName(cpc);
                     Debug.Assert(complexType != null, "Creating ComplexType failed");
                     NavigateToElementAndPutInRenameMode(complexType);
@@ -290,7 +290,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Explorer
                         CommandProcessorContext cpc = new CommandProcessorContext(
                             Context,
                             EfiTransactionOriginator.ExplorerWindowOriginatorId,
-                            Microsoft.Data.Entity.Design.Resources.Tx_CreateScalarProperty, null, context);
+                            Microsoft.VisualStudio.Data.Entity.Design.Resources.Tx_CreateScalarProperty, null, context);
                         var property = CreateComplexTypePropertyCommand.CreateDefaultProperty(
                             cpc, complexType,
                             ModelConstants.DefaultPropertyType);
@@ -313,7 +313,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Explorer
                         CommandProcessorContext cpc = new CommandProcessorContext(
                             Context,
                             EfiTransactionOriginator.ExplorerWindowOriginatorId,
-                            Microsoft.Data.Entity.Design.Resources.Tx_CreateScalarProperty, null, context);
+                            Microsoft.VisualStudio.Data.Entity.Design.Resources.Tx_CreateScalarProperty, null, context);
                         var enumType = CreateEnumTypeCommand.CreateEnumTypeWithDefaultName(cpc);
                         Debug.Assert(enumType != null, "Creating Enum failed");
                         NavigateToElementAndPutInRenameMode(enumType);
@@ -329,7 +329,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Explorer
                         CommandProcessorContext cpc = new CommandProcessorContext(
                             Context,
                             EfiTransactionOriginator.ExplorerWindowOriginatorId,
-                            Microsoft.Data.Entity.Design.Resources.Tx_CreateDiagram, null, context);
+                            Microsoft.VisualStudio.Data.Entity.Design.Resources.Tx_CreateDiagram, null, context);
                         var diagram = CreateDiagramCommand.CreateDiagramWithDefaultName(cpc);
                         Debug.Assert(diagram != null, "The selected ExplorerEFElementItem is not type of diagram.");
                         NavigateToElementAndPutInRenameMode(diagram);

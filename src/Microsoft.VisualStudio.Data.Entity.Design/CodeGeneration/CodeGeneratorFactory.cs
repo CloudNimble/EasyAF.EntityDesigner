@@ -1,11 +1,11 @@
+using EnvDTE;
+using Microsoft.Data.Entity.Design.Common;
+using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
+using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
+using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Generators;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 using System.Collections.Generic;
 using System.Diagnostics;
-using EnvDTE;
-using Microsoft.Data.Entity.Design.CodeGeneration;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
-using Microsoft.Data.Entity.Design.Common;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Generators;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration
 {

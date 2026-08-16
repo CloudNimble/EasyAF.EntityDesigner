@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.Diagnostics;
-using System.Globalization;
-using System.Windows.Forms;
 using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
-using Resources = Microsoft.Data.Entity.Design.Resources;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using System;
+using System.Diagnostics;
+using System.Globalization;
+using System.Windows.Forms;
+using Resources = Microsoft.VisualStudio.Data.Entity.Design.Resources;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views
 {

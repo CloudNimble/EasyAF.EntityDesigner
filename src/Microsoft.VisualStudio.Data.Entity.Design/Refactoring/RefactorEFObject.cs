@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.UI.Views.Dialogs;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Common;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs;
 using Microsoft.VisualStudio.OLE.Interop;
+using System.Diagnostics;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.Refactoring
 {

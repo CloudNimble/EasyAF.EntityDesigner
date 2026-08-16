@@ -1,6 +1,18 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using EntityProperty = Microsoft.Data.Entity.Design.Model.Entity.Property;
+using EnvDTE;
+using Microsoft.Data.Entity.Design.Model;
+using Microsoft.Data.Entity.Design.Model.Database;
+using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.Model.Mapping;
+using Microsoft.Data.Entity.Design.Model.Validation;
+using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.Data.Tools.VSXmlDesignerBase.Common;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.Data.Sql;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Services;
+using Microsoft.VisualStudio.PlatformUI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,24 +24,13 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using EnvDTE;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Database;
-using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Model.Mapping;
-using Microsoft.Data.Entity.Design.Model.Validation;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Tools.VSXmlDesignerBase.Common;
-using Microsoft.VisualStudio.Data.Services;
-using Microsoft.VisualStudio.PlatformUI;
 using ComplexType = Microsoft.Data.Entity.Design.Model.Entity.ComplexType;
+using EntityProperty = Microsoft.Data.Entity.Design.Model.Entity.Property;
 using EntityType = Microsoft.Data.Entity.Design.Model.Entity.EntityType;
+using Model = Microsoft.Data.Entity.Design.Model;
 using XmlDesignerBaseResources = Microsoft.Data.Tools.XmlDesignerBase.Resources;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Data.Sql;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
 
-namespace Microsoft.Data.Entity.Design.UI.Views.Dialogs
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs
 {
     [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
     internal partial class NewFunctionImportDialog : DialogWindow
@@ -1010,7 +1011,7 @@ namespace Microsoft.Data.Entity.Design.UI.Views.Dialogs
                 {
                     var designTimeConnectionString = ConnectionString.GetDesignTimeProviderConnectionString(CurrentProject);
                     var provider = ConnectionString.Provider;
-                    IVsDataConnectionManager dcm = (IVsDataConnectionManager)Services.ServiceProvider.GetService(typeof(IVsDataConnectionManager));
+                    IVsDataConnectionManager dcm = (IVsDataConnectionManager)PackageManager.Package.GetService(typeof(IVsDataConnectionManager));
                     connection = dcm.GetConnection(provider, designTimeConnectionString, false);
                 }
 

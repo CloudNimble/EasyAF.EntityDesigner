@@ -6,9 +6,9 @@ using Microsoft.Data.Tools.XmlDesignerBase.Model;
 using Moq;
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Model;
 using Microsoft.VisualStudio.Data.Entity.Design.Extensibility;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.Package
 {

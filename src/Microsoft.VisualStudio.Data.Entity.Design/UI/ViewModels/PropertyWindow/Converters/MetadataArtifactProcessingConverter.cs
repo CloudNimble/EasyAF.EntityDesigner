@@ -4,9 +4,9 @@ using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Model.Designer;
 using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters;
 using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters
 {
@@ -18,7 +18,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow
             var project = VSHelpers.GetProjectForDocument(documentPath, PackageManager.Package);
             if (project != null)
             {
-                var appType = VsUtils.GetApplicationType(Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Services.ServiceProvider, project);
+                var appType = VsUtils.GetApplicationType(PackageManager.Package, project);
                 if (appType != VisualStudioProjectSystem.Website)
                 {
                     AddMapping(

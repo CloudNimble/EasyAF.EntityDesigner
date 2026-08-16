@@ -1,13 +1,5 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Data.Entity.Infrastructure.Pluralization;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
 using EnvDTE80;
 using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Common;
@@ -19,10 +11,19 @@ using Microsoft.Data.Entity.Design.VersioningFacade;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Common;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Refactoring;
 using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TextManager.Interop;
-using Resources = Microsoft.Data.Entity.Design.Resources;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity.Infrastructure.Pluralization;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+using Resources = Microsoft.VisualStudio.Data.Entity.Design.Resources;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.Refactoring
 {
@@ -202,7 +203,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.Refactoring
             using (WaitCursorHelper.NewWaitCursor())
             {
                 var artifact = _contributorInput.ObjectToBeRenamed.Artifact;
-                var artifactProjectItem = VsUtils.GetProjectItemForDocument(artifact.Uri.LocalPath, Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Services.ServiceProvider);
+                var artifactProjectItem = VsUtils.GetProjectItemForDocument(artifact.Uri.LocalPath, PackageManager.Package);
 
                 if (artifactProjectItem != null)
                 {

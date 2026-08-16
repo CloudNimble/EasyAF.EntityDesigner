@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.Data.Entity.Core.Metadata.Edm;
 using Microsoft.Data.Entity.Design.VersioningFacade;
+using System.Data.Entity.Core.Metadata.Edm;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Extensions
 {

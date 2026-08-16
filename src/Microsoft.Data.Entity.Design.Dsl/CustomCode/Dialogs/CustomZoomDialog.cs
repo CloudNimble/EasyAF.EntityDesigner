@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using System.Windows.Forms;
 using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 
 namespace Microsoft.Data.Entity.Design.Dsl.Dialogs
 {
@@ -20,7 +21,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.Dialogs
             InitializeComponent();
 
             // Set the default font to VS shell font.
-            var vsFont = VSHelpers.GetVSFont(Services.ServiceProvider);
+            var vsFont = VSHelpers.GetVSFont(PackageManager.Package);
             if (vsFont != null)
             {
                 Font = vsFont;

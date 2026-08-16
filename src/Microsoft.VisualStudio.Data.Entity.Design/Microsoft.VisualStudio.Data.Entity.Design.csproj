@@ -8,7 +8,7 @@
     <NoWarn>$(NoWarn);VSTHRD010;VSSDK006;VSTHRD001</NoWarn>
     <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
     <!-- Exclude VS item template files (contain $tokens$, not actual code) -->
-    <DefaultItemExcludes>$(DefaultItemExcludes);VisualStudio\InTheBoxItemTemplates\**\*.cs;VisualStudio\InTheBoxItemTemplates\**\*.vb</DefaultItemExcludes>
+    <DefaultItemExcludes>$(DefaultItemExcludes);Ide\InTheBoxItemTemplates\**\*.cs;Ide\InTheBoxItemTemplates\**\*.vb</DefaultItemExcludes>
     <!-- Required for non-string resources (images, icons) in resx files -->
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
@@ -67,30 +67,40 @@
     <None Update="CodeGeneration\Generators\GeneratedCode\DefaultCSharpContextGenerator.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>DefaultCSharpContextGenerator.cs</LastGenOutput>
-      <CustomToolNamespace>Microsoft.Data.Entity.Design.CodeGeneration</CustomToolNamespace>
+      <CustomToolNamespace>Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration</CustomToolNamespace>
     </None>
     <None Update="CodeGeneration\Generators\GeneratedCode\DefaultCSharpEntityTypeGenerator.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>DefaultCSharpEntityTypeGenerator.cs</LastGenOutput>
-      <CustomToolNamespace>Microsoft.Data.Entity.Design.CodeGeneration</CustomToolNamespace>
+      <CustomToolNamespace>Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration</CustomToolNamespace>
     </None>
     <None Update="CodeGeneration\Generators\GeneratedCode\DefaultVBContextGenerator.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>DefaultVBContextGenerator.cs</LastGenOutput>
-      <CustomToolNamespace>Microsoft.Data.Entity.Design.CodeGeneration</CustomToolNamespace>
+      <CustomToolNamespace>Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration</CustomToolNamespace>
     </None>
     <None Update="CodeGeneration\Generators\GeneratedCode\DefaultVBEntityTypeGenerator.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>DefaultVBEntityTypeGenerator.cs</LastGenOutput>
-      <CustomToolNamespace>Microsoft.Data.Entity.Design.CodeGeneration</CustomToolNamespace>
+      <CustomToolNamespace>Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration</CustomToolNamespace>
     </None>
-    <None Update="VisualStudio\InTheBoxItemTemplates\DbContext.tt">
+    <None Update="Ide\InTheBoxItemTemplates\CodeFirst.txt">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CodeFirst.tt</DependentUpon>
+    </None>
+    <None Update="Ide\InTheBoxItemTemplates\DbContext.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DbContext.txt</LastGenOutput>
     </None>
-    <None Update="VisualStudio\InTheBoxItemTemplates\CodeFirst.tt">
+    <None Update="Ide\InTheBoxItemTemplates\CodeFirst.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CodeFirst.txt</LastGenOutput>
+    </None>
+    <None Update="Ide\InTheBoxItemTemplates\DbContext.txt">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DbContext.tt</DependentUpon>
     </None>
     <None Include="TextTemplates\**\*.*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -112,18 +122,18 @@
     <EmbeddedResource Update="TemplateResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TemplateResources.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>Microsoft.Data.Entity.Design.Templates</CustomToolNamespace>
+      <CustomToolNamespace>Microsoft.VisualStudio.Data.Entity.Design.Templates</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Update="UI\Views\Dialogs\DialogsResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DialogsResource.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>Microsoft.Data.Entity.Design.UI.Views.Dialogs</CustomToolNamespace>
+      <CustomToolNamespace>Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Update="VisualStudio\ModelWizard\Properties\Resources.resx">
+    <EmbeddedResource Update="Ide\ModelWizard\Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="VisualStudio\SingleFileGenerator\Strings.resx">
+    <EmbeddedResource Update="Ide\SingleFileGenerator\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -153,8 +163,8 @@
       <VBDir>$(TargetItemTemplateFilesDir)\VisualBasic\Data\1033\EF_EDM</VBDir>
       <CSASPDir>$(TargetItemTemplateFilesDir)\Web\CSharp\1033\EF_EDM</CSASPDir>
       <VBASPDir>$(TargetItemTemplateFilesDir)\Web\VisualBasic\1033\EF_EDM</VBASPDir>
-      <VersionedItemTemplateDir>VisualStudio\ItemTemplate\VersionedTemplates\</VersionedItemTemplateDir>
-      <ItemTemplateDir>VisualStudio\ItemTemplate\</ItemTemplateDir>
+      <VersionedItemTemplateDir>Ide\ItemTemplate\VersionedTemplates\</VersionedItemTemplateDir>
+      <ItemTemplateDir>Ide\ItemTemplate\</ItemTemplateDir>
     </PropertyGroup>
     <MakeDir Directories="$(VersionedItemTemplateDir)" />
     <MakeDir Directories="$(TargetTemplateDir)" />
@@ -164,19 +174,19 @@
 
   <Target Name="UpdateTemplateVersion" DependsOnTargets="PrepareForPackaging">
     <ItemGroup>
-      <Template Include="VisualStudio\ItemTemplate\ModelObjectItemCS.vstemplate" />
-      <Template Include="VisualStudio\ItemTemplate\ModelObjectItemVB.vstemplate" />
-      <Template Include="VisualStudio\ItemTemplate\ModelObjectItemCS_ASPNET.vstemplate" />
-      <Template Include="VisualStudio\ItemTemplate\ModelObjectItemVB_ASPNET.vstemplate" />
+      <Template Include="Ide\ItemTemplate\ModelObjectItemCS.vstemplate" />
+      <Template Include="Ide\ItemTemplate\ModelObjectItemVB.vstemplate" />
+      <Template Include="Ide\ItemTemplate\ModelObjectItemCS_ASPNET.vstemplate" />
+      <Template Include="Ide\ItemTemplate\ModelObjectItemVB_ASPNET.vstemplate" />
     </ItemGroup>
     <RegexReplaceInFile InputFileName="%(Template.Identity)" OutputFileName="$(VersionedItemTemplateDir)$([System.IO.Path]::GetFileName(%(Template.Identity)))" Patterns="EFDESIGNERVERSIONTOKEN" Replacements="$(AssemblyVersion)" />
   </Target>
 
   <Target Name="PrepareTemplatesForSetup" DependsOnTargets="PrepareForPackaging">
     <ItemGroup>
-      <InTheBoxItemTemplateFiles Include="VisualStudio\InTheBoxItemTemplates\DBContext\**\*.*" />
-      <InTheBoxItemTemplateFiles Include="VisualStudio\InTheBoxItemTemplates\CodeFirst\**\*.*" />
-      <InTheBoxItemTemplateFiles Include="VisualStudio\InTheBoxItemTemplates\*.vstman" />
+      <InTheBoxItemTemplateFiles Include="Ide\InTheBoxItemTemplates\DBContext\**\*.*" />
+      <InTheBoxItemTemplateFiles Include="Ide\InTheBoxItemTemplates\CodeFirst\**\*.*" />
+      <InTheBoxItemTemplateFiles Include="Ide\InTheBoxItemTemplates\*.vstman" />
     </ItemGroup>
     <MakeDir Directories="@(InTheBoxItemTemplateFiles->'$(TargetItemTemplateFilesDir)\%(RecursiveDir)')" />
     <RegexReplaceInFile Condition="'%(Extension)' == '.vstemplate'" InputFileName="%(InTheBoxItemTemplateFiles.Identity)" OutputFileName="@(InTheBoxItemTemplateFiles->'$(TargetItemTemplateFilesDir)\%(RecursiveDir)%(Filename)%(Extension)')" Patterns="NUGETEFTOOLSPACKAGESREGKEYNAMETOKEN;EFPACKAGEVERSION;EFDESIGNERVERSIONTOKEN" Replacements="EntityFrameworkVisualStudio17Tools;$(EF6NuGetPackageVersion);$(AssemblyVersion)" />
@@ -223,11 +233,24 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Ide\ModelWizard\Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Ide\SingleFileGenerator\Strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
     <Compile Update="UI\Views\Dialogs\DialogsResource.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>DialogsResource.resx</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 
 </Project>

@@ -4,15 +4,42 @@ using System;
 
 namespace Microsoft.Data.Entity.Design.Dsl.View.Export
 {
+
     /// <summary>
     /// Orchestrates diagram export operations by selecting and invoking
     /// the appropriate exporter based on the requested format.
     /// </summary>
+    /// <remarks>
+    /// This is the single entry point every host uses to export a diagram, so the format-to-exporter mapping lives
+    /// here rather than being duplicated in the Visual Studio package and the command line tool.
+    /// </remarks>
     internal class ExportManager
     {
-        private readonly SvgExporter _svgExporter;
+
+        #region Fields
+
+        /// <summary>
+        /// Produces Mermaid class diagram text. Always available because it has no host dependencies.
+        /// </summary>
         private readonly MermaidExporter _mermaidExporter;
+
+        /// <summary>
+        /// Produces raster images, or <see langword="null"/> when the host did not supply one.
+        /// </summary>
+        /// <remarks>
+        /// Kept nullable on purpose: raster export is the only format that needs something this assembly cannot
+        /// provide by itself, so hosts that cannot rasterise simply omit it instead of failing at construction.
+        /// </remarks>
         private readonly IRasterExporter _rasterExporter;
+
+        /// <summary>
+        /// Produces SVG markup. Always available because it has no host dependencies.
+        /// </summary>
+        private readonly SvgExporter _svgExporter;
+
+        #endregion
+
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the ExportManager class supporting only the vector formats.
@@ -42,11 +69,24 @@ namespace Microsoft.Data.Entity.Design.Dsl.View.Export
             _rasterExporter = rasterExporter;
         }
 
+        #endregion
+
+        #region Public Methods
+
         /// <summary>
         /// Exports the diagram using the specified options.
         /// </summary>
         /// <param name="diagram">The diagram to export.</param>
         /// <param name="options">The export options specifying format, path, and settings.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="diagram"/> or <paramref name="options"/> is null.</exception>
+        /// <exception cref="NotSupportedException">
+        /// Thrown when the requested format is a raster format and no <see cref="IRasterExporter"/> was supplied,
+        /// or when the format is not recognised at all.
+        /// </exception>
+        /// <remarks>
+        /// The two failure modes are deliberately distinct: a missing raster exporter is a host configuration
+        /// problem the caller can fix, while an unrecognised format is a programming error.
+        /// </remarks>
         public void Export(EntityDesignerSurface diagram, DiagramExportOptions options)
         {
             if (diagram is null)
@@ -94,6 +134,12 @@ namespace Microsoft.Data.Entity.Design.Dsl.View.Export
         /// </summary>
         /// <param name="extension">The file extension including the leading dot (e.g., ".svg").</param>
         /// <returns>The corresponding ExportFormat.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="extension"/> is null or empty.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the extension does not map to a known format.</exception>
+        /// <remarks>
+        /// Comparison is done on the invariant lower-cased extension so that a user typing ".SVG" on a
+        /// culture-specific machine still resolves to the same format.
+        /// </remarks>
         public static ExportFormat GetFormatFromExtension(string extension)
         {
             if (string.IsNullOrEmpty(extension))
@@ -124,5 +170,9 @@ namespace Microsoft.Data.Entity.Design.Dsl.View.Export
                         string.Format("File extension {0} is not supported.", extension));
             }
         }
+
+        #endregion
+
     }
+
 }

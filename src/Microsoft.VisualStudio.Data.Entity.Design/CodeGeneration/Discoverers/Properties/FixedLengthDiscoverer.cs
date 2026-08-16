@@ -1,10 +1,10 @@
 using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
+using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration;
+using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration.Properties;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
 using System.Linq;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration.Properties;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Discoverers.Properties
 {

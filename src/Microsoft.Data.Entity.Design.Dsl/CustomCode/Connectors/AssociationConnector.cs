@@ -14,7 +14,7 @@ using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Diagrams.GraphObject;
 using Microsoft.VisualStudio.Modeling.Immutability;
 using Microsoft.VisualStudio.PlatformUI;
-using DesignRes = Microsoft.Data.Entity.Design.Resources;
+using DesignRes = Microsoft.VisualStudio.Data.Entity.Design.Resources;
 using EntityDesignerRes = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
 
 namespace Microsoft.Data.Entity.Design.Dsl.View

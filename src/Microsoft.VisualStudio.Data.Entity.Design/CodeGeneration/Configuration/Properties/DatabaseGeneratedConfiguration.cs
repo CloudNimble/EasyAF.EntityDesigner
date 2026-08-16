@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.Data.Entity.Core.Metadata.Edm;
-using System.Diagnostics;
 using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
 using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Extensions;
+using System.Data.Entity.Core.Metadata.Edm;
+using System.Diagnostics;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration.Properties
 {

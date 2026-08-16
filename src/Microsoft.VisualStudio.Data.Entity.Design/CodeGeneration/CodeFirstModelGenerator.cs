@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using EnvDTE;
+using Microsoft.Data.Entity.Design.Common;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
-using EnvDTE;
-using Microsoft.Data.Entity.Design.Common;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
-using WizardResources = Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.Properties.Resources;
+using WizardResources = Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Properties.Resources;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration
 {

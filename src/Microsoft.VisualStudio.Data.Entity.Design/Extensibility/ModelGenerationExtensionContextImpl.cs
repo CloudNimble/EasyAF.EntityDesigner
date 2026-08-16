@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.Xml.Linq;
 using EnvDTE;
 using Microsoft.Data.Entity.Design.Extensibility;
+using System;
+using System.Xml.Linq;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.Extensibility
 {

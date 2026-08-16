@@ -9,9 +9,6 @@ using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Model;
-using Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Shell;
 using Microsoft.VisualStudio.Shell;
@@ -24,6 +21,9 @@ using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 using EntityDesignerRes = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model;
+using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 
 namespace Microsoft.Data.Entity.Design.Package
 {
@@ -227,7 +227,7 @@ namespace Microsoft.Data.Entity.Design.Package
             else if (e.Link.LinkData is Guid toolWindow
                      && toolWindow != Guid.Empty)
             {
-                IUIService uiService = Services.ServiceProvider.GetService(typeof(IUIService)) as IUIService;
+                IUIService uiService = PackageManager.Package.GetService(typeof(IUIService)) as IUIService;
                 uiService?.ShowToolWindow(toolWindow);
             }
             else
@@ -270,7 +270,7 @@ namespace Microsoft.Data.Entity.Design.Package
             var project = VSHelpers.GetProjectForDocument(artifact.Uri.LocalPath, PackageManager.Package);
             Debug.Assert(project != null);
 
-            if (!VsUtils.EntityFrameworkSupportedInProject(project, Services.ServiceProvider, allowMiscProject: true))
+            if (!VsUtils.EntityFrameworkSupportedInProject(project, PackageManager.Package, allowMiscProject: true))
             {
                 e.Text = string.Format(
                     CultureInfo.CurrentCulture,

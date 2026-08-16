@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using EnvDTE;
+using Microsoft.Data.Entity.Design;
+using Microsoft.Data.Entity.Design.Extensibility;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml.Linq;
-using EnvDTE;
-using Microsoft.Data.Entity.Design;
-using Microsoft.Data.Entity.Design.Extensibility;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.Extensibility
 {
