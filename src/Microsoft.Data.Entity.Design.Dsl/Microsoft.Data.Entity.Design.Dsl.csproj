@@ -29,6 +29,8 @@
   <!-- InternalsVisibleTo for projects that need access to internal types -->
   <ItemGroup>
     <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Package, $(StrongNamePublicKey)" />
+    <!-- The designer's UI lives here and works against the surface, which is internal to this assembly. -->
+    <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.Design, $(StrongNamePublicKey)" />
     <!-- The renderer works directly against the DSL shapes and connectors, which are internal to this assembly, and
          the command line tool implements IRasterExporter against the same diagram type. -->
     <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Renderer, $(StrongNamePublicKey)" />
@@ -54,6 +56,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Imaging" />
     <PackageReference Include="Microsoft.VisualStudio.Shell.15.0" />
     <PackageReference Include="Microsoft.VisualStudio.Shell.Framework" />
+    <!-- GeneratedCode\DirectiveProcessor.cs derives from RequiresProvidesDirectiveProcessor. This used to
+         arrive transitively through Microsoft.VisualStudio.Data.Entity.Design; that reference is gone. -->
+    <PackageReference Include="Microsoft.VisualStudio.TextTemplating" />
     <PackageReference Include="Microsoft.VisualStudio.TextTemplating.Interfaces" />
     <PackageReference Include="Microsoft.VisualStudio.TextTemplating.VSHost" />
     <PackageReference Include="Microsoft.VisualStudio.XmlEditor" />
@@ -66,7 +71,6 @@
     <ProjectReference Include="..\Microsoft.VisualStudio.Data.Tools.Design.XmlCore\Microsoft.VisualStudio.Data.Tools.Design.XmlCore.csproj" />
     <ProjectReference Include="..\Microsoft.Data.Tools.Design.XmlCore\Microsoft.Data.Tools.Design.XmlCore.csproj" />
     <ProjectReference Include="..\Microsoft.Data.Entity.Design.Model\Microsoft.Data.Entity.Design.Model.csproj" />
-    <ProjectReference Include="..\Microsoft.VisualStudio.Data.Entity.Design\Microsoft.VisualStudio.Data.Entity.Design.csproj" />
   </ItemGroup>
 
   <!-- DSL Definition -->

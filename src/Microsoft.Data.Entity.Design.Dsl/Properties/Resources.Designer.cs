@@ -841,7 +841,16 @@ namespace Microsoft.Data.Entity.Design.Dsl.Properties {
                 return ResourceManager.GetString("ExpandedStateExpanded", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Change Referential Constraint.
+        /// </summary>
+        public static string Tx_ReferentialContraint {
+            get {
+                return ResourceManager.GetString("Tx_ReferentialContraint", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Export Diagram As.
         /// </summary>

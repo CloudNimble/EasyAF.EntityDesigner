@@ -2,7 +2,6 @@
 
 using System.Collections.Generic;
 using System.Drawing;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 using EntityDesignerRes = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
 
 namespace Microsoft.Data.Entity.Design.Dsl.View
@@ -74,12 +73,6 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         /// with different fill colors but the same text color.
         /// </summary>
         private readonly Dictionary<Color, HeaderIconSet> _headerIconsByTextColor = [];
-
-        // Source bitmaps for header icons (loaded once, reused for colorization)
-        private static readonly Bitmap SourceEntityGlyph = EntityDesignerRes.EntityGlyph;
-        private static readonly Bitmap SourceBaseTypeIcon = EntityDesignerRes.BaseTypeIcon;
-        private static readonly Bitmap SourceChevronExpanded = EntityDesignerRes.ChevronExpanded;
-        private static readonly Bitmap SourceChevronCollapsed = EntityDesignerRes.ChevronCollapsed;
 
         /// <summary>
         /// Gets the scalar property icon optimized for 100% zoom level.
@@ -191,7 +184,11 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         /// Re-entrant calls while loading is in progress are ignored.
         /// </para>
         /// </remarks>
-        public void Load(Color compartmentFillColor)
+        public void SetPropertyIcons(
+            Image propertyIcon100, Image propertyIconNormal,
+            Image propertyPKIcon100, Image propertyPKIconNormal,
+            Image complexPropertyIcon100, Image complexPropertyIconNormal,
+            Image navigationPropertyIcon100, Image navigationPropertyIconNormal)
         {
             if (_isLoading)
             {
@@ -203,17 +200,17 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
                 _isLoading = true;
                 DisposeAllIcons();
 
-                PropertyIcon100 = ThemeUtils.GetThemedPropertyIcon(EntityDesignerRes.Property, compartmentFillColor, true);
-                PropertyIconNormal = ThemeUtils.GetThemedPropertyIcon(EntityDesignerRes.Property, compartmentFillColor, false);
+                PropertyIcon100 = propertyIcon100;
+                PropertyIconNormal = propertyIconNormal;
 
-                PropertyPKIcon100 = ThemeUtils.GetThemedPropertyIcon(EntityDesignerRes.PropertyPK, compartmentFillColor, true);
-                PropertyPKIconNormal = ThemeUtils.GetThemedPropertyIcon(EntityDesignerRes.PropertyPK, compartmentFillColor, false);
+                PropertyPKIcon100 = propertyPKIcon100;
+                PropertyPKIconNormal = propertyPKIconNormal;
 
-                ComplexPropertyIcon100 = ThemeUtils.GetThemedPropertyIcon(EntityDesignerRes.ComplexProperty, compartmentFillColor, true);
-                ComplexPropertyIconNormal = ThemeUtils.GetThemedPropertyIcon(EntityDesignerRes.ComplexProperty, compartmentFillColor, false);
+                ComplexPropertyIcon100 = complexPropertyIcon100;
+                ComplexPropertyIconNormal = complexPropertyIconNormal;
 
-                NavigationPropertyIcon100 = ThemeUtils.GetThemedPropertyIcon(EntityDesignerRes.NavigationProperty, compartmentFillColor, true);
-                NavigationPropertyIconNormal = ThemeUtils.GetThemedPropertyIcon(EntityDesignerRes.NavigationProperty, compartmentFillColor, false);
+                NavigationPropertyIcon100 = navigationPropertyIcon100;
+                NavigationPropertyIconNormal = navigationPropertyIconNormal;
 
                 IsLoaded = true;
             }
@@ -224,29 +221,33 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         }
 
         /// <summary>
-        /// Reloads all icons when the Visual Studio theme changes.
+        /// Stores the header icons the host rendered for one text colour.
         /// </summary>
-        /// <param name="compartmentFillColor">
-        /// The background color of the compartment used for theming the icons.
-        /// This is typically <see cref="Color.WhiteSmoke"/> as defined in the DSL model.
-        /// </param>
+        /// <param name="textColor">The text colour the icons were tinted for.</param>
+        /// <param name="iconSet">The rendered icons.</param>
         /// <remarks>
-        /// Called by <see cref="DiagramTheme.Apply"/> when the host supplies a new palette, so the icons are
-        /// rebuilt against whatever the compartments are now painted with. Hosts do not call this directly.
+        /// Text colour is only ever black or white, so at most two sets are ever registered. Replacing an
+        /// existing set disposes the one it replaces.
         /// </remarks>
-        public void OnThemeChanged(Color compartmentFillColor)
+        public void SetHeaderIcons(Color textColor, HeaderIconSet iconSet)
         {
-            Load(compartmentFillColor);
+            if (_headerIconsByTextColor.TryGetValue(textColor, out var existing))
+            {
+                existing.Dispose();
+            }
+
+            _headerIconsByTextColor[textColor] = iconSet;
         }
 
         /// <summary>
-        /// Gets header icons colorized for the specified text color.
+        /// Gets the header icons the host supplied for the specified text color.
         /// </summary>
         /// <param name="textColor">The text color (typically black or white based on fill brightness).</param>
-        /// <returns>A cached or newly created set of header icons matching the text color.</returns>
+        /// <returns>
+        /// The registered icon set, or <see langword="null" /> when no host has supplied one for this color.
+        /// </returns>
         /// <remarks>
-        /// Since text color is only ever black or white, this cache will contain at most 2 entries,
-        /// dramatically reducing icon creation for diagrams with many entities of the same brightness.
+        /// Since text color is only ever black or white, at most two sets are ever registered.
         /// </remarks>
         public HeaderIconSet GetHeaderIcons(Color textColor)
         {
@@ -255,14 +256,10 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
                 return existingSet;
             }
 
-            var newSet = new HeaderIconSet(
-                ThemeUtils.GetColorizedHeaderIcon(SourceEntityGlyph, textColor),
-                ThemeUtils.GetColorizedHeaderIcon(SourceBaseTypeIcon, textColor),
-                ThemeUtils.GetColorizedHeaderIcon(SourceChevronExpanded, textColor),
-                ThemeUtils.GetColorizedHeaderIcon(SourceChevronCollapsed, textColor));
-
-            _headerIconsByTextColor[textColor] = newSet;
-            return newSet;
+            // No host has supplied icons for this text colour. Tinting them means GDI recolouring, which is the
+            // host's to do -- see specs/layer-map.md. Returning null leaves the shape's image fields empty,
+            // which is what the command line renderer wants: it emits its own SVG symbols and never paints.
+            return null;
         }
 
         /// <summary>

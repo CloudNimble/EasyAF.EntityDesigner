@@ -14,7 +14,6 @@ using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Diagrams.GraphObject;
 using Microsoft.VisualStudio.Modeling.Immutability;
 using Microsoft.VisualStudio.PlatformUI;
-using DesignRes = Microsoft.VisualStudio.Data.Entity.Design.Resources;
 using EntityDesignerRes = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
 
 namespace Microsoft.Data.Entity.Design.Dsl.View
@@ -182,7 +181,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
                         var commands = diagram.RequestReferentialConstraint(modelAssociation);
 
                         CommandProcessorContext cpc = new CommandProcessorContext(
-                            ec, EfiTransactionOriginator.EntityDesignerOriginatorId, DesignRes.Tx_ReferentialContraint);
+                            ec, EfiTransactionOriginator.EntityDesignerOriginatorId, EntityDesignerRes.Tx_ReferentialContraint);
                         CommandProcessor cp = new CommandProcessor(cpc);
                         foreach (var c in commands)
                         {

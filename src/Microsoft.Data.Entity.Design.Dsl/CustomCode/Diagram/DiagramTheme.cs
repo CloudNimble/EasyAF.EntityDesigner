@@ -89,8 +89,9 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
             EntityTypeShape.IsColorThemeSet = false;
             AssociationConnector.IsColorThemeSet = false;
 
-            // Property icons are colorized against the compartment fill, so they have to be rebuilt.
-            DiagramImageHelper.Instance.OnThemeChanged(palette.CompartmentFill);
+            // Property icons are colorized against the compartment fill, so they have to be rebuilt too — but
+            // that is GDI recolouring, which belongs to whoever supplied the palette. A host that pushes a
+            // palette pushes icons with it. See specs/layer-map.md.
         }
 
         /// <summary>

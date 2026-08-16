@@ -797,12 +797,8 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         {
             base.OnAssociated(e);
 
-            // Pre-load themed property icons for the diagram.
-            // Use WhiteSmoke as that's the default compartment fill color defined in the DSL.
-            if (!DiagramImageHelper.Instance.IsLoaded)
-            {
-                DiagramImageHelper.Instance.Load(DiagramTheme.Current.CompartmentFill);
-            }
+            // Property icons are supplied by the host along with the palette; a host that paints nothing —
+            // the command line renderer — supplies none and the shapes draw without them.
 
             // Initialize and add LinkLabels to diagram watermark
             if (e.DiagramView != null)

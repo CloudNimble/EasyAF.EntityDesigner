@@ -571,4 +571,8 @@ The Entity Framework is not available in the target framework currently specifie
     <value>Expanded</value>
     <comment>Used with various AccHelp_ resources to make the collapsed/expanded state available to the Narrator.</comment>
   </data>
+  <data name="Tx_ReferentialContraint" xml:space="preserve">
+    <value>Change Referential Constraint</value>
+    <comment>Undo label for editing an association's referential constraint. The misspelling of "Constraint" in the resource name is inherited and kept so existing translations still match.</comment>
+  </data>
 </root>

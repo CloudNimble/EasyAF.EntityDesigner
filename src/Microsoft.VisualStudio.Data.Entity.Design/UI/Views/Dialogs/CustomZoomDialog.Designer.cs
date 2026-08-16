@@ -2,7 +2,7 @@
 
 using EntityDesignerRes = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
 
-namespace Microsoft.Data.Entity.Design.Dsl.Dialogs
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs
 {
     partial class CustomZoomDialog
     {

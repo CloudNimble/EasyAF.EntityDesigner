@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.Dsl.View;
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -7,11 +8,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using Microsoft.Data.Entity.Design.Dsl.View.ContextMenu;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.ContextMenu;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.PlatformUI;
 
-namespace Microsoft.Data.Entity.Design.Dsl.View.Controls
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Controls
 {
     /// <summary>
     /// A floating zoom control bar that provides zoom in/out buttons, displays the current zoom level,

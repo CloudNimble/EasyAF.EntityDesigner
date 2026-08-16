@@ -13,7 +13,7 @@ using System.Linq;
 using System.Windows.Forms;
 using EnvDTE;
 using Microsoft.Data.Tools.XmlDesignerBase.Base.Util;
-using Microsoft.Data.Entity.Design.Dsl.Dialogs;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs;
 using Microsoft.Data.Entity.Design.Dsl.Utils;
 using Microsoft.Data.Entity.Design.Dsl.View;
 using Microsoft.Data.Entity.Design.Dsl.ViewModel;

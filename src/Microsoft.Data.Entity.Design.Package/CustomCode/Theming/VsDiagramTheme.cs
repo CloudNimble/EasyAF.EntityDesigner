@@ -39,7 +39,7 @@ namespace Microsoft.Data.Entity.Design.Package.Theming
         internal VsDiagramTheme()
         {
             VSColorTheme.ThemeChanged += OnThemeChanged;
-            DiagramTheme.Apply(ReadPalette());
+            ApplyTheme();
         }
 
         #endregion
@@ -67,6 +67,21 @@ namespace Microsoft.Data.Entity.Design.Package.Theming
         /// <summary>
         ///     Reads the designer's colors out of the current Visual Studio theme.
         /// </summary>
+        /// <summary>
+        ///     Pushes Visual Studio's current colours and the icons tinted for them into the designer.
+        /// </summary>
+        /// <remarks>
+        ///     Colours and icons go together: the property icons are tinted against the compartment fill, so
+        ///     applying one without the other leaves the icons keyed to the previous theme.
+        /// </remarks>
+        private static void ApplyTheme()
+        {
+            var palette = ReadPalette();
+
+            DiagramTheme.Apply(palette);
+            VsDiagramIcons.Apply(palette.CompartmentFill);
+        }
+
         private static DiagramPalette ReadPalette()
         {
             return new DiagramPalette
@@ -87,7 +102,7 @@ namespace Microsoft.Data.Entity.Design.Package.Theming
         /// </summary>
         private void OnThemeChanged(ThemeChangedEventArgs e)
         {
-            DiagramTheme.Apply(ReadPalette());
+            ApplyTheme();
         }
 
         #endregion

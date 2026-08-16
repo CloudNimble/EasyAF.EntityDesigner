@@ -5,21 +5,26 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Microsoft.Data.Entity.Design.Dsl.View.ContextMenu
+namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.ContextMenu
 {
     /// <summary>
-    /// Converts a count greater than 0 to Visible, otherwise Collapsed.
+    /// Converts null or empty strings to Collapsed visibility, otherwise Visible.
     /// </summary>
-    internal class CountToVisibilityConverter : IValueConverter
+    internal class NullToCollapsedConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is int count && count > 0)
+            if (value == null)
             {
-                return Visibility.Visible;
+                return Visibility.Collapsed;
             }
 
-            return Visibility.Collapsed;
+            if (value is string str && string.IsNullOrEmpty(str))
+            {
+                return Visibility.Collapsed;
+            }
+
+            return Visibility.Visible;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

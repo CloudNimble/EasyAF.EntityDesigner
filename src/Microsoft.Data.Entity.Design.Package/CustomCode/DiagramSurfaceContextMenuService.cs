@@ -3,7 +3,7 @@
 using System;
 using System.Windows;
 using Microsoft.Data.Entity.Design.Dsl.View;
-using Microsoft.Data.Entity.Design.Dsl.View.ContextMenu;
+using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.ContextMenu;
 using Microsoft.Data.Entity.Design.Dsl.View.Export;
 using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model;

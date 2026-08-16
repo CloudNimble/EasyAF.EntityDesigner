@@ -60,6 +60,9 @@
     <ProjectReference Include="..\Microsoft.Data.Entity.Design.DatabaseGeneration\Microsoft.Data.Entity.Design.DatabaseGeneration.csproj" />
     <ProjectReference Include="..\Microsoft.Data.Entity.Design.Extensibility\Microsoft.Data.Entity.Design.Extensibility.csproj" />
     <ProjectReference Include="..\Microsoft.Data.Entity.Design.Model\Microsoft.Data.Entity.Design.Model.csproj" />
+    <!-- The context menu, floating zoom control and zoom dialog act on the designer surface, so the UI depends
+         on the designer. The designer does not depend on the shell; see specs/layer-map.md. -->
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.Dsl\Microsoft.Data.Entity.Design.Dsl.csproj" />
   </ItemGroup>
 
   <!-- T4 Templates -->
