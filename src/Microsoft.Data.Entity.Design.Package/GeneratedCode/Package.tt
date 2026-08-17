@@ -3,7 +3,7 @@
 	//DSL assembly name - used for toolbox item registration. Adjust if the DSL assembly was renamed.
 	string dslAssembly = "Microsoft.Data.Entity.Design.Dsl.dll";
 #>
-<#@ include file="%DslTemplatesSrc%\DslPackage\Package.tt" #>
+<#@ include file="Templates\Package.tt" #>
 <#
 	string directiveName = "EntityFramework";
 #>

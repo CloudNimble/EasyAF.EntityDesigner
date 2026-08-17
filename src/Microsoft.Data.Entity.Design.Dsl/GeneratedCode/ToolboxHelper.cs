@@ -11,7 +11,6 @@ using DslModeling = global::Microsoft.VisualStudio.Modeling;
 using DslDesign = global::Microsoft.VisualStudio.Modeling.Design;
 using System;
 using System.Diagnostics;
-using System.Drawing.Design;
 using System.Windows.Forms;
 using DslDiagrams = global::Microsoft.VisualStudio.Modeling.Diagrams;
 
@@ -246,7 +245,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// Given a toolbox item "unique ID" returns the the toolbox item using cached dictionary
 		/// </summary>
 		/// <param name="itemId">The unique ToolboxItem to retrieve</param>
-		private DslDesign::ModelingToolboxItem GetToolboxItem(string itemId)
+		internal DslDesign::ModelingToolboxItem GetToolboxItem(string itemId)
 		{
 			DslDesign::ModelingToolboxItem item = null;
 
@@ -265,42 +264,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			return item;
 		}
 		
-		/// <summary>
-		/// Given a toolbox item "unique ID" and a data format identifier, returns the content of
-		/// the data format. 
-		/// </summary>
-		/// <param name="itemId">The unique ToolboxItem to retrieve data for</param>
-		/// <param name="format">The desired format of the resulting data</param>
-		public virtual object GetToolboxItemData(string itemId, DataFormats.Format format)
-		{
-			DslDesign::ModelingToolboxItem item = null;
-
-			global::System.Resources.ResourceManager resourceManager = global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager;
-			global::System.Globalization.CultureInfo resourceCulture = global::System.Globalization.CultureInfo.CurrentUICulture;
-
-			System.Windows.Forms.IDataObject tbxDataObj;
-
-			//get the toolbox item
-			item = GetToolboxItem(itemId);
-
-			if (item != null)
-			{
-				ToolboxItemContainer container = new ToolboxItemContainer(item);
-				tbxDataObj = container.ToolboxData;
-
-				if (tbxDataObj.GetDataPresent(format.Name))
-				{
-					return tbxDataObj.GetData(format.Name);
-				}
-				else 
-				{
-					string invalidFormatString = resourceManager.GetString("UnsupportedToolboxFormat", resourceCulture);
-					throw new InvalidOperationException(string.Format(resourceCulture, invalidFormatString, format.Name));
-				}
-			}
-
-			string errorFormatString = resourceManager.GetString("UnresolvedToolboxItem", resourceCulture);
-			throw new InvalidOperationException(string.Format(resourceCulture, errorFormatString, itemId));
-		}		
+		// GetToolboxItemData is deliberately not generated here. Packing a tool into the clipboard formats
+		// Visual Studio drags toolbox items on is an IDE concern, so the package overrides it there and calls
+		// GetToolboxItem above. See specs/layer-map.md.
 	}
 }

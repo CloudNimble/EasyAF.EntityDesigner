@@ -122,9 +122,32 @@ namespace Microsoft.Data.Entity.Design.Package
 		protected override object GetToolboxItemData(string itemId, DataFormats.Format format)
 		{
 			Debug.Assert(toolboxHelper != null, "Toolbox helper is not initialized");
-		
-			// Retrieve the specified ToolboxItem from the DSL
-			return toolboxHelper.GetToolboxItemData(itemId, format);
+
+			// This body used to live on the DSL's toolbox helper. Packing a tool into the clipboard formats
+			// Visual Studio's toolbox drags on is an IDE concern, so it belongs here; the designer only has to
+			// say which tools exist. The helper still resolves and caches the item. See specs/layer-map.md.
+			global::System.Resources.ResourceManager resourceManager = global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager;
+			global::System.Globalization.CultureInfo resourceCulture = global::System.Globalization.CultureInfo.CurrentUICulture;
+
+			DslDesign::ModelingToolboxItem item = toolboxHelper.GetToolboxItem(itemId);
+
+			if (item != null)
+			{
+				System.Windows.Forms.IDataObject tbxDataObj = new global::System.Drawing.Design.ToolboxItemContainer(item).ToolboxData;
+
+				if (tbxDataObj.GetDataPresent(format.Name))
+				{
+					return tbxDataObj.GetData(format.Name);
+				}
+				else
+				{
+					string invalidFormatString = resourceManager.GetString("UnsupportedToolboxFormat", resourceCulture);
+					throw new InvalidOperationException(string.Format(resourceCulture, invalidFormatString, format.Name));
+				}
+			}
+
+			string errorFormatString = resourceManager.GetString("UnresolvedToolboxItem", resourceCulture);
+			throw new InvalidOperationException(string.Format(resourceCulture, errorFormatString, itemId));
 		}
 	}
 
