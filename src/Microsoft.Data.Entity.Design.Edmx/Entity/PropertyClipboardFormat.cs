@@ -3,7 +3,7 @@
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using System;
 
-namespace Microsoft.Data.Entity.Design.Model.Entity
+namespace Microsoft.Data.Entity.Design.Edmx.Entity
 {
     // Represents Property info stored in Clipboard
     [Serializable]

@@ -1,16 +1,16 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using EnvDTE;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Database;
-using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Model.Validation;
-using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.Edmx.Database;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Validation;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.Data.Tools.VSXmlDesignerBase.Common;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Data.Sql;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Data.Sql;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using Microsoft.VisualStudio.Data.Services;
 using Microsoft.VisualStudio.PlatformUI;
 using System;
@@ -24,13 +24,12 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using ComplexType = Microsoft.Data.Entity.Design.Model.Entity.ComplexType;
-using EntityProperty = Microsoft.Data.Entity.Design.Model.Entity.Property;
-using EntityType = Microsoft.Data.Entity.Design.Model.Entity.EntityType;
-using Model = Microsoft.Data.Entity.Design.Model;
-using XmlDesignerBaseResources = Microsoft.Data.Tools.XmlDesignerBase.Resources;
+using ComplexType = Microsoft.Data.Entity.Design.Edmx.Entity.ComplexType;
+using EntityProperty = Microsoft.Data.Entity.Design.Edmx.Entity.Property;
+using EntityType = Microsoft.Data.Entity.Design.Edmx.Entity.EntityType;
+using XmlDesignerBaseResources = Microsoft.Data.Entity.Design.XmlEngine.Resources;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
 {
     [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
     internal partial class NewFunctionImportDialog : DialogWindow
@@ -747,12 +746,12 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs
                 }
             }
 
-            return primitiveValue ? Model.Mapping.Condition.IsNullConstant : Model.Mapping.Condition.IsNotNullConstant;
+            return primitiveValue ? Microsoft.Data.Entity.Design.Edmx.Mapping.Condition.IsNullConstant : Microsoft.Data.Entity.Design.Edmx.Mapping.Condition.IsNotNullConstant;
         }
 
         private static string GetColumnNullableFacetText(bool isNullable)
         {
-            return isNullable ? Model.Mapping.Condition.IsNullConstant : Model.Mapping.Condition.IsNotNullConstant;
+            return isNullable ? Microsoft.Data.Entity.Design.Edmx.Mapping.Condition.IsNullConstant : Microsoft.Data.Entity.Design.Edmx.Mapping.Condition.IsNotNullConstant;
         }
 
         private static string GetReturnTypeListViewCellText(bool isUpdateMode, string sourceText, string targetText)

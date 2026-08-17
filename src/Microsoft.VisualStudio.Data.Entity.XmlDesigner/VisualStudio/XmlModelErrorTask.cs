@@ -6,7 +6,7 @@ using System.Diagnostics;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio
 {
     /// <summary>
     ///     This is the error task we use when a document is not opened.

@@ -4,19 +4,18 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Microsoft.Data.Entity.Design.Dsl.CustomSerializer;
-using Microsoft.Data.Entity.Design.Dsl.View;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
-using Microsoft.Data.Entity.Design.Model;
+using Microsoft.Data.Entity.Design.Diagrams.CustomSerializer;
+using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
+using Microsoft.Data.Entity.Design.Edmx;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.StandAlone;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
-using DesignerModel = Microsoft.Data.Entity.Design.Model.Designer;
-using Utils = Microsoft.Data.Entity.Design.XmlEngine.Util.Utils;
+using EngineUtils = Microsoft.Data.Entity.Design.XmlEngine.Util.Utils;
 
-namespace Microsoft.Data.Entity.Design.Renderer.Headless
+namespace Microsoft.Data.Entity.Design.Diagrams.Rendering.Headless
 {
     /// <summary>
     ///     Loads an EDMX file into a fully populated, laid out and routed <see cref="EntityDesignerSurface" /> without
@@ -231,7 +230,7 @@ namespace Microsoft.Data.Entity.Design.Renderer.Headless
         /// </summary>
         private static EntityDesignArtifact LoadArtifact(EntityDesignModelManager modelManager, string edmxFilePath)
         {
-            var uri = Utils.FileName2Uri(edmxFilePath);
+            var uri = EngineUtils.FileName2Uri(edmxFilePath);
 
             if (!(modelManager.GetNewOrExistingArtifact(uri, new VanillaXmlModelProvider()) is EntityDesignArtifact artifact))
             {
@@ -253,7 +252,7 @@ namespace Microsoft.Data.Entity.Design.Renderer.Headless
         /// <summary>
         ///     Finds the requested diagram in the artifact, or the first one when no name is supplied.
         /// </summary>
-        private static DesignerModel.Diagram ResolveDiagram(EntityDesignArtifact artifact, string diagramName)
+        private static Edmx.Designer.Diagram ResolveDiagram(EntityDesignArtifact artifact, string diagramName)
         {
             // When the diagrams have been moved into a .edmx.diagram file, the EDMX keeps an empty Diagrams node and
             // the real content lives on the diagram artifact.

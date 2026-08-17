@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Extensions
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Extensions
 {
     internal static class IEnumerableExtensions
     {

@@ -6,7 +6,7 @@ using System.Xml.Linq;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Tools.Model.Diagram;
 
-namespace Microsoft.Data.Entity.Design.Model.Designer
+namespace Microsoft.Data.Entity.Design.Edmx.Designer
 {
     internal abstract class Connector : BaseDiagramObject
     {

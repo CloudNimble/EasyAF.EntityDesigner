@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.Data.Tools.XmlDesignerBase {
+namespace Microsoft.Data.Entity.Design.XmlEngine {
     using System;
     
     

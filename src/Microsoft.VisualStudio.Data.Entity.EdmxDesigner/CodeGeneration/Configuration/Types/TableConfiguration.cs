@@ -3,7 +3,7 @@
 using System.Diagnostics;
 using System.Text;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration.Types
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Configuration.Types
 {
     /// <summary>
     /// Represents a model configuration to set the table for an entity.

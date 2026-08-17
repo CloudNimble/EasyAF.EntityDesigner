@@ -5,7 +5,7 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Diagnostics;
 using System.Linq;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.Package
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
 {
     internal class ModelGenErrorCache
     {

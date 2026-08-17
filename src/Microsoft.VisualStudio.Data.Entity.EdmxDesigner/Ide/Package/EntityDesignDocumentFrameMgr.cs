@@ -1,16 +1,16 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
-using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package;
 using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.Package
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
 {
     // <summary>
     //     The EntityDesignDocumentFrameMgr class manages all document window frames that

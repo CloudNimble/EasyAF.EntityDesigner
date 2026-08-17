@@ -5,10 +5,9 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Reflection;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
-using Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow.Converters;
-using Microsoft.Data.Tools.XmlDesignerBase;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Converters;
 
-namespace Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow.Descriptors
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Descriptors
 {
     /// <summary>
     ///     This is a wrapper for property descriptors that were obtained through reflection
@@ -148,7 +147,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow.De
 
         protected internal override string UndoString
         {
-            get { return string.Format(CultureInfo.CurrentCulture, Resources.Tx_PropertyChangeUndoString, _reflectedPropDescriptor.Name); }
+            get { return string.Format(CultureInfo.CurrentCulture, global::Microsoft.Data.Entity.Design.XmlEngine.Resources.Tx_PropertyChangeUndoString, _reflectedPropDescriptor.Name); }
         }
     }
 }

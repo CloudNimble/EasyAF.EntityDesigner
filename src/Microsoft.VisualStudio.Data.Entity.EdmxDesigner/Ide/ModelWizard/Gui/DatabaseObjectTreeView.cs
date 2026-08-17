@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.Model.Database;
-using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb;
-using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.Data.Entity.Design.Edmx.Database;
+using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using Microsoft.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Utilities;
@@ -14,9 +14,9 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using WizardResources = Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Properties.Resources;
+using WizardResources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.Resources;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
 {
     internal partial class DatabaseObjectTreeView : UserControl
     {

@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.Package
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package
 {
     internal class UriComparer : IEqualityComparer<Uri>
     {

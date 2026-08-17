@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor;
 
-namespace Microsoft.Data.Entity.Design.XmlEngine.UI
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels
 {
     /// <summary>
     ///     This class represents the ModelSearchResults context item.

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Extensions
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Extensions
 {
     internal static class StringExtensions
     {

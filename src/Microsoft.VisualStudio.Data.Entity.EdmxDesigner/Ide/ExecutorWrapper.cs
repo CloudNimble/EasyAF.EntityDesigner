@@ -6,7 +6,7 @@ using System.Data.Entity.Infrastructure.Design;
 using System.Diagnostics;
 using System.Reflection;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
 {
     // <summary>
     //     Used for design-time scenarios where the user's code needs to be executed inside

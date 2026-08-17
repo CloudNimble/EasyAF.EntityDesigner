@@ -3,10 +3,10 @@
 using System;
 using System.Data.Entity.Core.EntityClient;
 using System.Data.Entity.Infrastructure.DependencyResolution;
-using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb;
-using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb.SchemaDiscovery;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb;
+using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb.SchemaDiscovery;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 

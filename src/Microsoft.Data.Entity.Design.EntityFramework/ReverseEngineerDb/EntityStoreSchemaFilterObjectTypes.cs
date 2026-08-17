@@ -2,7 +2,7 @@
 
 using System;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb
+namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb
 {
     /// <summary>
     ///     The type of store object to apply this filter to

@@ -2,10 +2,10 @@
 
 using System;
 using FluentAssertions;
-using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Resources = Microsoft.VisualStudio.Data.Entity.Design.Resources;
+using Resources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio
 {

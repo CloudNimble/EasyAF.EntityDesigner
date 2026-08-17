@@ -3,7 +3,7 @@
 using System.IO;
 using System.Text;
 
-namespace Microsoft.Data.Entity.Design.Dsl.Utils
+namespace Microsoft.Data.Entity.Design.Diagrams.Utils
 {
     internal static class FileUtils
     {

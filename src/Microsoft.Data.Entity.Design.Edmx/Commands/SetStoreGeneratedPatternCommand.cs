@@ -2,12 +2,12 @@
 
 using System;
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Model.Integrity;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Integrity;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 
-namespace Microsoft.Data.Entity.Design.Model.Commands
+namespace Microsoft.Data.Entity.Design.Edmx.Commands
 {
     /// <summary>
     ///     Use this command to set the StoreGeneratedPattern property on a new property.

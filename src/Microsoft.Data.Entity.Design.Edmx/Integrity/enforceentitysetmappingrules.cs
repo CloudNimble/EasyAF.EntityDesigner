@@ -2,14 +2,14 @@
 
 using System.Collections.Generic;
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.Model.Commands;
-using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Model.Mapping;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Integrity;
 
-namespace Microsoft.Data.Entity.Design.Model.Integrity
+namespace Microsoft.Data.Entity.Design.Edmx.Integrity
 {
     /// <summary>
     ///     This class will ensure that our MSL generation rules are applied for a given EntitySet.  If the

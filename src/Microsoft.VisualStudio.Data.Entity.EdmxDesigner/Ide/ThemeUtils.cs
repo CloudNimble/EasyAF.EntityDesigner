@@ -10,7 +10,7 @@ using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
 {
     internal static class ThemeUtils
     {

@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.Data.Tools.VSXmlDesignerBase.Common;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 using Microsoft.VisualStudio.OLE.Interop;
 using System.Diagnostics;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Refactoring
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Refactoring
 {
     internal class RefactorEFObject
     {

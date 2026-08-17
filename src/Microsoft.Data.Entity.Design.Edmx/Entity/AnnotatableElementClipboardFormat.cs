@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml.Linq;
 
-namespace Microsoft.Data.Entity.Design.Model.Entity
+namespace Microsoft.Data.Entity.Design.Edmx.Entity
 {
     [Serializable]
     internal abstract class AnnotatableElementClipboardFormat : EFElementClipboardFormat

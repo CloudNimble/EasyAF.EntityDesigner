@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Entity.Design.XmlEngine.Util;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
 {
     internal class EdmSolutionEvents : IVsSolutionEvents
     {

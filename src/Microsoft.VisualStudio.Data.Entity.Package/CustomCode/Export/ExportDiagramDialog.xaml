@@ -1,6 +1,6 @@
 <!-- Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information. -->
 
-<vs:DialogWindow x:Class="Microsoft.Data.Entity.Design.Dsl.View.Export.ExportDiagramDialog"
+<vs:DialogWindow x:Class="Microsoft.VisualStudio.Data.Entity.Package.Export.ExportDiagramDialog"
                  x:ClassModifier="internal"
                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,7 +8,7 @@
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                  xmlns:vs="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0"
                  xmlns:shell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
-                 xmlns:props="clr-namespace:Microsoft.Data.Entity.Design.Dsl.Properties;assembly=Microsoft.Data.Entity.Design.Diagrams"
+                 xmlns:props="clr-namespace:Microsoft.Data.Entity.Design.Diagrams.Properties;assembly=Microsoft.Data.Entity.Design.Diagrams"
                  mc:Ignorable="d"
                  d:DesignWidth="450"
                  d:DesignHeight="210"

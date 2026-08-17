@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.Globalization;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
-using Microsoft.Data.Tools.XmlDesignerBase;
 
 namespace Microsoft.Data.Entity.Design.XmlEngine.Model
 {
@@ -34,14 +33,14 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
         }
 
         /// <summary>
-        ///     For ploc builds Resources.NoneDisplayValueUsedForUX will be the localized version of the
+        ///     For ploc builds global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX will be the localized version of the
         ///     '(None)' string. Convert it back to a non-localized string so that baseline files do not
         ///     need to be localized
         /// </summary>
         internal static object GetNonLocalizedAttributeValue(T attribute)
         {
             if (null != attribute
-                && Resources.NoneDisplayValueUsedForUX.Equals(attribute.ToString(), StringComparison.CurrentCulture))
+                && global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX.Equals(attribute.ToString(), StringComparison.CurrentCulture))
             {
                 return "(None)";
             }

@@ -1,10 +1,10 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
-using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 
-namespace Microsoft.Data.Entity.Design.Model.Commands
+namespace Microsoft.Data.Entity.Design.Edmx.Commands
 {
     internal class SetEnumTypeFacetCommand : Command
     {

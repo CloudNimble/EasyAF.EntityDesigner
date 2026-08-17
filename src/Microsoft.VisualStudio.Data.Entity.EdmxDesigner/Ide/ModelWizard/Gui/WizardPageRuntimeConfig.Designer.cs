@@ -1,4 +1,4 @@
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
 {
     partial class WizardPageRuntimeConfig
     {
@@ -60,7 +60,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui
             // notificationPictureBox
             // 
             resources.ApplyResources(this.notificationPictureBox, "notificationPictureBox");
-            this.notificationPictureBox.Image = global::Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Properties.Resources.Information;
+            this.notificationPictureBox.Image = global::Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.Resources.Information;
             this.notificationPictureBox.Name = "notificationPictureBox";
             this.notificationPictureBox.TabStop = false;
             // 

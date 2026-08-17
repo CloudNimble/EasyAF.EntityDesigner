@@ -3,7 +3,7 @@
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails.Functions
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetails.Functions
 {
     internal class MappingFunctionMappingRoot : MappingEFElement
     {

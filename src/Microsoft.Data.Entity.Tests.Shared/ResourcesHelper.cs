@@ -52,11 +52,11 @@ namespace Microsoft.Data.Entity.Tests.Shared
             _wizardFrameworkResourceLookup = new AssemblyResourceLookup(
                 Assembly.LoadFile(filepath), "Microsoft.WizardFramework.Properties.Resources");
 
-            filepath = Path.Combine(_vsInstallDir, "Microsoft.Data.Entity.Design.Package.dll");
+            filepath = Path.Combine(_vsInstallDir, "Microsoft.VisualStudio.Data.Entity.Package.dll");
             _designPackageResourceLookup = new AssemblyResourceLookup(
                 Assembly.LoadFile(filepath), "Microsoft.VisualStudio.Data.Entity.Package.Resources");
 
-            filepath = Path.Combine(_vsInstallDir, "Microsoft.VisualStudio.Data.Entity.Design.dll");
+            filepath = Path.Combine(_vsInstallDir, "Microsoft.VisualStudio.Data.Entity.EdmxDesigner.dll");
             _modelWizardResourceLookup = new AssemblyResourceLookup(
                 Assembly.LoadFile(filepath), "Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.Resources");
             _viewsDialogsResourceLookup = new AssemblyResourceLookup(
@@ -91,7 +91,7 @@ namespace Microsoft.Data.Entity.Tests.Shared
 
         /// <summary>
         ///     Look up resource string in all relevant resource tables for the
-        ///     Microsoft.VisualStudio.Data.Entity.Design.dll reference file.
+        ///     Microsoft.VisualStudio.Data.Entity.EdmxDesigner.dll reference file.
         /// </summary>
         /// <param name="key">Resource string key</param>
         /// <returns>Real display string</returns>

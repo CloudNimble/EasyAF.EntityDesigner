@@ -2,11 +2,11 @@
 
 using System;
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.Model.Mapping;
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 
-namespace Microsoft.Data.Entity.Design.Model.Commands
+namespace Microsoft.Data.Entity.Design.Edmx.Commands
 {
     internal class ChangeEntityContainerMappingCommand : Command
     {

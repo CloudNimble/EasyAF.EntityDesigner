@@ -4,7 +4,7 @@ using System;
 using EnvDTE;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.Package
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package
 {
     internal delegate int ModelChangeEventHandler(object sender, ModelChangeEventArgs args);
 

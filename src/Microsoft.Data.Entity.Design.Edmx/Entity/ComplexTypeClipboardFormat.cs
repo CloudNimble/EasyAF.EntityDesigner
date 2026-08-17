@@ -2,7 +2,7 @@
 
 using System;
 
-namespace Microsoft.Data.Entity.Design.Model.Entity
+namespace Microsoft.Data.Entity.Design.Edmx.Entity
 {
     // Represents ComplexType info stored in Clipboard
     [Serializable]

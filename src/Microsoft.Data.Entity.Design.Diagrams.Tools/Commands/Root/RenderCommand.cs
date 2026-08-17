@@ -3,10 +3,10 @@
 using System;
 using System.IO;
 using McMaster.Extensions.CommandLineUtils;
-using Microsoft.Data.Entity.Design.Dsl.View.Export;
-using Microsoft.Data.Entity.Design.Renderer.Headless;
+using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export;
+using Microsoft.Data.Entity.Design.Diagrams.Rendering.Headless;
 
-namespace Microsoft.Data.Entity.Tools.Commands.Root
+namespace Microsoft.Data.Entity.Design.Diagrams.Tools.Commands.Root
 {
 
     /// <summary>

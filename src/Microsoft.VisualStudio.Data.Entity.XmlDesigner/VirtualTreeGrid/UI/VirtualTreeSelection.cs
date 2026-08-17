@@ -6,7 +6,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Forms;
-using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 
 namespace Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid
 {

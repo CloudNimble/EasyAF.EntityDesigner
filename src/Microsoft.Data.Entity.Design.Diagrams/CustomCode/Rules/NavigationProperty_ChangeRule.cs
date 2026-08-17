@@ -1,18 +1,18 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using EDMModelUtils = Microsoft.Data.Entity.Design.Model.ModelHelper;
-using EntityDesignerRes = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
-using ModelRes = Microsoft.Data.Entity.Design.Model.Resources;
+using Microsoft.Data.Entity.Design.Diagrams.ModelChanges;
+using Microsoft.Data.Entity.Design.Diagrams.Utils;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
+using Microsoft.Data.Entity.Design.Edmx.Validation;
+using Microsoft.VisualStudio.Modeling;
 using System;
 using System.Diagnostics;
 using System.Globalization;
-using Microsoft.Data.Entity.Design.Dsl.ModelChanges;
-using Microsoft.Data.Entity.Design.Dsl.Utils;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
-using Microsoft.Data.Entity.Design.Model.Validation;
-using Microsoft.VisualStudio.Modeling;
+using EDMModelUtils = Microsoft.Data.Entity.Design.Edmx.ModelHelper;
+using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.Resources;
+using ModelRes = Microsoft.Data.Entity.Design.Edmx.Resources;
 
-namespace Microsoft.Data.Entity.Design.Dsl.Rules
+namespace Microsoft.Data.Entity.Design.Diagrams.Rules
 {
     /// <summary>
     ///     Rule fired when an NavigationProperty changes
@@ -62,8 +62,8 @@ namespace Microsoft.Data.Entity.Design.Dsl.Rules
                                     changedNavigationProperty.Name));
                         }
 
-                        Model.Entity.EntityType modelEntityType =
-                            viewModel.ModelXRef.GetExisting(changedNavigationProperty.EntityType) as Model.Entity.EntityType;
+                        Edmx.Entity.EntityType modelEntityType =
+                            viewModel.ModelXRef.GetExisting(changedNavigationProperty.EntityType) as Edmx.Entity.EntityType;
                         Debug.Assert(modelEntityType != null, "modelEntityType is null");
 
                         // ensure name is unique

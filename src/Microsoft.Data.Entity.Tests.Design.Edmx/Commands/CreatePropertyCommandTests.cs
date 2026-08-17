@@ -4,17 +4,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Commands;
-using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.VersioningFacade;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
+using Microsoft.Data.Entity.Design.EntityFramework;
 
-namespace Microsoft.Data.Entity.Tests.Design.Model.Commands
+namespace Microsoft.Data.Entity.Tests.Design.Edmx.Commands
 {
     [TestClass]
     public class CreatePropertyCommandTests

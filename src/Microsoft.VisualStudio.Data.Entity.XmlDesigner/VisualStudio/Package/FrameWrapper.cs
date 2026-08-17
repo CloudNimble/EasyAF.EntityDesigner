@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TextManager.Interop;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.Package
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package
 {
     internal abstract class FrameWrapper
     {

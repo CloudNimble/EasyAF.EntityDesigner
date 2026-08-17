@@ -2,11 +2,11 @@
 
 using System.Collections.Generic;
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 
-namespace Microsoft.Data.Entity.Design.Model.Mapping.ChildCollectionBuilders
+namespace Microsoft.Data.Entity.Design.Edmx.Mapping.ChildCollectionBuilders
 {
     /// <summary>
     ///     This class encapsulates the logic needed to build up the full list of potential children for an

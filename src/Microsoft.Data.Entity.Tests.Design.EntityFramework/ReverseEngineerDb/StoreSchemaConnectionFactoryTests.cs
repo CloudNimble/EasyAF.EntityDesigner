@@ -6,16 +6,16 @@ using System.Data.Entity.Core;
 using System.Data.Entity.Core.Common;
 using System.Data.Entity.Infrastructure.DependencyResolution;
 using System.IO;
-using Microsoft.Data.Entity.Design.VersioningFacade;
+using Microsoft.Data.Entity.Design.EntityFramework;
 using System.Security;
 using System.Xml;
-using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb;
 using Moq;
 using Moq.Protected;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb;
 
-namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
+namespace Microsoft.Data.Entity.Tests.Design.EntityFramework.ReverseEngineerDb
 {
     [TestClass]
     public class StoreSchemaConnectionFactoryTests

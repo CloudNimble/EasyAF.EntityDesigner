@@ -2,7 +2,7 @@
 
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
-namespace Microsoft.Data.Entity.Design.Model.Designer
+namespace Microsoft.Data.Entity.Design.Edmx.Designer
 {
     /// <summary>
     ///     A diagram that can bring an <see cref="EFElement" /> into view.

@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using DesignerModel = Microsoft.Data.Entity.Design.Model.Designer;
 using DslDiagrams = Microsoft.VisualStudio.Modeling.Diagrams;
 using DslModeling = Microsoft.VisualStudio.Modeling;
 using System;
@@ -12,28 +11,31 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using Microsoft.Data.Entity.Design.Dsl;
-using Microsoft.Data.Entity.Design.Dsl.CustomSerializer;
-using Microsoft.Data.Entity.Design.Dsl.View;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.EntityDesigner;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.Data.Entity.Design.Diagrams;
+using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
 using Microsoft.VisualStudio.Modeling.Shell;
 using Microsoft.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio.Shell.Interop;
-using PropertyBase = Microsoft.Data.Entity.Design.Model.Entity.PropertyBase;
+using PropertyBase = Microsoft.Data.Entity.Design.Edmx.Entity.PropertyBase;
 using Microsoft.VisualStudio.Modeling.Diagrams;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
-using Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow.Descriptors;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Util;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Descriptors;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.PropertyWindow.Descriptors;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.PropertyWindow;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.Data.Entity.Design.Diagrams.CustomSerializer;
+using Microsoft.VisualStudio.Data.Entity.Package.Navigation;
+using Microsoft.VisualStudio.Data.Entity.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.EntityDesigner;
 
-namespace Microsoft.Data.Entity.Design.Package
+namespace Microsoft.VisualStudio.Data.Entity.Package
 {
     /// <summary>
     ///     This file is adding support for our common selection model to the stock DocView that the DSL
@@ -85,7 +87,7 @@ namespace Microsoft.Data.Entity.Design.Package
             if (artifact != null
                 && artifact.IsDesignerSafe)
             {
-                DesignerModel.Diagram modelDiagram = null;
+                Microsoft.Data.Entity.Design.Edmx.Designer.Diagram modelDiagram = null;
                 if (artifact.DesignerInfo != null
                     && artifact.DesignerInfo.Diagrams != null)
                 {

@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Microsoft.Data.Entity.Design.Model.Entity
+namespace Microsoft.Data.Entity.Design.Edmx.Entity
 {
     // Represents ReferentialConstraint info stored in Clipboard
     [Serializable]

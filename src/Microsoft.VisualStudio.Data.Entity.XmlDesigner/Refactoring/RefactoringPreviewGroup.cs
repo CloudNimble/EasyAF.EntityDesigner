@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.Refactoring
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Refactoring
 {
     /// <summary>
     ///     Captures check-box setting, friendly name and other information for a preview group.

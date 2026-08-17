@@ -1,9 +1,10 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.VisualStudio.Data.Entity.Package;
 using System;
 using System.ComponentModel.Design;
 
-namespace Microsoft.Data.Entity.Design.Package
+namespace Microsoft.VisualStudio.Data.Entity.Package
 {
     internal static class MicrosoftDataEntityDesignCommands
     {

@@ -4,10 +4,9 @@ using System;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Windows.Forms;
-using Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid;
-using Microsoft.VisualStudio.Data.Tools.Design.XmlCore;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider;
 
-namespace Microsoft.Data.Entity.Design.Base.Shell
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
 {
     /// <summary>
     ///     Summary description for TreeGridDesignerBranch.

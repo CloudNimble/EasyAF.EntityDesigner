@@ -6,7 +6,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 
-namespace Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow.Converters
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Converters
 {
     /// <summary>
     ///     type converter for a list of values that is determined programmatically

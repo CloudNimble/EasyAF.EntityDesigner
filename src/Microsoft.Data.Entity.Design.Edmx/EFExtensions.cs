@@ -8,11 +8,12 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Model.Mapping;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.Edmx
 {
     internal static class EFExtensions
     {

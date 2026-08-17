@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.VisualStudio.Data.Entity.Design {
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner {
     using System;
     
     

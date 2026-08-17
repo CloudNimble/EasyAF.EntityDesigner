@@ -1,13 +1,13 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.Model.Designer;
 using Moq;
 using System.IO;
 using System.Xml.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine;
 
-namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.Tests.Package.VisualStudio.ModelWizard.Engine
 {
     [TestClass]
     public class EdmxModelBuilderEngineTests

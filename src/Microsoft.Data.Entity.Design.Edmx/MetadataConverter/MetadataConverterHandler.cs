@@ -3,7 +3,7 @@
 using System.Diagnostics;
 using System.Xml;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.Edmx.MetadataConverter
 {
     /// <summary>
     ///     Base class of Metadata converter

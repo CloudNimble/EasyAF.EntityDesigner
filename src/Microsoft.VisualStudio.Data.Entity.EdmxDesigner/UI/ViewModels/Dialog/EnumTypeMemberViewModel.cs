@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Model.Validation;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Validation;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -10,7 +11,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Dialog
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Dialog
 {
     internal class EnumTypeMemberViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
@@ -130,7 +131,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Dialog
                         if (type != null
                             && ModelHelper.IsValidValueForType(type, Value) == false)
                         {
-                            sb.AppendLine(String.Format(CultureInfo.CurrentCulture, Microsoft.Data.Entity.Design.Model.Resources.BadEnumTypeMemberValue, Value));
+                            sb.AppendLine(String.Format(CultureInfo.CurrentCulture, Microsoft.Data.Entity.Design.Edmx.Resources.BadEnumTypeMemberValue, Value));
                         }
                     }
                 }

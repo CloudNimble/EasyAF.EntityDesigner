@@ -3,12 +3,12 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
-using Microsoft.Data.Entity.Design.Model.Commands;
-using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Integrity;
 
-namespace Microsoft.Data.Entity.Design.Model.Integrity
+namespace Microsoft.Data.Entity.Design.Edmx.Integrity
 {
     internal class CreateForeignKeyProperties : IIntegrityCheck
     {

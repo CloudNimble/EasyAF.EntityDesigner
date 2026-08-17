@@ -2,10 +2,10 @@
 
 using System.Text.RegularExpressions;
 using FluentAssertions;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
+namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration.Generators
 {
     [TestClass]
     public class DefaultVBContextGeneratorTests : GeneratorTestBase

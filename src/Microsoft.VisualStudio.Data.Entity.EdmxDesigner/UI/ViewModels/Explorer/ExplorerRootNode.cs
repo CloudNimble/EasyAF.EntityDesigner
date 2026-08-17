@@ -4,7 +4,7 @@ using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using System;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Explorer
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer
 {
     // <summary>
     //     dummy node - has no equivalent in the Model project

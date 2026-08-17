@@ -6,9 +6,9 @@ using System.Drawing;
 using System.Security;
 using System.Security.Permissions;
 using System.Windows.Forms;
-using Microsoft.Data.Tools.VSXmlDesignerBase.Common;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common;
 
-namespace Microsoft.Data.Entity.Design.Base.Shell
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
 {
     /// <summary>
     ///     This is the base class for the main control in tool windows.

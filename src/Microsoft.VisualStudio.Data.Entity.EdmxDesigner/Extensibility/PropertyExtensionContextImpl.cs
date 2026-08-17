@@ -1,13 +1,14 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using EnvDTE;
-using Microsoft.Data.Entity.Design.Extensibility;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
+using Microsoft.VisualStudio.Data.Entity.Extensibility;
 using System;
 using System.Diagnostics;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Extensibility
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility
 {
     // <summary>
     //     This class is used by Escher extensions to update annotation values in the EDMX.

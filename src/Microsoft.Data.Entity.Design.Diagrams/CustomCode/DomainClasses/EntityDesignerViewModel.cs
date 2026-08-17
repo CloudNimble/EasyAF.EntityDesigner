@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using EntityDesignerRes = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
-using ModelDesigner = Microsoft.Data.Entity.Design.Model.Designer;
+using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.Resources;
+using ModelDesigner = Microsoft.Data.Entity.Design.Edmx.Designer;
 using ModelDiagram = Microsoft.Data.Tools.Model.Diagram;
 using System;
 using System.Collections.Generic;
@@ -9,21 +9,22 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using Microsoft.Data.Entity.Design.Dsl.CustomSerializer;
-using Microsoft.Data.Entity.Design.Dsl.ModelChanges;
-using Microsoft.Data.Entity.Design.Dsl.Rules;
-using Microsoft.Data.Entity.Design.Dsl.View;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Commands;
-using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.Diagrams.View;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
+using Microsoft.Data.Entity.Design.Diagrams.CustomSerializer;
+using Microsoft.Data.Entity.Design.Diagrams.Rules;
+using Microsoft.Data.Entity.Design.Diagrams.ModelChanges;
 
-namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
+namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
 {
     /// <remarks>
     ///     <b>Single threaded.</b> This is a DSL <c>ModelElement</c>, so it inherits the Modeling SDK's assumption
@@ -449,7 +450,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
                                 if (change.Changed.Artifact.IsDesignerSafe)
                                 {
                                     if (change.Changed is DefaultableValue
-                                        && change.Changed.Parent is ModelDesigner.Diagram
+                                        && change.Changed.Parent is Edmx.Designer.Diagram
                                         && ModelXRef.ContainsKey(change.Changed.Parent))
                                     {
                                         hasDiagramObjectChanges = true;
@@ -549,7 +550,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
                         case EfiChange.EfiChangeType.Create:
                             // Adding association, entity-type or inheritance is no longer translate to the addition of the corresponding DSL model elements.
                             // We only add the DSL model elements if Escher model diagrams are added (InheritanceConnector etc.)
-                            if (!(change.Changed is Model.Entity.Association
+                            if (!(change.Changed is Edmx.Entity.Association
                                   || change.Changed is ConceptualEntityType
                                   || change.Changed is EntityTypeBaseType))
                             {
@@ -575,7 +576,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
                             // the entity type is null if it is not in the diagram.
                             if (ModelXRef.GetExisting(baseType.Parent) is EntityType entityType)
                             {
-                                EntityTypeShape ets = PresentationViewsSubject.GetPresentation(entityType).FirstOrDefault() as EntityTypeShape;
+                                View.EntityTypeShape ets = PresentationViewsSubject.GetPresentation(entityType).FirstOrDefault() as View.EntityTypeShape;
                                 Debug.Assert(ets != null, "The shape for entity-type : " + entityType.Name + " is not available.");
                                 ets?.Invalidate();
                             }
@@ -613,24 +614,24 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
             {
                 EFObject efObject = null;
 
-                if (change.Changed is ModelDesigner.EntityTypeShape entityTypeShape)
+                if (change.Changed is Edmx.Designer.EntityTypeShape entityTypeShape)
                 {
                     // There is a code above that will Debug.Fail if the object in extraElementsToProcess is not ConceptualEntityType
-                    Model.Entity.EntityType et = entityTypeShape.EntityType.Target as ConceptualEntityType;
+                    Edmx.Entity.EntityType et = entityTypeShape.EntityType.Target as ConceptualEntityType;
                     if (et != null)
                     {
                         extraElementsToProcess.Add(et);
                         efObject = et;
                     }
                 }
-                else if (change.Changed is ModelDesigner.InheritanceConnector inheritanceConnector)
+                else if (change.Changed is Edmx.Designer.InheritanceConnector inheritanceConnector)
                 {
                     if (inheritanceConnector.EntityType.Target is ConceptualEntityType et)
                     {
                         efObject = et.BaseType;
                     }
                 }
-                else if (change.Changed is ModelDesigner.AssociationConnector associationConnector)
+                else if (change.Changed is Edmx.Designer.AssociationConnector associationConnector)
                 {
                     efObject = associationConnector.Association.Target;
                 }
@@ -643,18 +644,18 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
             else if (change.Type == EfiChange.EfiChangeType.Delete)
             {
                 EFObject efObject = null;
-                if (change.Changed is ModelDesigner.EntityTypeShape entityTypeShape)
+                if (change.Changed is Edmx.Designer.EntityTypeShape entityTypeShape)
                 {
                     efObject = entityTypeShape.EntityType.Target;
                 }
-                else if (change.Changed is ModelDesigner.InheritanceConnector inheritanceConnector)
+                else if (change.Changed is Edmx.Designer.InheritanceConnector inheritanceConnector)
                 {
                     if (inheritanceConnector.EntityType.Target is ConceptualEntityType et)
                     {
                         efObject = et.BaseType;
                     }
                 }
-                else if (change.Changed is ModelDesigner.AssociationConnector associationConnector)
+                else if (change.Changed is Edmx.Designer.AssociationConnector associationConnector)
                 {
                     efObject = associationConnector.Association.Target;
                 }
@@ -683,17 +684,17 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
                 {
                     Debug.Assert(change.Type == EfiChange.EfiChangeType.Create);
 
-                    if (change.Changed is Model.Entity.EntityType entityType)
+                    if (change.Changed is Edmx.Entity.EntityType entityType)
                     {
                         return 1;
                     }
 
-                    if (change.Changed is Model.Entity.Association association)
+                    if (change.Changed is Edmx.Entity.Association association)
                     {
                         return 2;
                     }
 
-                    if (change.Changed is Model.Entity.Property prop)
+                    if (change.Changed is Edmx.Entity.Property prop)
                     {
                         return 3;
                     }
@@ -708,17 +709,17 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
                         return 5;
                     }
 
-                    if (change.Changed is ModelDesigner.EntityTypeShape ets)
+                    if (change.Changed is Edmx.Designer.EntityTypeShape ets)
                     {
                         return 6;
                     }
 
-                    if (change.Changed is ModelDesigner.AssociationConnector ac)
+                    if (change.Changed is Edmx.Designer.AssociationConnector ac)
                     {
                         return 7;
                     }
 
-                    if (change.Changed is ModelDesigner.InheritanceConnector ic)
+                    if (change.Changed is Edmx.Designer.InheritanceConnector ic)
                     {
                         return 8;
                     }
@@ -865,7 +866,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
                         setParentUndoUnit = true;
                     }
 
-                    DelegateCommand cmd = new DelegateCommand(
+                    CallbackCommand cmd = new CallbackCommand(
                         () =>
                             {
                                 foreach (var change in viewModelChanges)
@@ -987,9 +988,9 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
                     return;
                 }
 
-                if (efElement is Model.Entity.Property modelProperty)
+                if (efElement is Edmx.Entity.Property modelProperty)
                 {
-                    if (modelProperty.Parent is Model.Entity.EntityType entityType)
+                    if (modelProperty.Parent is Edmx.Entity.EntityType entityType)
                     {
                         // If the view Entity Type does not exist skip, continue since nothing to update.
                         if (xref.GetExisting(entityType) is EntityType viewEntityType)
@@ -1041,7 +1042,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
                     efElement = modelAssociationEnd.Parent as EFElement;
                 }
 
-                if (efElement is Model.Entity.Association modelAssociation)
+                if (efElement is Edmx.Entity.Association modelAssociation)
                 {
                     // this will create association if necessary (if not it's update only)
                     ModelTranslatorContextItem.GetEntityModelTranslator(EditingContext)
@@ -1049,9 +1050,9 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
                     return;
                 }
 
-                if (efElement is Model.Entity.NavigationProperty modelNavigationProperty)
+                if (efElement is Edmx.Entity.NavigationProperty modelNavigationProperty)
                 {
-                    Model.Entity.EntityType entityType = modelNavigationProperty.Parent as Model.Entity.EntityType;
+                    Edmx.Entity.EntityType entityType = modelNavigationProperty.Parent as Edmx.Entity.EntityType;
                     Debug.Assert(entityType != null);
 
 
@@ -1125,7 +1126,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
                             var property = propRef.Name.Target;
                             if (property != null)
                             {
-                                Model.Entity.EntityType entityType = property.Parent as Model.Entity.EntityType;
+                                Edmx.Entity.EntityType entityType = property.Parent as Edmx.Entity.EntityType;
                                 Debug.Assert(entityType != null);
 
 
@@ -1155,7 +1156,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
         /// <returns></returns>
         private PropertyBase FindPreviousProperty(PropertyBase property)
         {
-            Model.Entity.PropertyBase modelProperty = ModelXRef.GetExisting(property) as Model.Entity.PropertyBase;
+            Edmx.Entity.PropertyBase modelProperty = ModelXRef.GetExisting(property) as Edmx.Entity.PropertyBase;
             Debug.Assert(modelProperty != null, "Unable to get Entity Designer Model for :" + property.Name + " from model xref.");
             if (modelProperty != null)
             {
@@ -1185,7 +1186,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
             if (efObject is Key key
                 && key.Parent != null)
             {
-                if (key.Parent is Model.Entity.EntityType entityType)
+                if (key.Parent is Edmx.Entity.EntityType entityType)
                 {
                     if (xref.GetExisting(entityType) is EntityType viewEntityType)
                     {
@@ -1207,7 +1208,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
                 var property = propertyRef.Name.Target;
                 if (property != null)
                 {
-                    Model.Entity.EntityType entityType = property.Parent as Model.Entity.EntityType;
+                    Edmx.Entity.EntityType entityType = property.Parent as Edmx.Entity.EntityType;
                     Debug.Assert(entityType != null);
                     // if we are deleting whole EntityType this will be null
                     if (xref.GetExisting(entityType) is EntityType viewEntityType
@@ -1222,7 +1223,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 
             if (efObject.Parent is ComplexConceptualProperty modelProperty)
             {
-                if (modelProperty.Parent is Model.Entity.EntityType entityType)
+                if (modelProperty.Parent is Edmx.Entity.EntityType entityType)
                 {
                     if (xref.GetExisting(entityType) is EntityType viewEntityType)
                     {
@@ -1263,7 +1264,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
             // We need to do this to ensure Model-Browser window is not closed and there at least 1 active designer for the EDMX in VS.
             var currentDiagram = GetDiagram();
             if (null != currentDiagram
-                && efObject is ModelDesigner.Diagram modelDiagram
+                && efObject is Edmx.Designer.Diagram modelDiagram
                 && currentDiagram.DiagramId == modelDiagram.Id.Value)
             {
                 var foundAnotherActiveDiagram = false;

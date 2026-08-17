@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using EnvDTE;
-using Microsoft.Data.Entity.Design.Extensibility;
-using Microsoft.Data.Entity.Design.Model;
+using Microsoft.Data.Entity.Design.Edmx;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.StandAlone;
 using Microsoft.Data.Entity.Design.XmlEngine.Util;
-using Microsoft.VisualStudio.Data.Entity.Design.Extensibility;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.Extensibility;
 using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.Collections.Generic;
@@ -16,7 +16,7 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.Model
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model
 {
     // <summary>
     //     This XmlModelProvider uses a strategy pattern to accept 'Loaders' which

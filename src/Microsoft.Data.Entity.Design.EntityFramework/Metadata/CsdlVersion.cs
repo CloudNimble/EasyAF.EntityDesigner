@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade.Metadata
+namespace Microsoft.Data.Entity.Design.EntityFramework.Metadata
 {
     internal class CsdlVersion
     {

@@ -1,7 +1,7 @@
 <ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	x:Class="Microsoft.VisualStudio.Data.Entity.Design.Ide.AssemblyResources"
+	x:Class="Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.AssemblyResources"
 	x:ClassModifier="internal"
 	>
   <ResourceDictionary.MergedDictionaries>

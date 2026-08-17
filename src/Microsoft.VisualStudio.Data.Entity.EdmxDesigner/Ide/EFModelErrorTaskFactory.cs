@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
-using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TextManager.Interop;
@@ -10,7 +10,7 @@ using System;
 using System.Xml;
 using IOleServiceProvider = Microsoft.VisualStudio.OLE.Interop.IServiceProvider;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
 {
     internal static class EFModelErrorTaskFactory
     {

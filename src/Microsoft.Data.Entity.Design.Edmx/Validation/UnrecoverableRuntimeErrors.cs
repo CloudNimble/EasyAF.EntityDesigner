@@ -1,9 +1,8 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.Data.Entity.Core.Mapping;
-using System.Data.Entity.Core.SchemaObjectModel;
+using Microsoft.Data.Entity.Design.Edmx.Validation.RuntimeErrorCodes;
 
-namespace Microsoft.Data.Entity.Design.Model.Validation
+namespace Microsoft.Data.Entity.Design.Edmx.Validation
 {
     internal static class UnrecoverableRuntimeErrors
     {

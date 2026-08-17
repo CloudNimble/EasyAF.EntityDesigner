@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 
-namespace Microsoft.Data.Entity.Design.Package
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.UI
 {
     /// <summary>
     ///     A thumbnail form class to host a pan/zoom control.

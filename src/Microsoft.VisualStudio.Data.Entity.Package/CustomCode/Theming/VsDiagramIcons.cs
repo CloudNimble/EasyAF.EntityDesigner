@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.Dsl.View;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
 using System.Drawing;
-using EntityDesignerRes = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
+using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.Resources;
 
-namespace Microsoft.Data.Entity.Design.Package
+namespace Microsoft.VisualStudio.Data.Entity.Package.Theming
 {
 
     /// <summary>

@@ -4,8 +4,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels;
 
-namespace Microsoft.Data.Entity.Design.XmlEngine.UI.Views.Explorer
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views.Explorer
 {
     internal class ExplorerSelection : Selection
     {

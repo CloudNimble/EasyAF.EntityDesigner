@@ -10,7 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Generators
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Generators
 {
     internal class CustomGenerator : IContextGenerator, IEntityTypeGenerator
     {

@@ -3,7 +3,7 @@
 using DslModeling = Microsoft.VisualStudio.Modeling;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
-namespace Microsoft.Data.Tools.Dsl.ModelTranslator
+namespace Microsoft.Data.Entity.Design.Diagrams.CustomSerializer
 {
     internal class ModelTranslator<T>
         where T : BaseTranslatorStrategy

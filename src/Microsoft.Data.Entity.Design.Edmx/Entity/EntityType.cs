@@ -5,13 +5,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.Model.Commands;
-using Microsoft.Data.Entity.Design.Model.Mapping;
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
 
-namespace Microsoft.Data.Entity.Design.Model.Entity
+namespace Microsoft.Data.Entity.Design.Edmx.Entity
 {
     internal abstract class EntityType : DocumentableAnnotatableElement
     {

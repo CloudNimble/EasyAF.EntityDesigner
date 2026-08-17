@@ -2,7 +2,7 @@
 
 using System;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider
 {
     #region BranchFeatures
 

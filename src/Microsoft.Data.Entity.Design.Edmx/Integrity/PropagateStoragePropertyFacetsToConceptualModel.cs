@@ -5,14 +5,14 @@ using System.Collections.Generic;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Diagnostics;
 using System.Xml;
-using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Model.Mapping;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Integrity;
-using EntityType = Microsoft.Data.Entity.Design.Model.Entity.EntityType;
+using EntityType = Microsoft.Data.Entity.Design.Edmx.Entity.EntityType;
 
-namespace Microsoft.Data.Entity.Design.Model.Integrity
+namespace Microsoft.Data.Entity.Design.Edmx.Integrity
 {
     /// <summary>
     ///     This class will loop over all mappings from Storage-side (S-side) properties to

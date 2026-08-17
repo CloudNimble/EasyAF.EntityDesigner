@@ -4,7 +4,7 @@ using EnvDTE;
 using System;
 using System.Diagnostics;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
 {
     // <summary>
     //     Creates an <see cref="ExecutorWrapper" /> that can be used to execute the user's code contained

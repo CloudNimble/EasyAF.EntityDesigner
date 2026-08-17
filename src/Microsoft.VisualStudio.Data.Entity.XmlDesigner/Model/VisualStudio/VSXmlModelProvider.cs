@@ -3,8 +3,8 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -12,7 +12,7 @@ using Microsoft.VisualStudio.XmlEditor;
 using IServiceProvider = System.IServiceProvider;
 using XmlModel = Microsoft.Data.Entity.Design.XmlEngine.Model.XmlModel;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio
 {
     /// <summary>
     ///     The VS implementation of the XmlModelProvider. This uses
@@ -149,7 +149,7 @@ namespace Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio
 
             if (!_xmlModels.TryGetValue(sourceUri, out VSXmlModel vsXmlModel))
             {
-                Microsoft.VisualStudio.XmlEditor.XmlModel xmlModel = null;
+                XmlEditor.XmlModel xmlModel = null;
                 try
                 {
                     xmlModel = _xmlStore.OpenXmlModel(sourceUri);

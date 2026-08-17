@@ -9,7 +9,7 @@ using System.Data.Entity.Infrastructure.DependencyResolution;
 using System.Diagnostics;
 using System.Linq;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Extensions
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Extensions
 {
     internal static class DbModelExtensions
     {

@@ -2,10 +2,10 @@
 
 using System.Diagnostics;
 using System.Linq;
-using Microsoft.Data.Entity.Design.Model.Designer;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 
-namespace Microsoft.Data.Entity.Design.Model.Commands
+namespace Microsoft.Data.Entity.Design.Edmx.Commands
 {
     internal class DeleteEntityTypeShapeCommand : DeleteEFElementCommand
     {

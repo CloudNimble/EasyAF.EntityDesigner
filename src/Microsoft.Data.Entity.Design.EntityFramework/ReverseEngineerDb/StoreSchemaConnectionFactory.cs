@@ -16,7 +16,7 @@ using System.Linq;
 using System.Security;
 using System.Threading;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb
+namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb
 {
     internal class StoreSchemaConnectionFactory
     {

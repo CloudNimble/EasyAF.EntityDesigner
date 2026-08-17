@@ -2,7 +2,7 @@
 
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Base.Host
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Base.Host
 {
     // <summary>
     //     The designer interacts with files through an abstract layer

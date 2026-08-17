@@ -2,16 +2,16 @@
 
 using System;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Model.Mapping;
-using Microsoft.Data.Entity.Design.VersioningFacade;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.EntityFramework;
 
-namespace Microsoft.Data.Entity.Tests.Design.Model
+namespace Microsoft.Data.Entity.Tests.Design.Edmx
 {
     [TestClass]
     public class EntityDesignArtifactTests

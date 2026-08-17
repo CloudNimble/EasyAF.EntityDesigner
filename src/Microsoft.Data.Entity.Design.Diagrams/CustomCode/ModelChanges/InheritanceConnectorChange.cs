@@ -3,14 +3,14 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
-using Microsoft.Data.Entity.Design.Model.Commands;
-using Microsoft.Data.Entity.Design.Model.Designer;
+using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.VisualStudio.Modeling.Diagrams;
-using InheritanceConnector = Microsoft.Data.Entity.Design.Dsl.View.InheritanceConnector;
+using InheritanceConnector = Microsoft.Data.Entity.Design.Diagrams.View.InheritanceConnector;
 
-namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
+namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
 {
     internal class InheritanceConnectorChange : InheritanceConnectorModelChange
     {
@@ -43,11 +43,11 @@ namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
             Debug.Assert(viewModel != null, "Unable to find root view model from inheritance connector: " + viewModel);
             if (viewModel != null)
             {
-                modelInheritanceConnector = viewModel.ModelXRef.GetExisting(inheritanceConnector) as Model.Designer.InheritanceConnector;
+                modelInheritanceConnector = viewModel.ModelXRef.GetExisting(inheritanceConnector) as Edmx.Designer.InheritanceConnector;
                 if (modelInheritanceConnector == null)
                 {
                     InheritanceConnectorAdd.StaticInvoke(cpc, inheritanceConnector);
-                    modelInheritanceConnector = viewModel.ModelXRef.GetExisting(inheritanceConnector) as Model.Designer.InheritanceConnector;
+                    modelInheritanceConnector = viewModel.ModelXRef.GetExisting(inheritanceConnector) as Edmx.Designer.InheritanceConnector;
                 }
             }
 

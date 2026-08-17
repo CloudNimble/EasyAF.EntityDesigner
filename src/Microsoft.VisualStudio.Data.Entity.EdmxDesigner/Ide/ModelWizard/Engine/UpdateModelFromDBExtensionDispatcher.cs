@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using EnvDTE;
-using Microsoft.Data.Entity.Design.Extensibility;
-using Microsoft.VisualStudio.Data.Entity.Design.Extensibility;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.Extensibility;
 using System.Diagnostics;
 using System.Xml.Linq;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
 {
     internal class UpdateModelFromDBExtensionDispatcher : ModelGenerationExtensionDispatcher
     {

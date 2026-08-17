@@ -13,7 +13,7 @@ using DslModeling = global::Microsoft.VisualStudio.Modeling;
 using DslDiagrams = global::Microsoft.VisualStudio.Modeling.Diagrams;
 using DslValidation = global::Microsoft.VisualStudio.Modeling.Validation;
 
-namespace Microsoft.Data.Entity.Design.Package
+namespace Microsoft.VisualStudio.Data.Entity.Package
 {
 	/// <summary>
 	/// Double-derived class to allow easier code customization.

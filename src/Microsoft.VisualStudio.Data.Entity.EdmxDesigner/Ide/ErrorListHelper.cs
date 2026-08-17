@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using EnvDTE;
-using Microsoft.Data.Entity.Design.Extensibility;
-using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.Extensibility;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TextManager.Interop;
@@ -14,7 +14,7 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Diagnostics;
 using System.Linq;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
 {
     // Helpful utility functions for finding and using the proper error list for a given document
     internal static class ErrorListHelper

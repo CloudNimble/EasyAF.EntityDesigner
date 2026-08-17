@@ -3,7 +3,7 @@
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using System.Diagnostics;
 
-namespace Microsoft.Data.Entity.Design.Model.Entity
+namespace Microsoft.Data.Entity.Design.Edmx.Entity
 {
     /// <summary>
     ///     The refName for these ends cannot be already normalized.  The Role attribute points to

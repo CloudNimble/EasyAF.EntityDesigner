@@ -2,11 +2,11 @@
 
 using System;
 using System.Xml;
-using Microsoft.Data.Entity.Design.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Microsoft.Data.Entity.Design.Edmx.MetadataConverter;
 
-namespace Microsoft.Data.Entity.Tests.Design.Model
+namespace Microsoft.Data.Entity.Tests.Design.Edmx.MetadataConverter
 {
     [TestClass]
     public class VersionConverterHandlerTests

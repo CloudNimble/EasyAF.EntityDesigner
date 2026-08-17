@@ -3,7 +3,7 @@
 using System.ComponentModel.Design;
 using System.Windows.Forms;
 
-namespace Microsoft.Data.Entity.Design.Base.Shell
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
 {
     /// <summary>
     ///     Interface that contains extra public APIs used by the

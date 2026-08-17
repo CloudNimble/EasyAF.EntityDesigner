@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.Edmx
 {
     /// <summary>
     ///     Represents information about an EFElement whose corresponding XElement

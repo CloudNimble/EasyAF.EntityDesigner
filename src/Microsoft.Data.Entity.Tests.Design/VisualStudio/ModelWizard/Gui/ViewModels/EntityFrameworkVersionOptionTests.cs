@@ -2,9 +2,9 @@
 
 using System;
 using FluentAssertions;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui.ViewModels;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Resources = Microsoft.VisualStudio.Data.Entity.Design.Resources;
+using Resources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Gui.ViewModels
 {

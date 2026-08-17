@@ -1,15 +1,15 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
 using Moq;
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.VisualStudio.Data.Entity.Design.Extensibility;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 
-namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.Package
+namespace Microsoft.VisualStudio.Data.Entity.Tests.Package.VisualStudio.Package
 {
     [TestClass]
     public class EntityDesignDocumentFrameMgrTests

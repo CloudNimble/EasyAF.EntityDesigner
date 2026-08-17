@@ -3,7 +3,7 @@
 using System.Diagnostics;
 using System.Text;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration.Properties
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Configuration.Properties
 {
     /// <summary>
     /// Represents a model configuration to set the column name, type, and order for a property.

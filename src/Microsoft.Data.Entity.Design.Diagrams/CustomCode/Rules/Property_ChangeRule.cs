@@ -1,16 +1,16 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using EDMModelUtils = Microsoft.Data.Entity.Design.Model.ModelHelper;
+using EDMModelUtils = Microsoft.Data.Entity.Design.Edmx.ModelHelper;
 using System;
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.Dsl.ModelChanges;
-using Microsoft.Data.Entity.Design.Dsl.Utils;
-using Microsoft.Data.Entity.Design.Dsl.View;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
+using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
+using Microsoft.Data.Entity.Design.Diagrams.Utils;
+using Microsoft.Data.Entity.Design.Diagrams.ModelChanges;
 
-namespace Microsoft.Data.Entity.Design.Dsl.Rules
+namespace Microsoft.Data.Entity.Design.Diagrams.Rules
 {
     /// <summary>
     ///     Rule fired when a Property changes
@@ -75,7 +75,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.Rules
                             return;
                         }
 
-                        Model.Entity.Property modelProperty = viewModel.ModelXRef.GetExisting(changedProperty) as Model.Entity.Property;
+                        Edmx.Entity.Property modelProperty = viewModel.ModelXRef.GetExisting(changedProperty) as Edmx.Entity.Property;
                         Debug.Assert(modelProperty != null, "modelProperty is null");
 
                         if (!EDMModelUtils.ValidatePropertyName(modelProperty, changedProperty.Name, true, out string errorMessage))

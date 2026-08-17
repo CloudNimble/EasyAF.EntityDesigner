@@ -2,7 +2,7 @@
 
 using System;
 
-namespace Microsoft.Data.Entity.Design.Base.Shell
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
 {
     /// <summary>
     ///     Base class for TreeGrid designer attributes.  Implements IComparable functionality

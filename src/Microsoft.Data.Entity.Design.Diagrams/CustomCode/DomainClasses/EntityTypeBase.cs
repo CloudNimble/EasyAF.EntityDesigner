@@ -1,12 +1,12 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using DslResources = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
+using DslResources = Microsoft.Data.Entity.Design.Diagrams.Properties.Resources;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
 
-namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
+namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
 {
     abstract partial class EntityTypeBase
     {
@@ -16,7 +16,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
             {
                 if (EntityDesignerViewModel != null)
                 {
-                    if (EntityDesignerViewModel.ModelXRef.GetExisting(this) is Model.Entity.EntityType modelEntityType)
+                    if (EntityDesignerViewModel.ModelXRef.GetExisting(this) is Edmx.Entity.EntityType modelEntityType)
                     {
                         var entitySet = modelEntityType.EntitySet;
                         if (entitySet != null)

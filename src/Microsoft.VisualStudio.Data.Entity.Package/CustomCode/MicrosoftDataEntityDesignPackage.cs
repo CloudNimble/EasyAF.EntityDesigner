@@ -7,24 +7,26 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Windows.Threading;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
-using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.DataDesign.Interfaces;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Utilities;
-using ModelChangeEventArgs = Microsoft.Data.Entity.Design.VisualStudio.Package.ModelChangeEventArgs;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails;
-using Microsoft.Data.Entity.Design.Package.Theming;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using ModelChangeEventArgs = Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package.ModelChangeEventArgs;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails;
+using Microsoft.VisualStudio.Data.Entity.Package.Theming;
+using Microsoft.VisualStudio.Data.Entity.Package.Navigation;
+using Microsoft.VisualStudio.Data.Entity.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model;
 
-namespace Microsoft.Data.Entity.Design.Package
+namespace Microsoft.VisualStudio.Data.Entity.Package
 {
     // Transient because this package cannot service a shell-initiated restore of this window. The shell asks for a
     // persisted frame through IVsPackage.CreateTool, which reaches ModelingPackage.CreateToolWindow - a non-virtual

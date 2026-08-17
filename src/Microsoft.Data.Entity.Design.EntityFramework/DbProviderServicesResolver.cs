@@ -7,7 +7,7 @@ using System.Data.Entity.Infrastructure.DependencyResolution;
 using System.Diagnostics;
 using System.Reflection;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade
+namespace Microsoft.Data.Entity.Design.EntityFramework
 {
     internal class DbProviderServicesResolver : IDbDependencyResolver
     {

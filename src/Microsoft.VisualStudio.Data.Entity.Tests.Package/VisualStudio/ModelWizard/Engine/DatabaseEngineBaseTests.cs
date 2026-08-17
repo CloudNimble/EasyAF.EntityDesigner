@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Data.Entity.Core.EntityClient;
 using System.Data.Entity.Infrastructure.DependencyResolution;
-using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine;
 
-namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.Tests.Package.VisualStudio.ModelWizard.Engine
 {
     [TestClass]
     public class DatabaseEngineBaseTests

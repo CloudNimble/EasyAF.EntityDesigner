@@ -2,11 +2,12 @@
 
 using System;
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
 using Microsoft.VisualStudio.Modeling;
 
-namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
+namespace Microsoft.Data.Entity.Design.Diagrams.NameProviders
 {
     /// <summary>
     ///     DSL allows us to override the functionality that picks a unique name for a new, nameable domain object.
@@ -36,7 +37,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 
             // we want to make sure that we pick a unique name for the property that does not conflict with any other property name in the owning
             // entity type's inheritance tree (if there is one).
-            if (element is Property property
+            if (element is ViewModel.Property property
                 && property.EntityType != null)
             {
                 var viewModel = property.EntityType.EntityDesignerViewModel;
@@ -48,7 +49,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
                     if (modelEntityType != null)
                     {
                         baseName = property is ScalarProperty
-                                       ? Model.Entity.Property.DefaultPropertyName
+                                       ? Edmx.Entity.Property.DefaultPropertyName
                                        : ComplexConceptualProperty.DefaultComplexPropertyName;
 
                         property.Name = ModelHelper.GetUniqueConceptualPropertyName(

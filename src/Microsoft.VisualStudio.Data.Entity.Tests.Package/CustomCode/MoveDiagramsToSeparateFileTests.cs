@@ -2,13 +2,13 @@
 
 using System.Linq;
 using FluentAssertions;
-using Microsoft.Data.Entity.Design.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Microsoft.Data.Entity.Tests.DesignPackage.CustomCode
+namespace Microsoft.VisualStudio.Data.Entity.Tests.Package
 {
     /// <summary>
     ///     Covers the parts of the Move Diagrams to Separate File command that do not need a running shell.

@@ -3,11 +3,11 @@
 using System;
 using System.Diagnostics;
 using System.Globalization;
-using Microsoft.Data.Entity.Design.Model.Designer;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 
-namespace Microsoft.Data.Entity.Design.Model.Commands
+namespace Microsoft.Data.Entity.Design.Edmx.Commands
 {
     /// <summary>
     ///     This command will change a DesignerProperty under a DesignerInfoPropertySet inside a generic

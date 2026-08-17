@@ -6,7 +6,7 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Reflection;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade.Metadata
+namespace Microsoft.Data.Entity.Design.EntityFramework.Metadata
 {
     /// <summary>
     /// Helper class for accessing internal EntityFramework metadata methods via reflection.

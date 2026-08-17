@@ -1,17 +1,7 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using EnvDTE;
-using Microsoft.Data.Entity.Design.Extensibility;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Commands;
-using Microsoft.Data.Entity.Design.Model.Designer;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.Extensibility;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Explorer;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -25,8 +15,19 @@ using Microsoft.Data.Entity.Design.XmlEngine.Model.StandAlone;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.VisualStudio.Data.Entity.Extensibility;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Explorer;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
 {
     internal class UpdateFromDatabaseEngine : DatabaseEngineBase
     {
@@ -232,10 +233,10 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine
 
                 // create a new FunctionImport for every new Function created (whether composable or not)
                 // (or delete Functions if ProgressDialog did not finish successfully)
-                // Note: this must take place as a DelegateCommand as ProcessStoredProcedureReturnTypeInformation()
+                // Note: this must take place as a CallbackCommand as ProcessStoredProcedureReturnTypeInformation()
                 // can depend on finding the existing Functions to delete. And it won't find them until the
                 // ReplaceSsdlCommand within UpdateModelFromDatabaseCommand has executed.
-                DelegateCommand createMatchingFunctionImportsDelegateCommand = new DelegateCommand(
+                CallbackCommand createMatchingFunctionImportsDelegateCommand = new CallbackCommand(
                     () =>
                         {
                             List<Command> functionImportCommands = new List<Command>();

@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.Data.Entity.Design.XmlEngine.UI;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.EntityDesigner
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.EntityDesigner
 {
     internal class EntityDesignerSelection : Selection
     {

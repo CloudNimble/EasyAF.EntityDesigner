@@ -4,7 +4,7 @@ using EnvDTE;
 using System;
 using System.Runtime.Versioning;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
 {
     internal class NetFrameworkVersioningHelper
     {

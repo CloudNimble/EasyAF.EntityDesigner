@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade
+namespace Microsoft.Data.Entity.Design.EntityFramework
 {
     internal static class EntityFrameworkVersion
     {

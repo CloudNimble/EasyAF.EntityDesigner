@@ -4,7 +4,7 @@ using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
 using Microsoft.VisualStudio.Shell.Interop;
 using System.Collections.Generic;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
 {
     internal interface IErrorListHelper
     {

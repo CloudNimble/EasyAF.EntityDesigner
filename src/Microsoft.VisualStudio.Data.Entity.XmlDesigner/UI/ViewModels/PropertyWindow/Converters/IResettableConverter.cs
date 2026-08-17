@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-namespace Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow.Converters
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Converters
 {
     /// <summary>
     ///     A single instance of a converter is usually cached and reused by the System.ComponentModel

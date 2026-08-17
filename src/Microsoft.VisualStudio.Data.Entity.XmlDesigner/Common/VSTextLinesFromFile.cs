@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TextManager.Interop;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.Common
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common
 {
     /// <summary>
     ///     Wrapper class for access to the IVSTextLines of a file even if it's not currently open in a document. This class

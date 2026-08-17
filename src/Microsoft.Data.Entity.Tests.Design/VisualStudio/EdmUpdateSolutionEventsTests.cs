@@ -3,12 +3,12 @@
 using System;
 using System.Xml.Linq;
 using FluentAssertions;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Designer;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio
 {

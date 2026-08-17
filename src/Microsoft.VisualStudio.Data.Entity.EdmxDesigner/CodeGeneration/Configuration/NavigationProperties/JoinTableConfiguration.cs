@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration.NavigationProperties
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Configuration.NavigationProperties
 {
     /// <summary>
     /// Represents a model configuration to set the join table and column names of a many-to-many association.

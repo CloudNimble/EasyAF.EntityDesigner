@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using DesignRes = Microsoft.VisualStudio.Data.Entity.Design.Resources;
-using ModelEntity = Microsoft.Data.Entity.Design.Model.Entity;
+using DesignRes = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources;
+using ModelEntity = Microsoft.Data.Entity.Design.Edmx.Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
@@ -12,15 +12,9 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using EnvDTE;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs;
-using Microsoft.Data.Entity.Design.Dsl.View;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
-using Microsoft.Data.Entity.Design.Extensibility;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Commands;
-using Microsoft.Data.Entity.Design.Model.Mapping;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs;
+using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Immutability;
@@ -28,30 +22,43 @@ using Microsoft.VisualStudio.Modeling.Shell;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Command = Microsoft.Data.Entity.Design.XmlEngine.Model.Commands.Command;
-using ComplexProperty = Microsoft.Data.Entity.Design.Dsl.ViewModel.ComplexProperty;
-using Diagram = Microsoft.Data.Entity.Design.Model.Designer.Diagram;
-using EntityDesignerSelection = Microsoft.VisualStudio.Data.Entity.Design.UI.Views.EntityDesigner.EntityDesignerSelection;
-using Property = Microsoft.Data.Entity.Design.Dsl.ViewModel.Property;
-using ScalarProperty = Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Explorer;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Explorer;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.Util;
-using Microsoft.VisualStudio.Data.Entity.Design.Refactoring;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails;
-using IViewDiagram = Microsoft.Data.Entity.Design.Model.Designer.IViewDiagram;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model.Commands;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard;
+using ComplexProperty = Microsoft.Data.Entity.Design.Diagrams.ViewModel.ComplexProperty;
+using Diagram = Microsoft.Data.Entity.Design.Edmx.Designer.Diagram;
+using EntityDesignerSelection = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.EntityDesigner.EntityDesignerSelection;
+using PropertyBase = Microsoft.Data.Entity.Design.Diagrams.ViewModel.PropertyBase;
+using EntityType = Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType;
+using NavigationProperty = Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty;
+using Property = Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property;
+using ScalarProperty = Microsoft.Data.Entity.Design.Diagrams.ViewModel.ScalarProperty;
+using IViewDiagram = Microsoft.Data.Entity.Design.Edmx.Designer.IViewDiagram;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
-using Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.Explorer;
-using Microsoft.Data.Entity.Design.XmlEngine.UI;
 using Microsoft.Data.Entity.Design.XmlEngine.Util;
+using Microsoft.VisualStudio.Data.Entity.Extensibility;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Explorer;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Util;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Refactoring;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model.Commands;
+using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
+using Microsoft.VisualStudio.Data.Entity.Package;
+using Microsoft.VisualStudio.Data.Entity.Package.Export;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
 
-namespace Microsoft.Data.Entity.Design.Package
+namespace Microsoft.VisualStudio.Data.Entity.Package
 {
     [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
     internal partial class MicrosoftDataEntityDesignCommandSet : IEntityDesignCommandSet
@@ -1307,7 +1314,7 @@ namespace Microsoft.Data.Entity.Design.Package
                     // accumulate the appropriate delete commands
                     ICollection<Command> commands = [];
 
-                    if (element.ModelItem is ModelEntity.FunctionImport functionImport)
+                    if (element.ModelItem is FunctionImport functionImport)
                     {
                         var cmdFuncImpMapping = FunctionImportMapping.GetDeleteCommand(functionImport);
                         var cmdFuncImp = functionImport.GetDeleteCommand();
@@ -1317,15 +1324,15 @@ namespace Microsoft.Data.Entity.Design.Package
                         }
                         commands.Add(cmdFuncImp);
                     }
-                    else if (element.ModelItem is ModelEntity.StorageEntityType set)
+                    else if (element.ModelItem is StorageEntityType set)
                     {
                         commands.Add(set.GetDeleteCommand());
                     }
-                    else if (element.ModelItem is ModelEntity.Function func)
+                    else if (element.ModelItem is Function func)
                     {
                         commands.Add(func.GetDeleteCommand());
                     }
-                    else if (element.ModelItem is ModelEntity.ComplexType complexType)
+                    else if (element.ModelItem is ComplexType complexType)
                     {
                         commands.Add(complexType.GetDeleteCommand());
                     }
@@ -1379,15 +1386,15 @@ namespace Microsoft.Data.Entity.Design.Package
                             }
                         }
                     }
-                    else if (element.ModelItem is Model.Designer.EntityTypeShape entityTypeShape)
+                    else if (element.ModelItem is Microsoft.Data.Entity.Design.Edmx.Designer.EntityTypeShape entityTypeShape)
                     {
                         commands.Add(entityTypeShape.GetDeleteCommand());
                     }
-                    else if (element.ModelItem is ModelEntity.ConceptualEntityType conceptualEntityType)
+                    else if (element.ModelItem is ConceptualEntityType conceptualEntityType)
                     {
                         AppendDeleteCommands([conceptualEntityType], commands);
                     }
-                    else if (element.ModelItem is ModelEntity.EnumType enumType)
+                    else if (element.ModelItem is EnumType enumType)
                     {
                         commands.Add(enumType.GetDeleteCommand());
                     }
@@ -1431,7 +1438,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 foreach (var ets in SelectedEntityTypeShapes)
                 {
                     var viewModelEntityType = ets.TypedModelElement;
-                    if (viewModelEntityType.EntityDesignerViewModel.ModelXRef.GetExisting(viewModelEntityType) is ModelEntity.ConceptualEntityType cet)
+                    if (viewModelEntityType.EntityDesignerViewModel.ModelXRef.GetExisting(viewModelEntityType) is ConceptualEntityType cet)
                     {
                         selectedModelElements.Add(cet);
                     }
@@ -1495,7 +1502,7 @@ namespace Microsoft.Data.Entity.Design.Package
                             // if the property is set then unset it and add a command to remove these for each item in the master list
                             vm.Store.PropertyBag.Remove(EntityDesignerViewModel.DeleteUnmappedStorageEntitySetsProperty);
 
-                            if (vm.Store.PropertyBag[EntityDesignerViewModel.DeleteUnmappedStorageEntitySetsProperty] is List<ICollection<ModelEntity.StorageEntitySet>> unmappedMasterList)
+                            if (vm.Store.PropertyBag[EntityDesignerViewModel.DeleteUnmappedStorageEntitySetsProperty] is List<ICollection<StorageEntitySet>> unmappedMasterList)
                             {
                                 foreach (var unmappedEntitySets in unmappedMasterList)
                                 {
@@ -1533,7 +1540,7 @@ namespace Microsoft.Data.Entity.Design.Package
                     var element = SelectedExplorerItem;
                     if (element != null)
                     {
-                        if (element.ModelItem is ModelEntity.ComplexType complexType)
+                        if (element.ModelItem is ComplexType complexType)
                         {
                             cmd.Visible = cmd.Enabled = true;
                             return;
@@ -1549,12 +1556,12 @@ namespace Microsoft.Data.Entity.Design.Package
                             cmd.Visible = cmd.Enabled = true;
                             return;
                         }
-                        else if (element.ModelItem is ModelEntity.ConceptualEntityType conceptualEntityType)
+                        else if (element.ModelItem is ConceptualEntityType conceptualEntityType)
                         {
                             cmd.Visible = cmd.Enabled = true;
                             return;
                         }
-                        else if (element.ModelItem is Model.Designer.EntityTypeShape entityTypeShape)
+                        else if (element.ModelItem is Microsoft.Data.Entity.Design.Edmx.Designer.EntityTypeShape entityTypeShape)
                         {
                             cmd.Visible = cmd.Enabled = true;
                             return;
@@ -2106,7 +2113,7 @@ namespace Microsoft.Data.Entity.Design.Package
                         && mdi.ViewModel != null
                         && mdi.ViewModel.RootNode != null)
                     {
-                        if (mdi.ViewModel.RootNode.ModelItem is ModelEntity.ConceptualEntityType entityType
+                        if (mdi.ViewModel.RootNode.ModelItem is ConceptualEntityType entityType
                             && entityType.IsAbstract
                             && cmd.CommandID == MicrosoftDataEntityDesignCommands.SprocMappings)
                         {
@@ -2230,7 +2237,7 @@ namespace Microsoft.Data.Entity.Design.Package
                                 cmd.Enabled = cmd.Visible = (SelectedExplorerItem is ExplorerConceptualEntityType
                                                              || SelectedExplorerItem is ExplorerConceptualAssociation
                                                              || (SelectedExplorerItem is ExplorerConceptualProperty
-                                                                 && efElement.Parent is ModelEntity.ConceptualEntityType)
+                                                                 && efElement.Parent is ConceptualEntityType)
                                                              || SelectedExplorerItem is ExplorerNavigationProperty
                                                              || SelectedExplorerItem is ExplorerEntitySet
                                                              || SelectedExplorerItem is ExplorerAssociationSet)
@@ -2304,7 +2311,7 @@ namespace Microsoft.Data.Entity.Design.Package
                             cmd.Enabled = cmd.Visible =
                                           SelectedExplorerItem is ExplorerStorageEntityType
                                           || (SelectedExplorerItem is ExplorerStorageProperty
-                                              && efElement.Parent is ModelEntity.StorageEntityType);
+                                              && efElement.Parent is StorageEntityType);
                             return;
                         }
                     }
@@ -2332,7 +2339,7 @@ namespace Microsoft.Data.Entity.Design.Package
                             cmd.Enabled = cmd.Visible =
                                           SelectedExplorerItem is ExplorerConceptualEntityType
                                           || (SelectedExplorerItem is ExplorerConceptualProperty
-                                              && efElement.Parent is ModelEntity.ConceptualEntityType);
+                                              && efElement.Parent is ConceptualEntityType);
                             return;
                         }
                     }
@@ -2486,7 +2493,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 ExplorerFunction func = explorerSelection as ExplorerFunction;
                 ExplorerFunctionImports funcImports = explorerSelection as ExplorerFunctionImports;
 
-                if ((func != null && !((ModelEntity.Function)(func.ModelItem)).IsComposable.Value)
+                if ((func != null && !((Function)(func.ModelItem)).IsComposable.Value)
                     || funcImports != null)
                 {
                     cmd.Enabled = cmd.Visible = true;
@@ -2531,7 +2538,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 VsUtils.ShowErrorDialog(
                     string.Format(
                         CultureInfo.CurrentCulture,
-                        Model.Resources.UpdateFromDatabaseExceptionMessage,
+                        Microsoft.Data.Entity.Design.Edmx.Resources.UpdateFromDatabaseExceptionMessage,
                         ex.GetType().FullName,
                         ex.Message));
             }
@@ -2557,7 +2564,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 VsUtils.ShowErrorDialog(
                     string.Format(
                         CultureInfo.CurrentCulture,
-                        Model.Resources.GenerateDatabaseScriptExceptionMessage,
+                        Microsoft.Data.Entity.Design.Edmx.Resources.GenerateDatabaseScriptExceptionMessage,
                         ex.GetType().FullName,
                         ex.Message));
             }
@@ -2613,7 +2620,7 @@ namespace Microsoft.Data.Entity.Design.Package
             var element = SelectedExplorerItem;
             if (element != null)
             {
-                if (element.ModelItem is ModelEntity.Function function)
+                if (element.ModelItem is Function function)
                 {
                     viewModelHelper.CreateFunctionImport(function);
                 }
@@ -3005,7 +3012,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 else
                 {
                     // single or multi entity and connectors case
-                    HashSet<Model.Designer.EntityTypeShape> modelEntityTypeShapeCollection = new HashSet<Model.Designer.EntityTypeShape>();
+                    HashSet<Microsoft.Data.Entity.Design.Edmx.Designer.EntityTypeShape> modelEntityTypeShapeCollection = new HashSet<Microsoft.Data.Entity.Design.Edmx.Designer.EntityTypeShape>();
 
                     // The CurrentSelection should only contains EntityTypeShapes since:
                     // - We don't allow the user to select EntityTypeShape and other types (AssociationConnector or InheritanceConnector) at the same time.
@@ -3016,7 +3023,7 @@ namespace Microsoft.Data.Entity.Design.Package
                         {
                             EntityType et = entityShape.ModelElement as EntityType;
 
-                            if (et.EntityDesignerViewModel.ModelXRef.GetExisting(entityShape) is Model.Designer.EntityTypeShape modelEntityShape
+                            if (et.EntityDesignerViewModel.ModelXRef.GetExisting(entityShape) is Microsoft.Data.Entity.Design.Edmx.Designer.EntityTypeShape modelEntityShape
                                 && modelEntityTypeShapeCollection.Contains(modelEntityShape) == false)
                             {
                                 modelEntityTypeShapeCollection.Add(modelEntityShape);
@@ -3041,7 +3048,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 {
                     if (SelectedExplorerItem is ExplorerComplexType explorerComplexType)
                     {
-                        ModelEntity.ComplexType complexType = explorerComplexType.ModelItem as ModelEntity.ComplexType;
+                        ComplexType complexType = explorerComplexType.ModelItem as ComplexType;
                         Debug.Assert(complexType != null, "ModelItem is not a ComplexType");
                         if (complexType != null)
                         {
@@ -3064,7 +3071,7 @@ namespace Microsoft.Data.Entity.Design.Package
 
                     if (SelectedExplorerItem is ExplorerEnumType explorerEnumType)
                     {
-                        ModelEntity.EnumType enumType = explorerEnumType.ModelItem as ModelEntity.EnumType;
+                        EnumType enumType = explorerEnumType.ModelItem as EnumType;
                         Debug.Assert(enumType != null, "ModelItem is not a EnumType");
                         if (enumType != null)
                         {
@@ -3169,7 +3176,7 @@ namespace Microsoft.Data.Entity.Design.Package
                                         Resources.Tx_Paste);
 
                                     // When a property is selected, that means the user wants to paste the property next to the selected property.
-                                    ModelEntity.InsertPropertyPosition position = null;
+                                    InsertPropertyPosition position = null;
                                     // Check if there is only 1 property is selected, we will add the properties at the last position if there are multiple selected properties.
                                     if (IsSingleSelection()
                                         && SingleSelection is PropertyBase vmProperty)
@@ -3285,7 +3292,7 @@ namespace Microsoft.Data.Entity.Design.Package
                         + SelectedExplorerItem.Name);
                     if (explorerComplexType != null)
                     {
-                        ModelEntity.ComplexType complexType = explorerComplexType.ModelItem as ModelEntity.ComplexType;
+                        ComplexType complexType = explorerComplexType.ModelItem as ComplexType;
                         Debug.Assert(
                             complexType != null,
                             "When attempting to copy a clipboard containing a set of Property object(s), ModelItem has unexpected type "
@@ -3554,7 +3561,7 @@ namespace Microsoft.Data.Entity.Design.Package
                     if (SelectedComplexProperty != null)
                     {
                         cmd.Visible = true;
-                        if (diagram.ModelElement.ModelXRef.GetExisting(SelectedComplexProperty) is ModelEntity.ComplexConceptualProperty complexProperty
+                        if (diagram.ModelElement.ModelXRef.GetExisting(SelectedComplexProperty) is ComplexConceptualProperty complexProperty
                             && complexProperty.ComplexType.Status == BindingStatus.Known)
                         {
                             cmd.Enabled = true;
@@ -3565,7 +3572,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 {
                     if (SelectedExplorerItem != null)
                     {
-                        if (SelectedExplorerItem.ModelItem is ModelEntity.ComplexConceptualProperty complexProperty)
+                        if (SelectedExplorerItem.ModelItem is ComplexConceptualProperty complexProperty)
                         {
                             cmd.Visible = true;
                             if (complexProperty.ComplexType.Status == BindingStatus.Known)
@@ -3580,19 +3587,19 @@ namespace Microsoft.Data.Entity.Design.Package
 
         internal void OnMenuGoToDefinition(object sender, EventArgs e)
         {
-            ModelEntity.ComplexConceptualProperty complexProperty = null;
+            ComplexConceptualProperty complexProperty = null;
             var diagram = GetDiagram();
             if (diagram != null
                 && SelectedComplexProperty != null)
             {
                 complexProperty =
-                    diagram.ModelElement.ModelXRef.GetExisting(SelectedComplexProperty) as ModelEntity.ComplexConceptualProperty;
+                    diagram.ModelElement.ModelXRef.GetExisting(SelectedComplexProperty) as ComplexConceptualProperty;
             }
             else
             {
                 if (SelectedExplorerItem != null)
                 {
-                    complexProperty = SelectedExplorerItem.ModelItem as ModelEntity.ComplexConceptualProperty;
+                    complexProperty = SelectedExplorerItem.ModelItem as ComplexConceptualProperty;
                 }
             }
 
@@ -3689,7 +3696,7 @@ namespace Microsoft.Data.Entity.Design.Package
             {
                 cmd.Enabled = cmd.Visible = false;
                 if (SelectedExplorerItem is ExplorerComplexType explorerCT
-                    && explorerCT.ModelItem is ModelEntity.ComplexType)
+                    && explorerCT.ModelItem is ComplexType)
                 {
                     cmd.Enabled = cmd.Visible = true;
                 }
@@ -3702,11 +3709,11 @@ namespace Microsoft.Data.Entity.Design.Package
             Debug.Assert(explorerCT != null, "Unexpected object selected");
             if (explorerCT != null)
             {
-                ModelEntity.ComplexType complexType = explorerCT.ModelItem as ModelEntity.ComplexType;
+                ComplexType complexType = explorerCT.ModelItem as ComplexType;
                 Debug.Assert(complexType != null, "ModelItem is not ComplexType");
                 if (complexType != null)
                 {
-                    ModelEntity.ConceptualEntityModel cModel = complexType.RuntimeModelRoot() as ModelEntity.ConceptualEntityModel;
+                    ConceptualEntityModel cModel = complexType.RuntimeModelRoot() as ConceptualEntityModel;
                     Debug.Assert(cModel != null, "Conceptual model is null");
                     if (cModel != null)
                     {
@@ -4165,8 +4172,8 @@ namespace Microsoft.Data.Entity.Design.Package
                             if (ets.TypedModelElement != null)
                             {
                                 var viewModelEntityType = ets.TypedModelElement;
-                                Model.Designer.EntityTypeShape modelEntityTypeShape =
-                                    viewModelEntityType.EntityDesignerViewModel.ModelXRef.GetExisting(ets) as Model.Designer.EntityTypeShape;
+                                Microsoft.Data.Entity.Design.Edmx.Designer.EntityTypeShape modelEntityTypeShape =
+                                    viewModelEntityType.EntityDesignerViewModel.ModelXRef.GetExisting(ets) as Microsoft.Data.Entity.Design.Edmx.Designer.EntityTypeShape;
                                 Debug.Assert(
                                     modelEntityTypeShape != null,
                                     "Why DslModel-EscherModel XRef does not contain Escher model diagram item for DSL entity-type-shape: "
@@ -4264,13 +4271,13 @@ namespace Microsoft.Data.Entity.Design.Package
                         try
                         {
                             diagram.Arranger.Start(PointD.Empty);
-                            DelegateCommand delegateCommand = new DelegateCommand(
+                            CallbackCommand delegateCommand = new CallbackCommand(
                                 () =>
                                     {
                                         foreach (var et in relatedEntityTypesNotInDiagram)
                                         {
                                             CreateEntityTypeShapeCommand.CreateEntityTypeShapeAndConnectorsInDiagram(
-                                                cpc, modelDiagram, et as ModelEntity.ConceptualEntityType, entityTypeShape.FillColor, false);
+                                                cpc, modelDiagram, et as ConceptualEntityType, entityTypeShape.FillColor, false);
                                         }
                                     });
                             CommandProcessor.InvokeSingleCommand(cpc, delegateCommand);
@@ -4734,7 +4741,7 @@ namespace Microsoft.Data.Entity.Design.Package
 
                         if (rootViewModel != null)
                         {
-                            ModelEntity.ConceptualProperty modelProperty = rootViewModel.ModelXRef.GetExisting(selectedProperty) as ModelEntity.ConceptualProperty;
+                            ConceptualProperty modelProperty = rootViewModel.ModelXRef.GetExisting(selectedProperty) as ConceptualProperty;
 
                             Debug.Assert(modelProperty != null, "Unable to find model ConceptualProperty.");
 

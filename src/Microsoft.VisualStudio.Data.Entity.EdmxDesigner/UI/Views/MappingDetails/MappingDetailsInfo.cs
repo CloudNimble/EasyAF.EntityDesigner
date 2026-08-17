@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetails;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package;
 using System;
 using System.Diagnostics;
-using EdmPackage = Microsoft.Data.Entity.Design.VisualStudio.Package;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails
 {
     internal enum EntityMappingModes
     {
@@ -24,14 +24,14 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails
 
     internal class MappingDetailsInfo : ContextItem
     {
-        private EdmPackage.SelectionContainer<MappingDetailsSelection> _selectionContainer;
+        private SelectionContainer<MappingDetailsSelection> _selectionContainer;
         private MappingViewModel _viewModel;
         private EditingContext _context;
         private MappingDetailsWindow _mappingWindow;
         private EntityMappingModes _mode = EntityMappingModes.Tables;
         private EntityMappingSelectionSource _selectionSource = EntityMappingSelectionSource.None;
 
-        internal EdmPackage.SelectionContainer<MappingDetailsSelection> SelectionContainer
+        internal SelectionContainer<MappingDetailsSelection> SelectionContainer
         {
             get { return _selectionContainer; }
         }
@@ -61,7 +61,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails
         internal void SetMappingDetailsInfo(
             MappingDetailsWindow mappingWindow,
             EditingContext context,
-            EdmPackage.SelectionContainer<MappingDetailsSelection> selectionContainer)
+            SelectionContainer<MappingDetailsSelection> selectionContainer)
         {
             _mappingWindow = mappingWindow;
             _context = context;

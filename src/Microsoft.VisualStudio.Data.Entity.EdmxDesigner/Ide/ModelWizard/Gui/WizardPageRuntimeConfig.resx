@@ -346,6 +346,6 @@
     <value>WizardPageRuntimeConfig</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>Microsoft.VisualStudio.Data.Entity.Design.VisualStudio.ModelWizard.Gui.WizardPageBase, Microsoft.Data.Entity.Design, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Microsoft.VisualStudio.Data.Entity.EdmxDesigner.VisualStudio.ModelWizard.Gui.WizardPageBase, Microsoft.Data.Entity.Design, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

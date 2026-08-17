@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.Model.Designer;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
-using Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.Explorer;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer;
 using System;
 using System.Diagnostics;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Explorer
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer
 {
     internal class ExplorerEntityTypeShape : EntityDesignExplorerEFElement
     {

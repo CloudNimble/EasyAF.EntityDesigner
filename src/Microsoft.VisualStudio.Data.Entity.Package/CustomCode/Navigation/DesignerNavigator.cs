@@ -1,16 +1,17 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.Dsl.View;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.Data.Entity.Design.Diagrams.View;
 using Microsoft.VisualStudio.Modeling.Shell;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.Data.Entity.Design.Diagrams.View;
 
-namespace Microsoft.Data.Entity.Design.Package
+namespace Microsoft.VisualStudio.Data.Entity.Package.Navigation
 {
     /// <summary>
     ///     Finds the Visual Studio document view whose diagram can show a given <see cref="EFObject" />, and brings

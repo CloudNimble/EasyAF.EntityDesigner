@@ -1,10 +1,12 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using Microsoft.Data.Entity.Design.DatabaseGeneration;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.WizardFramework;
 using System;
@@ -19,7 +21,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
 {
     internal partial class WizardPageDbGenSummary : WizardPageBase
     {

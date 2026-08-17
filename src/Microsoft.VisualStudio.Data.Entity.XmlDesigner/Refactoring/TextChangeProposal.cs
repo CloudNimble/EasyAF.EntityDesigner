@@ -2,7 +2,7 @@
 
 using System;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.Refactoring
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Refactoring
 {
     /// <summary>
     ///     The ChangeProposal class represents the changes returned from the contributors.

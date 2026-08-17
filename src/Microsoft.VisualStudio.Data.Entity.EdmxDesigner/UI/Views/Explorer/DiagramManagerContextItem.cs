@@ -3,7 +3,7 @@
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using System;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Explorer
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Explorer
 {
     // <summary>
     //     Context Item that contains IDiagramManager instance.

@@ -2,7 +2,7 @@
 
 using System.Data;
 
-namespace Microsoft.Data.Entity.Design.Model.Database
+namespace Microsoft.Data.Entity.Design.Edmx.Database
 {
     internal interface IDataSchemaParameter : IRawDataSchemaParameter
     {

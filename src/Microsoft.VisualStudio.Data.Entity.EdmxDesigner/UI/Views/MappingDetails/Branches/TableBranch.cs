@@ -1,13 +1,14 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.Base.Shell;
-using Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails.Tables;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetails.Tables;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails.Branches
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails.Branches
 {
     // <summary>
     //     This branch shows a line for every table mapped for this entity type.  It also displays a

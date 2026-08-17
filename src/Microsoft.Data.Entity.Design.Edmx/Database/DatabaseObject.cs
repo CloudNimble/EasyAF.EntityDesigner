@@ -3,10 +3,10 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb;
 
-namespace Microsoft.Data.Entity.Design.Model.Database
+namespace Microsoft.Data.Entity.Design.Edmx.Database
 {
     /// <summary>
     ///     Represents the full name of an object (e.g. a table) on a database

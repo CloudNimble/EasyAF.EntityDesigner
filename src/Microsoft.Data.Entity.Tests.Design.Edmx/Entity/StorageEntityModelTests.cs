@@ -4,16 +4,16 @@ using System;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.VersioningFacade;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using System.Data.Entity.Core.Common;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.EntityFramework;
 
-namespace Microsoft.Data.Entity.Tests.Design.Model.Entity
+namespace Microsoft.Data.Entity.Tests.Design.Edmx.Entity
 {
     [TestClass]
     public class StorageEntityModelTests

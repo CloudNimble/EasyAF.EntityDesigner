@@ -3,11 +3,11 @@
 using System.IO;
 using System.Linq;
 using FluentAssertions;
-using Microsoft.Data.Entity.Design.Dsl.View;
-using Microsoft.Data.Entity.Design.Renderer.Headless;
+using Microsoft.Data.Entity.Design.Diagrams.Rendering.Headless;
+using Microsoft.Data.Entity.Design.Diagrams.View;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Microsoft.Data.Entity.Tests.Design.Renderer.Export
+namespace Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering.Export
 {
     /// <summary>
     ///     Covers loading an EDMX into a laid out, routed diagram with no Visual Studio present.

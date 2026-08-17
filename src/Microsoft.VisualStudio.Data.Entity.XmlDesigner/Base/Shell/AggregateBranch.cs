@@ -4,9 +4,9 @@ using System;
 using System.Collections;
 using System.ComponentModel.Design;
 using System.Windows.Forms;
-using Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider;
 
-namespace Microsoft.Data.Entity.Design.Base.Shell
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
 {
     /// <summary>
     ///     Class that aggregates a set of branches and displays them as a single

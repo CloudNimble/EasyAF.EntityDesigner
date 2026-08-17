@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
 
-namespace Microsoft.Data.Entity.Design.Core.Controls
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Core.Controls
 {
     /// <summary>
     ///     This API supports the Entity Framework infrastructure and is not intended to be used directly from your code.

@@ -10,11 +10,11 @@ using System.Linq;
 using System.Xml.Linq;
 using Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators;
 using Microsoft.Data.Entity.Design.DatabaseGeneration.Properties;
-using Microsoft.Data.Entity.Design.VersioningFacade;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using Microsoft.Data.Entity.Design.DatabaseGeneration;
+using Microsoft.Data.Entity.Design.EntityFramework;
 
 namespace Microsoft.Data.Entity.Tests.Design.DatabaseGeneration
 {

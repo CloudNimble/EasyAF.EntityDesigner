@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 
-namespace Microsoft.Data.Entity.Design.XmlEngine.UI.Controls
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Converters
 {
     /// <summary>
     ///     type converter for a fixed list of values (such as an Enum type)

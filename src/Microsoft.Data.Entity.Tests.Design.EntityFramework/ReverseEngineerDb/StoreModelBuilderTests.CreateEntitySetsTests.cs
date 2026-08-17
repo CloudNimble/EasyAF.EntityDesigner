@@ -3,9 +3,9 @@
 using System.Collections.Generic;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
-using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb;
 
 namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
 {

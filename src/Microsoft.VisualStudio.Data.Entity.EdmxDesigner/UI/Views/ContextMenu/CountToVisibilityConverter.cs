@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.ContextMenu
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu
 {
     /// <summary>
     /// Converts a count greater than 0 to Visible, otherwise Collapsed.

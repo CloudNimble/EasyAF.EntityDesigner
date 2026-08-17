@@ -6,7 +6,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Microsoft.Data.Entity.Design.UI.Converters
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Converters
 {
     /// <summary>
     ///     This API supports the Entity Framework infrastructure and is not intended to be used directly from your code.

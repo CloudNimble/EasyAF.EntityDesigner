@@ -6,13 +6,14 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.Model.Commands;
-using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.Data.Tools.Model.Diagram;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
 
-namespace Microsoft.Data.Entity.Design.Model.Designer
+namespace Microsoft.Data.Entity.Design.Edmx.Designer
 {
     internal class EntityTypeShape : BaseDiagramObject
     {

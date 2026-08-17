@@ -9,7 +9,7 @@ using FluentAssertions;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
 
-namespace Microsoft.Data.Entity.Design.Model.Validation
+namespace Microsoft.Data.Entity.Tests.Design.XmlEngine.Model.Validation
 {
     [TestClass]
     public class XNodeReaderLineNumberServiceTests

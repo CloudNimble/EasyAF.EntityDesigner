@@ -3,14 +3,14 @@
 using System;
 using System.Xml;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Commands;
-using Microsoft.Data.Entity.Design.VersioningFacade;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Microsoft.Data.Entity.Design.Edmx.MetadataConverter;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
+using Microsoft.Data.Entity.Design.EntityFramework;
 
-namespace Microsoft.Data.Entity.Tests.Design.Model.Commands
+namespace Microsoft.Data.Entity.Tests.Design.Edmx.Commands
 {
     [TestClass]
     public class RetargetXmlNamespaceCommandTests

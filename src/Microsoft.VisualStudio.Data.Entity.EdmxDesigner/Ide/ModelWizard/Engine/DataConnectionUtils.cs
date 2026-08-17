@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using EnvDTE;
-using Microsoft.Data.Entity.Design.VersioningFacade;
+using Microsoft.Data.Entity.Design.EntityFramework;
 using Microsoft.VisualStudio.Data.Core;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 using Microsoft.VisualStudio.Data.Services;
 using Microsoft.VisualStudio.Data.Services.SupportEntities;
 using System;
@@ -12,7 +12,7 @@ using System.Data.Common;
 using System.Diagnostics;
 using System.IO;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
 {
     internal static class DataConnectionUtils
     {

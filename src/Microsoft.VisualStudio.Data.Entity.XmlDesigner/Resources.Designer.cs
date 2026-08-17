@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.VisualStudio.Data.Tools.Design.XmlCore {
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner {
     using System;
     
     

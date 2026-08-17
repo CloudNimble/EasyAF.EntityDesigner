@@ -3,12 +3,12 @@
 using System;
 using System.Xml.Linq;
 using FluentAssertions;
-using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.VisualStudio.TextManager.Interop;
 using Microsoft.VisualStudio.XmlEditor;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
 
-namespace Microsoft.VisualStudio.Data.Tools.Tests.Design.XmlCore.Model.VisualStudio
+namespace Microsoft.VisualStudio.Data.Entity.Tests.XmlDesigner.Model.VisualStudio
 {
     [TestClass]
     public class VSXmlModelTests

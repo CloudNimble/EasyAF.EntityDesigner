@@ -2,13 +2,7 @@
 
 using EnvDTE;
 using Microsoft.Data.Entity.Design.DatabaseGeneration;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Commands;
-using Microsoft.Data.Entity.Design.Model.Designer;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.TextTemplating;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using System;
@@ -25,8 +19,15 @@ using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.TextTemplating;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
 {
     internal class DatabaseGenerationEngine : DatabaseEngineBase
     {
@@ -210,7 +211,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine
                         "We should have caught this exception '" + e.Message + "' immediately after the user clicked the 'Finish' button");
                     VsUtils.ShowErrorDialog(
                         String.Format(
-                            CultureInfo.CurrentCulture, Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Properties.Resources.ErrorCouldNotParseDdlFileName, settings.DdlFileName,
+                            CultureInfo.CurrentCulture, Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.Resources.ErrorCouldNotParseDdlFileName, settings.DdlFileName,
                             e.Message));
                     return false;
                 }

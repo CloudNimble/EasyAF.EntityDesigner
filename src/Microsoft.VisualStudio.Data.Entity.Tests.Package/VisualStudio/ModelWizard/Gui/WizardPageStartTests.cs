@@ -2,8 +2,7 @@
 
 using System;
 using EnvDTE;
-using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui;
 using Moq;
 using Moq.Protected;
 using System.Collections.Generic;
@@ -14,12 +13,14 @@ using VSLangProj;
 using VsWebSite;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
+using Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Gui;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 
-namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Gui
+namespace Microsoft.VisualStudio.Data.Entity.Tests.Package.VisualStudio.ModelWizard.Gui
 {
     [TestClass]
     public class WizardPageStartTests
@@ -29,7 +30,7 @@ namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Gui
             // The code below is required to avoid test failures due to:
             // Due to limitations in CLR, DynamicProxy was unable to successfully replicate non-inheritable attribute
             // System.Security.Permissions.UIPermissionAttribute on
-            // Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui.WizardPageStart.ProcessDialogChar.
+            // Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui.WizardPageStart.ProcessDialogChar.
             // To avoid this error you can chose not to replicate this attribute type by calling
             // 'Castle.DynamicProxy.Generators.AttributesToAvoidReplicating.Add(typeof(System.Security.Permissions.UIPermissionAttribute))'.
             //

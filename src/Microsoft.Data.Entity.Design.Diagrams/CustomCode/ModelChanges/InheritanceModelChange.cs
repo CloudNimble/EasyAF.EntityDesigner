@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
-using Microsoft.Data.Entity.Design.Dsl.Rules;
-using Microsoft.Data.Entity.Design.Dsl.View.Events;
-using Microsoft.Data.Entity.Design.Dsl.View;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
-using Microsoft.Data.Entity.Design.Model.Commands;
-using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
+using Microsoft.Data.Entity.Design.Diagrams.View.Events;
+using Microsoft.Data.Entity.Design.Diagrams.Rules;
 
-namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
+namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
 {
     internal abstract class InheritanceModelChange : ViewModelChange
     {

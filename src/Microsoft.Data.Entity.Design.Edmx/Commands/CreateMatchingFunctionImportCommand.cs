@@ -6,14 +6,14 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using Microsoft.Data.Entity.Design.Model.Database;
-using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Database;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
-using ComplexType = Microsoft.Data.Entity.Design.Model.Entity.ComplexType;
-using XamlDesignerBaseResources = Microsoft.Data.Tools.XmlDesignerBase.Resources;
+using ComplexType = Microsoft.Data.Entity.Design.Edmx.Entity.ComplexType;
+using XamlDesignerBaseResources = Microsoft.Data.Entity.Design.XmlEngine.Resources;
 
-namespace Microsoft.Data.Entity.Design.Model.Commands
+namespace Microsoft.Data.Entity.Design.Edmx.Commands
 {
     /// <summary>
     ///     Use this command to create a FunctionImport in the C-Side representing a non-composable Function in

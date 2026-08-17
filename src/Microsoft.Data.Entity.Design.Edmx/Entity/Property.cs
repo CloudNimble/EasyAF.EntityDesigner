@@ -4,11 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
 
-namespace Microsoft.Data.Entity.Design.Model.Entity
+namespace Microsoft.Data.Entity.Design.Edmx.Entity
 {
     [DebuggerDisplay("{Parent.ToString(),nq}.{LocalName.Value,nq}")]
     internal abstract class Property : PropertyBase

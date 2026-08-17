@@ -4,9 +4,10 @@ using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 using Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider;
 using Microsoft.VisualStudio.Modeling;
 
-namespace Microsoft.Data.Entity.Design.Base.Shell
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
 {
     /// <summary>
     ///     Represents a tri-state checkbox

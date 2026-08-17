@@ -6,7 +6,7 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Diagnostics;
 using System.Xml.Linq;
 
-namespace Microsoft.Data.Entity.Design.Model.Entity
+namespace Microsoft.Data.Entity.Design.Edmx.Entity
 {
     /// <summary>
     ///     This XML element is used in both the C and S Sides.  In a conceptual model, this will

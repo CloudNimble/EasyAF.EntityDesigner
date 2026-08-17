@@ -1,13 +1,13 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.Diagrams.ModelChanges;
+using Microsoft.Data.Entity.Design.Diagrams.Rules;
+using Microsoft.Data.Entity.Design.Diagrams.Utils;
+using Microsoft.VisualStudio.Modeling.Diagrams;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.Data.Entity.Design.Dsl.ModelChanges;
-using Microsoft.Data.Entity.Design.Dsl.Utils;
-using Microsoft.Data.Entity.Design.Dsl.Rules;
-using Microsoft.VisualStudio.Modeling.Diagrams;
 
-namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
+namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
 {
     [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
     internal partial class Property

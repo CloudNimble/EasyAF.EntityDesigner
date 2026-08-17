@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
-using Microsoft.Data.Tools.XmlDesignerBase;
 
 namespace Microsoft.Data.Entity.Design.XmlEngine.Model
 {
@@ -11,7 +10,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
     [Serializable]
     internal class BoolOrNone : StringOrPrimitive<bool>
     {
-        internal static readonly BoolOrNone NoneValue = new BoolOrNone(Resources.NoneDisplayValueUsedForUX);
+        internal static readonly BoolOrNone NoneValue = new BoolOrNone(global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX);
         internal static readonly BoolOrNone TrueValue = new BoolOrNone(true);
         internal static readonly BoolOrNone FalseValue = new BoolOrNone(false);
 

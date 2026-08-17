@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Integrity;
-using Microsoft.Data.Tools.XmlDesignerBase;
 
 namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Commands
 {

@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using System.Windows.Forms;
-using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
 {
     internal partial class CustomZoomDialog : Form
     {

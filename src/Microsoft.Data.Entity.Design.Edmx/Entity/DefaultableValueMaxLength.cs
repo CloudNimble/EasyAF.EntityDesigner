@@ -2,10 +2,10 @@
 
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using System;
-using XamlDesignerBaseResources = Microsoft.Data.Tools.XmlDesignerBase.Resources;
+using XamlDesignerBaseResources = Microsoft.Data.Entity.Design.XmlEngine.Resources;
 
 
-namespace Microsoft.Data.Entity.Design.Model.Entity
+namespace Microsoft.Data.Entity.Design.Edmx.Entity
 {
     /// <summary>
     ///     This is the Defaultable Value class for the Property's MaxLength Facet.

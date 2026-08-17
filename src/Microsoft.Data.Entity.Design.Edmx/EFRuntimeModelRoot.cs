@@ -3,7 +3,7 @@
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using System.Xml.Linq;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.Edmx
 {
     internal abstract class EFRuntimeModelRoot : EFNormalizableItem
     {

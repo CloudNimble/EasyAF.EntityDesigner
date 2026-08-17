@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
 using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.PropertyWindow.Converters
 {
     // <summary>
     //     The extensibility of certain features such as Model First may be driven by files in the user's file system.

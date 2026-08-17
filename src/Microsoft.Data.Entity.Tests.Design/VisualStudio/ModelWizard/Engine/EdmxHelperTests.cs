@@ -4,8 +4,8 @@ using System;
 using System.Linq;
 using System.Xml.Linq;
 using FluentAssertions;
-using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Engine

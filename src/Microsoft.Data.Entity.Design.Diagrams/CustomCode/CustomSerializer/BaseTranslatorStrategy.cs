@@ -4,7 +4,7 @@ using DslModeling = Microsoft.VisualStudio.Modeling;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 
-namespace Microsoft.Data.Tools.Dsl.ModelTranslator
+namespace Microsoft.Data.Entity.Design.Diagrams.CustomSerializer
 {
     /// <summary>
     ///     Base class that is used to translate Data-Tools model to DSL model element.

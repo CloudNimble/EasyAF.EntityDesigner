@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.Model.Database;
+using Microsoft.Data.Entity.Design.Edmx.Database;
 using Microsoft.VisualStudio.Data.Services.SupportEntities;
 using System;
 using System.Data;
 using System.Diagnostics;
 using IVsDataParameter = Microsoft.VisualStudio.Data.Services.RelationalObjectModel.IVsDataParameter;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.Data.Sql
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Data.Sql
 {
     internal class DataSchemaParameter : DataSchemaObject, IDataSchemaParameter
     {

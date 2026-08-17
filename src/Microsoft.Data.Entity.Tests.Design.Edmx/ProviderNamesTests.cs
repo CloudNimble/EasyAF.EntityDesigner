@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Microsoft.Data.Entity.Design.Edmx;
 
-namespace Microsoft.Data.Entity.Tests.Design.Model
+namespace Microsoft.Data.Entity.Tests.Design.Edmx
 {
     [TestClass]
     public class ProviderNamesTests

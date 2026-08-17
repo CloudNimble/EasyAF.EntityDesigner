@@ -4,7 +4,7 @@ using System;
 using System.Diagnostics;
 using System.Globalization;
 
-namespace Microsoft.Data.Entity.Design.Model.Entity
+namespace Microsoft.Data.Entity.Design.Edmx.Entity
 {
     // Represents Association info stored in Clipboard
     [Serializable]

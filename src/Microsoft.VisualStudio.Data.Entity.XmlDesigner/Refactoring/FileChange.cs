@@ -3,7 +3,7 @@
 using System.Collections.Generic;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.Refactoring
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Refactoring
 {
     /// <summary>
     ///     Class represents changes for one file.

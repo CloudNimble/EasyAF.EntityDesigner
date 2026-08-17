@@ -2,9 +2,9 @@
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Infrastructure;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine;
 
-namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.Tests.Package.VisualStudio.ModelWizard.Engine
 {
     [TestClass]
     public class CodeFirstModelBuilderEngineTests

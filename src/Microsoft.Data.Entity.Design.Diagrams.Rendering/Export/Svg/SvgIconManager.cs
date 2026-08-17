@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Microsoft.Data.Entity.Design.Dsl.View.Export
+namespace Microsoft.Data.Entity.Design.Diagrams.Rendering.Export.Svg
 {
 
     /// <summary>
@@ -290,7 +290,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View.Export
         /// </remarks>
         private string ExtractIconName(string resourceName)
         {
-            // Resource name format: Namespace.CustomCode.Export.Svg.Icons.IconName.svg
+            // Resource name format: Namespace.Export.Svg.Icons.IconName.svg
             var fileName = resourceName.Substring(resourceName.LastIndexOf('.', resourceName.Length - 5) + 1);
             return fileName.Replace(".svg", string.Empty);
         }

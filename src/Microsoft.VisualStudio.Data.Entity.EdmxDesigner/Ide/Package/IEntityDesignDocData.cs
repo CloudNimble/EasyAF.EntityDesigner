@@ -3,7 +3,7 @@
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.Package
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
 {
     internal interface IEntityDesignDocData
     {

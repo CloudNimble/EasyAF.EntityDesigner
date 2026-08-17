@@ -1,10 +1,12 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider;
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
 {
     #region ContextMenuEvent delegate and argument definitions
 

@@ -13,23 +13,23 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.Model.Commands;
-using Microsoft.Data.Entity.Design.Model.Database;
-using Microsoft.Data.Entity.Design.Model.Designer;
-using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Model.Mapping;
-using Microsoft.Data.Entity.Design.Model.Validation;
-using Microsoft.Data.Entity.Design.VersioningFacade;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
+using Microsoft.Data.Entity.Design.Edmx.Database;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
+using Microsoft.Data.Entity.Design.Edmx.Validation;
+using Microsoft.Data.Entity.Design.EntityFramework;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
-using AssociationSet = Microsoft.Data.Entity.Design.Model.Entity.AssociationSet;
-using ComplexType = Microsoft.Data.Entity.Design.Model.Entity.ComplexType;
-using EntitySet = Microsoft.Data.Entity.Design.Model.Entity.EntitySet;
-using EntityType = Microsoft.Data.Entity.Design.Model.Entity.EntityType;
-using EnumType = Microsoft.Data.Entity.Design.Model.Entity.EnumType;
-using NavigationProperty = Microsoft.Data.Entity.Design.Model.Entity.NavigationProperty;
+using AssociationSet = Microsoft.Data.Entity.Design.Edmx.Entity.AssociationSet;
+using ComplexType = Microsoft.Data.Entity.Design.Edmx.Entity.ComplexType;
+using EntitySet = Microsoft.Data.Entity.Design.Edmx.Entity.EntitySet;
+using EntityType = Microsoft.Data.Entity.Design.Edmx.Entity.EntityType;
+using EnumType = Microsoft.Data.Entity.Design.Edmx.Entity.EnumType;
+using NavigationProperty = Microsoft.Data.Entity.Design.Edmx.Entity.NavigationProperty;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.Edmx
 {
     internal static class ModelHelper
     {
@@ -1808,9 +1808,9 @@ namespace Microsoft.Data.Entity.Design.Model
         internal static object FindComplexTypeEntityTypeOrPrimitiveTypeForFunctionImportReturnType(
             ConceptualEntityModel cModel, string returnTypeAsString)
         {
-            if (returnTypeAsString == Tools.XmlDesignerBase.Resources.NoneDisplayValueUsedForUX)
+            if (returnTypeAsString == global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX)
             {
-                return Tools.XmlDesignerBase.Resources.NoneDisplayValueUsedForUX;
+                return global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX;
             }
 
             // this will remove the 'Collection' around the return type. It will now either be 'None',
@@ -1851,7 +1851,7 @@ namespace Microsoft.Data.Entity.Design.Model
         {
             if (returnTypeAsString == null)
             {
-                return Tools.XmlDesignerBase.Resources.NoneDisplayValueUsedForUX;
+                return global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX;
             }
             Match collectionReturnTypeMatch = null;
 

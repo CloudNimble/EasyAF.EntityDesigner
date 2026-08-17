@@ -6,10 +6,10 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using FluentAssertions;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Discoverers.NavigationProperties;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Discoverers.NavigationProperties;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
+namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration.Discoverers.NavigationProperty
 {
     [TestClass]
     public class MultiplicityDiscovererTests

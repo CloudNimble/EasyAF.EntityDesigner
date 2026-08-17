@@ -4,7 +4,7 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Infrastructure;
 using System.Xml;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade.Serialization
+namespace Microsoft.Data.Entity.Design.EntityFramework.Serialization
 {
     /// <summary>
     /// Allows using MslSerializer from EntityFramework.dll from assemblies that have not been granted

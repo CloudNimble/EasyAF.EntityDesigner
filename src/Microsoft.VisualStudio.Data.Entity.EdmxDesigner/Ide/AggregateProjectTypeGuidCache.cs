@@ -3,7 +3,7 @@
 using EnvDTE;
 using System.Collections.Generic;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
 {
     internal class AggregateProjectTypeGuidCache
     {

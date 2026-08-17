@@ -5,7 +5,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Extensions;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Extensions;
 
 namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration.Extensions
 {

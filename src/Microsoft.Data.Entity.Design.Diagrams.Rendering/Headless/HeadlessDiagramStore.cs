@@ -1,13 +1,12 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
-using Microsoft.Data.Entity.Design.Dsl;
-using Microsoft.Data.Entity.Design.Dsl.Rules;
-using Microsoft.Data.Entity.Design.Dsl.View;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
+using Microsoft.Data.Entity.Design.Diagrams.Rules;
+using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
 using Microsoft.VisualStudio.Modeling;
 
-namespace Microsoft.Data.Entity.Design.Renderer.Headless
+namespace Microsoft.Data.Entity.Design.Diagrams.Rendering.Headless
 {
     /// <summary>
     ///     Hosts a DSL <see cref="Store" /> configured to build and route Entity Designer diagrams with no Visual

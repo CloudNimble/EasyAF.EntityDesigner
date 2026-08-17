@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Microsoft.VisualStudio.Imaging.Interop;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.ContextMenu
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu
 {
     /// <summary>
     /// Defines a command that can be displayed in the context menu.

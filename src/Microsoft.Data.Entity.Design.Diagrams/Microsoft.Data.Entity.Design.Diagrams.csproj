@@ -69,13 +69,18 @@
   </ItemGroup>
 
   <!-- T4 templates and the checked-in output each one owns. Every GeneratedCode\X.tt produces X.cs apart
-       from the two overridden below. LastGenOutput is what Visual Studio overwrites when the custom tool
-       runs, so a wrong value here does not just mislabel the tree - it writes a file that should not exist.
-       GeneratedCode\Templates\*.tt is deliberately out of reach: * does not cross directory separators, so
-       the forked template bodies never get a Generator and are never transformed on their own. -->
+       from the two overridden below; LastGenOutput records that pairing and nests the output in Solution
+       Explorer.
+
+       Deliberately no <Generator>. Fourteen of these shims include %DslTemplatesSrc%\Dsl\*.tt, an environment
+       variable the text templating host expands - not an MSBuild property. With a Generator set, Visual Studio
+       fires the custom tool whenever a .tt is touched, and on any machine without that variable every one of
+       them fails with "Failed to resolve include text". The generated .cs is checked in, so regeneration is a
+       deliberate act: set DslTemplatesSrc, then run msbuild /t:TransformAll, which the
+       CheckDslTemplatesSrcEnvironment target below guards. A plain build, and simply opening the solution,
+       should require neither. -->
   <ItemGroup>
     <None Update="GeneratedCode\*.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>%(Filename).cs</LastGenOutput>
     </None>
     <None Update="GeneratedCode\DomainModelResx.tt">

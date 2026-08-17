@@ -3,7 +3,7 @@
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 
-namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
+namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration.Generators
 {
     public class GeneratorTestBase
     {

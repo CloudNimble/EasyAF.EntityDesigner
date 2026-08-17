@@ -3,15 +3,14 @@
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
-using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Telemetry;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Util;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.Package
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package
 {
     /// <summary>
     ///     The DocumentFrameMgr class manages all document window frames that

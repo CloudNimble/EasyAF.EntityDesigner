@@ -7,7 +7,7 @@ using System.Globalization;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Windows.Forms;
-using Microsoft.VisualStudio.Data.Tools.Design.XmlCore;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner;
 
 namespace Microsoft.Data.Tools.VSXmlDesignerBase.VisualStudio.UI
 {

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using EnvDTE;
-using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using Microsoft.VisualStudio.Designer.Interfaces;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
@@ -13,7 +13,7 @@ using System.Runtime.InteropServices;
 using IOleServiceProvider = Microsoft.VisualStudio.OLE.Interop.IServiceProvider;
 using VsErrorHandler = Microsoft.VisualStudio.ErrorHandler;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.SingleFileGenerator
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.SingleFileGenerator
 {
     /// <summary>
     ///     This class exists to be cocreated a in a preprocessor build step.

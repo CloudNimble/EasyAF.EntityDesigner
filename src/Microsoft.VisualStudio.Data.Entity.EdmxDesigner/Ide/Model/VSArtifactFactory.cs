@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.Model;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.Model
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model
 {
     internal class VSArtifactFactory : IEFArtifactFactory
     {

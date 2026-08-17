@@ -2,7 +2,7 @@
 
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.Refactoring
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Refactoring
 {
     /// <summary>
     ///     VsLang changes require a root node that contains the full name of the object definition being refactored.

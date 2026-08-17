@@ -3,10 +3,10 @@
 using System.Data.Entity.Core.Common;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
-using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb;
+using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
+namespace Microsoft.Data.Entity.Tests.Design.EntityFramework.ReverseEngineerDb
 {
     [TestClass]
     public class DbDatabaseMappingBuilderTests

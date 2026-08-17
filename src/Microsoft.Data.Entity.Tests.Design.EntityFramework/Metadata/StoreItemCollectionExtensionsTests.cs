@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.VersioningFacade.Metadata;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Microsoft.Data.Entity.Design.EntityFramework.Metadata;
 
-namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.Metadata
+namespace Microsoft.Data.Entity.Tests.Design.EntityFramework.Metadata
 {
     [TestClass]
     public class StoreItemCollectionExtensionsTests

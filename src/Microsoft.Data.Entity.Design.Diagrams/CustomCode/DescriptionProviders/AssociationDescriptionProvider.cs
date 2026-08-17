@@ -3,10 +3,11 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Design;
 
-namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
+namespace Microsoft.Data.Entity.Design.Diagrams.DescriptionProviders
 {
     /// <summary>
     ///     This provider is wired to the Association DomainClass so that it can provide a mock

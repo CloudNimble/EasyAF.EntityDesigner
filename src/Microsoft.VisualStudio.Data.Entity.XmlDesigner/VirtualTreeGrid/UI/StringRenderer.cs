@@ -6,9 +6,9 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
 {
     /// <summary>
     ///     Provides methods for rendering and measuring strings using GDI or GDI+.

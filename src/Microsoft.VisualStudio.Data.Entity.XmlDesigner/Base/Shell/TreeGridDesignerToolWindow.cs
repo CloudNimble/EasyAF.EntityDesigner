@@ -5,14 +5,15 @@ using System.Collections;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Windows.Forms;
-using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
-using Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using Microsoft.VisualStudio.Modeling.Shell;
 using Microsoft.VisualStudio.PlatformUI;
 using Microsoft.Win32;
 
-namespace Microsoft.Data.Entity.Design.Base.Shell
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
 {
     /// <summary>
     ///     Base class for tool windows that use the Tree Grid (VirtualTreeControl)

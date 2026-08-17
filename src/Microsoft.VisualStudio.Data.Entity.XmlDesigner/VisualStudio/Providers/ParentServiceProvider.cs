@@ -4,7 +4,7 @@ using System;
 using System.Diagnostics;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.Providers
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Providers
 {
     internal sealed class ParentServiceProvider
     {

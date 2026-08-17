@@ -100,7 +100,7 @@ namespace Microsoft.Data.Tools.VSXmlDesignerBase.VisualStudio.UI
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(37, 13);
             this.statusLabel.TabIndex = 3;
-            this.statusLabel.Text = Microsoft.VisualStudio.Data.Tools.Design.XmlCore.Resources.ProgressDialogStatusLabelText;
+            this.statusLabel.Text = Microsoft.VisualStudio.Data.Entity.XmlDesigner.Resources.ProgressDialogStatusLabelText;
             // 
             // ProgressDialog
             // 

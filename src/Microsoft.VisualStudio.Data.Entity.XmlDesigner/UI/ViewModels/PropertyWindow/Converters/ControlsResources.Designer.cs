@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.VisualStudio.Data.Tools.Design.XmlCore.UI.ViewModels.PropertyWindow.Converters {
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Converters {
     using System;
     
     

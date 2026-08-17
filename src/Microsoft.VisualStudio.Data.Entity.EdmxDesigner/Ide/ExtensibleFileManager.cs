@@ -7,7 +7,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
 {
 
     /// <summary>

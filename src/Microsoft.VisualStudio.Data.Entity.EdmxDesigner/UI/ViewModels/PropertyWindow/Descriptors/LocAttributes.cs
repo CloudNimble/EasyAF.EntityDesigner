@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow.Descriptors;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Descriptors;
 using System;
 using System.Resources;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.PropertyWindow.Descriptors
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Property | AttributeTargets.Field, Inherited = false, AllowMultiple = false)]
     internal sealed class LocDisplayNameAttribute : CommonLocDisplayNameAttribute

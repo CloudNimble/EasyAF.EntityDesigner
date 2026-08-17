@@ -14,7 +14,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using DslDiagrams = global::Microsoft.VisualStudio.Modeling.Diagrams;
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
 	/// <summary>
 	/// Helper class used to create and initialize toolbox items for this DSL.
@@ -89,7 +89,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		{
 			get
 			{
-				return global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("Entity FrameworkToolboxTab", global::System.Globalization.CultureInfo.CurrentUICulture);
+				return global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("Entity FrameworkToolboxTab", global::System.Globalization.CultureInfo.CurrentUICulture);
 			}
 		}
 		
@@ -146,35 +146,35 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			{
 				return null;
 			}
-			global::System.Resources.ResourceManager resourceManager = global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager;
+			global::System.Resources.ResourceManager resourceManager = global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager;
 			global::System.Globalization.CultureInfo resourceCulture = global::System.Globalization.CultureInfo.CurrentUICulture;
 			switch(itemId)
 			{
-				case "Microsoft.Data.Entity.Design.Package.EntityToolToolboxItem":
+				case "Microsoft.VisualStudio.Data.Entity.Package.EntityToolToolboxItem":
 					// Add EntityTool shape tool.
 					result = new DslDesign::ModelingToolboxItem(
-						"Microsoft.Data.Entity.Design.Package.EntityToolToolboxItem", // Unique identifier (non-localized) for the toolbox item.
+						"Microsoft.VisualStudio.Data.Entity.Package.EntityToolToolboxItem", // Unique identifier (non-localized) for the toolbox item.
 						1, // Position relative to other items in the same toolbox tab.
 						resourceManager.GetString("EntityToolToolboxItem", resourceCulture), // Localized display name for the item.
 						(global::System.Drawing.Bitmap)DslDiagrams::ImageHelper.GetImage(resourceManager.GetObject("EntityToolToolboxBitmap", resourceCulture)), // Image displayed next to the toolbox item.
-						"Microsoft.Data.Entity.Design.Package.Entity FrameworkToolboxTab", // Unique identifier (non-localized) for the toolbox item tab.
+						"Microsoft.VisualStudio.Data.Entity.Package.Entity FrameworkToolboxTab", // Unique identifier (non-localized) for the toolbox item tab.
 						resourceManager.GetString("Entity FrameworkToolboxTab", resourceCulture), // Localized display name for the toolbox tab.
 						string.Empty, // no F1 help keyword for the toolbox item.
 						resourceManager.GetString("EntityToolToolboxTooltip", resourceCulture), // Localized tooltip text for the toolbox item.
-						CreateElementToolPrototype(store, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType.DomainClassId), // ElementGroupPrototype (data object) representing model element on the toolbox.
+						CreateElementToolPrototype(store, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType.DomainClassId), // ElementGroupPrototype (data object) representing model element on the toolbox.
 						new global::System.ComponentModel.ToolboxItemFilterAttribute[] { // Collection of ToolboxItemFilterAttribute objects that determine visibility of the toolbox item.
 						new global::System.ComponentModel.ToolboxItemFilterAttribute(ToolboxFilterString, global::System.ComponentModel.ToolboxItemFilterType.Require) 
 						});
 					break;
-				case "Microsoft.Data.Entity.Design.Package.AssociationToolToolboxItem":
+				case "Microsoft.VisualStudio.Data.Entity.Package.AssociationToolToolboxItem":
 
 					// Add AssociationTool connector tool.
 					result = new DslDesign::ModelingToolboxItem(
-						"Microsoft.Data.Entity.Design.Package.AssociationToolToolboxItem", // Unique identifier (non-localized) for the toolbox item.
+						"Microsoft.VisualStudio.Data.Entity.Package.AssociationToolToolboxItem", // Unique identifier (non-localized) for the toolbox item.
 						2, // Position relative to other items in the same toolbox tab.
 						resourceManager.GetString("AssociationToolToolboxItem", resourceCulture), // Localized display name for the item.
 						(global::System.Drawing.Bitmap)DslDiagrams::ImageHelper.GetImage(resourceManager.GetObject("AssociationToolToolboxBitmap", resourceCulture)), // Image displayed next to the toolbox item.				
-						"Microsoft.Data.Entity.Design.Package.Entity FrameworkToolboxTab", // Unique identifier (non-localized) for the toolbox item tab.
+						"Microsoft.VisualStudio.Data.Entity.Package.Entity FrameworkToolboxTab", // Unique identifier (non-localized) for the toolbox item tab.
 						resourceManager.GetString("Entity FrameworkToolboxTab", resourceCulture), // Localized display name for the toolbox tab.
                         string.Empty, // no F1 help keyword for the toolbox item.
                         resourceManager.GetString("AssociationToolToolboxTooltip", resourceCulture), // Localized tooltip text for the toolbox item.
@@ -184,15 +184,15 @@ namespace Microsoft.Data.Entity.Design.Dsl
 							new global::System.ComponentModel.ToolboxItemFilterAttribute(AssociationToolFilterString)
 						});
 					break;
-				case "Microsoft.Data.Entity.Design.Package.InheritanceToolToolboxItem":
+				case "Microsoft.VisualStudio.Data.Entity.Package.InheritanceToolToolboxItem":
 
 					// Add InheritanceTool connector tool.
 					result = new DslDesign::ModelingToolboxItem(
-						"Microsoft.Data.Entity.Design.Package.InheritanceToolToolboxItem", // Unique identifier (non-localized) for the toolbox item.
+						"Microsoft.VisualStudio.Data.Entity.Package.InheritanceToolToolboxItem", // Unique identifier (non-localized) for the toolbox item.
 						3, // Position relative to other items in the same toolbox tab.
 						resourceManager.GetString("InheritanceToolToolboxItem", resourceCulture), // Localized display name for the item.
 						(global::System.Drawing.Bitmap)DslDiagrams::ImageHelper.GetImage(resourceManager.GetObject("InheritanceToolToolboxBitmap", resourceCulture)), // Image displayed next to the toolbox item.				
-						"Microsoft.Data.Entity.Design.Package.Entity FrameworkToolboxTab", // Unique identifier (non-localized) for the toolbox item tab.
+						"Microsoft.VisualStudio.Data.Entity.Package.Entity FrameworkToolboxTab", // Unique identifier (non-localized) for the toolbox item tab.
 						resourceManager.GetString("Entity FrameworkToolboxTab", resourceCulture), // Localized display name for the toolbox tab.
                         string.Empty, // no F1 help keyword for the toolbox item.
                         resourceManager.GetString("InheritanceToolToolboxTooltip", resourceCulture), // Localized tooltip text for the toolbox item.
@@ -234,7 +234,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 					AppDomain.CurrentDomain.DomainUnload += new EventHandler(StoreCleanUp);
 					
 					//load the domain model
-					toolboxStore.LoadDomainModels(typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel));
+					toolboxStore.LoadDomainModels(typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel));
 					
 				}
 				return toolboxStore;

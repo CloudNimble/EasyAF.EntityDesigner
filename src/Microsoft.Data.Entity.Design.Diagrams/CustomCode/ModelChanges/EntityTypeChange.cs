@@ -1,12 +1,13 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.Diagnostics;
-using Microsoft.Data.Entity.Design.Dsl.Rules;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
-using Microsoft.Data.Entity.Design.Model.Commands;
+using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
+using Microsoft.Data.Entity.Design.Diagrams.Rules;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using System.Diagnostics;
 
-namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
+namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
 {
     internal class EntityTypeChange : ViewModelChange
     {
@@ -24,7 +25,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
 
             if (viewModel != null)
             {
-                Model.Entity.EntityType entityType = viewModel.ModelXRef.GetExisting(_entityType) as Model.Entity.EntityType;
+                Edmx.Entity.EntityType entityType = viewModel.ModelXRef.GetExisting(_entityType) as Edmx.Entity.EntityType;
                 Debug.Assert(entityType != null);
                 Command c = new EntityDesignRenameCommand(entityType, _entityType.Name, true);
                 CommandProcessor cp = new CommandProcessor(cpc, c);

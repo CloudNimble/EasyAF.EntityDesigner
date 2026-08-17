@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
-using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
 using Moq;
 using Moq.Protected;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
 
-namespace Microsoft.VisualStudio.Data.Tools.Tests.Design.XmlCore.VisualStudio.Package
+namespace Microsoft.VisualStudio.Data.Entity.Tests.XmlDesigner.VisualStudio.Package
 {
     [TestClass]
     public class EditingContextManagerTests

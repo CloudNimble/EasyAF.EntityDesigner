@@ -2,10 +2,11 @@
 
 using System.Diagnostics;
 using System.Linq;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 
-namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
+namespace Microsoft.Data.Entity.Design.Diagrams.DomainClasses
 {
     internal static class DomainClassExtension
     {

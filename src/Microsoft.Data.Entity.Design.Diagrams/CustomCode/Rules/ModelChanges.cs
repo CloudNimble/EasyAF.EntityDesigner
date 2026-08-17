@@ -2,7 +2,7 @@
 
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 
-namespace Microsoft.Data.Entity.Design.Dsl.Rules
+namespace Microsoft.Data.Entity.Design.Diagrams.Rules
 {
     internal abstract class ViewModelChange : CommonViewModelChange
     {

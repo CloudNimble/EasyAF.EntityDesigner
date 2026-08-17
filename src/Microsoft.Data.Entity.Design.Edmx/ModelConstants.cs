@@ -3,7 +3,7 @@
 using System;
 using System.Data.Entity.Core.Metadata.Edm;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.Edmx
 {
     internal static class ModelConstants
     {

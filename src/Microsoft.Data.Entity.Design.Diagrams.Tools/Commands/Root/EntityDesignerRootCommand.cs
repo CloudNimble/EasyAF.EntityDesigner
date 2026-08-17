@@ -2,7 +2,7 @@
 
 using McMaster.Extensions.CommandLineUtils;
 
-namespace Microsoft.Data.Entity.Tools.Commands.Root
+namespace Microsoft.Data.Entity.Design.Diagrams.Tools.Commands.Root
 {
 
     /// <summary>

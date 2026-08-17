@@ -2,7 +2,7 @@
 
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.Model
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model
 {
     internal class VSArtifactSetFactory : IEFArtifactSetFactory
     {

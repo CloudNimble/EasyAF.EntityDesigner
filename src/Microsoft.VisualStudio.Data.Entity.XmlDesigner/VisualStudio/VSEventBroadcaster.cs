@@ -1,10 +1,9 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
-using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio
 {
     /// <summary>
     ///     This class can be used to get notified about UI change events in Visual Studio such

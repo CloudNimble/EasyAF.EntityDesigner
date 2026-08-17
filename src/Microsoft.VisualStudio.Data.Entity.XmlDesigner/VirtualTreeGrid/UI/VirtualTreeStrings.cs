@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Reflection;
 using System.Resources;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
 {
     internal class VirtualTreeStrings
     {

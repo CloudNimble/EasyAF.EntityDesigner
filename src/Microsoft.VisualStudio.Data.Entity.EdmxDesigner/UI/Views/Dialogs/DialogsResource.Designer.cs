@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs {
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs {
     using System;
     
     

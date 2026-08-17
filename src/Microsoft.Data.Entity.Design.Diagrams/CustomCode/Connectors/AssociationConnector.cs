@@ -5,17 +5,18 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
-using Microsoft.Data.Entity.Design.Dsl.CustomCode.Utils;
-using Microsoft.Data.Entity.Design.Dsl.CustomSerializer;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
+using Microsoft.Data.Entity.Design.Diagrams.CustomSerializer;
+using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.Data.Entity.Design.Diagrams.Utils;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Diagrams.GraphObject;
 using Microsoft.VisualStudio.Modeling.Immutability;
-using EntityDesignerRes = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
+using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.Resources;
 
-namespace Microsoft.Data.Entity.Design.Dsl.View
+namespace Microsoft.Data.Entity.Design.Diagrams.View
 {
     partial class AssociationConnector
     {
@@ -173,7 +174,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
                     var ec = diagram.GetModel().EditingContext;
                     ModelToDesignerModelXRef xref = ModelToDesignerModelXRef.GetModelToDesignerModelXRef(ec);
 
-                    Model.Entity.Association modelAssociation = xref.GetExisting(association) as Model.Entity.Association;
+                    Edmx.Entity.Association modelAssociation = xref.GetExisting(association) as Edmx.Entity.Association;
                     Debug.Assert(modelAssociation != null, "couldn't find model association for connector");
                     if (modelAssociation != null)
                     {

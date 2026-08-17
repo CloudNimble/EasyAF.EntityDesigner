@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI;
 using System;
 using System.Diagnostics;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider
 {
     #region ColumnPermutation class
 

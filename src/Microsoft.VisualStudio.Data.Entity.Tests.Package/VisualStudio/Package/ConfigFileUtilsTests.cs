@@ -2,7 +2,6 @@
 
 using EnvDTE;
 using EnvDTE80;
-using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.VisualStudio.TextManager.Interop;
 using Moq;
 using System;
@@ -11,11 +10,12 @@ using System.IO;
 using System.Xml;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 
-namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.Package
+namespace Microsoft.VisualStudio.Data.Entity.Tests.Package.VisualStudio.Package
 {
     [TestClass]
     public class ConfigFileUtilsTests

@@ -2,7 +2,6 @@
 
 using System;
 using System.Globalization;
-using Microsoft.Data.Tools.XmlDesignerBase;
 
 namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Commands
 {

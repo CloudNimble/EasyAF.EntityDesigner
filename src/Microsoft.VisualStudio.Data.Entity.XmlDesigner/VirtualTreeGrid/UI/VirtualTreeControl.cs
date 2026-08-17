@@ -17,8 +17,10 @@ using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using System.Windows.Forms.VisualStyles;
 using Accessibility;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Tools.VSXmlDesignerBase.Common;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using Microsoft.Win32;
 using Timer = System.Windows.Forms.Timer;
 

@@ -7,7 +7,7 @@ using System.Diagnostics;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
-namespace Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow.Descriptors
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Descriptors
 {
     // This class is used to change the property-descriptors that are passed in to Visual Studio. 
     internal class LinkedPropertyTypeDescriptor : ObjectDescriptor, ICustomTypeDescriptor

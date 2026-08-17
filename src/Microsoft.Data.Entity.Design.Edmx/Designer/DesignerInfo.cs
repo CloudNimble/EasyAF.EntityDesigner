@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml.Linq;
 
-namespace Microsoft.Data.Entity.Design.Model.Designer
+namespace Microsoft.Data.Entity.Design.Edmx.Designer
 {
     internal abstract class DesignerInfo : EFElement
     {

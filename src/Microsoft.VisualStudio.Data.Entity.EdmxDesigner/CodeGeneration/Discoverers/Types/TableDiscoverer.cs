@@ -1,16 +1,16 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration.Types;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Extensions;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Configuration;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Configuration.Types;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Extensions;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Infrastructure.Pluralization;
 using System.Diagnostics;
 using System.Linq;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Discoverers.Types
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Discoverers.Types
 {
     internal class TableDiscoverer : ITypeConfigurationDiscoverer
     {

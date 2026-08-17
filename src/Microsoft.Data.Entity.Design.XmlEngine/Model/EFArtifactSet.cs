@@ -6,7 +6,6 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using Microsoft.Data.Tools.XmlDesignerBase;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
 using Microsoft.Data.Entity.Design.XmlEngine.Util;

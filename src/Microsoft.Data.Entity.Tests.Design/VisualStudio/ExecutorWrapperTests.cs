@@ -3,7 +3,7 @@
 using System;
 using System.IO;
 using FluentAssertions;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio

@@ -8,7 +8,6 @@ using System.Data.Entity.Infrastructure.DependencyResolution;
 using System.IO;
 using System.Linq;
 using EnvDTE;
-using Microsoft.Data.Entity.Design.VersioningFacade;
 using Microsoft.VisualStudio.Shell.Design;
 using Microsoft.VisualStudio.Shell.Interop;
 using Moq;
@@ -20,7 +19,8 @@ using VsWebSite;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using DbProviderServices = System.Data.Entity.Core.Common.DbProviderServices;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio
 {

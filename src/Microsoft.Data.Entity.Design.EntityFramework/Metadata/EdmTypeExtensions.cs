@@ -4,7 +4,7 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Diagnostics;
 using System.Reflection;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade.Metadata
+namespace Microsoft.Data.Entity.Design.EntityFramework.Metadata
 {
     internal static class EdmTypeExtensions
     {

@@ -13,8 +13,8 @@ using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using Microsoft.Data.Entity.Design.DatabaseGeneration.Properties;
-using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.Data.Entity.Design.VersioningFacade.Metadata;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.Data.Entity.Design.EntityFramework.Metadata;
 
 namespace Microsoft.Data.Entity.Design.DatabaseGeneration
 {

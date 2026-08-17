@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 using System;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
 {
     /// <summary>
     /// This object adapts the properties of the ModelBuilderWizardForm into a consistent form for getting the schema of a SQL Server

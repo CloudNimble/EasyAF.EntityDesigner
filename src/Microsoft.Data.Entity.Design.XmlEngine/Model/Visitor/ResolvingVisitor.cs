@@ -5,7 +5,6 @@ using System.Globalization;
 using System.Xml.Linq;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
-using Microsoft.Data.Tools.XmlDesignerBase;
 
 namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor
 {

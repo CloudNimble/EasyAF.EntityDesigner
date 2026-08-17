@@ -2,10 +2,10 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.Data.Entity.Design.Dsl.Rules;
-using Microsoft.Data.Entity.Design.Dsl.View;
+using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.Data.Entity.Design.Diagrams.Rules;
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
     /// <summary>
     ///     This API supports the Entity Framework infrastructure and is not intended to be used directly from your code.

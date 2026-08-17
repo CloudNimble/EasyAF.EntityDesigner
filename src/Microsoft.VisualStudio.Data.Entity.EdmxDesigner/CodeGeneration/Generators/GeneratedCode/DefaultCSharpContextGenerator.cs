@@ -7,15 +7,16 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration
 {
-    using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
-    using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration;
-    using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration.Properties;
-    using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration.Types;
+    using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration;
+    using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration;
+    using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Configuration;
+    using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Configuration.Properties;
+    using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Configuration.Types;
     using System;
     using System.Linq;
-    
+
     /// <summary>
     /// Class to produce the template output
     /// </summary>

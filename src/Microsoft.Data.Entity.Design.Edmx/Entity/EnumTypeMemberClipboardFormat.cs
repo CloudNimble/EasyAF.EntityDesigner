@@ -2,7 +2,7 @@
 
 using System;
 
-namespace Microsoft.Data.Entity.Design.Model.Entity
+namespace Microsoft.Data.Entity.Design.Edmx.Entity
 {
     [Serializable]
     internal class EnumTypeMemberClipboardFormat : AnnotatableElementClipboardFormat

@@ -4,9 +4,10 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using Microsoft.Data.Entity.Design.Diagrams.View;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 
-namespace Microsoft.Data.Entity.Design.Dsl.View.Export
+namespace Microsoft.Data.Entity.Design.Diagrams.Rendering.Export.Svg
 {
     /// <summary>
     /// Exports an EntityDesignerSurface to SVG format.

@@ -3,7 +3,7 @@
 using System.IO;
 using FluentAssertions;
 using Microsoft.Data.Entity.Tests.Design.TestHelpers;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Engine

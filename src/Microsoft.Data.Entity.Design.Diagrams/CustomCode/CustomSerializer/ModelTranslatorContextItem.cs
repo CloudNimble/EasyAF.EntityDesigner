@@ -2,9 +2,8 @@
 
 using System;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
-using Microsoft.Data.Tools.Dsl.ModelTranslator;
 
-namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
+namespace Microsoft.Data.Entity.Design.Diagrams.CustomSerializer
 {
     internal class ModelTranslatorContextItem : ContextItem
     {

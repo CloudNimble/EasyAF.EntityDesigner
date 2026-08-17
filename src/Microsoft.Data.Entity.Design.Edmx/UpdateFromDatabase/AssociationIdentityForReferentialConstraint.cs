@@ -2,10 +2,10 @@
 
 using System.Collections.Generic;
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.Model.Database;
-using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Database;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
 
-namespace Microsoft.Data.Entity.Design.Model.UpdateFromDatabase
+namespace Microsoft.Data.Entity.Design.Edmx.UpdateFromDatabase
 {
     internal class AssociationIdentityForReferentialConstraint : AssociationIdentity
     {

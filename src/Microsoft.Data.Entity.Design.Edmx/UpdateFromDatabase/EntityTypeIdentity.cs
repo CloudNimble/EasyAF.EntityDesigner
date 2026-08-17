@@ -2,10 +2,10 @@
 
 using System.Collections.Generic;
 using System.Text;
-using Microsoft.Data.Entity.Design.Model.Database;
+using Microsoft.Data.Entity.Design.Edmx.Database;
 using Microsoft.Data.Entity.Design.XmlEngine.Common.Diagnostics;
 
-namespace Microsoft.Data.Entity.Design.Model.UpdateFromDatabase
+namespace Microsoft.Data.Entity.Design.Edmx.UpdateFromDatabase
 {
     /// <summary>
     ///     The identity of a given C-side EntityType when compared to

@@ -6,18 +6,19 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Diagnostics;
 using System.Globalization;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Model.Mapping;
-using Microsoft.Data.Entity.Design.Model.Validation;
-using Microsoft.Data.Entity.Design.Model.Visitor;
-using Microsoft.Data.Entity.Design.VersioningFacade;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
+using Microsoft.Data.Entity.Design.Edmx.Validation;
+using Microsoft.Data.Entity.Design.Edmx.Visitor;
+using Microsoft.Data.Entity.Design.EntityFramework;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.Edmx
 {
     internal class EntityDesignArtifact : EFArtifact
     {

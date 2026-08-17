@@ -1,14 +1,15 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
+using Microsoft.Data.Entity.Design.Diagrams.ModelChanges;
+using Microsoft.Data.Entity.Design.Diagrams.Rules;
+using Microsoft.Data.Entity.Design.Diagrams.Utils;
+using Microsoft.VisualStudio.Modeling;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Microsoft.Data.Entity.Design.Dsl.ModelChanges;
-using Microsoft.Data.Entity.Design.Dsl.Utils;
-using Microsoft.Data.Entity.Design.Dsl.Rules;
-using Microsoft.VisualStudio.Modeling;
 
-namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
+namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
 {
     internal partial class Association : IContainRelatedElementsToEmphasizeWhenSelected
     {
@@ -59,7 +60,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
                 if (SourceEntityType != null)
                 {
                     var viewModel = SourceEntityType.EntityDesignerViewModel;
-                    Model.Entity.Association modelAssociation = viewModel.ModelXRef.GetExisting(this) as Model.Entity.Association;
+                    Edmx.Entity.Association modelAssociation = viewModel.ModelXRef.GetExisting(this) as Edmx.Entity.Association;
                     Debug.Assert(modelAssociation != null, "Unable to get model association for DSL association:" + Name);
 
                     if (modelAssociation != null)

@@ -6,11 +6,10 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.VisualStudio.Data.Tools.Design.XmlCore;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.Common
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common
 {
     /// <summary>
     ///     Represents a dynamic, interoperable service provider.

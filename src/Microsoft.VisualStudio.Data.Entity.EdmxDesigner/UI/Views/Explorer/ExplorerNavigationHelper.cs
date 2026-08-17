@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Mapping;
-using Microsoft.Data.Entity.Design.UI.Views.Explorer;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views.Explorer;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package;
 using Microsoft.VisualStudio.Shell.Interop;
 using System.Diagnostics;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Explorer
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Explorer
 {
     internal class ExplorerNavigationHelper
     {

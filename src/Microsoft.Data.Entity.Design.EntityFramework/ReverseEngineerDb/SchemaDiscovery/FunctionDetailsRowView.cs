@@ -4,7 +4,7 @@ using System;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Diagnostics;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb.SchemaDiscovery
+namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb.SchemaDiscovery
 {
     internal abstract class FunctionDetailsRowView
     {

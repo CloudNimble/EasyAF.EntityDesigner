@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
 
-namespace Microsoft.Data.Entity.Design.Model.Mapping
+namespace Microsoft.Data.Entity.Design.Edmx.Mapping
 {
     internal class FunctionImportEntityTypeMapping : FunctionImportTypeMapping
     {

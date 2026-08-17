@@ -6,9 +6,8 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Resources;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
-using Microsoft.Data.Tools.XmlDesignerBase;
 
-namespace Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow.Descriptors
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Descriptors
 {
     /// <summary>
     ///     base class for a PropertyDescriptor that describes a property of an EFElement

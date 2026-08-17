@@ -8,10 +8,8 @@ using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
-using Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow;
-using Microsoft.Data.Tools.XmlDesignerBase;
 
-namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.TypeEditors
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.TypeEditors
 {
     /// <summary>
     ///     Provides a drop-down editor experience for properties in the Properties Window
@@ -100,14 +98,14 @@ namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.TypeEditors
                         var selectedItem = listBox.SelectedItem as string;
                         Debug.Assert(
                             null == selectedItem
-                            || Resources.NoneDisplayValueUsedForUX.Equals(selectedItem, StringComparison.CurrentCulture),
+                            || global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX.Equals(selectedItem, StringComparison.CurrentCulture),
                             typeof(NoneOptionListBox).Name + ": selectedItem should be null or NoneObject");
 
                         // desubscribe from the SelectedValueChanged event handler
                         listBox.SelectedValueChanged -= listBox_SelectedValueChanged;
 
                         // return value dependent on what user chose
-                        if (Resources.NoneDisplayValueUsedForUX.Equals(selectedItem, StringComparison.CurrentCulture))
+                        if (global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX.Equals(selectedItem, StringComparison.CurrentCulture))
                         {
                             value = StringOrNone.NoneValue;
                         }
@@ -134,7 +132,7 @@ namespace Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.TypeEditors
             {
                 BorderStyle = BorderStyle.FixedSingle;
                 SelectionMode = SelectionMode.One; // only allow single-select
-                Items.Add(Resources.NoneDisplayValueUsedForUX);
+                Items.Add(global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX);
                 Height = PreferredHeight; // scale to height of single item
             }
 

@@ -7,11 +7,11 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
-using Microsoft.Data.Entity.Design.VersioningFacade;
+using Microsoft.Data.Entity.Design.EntityFramework;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
 
-namespace Microsoft.Data.Entity.Design.Model.Validation
+namespace Microsoft.Data.Entity.Design.Edmx.Validation
 {
     /// <summary>
     ///     This class can be used to validate attribute content specific to EDMX documents *before* updating the XLinq tree, and without revalidating the entire document.

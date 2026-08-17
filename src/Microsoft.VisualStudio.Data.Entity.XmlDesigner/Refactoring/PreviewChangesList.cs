@@ -3,11 +3,10 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
-using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TextManager.Interop;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.Refactoring
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Refactoring
 {
     [Guid(RefactoringGuids.RefactoringPreviewChangesListString)]
     internal class PreviewChangesList : IVsPreviewChangesList, IVsLiteTreeList

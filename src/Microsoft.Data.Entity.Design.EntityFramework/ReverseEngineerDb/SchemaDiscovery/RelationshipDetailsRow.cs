@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Text;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb.SchemaDiscovery
+namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb.SchemaDiscovery
 {
     /// <summary>
     ///     Strongly typed RelationshipDetail row

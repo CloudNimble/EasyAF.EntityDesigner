@@ -7,7 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Runtime.Serialization;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb.SchemaDiscovery
+namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb.SchemaDiscovery
 {
     // <summary>
     //     Strongly type data table for holding the RelationshipDetails

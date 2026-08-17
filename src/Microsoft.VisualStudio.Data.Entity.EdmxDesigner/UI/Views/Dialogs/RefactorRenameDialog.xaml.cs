@@ -1,19 +1,19 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 using Microsoft.VisualStudio.PlatformUI;
 using System;
 using System.Globalization;
 using System.IO;
 using System.Windows;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
 {
     internal partial class RefactorRenameDialog : DialogWindow
     {
@@ -82,7 +82,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs
             if (!contentValidator.IsValidAttributeValue(this.NewName, attr))
             {
                 // not valid content
-                errorMessage = Microsoft.VisualStudio.Data.Entity.Design.Resources.RefactorRename_InvalidName;
+                errorMessage = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources.RefactorRename_InvalidName;
                 return false;
             }
 
@@ -97,7 +97,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs
             {
                 if (!ModelHelper.IsUniqueNameForExistingItem(property, this.NewName, true, out errorMessage))
                 {
-                    errorMessage = string.Format(CultureInfo.CurrentCulture, Microsoft.Data.Entity.Design.Model.Resources.NAME_NOT_UNIQUE, this.NewName);
+                    errorMessage = string.Format(CultureInfo.CurrentCulture, Microsoft.Data.Entity.Design.Edmx.Resources.NAME_NOT_UNIQUE, this.NewName);
                     return false;
                 }
             }

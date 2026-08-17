@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Core.EntityClient;
 using System.Globalization;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb.SchemaDiscovery
+namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb.SchemaDiscovery
 {
     // Abstracts building collections of parameters for schema queries 
     // with or without parameter value de-duplication

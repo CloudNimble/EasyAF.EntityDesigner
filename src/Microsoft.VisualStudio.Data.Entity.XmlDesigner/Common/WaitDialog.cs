@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.Common
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common
 {
     internal sealed class WaitDialog
     {

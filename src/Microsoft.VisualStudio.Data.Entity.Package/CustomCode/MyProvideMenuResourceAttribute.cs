@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.VisualStudio.Shell;
 using System;
 using System.Globalization;
 
-namespace Microsoft.VisualStudio.Shell
+namespace Microsoft.VisualStudio.Data.Entity.Package
 {
     /// <include file='doc\ProvideMenuResourceAttribute.uex' path='docs/doc[@for="ProvideMenuResourceAttribute"]' />
     /// <devdoc>

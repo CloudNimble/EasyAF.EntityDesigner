@@ -4,7 +4,7 @@ using System;
 using System.Diagnostics;
 using System.Windows.Threading;
 
-namespace Microsoft.Data.Entity.Design.UI.Views
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views
 {
     internal sealed class DeferredRequest : IDisposable
     {

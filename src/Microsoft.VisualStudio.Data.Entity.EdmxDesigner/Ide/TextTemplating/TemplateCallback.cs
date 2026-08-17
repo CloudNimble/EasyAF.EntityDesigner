@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
 using Microsoft.VisualStudio.TextTemplating.VSHost;
 using System;
 using System.Globalization;
 using System.Text;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.TextTemplating
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.TextTemplating
 {
     // <summary>
     //     TemplateCallback is used by the TextTemplatingService to handle error messages

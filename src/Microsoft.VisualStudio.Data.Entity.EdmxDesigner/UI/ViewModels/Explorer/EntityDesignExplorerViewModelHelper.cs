@@ -1,21 +1,22 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Model.Mapping;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor;
-using Microsoft.Data.Entity.Design.XmlEngine.UI;
-using Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.Explorer;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.Util;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Util;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Explorer
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer
 {
     // <summary>
     //     This class provides a wrapper around ExplorerViewModel so as to provide

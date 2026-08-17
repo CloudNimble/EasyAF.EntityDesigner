@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Model.Mapping;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 
-namespace Microsoft.Data.Entity.Design.Model.Commands
+namespace Microsoft.Data.Entity.Design.Edmx.Commands
 {
     /// <summary>
     ///     Use this command to change aspects of a FunctionImport in the C-Side
@@ -356,7 +356,7 @@ namespace Microsoft.Data.Entity.Design.Model.Commands
                     }
 
                     // if the new value is 'None' then set the return type to null
-                    if (returnTypeStringValue != Tools.XmlDesignerBase.Resources.NoneDisplayValueUsedForUX)
+                    if (returnTypeStringValue != global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX)
                     {
                         updatedReturnTypeAsString = String.Format(
                             CultureInfo.InvariantCulture, FunctionImport.CollectionFormat, returnTypeStringValue);

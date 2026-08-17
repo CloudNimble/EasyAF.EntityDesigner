@@ -3,11 +3,12 @@
 using System;
 using System.Data.Entity.Core.Common;
 using System.Data.Entity.Infrastructure.DependencyResolution;
-using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb;
-using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb.SchemaDiscovery;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb.SchemaDiscovery;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb;
+using Microsoft.Data.Entity.Tests.Design.EntityFramework;
 
 namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
 {

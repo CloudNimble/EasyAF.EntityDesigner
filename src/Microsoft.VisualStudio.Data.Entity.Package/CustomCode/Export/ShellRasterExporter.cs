@@ -4,9 +4,12 @@ using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export;
+using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export.Raster;
+using Microsoft.Data.Entity.Design.Diagrams.View;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 
-namespace Microsoft.Data.Entity.Design.Dsl.View.Export
+namespace Microsoft.VisualStudio.Data.Entity.Package.Export
 {
     /// <summary>
     /// Exports diagrams to raster image formats using the DSL SDK, which is what the designer has always used and

@@ -6,13 +6,13 @@ using System.Linq;
 using System.Xml;
 using EnvDTE;
 using FluentAssertions;
-using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Entity.Tests.Design.TestHelpers;
 using Moq;
 using Moq.Protected;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VSLangProj;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio
 {

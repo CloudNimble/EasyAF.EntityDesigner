@@ -2,10 +2,10 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration.Properties;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Configuration.Properties;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration;
 
-namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
+namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration.Configuration.Property
 {
     [TestClass]
     public class PrecisionDecimalConfigurationTests

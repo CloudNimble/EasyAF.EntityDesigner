@@ -6,15 +6,14 @@ using System.Diagnostics;
 using System.Linq;
 using System.Xml.Linq;
 using System.Xml.Schema;
-using Microsoft.Data.Entity.Design.Model.Designer;
-using Microsoft.Data.Entity.Design.Model.Validation;
-using Microsoft.Data.Entity.Design.Model.Visitor;
-using Microsoft.Data.Entity.Design.VersioningFacade;
+using Microsoft.Data.Entity.Design.Edmx.Designer.Visitor;
+using Microsoft.Data.Entity.Design.Edmx.Validation;
+using Microsoft.Data.Entity.Design.EntityFramework;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.XLinqAnnotations;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.Edmx.Designer
 {
     internal class DiagramArtifact : EFArtifact
     {

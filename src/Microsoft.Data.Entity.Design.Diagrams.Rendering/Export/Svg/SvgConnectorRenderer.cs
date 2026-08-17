@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Text;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
+using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 
-namespace Microsoft.Data.Entity.Design.Dsl.View.Export
+namespace Microsoft.Data.Entity.Design.Diagrams.Rendering.Export.Svg
 {
     /// <summary>
     /// Renders Association and Inheritance connectors to SVG format.

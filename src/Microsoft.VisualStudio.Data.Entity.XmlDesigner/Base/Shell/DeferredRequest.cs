@@ -4,7 +4,7 @@ using System;
 using System.Diagnostics;
 using System.Windows.Threading;
 
-namespace Microsoft.Data.Entity.Design.Base.Shell
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
 {
     /// <summary>
     ///     This class gives a UI component the ability to defer some processing.  This can be helpful

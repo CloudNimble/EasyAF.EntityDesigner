@@ -4,9 +4,8 @@ using System;
 using System.ComponentModel;
 using System.Globalization;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.Data.Tools.XmlDesignerBase;
 
-namespace Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow.Converters
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Converters
 {
     internal class BoolOrNoneTypeConverter : StringConverter
     {
@@ -21,15 +20,15 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow.Co
                 {
                     if (BoolOrNone.TrueValue.Equals(v))
                     {
-                        return Resources.PropertyWindow_Value_True;
+                        return global::Microsoft.Data.Entity.Design.XmlEngine.Resources.PropertyWindow_Value_True;
                     }
                     else if (BoolOrNone.FalseValue.Equals(v))
                     {
-                        return Resources.PropertyWindow_Value_False;
+                        return global::Microsoft.Data.Entity.Design.XmlEngine.Resources.PropertyWindow_Value_False;
                     }
                     else
                     {
-                        return Resources.NoneDisplayValueUsedForUX;
+                        return global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX;
                     }
                 }
             }

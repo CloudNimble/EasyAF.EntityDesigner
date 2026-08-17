@@ -6,12 +6,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
-using Microsoft.Data.Tools.VSXmlDesignerBase.Common;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Data.Tools.Design.XmlCore;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.Refactoring
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Refactoring
 {
     /// <summary>
     ///     Converts a list of file change nodes into preview nodes to be displayed in the preview dialog. Different implementers of

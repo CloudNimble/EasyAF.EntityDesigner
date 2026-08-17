@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Xml;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Validation;
-using Microsoft.Data.Entity.Design.VersioningFacade;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Microsoft.Data.Entity.Design.Edmx.Validation;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.EntityFramework;
 
-namespace Microsoft.Data.Entity.Tests.Design.Model.Validation
+namespace Microsoft.Data.Entity.Tests.Design.Edmx.Validation
 {
     /// <summary>
     ///     Verifies that schema validation failures are retained with enough detail to act on.

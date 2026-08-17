@@ -8,7 +8,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb
+namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb
 {
     internal class OneToOneMappingBuilder
     {

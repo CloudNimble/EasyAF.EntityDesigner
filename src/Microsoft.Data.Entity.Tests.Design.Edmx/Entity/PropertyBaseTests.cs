@@ -2,12 +2,12 @@
 
 using System.Linq;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.Model.Entity;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
 
-namespace Microsoft.Data.Entity.Tests.Design.Model.Entity
+namespace Microsoft.Data.Entity.Tests.Design.Edmx.Entity
 {
     [TestClass]
     public class PropertyBaseTests

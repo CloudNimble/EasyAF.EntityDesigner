@@ -3,7 +3,7 @@
 using System;
 using System.Data.Entity.Core.Common;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade
+namespace Microsoft.Data.Entity.Design.EntityFramework
 {
     /// <summary>
     ///     Determines whether an ADO.NET provider factory can supply Entity Framework provider services.

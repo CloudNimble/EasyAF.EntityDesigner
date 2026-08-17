@@ -6,7 +6,7 @@ using System.Data.Common;
 using System.Data.Entity.Core.EntityClient;
 using System.Diagnostics;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb.SchemaDiscovery
+namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb.SchemaDiscovery
 {
     internal class FunctionDetailsReader : IDisposable
     {

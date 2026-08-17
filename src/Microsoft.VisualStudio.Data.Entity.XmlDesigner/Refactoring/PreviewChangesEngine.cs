@@ -2,10 +2,9 @@
 
 using System;
 using System.Runtime.InteropServices;
-using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.Refactoring
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Refactoring
 {
     [Guid(RefactoringGuids.RefactoringPreviewChangesEngineString)]
     internal sealed class PreviewChangesEngine : IVsPreviewChangesEngine, IDisposable

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb;
-using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb.SchemaDiscovery;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb;
+using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb.SchemaDiscovery;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.EntityClient;
@@ -12,7 +12,7 @@ using System.Data.Entity.Infrastructure.Pluralization;
 using System.Diagnostics;
 using System.Linq;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
 {
     internal class ModelGenerator
     {

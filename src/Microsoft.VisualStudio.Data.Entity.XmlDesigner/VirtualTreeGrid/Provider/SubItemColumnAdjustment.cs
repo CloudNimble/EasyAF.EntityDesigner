@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using System.Diagnostics;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider
 {
     #region SubItemColumnAdjustment class
 

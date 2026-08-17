@@ -3,7 +3,7 @@
 using System.Diagnostics;
 using Microsoft.VisualStudio.OLE.Interop;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio
 {
 
     /// <summary>

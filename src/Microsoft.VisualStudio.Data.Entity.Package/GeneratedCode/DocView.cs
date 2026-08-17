@@ -11,7 +11,7 @@ using DslModeling = global::Microsoft.VisualStudio.Modeling;
 using DslDiagrams = global::Microsoft.VisualStudio.Modeling.Diagrams;
 using DslShell = global::Microsoft.VisualStudio.Modeling.Shell;
 
-namespace Microsoft.Data.Entity.Design.Package
+namespace Microsoft.VisualStudio.Data.Entity.Package
 {
     /// <summary>
 	/// Double-derived class to allow easier code customization.
@@ -58,7 +58,7 @@ namespace Microsoft.Data.Entity.Design.Package
 			DslModeling::Partition diagramPartition = docData.GetDiagramPartition();
 			if (diagramPartition != null)
 			{
-				global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface> diagrams = docData.GetDiagramPartition().ElementDirectory.FindElements<global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface>();
+				global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface> diagrams = docData.GetDiagramPartition().ElementDirectory.FindElements<global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface>();
 				if (diagrams.Count > 0)
 				{
 					global::System.Diagnostics.Debug.Assert(diagrams.Count == 1, "Found more than one diagram, using the first one found.");
@@ -84,7 +84,7 @@ namespace Microsoft.Data.Entity.Design.Package
 		{
 			get
 			{
-				return global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignToolboxHelper.DefaultToolboxTabName;
+				return global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignToolboxHelper.DefaultToolboxTabName;
 			}
 		}
 		
@@ -95,7 +95,7 @@ namespace Microsoft.Data.Entity.Design.Package
 		{
 			get
 			{
-				return global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignToolboxHelper.DefaultToolboxTabToolboxItemsCount;			
+				return global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignToolboxHelper.DefaultToolboxTabToolboxItemsCount;			
 			}
 		}
 		

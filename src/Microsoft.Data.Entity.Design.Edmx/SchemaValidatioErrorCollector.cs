@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Xml.Schema;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.Edmx
 {
     /// <summary>
     ///     Collects the schema validation errors raised while validating a document against the EDMX XSD.

@@ -1,11 +1,12 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.Dsl.Rules;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
+using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
+using Microsoft.Data.Entity.Design.Diagrams.Rules;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 
-namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
+namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
 {
     internal class NavigationPropertyDelete : ViewModelChange
     {
@@ -22,7 +23,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
             Debug.Assert(viewModel != null, "Unable to find root view model from navigation property:" + _property.Name);
             if (viewModel != null)
             {
-                Model.Entity.NavigationProperty property = viewModel.ModelXRef.GetExisting(_property) as Model.Entity.NavigationProperty;
+                Edmx.Entity.NavigationProperty property = viewModel.ModelXRef.GetExisting(_property) as Edmx.Entity.NavigationProperty;
                 Debug.Assert(property != null);
                 DeleteEFElementCommand.DeleteInTransaction(cpc, property);
                 viewModel.ModelXRef.Remove(property, _property);

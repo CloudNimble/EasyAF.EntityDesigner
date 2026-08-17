@@ -13,9 +13,8 @@ using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
-using Microsoft.Data.Tools.XmlDesignerBase;
 
-namespace Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.Explorer
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer
 {
     internal class ExplorerHierarchyComparer : IComparer<ExplorerEFElement>
     {
@@ -433,7 +432,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.Explorer
             throw new InvalidOperationException(
                 string.Format(
                     CultureInfo.CurrentCulture,
-                    Resources.BadInsertBadChildType, efElementToInsert.GetType().FullName, GetType().FullName));
+                    global::Microsoft.Data.Entity.Design.XmlEngine.Resources.BadInsertBadChildType, efElementToInsert.GetType().FullName, GetType().FullName));
         }
 
         internal virtual void RemoveChildIfLoaded(EFElement efChildElementToRemove)
@@ -472,12 +471,12 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.Explorer
                     Debug.Assert(
                         false, string.Format(
                             CultureInfo.CurrentCulture,
-                            Resources.BadRemoveChildNotParent, explorerElement.Name, Name));
+                            global::Microsoft.Data.Entity.Design.XmlEngine.Resources.BadRemoveChildNotParent, explorerElement.Name, Name));
                     return;
                     // TODO: we need to provide a general exception-handling mechanism and replace the above Assert()
                     // by e.g. the excepiton below
                     // throw new ArgumentException(string.Format(CultureInfo.CurrentCulture,
-                    //     Resources.BadRemoveChildNotParent, explorerElement.Name, this.Name));
+                    //     global::Microsoft.Data.Entity.Design.XmlEngine.Resources.BadRemoveChildNotParent, explorerElement.Name, this.Name));
                 }
 
                 // otherwise the Model child element does not map to any
@@ -669,7 +668,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.Explorer
         /// </summary>
         protected virtual string RenameTransactionName
         {
-            get { return string.Format(CultureInfo.CurrentCulture, Resources.RenameTransactionNameFormat, _name); }
+            get { return string.Format(CultureInfo.CurrentCulture, global::Microsoft.Data.Entity.Design.XmlEngine.Resources.RenameTransactionNameFormat, _name); }
         }
 
         public virtual bool IsKeyProperty

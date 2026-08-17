@@ -3,10 +3,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
-using Microsoft.Data.Entity.Design.Model.Designer;
-using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.VisualStudio.Data.Entity.Package
 {
     // Helper class for getting/setting clipboard objects
     internal static class CopyPasteUtils

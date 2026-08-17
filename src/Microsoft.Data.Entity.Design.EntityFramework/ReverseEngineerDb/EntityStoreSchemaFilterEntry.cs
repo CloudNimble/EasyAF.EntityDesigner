@@ -4,7 +4,7 @@ using System;
 using System.Diagnostics;
 using System.Globalization;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb
+namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb
 {
     /// <summary>
     ///     This class represent a single filter entry

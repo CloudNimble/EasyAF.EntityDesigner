@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 
-namespace Microsoft.Data.Entity.Design.Model.Database
+namespace Microsoft.Data.Entity.Design.Edmx.Database
 {
     internal interface IRawDataSchemaProcedure
     {

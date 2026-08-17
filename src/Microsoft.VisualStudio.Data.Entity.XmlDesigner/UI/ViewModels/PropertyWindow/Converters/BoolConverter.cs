@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.VisualStudio.Data.Tools.Design.XmlCore.UI.ViewModels.PropertyWindow.Converters;
-
-namespace Microsoft.Data.Entity.Design.XmlEngine.UI.Controls
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Converters
 {
     /// <summary>
     ///     type converter for list of bool values

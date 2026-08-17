@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Controls
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Controls
 {
     // <summary>
     //     This helper class is used to override default behavior of a radio button which tries to fit all contents in 1 line.

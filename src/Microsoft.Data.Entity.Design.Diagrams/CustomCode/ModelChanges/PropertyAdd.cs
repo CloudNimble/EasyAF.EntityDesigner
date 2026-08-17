@@ -1,12 +1,13 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.Dsl.Rules;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
-using Microsoft.Data.Entity.Design.Model.Commands;
+using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
+using Microsoft.Data.Entity.Design.Diagrams.Rules;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 
-namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
+namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
 {
     internal class PropertyAdd : ViewModelChange
     {
@@ -24,9 +25,9 @@ namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
 
             if (viewModel != null)
             {
-                Model.Entity.EntityType entityType = viewModel.ModelXRef.GetExisting(_property.EntityType) as Model.Entity.EntityType;
+                Edmx.Entity.EntityType entityType = viewModel.ModelXRef.GetExisting(_property.EntityType) as Edmx.Entity.EntityType;
                 Debug.Assert(entityType != null);
-                Model.Entity.Property property = null;
+                Edmx.Entity.Property property = null;
                 if (_property is ScalarProperty)
                 {
                     property = CreatePropertyCommand.CreateDefaultProperty(cpc, _property.Name, entityType);

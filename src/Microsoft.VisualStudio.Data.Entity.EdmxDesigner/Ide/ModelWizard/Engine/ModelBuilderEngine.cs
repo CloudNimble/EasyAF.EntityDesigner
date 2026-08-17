@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Metadata.Edm;
@@ -9,9 +9,9 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using WizardResources = Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Properties.Resources;
+using WizardResources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.Resources;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
 {
     internal abstract class ModelBuilderEngine
     {

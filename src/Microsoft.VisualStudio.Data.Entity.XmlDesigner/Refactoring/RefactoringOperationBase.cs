@@ -8,13 +8,11 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Forms;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
-using Microsoft.Data.Tools.VSXmlDesignerBase.Common;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Data.Tools.Design.XmlCore;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TextManager.Interop;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.Refactoring
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Refactoring
 {
     /// <summary>
     ///     The RefactorOperation base class drives the actual lifecycle of the refactoring operation.

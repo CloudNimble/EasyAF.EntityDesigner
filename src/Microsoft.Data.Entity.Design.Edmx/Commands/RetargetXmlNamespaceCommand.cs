@@ -5,11 +5,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.VersioningFacade;
+using Microsoft.Data.Entity.Design.Edmx.MetadataConverter;
+using Microsoft.Data.Entity.Design.EntityFramework;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 
-namespace Microsoft.Data.Entity.Design.Model.Commands
+namespace Microsoft.Data.Entity.Design.Edmx.Commands
 {
     internal class RetargetXmlNamespaceCommand : Command
     {

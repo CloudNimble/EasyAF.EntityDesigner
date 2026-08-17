@@ -9,10 +9,10 @@ using System.Data.Entity.Infrastructure.DependencyResolution;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using MetadataItemHelper = Microsoft.Data.Entity.Design.VersioningFacade.Metadata.MetadataItemHelper;
-using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb.SchemaDiscovery;
+using MetadataItemHelper = Microsoft.Data.Entity.Design.EntityFramework.Metadata.MetadataItemHelper;
+using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb.SchemaDiscovery;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb
+namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb
 {
     internal class StoreModelBuilder
     {

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.Data.Entity.Design.Package
+namespace Microsoft.VisualStudio.Data.Entity.Package
 {
 	internal static partial class Constants
 	{
@@ -40,7 +40,7 @@ namespace Microsoft.Data.Entity.Design.Package
 //
 // Constants not generated from values in DesignerDefinition.dsl are defined below
 //
-namespace Microsoft.Data.Entity.Design.Package
+namespace Microsoft.VisualStudio.Data.Entity.Package
 {
 	internal static partial class Constants
 	{

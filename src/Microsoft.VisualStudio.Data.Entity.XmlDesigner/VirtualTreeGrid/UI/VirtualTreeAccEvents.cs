@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
-using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 
 namespace Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid
 {

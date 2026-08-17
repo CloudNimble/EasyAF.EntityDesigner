@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
 {
     using System.Diagnostics.CodeAnalysis;
 
@@ -84,7 +84,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui
             // 
             // modelNamespaceTextBox
             // 
-            this.modelNamespaceTextBox.AccessibleName = global::Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Properties.Resources.SelectTablesPage_ModelNamespaceAccessibleName;
+            this.modelNamespaceTextBox.AccessibleName = global::Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.Resources.SelectTablesPage_ModelNamespaceAccessibleName;
             this.modelNamespaceTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.modelNamespaceTextBox.Location = new System.Drawing.Point(0, 264);
             this.modelNamespaceTextBox.Name = "modelNamespaceTextBox";

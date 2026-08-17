@@ -1,15 +1,16 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
+using Microsoft.Data.Entity.Design.Diagrams.ModelChanges;
+using Microsoft.Data.Entity.Design.Diagrams.Rules;
+using Microsoft.Data.Entity.Design.Diagrams.Utils;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.VisualStudio.Modeling;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.Dsl.ModelChanges;
-using Microsoft.Data.Entity.Design.Dsl.Utils;
-using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Dsl.Rules;
-using Microsoft.VisualStudio.Modeling;
 
-namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
+namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
 {
     internal partial class EntityType : IContainRelatedElementsToEmphasizeWhenSelected
     {
@@ -24,7 +25,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
                 Debug.Assert(entityType != null, "Unable to find model EntityType for DSL EntityType:" + Name);
                 if (entityType != null)
                 {
-                    foreach (var modelAssociation in Model.Entity.Association.GetAssociationsForEntityType(entityType))
+                    foreach (var modelAssociation in Edmx.Entity.Association.GetAssociationsForEntityType(entityType))
                     {
                         if (EntityDesignerViewModel.ModelXRef.GetExisting(modelAssociation) is Association viewAssociation
                             && viewAssociation.IsDeleted == false)

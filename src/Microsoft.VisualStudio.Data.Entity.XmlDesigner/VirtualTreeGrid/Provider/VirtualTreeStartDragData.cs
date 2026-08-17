@@ -3,7 +3,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider
 {
     /// <summary>
     ///     Return data for the IBranch.OnStartDrag method

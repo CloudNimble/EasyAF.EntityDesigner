@@ -3,7 +3,7 @@
 using System;
 using System.Diagnostics;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui.ViewModels
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui.ViewModels
 {
     internal class EntityFrameworkVersionOption
     {

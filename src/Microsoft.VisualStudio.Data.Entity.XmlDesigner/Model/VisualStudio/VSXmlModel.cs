@@ -6,10 +6,10 @@ using System;
 using System.Diagnostics;
 using System.Windows.Threading;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio
 {
     /// <summary>
     ///     This API supports the Entity Framework infrastructure and is not intended to be used directly from your code.
@@ -27,7 +27,7 @@ namespace Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio
         /// <summary>
         ///     This API supports the Entity Framework infrastructure and is not intended to be used directly from your code.
         /// </summary>
-        internal VSXmlModel(IServiceProvider serviceProvider, Microsoft.VisualStudio.XmlEditor.XmlModel model)
+        internal VSXmlModel(IServiceProvider serviceProvider, XmlEditor.XmlModel model)
         {
             XmlModel = model;
             XmlModel.BufferReloaded += OnBufferReload;
@@ -66,7 +66,7 @@ namespace Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio
             }
         }
 
-        internal Microsoft.VisualStudio.XmlEditor.XmlModel XmlModel { get; private set; }
+        internal XmlEditor.XmlModel XmlModel { get; private set; }
 
         /// <summary>
         ///     This API supports the Entity Framework infrastructure and is not intended to be used directly from your code.

@@ -2,12 +2,12 @@
 
 using System.Data.Entity.Core.Common;
 using System.Data.Entity.Infrastructure.Pluralization;
-using Microsoft.Data.Entity.Design.VersioningFacade;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using System.Collections.Generic;
+using Microsoft.Data.Entity.Design.EntityFramework;
 
-namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade
+namespace Microsoft.Data.Entity.Tests.Design.EntityFramework
 {
     [TestClass]
     public class DependencyResolverTests

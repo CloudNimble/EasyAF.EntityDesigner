@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.Data.Entity.Design.XmlEngine.UI;
-using Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow.Descriptors;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.PropertyWindow;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Descriptors;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package;
 using System;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.Package
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
 {
     // <summary>
     //     This is a simple selection container object that

@@ -2,9 +2,9 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb.SchemaDiscovery;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb.SchemaDiscovery;
 
 namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
 {

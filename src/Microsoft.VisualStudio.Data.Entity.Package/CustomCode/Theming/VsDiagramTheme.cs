@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
-using Microsoft.Data.Entity.Design.Dsl.View;
+using Microsoft.Data.Entity.Design.Diagrams.View;
 using Microsoft.VisualStudio.PlatformUI;
 
-namespace Microsoft.Data.Entity.Design.Package.Theming
+namespace Microsoft.VisualStudio.Data.Entity.Package.Theming
 {
     /// <summary>
     ///     Pushes Visual Studio's themed colors into the diagram designer, and keeps them current.

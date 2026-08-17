@@ -3,9 +3,9 @@
 using System;
 using System.Diagnostics;
 using System.Xml;
-using Microsoft.Data.Entity.Design.VersioningFacade;
+using Microsoft.Data.Entity.Design.EntityFramework;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.Edmx
 {
     internal static class EdmxUtils
     {
@@ -18,7 +18,7 @@ namespace Microsoft.Data.Entity.Design.Model
 
             return
                 XmlReader.Create(
-                    assembly.GetManifestResourceStream("Microsoft.Data.Entity.Design.Model.Microsoft.Data.Entity.Design.Edmx_3.xsd"));
+                    assembly.GetManifestResourceStream("Microsoft.Data.Entity.Design.Edmx.Microsoft.Data.Entity.Design.Edmx_3.xsd"));
         }
     }
 }

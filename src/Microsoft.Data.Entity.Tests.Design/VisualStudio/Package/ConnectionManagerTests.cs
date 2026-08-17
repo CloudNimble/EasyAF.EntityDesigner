@@ -10,12 +10,12 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Microsoft.Data.Entity.Tests.Design.TestHelpers;
-using Resources = Microsoft.VisualStudio.Data.Entity.Design.Resources;
+using Resources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources;
 using VSLangProj;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.Package
 {

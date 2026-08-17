@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.Dialog;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Dialog;
 using Microsoft.VisualStudio.PlatformUI;
 using System;
 using System.ComponentModel;
@@ -10,9 +10,9 @@ using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Input;
-using EntityDesignerResources = Microsoft.VisualStudio.Data.Entity.Design.Resources;
+using EntityDesignerResources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
 {
     // <summary>
     // Interaction logic for EnumTypeDialog.xaml

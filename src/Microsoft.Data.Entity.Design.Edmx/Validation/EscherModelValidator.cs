@@ -5,14 +5,14 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Model.Mapping;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor;
 
-namespace Microsoft.Data.Entity.Design.Model.Validation
+namespace Microsoft.Data.Entity.Design.Edmx.Validation
 {
     internal static class EscherModelValidator
     {
@@ -85,7 +85,7 @@ namespace Microsoft.Data.Entity.Design.Model.Validation
             return false;
         }
 
-        internal class EscherModelValidatorVisitor : XmlEngine.Model.Visitor.Visitor
+        internal class EscherModelValidatorVisitor : global::Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor.Visitor
         {
             private readonly EFArtifactSet _artifactSet;
 

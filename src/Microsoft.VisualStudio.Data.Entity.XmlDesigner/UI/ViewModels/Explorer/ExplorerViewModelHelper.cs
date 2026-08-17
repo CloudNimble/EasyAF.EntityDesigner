@@ -7,7 +7,7 @@ using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 
-namespace Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.Explorer
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer
 {
     /// <summary>
     ///     Represents the ViewModel that will be exposed in the Explorer Window.

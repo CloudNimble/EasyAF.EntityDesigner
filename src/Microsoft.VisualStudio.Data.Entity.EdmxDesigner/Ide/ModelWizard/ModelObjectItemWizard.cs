@@ -2,18 +2,7 @@
 
 using EnvDTE;
 using EnvDTE80;
-using Microsoft.Data.Entity.Design.Extensibility;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Model.Integrity;
-using Microsoft.Data.Entity.Design.Model.Validation;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.Extensibility;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui;
 using Microsoft.VisualStudio.Data.Services;
 using Microsoft.VisualStudio.Modeling.Shell;
 using Microsoft.VisualStudio.Shell;
@@ -32,8 +21,20 @@ using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.VisualStudio.Data.Entity.Extensibility;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Integrity;
+using Microsoft.Data.Entity.Design.Edmx.Validation;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard
 {
     /// <summary>
     ///     Visual Studio invokes this wizard when a new item of type "ADO.NET Entity Data Model" is added
@@ -360,7 +361,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard
                             _edmxItem.ContainingProject,
                             string.Format(
                                 CultureInfo.CurrentCulture,
-                                Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Properties.Resources.WritingModelTimeMsg,
+                                Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.Resources.WritingModelTimeMsg,
                                 writingModelWatch.Elapsed));
                     }
 

@@ -7,9 +7,9 @@ using System.Data.Entity.Core.Common.CommandTrees;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
-using Microsoft.Data.Entity.Design.VersioningFacade;
+using Microsoft.Data.Entity.Design.EntityFramework;
 
-namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade
+namespace Microsoft.Data.Entity.Tests.Design.EntityFramework
 {
     [TestClass]
     public class DbProviderServicesResolverTests

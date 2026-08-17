@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb
+namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb
 {
     /// <summary>
     ///     Represents an entity set and the association sets incident to it,

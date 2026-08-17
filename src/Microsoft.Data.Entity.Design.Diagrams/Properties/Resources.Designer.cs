@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.Data.Entity.Design.Dsl.Properties {
+namespace Microsoft.Data.Entity.Design.Diagrams.Properties {
     using System;
     
     

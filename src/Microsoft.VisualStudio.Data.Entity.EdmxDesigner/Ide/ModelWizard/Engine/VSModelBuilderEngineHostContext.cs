@@ -2,7 +2,7 @@
 
 using System.Xml.Linq;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
 {
     internal class VSModelBuilderEngineHostContext : ModelBuilderEngineHostContext
     {

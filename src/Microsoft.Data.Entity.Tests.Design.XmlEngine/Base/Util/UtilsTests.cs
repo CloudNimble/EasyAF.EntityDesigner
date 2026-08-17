@@ -4,7 +4,7 @@ using FluentAssertions;
 using Microsoft.Data.Entity.Design.XmlEngine.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Microsoft.Data.Tools.Tests.Design.XmlCore.Base.Util
+namespace Microsoft.Data.Entity.Tests.Design.XmlEngine.Base.Util
 {
     [TestClass]
     public class UtilsTests

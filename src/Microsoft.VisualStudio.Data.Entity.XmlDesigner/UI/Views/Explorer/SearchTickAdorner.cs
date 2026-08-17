@@ -10,9 +10,9 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.Explorer;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer;
 
-namespace Microsoft.Data.Entity.Design.UI.Views.Explorer
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views.Explorer
 {
     internal class SearchTickAdorner : Adorner
     {

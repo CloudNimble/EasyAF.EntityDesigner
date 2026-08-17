@@ -3,7 +3,8 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 
 namespace Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid
 {

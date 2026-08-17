@@ -2,7 +2,7 @@
 
 using System.Windows.Forms;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider
 {
     /// <summary>
     ///     Interface that must be implemented to provide items for the tree. The IBranch

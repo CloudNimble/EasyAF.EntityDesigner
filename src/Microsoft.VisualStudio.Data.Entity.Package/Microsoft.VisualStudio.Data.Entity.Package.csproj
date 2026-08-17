@@ -188,40 +188,11 @@
         </VSCTCompile>
     </ItemGroup>
 
-    <!-- T4 Templates -->
+    <!-- T4 templates. Deliberately no <Generator>: these shims include %DslTemplatesSrc%DslPackage*.tt, an
+         environment variable the templating host expands, so Visual Studio firing the custom tool on a machine
+         without it fails on every one. The generated .cs is checked in; regeneration is a deliberate
+         msbuild /t:TransformAll with the variable set. See the matching note in the Diagrams project. -->
     <ItemGroup>
-        <None Update="GeneratedCode\CommandSet.tt">
-            <Generator>TextTemplatingFileGenerator</Generator>
-            <LastGenOutput>CommandSet.cs</LastGenOutput>
-        </None>
-        <None Update="GeneratedCode\Constants.tt">
-            <Generator>TextTemplatingFileGenerator</Generator>
-            <LastGenOutput>Constants.cs</LastGenOutput>
-        </None>
-        <None Update="GeneratedCode\DocData.tt">
-            <Generator>TextTemplatingFileGenerator</Generator>
-            <LastGenOutput>DocData.cs</LastGenOutput>
-        </None>
-        <None Update="GeneratedCode\DocView.tt">
-            <Generator>TextTemplatingFileGenerator</Generator>
-            <LastGenOutput>DocView.cs</LastGenOutput>
-        </None>
-        <None Update="GeneratedCode\EditorFactory.tt">
-            <Generator>TextTemplatingFileGenerator</Generator>
-            <LastGenOutput>EditorFactory.cs</LastGenOutput>
-        </None>
-        <None Update="GeneratedCode\ModelExplorer.tt">
-            <Generator>TextTemplatingFileGenerator</Generator>
-            <LastGenOutput>ModelExplorer.cs</LastGenOutput>
-        </None>
-        <None Update="GeneratedCode\ModelExplorerToolWindow.tt">
-            <Generator>TextTemplatingFileGenerator</Generator>
-            <LastGenOutput>ModelExplorerToolWindow.cs</LastGenOutput>
-        </None>
-        <None Update="GeneratedCode\Package.tt">
-            <Generator>TextTemplatingFileGenerator</Generator>
-            <LastGenOutput>Package.cs</LastGenOutput>
-        </None>
         <!-- T4 template for VSCT is disabled - Commands.vsct contains all content manually maintained -->
         <None Update="GeneratedCode\GeneratedVSCT.tt">
             <Generator></Generator>
@@ -267,48 +238,6 @@
     </ItemGroup>
     <ItemGroup>
       <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
-    </ItemGroup>
-    <ItemGroup>
-      <Compile Update="GeneratedCode\CommandSet.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>CommandSet.tt</DependentUpon>
-      </Compile>
-      <Compile Update="GeneratedCode\Constants.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>Constants.tt</DependentUpon>
-      </Compile>
-      <Compile Update="GeneratedCode\DocData.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>DocData.tt</DependentUpon>
-      </Compile>
-      <Compile Update="GeneratedCode\DocView.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>DocView.tt</DependentUpon>
-      </Compile>
-      <Compile Update="GeneratedCode\EditorFactory.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>EditorFactory.tt</DependentUpon>
-      </Compile>
-      <Compile Update="GeneratedCode\ModelExplorer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>ModelExplorer.tt</DependentUpon>
-      </Compile>
-      <Compile Update="GeneratedCode\ModelExplorerToolWindow.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>ModelExplorerToolWindow.tt</DependentUpon>
-      </Compile>
-      <Compile Update="GeneratedCode\Package.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>Package.tt</DependentUpon>
-      </Compile>
     </ItemGroup>
 
 

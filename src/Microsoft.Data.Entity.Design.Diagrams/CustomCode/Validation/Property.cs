@@ -2,12 +2,12 @@
 
 using System;
 using System.Globalization;
-using Microsoft.Data.Entity.Design.Model.Validation;
+using Microsoft.Data.Entity.Design.Edmx.Validation;
 using Microsoft.VisualStudio.Modeling.Validation;
-using EntityDesignerRes = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
-using ModelRes = Microsoft.Data.Entity.Design.Model.Resources;
+using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.Resources;
+using ModelRes = Microsoft.Data.Entity.Design.Edmx.Resources;
 
-namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
+namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
 {
     [ValidationState(ValidationState.Disabled)]
     internal partial class Property

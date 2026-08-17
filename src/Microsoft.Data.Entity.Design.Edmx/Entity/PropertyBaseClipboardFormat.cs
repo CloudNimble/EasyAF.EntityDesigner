@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Reflection;
 
-namespace Microsoft.Data.Entity.Design.Model.Entity
+namespace Microsoft.Data.Entity.Design.Edmx.Entity
 {
     [Serializable]
     internal abstract class PropertyBaseClipboardFormat : AnnotatableElementClipboardFormat

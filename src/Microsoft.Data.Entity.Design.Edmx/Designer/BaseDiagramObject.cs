@@ -2,12 +2,12 @@
 
 using System.Diagnostics;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.Model.Designer;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
 // Temporary workaround, this interface should be remove shortly.
 
-namespace Microsoft.Data.Entity.Design.Model.Designer
+namespace Microsoft.Data.Entity.Design.Edmx.Designer
 {
     internal interface DiagramEFObject
     {

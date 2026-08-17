@@ -6,7 +6,7 @@ using System.Diagnostics;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 
-namespace Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow.Descriptors
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Descriptors
 {
     // The instance of this class decides when to begin/end an undo scope.
     // This enables operations among PropertyTypeDescriptors to be grouped in a single transaction.

@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.VersioningFacade.Serialization;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
 using System;
 using System.Collections.Generic;
@@ -8,8 +7,9 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Infrastructure;
 using System.Text;
 using System.Xml;
+using Microsoft.Data.Entity.Design.EntityFramework.Serialization;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
 {
     internal class CodeFirstModelBuilderEngine : ModelBuilderEngine
     {

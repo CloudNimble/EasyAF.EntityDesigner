@@ -2,7 +2,7 @@
 
 using System.Diagnostics;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider
 {
     /// <summary>
     ///     Data for modifying the relative level of items below a given branch

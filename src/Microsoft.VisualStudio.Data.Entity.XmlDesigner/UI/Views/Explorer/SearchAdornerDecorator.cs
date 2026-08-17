@@ -5,9 +5,9 @@ using System.Windows;
 using System.Windows.Automation.Peers;
 using System.Windows.Controls;
 using System.Windows.Documents;
-using Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.Explorer;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer;
 
-namespace Microsoft.Data.Entity.Design.UI.Views.Explorer
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views.Explorer
 {
     /// <summary>
     ///     This API supports the Entity Framework infrastructure and is not intended to be used directly from your code.

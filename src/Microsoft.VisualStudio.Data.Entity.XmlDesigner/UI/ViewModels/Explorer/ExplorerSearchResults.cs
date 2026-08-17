@@ -7,9 +7,8 @@ using System.Globalization;
 using System.Text;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor;
-using Microsoft.Data.Tools.XmlDesignerBase;
 
-namespace Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.Explorer
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer
 {
     /// <summary>
     ///     This class represents the ExplorerSearchResults context item kept in sorted order.
@@ -419,12 +418,12 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.Explorer
                 }
                 individualResultsAsStringBuilder.AppendLine(
                     string.Format(
-                        CultureInfo.CurrentCulture, Resources.ExplorerSearchResults_IndividualFormat, index++, explorerElement.Name,
+                        CultureInfo.CurrentCulture, global::Microsoft.Data.Entity.Design.XmlEngine.Resources.ExplorerSearchResults_IndividualFormat, index++, explorerElement.Name,
                         explorerElement.GetType().Name));
             }
 
             return string.Format(
-                CultureInfo.CurrentCulture, Resources.ExplorerSearchResults_OverallFormat, _results.Count, individualResultsAsStringBuilder,
+                CultureInfo.CurrentCulture, global::Microsoft.Data.Entity.Design.XmlEngine.Resources.ExplorerSearchResults_OverallFormat, _results.Count, individualResultsAsStringBuilder,
                 _previousSearchResultItemIndex, _nextSearchResultItemIndex, _currentSelectionIsInResults);
         }
     }

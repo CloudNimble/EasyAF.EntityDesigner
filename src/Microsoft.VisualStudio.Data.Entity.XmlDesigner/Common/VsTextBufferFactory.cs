@@ -2,14 +2,14 @@
 
 using System;
 using System.Runtime.InteropServices;
-using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TextManager.Interop;
 using IServiceProvider = Microsoft.VisualStudio.OLE.Interop.IServiceProvider;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.Common
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common
 {
     internal class VsTextBufferFactory
     {

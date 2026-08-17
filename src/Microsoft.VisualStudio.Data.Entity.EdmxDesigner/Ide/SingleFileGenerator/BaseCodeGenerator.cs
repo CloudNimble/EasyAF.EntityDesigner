@@ -5,7 +5,7 @@ using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.SingleFileGenerator
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.SingleFileGenerator
 {
     /// <summary>
     ///     A managed wrapper for VS's concept of an IVsSingleFileGenerator which is

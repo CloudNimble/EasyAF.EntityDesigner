@@ -3,7 +3,7 @@
 using System;
 using System.Globalization;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider
 {
     /// <summary>
     ///     Data returned by the ITree.GetItemInfo method.

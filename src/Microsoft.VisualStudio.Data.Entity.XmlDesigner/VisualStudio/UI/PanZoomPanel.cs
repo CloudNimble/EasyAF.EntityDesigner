@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.PlatformUI;
 
-namespace Microsoft.Data.Entity.Design.Package
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.UI
 {
     /// <summary>
     ///     Diagram thumbnail control to be used in pan/zoom window and thumbnail view features.

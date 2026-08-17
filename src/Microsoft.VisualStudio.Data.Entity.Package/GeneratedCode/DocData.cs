@@ -15,7 +15,7 @@ using VSShellInterop = global::Microsoft.VisualStudio.Shell.Interop;
 using global::System.Linq;
 using System.Diagnostics;
 
-namespace Microsoft.Data.Entity.Design.Package
+namespace Microsoft.VisualStudio.Data.Entity.Package
 {
     /// <summary>
 	/// Double-derived class to allow easier code customization.
@@ -63,7 +63,7 @@ namespace Microsoft.Data.Entity.Design.Package
         {
             get
             {
-                return global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("FormatList");
+                return global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("FormatList");
             }
         }
 
@@ -157,7 +157,7 @@ namespace Microsoft.Data.Entity.Design.Package
         {
             // Log and suppress all binding failure exceptions.
             string errorMessage = string.Format(global::System.Globalization.CultureInfo.CurrentCulture,
-                global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("BindingErrorOccurred"),
+                global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("BindingErrorOccurred"),
                 exception.ToString());
 
             this.AddErrorListItem(new DslShell::SimpleErrorListItem(errorMessage, this.FileName, global::Microsoft.VisualStudio.Shell.TaskPriority.Normal, global::Microsoft.VisualStudio.Shell.TaskErrorCategory.Warning));
@@ -320,7 +320,7 @@ namespace Microsoft.Data.Entity.Design.Package
             global::System.Collections.Generic.List<global::System.Type> allTypes = new System.Collections.Generic.List<System.Type>();
 
             // In the type of our base domain model
-            allTypes.Add(typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel));
+            allTypes.Add(typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel));
 
             // Add in any extension domain models
             global::System.Collections.Generic.IEnumerable<global::System.Type> extensionTypes = this.GetExtensionDomainModels();
@@ -344,7 +344,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 return null;
             }
 
-            global::System.Collections.Generic.IEnumerable<global::System.Type> extensionDomainModels = this.ExtensionLocator.GetExtendingDomainModels(typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel));
+            global::System.Collections.Generic.IEnumerable<global::System.Type> extensionDomainModels = this.ExtensionLocator.GetExtendingDomainModels(typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel));
 
             return extensionDomainModels;
         }
@@ -358,12 +358,12 @@ namespace Microsoft.Data.Entity.Design.Package
         protected override void Load(string fileName, bool isReload)
         {
             DslModeling::SerializationResult serializationResult = new DslModeling::SerializationResult();
-            global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel modelRoot = null;
+            global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel modelRoot = null;
             DslModeling::ISchemaResolver schemaResolver = new DslShell::ModelingSchemaResolver(this.ServiceProvider);
             //clear the current root element
             this.SetRootElement(null);
             // Enable diagram fixup rules in our store, because we will load diagram data.
-            global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.EnableDiagramRules(this.Store);
+            global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel.EnableDiagramRules(this.Store);
             string diagramFileName = fileName + this.DiagramExtension;
 
             var modelPartition = this.GetModelPartition();
@@ -379,7 +379,7 @@ namespace Microsoft.Data.Entity.Design.Package
 
             try
             {
-                modelRoot = global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignSerializationHelper.Instance.LoadModelAndDiagram(serializationResult, modelPartition, fileName, diagramPartition, diagramFileName, schemaResolver, this.ValidationController, this.SerializerLocator);
+                modelRoot = global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignSerializationHelper.Instance.LoadModelAndDiagram(serializationResult, modelPartition, fileName, diagramPartition, diagramFileName, schemaResolver, this.ValidationController, this.SerializerLocator);
             }
             catch (global::System.NullReferenceException ex)
             {
@@ -415,7 +415,7 @@ namespace Microsoft.Data.Entity.Design.Package
             if (serializationResult.Failed)
             {
                 // Load failed, can't open the file.
-                throw new global::System.InvalidOperationException(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("CannotOpenDocument"));
+                throw new global::System.InvalidOperationException(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("CannotOpenDocument"));
             }
             else
             {
@@ -440,7 +440,7 @@ namespace Microsoft.Data.Entity.Design.Package
                             if (this.diagramDocumentLockHolder == null)
                             {
                                 throw new global::System.InvalidOperationException(string.Format(global::System.Globalization.CultureInfo.CurrentCulture,
-                                                    global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("CannotCloseExistingDiagramDocument"),
+                                                    global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("CannotCloseExistingDiagramDocument"),
                                                     diagramFileName));
                             }
                         }
@@ -477,13 +477,13 @@ namespace Microsoft.Data.Entity.Design.Package
             this.ValidationController.Validate(this.GetAllElementsForValidation(), DslValidation::ValidationCategories.Open);
 
             // Enable CompartmentItems events.
-            global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel modelRoot = this.RootElement as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel;
+            global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel modelRoot = this.RootElement as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel;
             if (modelRoot != null)
             {
                 global::System.Collections.Generic.IList<DslDiagrams::PresentationElement> diagrams = DslDiagrams::PresentationViewsSubject.GetPresentation(modelRoot);
                 if (diagrams.Count > 0)
                 {
-                    global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface diagram = diagrams[0] as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface;
+                    global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface diagram = diagrams[0] as global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface;
                     if (diagram != null)
                     {
                         diagram.SubscribeCompartmentItemsEvents();
@@ -517,7 +517,7 @@ namespace Microsoft.Data.Entity.Design.Package
                 if (vc.ErrorMessages.Count != 0)
                 {
                     string errorMsg = (unloadableError ? "UnloadableSaveValidationFailed" : "SaveValidationFailed");
-                    global::System.Windows.Forms.DialogResult result = DslShell::PackageUtility.ShowMessageBox(this.ServiceProvider, global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString(errorMsg), VSShellInterop::OLEMSGBUTTON.OLEMSGBUTTON_YESNO, VSShellInterop::OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_SECOND, VSShellInterop::OLEMSGICON.OLEMSGICON_WARNING);
+                    global::System.Windows.Forms.DialogResult result = DslShell::PackageUtility.ShowMessageBox(this.ServiceProvider, global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString(errorMsg), VSShellInterop::OLEMSGBUTTON.OLEMSGBUTTON_YESNO, VSShellInterop::OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_SECOND, VSShellInterop::OLEMSGICON.OLEMSGICON_WARNING);
                     return (result == global::System.Windows.Forms.DialogResult.Yes);
                 }
             }
@@ -568,7 +568,7 @@ namespace Microsoft.Data.Entity.Design.Package
         protected override void Save(string fileName)
         {
             DslModeling::SerializationResult serializationResult = new DslModeling::SerializationResult();
-            global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel modelRoot = (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel)this.RootElement;
+            global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel modelRoot = (global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel)this.RootElement;
 
 
             // Only save the diagrams if
@@ -581,7 +581,7 @@ namespace Microsoft.Data.Entity.Design.Package
             global::System.Collections.Generic.IList<DslDiagrams::PresentationElement> diagrams = DslDiagrams::PresentationViewsSubject.GetPresentation(this.RootElement);
             if (diagrams.Count > 0 && (!saveAs || this.diagramDocumentLockHolder == null))
             {
-                global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface diagram = diagrams[0] as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface;
+                global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface diagram = diagrams[0] as global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface;
                 if (diagram != null)
                 {
                     string diagramFileName = fileName + this.DiagramExtension;
@@ -589,7 +589,7 @@ namespace Microsoft.Data.Entity.Design.Package
                     {
                         this.SuspendFileChangeNotification(diagramFileName);
 
-                        global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignSerializationHelper.Instance.SaveModelAndDiagram(serializationResult, modelRoot, fileName, diagram, diagramFileName, this.Encoding, false);
+                        global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignSerializationHelper.Instance.SaveModelAndDiagram(serializationResult, modelRoot, fileName, diagram, diagramFileName, this.Encoding, false);
                     }
                     finally
                     {
@@ -599,7 +599,7 @@ namespace Microsoft.Data.Entity.Design.Package
             }
             else
             {
-                global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignSerializationHelper.Instance.SaveModel(serializationResult, modelRoot, fileName, this.Encoding, false);
+                global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignSerializationHelper.Instance.SaveModel(serializationResult, modelRoot, fileName, this.Encoding, false);
             }
             // Report serialization messages.
             this.SuspendErrorListRefresh();
@@ -617,7 +617,7 @@ namespace Microsoft.Data.Entity.Design.Package
 
             if (serializationResult.Failed)
             {   // Save failed.
-                throw new global::System.InvalidOperationException(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("CannotSaveDocument"));
+                throw new global::System.InvalidOperationException(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("CannotSaveDocument"));
             }
         }
         /// <summary>
@@ -653,14 +653,14 @@ namespace Microsoft.Data.Entity.Design.Package
             global::System.Collections.Generic.IList<DslDiagrams::PresentationElement> diagrams = DslDiagrams::PresentationViewsSubject.GetPresentation(this.RootElement);
             if (diagrams.Count > 0)
             {
-                global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface diagram = diagrams[0] as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface;
+                global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface diagram = diagrams[0] as global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface;
                 if (diagram != null)
                 {
                     try
                     {
                         this.SuspendFileChangeNotification(fileName);
 
-                        global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignSerializationHelper.Instance.SaveDiagram(serializationResult, diagram, fileName, this.Encoding, false);
+                        global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignSerializationHelper.Instance.SaveDiagram(serializationResult, diagram, fileName, this.Encoding, false);
                     }
                     finally
                     {
@@ -689,7 +689,7 @@ namespace Microsoft.Data.Entity.Design.Package
             else
             {
                 // Save failed.
-                throw new global::System.InvalidOperationException(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("CannotSaveDocument"));
+                throw new global::System.InvalidOperationException(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("CannotSaveDocument"));
             }
         }
 
@@ -714,11 +714,11 @@ namespace Microsoft.Data.Entity.Design.Package
         {
             get
             {
-                global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel modelRoot = this.RootElement as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel;
+                global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel modelRoot = this.RootElement as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel;
                 string modelFile = string.Empty;
                 if (modelRoot != null)
                 {
-                    modelFile = global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignSerializationHelper.Instance.GetSerializedModelString(modelRoot, this.Encoding);
+                    modelFile = global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignSerializationHelper.Instance.GetSerializedModelString(modelRoot, this.Encoding);
                 }
                 return modelFile;
             }

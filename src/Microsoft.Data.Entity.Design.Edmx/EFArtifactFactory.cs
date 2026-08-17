@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.Edmx
 {
     internal class EFArtifactFactory : IEFArtifactFactory
     {

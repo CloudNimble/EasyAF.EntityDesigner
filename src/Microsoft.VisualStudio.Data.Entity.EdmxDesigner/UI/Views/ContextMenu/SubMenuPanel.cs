@@ -7,7 +7,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Threading;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.ContextMenu
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu
 {
     /// <summary>
     /// A panel that displays a submenu popup on hover after a system-defined delay.

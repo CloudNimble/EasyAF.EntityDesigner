@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.Dsl.View;
+using Microsoft.Data.Entity.Design.Diagrams.View;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -8,8 +8,9 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using Microsoft.VisualStudio.PlatformUI;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.ContextMenu
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu
 {
     /// <summary>
     /// A Windows 11-style context menu for the Entity Designer diagram surface.

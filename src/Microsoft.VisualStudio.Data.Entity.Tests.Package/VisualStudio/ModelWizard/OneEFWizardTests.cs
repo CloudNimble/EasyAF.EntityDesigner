@@ -3,7 +3,7 @@
 using System.Data.Entity.Infrastructure;
 using System.IO;
 using EnvDTE;
-using Microsoft.Data.Tools.XmlDesignerBase;
+using Microsoft.Data.Entity.Design.XmlEngine;
 using Microsoft.VisualStudio.Shell.Interop;
 using Moq;
 using System;
@@ -16,14 +16,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using IOleServiceProvider = Microsoft.VisualStudio.OLE.Interop.IServiceProvider;
 using System.Reflection;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration;
 
-namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard
+namespace Microsoft.VisualStudio.Data.Entity.Tests.Package.VisualStudio.ModelWizard
 {
     [TestClass]
     public class OneEFWizardTests

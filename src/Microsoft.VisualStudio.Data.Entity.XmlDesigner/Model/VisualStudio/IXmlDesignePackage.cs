@@ -2,10 +2,10 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio
 {
     internal interface IXmlDesignerPackage : IServiceProvider
     {

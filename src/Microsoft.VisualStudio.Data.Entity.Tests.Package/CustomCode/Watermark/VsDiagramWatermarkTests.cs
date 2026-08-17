@@ -2,20 +2,20 @@
 
 using System;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.Package;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
-using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.Package.Watermark;
 
-namespace Microsoft.Data.Entity.Tests.Design.Package.Watermark
+namespace Microsoft.VisualStudio.Data.Entity.Tests.Package.Watermark
 {
     /// <summary>
     ///     Tests for VsDiagramWatermark.

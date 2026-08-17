@@ -3,11 +3,10 @@
 using VSErrorHandler = Microsoft.VisualStudio.ErrorHandler;
 using System;
 using System.IO;
-using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.Package
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package
 {
     // <summary>
     //     This is just wrapper for project item path

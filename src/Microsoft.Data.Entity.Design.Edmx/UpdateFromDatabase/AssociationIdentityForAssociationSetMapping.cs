@@ -3,11 +3,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
-using Microsoft.Data.Entity.Design.Model.Database;
-using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Model.Mapping;
+using Microsoft.Data.Entity.Design.Edmx.Database;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
 
-namespace Microsoft.Data.Entity.Design.Model.UpdateFromDatabase
+namespace Microsoft.Data.Entity.Design.Edmx.UpdateFromDatabase
 {
     /// <summary>
     ///     The identity of a given C-side Association consists of the table

@@ -3,7 +3,7 @@
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using System.Diagnostics;
 
-namespace Microsoft.Data.Entity.Design.Model.Mapping
+namespace Microsoft.Data.Entity.Design.Edmx.Mapping
 {
     internal static class EntityTypeMappingTypeNameNormalizer
     {

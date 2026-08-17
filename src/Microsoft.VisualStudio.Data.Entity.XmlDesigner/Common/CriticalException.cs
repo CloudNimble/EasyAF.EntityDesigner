@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using Microsoft.Win32;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.Common
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common
 {
     internal static class CriticalException
     {

@@ -3,7 +3,7 @@
 using System;
 using System.Diagnostics;
 using System.Linq;
-using Microsoft.Data.Entity.Design.Model;
+using Microsoft.Data.Entity.Design.Edmx;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.StandAlone;
 

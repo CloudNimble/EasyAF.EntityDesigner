@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 using Microsoft.VisualStudio.PlatformUI;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Forms.Design;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
 {
     /// <summary>
     /// Displays a dialog that allows the user to choose to never see it again via a checkbox.

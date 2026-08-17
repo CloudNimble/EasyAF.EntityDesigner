@@ -3,7 +3,7 @@
 using System;
 using System.ComponentModel.Composition;
 
-namespace Microsoft.Data.Entity.Design.Extensibility
+namespace Microsoft.VisualStudio.Data.Entity.Extensibility
 {
 
     /// <summary>

@@ -1,11 +1,11 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.Dsl.View;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
+using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
+using Microsoft.Data.Entity.Design.Diagrams.View;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 
-namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
+namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
 {
     internal class AssociationConnectorDelete : AssociationConnectorModelChange
     {
@@ -22,7 +22,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
 
             if (viewModel != null)
             {
-                if (viewModel.ModelXRef.GetExisting(AssociationConnector) is Model.Designer.AssociationConnector modelAssociationConnector)
+                if (viewModel.ModelXRef.GetExisting(AssociationConnector) is Edmx.Designer.AssociationConnector modelAssociationConnector)
                 {
                     DeleteEFElementCommand.DeleteInTransaction(cpc, modelAssociationConnector);
                     viewModel.ModelXRef.Remove(modelAssociationConnector, AssociationConnector);

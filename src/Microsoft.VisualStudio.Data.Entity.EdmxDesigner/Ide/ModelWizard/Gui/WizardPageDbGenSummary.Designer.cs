@@ -2,7 +2,7 @@
 
 using System;
 using System.Globalization;
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
 {
     using System.Diagnostics.CodeAnalysis;
 

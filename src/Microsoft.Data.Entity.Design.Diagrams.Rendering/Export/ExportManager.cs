@@ -1,8 +1,12 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export.Mermaid;
+using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export.Raster;
+using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export.Svg;
+using Microsoft.Data.Entity.Design.Diagrams.View;
 using System;
 
-namespace Microsoft.Data.Entity.Design.Dsl.View.Export
+namespace Microsoft.Data.Entity.Design.Diagrams.Rendering.Export
 {
 
     /// <summary>

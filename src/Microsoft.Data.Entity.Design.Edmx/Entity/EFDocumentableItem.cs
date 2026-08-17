@@ -5,7 +5,7 @@ using System.Xml.Linq;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
-namespace Microsoft.Data.Entity.Design.Model.Entity
+namespace Microsoft.Data.Entity.Design.Edmx.Entity
 {
     internal abstract class EFDocumentableItem : EFNameableItem
     {

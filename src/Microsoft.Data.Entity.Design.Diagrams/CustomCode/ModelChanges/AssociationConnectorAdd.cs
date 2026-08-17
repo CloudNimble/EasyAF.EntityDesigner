@@ -1,14 +1,14 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
-using Microsoft.Data.Entity.Design.Model.Commands;
-using Microsoft.Data.Entity.Design.Model.Designer;
+using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
+using Diagram = Microsoft.Data.Entity.Design.Edmx.Designer.Diagram;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
-using Association = Microsoft.Data.Entity.Design.Model.Entity.Association;
-using AssociationConnector = Microsoft.Data.Entity.Design.Dsl.View.AssociationConnector;
+using Association = Microsoft.Data.Entity.Design.Edmx.Entity.Association;
+using AssociationConnector = Microsoft.Data.Entity.Design.Diagrams.View.AssociationConnector;
 
-namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
+namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
 {
     internal class AssociationConnectorAdd : AssociationConnectorModelChange
     {

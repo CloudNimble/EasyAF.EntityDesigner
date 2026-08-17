@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Xml.Linq;
 
-namespace Microsoft.Data.Entity.Design.Model.Mapping
+namespace Microsoft.Data.Entity.Design.Edmx.Mapping
 {
     internal class DeleteFunction : ModificationFunction
     {

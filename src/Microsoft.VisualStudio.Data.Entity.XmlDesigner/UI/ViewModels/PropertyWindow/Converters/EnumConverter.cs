@@ -4,9 +4,8 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Reflection;
-using Microsoft.Data.Entity.Design.XmlEngine.UI.Controls;
 
-namespace Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow.Converters
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Converters
 {
     /// <summary>
     ///     type converter for enums, with support for a Description attribute on the enum values

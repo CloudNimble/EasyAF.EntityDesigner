@@ -7,7 +7,7 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade
+namespace Microsoft.Data.Entity.Design.EntityFramework
 {
 
     /// <summary>

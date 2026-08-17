@@ -11,14 +11,11 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using EnvDTE;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Data.Tools.Design.XmlCore;
-using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.Common
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common
 {
 
     /// <summary>
@@ -159,10 +156,10 @@ namespace Microsoft.Data.Tools.VSXmlDesignerBase.Common
             }
 
             _invisibleEditorManager =
-                Package.GetGlobalService(typeof(VsShell.SVsInvisibleEditorManager)) as VsShell.IVsInvisibleEditorManager;
-            _runningDocumentTable = Package.GetGlobalService(typeof(VsShell.IVsRunningDocumentTable)) as VsShell.IVsRunningDocumentTable;
-            _dte = Package.GetGlobalService(typeof(_DTE)) as _DTE;
-            _uiShell = Package.GetGlobalService(typeof(VsShell.SVsUIShell)) as VsShell.IVsUIShell;
+                global::Microsoft.VisualStudio.Shell.Package.GetGlobalService(typeof(VsShell.SVsInvisibleEditorManager)) as VsShell.IVsInvisibleEditorManager;
+            _runningDocumentTable = global::Microsoft.VisualStudio.Shell.Package.GetGlobalService(typeof(VsShell.IVsRunningDocumentTable)) as VsShell.IVsRunningDocumentTable;
+            _dte = global::Microsoft.VisualStudio.Shell.Package.GetGlobalService(typeof(_DTE)) as _DTE;
+            _uiShell = global::Microsoft.VisualStudio.Shell.Package.GetGlobalService(typeof(VsShell.SVsUIShell)) as VsShell.IVsUIShell;
             if (_uiShell is null)
             {
                 throw new InvalidOperationException("Could not get _uiShell!");

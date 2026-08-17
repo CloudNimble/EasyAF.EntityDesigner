@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 
-namespace Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow.Descriptors
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Descriptors
 {
     /// <summary>
     ///     this interface is to be implemented by descriptors and expandable property

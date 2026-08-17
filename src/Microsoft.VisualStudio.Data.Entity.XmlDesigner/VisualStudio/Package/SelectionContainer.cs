@@ -3,16 +3,16 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Threading;
-using Microsoft.Data.Entity.Design.VisualStudio.Providers;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
-using Microsoft.Data.Entity.Design.XmlEngine.UI;
-using Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow.Descriptors;
-using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Descriptors;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Providers;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.Package
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package
 {
     /// <summary>
     ///     This is a simple selection container object that

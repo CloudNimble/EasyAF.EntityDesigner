@@ -4,10 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
-using Microsoft.VisualStudio.Data.Tools.Design.XmlCore;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.Refactoring
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Refactoring
 {
     /// <summary>
     ///     This class contains all preview data for an RefactorOperation.

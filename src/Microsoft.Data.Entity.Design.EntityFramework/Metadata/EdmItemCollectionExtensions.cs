@@ -3,7 +3,7 @@
 using System;
 using System.Data.Entity.Core.Metadata.Edm;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade.Metadata
+namespace Microsoft.Data.Entity.Design.EntityFramework.Metadata
 {
     internal static class EdmItemCollectionExtensions
     {

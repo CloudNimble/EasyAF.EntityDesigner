@@ -2,9 +2,9 @@
 
 using EnvDTE;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.TemplateWizard;
 using System;
@@ -16,7 +16,7 @@ using System.IO;
 using System.Linq;
 using IOleServiceProvider = Microsoft.VisualStudio.OLE.Interop.IServiceProvider;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard
 {
     /// <summary>
     /// This API supports the Entity Framework infrastructure and is not intended to be used directly from your code.

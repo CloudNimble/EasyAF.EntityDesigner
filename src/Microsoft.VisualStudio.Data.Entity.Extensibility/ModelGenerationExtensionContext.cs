@@ -3,7 +3,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace Microsoft.Data.Entity.Design.Extensibility
+namespace Microsoft.VisualStudio.Data.Entity.Extensibility
 {
 
     /// <summary>
@@ -45,8 +45,8 @@ namespace Microsoft.Data.Entity.Design.Extensibility
         /// The wizard that initiated the .edmx file generation or update process.
         /// </summary>
         /// <value>
-        /// <see cref="Extensibility.WizardKind.Generate" /> when a new model is being created, or
-        /// <see cref="Extensibility.WizardKind.UpdateModel" /> when an existing model is being refreshed.
+        /// <see cref="WizardKind.Generate" /> when a new model is being created, or
+        /// <see cref="WizardKind.UpdateModel" /> when an existing model is being refreshed.
         /// </value>
         public abstract WizardKind WizardKind { get; }
 

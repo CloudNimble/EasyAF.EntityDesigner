@@ -9,7 +9,7 @@
 using System;
 using System.Drawing;
 
-namespace Microsoft.Data.Entity.Design.Model.Designer
+namespace Microsoft.Data.Entity.Design.Edmx.Designer
 {
     internal static class EntityDesignerDiagramConstant
     {

@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using FluentAssertions;
-using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Engine
 {

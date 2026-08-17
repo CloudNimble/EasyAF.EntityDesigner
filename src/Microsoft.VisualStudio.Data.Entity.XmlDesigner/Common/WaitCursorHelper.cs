@@ -3,7 +3,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.Common
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common
 {
     /// <summary>
     ///     Useful class that creates a disposable item controlling the VS wait cursor.

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.SingleFileGenerator {
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.SingleFileGenerator {
     using System;
     
     

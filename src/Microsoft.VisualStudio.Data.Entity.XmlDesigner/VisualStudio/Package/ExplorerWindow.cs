@@ -8,13 +8,11 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
 using System.Windows.Input;
-using Microsoft.Data.Entity.Design.UI.Views;
-using Microsoft.Data.Entity.Design.UI.Views.Explorer;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
-using Microsoft.Data.Entity.Design.XmlEngine.UI.Views.Explorer;
-using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
-using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views.Explorer;
 using Microsoft.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -23,7 +21,7 @@ using Cursors = System.Windows.Forms.Cursors;
 using MenuItem = System.Windows.Controls.MenuItem;
 using Point = System.Drawing.Point;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.Package
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package
 {
     internal abstract class ExplorerWindow : ToolWindowPane, IVsWindowFrameNotify3
     {

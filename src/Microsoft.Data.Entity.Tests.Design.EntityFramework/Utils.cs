@@ -7,10 +7,10 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Infrastructure.DependencyResolution;
 using System.IO;
 using System.Xml;
-using Microsoft.Data.Entity.Design.VersioningFacade;
+using Microsoft.Data.Entity.Design.EntityFramework;
 using Moq;
 
-namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade
+namespace Microsoft.Data.Entity.Tests.Design.EntityFramework
 {
     internal class Utils
     {

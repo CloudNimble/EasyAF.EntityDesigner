@@ -6,9 +6,8 @@ using System.Diagnostics;
 using System.Globalization;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.Data.Tools.XmlDesignerBase;
 
-namespace Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.Explorer
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer
 {
     internal abstract class ModelToExplorerModelXRef : ContextItem
     {
@@ -96,11 +95,11 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.Explorer
                     Debug.Fail(
                         string.Format(
                             CultureInfo.CurrentCulture,
-                            Resources.BadInsertChildAlreadyExists, efElement.GetType().FullName, parent.GetType().FullName));
+                            global::Microsoft.Data.Entity.Design.XmlEngine.Resources.BadInsertChildAlreadyExists, efElement.GetType().FullName, parent.GetType().FullName));
                     return null;
                     // TODO: we need to provide a general exception-handling mechanism and replace the above Assert()
                     // by e.g. the excepiton below
-                    // throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.BadInsertChildAlreadyExists, efElement.GetType().FullName, parent.GetType().FullName));
+                    // throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, global::Microsoft.Data.Entity.Design.XmlEngine.Resources.BadInsertChildAlreadyExists, efElement.GetType().FullName, parent.GetType().FullName));
                 }
                 else
                 {

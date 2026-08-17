@@ -5,20 +5,20 @@ using System.IO;
 using System.Xml;
 using System.Xml.Linq;
 using EnvDTE;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Designer;
-using Microsoft.Data.Entity.Design.VersioningFacade;
 using Microsoft.VisualStudio.Shell.Interop;
 using Moq;
 using Microsoft.Data.Entity.Tests.Design.TestHelpers;
 using VSLangProj;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
-using Resources = Microsoft.VisualStudio.Data.Entity.Design.Resources;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Resources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio
 {

@@ -6,7 +6,7 @@ using System.Diagnostics;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.Edmx
 {
     internal class EDMXModelChangeEventArgs : ModelChangeEventArgs
     {

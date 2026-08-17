@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Globalization;
 using System.Linq;
-using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb;
-using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb.SchemaDiscovery;
+using Microsoft.Data.Entity.Design.EntityFramework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb.SchemaDiscovery;
+using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb;
 
 namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
 {

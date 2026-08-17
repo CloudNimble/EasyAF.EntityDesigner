@@ -6,9 +6,9 @@ using Microsoft.VisualStudio.TextTemplating.VSHost;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Generators;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Generators;
 
-namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
+namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration.Generators
 {
     [TestClass]
     public class TextTemplatingHostTests

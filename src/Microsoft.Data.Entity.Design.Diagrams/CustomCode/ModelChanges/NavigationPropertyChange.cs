@@ -1,12 +1,13 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.Dsl.Rules;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
-using Microsoft.Data.Entity.Design.Model.Commands;
+using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
+using Microsoft.Data.Entity.Design.Diagrams.Rules;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 
-namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
+namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
 {
     internal class NavigationPropertyChange : ViewModelChange
     {
@@ -24,7 +25,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
 
             if (viewModel != null)
             {
-                Model.Entity.NavigationProperty property = viewModel.ModelXRef.GetExisting(_property) as Model.Entity.NavigationProperty;
+                Edmx.Entity.NavigationProperty property = viewModel.ModelXRef.GetExisting(_property) as Edmx.Entity.NavigationProperty;
                 Debug.Assert(property != null);
 
                 Command c = new EntityDesignRenameCommand(property, _property.Name, true);

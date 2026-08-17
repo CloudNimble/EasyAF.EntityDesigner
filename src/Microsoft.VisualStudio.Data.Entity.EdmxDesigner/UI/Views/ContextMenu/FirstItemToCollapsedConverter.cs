@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.ContextMenu
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu
 {
     /// <summary>
     /// Converts the first item in an ItemsControl to Collapsed, all others to Visible.

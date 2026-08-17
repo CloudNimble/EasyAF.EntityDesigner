@@ -10,7 +10,7 @@ using System.Globalization;
 using System.Linq;
 using System.Xml.Linq;
 using Microsoft.Data.Entity.Design.DatabaseGeneration.Properties;
-using Microsoft.Data.Entity.Design.VersioningFacade;
+using Microsoft.Data.Entity.Design.EntityFramework;
 
 namespace Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators
 {

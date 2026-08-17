@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using WizardResources = Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Properties.Resources;
+using WizardResources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.Resources;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui.ViewModels
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui.ViewModels
 {
     internal class RuntimeConfigViewModel
     {

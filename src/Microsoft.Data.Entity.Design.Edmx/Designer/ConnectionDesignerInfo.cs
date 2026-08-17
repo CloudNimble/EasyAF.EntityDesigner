@@ -4,7 +4,7 @@ using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
-namespace Microsoft.Data.Entity.Design.Model.Designer
+namespace Microsoft.Data.Entity.Design.Edmx.Designer
 {
     internal class ConnectionDesignerInfo : DesignerInfo
     {

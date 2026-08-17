@@ -3,11 +3,10 @@
 using VSErrorHandler = Microsoft.VisualStudio.ErrorHandler;
 using System;
 using System.Collections.Generic;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.OLE.Interop;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio
 {
     /// <summary>
     ///     This class is a single undo unit that can hold multiple child undo units.  When an instance is

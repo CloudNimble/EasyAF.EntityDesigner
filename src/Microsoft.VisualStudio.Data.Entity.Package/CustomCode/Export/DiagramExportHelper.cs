@@ -2,10 +2,10 @@
 
 using System.Diagnostics;
 using System.IO;
-using Microsoft.Data.Entity.Design.Dsl.View;
-using Microsoft.Data.Entity.Design.Dsl.View.Export;
+using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export;
+using Microsoft.Data.Entity.Design.Diagrams.View;
 
-namespace Microsoft.Data.Entity.Design.Package
+namespace Microsoft.VisualStudio.Data.Entity.Package.Export
 {
     /// <summary>
     ///     Drives the interactive diagram export: prompts for a format and destination, then hands the work to the

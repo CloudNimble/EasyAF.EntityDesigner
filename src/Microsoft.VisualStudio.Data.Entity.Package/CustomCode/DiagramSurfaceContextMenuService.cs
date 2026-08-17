@@ -2,20 +2,22 @@
 
 using System;
 using System.Windows;
-using Microsoft.Data.Entity.Design.Dsl.View;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.ContextMenu;
-using Microsoft.Data.Entity.Design.Dsl.View.Export;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
 using Microsoft.VisualStudio.Imaging;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.Package;
+using Microsoft.VisualStudio.Data.Entity.Package.Export;
+using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export;
 
-namespace Microsoft.Data.Entity.Design.Package
+namespace Microsoft.VisualStudio.Data.Entity.Package
 {
     /// <summary>
     /// Identifies the type of element that was clicked in the diagram.
@@ -141,19 +143,19 @@ namespace Microsoft.Data.Entity.Design.Package
                     result.CompartmentItemIndex = itemIndex;
                     result.Shape = compartment.ParentShape;
 
-                    if (clickedItem is Dsl.ViewModel.ScalarProperty scalarProp)
+                    if (clickedItem is Microsoft.Data.Entity.Design.Diagrams.ViewModel.ScalarProperty scalarProp)
                     {
                         result.Target = DiagramHitTarget.ScalarProperty;
                         result.ModelElement = scalarProp;
                         return result;
                     }
-                    else if (clickedItem is Dsl.ViewModel.ComplexProperty complexProp)
+                    else if (clickedItem is Microsoft.Data.Entity.Design.Diagrams.ViewModel.ComplexProperty complexProp)
                     {
                         result.Target = DiagramHitTarget.ComplexProperty;
                         result.ModelElement = complexProp;
                         return result;
                     }
-                    else if (clickedItem is Dsl.ViewModel.NavigationProperty navProp)
+                    else if (clickedItem is Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty navProp)
                     {
                         result.Target = DiagramHitTarget.NavigationProperty;
                         result.ModelElement = navProp;
@@ -822,7 +824,7 @@ namespace Microsoft.Data.Entity.Design.Package
             _propertyMenu.MenuItems.Clear();
 
             var isScalarProperty = hitResult.Target == DiagramHitTarget.ScalarProperty;
-            var scalarProperty = hitResult.ModelElement as Dsl.ViewModel.ScalarProperty;
+            var scalarProperty = hitResult.ModelElement as Microsoft.Data.Entity.Design.Diagrams.ViewModel.ScalarProperty;
 
             // Top bar commands - Cut | Copy | Paste | Rename | Delete
             _propertyMenu.TopBarCommands.Add(new MenuCommandDefinition(
@@ -1631,9 +1633,9 @@ namespace Microsoft.Data.Entity.Design.Package
                 selection.Clear();
                 foreach (var shape in diagram.NestedChildShapes)
                 {
-                    if (shape is Microsoft.VisualStudio.Modeling.Diagrams.NodeShape)
+                    if (shape is NodeShape)
                     {
-                        selection.Add(new Microsoft.VisualStudio.Modeling.Diagrams.DiagramItem(shape));
+                        selection.Add(new DiagramItem(shape));
                     }
                 }
             }
@@ -1916,7 +1918,7 @@ namespace Microsoft.Data.Entity.Design.Package
 
         private void ExecuteToggleEntityKey()
         {
-            if (_currentPropertyHit?.ModelElement is Dsl.ViewModel.ScalarProperty scalarProperty)
+            if (_currentPropertyHit?.ModelElement is Microsoft.Data.Entity.Design.Diagrams.ViewModel.ScalarProperty scalarProperty)
             {
                 scalarProperty.ChangeEntityKey();
             }
@@ -1971,7 +1973,7 @@ namespace Microsoft.Data.Entity.Design.Package
 
         private void ExecuteSelectAssociationForNavigationProperty(EntityDesignerSurface diagram)
         {
-            if (_currentNavigationPropertyHit?.ModelElement is Dsl.ViewModel.NavigationProperty navProp)
+            if (_currentNavigationPropertyHit?.ModelElement is Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty navProp)
             {
                 // Find the association connector for this navigation property
                 var association = navProp.Association;

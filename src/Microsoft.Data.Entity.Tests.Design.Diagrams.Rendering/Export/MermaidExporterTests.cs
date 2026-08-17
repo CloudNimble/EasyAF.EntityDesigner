@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
-using Microsoft.Data.Entity.Design.Dsl.View.Export;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export.Mermaid;
 
-namespace Microsoft.Data.Entity.Tests.Design.Dsl.View.Export
+namespace Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering.Export
 {
     [TestClass]
     public class MermaidExporterTests

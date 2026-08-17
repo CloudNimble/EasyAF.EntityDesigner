@@ -3,9 +3,9 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 using FluentAssertions;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Properties;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Generators;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Generators;
 
 namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration.Generators
 {

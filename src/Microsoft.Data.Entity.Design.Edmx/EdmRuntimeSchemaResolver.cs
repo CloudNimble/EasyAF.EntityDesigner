@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Xml;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.Edmx
 {
     /// <summary>
     ///     Class to use to resolve references to EDM runtime schemas when building the EdmxSchemaSet.

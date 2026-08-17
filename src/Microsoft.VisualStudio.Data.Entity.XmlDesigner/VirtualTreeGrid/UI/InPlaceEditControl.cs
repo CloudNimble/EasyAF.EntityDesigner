@@ -5,10 +5,11 @@ using System.Drawing;
 using System.Security;
 using System.Security.Permissions;
 using System.Windows.Forms;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Tools.VSXmlDesignerBase.Common;
+using Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
 {
     #region IVirtualTreeInPlaceControl interface
 

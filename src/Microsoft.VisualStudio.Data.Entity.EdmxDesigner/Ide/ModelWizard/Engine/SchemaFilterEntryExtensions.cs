@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb;
+using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
 {
     internal static class SchemaFilterEntryExtensions
     {

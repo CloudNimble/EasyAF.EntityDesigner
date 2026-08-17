@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
-namespace Microsoft.Data.Entity.Design.Extensibility
+namespace Microsoft.VisualStudio.Data.Entity.Extensibility
 {
 
     /// <summary>

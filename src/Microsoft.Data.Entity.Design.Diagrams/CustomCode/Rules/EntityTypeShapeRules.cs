@@ -1,13 +1,13 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.Diagnostics;
-using Microsoft.Data.Entity.Design.Dsl.ModelChanges;
-using Microsoft.Data.Entity.Design.Dsl.Utils;
-using Microsoft.Data.Entity.Design.Dsl.View;
+using Microsoft.Data.Entity.Design.Diagrams.ModelChanges;
+using Microsoft.Data.Entity.Design.Diagrams.Utils;
+using Microsoft.Data.Entity.Design.Diagrams.View;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
+using System.Diagnostics;
 
-namespace Microsoft.Data.Entity.Design.Dsl.Rules
+namespace Microsoft.Data.Entity.Design.Diagrams.Rules
 {
     [RuleOn(typeof(EntityTypeShape), FireTime = TimeToFire.TopLevelCommit)]
     internal sealed class EntityTypeShape_AddRule : AddRule

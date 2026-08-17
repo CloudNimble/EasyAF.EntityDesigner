@@ -4,12 +4,12 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using FluentAssertions;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration.Properties;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Discoverers.Properties;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Configuration.Properties;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Discoverers.Properties;
 
-namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
+namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration.Discoverers.Property
 {
     [TestClass]
     public class ColumnDiscovererTests

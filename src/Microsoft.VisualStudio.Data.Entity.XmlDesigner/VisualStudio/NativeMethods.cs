@@ -6,7 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Runtime.InteropServices;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio
 {
     // This class is shared between assemblies
     internal static class NativeMethods

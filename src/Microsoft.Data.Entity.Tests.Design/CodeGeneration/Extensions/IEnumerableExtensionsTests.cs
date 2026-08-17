@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using FluentAssertions;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Extensions;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Extensions;
 
 namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration.Extensions
 {

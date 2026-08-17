@@ -8,7 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
-namespace Microsoft.Data.Entity.Design.UI.Views.Explorer
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views.Explorer
 {
     internal static class ExplorerUtility
     {

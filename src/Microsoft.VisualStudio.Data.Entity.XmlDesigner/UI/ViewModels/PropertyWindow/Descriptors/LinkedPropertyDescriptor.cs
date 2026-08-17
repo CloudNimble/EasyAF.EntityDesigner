@@ -4,7 +4,7 @@ using System;
 using System.Diagnostics;
 using System.Reflection;
 
-namespace Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow.Descriptors
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Descriptors
 {
     // A decorator class to override the default behavior of CustomPropertyDescriptor class when a property value is updated.
     // CustomPropertyDescriptor will automatically close the transaction's undo-scope right when the update is done.

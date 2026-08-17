@@ -2,7 +2,7 @@
 
 using System;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio
 {
     internal class VsHelpersWrapper : IVsHelpers
     {

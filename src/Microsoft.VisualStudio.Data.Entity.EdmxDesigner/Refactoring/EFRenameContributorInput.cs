@@ -2,9 +2,9 @@
 
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.Data.Tools.VSXmlDesignerBase.Refactoring;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Refactoring;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Refactoring
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Refactoring
 {
     internal class EFRenameContributorInput : ContributorInput
     {

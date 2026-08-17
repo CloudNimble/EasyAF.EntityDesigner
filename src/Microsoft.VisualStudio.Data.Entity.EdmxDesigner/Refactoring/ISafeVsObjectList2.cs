@@ -6,7 +6,7 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Refactoring
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Refactoring
 {
     // <summary>
     //     Implements a safer version of IVsObjectList for types that do no implement IVsCoTaskMemFreeMyStrings. Types that do not implement IVsCoTaskMemFreeMyStrings will

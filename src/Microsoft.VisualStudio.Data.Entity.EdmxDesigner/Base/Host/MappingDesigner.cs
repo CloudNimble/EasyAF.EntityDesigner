@@ -3,7 +3,7 @@
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using System;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Base.Host
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Base.Host
 {
     // <summary>
     //     The mapping designer class provides a designer.  Most

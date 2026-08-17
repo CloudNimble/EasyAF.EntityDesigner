@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Reflection;
 using System.Windows;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Util
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Util
 {
 
     /// <summary>

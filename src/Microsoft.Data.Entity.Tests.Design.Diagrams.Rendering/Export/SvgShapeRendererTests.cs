@@ -2,12 +2,12 @@
 
 using System.Drawing;
 using System.Text;
-using Microsoft.Data.Entity.Design.Dsl.View.Export;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export.Svg;
 
-namespace Microsoft.Data.Entity.Tests.Design.Dsl.View.Export
+namespace Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering.Export
 {
     /// <summary>
     ///     Tests for <see cref="SvgShapeRenderer" />.

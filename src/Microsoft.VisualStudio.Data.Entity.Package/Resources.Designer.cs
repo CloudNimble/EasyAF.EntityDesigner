@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.Data.Entity.Design.Package {
+namespace Microsoft.VisualStudio.Data.Entity.Package {
     using System;
     
     

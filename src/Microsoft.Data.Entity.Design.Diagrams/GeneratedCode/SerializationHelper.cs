@@ -12,7 +12,7 @@ using DslModeling = global::Microsoft.VisualStudio.Modeling;
 using DslValidation = global::Microsoft.VisualStudio.Modeling.Validation;
 using DslDiagrams = global::Microsoft.VisualStudio.Modeling.Diagrams;
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
     partial class MicrosoftDataEntityDesignDomainModel
 	{
@@ -126,7 +126,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		internal protected virtual void WriteAdditionalElementData(DslModeling::SerializationContext serializationContext, DslModeling::ModelElement element, global::System.Xml.XmlWriter writer)
 		{
 	
-			if (element is global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel)
+			if (element is global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel)
 			{
 				// Build a list of extension elements to serialize
 				global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::ModelElement> allExtensionElements = element.Partition.ElementDirectory.FindElements(DslModeling::ExtensionElement.DomainClassId, true);
@@ -145,7 +145,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		internal protected virtual void ReadAdditionalElementData(DslModeling::SerializationContext serializationContext, DslModeling::ModelElement element, global::System.Xml.XmlReader reader)
 		{
 	
-			if (element is global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel && string.CompareOrdinal(reader.LocalName, DslModeling::SerializationUtilities.ExtensionsXmlElementName) == 0)
+			if (element is global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel && string.CompareOrdinal(reader.LocalName, DslModeling::SerializationUtilities.ExtensionsXmlElementName) == 0)
 			{
 				DslModeling::SerializationUtilities.ReadExtensions(serializationContext, reader, element.Partition);
 			}
@@ -275,7 +275,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 }
 
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
     partial class MicrosoftDataEntityDesignSerializationHelperBase
 	{
@@ -294,7 +294,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// is passed, load-time validation will not be performed.
 		/// </param>
 		/// <returns>The loaded EntityDesignerViewModel instance.</returns>
-		internal virtual global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel LoadModel(DslModeling::Store store, string fileName, DslModeling::ISchemaResolver schemaResolver, DslValidation::ValidationController validationController, DslModeling::ISerializerLocator serializerLocator)
+		internal virtual global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel LoadModel(DslModeling::Store store, string fileName, DslModeling::ISchemaResolver schemaResolver, DslValidation::ValidationController validationController, DslModeling::ISerializerLocator serializerLocator)
 		{
 			#region Check Parameters
 			if (store == null) 
@@ -319,7 +319,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// is passed, load-time validation will not be performed.
 		/// </param>
 		/// <returns>The loaded EntityDesignerViewModel instance.</returns>
-		internal virtual global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel LoadModel(DslModeling::SerializationResult serializationResult, DslModeling::Store store, string fileName, DslModeling::ISchemaResolver schemaResolver, DslValidation::ValidationController validationController, DslModeling::ISerializerLocator serializerLocator)
+		internal virtual global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel LoadModel(DslModeling::SerializationResult serializationResult, DslModeling::Store store, string fileName, DslModeling::ISchemaResolver schemaResolver, DslValidation::ValidationController validationController, DslModeling::ISerializerLocator serializerLocator)
 		{
 			#region Check Parameters
 			if (store == null) 
@@ -345,7 +345,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// </param>
 		/// <returns>The loaded EntityDesignerViewModel instance.</returns>
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
-		internal virtual global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel LoadModel(DslModeling::SerializationResult serializationResult, DslModeling::Partition partition, string fileName, DslModeling::ISchemaResolver schemaResolver, DslValidation::ValidationController validationController, DslModeling::ISerializerLocator serializerLocator)
+		internal virtual global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel LoadModel(DslModeling::SerializationResult serializationResult, DslModeling::Partition partition, string fileName, DslModeling::ISchemaResolver schemaResolver, DslValidation::ValidationController validationController, DslModeling::ISerializerLocator serializerLocator)
 		{
 			#region Check Parameters
 			if (serializationResult == null)
@@ -362,9 +362,9 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.InvalidOperationException(MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("MissingTransaction"));
 			}
 			
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel modelRoot = null;
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel modelRoot = null;
 			DslModeling::DomainXmlSerializerDirectory directory = this.GetDirectory(partition.Store);
-			DslModeling::DomainClassXmlSerializer modelRootSerializer = directory.GetSerializer(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel.DomainClassId);
+			DslModeling::DomainClassXmlSerializer modelRootSerializer = directory.GetSerializer(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(modelRootSerializer != null, "Cannot find serializer for EntityDesignerViewModel!");
 			if (modelRootSerializer != null)
 			{
@@ -399,7 +399,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 									reader.MoveToContent();
 	
 									
-									modelRoot = modelRootSerializer.TryCreateInstance(serializationContext, reader, partition) as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel;
+									modelRoot = modelRootSerializer.TryCreateInstance(serializationContext, reader, partition) as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel;
 									if (modelRoot != null && !serializationResult.Failed)
 									{
 										this.ReadRootElement(serializationContext, modelRoot, reader, schemaResolver);
@@ -471,7 +471,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="serializationResult">Stores serialization result from the save operation.</param>
 		/// <param name="modelRoot">EntityDesignerViewModel instance to be saved.</param>
 		/// <param name="fileName">Name of the file in which the EntityDesignerViewModel instance will be saved.</param>
-		internal virtual void SaveModel(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel modelRoot, string fileName)
+		internal virtual void SaveModel(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel modelRoot, string fileName)
 		{
 			this.SaveModel(serializationResult, modelRoot, fileName, global::System.Text.Encoding.UTF8, false);
 		}
@@ -483,7 +483,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="modelRoot">EntityDesignerViewModel instance to be saved.</param>
 		/// <param name="fileName">Name of the file in which the EntityDesignerViewModel instance will be saved.</param>
 		/// <param name="writeOptionalPropertiesWithDefaultValue">Whether optional properties with default value will be saved.</param>
-		internal virtual void SaveModel(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel modelRoot, string fileName, bool writeOptionalPropertiesWithDefaultValue)
+		internal virtual void SaveModel(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel modelRoot, string fileName, bool writeOptionalPropertiesWithDefaultValue)
 		{
 			this.SaveModel(serializationResult, modelRoot, fileName, global::System.Text.Encoding.UTF8, writeOptionalPropertiesWithDefaultValue);
 		}
@@ -496,7 +496,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="fileName">Name of the file in which the EntityDesignerViewModel instance will be saved.</param>
 		/// <param name="encoding">Encoding to use when saving the EntityDesignerViewModel instance.</param>
 		/// <param name="writeOptionalPropertiesWithDefaultValue">Whether optional properties with default value will be saved.</param>
-		internal virtual void SaveModel(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel modelRoot, string fileName, global::System.Text.Encoding encoding, bool writeOptionalPropertiesWithDefaultValue)
+		internal virtual void SaveModel(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel modelRoot, string fileName, global::System.Text.Encoding encoding, bool writeOptionalPropertiesWithDefaultValue)
 		{
 			#region Check Parameters
 			if (serializationResult == null)
@@ -536,7 +536,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="encoding">Encoding to use when saving the EntityDesignerViewModel instance.</param>
 		/// <param name="writeOptionalPropertiesWithDefaultValue">Whether optional properties with default value will be saved.</param>
 		/// <returns>In-memory stream containing the serialized EntityDesignerViewModel instance.</returns>
-		internal virtual global::System.IO.MemoryStream InternalSaveModel(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel modelRoot, string fileName, global::System.Text.Encoding encoding, bool writeOptionalPropertiesWithDefaultValue)
+		internal virtual global::System.IO.MemoryStream InternalSaveModel(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel modelRoot, string fileName, global::System.Text.Encoding encoding, bool writeOptionalPropertiesWithDefaultValue)
 		{
 			#region Check Parameters
 			global::System.Diagnostics.Debug.Assert(serializationResult != null);
@@ -574,7 +574,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="encoding">Encoding to use when saving the diagram.</param>
 		/// <param name="writeOptionalPropertiesWithDefaultValue">Whether optional properties with default value will be saved.</param>
 		/// <returns>In-memory stream containing the serialized EntityDesignerSurface instance.</returns>
-		private global::System.IO.MemoryStream InternalSaveDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface diagram, string diagramFileName, global::System.Text.Encoding encoding, bool writeOptionalPropertiesWithDefaultValue)
+		private global::System.IO.MemoryStream InternalSaveDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface diagram, string diagramFileName, global::System.Text.Encoding encoding, bool writeOptionalPropertiesWithDefaultValue)
 		{
 			#region Check Parameters
 			global::System.Diagnostics.Debug.Assert(serializationResult != null);
@@ -603,9 +603,9 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <summary>
 		/// Helper method to create and initialize a new EntityDesignerViewModel.
 		/// </summary>
-		internal virtual global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel CreateModelHelper(DslModeling::Partition modelPartition)
+		internal virtual global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel CreateModelHelper(DslModeling::Partition modelPartition)
 		{
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel model = new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel(modelPartition);
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel model = new global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel(modelPartition);
 			return model;
 		}
 		
@@ -624,7 +624,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// is passed, load-time validation will not be performed.
 		/// </param>
 		/// <returns>The loaded EntityDesignerViewModel instance.</returns>
-        internal virtual global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel LoadModelAndDiagram(DslModeling::Store store, string modelFileName, string diagramFileName, DslModeling::ISchemaResolver schemaResolver, DslValidation::ValidationController validationController, DslModeling::ISerializerLocator serializerLocator)
+        internal virtual global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel LoadModelAndDiagram(DslModeling::Store store, string modelFileName, string diagramFileName, DslModeling::ISchemaResolver schemaResolver, DslValidation::ValidationController validationController, DslModeling::ISerializerLocator serializerLocator)
 		{
 			return this.LoadModelAndDiagram(new DslModeling::SerializationResult(), store, modelFileName, diagramFileName, schemaResolver, validationController, serializerLocator);
 		}
@@ -645,7 +645,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// is passed, load-time validation will not be performed.
 		/// </param>
 		/// <returns>The loaded EntityDesignerViewModel instance.</returns>
-        internal virtual global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel LoadModelAndDiagram(DslModeling::SerializationResult serializationResult, DslModeling::Store store, string modelFileName, string diagramFileName, DslModeling::ISchemaResolver schemaResolver, DslValidation::ValidationController validationController, DslModeling::ISerializerLocator serializerLocator)
+        internal virtual global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel LoadModelAndDiagram(DslModeling::SerializationResult serializationResult, DslModeling::Store store, string modelFileName, string diagramFileName, DslModeling::ISchemaResolver schemaResolver, DslValidation::ValidationController validationController, DslModeling::ISerializerLocator serializerLocator)
 		{
 			#region Check Parameters
 			if (store == null)
@@ -673,7 +673,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// is passed, load-time validation will not be performed.
 		/// </param>
 		/// <returns>The loaded EntityDesignerViewModel instance.</returns>
-		internal virtual global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel LoadModelAndDiagram(DslModeling::SerializationResult serializationResult, DslModeling::Partition modelPartition, string modelFileName, DslModeling::Partition diagramPartition, string diagramFileName, DslModeling::ISchemaResolver schemaResolver, DslValidation::ValidationController validationController, DslModeling::ISerializerLocator serializerLocator)
+		internal virtual global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel LoadModelAndDiagram(DslModeling::SerializationResult serializationResult, DslModeling::Partition modelPartition, string modelFileName, DslModeling::Partition diagramPartition, string diagramFileName, DslModeling::ISchemaResolver schemaResolver, DslValidation::ValidationController validationController, DslModeling::ISerializerLocator serializerLocator)
 		{
 			#region Check Parameters
 			if (serializationResult == null)
@@ -686,7 +686,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("diagramFileName");
 			#endregion
 	
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel modelRoot;
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel modelRoot;
 	
 			// Ensure there is an outer transaction spanning both model and diagram load, so moniker resolution works properly.
 			if (!diagramPartition.Store.TransactionActive)
@@ -702,9 +702,9 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				return modelRoot;
 			}
 	
-			global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface diagram = null;
+			global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface diagram = null;
 			DslModeling::DomainXmlSerializerDirectory directory = this.GetDirectory(diagramPartition.Store);
-			DslModeling::DomainClassXmlSerializer diagramSerializer = directory.GetSerializer(global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface.DomainClassId);
+			DslModeling::DomainClassXmlSerializer diagramSerializer = directory.GetSerializer(global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(diagramSerializer != null, "Cannot find serializer for EntityDesignerSurface");
 			if (diagramSerializer != null)
 			{
@@ -734,7 +734,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 									using (global::System.Xml.XmlReader reader = global::System.Xml.XmlReader.Create(fileStream, settings))
 									{
 										reader.MoveToContent();
-										diagram = diagramSerializer.TryCreateInstance(serializationContext, reader, diagramPartition) as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface;
+										diagram = diagramSerializer.TryCreateInstance(serializationContext, reader, diagramPartition) as global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface;
 										if (diagram != null)
 										{
 											this.ReadRootElement(serializationContext, diagram, reader, schemaResolver);
@@ -798,9 +798,9 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <summary>
 		/// Helper method to create and initialize a new EntityDesignerSurface.
 		/// </summary>
-		internal virtual global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface CreateDiagramHelper(DslModeling::Partition diagramPartition, DslModeling::ModelElement modelRoot)
+		internal virtual global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface CreateDiagramHelper(DslModeling::Partition diagramPartition, DslModeling::ModelElement modelRoot)
 		{
-			global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface diagram = new global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface(diagramPartition);
+			global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface diagram = new global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface(diagramPartition);
 			return diagram;
 		}
 		
@@ -814,7 +814,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="modelFileName">Name of the file in which the CanonicalSampleRoot instance will be saved.</param>
 		/// <param name="diagram">EntityDesignerSurface to be saved.</param>
 		/// <param name="diagramFileName">Name of the file in which the diagram will be saved.</param>
-		internal virtual void SaveModelAndDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel modelRoot, string modelFileName, global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface diagram, string diagramFileName)
+		internal virtual void SaveModelAndDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel modelRoot, string modelFileName, global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface diagram, string diagramFileName)
 		{
 			this.SaveModelAndDiagram(serializationResult, modelRoot, modelFileName, diagram, diagramFileName, global::System.Text.Encoding.UTF8, false);
 		}
@@ -828,7 +828,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="diagram">EntityDesignerSurface to be saved.</param>
 		/// <param name="diagramFileName">Name of the file in which the diagram will be saved.</param>
 		/// <param name="writeOptionalPropertiesWithDefaultValue">Whether optional properties with default value will be saved.</param>
-		internal virtual void SaveModelAndDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel modelRoot, string modelFileName, global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface diagram, string diagramFileName, bool writeOptionalPropertiesWithDefaultValue)
+		internal virtual void SaveModelAndDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel modelRoot, string modelFileName, global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface diagram, string diagramFileName, bool writeOptionalPropertiesWithDefaultValue)
 		{
 			this.SaveModelAndDiagram(serializationResult, modelRoot, modelFileName, diagram, diagramFileName, global::System.Text.Encoding.UTF8, writeOptionalPropertiesWithDefaultValue);
 		}
@@ -843,7 +843,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="diagramFileName">Name of the file in which the diagram will be saved.</param>
 		/// <param name="encoding">Encoding to use when saving the diagram.</param>
 		/// <param name="writeOptionalPropertiesWithDefaultValue">Whether optional properties with default value will be saved.</param>
-		internal virtual void SaveModelAndDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel modelRoot, string modelFileName, global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface diagram, string diagramFileName, global::System.Text.Encoding encoding, bool writeOptionalPropertiesWithDefaultValue)
+		internal virtual void SaveModelAndDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel modelRoot, string modelFileName, global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface diagram, string diagramFileName, global::System.Text.Encoding encoding, bool writeOptionalPropertiesWithDefaultValue)
 		{
 			#region Check Parameters
 			if (serializationResult == null)
@@ -902,7 +902,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="serializationResult">Stores serialization result from the save operation.</param>
 		/// <param name="diagram">EntityDesignerSurface to be saved.</param>
 		/// <param name="diagramFileName">Name of the file in which the diagram will be saved.</param>
-		internal virtual void SaveDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface diagram, string diagramFileName)
+		internal virtual void SaveDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface diagram, string diagramFileName)
 		{
 			this.SaveDiagram(serializationResult, diagram, diagramFileName, global::System.Text.Encoding.UTF8, false);
 		}
@@ -914,7 +914,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="diagram">EntityDesignerSurface to be saved.</param>
 		/// <param name="diagramFileName">Name of the file in which the diagram will be saved.</param>
 		/// <param name="writeOptionalPropertiesWithDefaultValue">Whether optional properties with default value will be saved.</param>
-		internal virtual void SaveDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface diagram, string diagramFileName, bool writeOptionalPropertiesWithDefaultValue)
+		internal virtual void SaveDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface diagram, string diagramFileName, bool writeOptionalPropertiesWithDefaultValue)
 		{
 			this.SaveDiagram(serializationResult, diagram, diagramFileName, global::System.Text.Encoding.UTF8, writeOptionalPropertiesWithDefaultValue);
 		}
@@ -927,7 +927,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="diagramFileName">Name of the file in which the diagram will be saved.</param>
 		/// <param name="encoding">Encoding to use when saving the diagram.</param>
 		/// <param name="writeOptionalPropertiesWithDefaultValue">Whether optional properties with default value will be saved.</param>
-		internal virtual void SaveDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface diagram, string diagramFileName, global::System.Text.Encoding encoding, bool writeOptionalPropertiesWithDefaultValue)
+		internal virtual void SaveDiagram(DslModeling::SerializationResult serializationResult, global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface diagram, string diagramFileName, global::System.Text.Encoding encoding, bool writeOptionalPropertiesWithDefaultValue)
 		{
 			#region Check Parameters
 			if (serializationResult == null)
@@ -1220,7 +1220,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="modelRoot">Root instance to be saved.</param>
 		/// <param name="encoding">Encoding to use when saving the root instance.</param>
 		/// <returns>Model in XML form</returns>
-		internal virtual string GetSerializedModelString(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel modelRoot, global::System.Text.Encoding encoding)
+		internal virtual string GetSerializedModelString(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel modelRoot, global::System.Text.Encoding encoding)
 		{
 			string result = string.Empty;
 			if (modelRoot == null)
@@ -1419,7 +1419,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	
 }
 
-namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
+namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
 {
 	[DslValidation::ValidationState(DslValidation::ValidationState.Enabled)]
 	internal partial class EntityDesignerViewModel
@@ -1437,7 +1437,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 				return;
 			}
 		
-			global::System.Collections.Generic.IDictionary<global::System.Guid, DslModeling::IMonikerResolver> monikerResolvers = global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignSerializationHelper.Instance.GetMonikerResolvers(this.Store);
+			global::System.Collections.Generic.IDictionary<global::System.Guid, DslModeling::IMonikerResolver> monikerResolvers = global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignSerializationHelper.Instance.GetMonikerResolvers(this.Store);
 			foreach (DslModeling::ModelElement element in this.Store.ElementDirectory.AllElements)
 			{
 				global::System.Guid domainModelId = element.GetDomainClass().DomainModel.Id;
@@ -1456,7 +1456,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 							context.LogError(
 								string.Format(
 									global::System.Globalization.CultureInfo.CurrentCulture,
-									global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("AmbiguousMoniker"),
+									global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("AmbiguousMoniker"),
 									amEx.Moniker,
 									DslModeling::SerializationUtilities.GetElementName(element),
 									DslModeling::SerializationUtilities.GetElementName(amEx.Element)

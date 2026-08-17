@@ -6,10 +6,10 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration.NavigationProperties;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Configuration.NavigationProperties;
 
-namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
+namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration.Configuration.NavigationProperty
 {
     // TODO - remove this comment - this is just to force line-endings (which git does not seem to accept as the only change)
     [TestClass]

@@ -3,10 +3,10 @@
 using System;
 using System.Diagnostics;
 using System.Xml;
-using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.VersioningFacade;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.EntityFramework;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.Edmx.MetadataConverter
 {
     /// <summary>
     ///     Handles UseStrongSpatialTypes attribute conversion for EDMX files.

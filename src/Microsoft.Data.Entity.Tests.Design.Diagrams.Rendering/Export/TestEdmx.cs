@@ -2,7 +2,7 @@
 
 using System.IO;
 
-namespace Microsoft.Data.Entity.Tests.Design.Renderer.Export
+namespace Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering.Export
 {
     /// <summary>
     ///     Writes a minimal but complete EDMX v3 file for tests that need a real file on disk.

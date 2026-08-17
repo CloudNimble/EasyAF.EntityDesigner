@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.Data.Entity.Design.Extensibility.Properties {
+namespace Microsoft.VisualStudio.Data.Entity.Extensibility.Properties {
     using System;
     
     

@@ -6,10 +6,10 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration.NavigationProperties;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Discoverers.NavigationProperties;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Configuration.NavigationProperties;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Discoverers.NavigationProperties;
 
-namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
+namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration.Discoverers.NavigationProperty
 {
     [TestClass]
     public class JoinTableDiscovererTests

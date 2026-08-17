@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration
 {
     /// <summary>
     /// Helper methods for generating C# code.

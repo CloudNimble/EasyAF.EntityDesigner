@@ -6,7 +6,7 @@ using Microsoft.VisualBasic;
 using System.CodeDom.Compiler;
 using System.Text.RegularExpressions;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
 {
     internal class CodeIdentifierUtils
     {

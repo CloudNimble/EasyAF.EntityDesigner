@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
 {
-    using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Controls;
+    using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Controls;
     using System.Diagnostics.CodeAnalysis;
 
     partial class WizardPageDbConfig
@@ -37,10 +37,10 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WizardPageDbConfig));
             System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
             System.Windows.Forms.Panel panel;
-            this.checkBoxSaveInAppConfig = new Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Controls.AutoWrapCheckBox();
-            this.disallowSensitiveInfoButton = new Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Controls.AutoWrapRadioButton();
+            this.checkBoxSaveInAppConfig = new Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Controls.AutoWrapCheckBox();
+            this.disallowSensitiveInfoButton = new Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Controls.AutoWrapRadioButton();
             this.textBoxConnectionString = new System.Windows.Forms.TextBox();
-            this.allowSensitiveInfoButton = new Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Controls.AutoWrapRadioButton();
+            this.allowSensitiveInfoButton = new Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Controls.AutoWrapRadioButton();
             this.lblPagePrompt = new System.Windows.Forms.Label();
             this.dataSourceComboBox = new System.Windows.Forms.ComboBox();
             this.newDBConnectionButton = new System.Windows.Forms.Button();

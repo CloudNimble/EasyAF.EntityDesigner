@@ -2,12 +2,13 @@
 
 using Microsoft.Data.Entity.Design.DatabaseGeneration;
 using Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators;
-using Microsoft.Data.Entity.Design.VersioningFacade;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.TextTemplating
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.TextTemplating
 {
     /// <summary>
     ///     Renders data definition language from a store model by running a T4 template through Visual Studio's text

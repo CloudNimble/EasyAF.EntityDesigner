@@ -4,7 +4,7 @@ using System.Data.Entity.Core.Metadata.Edm;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 
-namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.Metadata
+namespace Microsoft.Data.Entity.Tests.Design.EntityFramework.Metadata
 {
     [TestClass]
     public class EdmTypeExtensionsTests

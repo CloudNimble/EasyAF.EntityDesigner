@@ -6,8 +6,9 @@ using System.Diagnostics;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetails
 {
     // <summary>
     //     An enum that is passed to the GetListOfValues() method.
@@ -337,7 +338,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails
         {
             Debug.Assert(cpc != null, "You should send a cpc to this function so that the entire switch is in a single transaction");
 
-            DelegateCommand cmd = new DelegateCommand(
+            CallbackCommand cmd = new CallbackCommand(
                 () =>
                     {
                         if (deleteModelItemOnly)

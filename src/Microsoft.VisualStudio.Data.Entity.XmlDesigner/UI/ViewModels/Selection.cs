@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
-namespace Microsoft.Data.Entity.Design.XmlEngine.UI
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels
 {
     /// <summary>
     ///     The Selection class defines a selection of EFObject.  Selections

@@ -3,7 +3,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.Refactoring
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Refactoring
 {
     /// <summary>
     ///     This class provides information to PreApply and PostApply methods so that RefactoringContributors and RefactorOperations can perform actions.

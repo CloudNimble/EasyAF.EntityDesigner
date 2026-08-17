@@ -4,11 +4,10 @@ using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.Common
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common
 {
     internal static class CommonVsUtilities
     {
@@ -49,7 +48,7 @@ namespace Microsoft.Data.Tools.VSXmlDesignerBase.Common
                     icon);
             }
 
-            IVsUIShell uiShell = Package.GetGlobalService(typeof(SVsUIShell)) as IVsUIShell;
+            IVsUIShell uiShell = global::Microsoft.VisualStudio.Shell.Package.GetGlobalService(typeof(SVsUIShell)) as IVsUIShell;
 
             Debug.Assert(uiShell != null);
             var result = (int)(DialogResult.OK);
@@ -146,7 +145,7 @@ namespace Microsoft.Data.Tools.VSXmlDesignerBase.Common
             docData = null;
             var success = false;
 
-            IVsRunningDocumentTable rdt = Package.GetGlobalService(typeof(IVsRunningDocumentTable)) as IVsRunningDocumentTable;
+            IVsRunningDocumentTable rdt = global::Microsoft.VisualStudio.Shell.Package.GetGlobalService(typeof(IVsRunningDocumentTable)) as IVsRunningDocumentTable;
 
             Debug.Assert(rdt != null);
             if (rdt != null)

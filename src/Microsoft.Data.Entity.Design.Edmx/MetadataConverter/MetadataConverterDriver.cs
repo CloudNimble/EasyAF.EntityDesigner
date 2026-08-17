@@ -6,9 +6,9 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Xml;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.VersioningFacade;
+using Microsoft.Data.Entity.Design.EntityFramework;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.Edmx.MetadataConverter
 {
     internal class MetadataConverterDriver
     {

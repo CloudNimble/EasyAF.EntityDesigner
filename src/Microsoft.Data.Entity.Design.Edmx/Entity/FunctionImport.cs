@@ -4,15 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.Model.Commands;
-using Microsoft.Data.Entity.Design.Model.Mapping;
-using Microsoft.Data.Entity.Design.VersioningFacade;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
+using Microsoft.Data.Entity.Design.EntityFramework;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
-using XamlDesignerBaseResources = Microsoft.Data.Tools.XmlDesignerBase.Resources;
+using XamlDesignerBaseResources = Microsoft.Data.Entity.Design.XmlEngine.Resources;
 
 
-namespace Microsoft.Data.Entity.Design.Model.Entity
+namespace Microsoft.Data.Entity.Design.Edmx.Entity
 {
     internal class FunctionImport : NameableAnnotatableElement
     {

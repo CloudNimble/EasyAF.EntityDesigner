@@ -3,7 +3,7 @@
 using Microsoft.VisualStudio.Shell;
 using System;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
 {
     // <summary>
     //     Wrapper around ErrorListProvider

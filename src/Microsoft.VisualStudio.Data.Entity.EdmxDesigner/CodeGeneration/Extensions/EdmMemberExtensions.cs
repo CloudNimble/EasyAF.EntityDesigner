@@ -3,7 +3,7 @@
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Diagnostics;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Extensions
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Extensions
 {
     internal static class EdmMemberExtensions
     {

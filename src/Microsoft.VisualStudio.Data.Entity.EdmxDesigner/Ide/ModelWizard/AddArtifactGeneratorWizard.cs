@@ -4,14 +4,15 @@ using EnvDTE;
 using EnvDTE80;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 using Microsoft.VisualStudio.TemplateWizard;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard
 {
     /// <summary>
     ///     This API supports the Entity Framework infrastructure and is not intended to be used directly from your code.

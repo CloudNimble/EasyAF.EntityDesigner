@@ -13,15 +13,14 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
-using Microsoft.Data.Entity.Design.UI.Commands;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
-using Microsoft.Data.Entity.Design.XmlEngine.UI;
-using Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.Explorer;
-using Microsoft.Data.Entity.Design.XmlEngine.UI.Views.Explorer;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer;
+using Microsoft.VisualStudio.PlatformUI;
 
-namespace Microsoft.Data.Entity.Design.UI.Views.Explorer
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views.Explorer
 {
     internal abstract class ExplorerFrame : DockPanel, INotifyPropertyChanged, IDisposable
     {
@@ -75,12 +74,12 @@ namespace Microsoft.Data.Entity.Design.UI.Views.Explorer
             EditingContext = context;
 
             // search text commands
-            SearchCommand = new DelegateCommand(OnSearchCommand);
-            ResetSearchCommand = new DelegateCommand(OnResetSearchCommand);
+            SearchCommand = new DelegateCommand(_ => OnSearchCommand());
+            ResetSearchCommand = new DelegateCommand(_ => OnResetSearchCommand());
 
             // navigate search commands
-            SelectPreviousSearchResult = new DelegateCommand(OnSelectPreviousSearchResult);
-            SelectNextSearchResult = new DelegateCommand(OnSelectNextSearchResult);
+            SelectPreviousSearchResult = new DelegateCommand(_ => OnSelectPreviousSearchResult());
+            SelectNextSearchResult = new DelegateCommand(_ => OnSelectNextSearchResult());
 
             _deferredExpansionAndCalculateAdorners = new DeferredRequest(OnExpanded);
             _deferredUpdateNextAndPreviousSearchResults = new DeferredRequest(OnUpdateNextAndPreviousResults);
@@ -966,7 +965,7 @@ namespace Microsoft.Data.Entity.Design.UI.Views.Explorer
                 new Run(
                     string.Format(
                         CultureInfo.CurrentCulture,
-                        Data.Tools.XmlDesignerBase.Resources.NumOfSearchResultsFound, found)));
+                        global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NumOfSearchResultsFound, found)));
         }
 
         internal double GetY(ExplorerTreeViewItem treeViewItem)

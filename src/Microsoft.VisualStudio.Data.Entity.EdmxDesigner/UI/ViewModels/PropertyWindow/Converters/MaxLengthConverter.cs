@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using System;
 using System.ComponentModel;
 using System.Globalization;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.PropertyWindow.Converters
 {
     internal class MaxLengthConverter : StringConverter
     {
@@ -37,7 +37,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow
                     // error message
                     var attributeName = context.PropertyDescriptor.DisplayName;
                     var message = string.Format(
-                        CultureInfo.CurrentCulture, Microsoft.Data.Tools.XmlDesignerBase.Resources.ConverterIncorrectValueForAttribute, stringValue, attributeName);
+                        CultureInfo.CurrentCulture, Microsoft.Data.Entity.Design.XmlEngine.Resources.ConverterIncorrectValueForAttribute, stringValue, attributeName);
                     throw new ConversionException(message);
                 }
             }

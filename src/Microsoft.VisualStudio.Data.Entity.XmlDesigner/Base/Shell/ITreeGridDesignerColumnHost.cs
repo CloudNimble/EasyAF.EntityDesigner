@@ -3,7 +3,7 @@
 using System;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 
-namespace Microsoft.Data.Entity.Design.Base.Shell
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
 {
     /// <summary>
     ///     Provides a mechanism for columns to call back on the hosting grid

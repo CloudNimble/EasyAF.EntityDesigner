@@ -3,18 +3,18 @@
 using System;
 using System.Xml.Linq;
 using EnvDTE;
-using Microsoft.Data.Entity.Design.Extensibility;
-using Microsoft.Data.Entity.Design.Package;
+using Microsoft.VisualStudio.Data.Entity.Package;
 using Microsoft.VisualStudio.Shell.Interop;
 using Moq;
 using Microsoft.Data.Entity.Tests.Design.TestHelpers;
 using VSLangProj;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
-using Resources = Microsoft.VisualStudio.Data.Entity.Design.Resources;
-using Microsoft.VisualStudio.Data.Entity.Design.Extensibility;
+using Resources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources;
+using Microsoft.VisualStudio.Data.Entity.Extensibility;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility;
 
-namespace Microsoft.Data.Entity.Tests.DesignPackage.CustomCode
+namespace Microsoft.VisualStudio.Data.Entity.Tests.Package
 {
     [TestClass]
     public class MicrosoftDataEntityDesignDocDataTests

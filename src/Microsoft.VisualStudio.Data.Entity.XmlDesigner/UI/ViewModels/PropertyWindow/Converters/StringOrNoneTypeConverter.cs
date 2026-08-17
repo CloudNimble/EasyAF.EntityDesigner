@@ -4,9 +4,8 @@ using System;
 using System.ComponentModel;
 using System.Globalization;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.Data.Tools.XmlDesignerBase;
 
-namespace Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow.Converters
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Converters
 {
     internal class StringOrNoneTypeConverter : StringConverter
     {
@@ -19,7 +18,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow.Co
                 {
                     if (StringOrNone.NoneValue.Equals(v))
                     {
-                        return Resources.NoneDisplayValueUsedForUX;
+                        return global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX;
                     }
                     else
                     {

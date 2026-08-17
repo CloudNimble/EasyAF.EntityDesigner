@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using Microsoft.Data.Tools.XmlDesignerBase;
 
 namespace Microsoft.Data.Entity.Design.XmlEngine.Model
 {
@@ -15,7 +14,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
             new Dictionary<string, BoolOrNone>(StringComparer.OrdinalIgnoreCase)
                 {
                     // note: accepts versions of true and false with initial letter either capitalized or not capitalized
-                    {Resources.NoneDisplayValueUsedForUX, BoolOrNone.NoneValue},
+                    {global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX, BoolOrNone.NoneValue},
                     {true.ToString(), BoolOrNone.TrueValue},
                     {false.ToString(), BoolOrNone.FalseValue}
                 };

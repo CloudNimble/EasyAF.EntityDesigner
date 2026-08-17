@@ -2,7 +2,7 @@
 
 using System.Diagnostics;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration.Properties
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Configuration.Properties
 {
     /// <summary>
     /// Represents a model configuration to set the maximum length of a string property.

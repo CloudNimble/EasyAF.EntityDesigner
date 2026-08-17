@@ -2,7 +2,7 @@
 
 using System.Data.Entity.Infrastructure;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Generators
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Generators
 {
     internal interface IContextGenerator
     {

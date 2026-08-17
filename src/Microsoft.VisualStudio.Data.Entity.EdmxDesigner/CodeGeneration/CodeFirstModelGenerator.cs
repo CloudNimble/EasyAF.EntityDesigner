@@ -2,14 +2,14 @@
 
 using EnvDTE;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
-using WizardResources = Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Properties.Resources;
+using WizardResources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.Resources;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration
 {
     internal class CodeFirstModelGenerator
     {

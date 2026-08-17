@@ -8,19 +8,19 @@ using System.IO;
 using System.Xml;
 using EnvDTE;
 using EnvDTE80;
-using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Modeling.Shell;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using VSLangProj80;
 using VsWebSite;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.SingleFileGenerator;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.SingleFileGenerator;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard;
 
-namespace Microsoft.Data.Entity.Design.Package
+namespace Microsoft.VisualStudio.Data.Entity.Package
 {
     internal partial class MicrosoftDataEntityDesignEditorFactory : IVsEditorFactory, IVsEditorFactoryNotify
     {
@@ -185,21 +185,21 @@ namespace Microsoft.Data.Entity.Design.Package
                 var projectKind = VsUtils.GetProjectKind(project);
                 if (projectKind == VsUtils.ProjectKind.CSharp)
                 {
-                    itemTemplateZipFile = Dsl.Utils.Constants.AdoNetEntityDataModelCSharp;
+                    itemTemplateZipFile = Microsoft.Data.Entity.Design.Diagrams.Utils.Constants.AdoNetEntityDataModelCSharp;
                 }
                 else if (projectKind == VsUtils.ProjectKind.VB)
                 {
-                    itemTemplateZipFile = Dsl.Utils.Constants.AdoNetEntityDataModelVB;
+                    itemTemplateZipFile = Microsoft.Data.Entity.Design.Diagrams.Utils.Constants.AdoNetEntityDataModelVB;
                 }
                 else if (projectKind == VsUtils.ProjectKind.Web)
                 {
                     if (VsUtils.IsWebSiteVBProject(project))
                     {
-                        itemTemplateZipFile = Dsl.Utils.Constants.AdoNetEntityDataModelAspNetVB;
+                        itemTemplateZipFile = Microsoft.Data.Entity.Design.Diagrams.Utils.Constants.AdoNetEntityDataModelAspNetVB;
                     }
                     else if (VsUtils.IsWebSiteCSharpProject(project))
                     {
-                        itemTemplateZipFile = Dsl.Utils.Constants.AdoNetEntityDataModelAspNetCSharp;
+                        itemTemplateZipFile = Microsoft.Data.Entity.Design.Diagrams.Utils.Constants.AdoNetEntityDataModelAspNetCSharp;
                     }
                 }
 

@@ -11,20 +11,20 @@ using System.Data.Entity.Infrastructure.DependencyResolution;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Model.Mapping;
-using Microsoft.Data.Entity.Design.Model.Validation;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
-using ComplexType = Microsoft.Data.Entity.Design.Model.Entity.ComplexType;
-using DesignAssociationSetMapping = Microsoft.Data.Entity.Design.Model.Mapping.AssociationSetMapping;
+using ComplexType = Microsoft.Data.Entity.Design.Edmx.Entity.ComplexType;
+using DesignAssociationSetMapping = Microsoft.Data.Entity.Design.Edmx.Mapping.AssociationSetMapping;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
+using Microsoft.Data.Entity.Design.Edmx.Validation;
+using Microsoft.Data.Entity.Design.Edmx;
 
-namespace Microsoft.Data.Entity.Tests.Design.Model.Validation
+namespace Microsoft.Data.Entity.Tests.Design.Edmx.Validation
 {
     extern alias EntityDesignModel;
     [TestClass]

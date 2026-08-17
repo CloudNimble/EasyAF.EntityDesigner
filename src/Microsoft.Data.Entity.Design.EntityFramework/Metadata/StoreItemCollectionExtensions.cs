@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Xml;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade.Metadata
+namespace Microsoft.Data.Entity.Design.EntityFramework.Metadata
 {
     internal static class StoreItemCollectionExtensions
     {

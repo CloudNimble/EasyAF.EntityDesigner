@@ -3,7 +3,7 @@
 using System.Diagnostics;
 using System.Text;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb.SchemaDiscovery
+namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb.SchemaDiscovery
 {
     internal static class StringBuilderExtensions
     {

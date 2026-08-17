@@ -2,16 +2,16 @@
 
 using EnvDTE;
 using EnvDTE80;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Tools.VSXmlDesignerBase.Common;
-using Microsoft.Data.Tools.VSXmlDesignerBase.Refactoring;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Refactoring;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Refactoring
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Refactoring
 {
     internal static class CodeElementUtilities
     {

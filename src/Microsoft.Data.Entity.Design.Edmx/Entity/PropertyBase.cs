@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.VersioningFacade;
+using Microsoft.Data.Entity.Design.EntityFramework;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.XLinqAnnotations;
 using Microsoft.Data.Entity.Design.XmlEngine.Util;
 
-namespace Microsoft.Data.Entity.Design.Model.Entity
+namespace Microsoft.Data.Entity.Design.Edmx.Entity
 {
     /// <summary>
     ///     Helper class that store the information where a property should be inserted.

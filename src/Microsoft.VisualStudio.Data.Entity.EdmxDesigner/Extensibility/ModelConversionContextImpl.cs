@@ -1,15 +1,16 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using EnvDTE;
-using Microsoft.Data.Entity.Design.Extensibility;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.Extensibility;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Xml.Linq;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Extensibility
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility
 {
     internal class ModelConversionContextImpl : ModelConversionExtensionContext, IDisposable
     {

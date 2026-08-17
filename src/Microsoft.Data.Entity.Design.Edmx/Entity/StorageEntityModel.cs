@@ -7,10 +7,10 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Diagnostics;
 using System.Linq;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.VersioningFacade;
+using Microsoft.Data.Entity.Design.EntityFramework;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
-namespace Microsoft.Data.Entity.Design.Model.Entity
+namespace Microsoft.Data.Entity.Design.Edmx.Entity
 {
     internal class StorageEntityModel : BaseEntityModel
     {

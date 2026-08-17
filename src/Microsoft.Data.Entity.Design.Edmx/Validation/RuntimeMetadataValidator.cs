@@ -4,26 +4,26 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Mapping;
 using System.Data.Entity.Core.Metadata.Edm;
-using System.Data.Entity.Core.SchemaObjectModel;
 using System.Data.Entity.Infrastructure.DependencyResolution;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Model.Mapping;
-using Microsoft.Data.Entity.Design.VersioningFacade;
-using NavigationProperty = Microsoft.Data.Entity.Design.Model.Entity.NavigationProperty;
-using ReferentialConstraint = Microsoft.Data.Entity.Design.Model.Entity.ReferentialConstraint;
-using AssociationSetMapping = Microsoft.Data.Entity.Design.Model.Mapping.AssociationSetMapping;
-using ModificationFunctionMapping = Microsoft.Data.Entity.Design.Model.Mapping.ModificationFunctionMapping;
+using NavigationProperty = Microsoft.Data.Entity.Design.Edmx.Entity.NavigationProperty;
+using ReferentialConstraint = Microsoft.Data.Entity.Design.Edmx.Entity.ReferentialConstraint;
+using AssociationSetMapping = Microsoft.Data.Entity.Design.Edmx.Mapping.AssociationSetMapping;
+using ModificationFunctionMapping = Microsoft.Data.Entity.Design.Edmx.Mapping.ModificationFunctionMapping;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
 using Microsoft.Data.Entity.Design.XmlEngine.Util;
+using Microsoft.Data.Entity.Design.Edmx.Validation.RuntimeErrorCodes;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
+using Microsoft.Data.Entity.Design.EntityFramework;
 
-namespace Microsoft.Data.Entity.Design.Model.Validation
+namespace Microsoft.Data.Entity.Design.Edmx.Validation
 {
     internal class RuntimeMetadataValidator
     {

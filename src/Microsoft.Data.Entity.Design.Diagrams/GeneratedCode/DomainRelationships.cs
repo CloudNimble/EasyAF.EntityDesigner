@@ -9,14 +9,15 @@
 
 using DslModeling = global::Microsoft.VisualStudio.Modeling;
 using DslDesign = global::Microsoft.VisualStudio.Modeling.Design;
-namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
+using Microsoft.Data.Entity.Design.Diagrams.DescriptionProviders;
+namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
 {
 	/// <summary>
 	/// DomainRelationship EntityTypeHasProperties
 	/// </summary>
-	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel))]
+	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties.Description", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel))]
 	[DslModeling::DomainRelationship(IsEmbedding=true)]
 	[DslModeling::DomainObjectId("c48c6a47-40b2-4e85-a889-b0df52a37f3e")]
 	internal partial class EntityTypeHasProperties : DslModeling::ElementLink
@@ -92,12 +93,12 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// <summary>
 		/// DomainRole EntityType
 		/// Description for
-		/// Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.EntityType
+		/// Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties.EntityType
 		/// </summary>
-		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties/EntityType.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties/EntityType.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties/EntityType.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties/EntityType.Description", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
 		[global::System.ComponentModel.Browsable(false)]
-		[DslModeling::DomainRole(DslModeling::DomainRoleOrder.Source, PropertyName = "Properties", PropertyDisplayNameKey="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties/EntityType.PropertyDisplayName",  PropagatesCopy = DslModeling::PropagatesCopyOption.DoNotPropagateCopy, Multiplicity = DslModeling::Multiplicity.ZeroMany)]
+		[DslModeling::DomainRole(DslModeling::DomainRoleOrder.Source, PropertyName = "Properties", PropertyDisplayNameKey="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties/EntityType.PropertyDisplayName",  PropagatesCopy = DslModeling::PropagatesCopyOption.DoNotPropagateCopy, Multiplicity = DslModeling::Multiplicity.ZeroMany)]
 		[DslModeling::DomainObjectId("30e974ac-5354-45d4-8045-8b725fd65ecf")]
 		internal virtual EntityType EntityType
 		{
@@ -145,12 +146,12 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// <summary>
 		/// DomainRole Property
 		/// Description for
-		/// Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.Property
+		/// Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties.Property
 		/// </summary>
-		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties/Property.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties/Property.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties/Property.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties/Property.Description", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
 		[global::System.ComponentModel.Browsable(false)]
-		[DslModeling::DomainRole(DslModeling::DomainRoleOrder.Target, PropertyName = "EntityType", PropertyDisplayNameKey="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties/Property.PropertyDisplayName", PropagatesDelete = true,  PropagatesCopy = DslModeling::PropagatesCopyOption.PropagatesCopyToLinkAndOppositeRolePlayer, Multiplicity = DslModeling::Multiplicity.One)]
+		[DslModeling::DomainRole(DslModeling::DomainRoleOrder.Target, PropertyName = "EntityType", PropertyDisplayNameKey="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties/Property.PropertyDisplayName", PropagatesDelete = true,  PropagatesCopy = DslModeling::PropagatesCopyOption.PropagatesCopyToLinkAndOppositeRolePlayer, Multiplicity = DslModeling::Multiplicity.One)]
 		[DslModeling::DomainObjectId("9b6fd932-cfcc-47a7-8108-15500f9dd1fc")]
 		internal virtual Property Property
 		{
@@ -184,9 +185,9 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// </summary>
 		[global::System.Diagnostics.DebuggerStepThrough]
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-		internal static global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties> GetLinksToProperties ( global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType entityTypeInstance )
+		internal static global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties> GetLinksToProperties ( global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType entityTypeInstance )
 		{
-			return DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties>(entityTypeInstance, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.EntityTypeDomainRoleId);
+			return DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties>(entityTypeInstance, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties.EntityTypeDomainRoleId);
 		}
 		#endregion
 		#region Property link accessor
@@ -195,9 +196,9 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// </summary>
 		[global::System.Diagnostics.DebuggerStepThrough]
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-		internal static global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties GetLinkToEntityType (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property propertyInstance)
+		internal static global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties GetLinkToEntityType (global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property propertyInstance)
 		{
-			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties>(propertyInstance, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.PropertyDomainRoleId);
+			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties>(propertyInstance, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties.PropertyDomainRoleId);
 			global::System.Diagnostics.Debug.Assert(links.Count <= 1, "Multiplicity of Property not obeyed.");
 			if ( links.Count == 0 )
 			{
@@ -216,11 +217,11 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// </summary>
 		[global::System.Diagnostics.DebuggerStepThrough]
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-		internal static global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties> GetLinks( global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType source, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property target )
+		internal static global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties> GetLinks( global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType source, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property target )
 		{
-			global::System.Collections.Generic.List<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties> outLinks = new global::System.Collections.Generic.List<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties>();
-			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties>(source, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.EntityTypeDomainRoleId);
-			foreach ( global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties link in links )
+			global::System.Collections.Generic.List<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties> outLinks = new global::System.Collections.Generic.List<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties>();
+			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties>(source, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties.EntityTypeDomainRoleId);
+			foreach ( global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties link in links )
 			{
 				if ( target.Equals(link.Property) )
 				{
@@ -234,10 +235,10 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// </summary>
 		[global::System.Diagnostics.DebuggerStepThrough]
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-		internal static global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties GetLink( global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType source, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property target )
+		internal static global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties GetLink( global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType source, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property target )
 		{
-			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties>(source, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.EntityTypeDomainRoleId);
-			foreach ( global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties link in links )
+			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties>(source, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties.EntityTypeDomainRoleId);
+			foreach ( global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties link in links )
 			{
 				if ( target.Equals(link.Property) )
 				{
@@ -250,16 +251,16 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		#endregion
 	}
 }
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
 	/// <summary>
 	/// DomainRelationship EntityDesignerViewModelHasEntityTypes
 	/// Description for
-	/// Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes
+	/// Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes
 	/// </summary>
-	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel))]
+	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes.Description", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel))]
 	[DslModeling::DomainRelationship(IsEmbedding=true)]
 	[DslModeling::DomainObjectId("e3036261-bd10-4be9-8121-53e95b66e582")]
 	internal partial class EntityDesignerViewModelHasEntityTypes : DslModeling::ElementLink
@@ -278,7 +279,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// </summary>
 		/// <param name="source">EntityDesignerViewModel to use as the source of the relationship.</param>
 		/// <param name="target">EntityType to use as the target of the relationship.</param>
-		internal EntityDesignerViewModelHasEntityTypes(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel source, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType target)
+		internal EntityDesignerViewModelHasEntityTypes(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel source, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType target)
 			: base((source != null ? source.Partition : null), new DslModeling::RoleAssignment[]{new DslModeling::RoleAssignment(EntityDesignerViewModelHasEntityTypes.EntityDesignerViewModelDomainRoleId, source), new DslModeling::RoleAssignment(EntityDesignerViewModelHasEntityTypes.EntityTypeDomainRoleId, target)}, null)
 		{
 		}
@@ -335,19 +336,19 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <summary>
 		/// DomainRole EntityDesignerViewModel
 		/// Description for
-		/// Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes.EntityDesignerViewModel
+		/// Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes.EntityDesignerViewModel
 		/// </summary>
-		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes/EntityDesignerViewModel.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes/EntityDesignerViewModel.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes/EntityDesignerViewModel.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes/EntityDesignerViewModel.Description", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
 		[global::System.ComponentModel.Browsable(false)]
-		[DslModeling::DomainRole(DslModeling::DomainRoleOrder.Source, PropertyName = "EntityTypes", PropertyDisplayNameKey="Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes/EntityDesignerViewModel.PropertyDisplayName",  PropagatesCopy = DslModeling::PropagatesCopyOption.DoNotPropagateCopy, Multiplicity = DslModeling::Multiplicity.ZeroMany)]
+		[DslModeling::DomainRole(DslModeling::DomainRoleOrder.Source, PropertyName = "EntityTypes", PropertyDisplayNameKey="Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes/EntityDesignerViewModel.PropertyDisplayName",  PropagatesCopy = DslModeling::PropagatesCopyOption.DoNotPropagateCopy, Multiplicity = DslModeling::Multiplicity.ZeroMany)]
 		[DslModeling::DomainObjectId("dd4caca7-8da5-48eb-ba33-b006b2393f22")]
-		internal virtual global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel EntityDesignerViewModel
+		internal virtual global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel EntityDesignerViewModel
 		{
 			[global::System.Diagnostics.DebuggerStepThrough]
 			get
 			{
-				return (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel)DslModeling::DomainRoleInfo.GetRolePlayer(this, EntityDesignerViewModelDomainRoleId);
+				return (global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel)DslModeling::DomainRoleInfo.GetRolePlayer(this, EntityDesignerViewModelDomainRoleId);
 			}
 			[global::System.Diagnostics.DebuggerStepThrough]
 			set
@@ -363,9 +364,9 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// </summary>
 		[global::System.Diagnostics.DebuggerStepThrough]
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-		internal static global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel GetEntityDesignerViewModel(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType element)
+		internal static global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel GetEntityDesignerViewModel(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType element)
 		{
-			return DslModeling::DomainRoleInfo.GetLinkedElement(element, EntityTypeDomainRoleId) as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel;
+			return DslModeling::DomainRoleInfo.GetLinkedElement(element, EntityTypeDomainRoleId) as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel;
 		}
 		
 		/// <summary>
@@ -373,7 +374,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// </summary>
 		[global::System.Diagnostics.DebuggerStepThrough]
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-		internal static void SetEntityDesignerViewModel(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType element, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel newEntityDesignerViewModel)
+		internal static void SetEntityDesignerViewModel(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType element, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel newEntityDesignerViewModel)
 		{
 			DslModeling::DomainRoleInfo.SetLinkedElement(element, EntityTypeDomainRoleId, newEntityDesignerViewModel);
 		}
@@ -388,19 +389,19 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <summary>
 		/// DomainRole EntityType
 		/// Description for
-		/// Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes.EntityType
+		/// Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes.EntityType
 		/// </summary>
-		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes/EntityType.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes/EntityType.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes/EntityType.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes/EntityType.Description", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
 		[global::System.ComponentModel.Browsable(false)]
-		[DslModeling::DomainRole(DslModeling::DomainRoleOrder.Target, PropertyName = "EntityDesignerViewModel", PropertyDisplayNameKey="Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes/EntityType.PropertyDisplayName", PropagatesDelete = true,  PropagatesCopy = DslModeling::PropagatesCopyOption.PropagatesCopyToLinkAndOppositeRolePlayer, Multiplicity = DslModeling::Multiplicity.One)]
+		[DslModeling::DomainRole(DslModeling::DomainRoleOrder.Target, PropertyName = "EntityDesignerViewModel", PropertyDisplayNameKey="Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes/EntityType.PropertyDisplayName", PropagatesDelete = true,  PropagatesCopy = DslModeling::PropagatesCopyOption.PropagatesCopyToLinkAndOppositeRolePlayer, Multiplicity = DslModeling::Multiplicity.One)]
 		[DslModeling::DomainObjectId("fe5a70fc-12dd-438d-813b-8fe2ad58567f")]
-		internal virtual global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType EntityType
+		internal virtual global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType EntityType
 		{
 			[global::System.Diagnostics.DebuggerStepThrough]
 			get
 			{
-				return (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType)DslModeling::DomainRoleInfo.GetRolePlayer(this, EntityTypeDomainRoleId);
+				return (global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType)DslModeling::DomainRoleInfo.GetRolePlayer(this, EntityTypeDomainRoleId);
 			}
 			[global::System.Diagnostics.DebuggerStepThrough]
 			set
@@ -416,9 +417,9 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// </summary>
 		[global::System.Diagnostics.DebuggerStepThrough]
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-		internal static DslModeling::LinkedElementCollection<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType> GetEntityTypes(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel element)
+		internal static DslModeling::LinkedElementCollection<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType> GetEntityTypes(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel element)
 		{
-			return GetRoleCollection<DslModeling::LinkedElementCollection<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType>, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType>(element, EntityDesignerViewModelDomainRoleId);
+			return GetRoleCollection<DslModeling::LinkedElementCollection<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType>, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType>(element, EntityDesignerViewModelDomainRoleId);
 		}
 		#endregion
 		#region EntityDesignerViewModel link accessor
@@ -427,9 +428,9 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// </summary>
 		[global::System.Diagnostics.DebuggerStepThrough]
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-		internal static global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes> GetLinksToEntityTypes ( global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel entityDesignerViewModelInstance )
+		internal static global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes> GetLinksToEntityTypes ( global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel entityDesignerViewModelInstance )
 		{
-			return DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes>(entityDesignerViewModelInstance, global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes.EntityDesignerViewModelDomainRoleId);
+			return DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes>(entityDesignerViewModelInstance, global::Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes.EntityDesignerViewModelDomainRoleId);
 		}
 		#endregion
 		#region EntityType link accessor
@@ -438,9 +439,9 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// </summary>
 		[global::System.Diagnostics.DebuggerStepThrough]
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-		internal static global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes GetLinkToEntityDesignerViewModel (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType entityTypeInstance)
+		internal static global::Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes GetLinkToEntityDesignerViewModel (global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType entityTypeInstance)
 		{
-			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes>(entityTypeInstance, global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes.EntityTypeDomainRoleId);
+			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes>(entityTypeInstance, global::Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes.EntityTypeDomainRoleId);
 			global::System.Diagnostics.Debug.Assert(links.Count <= 1, "Multiplicity of EntityType not obeyed.");
 			if ( links.Count == 0 )
 			{
@@ -459,11 +460,11 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// </summary>
 		[global::System.Diagnostics.DebuggerStepThrough]
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-		internal static global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes> GetLinks( global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel source, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType target )
+		internal static global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes> GetLinks( global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel source, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType target )
 		{
-			global::System.Collections.Generic.List<global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes> outLinks = new global::System.Collections.Generic.List<global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes>();
-			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes>(source, global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes.EntityDesignerViewModelDomainRoleId);
-			foreach ( global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes link in links )
+			global::System.Collections.Generic.List<global::Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes> outLinks = new global::System.Collections.Generic.List<global::Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes>();
+			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes>(source, global::Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes.EntityDesignerViewModelDomainRoleId);
+			foreach ( global::Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes link in links )
 			{
 				if ( target.Equals(link.EntityType) )
 				{
@@ -477,10 +478,10 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// </summary>
 		[global::System.Diagnostics.DebuggerStepThrough]
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-		internal static global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes GetLink( global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel source, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType target )
+		internal static global::Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes GetLink( global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel source, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType target )
 		{
-			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes>(source, global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes.EntityDesignerViewModelDomainRoleId);
-			foreach ( global::Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes link in links )
+			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes>(source, global::Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes.EntityDesignerViewModelDomainRoleId);
+			foreach ( global::Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes link in links )
 			{
 				if ( target.Equals(link.EntityType) )
 				{
@@ -493,15 +494,15 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		#endregion
 	}
 }
-namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
+namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
 {
 	/// <summary>
 	/// DomainRelationship Association
 	/// </summary>
 	[System.ComponentModel.TypeDescriptionProvider(typeof(AssociationDescriptionProvider))]
-	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel))]
+	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.Description", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel))]
 	[global::System.Diagnostics.DebuggerDisplay("{GetType().Name,nq} (Name = {namePropertyStorage})")]
 	[DslModeling::DomainRelationship(AllowsDuplicates = true)]
 	[DslModeling::DomainObjectId("f9cc6d75-f51d-447a-bd83-fba56fed8b44")]
@@ -578,12 +579,12 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// <summary>
 		/// DomainRole SourceEntityType
 		/// Description for
-		/// Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.SourceEntityType
+		/// Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.SourceEntityType
 		/// </summary>
-		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.Association/SourceEntityType.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.Association/SourceEntityType.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association/SourceEntityType.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association/SourceEntityType.Description", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
 		[global::System.ComponentModel.Browsable(false)]
-		[DslModeling::DomainRole(DslModeling::DomainRoleOrder.Source, PropertyName = "AssociationTargets", PropertyDisplayNameKey="Microsoft.Data.Entity.Design.Dsl.ViewModel.Association/SourceEntityType.PropertyDisplayName",  PropagatesCopy = DslModeling::PropagatesCopyOption.DoNotPropagateCopy, Multiplicity = DslModeling::Multiplicity.ZeroMany)]
+		[DslModeling::DomainRole(DslModeling::DomainRoleOrder.Source, PropertyName = "AssociationTargets", PropertyDisplayNameKey="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association/SourceEntityType.PropertyDisplayName",  PropagatesCopy = DslModeling::PropagatesCopyOption.DoNotPropagateCopy, Multiplicity = DslModeling::Multiplicity.ZeroMany)]
 		[DslModeling::DomainObjectId("b4225a71-8c58-4bde-82a7-1ebdfb15a373")]
 		internal virtual EntityType SourceEntityType
 		{
@@ -621,12 +622,12 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// <summary>
 		/// DomainRole TargetEntityType
 		/// Description for
-		/// Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.TargetEntityType
+		/// Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.TargetEntityType
 		/// </summary>
-		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.Association/TargetEntityType.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.Association/TargetEntityType.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association/TargetEntityType.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association/TargetEntityType.Description", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
 		[global::System.ComponentModel.Browsable(false)]
-		[DslModeling::DomainRole(DslModeling::DomainRoleOrder.Target, PropertyName = "AssociationSources", PropertyDisplayNameKey="Microsoft.Data.Entity.Design.Dsl.ViewModel.Association/TargetEntityType.PropertyDisplayName",  PropagatesCopy = DslModeling::PropagatesCopyOption.DoNotPropagateCopy, Multiplicity = DslModeling::Multiplicity.ZeroMany)]
+		[DslModeling::DomainRole(DslModeling::DomainRoleOrder.Target, PropertyName = "AssociationSources", PropertyDisplayNameKey="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association/TargetEntityType.PropertyDisplayName",  PropagatesCopy = DslModeling::PropagatesCopyOption.DoNotPropagateCopy, Multiplicity = DslModeling::Multiplicity.ZeroMany)]
 		[DslModeling::DomainObjectId("45245da1-b4fc-4879-8a59-c225e233bdfe")]
 		internal virtual EntityType TargetEntityType
 		{
@@ -670,8 +671,8 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// Gets or sets the value of Name domain property.
 		/// Name
 		/// </summary>
-		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.Association/Name.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.Association/Name.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association/Name.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association/Name.Description", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
 		[global::System.ComponentModel.Browsable(false)]
 		[DslModeling::ElementName]
 		[DslModeling::DomainObjectId("39e88f59-c849-4810-8b9e-b9e0798d979b")]
@@ -759,8 +760,8 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// Gets or sets the value of SourceMultiplicity domain property.
 		/// Computed source display text
 		/// </summary>
-		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.Association/SourceMultiplicity.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.Association/SourceMultiplicity.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association/SourceMultiplicity.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association/SourceMultiplicity.Description", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
 		[global::System.ComponentModel.Browsable(false)]
 		[global::System.ComponentModel.ReadOnly(true)]
 		[DslModeling::DomainObjectId("cb259944-6001-4696-9ea7-19a804f2b2c1")]
@@ -848,8 +849,8 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// Gets or sets the value of TargetMultiplicity domain property.
 		/// Computed target display text
 		/// </summary>
-		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.Association/TargetMultiplicity.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.Association/TargetMultiplicity.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association/TargetMultiplicity.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association/TargetMultiplicity.Description", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
 		[global::System.ComponentModel.Browsable(false)]
 		[global::System.ComponentModel.ReadOnly(true)]
 		[DslModeling::DomainObjectId("141f87f4-9156-4a6f-a5c8-7f64f4df69c8")]
@@ -927,9 +928,9 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// </summary>
 		[global::System.Diagnostics.DebuggerStepThrough]
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-		internal static global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association> GetLinksToAssociationTargets ( global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType sourceEntityTypeInstance )
+		internal static global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association> GetLinksToAssociationTargets ( global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType sourceEntityTypeInstance )
 		{
-			return DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association>(sourceEntityTypeInstance, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.SourceEntityTypeDomainRoleId);
+			return DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association>(sourceEntityTypeInstance, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.SourceEntityTypeDomainRoleId);
 		}
 		#endregion
 		#region TargetEntityType link accessor
@@ -938,9 +939,9 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// </summary>
 		[global::System.Diagnostics.DebuggerStepThrough]
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-		internal static global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association> GetLinksToAssociationSources ( global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType targetEntityTypeInstance )
+		internal static global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association> GetLinksToAssociationSources ( global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType targetEntityTypeInstance )
 		{
-			return DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association>(targetEntityTypeInstance, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.TargetEntityTypeDomainRoleId);
+			return DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association>(targetEntityTypeInstance, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.TargetEntityTypeDomainRoleId);
 		}
 		#endregion
 		#region Association instance accessors
@@ -950,11 +951,11 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// </summary>
 		[global::System.Diagnostics.DebuggerStepThrough]
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-		internal static global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association> GetLinks( global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType source, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType target )
+		internal static global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association> GetLinks( global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType source, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType target )
 		{
-			global::System.Collections.Generic.List<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association> outLinks = new global::System.Collections.Generic.List<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association>();
-			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association>(source, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.SourceEntityTypeDomainRoleId);
-			foreach ( global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association link in links )
+			global::System.Collections.Generic.List<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association> outLinks = new global::System.Collections.Generic.List<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association>();
+			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association>(source, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.SourceEntityTypeDomainRoleId);
+			foreach ( global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association link in links )
 			{
 				if ( target.Equals(link.TargetEntityType) )
 				{
@@ -966,14 +967,14 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		#endregion
 	}
 }
-namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
+namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
 {
 	/// <summary>
 	/// DomainRelationship EntityTypeHasNavigationProperties
 	/// </summary>
-	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel))]
+	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties.Description", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel))]
 	[DslModeling::DomainRelationship(IsEmbedding=true)]
 	[DslModeling::DomainObjectId("81514557-7408-48c9-b3cd-cee5d27efe6e")]
 	internal partial class EntityTypeHasNavigationProperties : DslModeling::ElementLink
@@ -1049,12 +1050,12 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// <summary>
 		/// DomainRole EntityType
 		/// Description for
-		/// Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.EntityType
+		/// Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties.EntityType
 		/// </summary>
-		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties/EntityType.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties/EntityType.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties/EntityType.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties/EntityType.Description", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
 		[global::System.ComponentModel.Browsable(false)]
-		[DslModeling::DomainRole(DslModeling::DomainRoleOrder.Source, PropertyName = "NavigationProperties", PropertyDisplayNameKey="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties/EntityType.PropertyDisplayName",  PropagatesCopy = DslModeling::PropagatesCopyOption.DoNotPropagateCopy, Multiplicity = DslModeling::Multiplicity.ZeroMany)]
+		[DslModeling::DomainRole(DslModeling::DomainRoleOrder.Source, PropertyName = "NavigationProperties", PropertyDisplayNameKey="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties/EntityType.PropertyDisplayName",  PropagatesCopy = DslModeling::PropagatesCopyOption.DoNotPropagateCopy, Multiplicity = DslModeling::Multiplicity.ZeroMany)]
 		[DslModeling::DomainObjectId("573dadad-1cf6-491b-a674-00cf97910bbd")]
 		internal virtual EntityType EntityType
 		{
@@ -1102,12 +1103,12 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// <summary>
 		/// DomainRole NavigationProperty
 		/// Description for
-		/// Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.NavigationProperty
+		/// Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties.NavigationProperty
 		/// </summary>
-		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties/NavigationProperty.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties/NavigationProperty.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties/NavigationProperty.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties/NavigationProperty.Description", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
 		[global::System.ComponentModel.Browsable(false)]
-		[DslModeling::DomainRole(DslModeling::DomainRoleOrder.Target, PropertyName = "EntityType", PropertyDisplayNameKey="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties/NavigationProperty.PropertyDisplayName", PropagatesDelete = true,  PropagatesCopy = DslModeling::PropagatesCopyOption.PropagatesCopyToLinkAndOppositeRolePlayer, Multiplicity = DslModeling::Multiplicity.One)]
+		[DslModeling::DomainRole(DslModeling::DomainRoleOrder.Target, PropertyName = "EntityType", PropertyDisplayNameKey="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties/NavigationProperty.PropertyDisplayName", PropagatesDelete = true,  PropagatesCopy = DslModeling::PropagatesCopyOption.PropagatesCopyToLinkAndOppositeRolePlayer, Multiplicity = DslModeling::Multiplicity.One)]
 		[DslModeling::DomainObjectId("7309dfe7-8356-46f3-952e-165009efafe6")]
 		internal virtual NavigationProperty NavigationProperty
 		{
@@ -1141,9 +1142,9 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// </summary>
 		[global::System.Diagnostics.DebuggerStepThrough]
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-		internal static global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties> GetLinksToNavigationProperties ( global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType entityTypeInstance )
+		internal static global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties> GetLinksToNavigationProperties ( global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType entityTypeInstance )
 		{
-			return DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties>(entityTypeInstance, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.EntityTypeDomainRoleId);
+			return DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties>(entityTypeInstance, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties.EntityTypeDomainRoleId);
 		}
 		#endregion
 		#region NavigationProperty link accessor
@@ -1152,9 +1153,9 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// </summary>
 		[global::System.Diagnostics.DebuggerStepThrough]
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-		internal static global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties GetLinkToEntityType (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty navigationPropertyInstance)
+		internal static global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties GetLinkToEntityType (global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty navigationPropertyInstance)
 		{
-			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties>(navigationPropertyInstance, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.NavigationPropertyDomainRoleId);
+			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties>(navigationPropertyInstance, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties.NavigationPropertyDomainRoleId);
 			global::System.Diagnostics.Debug.Assert(links.Count <= 1, "Multiplicity of NavigationProperty not obeyed.");
 			if ( links.Count == 0 )
 			{
@@ -1173,11 +1174,11 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// </summary>
 		[global::System.Diagnostics.DebuggerStepThrough]
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-		internal static global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties> GetLinks( global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType source, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty target )
+		internal static global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties> GetLinks( global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType source, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty target )
 		{
-			global::System.Collections.Generic.List<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties> outLinks = new global::System.Collections.Generic.List<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties>();
-			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties>(source, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.EntityTypeDomainRoleId);
-			foreach ( global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties link in links )
+			global::System.Collections.Generic.List<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties> outLinks = new global::System.Collections.Generic.List<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties>();
+			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties>(source, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties.EntityTypeDomainRoleId);
+			foreach ( global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties link in links )
 			{
 				if ( target.Equals(link.NavigationProperty) )
 				{
@@ -1191,10 +1192,10 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// </summary>
 		[global::System.Diagnostics.DebuggerStepThrough]
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-		internal static global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties GetLink( global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType source, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty target )
+		internal static global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties GetLink( global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType source, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty target )
 		{
-			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties>(source, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.EntityTypeDomainRoleId);
-			foreach ( global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties link in links )
+			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties>(source, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties.EntityTypeDomainRoleId);
+			foreach ( global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties link in links )
 			{
 				if ( target.Equals(link.NavigationProperty) )
 				{
@@ -1207,14 +1208,14 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		#endregion
 	}
 }
-namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
+namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
 {
 	/// <summary>
 	/// DomainRelationship Inheritance
 	/// </summary>
-	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel))]
+	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.Description", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel))]
 	[DslModeling::DomainRelationship()]
 	[DslModeling::DomainObjectId("9f7eeb7a-4385-41d3-8c3e-c99fe852eb38")]
 	internal partial class Inheritance : DslModeling::ElementLink
@@ -1290,12 +1291,12 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// <summary>
 		/// DomainRole SourceEntityType
 		/// Description for
-		/// Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.SourceEntityType
+		/// Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.SourceEntityType
 		/// </summary>
-		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance/SourceEntityType.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance/SourceEntityType.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance/SourceEntityType.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance/SourceEntityType.Description", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
 		[global::System.ComponentModel.Browsable(false)]
-		[DslModeling::DomainRole(DslModeling::DomainRoleOrder.Source, PropertyName = "DerivedTypes", PropertyDisplayNameKey="Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance/SourceEntityType.PropertyDisplayName",  PropagatesCopy = DslModeling::PropagatesCopyOption.DoNotPropagateCopy, Multiplicity = DslModeling::Multiplicity.ZeroMany)]
+		[DslModeling::DomainRole(DslModeling::DomainRoleOrder.Source, PropertyName = "DerivedTypes", PropertyDisplayNameKey="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance/SourceEntityType.PropertyDisplayName",  PropagatesCopy = DslModeling::PropagatesCopyOption.DoNotPropagateCopy, Multiplicity = DslModeling::Multiplicity.ZeroMany)]
 		[DslModeling::DomainObjectId("ce879f7d-559d-48a6-814f-3157a4c39bbc")]
 		internal virtual EntityType SourceEntityType
 		{
@@ -1343,12 +1344,12 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// <summary>
 		/// DomainRole TargetEntityType
 		/// Description for
-		/// Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.TargetEntityType
+		/// Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.TargetEntityType
 		/// </summary>
-		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance/TargetEntityType.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance/TargetEntityType.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance/TargetEntityType.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance/TargetEntityType.Description", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
 		[global::System.ComponentModel.Browsable(false)]
-		[DslModeling::DomainRole(DslModeling::DomainRoleOrder.Target, PropertyName = "BaseType", PropertyDisplayNameKey="Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance/TargetEntityType.PropertyDisplayName",  PropagatesCopy = DslModeling::PropagatesCopyOption.DoNotPropagateCopy, Multiplicity = DslModeling::Multiplicity.ZeroOne)]
+		[DslModeling::DomainRole(DslModeling::DomainRoleOrder.Target, PropertyName = "BaseType", PropertyDisplayNameKey="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance/TargetEntityType.PropertyDisplayName",  PropagatesCopy = DslModeling::PropagatesCopyOption.DoNotPropagateCopy, Multiplicity = DslModeling::Multiplicity.ZeroOne)]
 		[DslModeling::DomainObjectId("1483ad20-8271-4cb4-b7c5-a0a21e13a69d")]
 		internal virtual EntityType TargetEntityType
 		{
@@ -1382,9 +1383,9 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// </summary>
 		[global::System.Diagnostics.DebuggerStepThrough]
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-		internal static global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance> GetLinksToDerivedTypes ( global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType sourceEntityTypeInstance )
+		internal static global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance> GetLinksToDerivedTypes ( global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType sourceEntityTypeInstance )
 		{
-			return DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance>(sourceEntityTypeInstance, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.SourceEntityTypeDomainRoleId);
+			return DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance>(sourceEntityTypeInstance, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.SourceEntityTypeDomainRoleId);
 		}
 		#endregion
 		#region TargetEntityType link accessor
@@ -1393,9 +1394,9 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// </summary>
 		[global::System.Diagnostics.DebuggerStepThrough]
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-		internal static global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance GetLinkToBaseType (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType targetEntityTypeInstance)
+		internal static global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance GetLinkToBaseType (global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType targetEntityTypeInstance)
 		{
-			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance>(targetEntityTypeInstance, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.TargetEntityTypeDomainRoleId);
+			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance>(targetEntityTypeInstance, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.TargetEntityTypeDomainRoleId);
 			global::System.Diagnostics.Debug.Assert(links.Count <= 1, "Multiplicity of TargetEntityType not obeyed.");
 			if ( links.Count == 0 )
 			{
@@ -1414,11 +1415,11 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// </summary>
 		[global::System.Diagnostics.DebuggerStepThrough]
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-		internal static global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance> GetLinks( global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType source, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType target )
+		internal static global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance> GetLinks( global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType source, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType target )
 		{
-			global::System.Collections.Generic.List<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance> outLinks = new global::System.Collections.Generic.List<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance>();
-			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance>(source, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.SourceEntityTypeDomainRoleId);
-			foreach ( global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance link in links )
+			global::System.Collections.Generic.List<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance> outLinks = new global::System.Collections.Generic.List<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance>();
+			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance>(source, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.SourceEntityTypeDomainRoleId);
+			foreach ( global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance link in links )
 			{
 				if ( target.Equals(link.TargetEntityType) )
 				{
@@ -1432,10 +1433,10 @@ namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 		/// </summary>
 		[global::System.Diagnostics.DebuggerStepThrough]
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-		internal static global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance GetLink( global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType source, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType target )
+		internal static global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance GetLink( global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType source, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType target )
 		{
-			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance>(source, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.SourceEntityTypeDomainRoleId);
-			foreach ( global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance link in links )
+			global::System.Collections.Generic.IList<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance> links = DslModeling::DomainRoleInfo.GetElementLinks<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance>(source, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.SourceEntityTypeDomainRoleId);
+			foreach ( global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance link in links )
 			{
 				if ( target.Equals(link.TargetEntityType) )
 				{

@@ -3,10 +3,10 @@
 <#@ assembly name="Microsoft.Data.Entity.Design" #>
 <#@ assembly name="EntityFramework" #>
 <#@ import namespace="System.Linq" #>
-<#@ import namespace="Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration" #>
-<#@ import namespace="Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration" #>
-<#@ import namespace="Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration.Properties" #>
-<#@ import namespace="Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration.Types" #>
+<#@ import namespace="Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration" #>
+<#@ import namespace="Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Configuration" #>
+<#@ import namespace="Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Configuration.Properties" #>
+<#@ import namespace="Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Configuration.Types" #>
 <#@ parameter type="System.Data.Entity.Infrastructure.DbModel" name="Model" #>
 <#@ parameter type="System.String" name="Namespace" #>
 <#@ parameter type="System.String" name="ContextClassName" #>

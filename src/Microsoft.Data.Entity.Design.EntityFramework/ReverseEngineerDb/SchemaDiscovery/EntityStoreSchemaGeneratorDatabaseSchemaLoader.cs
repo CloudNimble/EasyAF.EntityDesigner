@@ -12,7 +12,7 @@ using System.Data.Entity.Utilities;
 using System.Diagnostics;
 using System.Linq;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb.SchemaDiscovery
+namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb.SchemaDiscovery
 {
     /// <summary>
     ///     Responsible for Loading Database Schema Information

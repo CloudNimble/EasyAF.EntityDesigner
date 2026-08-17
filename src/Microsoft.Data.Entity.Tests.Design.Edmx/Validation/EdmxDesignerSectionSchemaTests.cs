@@ -3,13 +3,13 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Xml;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Validation;
-using Microsoft.Data.Entity.Design.VersioningFacade;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Microsoft.Data.Entity.Design.Edmx.Validation;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.EntityFramework;
 
-namespace Microsoft.Data.Entity.Tests.Design.Model.Validation
+namespace Microsoft.Data.Entity.Tests.Design.Edmx.Validation
 {
     /// <summary>
     ///     Verifies that the EDMX schema accepts the Designer section's children in any order.

@@ -2,7 +2,7 @@
 
 using System.Windows;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
 {
     // All assembly level XAML resources are stored here
     internal partial class AssemblyResources : ResourceDictionary

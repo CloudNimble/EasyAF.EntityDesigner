@@ -5,14 +5,14 @@ using System.Collections.Generic;
 using System.Data.Entity.Core.Common;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Infrastructure.DependencyResolution;
-using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb;
 using System.Linq;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb;
 
-namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
+namespace Microsoft.Data.Entity.Tests.Design.EntityFramework.ReverseEngineerDb
 {
     [TestClass]
     public class EntitySetDefiningQueryConverterTests

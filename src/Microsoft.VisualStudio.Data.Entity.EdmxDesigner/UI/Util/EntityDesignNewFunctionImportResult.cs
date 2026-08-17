@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.Model.Database;
-using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Database;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
 using System.Windows.Forms;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Util
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Util
 {
     internal struct EntityDesignNewFunctionImportResult
     {

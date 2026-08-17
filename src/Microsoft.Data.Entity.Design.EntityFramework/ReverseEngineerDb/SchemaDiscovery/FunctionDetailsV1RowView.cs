@@ -3,7 +3,7 @@
 using System;
 using System.Diagnostics;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb.SchemaDiscovery
+namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb.SchemaDiscovery
 {
     internal class FunctionDetailsV1RowView : FunctionDetailsRowView
     {

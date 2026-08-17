@@ -6,11 +6,11 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Design.Serialization;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio.Package
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package
 {
 
     /// <summary>

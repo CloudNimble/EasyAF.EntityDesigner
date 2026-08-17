@@ -5,9 +5,9 @@ using System.Globalization;
 using System.IO;
 using System.Xml;
 using System.Xml.Xsl;
-using Microsoft.Data.Entity.Design.VersioningFacade;
+using Microsoft.Data.Entity.Design.EntityFramework;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.Edmx.MetadataConverter
 {
     internal sealed class NamespaceConverterHandler : MetadataConverterHandler
     {

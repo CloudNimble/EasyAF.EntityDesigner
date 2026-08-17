@@ -7,7 +7,7 @@ using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.VisualStudio.XmlEditor;
 using XmlModel = Microsoft.Data.Entity.Design.XmlEngine.Model.XmlModel;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio
 {
     internal sealed class VSXmlTransaction : XmlTransaction
     {

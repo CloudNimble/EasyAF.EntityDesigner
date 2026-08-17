@@ -3,12 +3,14 @@
 using System;
 using System.IO;
 using System.Text;
-using Microsoft.Data.Entity.Design.Dsl.View;
-using Microsoft.Data.Entity.Design.Dsl.View.Export;
+using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export;
+using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export.Raster;
+using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export.Svg;
+using Microsoft.Data.Entity.Design.Diagrams.View;
 using SkiaSharp;
 using Svg.Skia;
 
-namespace Microsoft.Data.Entity.Tools.Export
+namespace Microsoft.Data.Entity.Design.Diagrams.Tools.Export
 {
 
     /// <summary>

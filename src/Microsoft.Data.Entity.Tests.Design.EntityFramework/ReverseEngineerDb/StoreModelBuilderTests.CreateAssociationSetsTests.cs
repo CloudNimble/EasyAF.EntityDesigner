@@ -2,7 +2,7 @@
 
 using System;
 using System.Data.Entity.Core.Metadata.Edm;
-using Microsoft.Data.Entity.Design.VersioningFacade;
+using Microsoft.Data.Entity.Design.EntityFramework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb

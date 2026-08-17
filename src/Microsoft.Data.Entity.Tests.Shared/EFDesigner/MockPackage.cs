@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.Data.Entity.Design.Edmx;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails;
-using ModelChangeEventArgs = Microsoft.Data.Entity.Design.VisualStudio.Package.ModelChangeEventArgs;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package;
+using ModelChangeEventArgs = Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package.ModelChangeEventArgs;
 
 namespace Microsoft.Data.Entity.Tests.Shared.EFDesigner
 {

@@ -6,7 +6,7 @@ using System.Data.Common;
 using System.Diagnostics;
 using System.IO;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.Package
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
 {
     internal class LocalDataUtil
     {

@@ -9,13 +9,16 @@ using System.Diagnostics;
 using System.Drawing.Design;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Tools.VSXmlDesignerBase.Common;
 using Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace Microsoft.Data.Entity.Design.Base.Shell
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
 {
     /// <summary>
     ///     Class derived from VirtualTreeControl containing TreeGrid designer-specific code

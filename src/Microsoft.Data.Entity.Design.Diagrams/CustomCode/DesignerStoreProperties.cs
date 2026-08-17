@@ -4,7 +4,7 @@ using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.VisualStudio.Modeling;
 using System;
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
     /// <summary>
     ///     Values the host pushes into a <see cref="Store" /> before asking the designer to load it.

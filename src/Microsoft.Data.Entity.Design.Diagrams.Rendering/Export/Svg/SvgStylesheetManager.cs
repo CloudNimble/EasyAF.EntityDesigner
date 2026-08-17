@@ -3,7 +3,7 @@ using System;
 using System.Drawing;
 using System.Globalization;
 
-namespace Microsoft.Data.Entity.Design.Dsl.View.Export
+namespace Microsoft.Data.Entity.Design.Diagrams.Rendering.Export.Svg
 {
 
     /// <summary>

@@ -2,7 +2,7 @@
 
 using System;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.Package
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
 {
     internal static class PackageConstants
     {

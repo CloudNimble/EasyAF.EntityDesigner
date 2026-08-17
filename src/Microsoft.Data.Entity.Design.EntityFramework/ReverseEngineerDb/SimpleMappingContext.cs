@@ -5,7 +5,7 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Diagnostics;
 using System.Linq;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb
+namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb
 {
     internal class SimpleMappingContext
     {

@@ -3,14 +3,14 @@
 using System;
 using System.Diagnostics;
 using System.Linq;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
+using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.VisualStudio.Modeling.Diagrams;
-using Diagram = Microsoft.Data.Entity.Design.Model.Designer.Diagram;
-using EntityType = Microsoft.Data.Entity.Design.Model.Entity.EntityType;
-using EntityTypeShape = Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape;
+using Diagram = Microsoft.Data.Entity.Design.Edmx.Designer.Diagram;
+using EntityType = Microsoft.Data.Entity.Design.Edmx.Entity.EntityType;
+using EntityTypeShape = Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape;
 
-namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
+namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
 {
     internal class EntityTypeShapeChange : EntityTypeShapeModelChange
     {
@@ -34,7 +34,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
 
             if (viewModel != null)
             {
-                Model.Designer.EntityTypeShape modelEntityShape = viewModel.ModelXRef.GetExisting(entityTypeShape) as Model.Designer.EntityTypeShape;
+                Edmx.Designer.EntityTypeShape modelEntityShape = viewModel.ModelXRef.GetExisting(entityTypeShape) as Edmx.Designer.EntityTypeShape;
 
                 // If ModelXRef does not contain about model EntityTypeShape,try to get the information through DSL Model Element
                 if (modelEntityShape == null)
@@ -47,7 +47,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
                         && entityType != null)
                     {
                         modelEntityShape =
-                            entityType.GetAntiDependenciesOfType<Model.Designer.EntityTypeShape>()
+                            entityType.GetAntiDependenciesOfType<Edmx.Designer.EntityTypeShape>()
                             .FirstOrDefault(ets => ets.Diagram.Id == modelDiagram.Id.Value);
                     }
 
@@ -61,7 +61,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
                 if (modelEntityShape == null)
                 {
                     EntityTypeShapeAdd.StaticInvoke(cpc, entityTypeShape);
-                    modelEntityShape = viewModel.ModelXRef.GetExisting(entityTypeShape) as Model.Designer.EntityTypeShape;
+                    modelEntityShape = viewModel.ModelXRef.GetExisting(entityTypeShape) as Edmx.Designer.EntityTypeShape;
                 }
                 Debug.Assert(modelEntityShape != null);
                 if (modelEntityShape != null)

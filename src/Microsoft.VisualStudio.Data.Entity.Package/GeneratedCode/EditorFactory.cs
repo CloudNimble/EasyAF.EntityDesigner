@@ -10,7 +10,7 @@
 using VSShellInterop = global::Microsoft.VisualStudio.Shell.Interop;
 using DslShell = global::Microsoft.VisualStudio.Modeling.Shell;
 
-namespace Microsoft.Data.Entity.Design.Package
+namespace Microsoft.VisualStudio.Data.Entity.Package
 {
 	/// <summary>
 	/// Double-derived class to allow easier code customization.

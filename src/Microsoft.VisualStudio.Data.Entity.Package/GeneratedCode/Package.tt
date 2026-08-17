@@ -1,7 +1,7 @@
-<#@ Dsl processor="DslDirectiveProcessor" requires="fileName='..\..\Microsoft.Data.Entity.Design.Dsl\DslDefinition.dsl'" #>
+<#@ Dsl processor="DslDirectiveProcessor" requires="fileName='..\..\Microsoft.Data.Entity.Design.Diagrams\DslDefinition.dsl'" #>
 <#
 	//DSL assembly name - used for toolbox item registration. Adjust if the DSL assembly was renamed.
-	string dslAssembly = "Microsoft.Data.Entity.Design.Dsl.dll";
+	string dslAssembly = "Microsoft.Data.Entity.Design.Diagrams.dll";
 #>
 <#@ include file="Templates\Package.tt" #>
 //
@@ -22,7 +22,7 @@ namespace <#= CodeGenerationUtilities.GetPackageNamespace(this.Dsl) #>
 	// The DSL SDK also emits a ProvideDirectiveProcessor attribute here, for the
 	// EntityFrameworkDirectiveProcessor it generates into the designer. That processor is deleted and the
 	// attribute with it: the T4 story ships through T4VSHost / FallbackT4VSHostProcessor, registered from
-	// PkgDefData\Microsoft.Data.Entity.Design.Package.pkgdef. See specs/known-issues.md 6.1.
+	// PkgDefData\Microsoft.VisualStudio.Data.Entity.Package.pkgdef. See specs/known-issues.md 6.1.
 	[global::System.Runtime.InteropServices.Guid(Constants.<#= dslName #>PackageId)]
 	internal sealed partial class <#= dslName #>Package : <#= dslName #>PackageBase
 	{

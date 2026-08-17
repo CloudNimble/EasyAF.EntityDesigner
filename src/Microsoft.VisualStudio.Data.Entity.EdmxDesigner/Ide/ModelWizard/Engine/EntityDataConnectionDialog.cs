@@ -2,15 +2,15 @@
 
 using EnvDTE;
 using Microsoft.VisualStudio.Data.Core;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 using Microsoft.VisualStudio.Data.Services;
 using Microsoft.VSDesigner.Data;
 using System;
 using System.Globalization;
 using System.Xml;
-using WizardResources = Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Properties.Resources;
+using WizardResources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.Resources;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
 {
     // <summary>
     //     A wrapper around IVsDataConnectionDialog to share functionality for

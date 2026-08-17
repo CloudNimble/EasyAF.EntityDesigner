@@ -3,7 +3,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Microsoft.Data.Entity.Design.Model.Commands
+namespace Microsoft.Data.Entity.Design.Edmx.Commands
 {
     [Serializable]
     internal class CannotLocateReferencedItemException : Exception

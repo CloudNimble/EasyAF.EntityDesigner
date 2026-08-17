@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.Base.Shell;
-using Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow.Converters;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetails;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Converters;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails.Columns
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails.Columns
 {
     // <summary>
     //     Abstract base class for all Mapping XyzColumn classes.

@@ -6,7 +6,7 @@ using System.Data;
 using System.Data.Entity.Core.EntityClient;
 using Moq;
 
-namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb.SchemaDiscovery
+namespace Microsoft.Data.Entity.Tests.Design.EntityFramework.ReverseEngineerDb.SchemaDiscovery
 {
     // intentionally not static because of closures
     internal class EntityClientMockFactory

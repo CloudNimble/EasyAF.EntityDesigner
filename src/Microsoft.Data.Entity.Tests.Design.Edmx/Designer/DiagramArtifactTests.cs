@@ -2,13 +2,13 @@
 
 using System;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.Model;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
 
-namespace Microsoft.Data.Entity.Tests.Design.Model
+namespace Microsoft.Data.Entity.Tests.Design.Edmx.Designer
 {
     [TestClass]
     public class DiagramArtifactTests

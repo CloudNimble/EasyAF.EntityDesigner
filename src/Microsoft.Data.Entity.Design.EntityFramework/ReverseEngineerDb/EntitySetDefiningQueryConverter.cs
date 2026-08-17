@@ -15,7 +15,7 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb
+namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb
 {
     internal static class EntitySetDefiningQueryConverter
     {

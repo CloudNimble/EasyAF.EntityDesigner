@@ -9,7 +9,7 @@ using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
 using System.Linq;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb
+namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb
 {
     internal class DbDatabaseMappingBuilder
     {

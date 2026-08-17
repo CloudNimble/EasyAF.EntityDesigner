@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Diagnostics;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration.Types
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Configuration.Types
 {
     /// <summary>
     /// Represents a model configuration to set the key of an entity.

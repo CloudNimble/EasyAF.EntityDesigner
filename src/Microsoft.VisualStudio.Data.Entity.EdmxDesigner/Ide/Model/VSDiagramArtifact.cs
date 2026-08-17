@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -11,7 +11,7 @@ using Microsoft.VisualStudio.TextManager.Interop;
 using System;
 using System.Diagnostics;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.Model
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model
 {
     internal class VSDiagramArtifact : DiagramArtifact, IVsRunningDocTableEvents2
     {

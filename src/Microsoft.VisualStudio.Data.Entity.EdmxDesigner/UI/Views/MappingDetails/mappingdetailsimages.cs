@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
 using Microsoft.VisualStudio.PlatformUI;
 using System.Windows.Forms;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails
 {
     internal static class MappingDetailsImages
     {

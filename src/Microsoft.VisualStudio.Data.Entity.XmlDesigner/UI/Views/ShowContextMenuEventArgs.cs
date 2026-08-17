@@ -3,7 +3,7 @@
 using System;
 using System.Windows;
 
-namespace Microsoft.Data.Entity.Design.UI.Views
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views
 {
     internal class ShowContextMenuEventArgs : EventArgs
     {

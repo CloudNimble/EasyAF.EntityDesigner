@@ -3,7 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Microsoft.Data.Entity.Design.Model.UpdateFromDatabase
+namespace Microsoft.Data.Entity.Design.Edmx.UpdateFromDatabase
 {
     /// <summary>
     ///     Represents a Systems.Collections.Generic.List which is

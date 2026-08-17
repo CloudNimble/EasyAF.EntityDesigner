@@ -1,14 +1,14 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
-using Microsoft.Data.Entity.Design.Model.Commands;
-using Microsoft.Data.Entity.Design.Model.Designer;
+using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
+using Diagram = Microsoft.Data.Entity.Design.Edmx.Designer.Diagram;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
-using EntityType = Microsoft.Data.Entity.Design.Model.Entity.EntityType;
-using EntityTypeShape = Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape;
+using EntityType = Microsoft.Data.Entity.Design.Edmx.Entity.EntityType;
+using EntityTypeShape = Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape;
 
-namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
+namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
 {
     internal class EntityTypeShapeAdd : EntityTypeShapeModelChange
     {

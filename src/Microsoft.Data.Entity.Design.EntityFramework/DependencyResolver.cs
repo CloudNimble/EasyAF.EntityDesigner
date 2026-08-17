@@ -7,7 +7,7 @@ using System.Data.Entity.Infrastructure.Pluralization;
 using System.Diagnostics;
 using System.Linq;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade
+namespace Microsoft.Data.Entity.Design.EntityFramework
 {
     internal sealed class DependencyResolver : IDbDependencyResolver
     {

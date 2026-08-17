@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Extensions;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Configuration;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Extensions;
 using System;
 using System.CodeDom;
 using System.CodeDom.Compiler;
@@ -11,7 +11,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration
 {
     /// <summary>
     /// Helper methods for generating code.

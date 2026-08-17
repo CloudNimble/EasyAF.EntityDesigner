@@ -2,7 +2,7 @@
 
 using System.Windows.Input;
 
-namespace Microsoft.Data.Entity.Design.UI.Commands
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Commands
 {
     internal static class WorkspaceCommands
     {

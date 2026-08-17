@@ -1,20 +1,19 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using DesignerModel = Microsoft.Data.Entity.Design.Model.Designer;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
-using Microsoft.Data.Entity.Design.Dsl.CustomSerializer;
-using Microsoft.Data.Entity.Design.Dsl.Utils;
-using Microsoft.Data.Entity.Design.Dsl.View;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
-using Microsoft.Data.Entity.Design.Model;
+using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Validation;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.Diagrams.Utils;
+using Microsoft.Data.Entity.Design.Diagrams.CustomSerializer;
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
     public sealed partial class MicrosoftDataEntityDesignSerializationHelper
     {
@@ -264,7 +263,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
                         return;
                     }
 
-                    DesignerModel.Diagram diagramModel = null;
+                    Edmx.Designer.Diagram diagramModel = null;
 
                     // If DiagramId is not string empty, try to get the diagram from the artifact. 
                     // There is a situation where we could not find the diagram given an ID (for example: EDMX Model's Diagram that is created by VS before SQL 11; 
@@ -328,7 +327,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
             }
 
 
-            if (viewModel.ModelXRef.GetExisting(diagram) is DesignerModel.Diagram diagramModel)
+            if (viewModel.ModelXRef.GetExisting(diagram) is Edmx.Designer.Diagram diagramModel)
             {
                 // ensure that we still have all of the parts we need to re-translate from the Model
                 EntityModelToDslModelTranslatorStrategy.TranslateDiagram(diagram, diagramModel);

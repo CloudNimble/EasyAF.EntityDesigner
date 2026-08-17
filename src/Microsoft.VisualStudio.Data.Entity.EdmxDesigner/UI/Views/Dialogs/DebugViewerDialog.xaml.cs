@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.PlatformUI;
 using System;
 using System.Windows;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
 {
     /// <summary>
     /// Displays a dialog that allows us to display debug information in modal textbox in debug builds

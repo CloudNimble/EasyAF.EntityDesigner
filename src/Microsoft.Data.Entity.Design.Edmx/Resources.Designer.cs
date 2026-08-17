@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.Data.Entity.Design.Model {
+namespace Microsoft.Data.Entity.Design.Edmx {
     using System;
     
     

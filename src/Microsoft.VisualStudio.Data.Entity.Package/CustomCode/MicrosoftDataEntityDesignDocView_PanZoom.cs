@@ -7,18 +7,19 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
-using Microsoft.Data.Entity.Design.Dsl.View;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.ContextMenu;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Controls;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Controls;
 using Microsoft.VisualStudio.Imaging;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Shell;
 using Microsoft.VisualStudio.PlatformUI;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.Package;
 
-namespace Microsoft.Data.Entity.Design.Package
+namespace Microsoft.VisualStudio.Data.Entity.Package
 {
     /// <summary>
     ///     This partial class adds the floating zoom control and context menu to the diagram canvas.

@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using DesignerModel = Microsoft.Data.Entity.Design.Model.Designer;
 using DslModeling = Microsoft.VisualStudio.Modeling;
 using ModelDiagram = Microsoft.Data.Tools.Model.Diagram;
 using ViewModelDiagram = Microsoft.VisualStudio.Modeling.Diagrams;
@@ -9,29 +8,27 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using Microsoft.Data.Entity.Design.Dsl.ModelChanges;
-using Microsoft.Data.Entity.Design.Dsl.View;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Tools.Dsl.ModelTranslator;
+using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Diagrams.GraphObject;
-using EntityDesignerResources = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
-using ModelAssociation = Microsoft.Data.Entity.Design.Model.Entity.Association;
-using ModelEntityType = Microsoft.Data.Entity.Design.Model.Entity.EntityType;
-using ModelNavigationProperty = Microsoft.Data.Entity.Design.Model.Entity.NavigationProperty;
-using ModelProperty = Microsoft.Data.Entity.Design.Model.Entity.Property;
-using ViewModelAssociation = Microsoft.Data.Entity.Design.Dsl.ViewModel.Association;
-using ViewModelEntityType = Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType;
-using ViewModelNavigationProperty = Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty;
-using ViewModelProperty = Microsoft.Data.Entity.Design.Dsl.ViewModel.Property;
+using EntityDesignerResources = Microsoft.Data.Entity.Design.Diagrams.Properties.Resources;
+using ModelAssociation = Microsoft.Data.Entity.Design.Edmx.Entity.Association;
+using ModelEntityType = Microsoft.Data.Entity.Design.Edmx.Entity.EntityType;
+using ModelNavigationProperty = Microsoft.Data.Entity.Design.Edmx.Entity.NavigationProperty;
+using ModelProperty = Microsoft.Data.Entity.Design.Edmx.Entity.Property;
+using ViewModelAssociation = Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association;
+using ViewModelEntityType = Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType;
+using ViewModelNavigationProperty = Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty;
+using ViewModelProperty = Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.Diagrams.ModelChanges;
 
-namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
+namespace Microsoft.Data.Entity.Design.Diagrams.CustomSerializer
 {
     internal class EntityModelToDslModelTranslatorStrategy : BaseTranslatorStrategy
     {
@@ -44,11 +41,11 @@ namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
 
         internal override DslModeling.ModelElement TranslateModelToDslModel(EFObject modelElement, DslModeling.Partition partition)
         {
-            DesignerModel.Diagram diagram = null;
+            Edmx.Designer.Diagram diagram = null;
 
             if (modelElement != null)
             {
-                diagram = modelElement as DesignerModel.Diagram;
+                diagram = modelElement as Edmx.Designer.Diagram;
                 if (diagram == null)
                 {
                     throw new ArgumentException("modelElement should be a diagram");
@@ -121,20 +118,20 @@ namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
             DslModeling.ModelElement parentViewModel, EFObject modelElement)
         {
             var t = modelElement.GetType();
-            if (t == typeof(ConceptualEntityType))
+            if (t == typeof(Edmx.Entity.ConceptualEntityType))
             {
-                return TranslateEntityType(parentViewModel as EntityDesignerViewModel, modelElement as ConceptualEntityType);
+                return TranslateEntityType(parentViewModel as EntityDesignerViewModel, modelElement as Edmx.Entity.ConceptualEntityType);
             }
-            else if (t == typeof(EntityTypeBaseType))
+            else if (t == typeof(Edmx.Entity.EntityTypeBaseType))
             {
-                return TranslateBaseType(parentViewModel as EntityDesignerViewModel, (modelElement).Parent as ConceptualEntityType);
+                return TranslateBaseType(parentViewModel as EntityDesignerViewModel, (modelElement).Parent as Edmx.Entity.ConceptualEntityType);
             }
             else if (t == typeof(ModelNavigationProperty))
             {
                 return TranslateNavigationProperty(parentViewModel as ViewModelEntityType, modelElement as ModelNavigationProperty);
             }
-            else if (t == typeof(ComplexConceptualProperty)
-                     || t == typeof(ConceptualProperty))
+            else if (t == typeof(Edmx.Entity.ComplexConceptualProperty)
+                     || t == typeof(Edmx.Entity.ConceptualProperty))
             {
                 return TranslateProperty(parentViewModel as ViewModelEntityType, modelElement as ModelProperty);
             }
@@ -142,9 +139,9 @@ namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
             {
                 return TranslateAssociation(parentViewModel as EntityDesignerViewModel, modelElement as ModelAssociation);
             }
-            else if (t == typeof(DesignerModel.Diagram))
+            else if (t == typeof(Edmx.Designer.Diagram))
             {
-                return TranslateDiagramValues(parentViewModel as EntityDesignerViewModel, modelElement as DesignerModel.Diagram);
+                return TranslateDiagramValues(parentViewModel as EntityDesignerViewModel, modelElement as Edmx.Designer.Diagram);
             }
 
             Debug.Assert(false, "modelElement with type= " + t.Name + " is not supported");
@@ -164,8 +161,8 @@ namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
             // create each entity type and add its properties
             foreach (var et in entityTypes)
             {
-                ConceptualEntityType cet = et as ConceptualEntityType;
-                Debug.Assert(cet != null, "EntityType is not ConceptualEntityType");
+                Edmx.Entity.ConceptualEntityType cet = et as Edmx.Entity.ConceptualEntityType;
+                Debug.Assert(cet != null, "EntityType is not Edmx.Entity.ConceptualEntityType");
                 var viewET = TranslateEntityType(entityViewModel, cet);
                 entityViewModel.EntityTypes.Add(viewET);
                 TranslatePropertiesOfEntityType(et, viewET);
@@ -174,8 +171,8 @@ namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
             // create any inheritance relationships
             foreach (var et in entityTypes)
             {
-                ConceptualEntityType cet = et as ConceptualEntityType;
-                Debug.Assert(cet != null, "EntityType is not ConceptualEntityType");
+                Edmx.Entity.ConceptualEntityType cet = et as Edmx.Entity.ConceptualEntityType;
+                Debug.Assert(cet != null, "EntityType is not Edmx.Entity.ConceptualEntityType");
                 TranslateBaseType(entityViewModel, cet);
             }
 
@@ -203,7 +200,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
         /// <param name="entityType"></param>
         /// <param name="processChildren"></param>
         /// <returns></returns>
-        private static ViewModelEntityType TranslateEntityType(EntityDesignerViewModel viewModel, ConceptualEntityType entityType)
+        private static ViewModelEntityType TranslateEntityType(EntityDesignerViewModel viewModel, Edmx.Entity.ConceptualEntityType entityType)
         {
             ViewModelEntityType viewET =
                 ModelToDesignerModelXRef.GetNewOrExisting(viewModel.EditingContext, entityType, viewModel.Partition) as ViewModelEntityType;
@@ -228,7 +225,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
         private void TranslateNavigationPropertiesOfEntityType(
             ModelEntityType entityType, ViewModelEntityType viewET)
         {
-            if (entityType is ConceptualEntityType cet)
+            if (entityType is Edmx.Entity.ConceptualEntityType cet)
             {
                 foreach (var navProp in cet.NavigationProperties())
                 {
@@ -272,7 +269,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
         /// <param name="viewModel"></param>
         /// <param name="entityType"></param>
         /// <returns></returns>
-        private static Inheritance TranslateBaseType(EntityDesignerViewModel viewModel, ConceptualEntityType entityType)
+        private static Inheritance TranslateBaseType(EntityDesignerViewModel viewModel, Edmx.Entity.ConceptualEntityType entityType)
         {
             if (entityType.BaseType.Status == BindingStatus.Known)
             {
@@ -327,7 +324,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
                     if (end1.Type.Target != null)
                     {
                         var modelSourceNavigationProperty =
-                            ModelHelper.FindNavigationPropertyForAssociationEnd(end1.Type.Target as ConceptualEntityType, end1);
+                            ModelHelper.FindNavigationPropertyForAssociationEnd(end1.Type.Target as Edmx.Entity.ConceptualEntityType, end1);
                         if (modelSourceNavigationProperty != null)
                         {
                             if (ModelToDesignerModelXRef.GetExisting(
@@ -344,7 +341,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
                     if (end2.Type.Target != null)
                     {
                         var modelTargetNavigatioNProperty =
-                            ModelHelper.FindNavigationPropertyForAssociationEnd(end2.Type.Target as ConceptualEntityType, end2);
+                            ModelHelper.FindNavigationPropertyForAssociationEnd(end2.Type.Target as Edmx.Entity.ConceptualEntityType, end2);
                         if (modelTargetNavigatioNProperty != null)
                         {
                             if (ModelToDesignerModelXRef.GetExisting(
@@ -401,7 +398,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
             return viewNavProp;
         }
 
-        private static EntityDesignerSurface TranslateDiagramValues(EntityDesignerViewModel viewModel, DesignerModel.Diagram modelDiagram)
+        private static EntityDesignerSurface TranslateDiagramValues(EntityDesignerViewModel viewModel, Edmx.Designer.Diagram modelDiagram)
         {
             var diagram = viewModel.GetDiagram();
 
@@ -440,7 +437,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
 
 
             // the view model could have gotten deleted as a result of OnEFObjectDeleted() so don't attempt to translate the diagram EFObject.
-            if (modelDiagramObject is DesignerModel.EntityTypeShape modelEntityTypeShape
+            if (modelDiagramObject is Edmx.Designer.EntityTypeShape modelEntityTypeShape
                 && modelEntityTypeShape.IsDisposed != true
                 && modelEntityTypeShape.EntityType.Target != null
                 && modelEntityTypeShape.EntityType.Target.IsDisposed != true)
@@ -476,7 +473,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
                 dslEntityTypeShape?.FillColor = modelEntityTypeShape.FillColor.Value;
             }
             // the view model could have gotten deleted as a result of OnEFObjectDeleted() so don't attempt to translate the diagram EFObject.
-            if (modelDiagramObject is DesignerModel.AssociationConnector modelAssociationConnectorShape
+            if (modelDiagramObject is Edmx.Designer.AssociationConnector modelAssociationConnectorShape
                 && modelAssociationConnectorShape.IsDisposed != true
                 && modelAssociationConnectorShape.Association.Target != null
                 && modelAssociationConnectorShape.Association.Target.IsDisposed != true)
@@ -488,12 +485,12 @@ namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
             }
 
             // the view model could have gotten deleted as a result of OnEFObjectDeleted() so don't attempt to translate the diagram EFObject.
-            if (modelDiagramObject is DesignerModel.InheritanceConnector modelInheritanceConnectorShape
+            if (modelDiagramObject is Edmx.Designer.InheritanceConnector modelInheritanceConnectorShape
                 && modelInheritanceConnectorShape.IsDisposed != true
                 && modelInheritanceConnectorShape.EntityType.Target != null
                 && modelInheritanceConnectorShape.EntityType.Target.IsDisposed != true)
             {
-                if (modelInheritanceConnectorShape.EntityType.Target is ConceptualEntityType cet
+                if (modelInheritanceConnectorShape.EntityType.Target is Edmx.Entity.ConceptualEntityType cet
                     && cet.BaseType != null
                     && cet.BaseType.RefName != null)
                 {
@@ -558,7 +555,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
         ///     Note that we don't assert if we didn't find the corresponding model diagram element.
         ///     In this case, we let DSL to auto layout the shape.
         /// </summary>
-        internal static void TranslateDiagram(EntityDesignerSurface diagram, DesignerModel.Diagram modelDiagram)
+        internal static void TranslateDiagram(EntityDesignerSurface diagram, Edmx.Designer.Diagram modelDiagram)
         {
             var viewModel = diagram.ModelElement;
             viewModel.ModelXRef.Add(modelDiagram, diagram, viewModel.EditingContext);
@@ -615,7 +612,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
                     if (shapeElement is InheritanceConnector inheritanceConnector
                         && inheritanceConnector.ModelElement != null)
                     {
-                        EntityTypeBaseType entityTypeBase = viewModel.ModelXRef.GetExisting(inheritanceConnector.ModelElement) as EntityTypeBaseType;
+                        Edmx.Entity.EntityTypeBaseType entityTypeBase = viewModel.ModelXRef.GetExisting(inheritanceConnector.ModelElement) as Edmx.Entity.EntityTypeBaseType;
                         if (entityTypeBase.Parent is ModelEntityType modelEntity)
                         {
                             var modelInheritanceConnector =
@@ -652,7 +649,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
 
             CommandProcessorContext cpc = new CommandProcessorContext(
                 context, EfiTransactionOriginator.EntityDesignerOriginatorId, EntityDesignerResources.Tx_CreateDiagram);
-            DelegateCommand cmd = new DelegateCommand(
+            CallbackCommand cmd = new CallbackCommand(
                 () =>
                     {
                         EntityDesignerSurfaceAdd.StaticInvoke(cpc, diagram);
@@ -693,7 +690,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
         }
 
         private static void RetrieveModelElementsFromDiagram(
-            DesignerModel.Diagram diagram,
+            Edmx.Designer.Diagram diagram,
             out IList<ModelEntityType> entityTypes,
             out IList<ModelAssociation> associations)
         {
@@ -764,7 +761,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
         }
 
         private static void TranslateInheritanceConnectors(
-            InheritanceConnector dslInheritanceConnector, DesignerModel.InheritanceConnector modelInheritanceConnector,
+            InheritanceConnector dslInheritanceConnector, Edmx.Designer.InheritanceConnector modelInheritanceConnector,
             IList<ViewModelDiagram.ShapeElement> shapesToAutoLayout)
         {
             dslInheritanceConnector.ManuallyRouted = modelInheritanceConnector.ManuallyRouted.Value;
@@ -793,7 +790,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
         }
 
         private static void TranslateAssociationConnectors(
-            AssociationConnector dslAssociationConnector, DesignerModel.AssociationConnector modelAssociationConnector,
+            AssociationConnector dslAssociationConnector, Edmx.Designer.AssociationConnector modelAssociationConnector,
             IList<ViewModelDiagram.ShapeElement> shapesToAutoLayout)
         {
             dslAssociationConnector.ManuallyRouted = modelAssociationConnector.ManuallyRouted.Value;

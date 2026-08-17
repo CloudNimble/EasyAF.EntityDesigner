@@ -5,7 +5,7 @@ using System.Collections;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider
 {
     #region PositionManagerEventArgs class
 

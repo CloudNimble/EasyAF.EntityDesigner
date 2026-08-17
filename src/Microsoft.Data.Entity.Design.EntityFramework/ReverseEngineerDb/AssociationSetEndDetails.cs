@@ -2,7 +2,7 @@
 
 using System.Data.Entity.Core.Metadata.Edm;
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb
+namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb
 {
     internal class AssociationSetEndDetails
     {

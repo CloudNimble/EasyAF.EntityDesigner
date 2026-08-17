@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 
-namespace Microsoft.Data.Entity.Design.Model.Commands
+namespace Microsoft.Data.Entity.Design.Edmx.Commands
 {
     /// <summary>
     ///     Use this command to create a FunctionImport in the C-Side from a Function (stored procedure) in
@@ -136,7 +136,7 @@ namespace Microsoft.Data.Entity.Design.Model.Commands
             if (returnSingleTypeString != null)
             {
                 // make sure that this is a primitive type or a complex type and build a "Collection()" around it.
-                if (returnSingleTypeString != Tools.XmlDesignerBase.Resources.NoneDisplayValueUsedForUX)
+                if (returnSingleTypeString != global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX)
                 {
                     var edmPrimitiveTypes = ModelHelper.AllPrimitiveTypes(_fi.Artifact.SchemaVersion);
                     if (!edmPrimitiveTypes.Contains(returnSingleTypeString))

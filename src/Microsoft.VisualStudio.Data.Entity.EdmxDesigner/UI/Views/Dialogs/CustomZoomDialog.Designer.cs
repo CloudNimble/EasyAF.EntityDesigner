@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using EntityDesignerRes = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
+using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.Resources;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
+
 {
     partial class CustomZoomDialog
     {
@@ -47,12 +48,12 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(0, 5);
             this.label1.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.label1.Location = new System.Drawing.Point(3, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 13);
+            this.label1.Size = new System.Drawing.Size(165, 50);
             this.label1.TabIndex = 0;
-            this.label1.Text = EntityDesignerRes.CustomZoom_ZoomLevel;
+            this.label1.Text = "Percentage zoom:";
             // 
             // buttonCancel
             // 
@@ -63,8 +64,9 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs
             this.buttonCancel.Location = new System.Drawing.Point(84, 3);
             this.buttonCancel.MinimumSize = new System.Drawing.Size(75, 23);
             this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 3;
-            this.buttonCancel.Text = EntityDesignerRes.CustomDialog_CancelButton;
+            this.buttonCancel.Text = "Cancel";
             // 
             // buttonOK
             // 
@@ -73,14 +75,16 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonOK.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonOK.Location = new System.Drawing.Point(3, 3);
-            this.buttonOK.Name = "buttonOK";
             this.buttonOK.MinimumSize = new System.Drawing.Size(75, 23);
+            this.buttonOK.Name = "buttonOK";
+            this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 2;
-            this.buttonOK.Text = EntityDesignerRes.CustomDialog_OKButton;
+            this.buttonOK.Text = "OK";
             // 
             // numericUpDownZoom
             // 
             this.numericUpDownZoom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numericUpDownZoom.Location = new System.Drawing.Point(168, 3);
             this.numericUpDownZoom.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -92,7 +96,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs
             0,
             0});
             this.numericUpDownZoom.Name = "numericUpDownZoom";
-            this.numericUpDownZoom.Size = new System.Drawing.Size(55, 20);
+            this.numericUpDownZoom.Size = new System.Drawing.Size(65, 20);
             this.numericUpDownZoom.TabIndex = 1;
             this.numericUpDownZoom.Value = new decimal(new int[] {
             10,
@@ -102,7 +106,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right));
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
@@ -121,8 +125,8 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs
             this.tableLayoutPanel2.AutoSize = true;
             this.tableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.AutoSize));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.AutoSize));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.Controls.Add(this.buttonOK, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.buttonCancel, 1, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(90, 99);
@@ -147,7 +151,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = EntityDesignerRes.CustomZoom_DialogTitle;
+            this.Text = "Custom Zoom";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownZoom)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

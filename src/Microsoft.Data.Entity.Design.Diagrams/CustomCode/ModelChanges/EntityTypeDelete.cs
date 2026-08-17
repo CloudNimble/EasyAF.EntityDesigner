@@ -1,11 +1,12 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.Dsl.Rules;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
+using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
+using Microsoft.Data.Entity.Design.Diagrams.Rules;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 
-namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
+namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
 {
     internal class EntityTypeDelete : ViewModelChange
     {
@@ -25,7 +26,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
                 // Escher EntityType can be null. 
                 // Scenario: When a user adds an entity-type using toolbox, the code in EntityType_AddRule class will delete the DSL EntityType before Model's EntityType is created.
                 // In that scenario, the xref between DSL's Entity-Type and Model's Entity-Type has not been established yet.
-                if (viewModel.ModelXRef.GetExisting(EntityType) is Model.Entity.EntityType entityType)
+                if (viewModel.ModelXRef.GetExisting(EntityType) is Edmx.Entity.EntityType entityType)
                 {
                     DeleteEFElementCommand.DeleteInTransaction(cpc, entityType);
                     viewModel.ModelXRef.Remove(entityType, EntityType);

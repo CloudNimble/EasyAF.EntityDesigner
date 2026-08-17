@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
+using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 
-namespace Microsoft.Data.Entity.Design.Dsl.View.Export
+namespace Microsoft.Data.Entity.Design.Diagrams.Rendering.Export.Mermaid
 {
     /// <summary>
     /// Exports an EntityDesignerSurface to Mermaid ER diagram format.

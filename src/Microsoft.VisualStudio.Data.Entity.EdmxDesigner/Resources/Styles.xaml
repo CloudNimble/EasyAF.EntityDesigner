@@ -1,8 +1,8 @@
 <ResourceDictionary
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:dr="clr-namespace:Microsoft.Data.Entity.Design.UI.Views.Explorer"
-  xmlns:xdb="clr-namespace:Microsoft.Data.Entity.Design.UI.Views.Explorer;assembly=Microsoft.VisualStudio.Data.Entity.XmlDesigner"
+  xmlns:dr="clr-namespace:Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views.Explorer"
+  xmlns:xdb="clr-namespace:Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views.Explorer;assembly=Microsoft.VisualStudio.Data.Entity.XmlDesigner"
   >
 
   <!-- Base Tint Color -->

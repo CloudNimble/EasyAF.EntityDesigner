@@ -2,8 +2,9 @@
 
 using EnvDTE;
 using Microsoft.Data.Entity.Design.DatabaseGeneration;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.TextTemplating.VSHost;
 using System;
@@ -14,7 +15,7 @@ using System.IO;
 using System.Runtime.Remoting.Messaging;
 using System.Text.RegularExpressions;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.TextTemplating
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.TextTemplating
 {
     /// <summary>
     ///     Runs a T4 template through Visual Studio's text templating service.

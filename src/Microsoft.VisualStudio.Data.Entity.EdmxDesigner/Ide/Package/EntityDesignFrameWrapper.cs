@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package;
 using Microsoft.VisualStudio.Shell.Interop;
 using System.IO;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.Package
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
 {
     internal class EntityDesignFrameWrapper : FrameWrapper
     {

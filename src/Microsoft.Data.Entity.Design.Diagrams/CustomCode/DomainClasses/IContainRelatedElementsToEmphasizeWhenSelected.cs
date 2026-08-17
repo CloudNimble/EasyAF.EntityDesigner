@@ -3,7 +3,7 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.Modeling;
 
-namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
+namespace Microsoft.Data.Entity.Design.Diagrams.DomainClasses
 {
     internal interface IContainRelatedElementsToEmphasizeWhenSelected
     {

@@ -2,7 +2,7 @@
 
 using System.Diagnostics;
 using System.Linq;
-using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
 
 namespace Microsoft.Data.Entity.Tests.Shared.EFDesigner
 {

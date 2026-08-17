@@ -3,14 +3,15 @@
 using System;
 using System.Linq;
 using FluentAssertions;
-using Microsoft.Data.Entity.Design.Dsl;
-using Microsoft.Data.Entity.Design.Dsl.View;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
+using Microsoft.Data.Entity.Design.Diagrams.Rules;
+using Microsoft.Data.Entity.Design.Diagrams;
+using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Microsoft.Data.Entity.Tests.Design.Dsl.View.Export
+namespace Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering.Export
 {
     /// <summary>
     ///     Determines whether the DSL SDK will lay out and route a diagram with no Visual Studio shell and no
@@ -61,8 +62,8 @@ namespace Microsoft.Data.Entity.Tests.Design.Dsl.View.Export
             // These push view model edits back into the EDMX through ViewModelChangeContext. There is no artifact
             // behind this store, so they must be off - the product disables them the same way in
             // EntityDesignerSurface when it is applying changes that came from the model side.
-            store.RuleManager.DisableRule(typeof(global::Microsoft.Data.Entity.Design.Dsl.Rules.EntityType_AddRule));
-            store.RuleManager.DisableRule(typeof(global::Microsoft.Data.Entity.Design.Dsl.Rules.Association_AddRule));
+            store.RuleManager.DisableRule(typeof(EntityType_AddRule));
+            store.RuleManager.DisableRule(typeof(Association_AddRule));
 
             // Separate transaction so the diagram is already committed and discoverable when FixUpDiagram runs.
             using (var tx = store.TransactionManager.BeginTransaction("Build model"))

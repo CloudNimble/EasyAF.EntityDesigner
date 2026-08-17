@@ -6,9 +6,8 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
-using Microsoft.Data.Tools.XmlDesignerBase;
 
-namespace Microsoft.Data.Entity.Design.UI.Converters
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Converters
 {
     /// <summary>
     ///     This API supports the Entity Framework infrastructure and is not intended to be used directly from your code.
@@ -86,7 +85,7 @@ namespace Microsoft.Data.Entity.Design.UI.Converters
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new InvalidOperationException(
-                string.Format(CultureInfo.CurrentCulture, Resources.SwitchConverterErrorMessage, typeof(SwitchConverter).Name));
+                string.Format(CultureInfo.CurrentCulture, global::Microsoft.Data.Entity.Design.XmlEngine.Resources.SwitchConverterErrorMessage, typeof(SwitchConverter).Name));
         }
 
         #endregion IValueConverter implementation

@@ -117,323 +117,323 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.Description" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel.Description" xml:space="preserve">
     <value>ADO.NET Entity Framework Designer</value>
     <comment>Description for DslLibrary &apos;MicrosoftDataEntityDesign&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel.DisplayName" xml:space="preserve">
     <value>Microsoft Data Entity Design</value>
     <comment>DisplayName for DslLibrary &apos;MicrosoftDataEntityDesign&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem.Description" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.NameableItem.Description" xml:space="preserve">
     <value></value>
     <comment>Description for DomainClass &apos;NameableItem&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.NameableItem.DisplayName" xml:space="preserve">
     <value>Nameable Item</value>
     <comment>DisplayName for DomainClass &apos;NameableItem&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem/Name.Description" xml:space="preserve">
-    <value>Description for Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem.Name</value>
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.NameableItem/Name.Description" xml:space="preserve">
+    <value>Description for Microsoft.Data.Entity.Design.Diagrams.ViewModel.NameableItem.Name</value>
     <comment>Description for DomainProperty &apos;Name&apos; on DomainClass &apos;NameableItem&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem/Name.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.NameableItem/Name.DisplayName" xml:space="preserve">
     <value>Name</value>
     <comment>DisplayName for DomainProperty &apos;Name&apos; on DomainClass &apos;NameableItem&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel.Description" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel.Description" xml:space="preserve">
     <value></value>
     <comment>Description for DomainClass &apos;EntityDesignerViewModel&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel.DisplayName" xml:space="preserve">
     <value>Entity Designer View Model</value>
     <comment>DisplayName for DomainClass &apos;EntityDesignerViewModel&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel/Namespace.Description" xml:space="preserve">
-    <value>Description for Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel.Namespace</value>
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel/Namespace.Description" xml:space="preserve">
+    <value>Description for Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel.Namespace</value>
     <comment>Description for DomainProperty &apos;Namespace&apos; on DomainClass &apos;EntityDesignerViewModel&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel/Namespace.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel/Namespace.DisplayName" xml:space="preserve">
     <value>Namespace</value>
     <comment>DisplayName for DomainProperty &apos;Namespace&apos; on DomainClass &apos;EntityDesignerViewModel&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType.Description" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType.Description" xml:space="preserve">
     <value></value>
     <comment>Description for DomainClass &apos;EntityType&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType.DisplayName" xml:space="preserve">
     <value>Entity Type</value>
     <comment>DisplayName for DomainClass &apos;EntityType&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType/BaseTypeName.Description" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType/BaseTypeName.Description" xml:space="preserve">
     <value>Computed name of the base type. Empty if no base type</value>
     <comment>Description for DomainProperty &apos;BaseTypeName&apos; on DomainClass &apos;EntityType&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType/BaseTypeName.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType/BaseTypeName.DisplayName" xml:space="preserve">
     <value>Base Type Name</value>
     <comment>DisplayName for DomainProperty &apos;BaseTypeName&apos; on DomainClass &apos;EntityType&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType/HasBaseType.Description" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType/HasBaseType.Description" xml:space="preserve">
     <value>Indicates if this has a base type</value>
     <comment>Description for DomainProperty &apos;HasBaseType&apos; on DomainClass &apos;EntityType&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType/HasBaseType.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType/HasBaseType.DisplayName" xml:space="preserve">
     <value>Has Base Type</value>
     <comment>DisplayName for DomainProperty &apos;HasBaseType&apos; on DomainClass &apos;EntityType&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Property.Description" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property.Description" xml:space="preserve">
     <value></value>
     <comment>Description for DomainClass &apos;Property&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Property.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property.DisplayName" xml:space="preserve">
     <value>Property</value>
     <comment>DisplayName for DomainClass &apos;Property&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Property/Type.Description" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property/Type.Description" xml:space="preserve">
     <value>Specifies the EDM type of this property. The property window only displays facets specific to this type.</value>
     <comment>Description for DomainProperty &apos;Type&apos; on DomainClass &apos;Property&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Property/Type.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property/Type.DisplayName" xml:space="preserve">
     <value>Type</value>
     <comment>DisplayName for DomainProperty &apos;Type&apos; on DomainClass &apos;Property&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.PropertyBase.Description" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.PropertyBase.Description" xml:space="preserve">
     <value></value>
     <comment>Description for DomainClass &apos;PropertyBase&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.PropertyBase.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.PropertyBase.DisplayName" xml:space="preserve">
     <value>Property Base</value>
     <comment>DisplayName for DomainClass &apos;PropertyBase&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty.Description" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty.Description" xml:space="preserve">
     <value></value>
     <comment>Description for DomainClass &apos;NavigationProperty&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty.DisplayName" xml:space="preserve">
     <value>Navigation Property</value>
     <comment>DisplayName for DomainClass &apos;NavigationProperty&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.ComplexProperty.Description" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.ComplexProperty.Description" xml:space="preserve">
     <value></value>
     <comment>Description for DomainClass &apos;ComplexProperty&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.ComplexProperty.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.ComplexProperty.DisplayName" xml:space="preserve">
     <value>Complex Property</value>
     <comment>DisplayName for DomainClass &apos;ComplexProperty&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty.Description" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.ScalarProperty.Description" xml:space="preserve">
     <value></value>
     <comment>Description for DomainClass &apos;ScalarProperty&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.ScalarProperty.DisplayName" xml:space="preserve">
     <value>Property</value>
     <comment>DisplayName for DomainClass &apos;ScalarProperty&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty/EntityKey.Description" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.ScalarProperty/EntityKey.Description" xml:space="preserve">
     <value></value>
     <comment>Description for DomainProperty &apos;EntityKey&apos; on DomainClass &apos;ScalarProperty&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty/EntityKey.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.ScalarProperty/EntityKey.DisplayName" xml:space="preserve">
     <value>Entity Key</value>
     <comment>DisplayName for DomainProperty &apos;EntityKey&apos; on DomainClass &apos;ScalarProperty&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.Description" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties.Description" xml:space="preserve">
     <value></value>
     <comment>Description for DomainClass &apos;EntityTypeHasProperties&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties.DisplayName" xml:space="preserve">
     <value>Entity Type Has Properties</value>
     <comment>DisplayName for DomainClass &apos;EntityTypeHasProperties&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties/EntityType.Description" xml:space="preserve">
-    <value>Description for Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.EntityType</value>
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties/EntityType.Description" xml:space="preserve">
+    <value>Description for Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties.EntityType</value>
     <comment>Description for DomainRole &apos;EntityType&apos; on DomainRelationship &apos;EntityTypeHasProperties&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties/EntityType.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties/EntityType.DisplayName" xml:space="preserve">
     <value>Entity Type</value>
     <comment>DisplayName for DomainRole &apos;EntityType&apos; on DomainRelationship &apos;EntityTypeHasProperties&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties/EntityType.PropertyDisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties/EntityType.PropertyDisplayName" xml:space="preserve">
     <value>Properties</value>
     <comment>PropertyDisplayName for DomainRole &apos;EntityType&apos; on DomainRelationship &apos;EntityTypeHasProperties&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties/Property.Description" xml:space="preserve">
-    <value>Description for Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.Property</value>
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties/Property.Description" xml:space="preserve">
+    <value>Description for Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties.Property</value>
     <comment>Description for DomainRole &apos;Property&apos; on DomainRelationship &apos;EntityTypeHasProperties&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties/Property.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties/Property.DisplayName" xml:space="preserve">
     <value>Property</value>
     <comment>DisplayName for DomainRole &apos;Property&apos; on DomainRelationship &apos;EntityTypeHasProperties&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties/Property.PropertyDisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties/Property.PropertyDisplayName" xml:space="preserve">
     <value>Entity Type</value>
     <comment>PropertyDisplayName for DomainRole &apos;Property&apos; on DomainRelationship &apos;EntityTypeHasProperties&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes.Description" xml:space="preserve">
-    <value>Description for Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes</value>
+  <data name="Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes.Description" xml:space="preserve">
+    <value>Description for Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes</value>
     <comment>Description for DomainClass &apos;EntityDesignerViewModelHasEntityTypes&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes.DisplayName" xml:space="preserve">
     <value>Entity Designer View Model Has Entity Types</value>
     <comment>DisplayName for DomainClass &apos;EntityDesignerViewModelHasEntityTypes&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes/EntityDesignerViewModel.Description" xml:space="preserve">
-    <value>Description for Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes.EntityDesignerViewModel</value>
+  <data name="Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes/EntityDesignerViewModel.Description" xml:space="preserve">
+    <value>Description for Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes.EntityDesignerViewModel</value>
     <comment>Description for DomainRole &apos;EntityDesignerViewModel&apos; on DomainRelationship &apos;EntityDesignerViewModelHasEntityTypes&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes/EntityDesignerViewModel.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes/EntityDesignerViewModel.DisplayName" xml:space="preserve">
     <value>Entity Designer View Model</value>
     <comment>DisplayName for DomainRole &apos;EntityDesignerViewModel&apos; on DomainRelationship &apos;EntityDesignerViewModelHasEntityTypes&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes/EntityDesignerViewModel.PropertyDisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes/EntityDesignerViewModel.PropertyDisplayName" xml:space="preserve">
     <value>Entity Types</value>
     <comment>PropertyDisplayName for DomainRole &apos;EntityDesignerViewModel&apos; on DomainRelationship &apos;EntityDesignerViewModelHasEntityTypes&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes/EntityType.Description" xml:space="preserve">
-    <value>Description for Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes.EntityType</value>
+  <data name="Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes/EntityType.Description" xml:space="preserve">
+    <value>Description for Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes.EntityType</value>
     <comment>Description for DomainRole &apos;EntityType&apos; on DomainRelationship &apos;EntityDesignerViewModelHasEntityTypes&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes/EntityType.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes/EntityType.DisplayName" xml:space="preserve">
     <value>Entity Type</value>
     <comment>DisplayName for DomainRole &apos;EntityType&apos; on DomainRelationship &apos;EntityDesignerViewModelHasEntityTypes&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.EntityDesignerViewModelHasEntityTypes/EntityType.PropertyDisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.EntityDesignerViewModelHasEntityTypes/EntityType.PropertyDisplayName" xml:space="preserve">
     <value>Entity Designer View Model</value>
     <comment>PropertyDisplayName for DomainRole &apos;EntityType&apos; on DomainRelationship &apos;EntityDesignerViewModelHasEntityTypes&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.Description" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.Description" xml:space="preserve">
     <value></value>
     <comment>Description for DomainClass &apos;Association&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.DisplayName" xml:space="preserve">
     <value>Association</value>
     <comment>DisplayName for DomainClass &apos;Association&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Association/Name.Description" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association/Name.Description" xml:space="preserve">
     <value>Name</value>
     <comment>Description for DomainProperty &apos;Name&apos; on DomainClass &apos;Association&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Association/Name.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association/Name.DisplayName" xml:space="preserve">
     <value>Name</value>
     <comment>DisplayName for DomainProperty &apos;Name&apos; on DomainClass &apos;Association&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Association/SourceMultiplicity.Description" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association/SourceMultiplicity.Description" xml:space="preserve">
     <value>Computed source display text</value>
     <comment>Description for DomainProperty &apos;SourceMultiplicity&apos; on DomainClass &apos;Association&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Association/SourceMultiplicity.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association/SourceMultiplicity.DisplayName" xml:space="preserve">
     <value>Source Multiplicity</value>
     <comment>DisplayName for DomainProperty &apos;SourceMultiplicity&apos; on DomainClass &apos;Association&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Association/TargetMultiplicity.Description" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association/TargetMultiplicity.Description" xml:space="preserve">
     <value>Computed target display text</value>
     <comment>Description for DomainProperty &apos;TargetMultiplicity&apos; on DomainClass &apos;Association&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Association/TargetMultiplicity.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association/TargetMultiplicity.DisplayName" xml:space="preserve">
     <value>Target Multiplicity</value>
     <comment>DisplayName for DomainProperty &apos;TargetMultiplicity&apos; on DomainClass &apos;Association&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Association/SourceEntityType.Description" xml:space="preserve">
-    <value>Description for Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.SourceEntityType</value>
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association/SourceEntityType.Description" xml:space="preserve">
+    <value>Description for Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.SourceEntityType</value>
     <comment>Description for DomainRole &apos;SourceEntityType&apos; on DomainRelationship &apos;Association&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Association/SourceEntityType.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association/SourceEntityType.DisplayName" xml:space="preserve">
     <value>Source Entity Type</value>
     <comment>DisplayName for DomainRole &apos;SourceEntityType&apos; on DomainRelationship &apos;Association&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Association/SourceEntityType.PropertyDisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association/SourceEntityType.PropertyDisplayName" xml:space="preserve">
     <value>Association Targets</value>
     <comment>PropertyDisplayName for DomainRole &apos;SourceEntityType&apos; on DomainRelationship &apos;Association&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Association/TargetEntityType.Description" xml:space="preserve">
-    <value>Description for Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.TargetEntityType</value>
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association/TargetEntityType.Description" xml:space="preserve">
+    <value>Description for Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.TargetEntityType</value>
     <comment>Description for DomainRole &apos;TargetEntityType&apos; on DomainRelationship &apos;Association&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Association/TargetEntityType.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association/TargetEntityType.DisplayName" xml:space="preserve">
     <value>Target Entity Type</value>
     <comment>DisplayName for DomainRole &apos;TargetEntityType&apos; on DomainRelationship &apos;Association&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Association/TargetEntityType.PropertyDisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association/TargetEntityType.PropertyDisplayName" xml:space="preserve">
     <value>Association Sources</value>
     <comment>PropertyDisplayName for DomainRole &apos;TargetEntityType&apos; on DomainRelationship &apos;Association&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.Description" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties.Description" xml:space="preserve">
     <value></value>
     <comment>Description for DomainClass &apos;EntityTypeHasNavigationProperties&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties.DisplayName" xml:space="preserve">
     <value>Entity Type Has Navigation Properties</value>
     <comment>DisplayName for DomainClass &apos;EntityTypeHasNavigationProperties&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties/EntityType.Description" xml:space="preserve">
-    <value>Description for Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.EntityType</value>
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties/EntityType.Description" xml:space="preserve">
+    <value>Description for Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties.EntityType</value>
     <comment>Description for DomainRole &apos;EntityType&apos; on DomainRelationship &apos;EntityTypeHasNavigationProperties&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties/EntityType.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties/EntityType.DisplayName" xml:space="preserve">
     <value>Entity Type</value>
     <comment>DisplayName for DomainRole &apos;EntityType&apos; on DomainRelationship &apos;EntityTypeHasNavigationProperties&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties/EntityType.PropertyDisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties/EntityType.PropertyDisplayName" xml:space="preserve">
     <value>Navigation Properties</value>
     <comment>PropertyDisplayName for DomainRole &apos;EntityType&apos; on DomainRelationship &apos;EntityTypeHasNavigationProperties&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties/NavigationProperty.Description" xml:space="preserve">
-    <value>Description for Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.NavigationProperty</value>
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties/NavigationProperty.Description" xml:space="preserve">
+    <value>Description for Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties.NavigationProperty</value>
     <comment>Description for DomainRole &apos;NavigationProperty&apos; on DomainRelationship &apos;EntityTypeHasNavigationProperties&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties/NavigationProperty.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties/NavigationProperty.DisplayName" xml:space="preserve">
     <value>Navigation Property</value>
     <comment>DisplayName for DomainRole &apos;NavigationProperty&apos; on DomainRelationship &apos;EntityTypeHasNavigationProperties&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties/NavigationProperty.PropertyDisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties/NavigationProperty.PropertyDisplayName" xml:space="preserve">
     <value>Entity Type</value>
     <comment>PropertyDisplayName for DomainRole &apos;NavigationProperty&apos; on DomainRelationship &apos;EntityTypeHasNavigationProperties&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.Description" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.Description" xml:space="preserve">
     <value></value>
     <comment>Description for DomainClass &apos;Inheritance&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.DisplayName" xml:space="preserve">
     <value>Inheritance</value>
     <comment>DisplayName for DomainClass &apos;Inheritance&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance/SourceEntityType.Description" xml:space="preserve">
-    <value>Description for Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.SourceEntityType</value>
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance/SourceEntityType.Description" xml:space="preserve">
+    <value>Description for Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.SourceEntityType</value>
     <comment>Description for DomainRole &apos;SourceEntityType&apos; on DomainRelationship &apos;Inheritance&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance/SourceEntityType.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance/SourceEntityType.DisplayName" xml:space="preserve">
     <value>Source Entity Type</value>
     <comment>DisplayName for DomainRole &apos;SourceEntityType&apos; on DomainRelationship &apos;Inheritance&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance/SourceEntityType.PropertyDisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance/SourceEntityType.PropertyDisplayName" xml:space="preserve">
     <value>Derived Types</value>
     <comment>PropertyDisplayName for DomainRole &apos;SourceEntityType&apos; on DomainRelationship &apos;Inheritance&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance/TargetEntityType.Description" xml:space="preserve">
-    <value>Description for Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.TargetEntityType</value>
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance/TargetEntityType.Description" xml:space="preserve">
+    <value>Description for Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.TargetEntityType</value>
     <comment>Description for DomainRole &apos;TargetEntityType&apos; on DomainRelationship &apos;Inheritance&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance/TargetEntityType.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance/TargetEntityType.DisplayName" xml:space="preserve">
     <value>Target Entity Type</value>
     <comment>DisplayName for DomainRole &apos;TargetEntityType&apos; on DomainRelationship &apos;Inheritance&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance/TargetEntityType.PropertyDisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance/TargetEntityType.PropertyDisplayName" xml:space="preserve">
     <value>Base Type</value>
     <comment>PropertyDisplayName for DomainRole &apos;TargetEntityType&apos; on DomainRelationship &apos;Inheritance&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape.Description" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape.Description" xml:space="preserve">
     <value></value>
     <comment>Description for DomainClass &apos;EntityTypeShape&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape.DisplayName" xml:space="preserve">
     <value>Entity Type Shape</value>
     <comment>DisplayName for DomainClass &apos;EntityTypeShape&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape/FillColor.Description" xml:space="preserve">
-    <value>Description for Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape.Fill Color</value>
+  <data name="Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape/FillColor.Description" xml:space="preserve">
+    <value>Description for Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape.Fill Color</value>
     <comment>Description for DomainProperty &apos;FillColor&apos; on DomainClass &apos;EntityTypeShape&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape/FillColor.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape/FillColor.DisplayName" xml:space="preserve">
     <value>Fill Color</value>
     <comment>DisplayName for DomainProperty &apos;FillColor&apos; on DomainClass &apos;EntityTypeShape&apos;</comment>
   </data>
@@ -453,19 +453,19 @@
     <value>Name</value>
     <comment>Text decorator default text</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.View.InheritanceConnector.Description" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.View.InheritanceConnector.Description" xml:space="preserve">
     <value></value>
     <comment>Description for DomainClass &apos;InheritanceConnector&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.View.InheritanceConnector.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.View.InheritanceConnector.DisplayName" xml:space="preserve">
     <value>Inheritance Connector</value>
     <comment>DisplayName for DomainClass &apos;InheritanceConnector&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.View.AssociationConnector.Description" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.View.AssociationConnector.Description" xml:space="preserve">
     <value></value>
     <comment>Description for DomainClass &apos;AssociationConnector&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.View.AssociationConnector.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.View.AssociationConnector.DisplayName" xml:space="preserve">
     <value>Association Connector</value>
     <comment>DisplayName for DomainClass &apos;AssociationConnector&apos;</comment>
   </data>
@@ -485,19 +485,19 @@
     <value>Microsoft Data Entity Design Explorer</value>
     <comment>Model Explorer Toolwindow title</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface.Description" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface.Description" xml:space="preserve">
     <value></value>
     <comment>Description for DomainClass &apos;EntityDesignerSurface&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface.DisplayName" xml:space="preserve">
     <value>ADO.NET Entity Designer</value>
     <comment>DisplayName for DomainClass &apos;EntityDesignerSurface&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface/Title.Description" xml:space="preserve">
-    <value>Description for Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface.Title</value>
+  <data name="Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface/Title.Description" xml:space="preserve">
+    <value>Description for Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface.Title</value>
     <comment>Description for DomainProperty &apos;Title&apos; on DomainClass &apos;EntityDesignerSurface&apos;</comment>
   </data>
-  <data name="Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface/Title.DisplayName" xml:space="preserve">
+  <data name="Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface/Title.DisplayName" xml:space="preserve">
     <value>Title</value>
     <comment>DisplayName for DomainProperty &apos;Title&apos; on DomainClass &apos;EntityDesignerSurface&apos;</comment>
   </data>

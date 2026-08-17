@@ -2,13 +2,13 @@
 
 using System;
 using System.Linq;
-using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.Data.Entity.Design.VersioningFacade.Metadata;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using System.Collections.Generic;
+using Microsoft.Data.Entity.Design.EntityFramework.Metadata;
+using Microsoft.Data.Entity.Design.EntityFramework;
 
-namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.Metadata
+namespace Microsoft.Data.Entity.Tests.Design.EntityFramework.Metadata
 {
     [TestClass]
     public class CsdlVersionTests

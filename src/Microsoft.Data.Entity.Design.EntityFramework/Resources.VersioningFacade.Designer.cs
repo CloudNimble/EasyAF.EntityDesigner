@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.Data.Entity.Design.VersioningFacade {
+namespace Microsoft.Data.Entity.Design.EntityFramework {
     using System;
     
     

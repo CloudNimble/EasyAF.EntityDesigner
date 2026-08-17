@@ -2,7 +2,7 @@
 
 using Microsoft.VisualStudio.Modeling.Diagrams;
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
     internal partial class InheritanceToolConnectAction
     {

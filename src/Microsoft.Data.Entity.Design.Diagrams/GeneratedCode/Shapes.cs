@@ -11,14 +11,14 @@ using DslModeling = global::Microsoft.VisualStudio.Modeling;
 using DslDesign = global::Microsoft.VisualStudio.Modeling.Design;
 using DslDiagrams = global::Microsoft.VisualStudio.Modeling.Diagrams;
 
-namespace Microsoft.Data.Entity.Design.Dsl.View
+namespace Microsoft.Data.Entity.Design.Diagrams.View
 {
 	/// <summary>
 	/// Double-derived base class for DomainClass EntityTypeShape
 	/// </summary>
-	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel))]
+	[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+	[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape.Description", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+	[DslModeling::DomainModelOwner(typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel))]
 	[DslModeling::DomainObjectId("b1385551-bc3f-4f60-8722-75d686a8f8f6")]
 	internal abstract partial class EntityTypeShapeBase : DslDiagrams::CompartmentShape
 	{
@@ -203,7 +203,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 			shapeFields.Add(field1);
 			
 			DslDiagrams::TextField field2 = new DslDiagrams::TextField("BaseTypeName");
-			field2.DefaultText = global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("EntityTypeShapeBaseTypeNameDefaultText");
+			field2.DefaultText = global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("EntityTypeShapeBaseTypeNameDefaultText");
 			field2.DefaultFocusable = true;
 			field2.DefaultAutoSize = true;
 			field2.AnchoringBehavior.MinimumHeightInLines = 1;
@@ -212,11 +212,11 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 			shapeFields.Add(field2);
 			
 			DslDiagrams::ImageField field3 = new DslDiagrams::ImageField("IconDecorator");
-			field3.DefaultImage = DslDiagrams::ImageHelper.GetImage(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetObject("EntityTypeShapeIconDecoratorDefaultImage"));
+			field3.DefaultImage = DslDiagrams::ImageHelper.GetImage(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetObject("EntityTypeShapeIconDecoratorDefaultImage"));
 			shapeFields.Add(field3);
 			
 			DslDiagrams::TextField field4 = new DslDiagrams::TextField("Name");
-			field4.DefaultText = global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("EntityTypeShapeNameDefaultText");
+			field4.DefaultText = global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("EntityTypeShapeNameDefaultText");
 			field4.DefaultFocusable = true;
 			field4.DefaultAutoSize = true;
 			field4.AnchoringBehavior.MinimumHeightInLines = 1;
@@ -226,7 +226,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 			shapeFields.Add(field4);
 			
 			DslDiagrams::ImageField field5 = new DslDiagrams::ImageField("BaseTypeIconDecorator");
-			field5.DefaultImage = DslDiagrams::ImageHelper.GetImage(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetObject("EntityTypeShapeBaseTypeIconDecoratorDefaultImage"));
+			field5.DefaultImage = DslDiagrams::ImageHelper.GetImage(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetObject("EntityTypeShapeBaseTypeIconDecoratorDefaultImage"));
 			shapeFields.Add(field5);
 			
 		}
@@ -319,7 +319,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 					baseCompartmentDescriptions.CopyTo(compartmentDescriptions, 0);	
 				}
 				{
-					string title = global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("EntityTypeShapePropertiesTitle");
+					string title = global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("EntityTypeShapePropertiesTitle");
 					DslDiagrams::ElementListCompartmentDescription descriptor = new DslDiagrams::ElementListCompartmentDescription("Properties", title, 
 						global::System.Drawing.Color.FromKnownColor(global::System.Drawing.KnownColor.Gainsboro), false, 
 						global::System.Drawing.Color.FromKnownColor(global::System.Drawing.KnownColor.WhiteSmoke), false,
@@ -328,7 +328,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 					compartmentDescriptions[localCompartmentsOffset+0] = descriptor;
 				}
 				{
-					string title = global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("EntityTypeShapeNavigationTitle");
+					string title = global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("EntityTypeShapeNavigationTitle");
 					DslDiagrams::ElementListCompartmentDescription descriptor = new DslDiagrams::ElementListCompartmentDescription("Navigation", title, 
 						global::System.Drawing.Color.FromKnownColor(global::System.Drawing.KnownColor.Gainsboro), false, 
 						global::System.Drawing.Color.FromKnownColor(global::System.Drawing.KnownColor.WhiteSmoke), false,
@@ -362,7 +362,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 				{
 					// First we get the mappings defined for the base shape, and add on any mappings defined for this
 					// shape. 
-					DslDiagrams::CompartmentMapping[] baseMappings = base.GetCompartmentMappings(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType));
+					DslDiagrams::CompartmentMapping[] baseMappings = base.GetCompartmentMappings(typeof(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType));
 					int localCompartmentMappingsOffset = 0;
 					if(baseMappings!=null)
 					{
@@ -376,8 +376,8 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 					}
 					mappings[localCompartmentMappingsOffset+0] = new DslDiagrams::ElementListCompartmentMapping(
 																				"Navigation", 
-																				global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem.NameDomainPropertyId, 
-																				global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty.DomainClassId, 
+																				global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NameableItem.NameDomainPropertyId, 
+																				global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty.DomainClassId, 
 																				GetElementsFromEntityTypeForNavigation,
 																				null,
 																				null,
@@ -391,13 +391,13 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 					////////
 					mappings[localCompartmentMappingsOffset+1] = new DslDiagrams::ElementListCompartmentMapping(
 																				"Properties", 
-																				global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem.NameDomainPropertyId, 
-																				global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property.DomainClassId, 
+																				global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NameableItem.NameDomainPropertyId, 
+																				global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property.DomainClassId, 
 																				GetElementsFromEntityTypeForProperties,
 																				null,
 																				GetDisplayPropertyFromEntityTypeForProperties,	// This method needs to be provided. Please see comment-block above.
 																				null);
-					compartmentMappings.Add(typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType), mappings);
+					compartmentMappings.Add(typeof(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType), mappings);
 				}
 			}
 			
@@ -428,16 +428,16 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 			#region DomainPath traversal methods to get the list of elements to display in a compartment.
 			internal static global::System.Collections.IList GetElementsFromEntityTypeForNavigation(DslModeling::ModelElement element)
 			{
-				global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType root = (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType)element;
+				global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType root = (global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType)element;
 					// Segments 0 and 1
-					DslModeling::LinkedElementCollection<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty> result = root.NavigationProperties;
+					DslModeling::LinkedElementCollection<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty> result = root.NavigationProperties;
 				return result;
 			}
 			internal static global::System.Collections.IList GetElementsFromEntityTypeForProperties(DslModeling::ModelElement element)
 			{
-				global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType root = (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType)element;
+				global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType root = (global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType)element;
 					// Segments 0 and 1
-					DslModeling::LinkedElementCollection<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property> result = root.Properties;
+					DslModeling::LinkedElementCollection<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property> result = root.Properties;
 				return result;
 			}
 			#endregion
@@ -469,10 +469,10 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 		/// <summary>
 		/// Gets or sets the value of FillColor domain property.
 		/// Description for
-		/// Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape.Fill Color
+		/// Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape.Fill Color
 		/// </summary>
-		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape/FillColor.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
-		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape/FillColor.Description", typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DisplayNameResource("Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape/FillColor.DisplayName", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape/FillColor.Description", typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), "Microsoft.Data.Entity.Design.Diagrams.GeneratedCode.DomainModelResx")]
 		[DslModeling::DomainProperty(Kind = DslModeling::DomainPropertyKind.CustomStorage)]
 		[DslModeling::DomainObjectId("590355a5-1c6e-4dc8-af7f-51209c2fa259")]
 		public global::System.Drawing.Color FillColor

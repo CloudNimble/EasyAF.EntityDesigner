@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetails;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails.Columns
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails.Columns
 {
     internal class ColumnUtils
     {

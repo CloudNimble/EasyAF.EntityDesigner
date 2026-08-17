@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.Package;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TextManager.Interop;
 
-namespace Microsoft.Data.Entity.Design.VisualStudio
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio
 {
     /// <summary>
     ///     This is the error task we use for open documents.  The DocumentTask will keep text ranges up to date when the buffer changes.

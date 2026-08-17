@@ -3,14 +3,14 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
-using Microsoft.Data.Entity.Design.Model.Commands;
-using Microsoft.Data.Entity.Design.Model.Designer;
+using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.VisualStudio.Modeling.Diagrams;
-using AssociationConnector = Microsoft.Data.Entity.Design.Dsl.View.AssociationConnector;
+using AssociationConnector = Microsoft.Data.Entity.Design.Diagrams.View.AssociationConnector;
 
-namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
+namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
 {
     internal class AssociationConnectorChange : AssociationConnectorModelChange
     {
@@ -35,11 +35,11 @@ namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
             if (viewModel != null)
             {
                 Connector modelAssociationConnector =
-                    viewModel.ModelXRef.GetExisting(associationConnector) as Model.Designer.AssociationConnector;
+                    viewModel.ModelXRef.GetExisting(associationConnector) as Edmx.Designer.AssociationConnector;
                 if (modelAssociationConnector == null)
                 {
                     AssociationConnectorAdd.StaticInvoke(cpc, associationConnector);
-                    modelAssociationConnector = viewModel.ModelXRef.GetExisting(associationConnector) as Model.Designer.AssociationConnector;
+                    modelAssociationConnector = viewModel.ModelXRef.GetExisting(associationConnector) as Edmx.Designer.AssociationConnector;
                 }
 
                 Debug.Assert(modelAssociationConnector != null);

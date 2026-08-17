@@ -3,7 +3,7 @@
 using System;
 using System.ComponentModel;
 
-namespace Microsoft.Data.Entity.Design.Base.Shell
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
 {
     /// <summary>
     ///     Used to site the tree control in the window.  Provides access to shell services.

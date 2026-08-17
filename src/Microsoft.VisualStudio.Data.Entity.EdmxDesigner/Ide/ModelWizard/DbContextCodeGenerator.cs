@@ -4,7 +4,7 @@ using EnvDTE;
 using EnvDTE80;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
 using Microsoft.Data.Entity.Design.XmlEngine.Util;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,7 +12,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 
-namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard
 {
     // <summary>
     //     Handles adding the DbContext item templates for code generation automatically if

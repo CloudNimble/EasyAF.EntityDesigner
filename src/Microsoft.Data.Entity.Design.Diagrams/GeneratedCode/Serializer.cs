@@ -11,10 +11,10 @@
 using DslModeling = global::Microsoft.VisualStudio.Modeling;
 using DslDiagrams = global::Microsoft.VisualStudio.Modeling.Diagrams;
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
 	/// <summary>
-	/// Serializer NameableItemSerializer for DomainClass Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem.
+	/// Serializer NameableItemSerializer for DomainClass Microsoft.Data.Entity.Design.Diagrams.ViewModel.NameableItem.
 	/// </summary>
 	internal partial class NameableItemSerializer : DslModeling::DomainClassXmlSerializer
 	{
@@ -108,7 +108,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			// Always call the base class so any extensions are deserialized
 			base.ReadPropertiesFromAttributes(serializationContext, element, reader);
 	
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem instanceOfNameableItem = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem;
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NameableItem instanceOfNameableItem = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NameableItem;
 			global::System.Diagnostics.Debug.Assert(instanceOfNameableItem != null, "Expecting an instance of NameableItem");
 	
 			// Name
@@ -211,7 +211,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClasses == null); // Shouldn't construct the table more than once.
 			this.derivedClasses = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NameableItem.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -326,7 +326,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClassMonikers == null); // Shouldn't construct the table more than once.
 			this.derivedClassMonikers = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NameableItem.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -393,7 +393,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			// Always call the base class so any extensions are serialized
 			base.WritePropertiesAsAttributes(serializationContext, element, writer);
 	
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem instanceOfNameableItem = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem;
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NameableItem instanceOfNameableItem = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NameableItem;
 			global::System.Diagnostics.Debug.Assert(instanceOfNameableItem != null, "Expecting an instance of NameableItem");
 	
 			// Name
@@ -428,8 +428,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem instance = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem!");
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NameableItem instance = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NameableItem;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NameableItem!");
 	
 			DslModeling::ModelElement container = DslModeling::DomainClassInfo.FindEmbeddingElement(instance);
 			if(container != null)
@@ -466,8 +466,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem instance = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem!");
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NameableItem instance = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NameableItem;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NameableItem!");
 			DslModeling::ModelElement container = DslModeling::DomainClassInfo.FindEmbeddingElement(instance);
 			if(container != null)
 			{
@@ -484,10 +484,10 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	}
 }
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
     /// <summary>
-	/// Serializer EntityDesignerViewModelSerializer for DomainClass Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel.
+	/// Serializer EntityDesignerViewModelSerializer for DomainClass Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel.
 	/// </summary>
 	internal partial class EntityDesignerViewModelSerializer : DslModeling::DomainClassXmlSerializer
 	{
@@ -636,7 +636,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			// Always call the base class so any extensions are deserialized
 			base.ReadPropertiesFromAttributes(serializationContext, element, reader);
 	
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel instanceOfEntityDesignerViewModel = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel;
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel instanceOfEntityDesignerViewModel = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel;
 			global::System.Diagnostics.Debug.Assert(instanceOfEntityDesignerViewModel != null, "Expecting an instance of EntityDesignerViewModel");
 	
 			// Namespace
@@ -679,7 +679,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			// Always call the base class so any extensions are deserialized
 			base.ReadElements(serializationContext, element, reader);
 	
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel instanceOfEntityDesignerViewModel = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel;
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel instanceOfEntityDesignerViewModel = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel;
 			global::System.Diagnostics.Debug.Assert(instanceOfEntityDesignerViewModel != null, "Expecting an instance of EntityDesignerViewModel!");
 	
 			// Read child model elements (which are always serialized as nested XML elements).
@@ -702,7 +702,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="serializationContext">Serialization context.</param>
 		/// <param name="reader">XmlReader to read serialized data from.</param>
 		/// <param name="element">In-memory EntityDesignerViewModel instance that will get the deserialized data.</param>
-		private static void ReadChildElements(DslModeling::SerializationContext serializationContext, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel element, global::System.Xml.XmlReader reader)
+		private static void ReadChildElements(DslModeling::SerializationContext serializationContext, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel element, global::System.Xml.XmlReader reader)
 		{
 			if (!serializationContext.Result.Failed && !reader.EOF && reader.NodeType == global::System.Xml.XmlNodeType.Element)
 			{
@@ -733,13 +733,13 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="serializationContext">Serialization context.</param>
 		/// <param name="element">In-memory EntityDesignerViewModel instance that will get the deserialized data.</param>
 		/// <param name="reader">XmlReader to read serialized data from.</param>
-		private static void ReadEntityDesignerViewModelHasEntityTypesInstances(DslModeling::SerializationContext serializationContext, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel element, global::System.Xml.XmlReader reader)
+		private static void ReadEntityDesignerViewModelHasEntityTypesInstances(DslModeling::SerializationContext serializationContext, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel element, global::System.Xml.XmlReader reader)
 		{
 			while (!serializationContext.Result.Failed && !reader.EOF && reader.NodeType == global::System.Xml.XmlNodeType.Element)
 			{
-				DslModeling::DomainClassXmlSerializer newEntityTypeOfEntityDesignerViewModelHasEntityTypesSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType.DomainClassId);
-				global::System.Diagnostics.Debug.Assert(newEntityTypeOfEntityDesignerViewModelHasEntityTypesSerializer != null, "Cannot find serializer for global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType!");
-				global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType newEntityTypeOfEntityDesignerViewModelHasEntityTypes = newEntityTypeOfEntityDesignerViewModelHasEntityTypesSerializer.TryCreateInstance(serializationContext, reader, element.Partition) as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType;
+				DslModeling::DomainClassXmlSerializer newEntityTypeOfEntityDesignerViewModelHasEntityTypesSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType.DomainClassId);
+				global::System.Diagnostics.Debug.Assert(newEntityTypeOfEntityDesignerViewModelHasEntityTypesSerializer != null, "Cannot find serializer for global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType!");
+				global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType newEntityTypeOfEntityDesignerViewModelHasEntityTypes = newEntityTypeOfEntityDesignerViewModelHasEntityTypesSerializer.TryCreateInstance(serializationContext, reader, element.Partition) as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType;
 				if (newEntityTypeOfEntityDesignerViewModelHasEntityTypes != null)
 				{
 					element.EntityTypes.Add(newEntityTypeOfEntityDesignerViewModelHasEntityTypes);
@@ -853,7 +853,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				{
 					id = new global::System.Guid (idStr);
 				}
-				return new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel(partition, new DslModeling::PropertyAssignment(DslModeling::ElementFactory.IdPropertyAssignment, id));
+				return new global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel(partition, new DslModeling::PropertyAssignment(DslModeling::ElementFactory.IdPropertyAssignment, id));
 			}
 			catch (global::System.ArgumentNullException /* anEx */)
 			{	
@@ -885,7 +885,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClasses == null); // Shouldn't construct the table more than once.
 			this.derivedClasses = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -998,7 +998,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			{	// Normalize the Id.
 				global::System.Guid id = new global::System.Guid(monikerString);
 				monikerString = id.ToString("D", global::System.Globalization.CultureInfo.CurrentCulture);
-				DslModeling::Moniker result = new DslModeling::Moniker(new DslModeling::MonikerKey(monikerString, relDomainClassId, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel.DomainClassId, partition.Store), partition.Store);
+				DslModeling::Moniker result = new DslModeling::Moniker(new DslModeling::MonikerKey(monikerString, relDomainClassId, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel.DomainClassId, partition.Store), partition.Store);
 				// Set location info if possible.
 				result.Location = serializationContext.Location;
 				global::System.Xml.IXmlLineInfo xmlLineInfo = reader as global::System.Xml.IXmlLineInfo;
@@ -1036,7 +1036,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClassMonikers == null); // Shouldn't construct the table more than once.
 			this.derivedClassMonikers = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -1162,7 +1162,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			// Always call the base class so any extensions are serialized
 			base.WritePropertiesAsAttributes(serializationContext, element, writer);
 	
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel instanceOfEntityDesignerViewModel = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel;
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel instanceOfEntityDesignerViewModel = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel;
 			global::System.Diagnostics.Debug.Assert(instanceOfEntityDesignerViewModel != null, "Expecting an instance of EntityDesignerViewModel");
 	
 			// Namespace
@@ -1193,7 +1193,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			WriteAdditionalElementData(serializationContext, element, writer);
 			
 	
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel instance = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel;
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel instance = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel;
 			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of EntityDesignerViewModel!");
 	
 			// Write child model elements (which are always serialized as nested XML elements).
@@ -1219,7 +1219,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="serializationContext">Serialization context.</param>
 		/// <param name="element">EntityDesignerViewModel instance to be serialized.</param>
 		/// <param name="writer">XmlWriter to write serialized data to.</param>
-		private static void WriteChildElements(DslModeling::SerializationContext serializationContext, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel element, global::System.Xml.XmlWriter writer)
+		private static void WriteChildElements(DslModeling::SerializationContext serializationContext, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel element, global::System.Xml.XmlWriter writer)
 		{
 			// EntityDesignerViewModelHasEntityTypes
 			global::System.Collections.ObjectModel.ReadOnlyCollection<EntityDesignerViewModelHasEntityTypes> allEntityDesignerViewModelHasEntityTypesInstances = EntityDesignerViewModelHasEntityTypes.GetLinksToEntityTypes(element);
@@ -1270,8 +1270,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel instance = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel!");
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel instance = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel!");
 	
 			return instance.Id.ToString("D", global::System.Globalization.CultureInfo.CurrentCulture);
 		}
@@ -1304,10 +1304,10 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	}
 }
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
 	/// <summary>
-	/// Serializer EntityTypeSerializerBase for DomainClass Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType.
+	/// Serializer EntityTypeSerializerBase for DomainClass Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType.
 	/// </summary>
 	internal abstract partial class EntityTypeSerializerBase : NameableItemSerializer
 	{
@@ -1462,7 +1462,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			// Always call the base class so any extensions are deserialized
 			base.ReadElements(serializationContext, element, reader);
 	
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType instanceOfEntityType = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType;
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType instanceOfEntityType = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType;
 			global::System.Diagnostics.Debug.Assert(instanceOfEntityType != null, "Expecting an instance of EntityType!");
 	
 			// Read child model elements (which are always serialized as nested XML elements).
@@ -1485,7 +1485,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="serializationContext">Serialization context.</param>
 		/// <param name="reader">XmlReader to read serialized data from.</param>
 		/// <param name="element">In-memory EntityType instance that will get the deserialized data.</param>
-		private static void ReadChildElements(DslModeling::SerializationContext serializationContext, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType element, global::System.Xml.XmlReader reader)
+		private static void ReadChildElements(DslModeling::SerializationContext serializationContext, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType element, global::System.Xml.XmlReader reader)
 		{
 			while (!serializationContext.Result.Failed && !reader.EOF && reader.NodeType == global::System.Xml.XmlNodeType.Element)
 			{
@@ -1556,13 +1556,13 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="serializationContext">Serialization context.</param>
 		/// <param name="element">In-memory EntityType instance that will get the deserialized data.</param>
 		/// <param name="reader">XmlReader to read serialized data from.</param>
-		private static void ReadEntityTypeHasPropertiesInstances(DslModeling::SerializationContext serializationContext, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType element, global::System.Xml.XmlReader reader)
+		private static void ReadEntityTypeHasPropertiesInstances(DslModeling::SerializationContext serializationContext, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType element, global::System.Xml.XmlReader reader)
 		{
 			while (!serializationContext.Result.Failed && !reader.EOF && reader.NodeType == global::System.Xml.XmlNodeType.Element)
 			{
-				DslModeling::DomainClassXmlSerializer newPropertyOfEntityTypeHasPropertiesSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property.DomainClassId);
-				global::System.Diagnostics.Debug.Assert(newPropertyOfEntityTypeHasPropertiesSerializer != null, "Cannot find serializer for global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property!");
-				global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property newPropertyOfEntityTypeHasProperties = newPropertyOfEntityTypeHasPropertiesSerializer.TryCreateInstance(serializationContext, reader, element.Partition) as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property;
+				DslModeling::DomainClassXmlSerializer newPropertyOfEntityTypeHasPropertiesSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property.DomainClassId);
+				global::System.Diagnostics.Debug.Assert(newPropertyOfEntityTypeHasPropertiesSerializer != null, "Cannot find serializer for global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property!");
+				global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property newPropertyOfEntityTypeHasProperties = newPropertyOfEntityTypeHasPropertiesSerializer.TryCreateInstance(serializationContext, reader, element.Partition) as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property;
 				if (newPropertyOfEntityTypeHasProperties != null)
 				{
 					element.Properties.Add(newPropertyOfEntityTypeHasProperties);
@@ -1572,17 +1572,17 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				}
 				else
 				{
-					global::System.Type typeofEntityTypeHasProperties = typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties);
-					DslModeling::DomainRelationshipXmlSerializer newEntityTypeHasPropertiesSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.DomainClassId) as DslModeling::DomainRelationshipXmlSerializer;
-					global::System.Diagnostics.Debug.Assert(newEntityTypeHasPropertiesSerializer != null, "Cannot find serializer for global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties!");
-					global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties newEntityTypeHasProperties = newEntityTypeHasPropertiesSerializer.TryCreateInstance (serializationContext, reader, element.Partition) as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties;
+					global::System.Type typeofEntityTypeHasProperties = typeof(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties);
+					DslModeling::DomainRelationshipXmlSerializer newEntityTypeHasPropertiesSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties.DomainClassId) as DslModeling::DomainRelationshipXmlSerializer;
+					global::System.Diagnostics.Debug.Assert(newEntityTypeHasPropertiesSerializer != null, "Cannot find serializer for global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties!");
+					global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties newEntityTypeHasProperties = newEntityTypeHasPropertiesSerializer.TryCreateInstance (serializationContext, reader, element.Partition) as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties;
 					if (newEntityTypeHasProperties != null)
 					{
 						if (newEntityTypeHasProperties.GetType() == typeofEntityTypeHasProperties)
 						{	// The relationship should be serialized in short-form.
-							MicrosoftDataEntityDesignSerializationBehaviorSerializationMessages.ExpectingShortFormRelationship(serializationContext, reader, typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties));
+							MicrosoftDataEntityDesignSerializationBehaviorSerializationMessages.ExpectingShortFormRelationship(serializationContext, reader, typeof(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties));
 						}
-						DslModeling::DomainRoleInfo.SetRolePlayer (newEntityTypeHasProperties, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.EntityTypeDomainRoleId, element);
+						DslModeling::DomainRoleInfo.SetRolePlayer (newEntityTypeHasProperties, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties.EntityTypeDomainRoleId, element);
 						DslModeling::DomainClassXmlSerializer targetSerializer = serializationContext.Directory.GetSerializer (newEntityTypeHasProperties.GetDomainClass().Id);	
 						global::System.Diagnostics.Debug.Assert (targetSerializer != null, "Cannot find serializer for " + newEntityTypeHasProperties.GetDomainClass().Name + "!");
 						targetSerializer.Read(serializationContext, newEntityTypeHasProperties, reader);
@@ -1606,29 +1606,29 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="serializationContext">Serialization context.</param>
 		/// <param name="element">In-memory EntityType instance that will get the deserialized data.</param>
 		/// <param name="reader">XmlReader to read serialized data from.</param>
-		private static void ReadAssociationInstances(DslModeling::SerializationContext serializationContext, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType element, global::System.Xml.XmlReader reader)
+		private static void ReadAssociationInstances(DslModeling::SerializationContext serializationContext, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType element, global::System.Xml.XmlReader reader)
 		{
 			while (!serializationContext.Result.Failed && !reader.EOF && reader.NodeType == global::System.Xml.XmlNodeType.Element)
 			{
-				DslModeling::DomainClassXmlSerializer newAssociationSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.DomainClassId);
-				global::System.Diagnostics.Debug.Assert(newAssociationSerializer != null, "Cannot find serializer for global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association!");
-				global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association newAssociation = newAssociationSerializer.TryCreateInstance (serializationContext, reader, element.Partition) as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association;
+				DslModeling::DomainClassXmlSerializer newAssociationSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.DomainClassId);
+				global::System.Diagnostics.Debug.Assert(newAssociationSerializer != null, "Cannot find serializer for global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association!");
+				global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association newAssociation = newAssociationSerializer.TryCreateInstance (serializationContext, reader, element.Partition) as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association;
 				if (newAssociation != null)
 				{
-					DslModeling::DomainRoleInfo.SetRolePlayer (newAssociation, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.SourceEntityTypeDomainRoleId, element);
+					DslModeling::DomainRoleInfo.SetRolePlayer (newAssociation, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.SourceEntityTypeDomainRoleId, element);
 					DslModeling::DomainClassXmlSerializer targetSerializer = serializationContext.Directory.GetSerializer (newAssociation.GetDomainClass().Id);	
 					global::System.Diagnostics.Debug.Assert (targetSerializer != null, "Cannot find serializer for " + newAssociation.GetDomainClass().Name + "!");
 					targetSerializer.Read(serializationContext, newAssociation, reader);
 				}
 				else
 				{	// Maybe the relationship is serialized in short-form by mistake.
-					DslModeling::DomainClassXmlSerializer newEntityTypeMonikerOfAssociationSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType.DomainClassId);
-					global::System.Diagnostics.Debug.Assert(newEntityTypeMonikerOfAssociationSerializer != null, "Cannot find serializer for global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType!");
-					DslModeling::Moniker newEntityTypeMonikerOfAssociation = newEntityTypeMonikerOfAssociationSerializer.TryCreateMonikerInstance(serializationContext, reader, element, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.DomainClassId, element.Partition);
+					DslModeling::DomainClassXmlSerializer newEntityTypeMonikerOfAssociationSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType.DomainClassId);
+					global::System.Diagnostics.Debug.Assert(newEntityTypeMonikerOfAssociationSerializer != null, "Cannot find serializer for global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType!");
+					DslModeling::Moniker newEntityTypeMonikerOfAssociation = newEntityTypeMonikerOfAssociationSerializer.TryCreateMonikerInstance(serializationContext, reader, element, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.DomainClassId, element.Partition);
 					if (newEntityTypeMonikerOfAssociation != null)
 					{
-						MicrosoftDataEntityDesignSerializationBehaviorSerializationMessages.ExpectingFullFormRelationship(serializationContext, reader, typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association));
-						new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association(element.Partition, new DslModeling::RoleAssignment(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.SourceEntityTypeDomainRoleId, element), new DslModeling::RoleAssignment(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.TargetEntityTypeDomainRoleId, newEntityTypeMonikerOfAssociation));
+						MicrosoftDataEntityDesignSerializationBehaviorSerializationMessages.ExpectingFullFormRelationship(serializationContext, reader, typeof(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association));
+						new global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association(element.Partition, new DslModeling::RoleAssignment(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.SourceEntityTypeDomainRoleId, element), new DslModeling::RoleAssignment(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.TargetEntityTypeDomainRoleId, newEntityTypeMonikerOfAssociation));
 						DslModeling::SerializationUtilities.Skip(reader);	// Moniker contains no child XML elements, so just skip.
 					}
 					else
@@ -1650,13 +1650,13 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="serializationContext">Serialization context.</param>
 		/// <param name="element">In-memory EntityType instance that will get the deserialized data.</param>
 		/// <param name="reader">XmlReader to read serialized data from.</param>
-		private static void ReadEntityTypeHasNavigationPropertiesInstances(DslModeling::SerializationContext serializationContext, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType element, global::System.Xml.XmlReader reader)
+		private static void ReadEntityTypeHasNavigationPropertiesInstances(DslModeling::SerializationContext serializationContext, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType element, global::System.Xml.XmlReader reader)
 		{
 			while (!serializationContext.Result.Failed && !reader.EOF && reader.NodeType == global::System.Xml.XmlNodeType.Element)
 			{
-				DslModeling::DomainClassXmlSerializer newNavigationPropertyOfEntityTypeHasNavigationPropertiesSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty.DomainClassId);
-				global::System.Diagnostics.Debug.Assert(newNavigationPropertyOfEntityTypeHasNavigationPropertiesSerializer != null, "Cannot find serializer for global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty!");
-				global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty newNavigationPropertyOfEntityTypeHasNavigationProperties = newNavigationPropertyOfEntityTypeHasNavigationPropertiesSerializer.TryCreateInstance(serializationContext, reader, element.Partition) as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty;
+				DslModeling::DomainClassXmlSerializer newNavigationPropertyOfEntityTypeHasNavigationPropertiesSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty.DomainClassId);
+				global::System.Diagnostics.Debug.Assert(newNavigationPropertyOfEntityTypeHasNavigationPropertiesSerializer != null, "Cannot find serializer for global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty!");
+				global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty newNavigationPropertyOfEntityTypeHasNavigationProperties = newNavigationPropertyOfEntityTypeHasNavigationPropertiesSerializer.TryCreateInstance(serializationContext, reader, element.Partition) as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty;
 				if (newNavigationPropertyOfEntityTypeHasNavigationProperties != null)
 				{
 					element.NavigationProperties.Add(newNavigationPropertyOfEntityTypeHasNavigationProperties);
@@ -1666,17 +1666,17 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				}
 				else
 				{
-					global::System.Type typeofEntityTypeHasNavigationProperties = typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties);
-					DslModeling::DomainRelationshipXmlSerializer newEntityTypeHasNavigationPropertiesSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.DomainClassId) as DslModeling::DomainRelationshipXmlSerializer;
-					global::System.Diagnostics.Debug.Assert(newEntityTypeHasNavigationPropertiesSerializer != null, "Cannot find serializer for global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties!");
-					global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties newEntityTypeHasNavigationProperties = newEntityTypeHasNavigationPropertiesSerializer.TryCreateInstance (serializationContext, reader, element.Partition) as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties;
+					global::System.Type typeofEntityTypeHasNavigationProperties = typeof(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties);
+					DslModeling::DomainRelationshipXmlSerializer newEntityTypeHasNavigationPropertiesSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties.DomainClassId) as DslModeling::DomainRelationshipXmlSerializer;
+					global::System.Diagnostics.Debug.Assert(newEntityTypeHasNavigationPropertiesSerializer != null, "Cannot find serializer for global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties!");
+					global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties newEntityTypeHasNavigationProperties = newEntityTypeHasNavigationPropertiesSerializer.TryCreateInstance (serializationContext, reader, element.Partition) as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties;
 					if (newEntityTypeHasNavigationProperties != null)
 					{
 						if (newEntityTypeHasNavigationProperties.GetType() == typeofEntityTypeHasNavigationProperties)
 						{	// The relationship should be serialized in short-form.
-							MicrosoftDataEntityDesignSerializationBehaviorSerializationMessages.ExpectingShortFormRelationship(serializationContext, reader, typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties));
+							MicrosoftDataEntityDesignSerializationBehaviorSerializationMessages.ExpectingShortFormRelationship(serializationContext, reader, typeof(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties));
 						}
-						DslModeling::DomainRoleInfo.SetRolePlayer (newEntityTypeHasNavigationProperties, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.EntityTypeDomainRoleId, element);
+						DslModeling::DomainRoleInfo.SetRolePlayer (newEntityTypeHasNavigationProperties, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties.EntityTypeDomainRoleId, element);
 						DslModeling::DomainClassXmlSerializer targetSerializer = serializationContext.Directory.GetSerializer (newEntityTypeHasNavigationProperties.GetDomainClass().Id);	
 						global::System.Diagnostics.Debug.Assert (targetSerializer != null, "Cannot find serializer for " + newEntityTypeHasNavigationProperties.GetDomainClass().Name + "!");
 						targetSerializer.Read(serializationContext, newEntityTypeHasNavigationProperties, reader);
@@ -1700,31 +1700,31 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="serializationContext">Serialization context.</param>
 		/// <param name="element">In-memory EntityType instance that will get the deserialized data.</param>
 		/// <param name="reader">XmlReader to read serialized data from.</param>
-		private static void ReadInheritanceInstances(DslModeling::SerializationContext serializationContext, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType element, global::System.Xml.XmlReader reader)
+		private static void ReadInheritanceInstances(DslModeling::SerializationContext serializationContext, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType element, global::System.Xml.XmlReader reader)
 		{
 			while (!serializationContext.Result.Failed && !reader.EOF && reader.NodeType == global::System.Xml.XmlNodeType.Element)
 			{
-				DslModeling::DomainClassXmlSerializer newEntityTypeMonikerOfInheritanceSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType.DomainClassId);
-				global::System.Diagnostics.Debug.Assert(newEntityTypeMonikerOfInheritanceSerializer != null, "Cannot find serializer for global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType!");
-				DslModeling::Moniker newEntityTypeMonikerOfInheritance = newEntityTypeMonikerOfInheritanceSerializer.TryCreateMonikerInstance(serializationContext, reader, element, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.DomainClassId, element.Partition);
+				DslModeling::DomainClassXmlSerializer newEntityTypeMonikerOfInheritanceSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType.DomainClassId);
+				global::System.Diagnostics.Debug.Assert(newEntityTypeMonikerOfInheritanceSerializer != null, "Cannot find serializer for global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType!");
+				DslModeling::Moniker newEntityTypeMonikerOfInheritance = newEntityTypeMonikerOfInheritanceSerializer.TryCreateMonikerInstance(serializationContext, reader, element, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.DomainClassId, element.Partition);
 				if (newEntityTypeMonikerOfInheritance != null)
 				{
-					new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance(element.Partition, new DslModeling::RoleAssignment(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.SourceEntityTypeDomainRoleId, element), new DslModeling::RoleAssignment(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.TargetEntityTypeDomainRoleId, newEntityTypeMonikerOfInheritance));
+					new global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance(element.Partition, new DslModeling::RoleAssignment(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.SourceEntityTypeDomainRoleId, element), new DslModeling::RoleAssignment(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.TargetEntityTypeDomainRoleId, newEntityTypeMonikerOfInheritance));
 					DslModeling::SerializationUtilities.Skip(reader);	// Moniker contains no child XML elements, so just skip.
 				}
 				else
 				{
-					global::System.Type typeofInheritance = typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance);
-					DslModeling::DomainRelationshipXmlSerializer newInheritanceSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.DomainClassId) as DslModeling::DomainRelationshipXmlSerializer;
-					global::System.Diagnostics.Debug.Assert(newInheritanceSerializer != null, "Cannot find serializer for global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance!");
-					global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance newInheritance = newInheritanceSerializer.TryCreateInstance (serializationContext, reader, element.Partition) as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance;
+					global::System.Type typeofInheritance = typeof(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance);
+					DslModeling::DomainRelationshipXmlSerializer newInheritanceSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.DomainClassId) as DslModeling::DomainRelationshipXmlSerializer;
+					global::System.Diagnostics.Debug.Assert(newInheritanceSerializer != null, "Cannot find serializer for global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance!");
+					global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance newInheritance = newInheritanceSerializer.TryCreateInstance (serializationContext, reader, element.Partition) as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance;
 					if (newInheritance != null)
 					{
 						if (newInheritance.GetType() == typeofInheritance)
 						{	// The relationship should be serialized in short-form.
-							MicrosoftDataEntityDesignSerializationBehaviorSerializationMessages.ExpectingShortFormRelationship(serializationContext, reader, typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance));
+							MicrosoftDataEntityDesignSerializationBehaviorSerializationMessages.ExpectingShortFormRelationship(serializationContext, reader, typeof(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance));
 						}
-						DslModeling::DomainRoleInfo.SetRolePlayer (newInheritance, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.SourceEntityTypeDomainRoleId, element);
+						DslModeling::DomainRoleInfo.SetRolePlayer (newInheritance, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.SourceEntityTypeDomainRoleId, element);
 						DslModeling::DomainClassXmlSerializer targetSerializer = serializationContext.Directory.GetSerializer (newInheritance.GetDomainClass().Id);	
 						global::System.Diagnostics.Debug.Assert (targetSerializer != null, "Cannot find serializer for " + newInheritance.GetDomainClass().Name + "!");
 						targetSerializer.Read(serializationContext, newInheritance, reader);
@@ -1818,7 +1818,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				{
 					id = new global::System.Guid (idStr);
 				}
-				return new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType(partition, new DslModeling::PropertyAssignment(DslModeling::ElementFactory.IdPropertyAssignment, id));
+				return new global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType(partition, new DslModeling::PropertyAssignment(DslModeling::ElementFactory.IdPropertyAssignment, id));
 			}
 			catch (global::System.ArgumentNullException /* anEx */)
 			{	
@@ -1850,7 +1850,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClasses == null); // Shouldn't construct the table more than once.
 			this.derivedClasses = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -1963,7 +1963,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			{	// Normalize the Id.
 				global::System.Guid id = new global::System.Guid(monikerString);
 				monikerString = id.ToString("D", global::System.Globalization.CultureInfo.CurrentCulture);
-				DslModeling::Moniker result = new DslModeling::Moniker(new DslModeling::MonikerKey(monikerString, relDomainClassId, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType.DomainClassId, partition.Store), partition.Store);
+				DslModeling::Moniker result = new DslModeling::Moniker(new DslModeling::MonikerKey(monikerString, relDomainClassId, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType.DomainClassId, partition.Store), partition.Store);
 				// Set location info if possible.
 				result.Location = serializationContext.Location;
 				global::System.Xml.IXmlLineInfo xmlLineInfo = reader as global::System.Xml.IXmlLineInfo;
@@ -2001,7 +2001,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClassMonikers == null); // Shouldn't construct the table more than once.
 			this.derivedClassMonikers = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -2131,7 +2131,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			WriteAdditionalElementData(serializationContext, element, writer);
 			
 	
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType instance = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType;
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType instance = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType;
 			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of EntityType!");
 	
 			// Write child model elements (which are always serialized as nested XML elements).
@@ -2157,15 +2157,15 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <param name="serializationContext">Serialization context.</param>
 		/// <param name="element">EntityType instance to be serialized.</param>
 		/// <param name="writer">XmlWriter to write serialized data to.</param>
-		private static void WriteChildElements(DslModeling::SerializationContext serializationContext, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType element, global::System.Xml.XmlWriter writer)
+		private static void WriteChildElements(DslModeling::SerializationContext serializationContext, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType element, global::System.Xml.XmlWriter writer)
 		{
 			// EntityTypeHasProperties
-			global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties> allEntityTypeHasPropertiesInstances = global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.GetLinksToProperties(element);
+			global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties> allEntityTypeHasPropertiesInstances = global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties.GetLinksToProperties(element);
 			if (!serializationContext.Result.Failed && allEntityTypeHasPropertiesInstances.Count > 0)
 			{
 				writer.WriteStartElement("properties");
-				global::System.Type typeofEntityTypeHasProperties = typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties);
-				foreach (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties eachEntityTypeHasPropertiesInstance in allEntityTypeHasPropertiesInstances)
+				global::System.Type typeofEntityTypeHasProperties = typeof(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties);
+				foreach (global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties eachEntityTypeHasPropertiesInstance in allEntityTypeHasPropertiesInstances)
 				{
 					if (serializationContext.Result.Failed)
 						break;
@@ -2188,11 +2188,11 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			}
 	
 			// Association
-			global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association> allAssociationInstances = global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.GetLinksToAssociationTargets(element);
+			global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association> allAssociationInstances = global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.GetLinksToAssociationTargets(element);
 			if (!serializationContext.Result.Failed && allAssociationInstances.Count > 0)
 			{
 				writer.WriteStartElement("associationTargets");
-				foreach (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association eachAssociationInstance in allAssociationInstances)
+				foreach (global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association eachAssociationInstance in allAssociationInstances)
 				{
 					if (serializationContext.Result.Failed)
 						break;
@@ -2205,12 +2205,12 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			}
 	
 			// EntityTypeHasNavigationProperties
-			global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties> allEntityTypeHasNavigationPropertiesInstances = global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.GetLinksToNavigationProperties(element);
+			global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties> allEntityTypeHasNavigationPropertiesInstances = global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties.GetLinksToNavigationProperties(element);
 			if (!serializationContext.Result.Failed && allEntityTypeHasNavigationPropertiesInstances.Count > 0)
 			{
 				writer.WriteStartElement("navigationProperties");
-				global::System.Type typeofEntityTypeHasNavigationProperties = typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties);
-				foreach (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties eachEntityTypeHasNavigationPropertiesInstance in allEntityTypeHasNavigationPropertiesInstances)
+				global::System.Type typeofEntityTypeHasNavigationProperties = typeof(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties);
+				foreach (global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties eachEntityTypeHasNavigationPropertiesInstance in allEntityTypeHasNavigationPropertiesInstances)
 				{
 					if (serializationContext.Result.Failed)
 						break;
@@ -2233,15 +2233,15 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			}
 	
 			// Inheritance
-			global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance> allInheritanceInstances = global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.GetLinksToDerivedTypes(element);
+			global::System.Collections.ObjectModel.ReadOnlyCollection<global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance> allInheritanceInstances = global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.GetLinksToDerivedTypes(element);
 			if (!serializationContext.Result.Failed && allInheritanceInstances.Count > 0)
 			{
-				DslModeling::DomainRelationshipXmlSerializer relSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.DomainClassId) as DslModeling::DomainRelationshipXmlSerializer;
+				DslModeling::DomainRelationshipXmlSerializer relSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.DomainClassId) as DslModeling::DomainRelationshipXmlSerializer;
 				global::System.Diagnostics.Debug.Assert(relSerializer != null, "Cannot find serializer for Inheritance!");
 	
 				writer.WriteStartElement("derivedTypes");
-				global::System.Type typeofInheritance = typeof(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance);
-				foreach (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance eachInheritanceInstance in allInheritanceInstances)
+				global::System.Type typeofInheritance = typeof(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance);
+				foreach (global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance eachInheritanceInstance in allInheritanceInstances)
 				{
 					if (serializationContext.Result.Failed)
 						break;
@@ -2284,8 +2284,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType instance = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType!");
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType instance = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType!");
 	
 			return instance.Id.ToString("D", global::System.Globalization.CultureInfo.CurrentCulture);
 		}
@@ -2318,7 +2318,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	}
 	
 	/// <summary>
-	/// Serializer EntityTypeSerializer for DomainClass Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType.
+	/// Serializer EntityTypeSerializer for DomainClass Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType.
 	/// </summary>
 	internal partial class EntityTypeSerializer : EntityTypeSerializerBase
 	{
@@ -2334,10 +2334,10 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	}
 }
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
 	/// <summary>
-	/// Serializer PropertySerializer for DomainClass Microsoft.Data.Entity.Design.Dsl.ViewModel.Property.
+	/// Serializer PropertySerializer for DomainClass Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property.
 	/// </summary>
 	internal partial class PropertySerializer : PropertyBaseSerializer
 	{
@@ -2431,7 +2431,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			// Always call the base class so any extensions are deserialized
 			base.ReadPropertiesFromAttributes(serializationContext, element, reader);
 	
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property instanceOfProperty = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property;
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property instanceOfProperty = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property;
 			global::System.Diagnostics.Debug.Assert(instanceOfProperty != null, "Expecting an instance of Property");
 	
 			// Type
@@ -2534,7 +2534,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClasses == null); // Shouldn't construct the table more than once.
 			this.derivedClasses = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -2649,7 +2649,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClassMonikers == null); // Shouldn't construct the table more than once.
 			this.derivedClassMonikers = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -2716,7 +2716,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			// Always call the base class so any extensions are serialized
 			base.WritePropertiesAsAttributes(serializationContext, element, writer);
 	
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property instanceOfProperty = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property;
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property instanceOfProperty = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property;
 			global::System.Diagnostics.Debug.Assert(instanceOfProperty != null, "Expecting an instance of Property");
 	
 			// Type
@@ -2752,8 +2752,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property instance = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property!");
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property instance = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property!");
 	
 			DslModeling::ModelElement container = instance.EntityType;
 			if(container != null)
@@ -2790,8 +2790,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property instance = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property!");
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property instance = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property!");
 			DslModeling::ModelElement container = instance.EntityType;
 			if(container != null)
 			{
@@ -2808,10 +2808,10 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	}
 }
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
 	/// <summary>
-	/// Serializer PropertyBaseSerializer for DomainClass Microsoft.Data.Entity.Design.Dsl.ViewModel.PropertyBase.
+	/// Serializer PropertyBaseSerializer for DomainClass Microsoft.Data.Entity.Design.Diagrams.ViewModel.PropertyBase.
 	/// </summary>
 	internal partial class PropertyBaseSerializer : NameableItemSerializer
 	{
@@ -2971,7 +2971,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClasses == null); // Shouldn't construct the table more than once.
 			this.derivedClasses = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.PropertyBase.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.PropertyBase.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -3086,7 +3086,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClassMonikers == null); // Shouldn't construct the table more than once.
 			this.derivedClassMonikers = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.PropertyBase.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.PropertyBase.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -3161,8 +3161,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.PropertyBase instance = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.PropertyBase;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.ViewModel.PropertyBase!");
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.PropertyBase instance = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.PropertyBase;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.PropertyBase!");
 	
 			DslModeling::ModelElement container = DslModeling::DomainClassInfo.FindEmbeddingElement(instance);
 			if(container != null)
@@ -3199,8 +3199,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.PropertyBase instance = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.PropertyBase;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.ViewModel.PropertyBase!");
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.PropertyBase instance = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.PropertyBase;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.PropertyBase!");
 			DslModeling::ModelElement container = DslModeling::DomainClassInfo.FindEmbeddingElement(instance);
 			if(container != null)
 			{
@@ -3217,10 +3217,10 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	}
 }
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
 	/// <summary>
-	/// Serializer NavigationPropertySerializer for DomainClass Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty.
+	/// Serializer NavigationPropertySerializer for DomainClass Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty.
 	/// </summary>
 	internal partial class NavigationPropertySerializer : PropertyBaseSerializer
 	{
@@ -3422,7 +3422,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <returns>Created NavigationProperty instance.</returns>
 		protected override DslModeling::ModelElement CreateInstance(DslModeling::SerializationContext serializationContext, global::System.Xml.XmlReader reader, DslModeling::Partition partition)
 		{
-			return new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty(partition);
+			return new global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty(partition);
 		}
 	
 		/// <summary>
@@ -3440,7 +3440,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClasses == null); // Shouldn't construct the table more than once.
 			this.derivedClasses = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -3561,7 +3561,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClassMonikers == null); // Shouldn't construct the table more than once.
 			this.derivedClassMonikers = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -3671,8 +3671,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty instance = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty!");
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty instance = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty!");
 	
 			DslModeling::ModelElement container = instance.EntityType;
 			if(container != null)
@@ -3709,8 +3709,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty instance = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty!");
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty instance = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty!");
 			DslModeling::ModelElement container = instance.EntityType;
 			if(container != null)
 			{
@@ -3727,10 +3727,10 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	}
 }
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
 	/// <summary>
-	/// Serializer ComplexPropertySerializer for DomainClass Microsoft.Data.Entity.Design.Dsl.ViewModel.ComplexProperty.
+	/// Serializer ComplexPropertySerializer for DomainClass Microsoft.Data.Entity.Design.Diagrams.ViewModel.ComplexProperty.
 	/// </summary>
 	internal partial class ComplexPropertySerializer : PropertySerializer
 	{
@@ -3932,7 +3932,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <returns>Created ComplexProperty instance.</returns>
 		protected override DslModeling::ModelElement CreateInstance(DslModeling::SerializationContext serializationContext, global::System.Xml.XmlReader reader, DslModeling::Partition partition)
 		{
-			return new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ComplexProperty(partition);
+			return new global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.ComplexProperty(partition);
 		}
 	
 		/// <summary>
@@ -3950,7 +3950,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClasses == null); // Shouldn't construct the table more than once.
 			this.derivedClasses = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ComplexProperty.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.ComplexProperty.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -4071,7 +4071,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClassMonikers == null); // Shouldn't construct the table more than once.
 			this.derivedClassMonikers = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ComplexProperty.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.ComplexProperty.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -4181,8 +4181,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ComplexProperty instance = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ComplexProperty;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ComplexProperty!");
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.ComplexProperty instance = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.ComplexProperty;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.ComplexProperty!");
 	
 			DslModeling::ModelElement container = instance.EntityType;
 			if(container != null)
@@ -4219,8 +4219,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ComplexProperty instance = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ComplexProperty;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ComplexProperty!");
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.ComplexProperty instance = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.ComplexProperty;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.ComplexProperty!");
 			DslModeling::ModelElement container = instance.EntityType;
 			if(container != null)
 			{
@@ -4237,10 +4237,10 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	}
 }
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
 	/// <summary>
-	/// Serializer ScalarPropertySerializer for DomainClass Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty.
+	/// Serializer ScalarPropertySerializer for DomainClass Microsoft.Data.Entity.Design.Diagrams.ViewModel.ScalarProperty.
 	/// </summary>
 	internal partial class ScalarPropertySerializer : PropertySerializer
 	{
@@ -4389,7 +4389,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			// Always call the base class so any extensions are deserialized
 			base.ReadPropertiesFromAttributes(serializationContext, element, reader);
 	
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty instanceOfScalarProperty = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty;
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.ScalarProperty instanceOfScalarProperty = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.ScalarProperty;
 			global::System.Diagnostics.Debug.Assert(instanceOfScalarProperty != null, "Expecting an instance of ScalarProperty");
 	
 			// EntityKey
@@ -4479,7 +4479,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <returns>Created ScalarProperty instance.</returns>
 		protected override DslModeling::ModelElement CreateInstance(DslModeling::SerializationContext serializationContext, global::System.Xml.XmlReader reader, DslModeling::Partition partition)
 		{
-			return new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty(partition);
+			return new global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.ScalarProperty(partition);
 		}
 	
 		/// <summary>
@@ -4497,7 +4497,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClasses == null); // Shouldn't construct the table more than once.
 			this.derivedClasses = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.ScalarProperty.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -4618,7 +4618,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClassMonikers == null); // Shouldn't construct the table more than once.
 			this.derivedClassMonikers = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.ScalarProperty.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -4720,7 +4720,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			// Always call the base class so any extensions are serialized
 			base.WritePropertiesAsAttributes(serializationContext, element, writer);
 	
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty instanceOfScalarProperty = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty;
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.ScalarProperty instanceOfScalarProperty = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.ScalarProperty;
 			global::System.Diagnostics.Debug.Assert(instanceOfScalarProperty != null, "Expecting an instance of ScalarProperty");
 	
 			// EntityKey
@@ -4754,8 +4754,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty instance = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty!");
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.ScalarProperty instance = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.ScalarProperty;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.ScalarProperty!");
 	
 			DslModeling::ModelElement container = instance.EntityType;
 			if(container != null)
@@ -4792,8 +4792,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty instance = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty!");
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.ScalarProperty instance = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.ScalarProperty;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.ScalarProperty!");
 			DslModeling::ModelElement container = instance.EntityType;
 			if(container != null)
 			{
@@ -4810,10 +4810,10 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	}
 }
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
 	/// <summary>
-	/// Serializer EntityTypeHasPropertiesSerializer for DomainClass Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.
+	/// Serializer EntityTypeHasPropertiesSerializer for DomainClass Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties.
 	/// </summary>
 	internal partial class EntityTypeHasPropertiesSerializer : DslModeling::DomainRelationshipXmlSerializer
 	{
@@ -4987,7 +4987,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	
 			// Read the instance of target role-player Property
 			DslModeling::ModelElement targetRolePlayer = null;
-			DslModeling::DomainClassXmlSerializer targetRoleSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property.DomainClassId);
+			DslModeling::DomainClassXmlSerializer targetRoleSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(targetRoleSerializer != null, "Cannot find serializer for Property!");
 	
 			while (!serializationContext.Result.Failed && !reader.EOF && reader.NodeType == global::System.Xml.XmlNodeType.Element)
@@ -4996,7 +4996,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				if (targetRolePlayer != null)
 				{
 					// Attach the target role-player.
-					DslModeling::DomainRoleInfo.SetRolePlayer(element as DslModeling::ElementLink, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.PropertyDomainRoleId, targetRolePlayer);
+					DslModeling::DomainRoleInfo.SetRolePlayer(element as DslModeling::ElementLink, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties.PropertyDomainRoleId, targetRolePlayer);
 					// Read target role-player.
 					DslModeling::DomainClassXmlSerializer targetSerializer = serializationContext.Directory.GetSerializer (targetRolePlayer.GetDomainClass().Id);	
 					global::System.Diagnostics.Debug.Assert (targetSerializer != null, "Cannot find serializer for " + targetRolePlayer.GetDomainClass().Name + "!");
@@ -5165,10 +5165,10 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		protected override DslModeling::ModelElement CreateInstance(DslModeling::SerializationContext serializationContext, global::System.Xml.XmlReader reader, DslModeling::Partition partition)
 		{
 			// Create the link with place-holder role-players.
-			return new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties(
+			return new global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties(
 				partition,
-				DslModeling::RoleAssignment.CreatePlaceholderRoleAssignment (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.EntityTypeDomainRoleId), 
-				DslModeling::RoleAssignment.CreatePlaceholderRoleAssignment (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.PropertyDomainRoleId)
+				DslModeling::RoleAssignment.CreatePlaceholderRoleAssignment (global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties.EntityTypeDomainRoleId), 
+				DslModeling::RoleAssignment.CreatePlaceholderRoleAssignment (global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties.PropertyDomainRoleId)
 			);
 		}
 	
@@ -5187,7 +5187,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClasses == null); // Shouldn't construct the table more than once.
 			this.derivedClasses = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -5308,7 +5308,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClassMonikers == null); // Shouldn't construct the table more than once.
 			this.derivedClassMonikers = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -5426,8 +5426,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties instance = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties!");
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties instance = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties!");
 	
 			DslModeling::ModelElement container = instance.EntityType;
 			if(container != null)
@@ -5464,8 +5464,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties instance = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties!");
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties instance = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties!");
 			DslModeling::ModelElement container = instance.EntityType;
 			if(container != null)
 			{
@@ -5506,7 +5506,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	}
 }
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
 	/// <summary>
 	/// Serializer EntityDesignerViewModelHasEntityTypesSerializer for DomainClass EntityDesignerViewModelHasEntityTypes.
@@ -5683,7 +5683,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	
 			// Read the instance of target role-player EntityType
 			DslModeling::ModelElement targetRolePlayer = null;
-			DslModeling::DomainClassXmlSerializer targetRoleSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType.DomainClassId);
+			DslModeling::DomainClassXmlSerializer targetRoleSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(targetRoleSerializer != null, "Cannot find serializer for EntityType!");
 	
 			while (!serializationContext.Result.Failed && !reader.EOF && reader.NodeType == global::System.Xml.XmlNodeType.Element)
@@ -6202,10 +6202,10 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	}
 }
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
 	/// <summary>
-	/// Serializer AssociationSerializer for DomainClass Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.
+	/// Serializer AssociationSerializer for DomainClass Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.
 	/// </summary>
 	internal partial class AssociationSerializer : DslModeling::DomainRelationshipXmlSerializer
 	{
@@ -6379,16 +6379,16 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	
 			// Read the monikerized instance of target role-player TargetEntityType
 			DslModeling::Moniker targetRoleMoniker = null;
-			DslModeling::DomainClassXmlSerializer targetRoleSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType.DomainClassId);
+			DslModeling::DomainClassXmlSerializer targetRoleSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(targetRoleSerializer != null, "Cannot find serializer for EntityType!");
 	
 			while (!serializationContext.Result.Failed && !reader.EOF && reader.NodeType == global::System.Xml.XmlNodeType.Element)
 			{
-				targetRoleMoniker = targetRoleSerializer.TryCreateMonikerInstance(serializationContext, reader, ((global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association)element).SourceEntityType, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.DomainClassId, element.Partition);
+				targetRoleMoniker = targetRoleSerializer.TryCreateMonikerInstance(serializationContext, reader, ((global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association)element).SourceEntityType, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.DomainClassId, element.Partition);
 				if (targetRoleMoniker != null)
 				{
 					// Attach the target role-player moniker.
-					DslModeling::DomainRoleInfo.SetRolePlayerMoniker (element as DslModeling::ElementLink, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.TargetEntityTypeDomainRoleId, targetRoleMoniker);
+					DslModeling::DomainRoleInfo.SetRolePlayerMoniker (element as DslModeling::ElementLink, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.TargetEntityTypeDomainRoleId, targetRoleMoniker);
 					// Moniker tag has no child XML elements in it, so just skip to the next element.
 					DslModeling::SerializationUtilities.Skip(reader);
 					break;
@@ -6418,7 +6418,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			// Always call the base class so any extensions are deserialized
 			base.ReadPropertiesFromAttributes(serializationContext, element, reader);
 	
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association instanceOfAssociation = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association;
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association instanceOfAssociation = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association;
 			global::System.Diagnostics.Debug.Assert(instanceOfAssociation != null, "Expecting an instance of Association");
 	
 			// Name
@@ -6621,11 +6621,11 @@ namespace Microsoft.Data.Entity.Design.Dsl
 					id = new global::System.Guid (idStr);
 				}
 				// Create the link with place-holder role-players.
-				return new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association(
+				return new global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association(
 					partition,
 					new DslModeling::RoleAssignment[] {
-						DslModeling::RoleAssignment.CreatePlaceholderRoleAssignment (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.SourceEntityTypeDomainRoleId), 
-						DslModeling::RoleAssignment.CreatePlaceholderRoleAssignment (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.TargetEntityTypeDomainRoleId)
+						DslModeling::RoleAssignment.CreatePlaceholderRoleAssignment (global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.SourceEntityTypeDomainRoleId), 
+						DslModeling::RoleAssignment.CreatePlaceholderRoleAssignment (global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.TargetEntityTypeDomainRoleId)
 					},
 					new DslModeling::PropertyAssignment[] {
 						new DslModeling::PropertyAssignment(DslModeling::ElementFactory.IdPropertyAssignment, id)
@@ -6662,7 +6662,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClasses == null); // Shouldn't construct the table more than once.
 			this.derivedClasses = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -6775,7 +6775,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			{	// Normalize the Id.
 				global::System.Guid id = new global::System.Guid(monikerString);
 				monikerString = id.ToString("D", global::System.Globalization.CultureInfo.CurrentCulture);
-				DslModeling::Moniker result = new DslModeling::Moniker(new DslModeling::MonikerKey(monikerString, relDomainClassId, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.DomainClassId, partition.Store), partition.Store);
+				DslModeling::Moniker result = new DslModeling::Moniker(new DslModeling::MonikerKey(monikerString, relDomainClassId, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.DomainClassId, partition.Store), partition.Store);
 				// Set location info if possible.
 				result.Location = serializationContext.Location;
 				global::System.Xml.IXmlLineInfo xmlLineInfo = reader as global::System.Xml.IXmlLineInfo;
@@ -6813,7 +6813,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClassMonikers == null); // Shouldn't construct the table more than once.
 			this.derivedClassMonikers = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -6920,8 +6920,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			WritePropertiesAsAttributes(serializationContext, element, writer);
 	
 			// Write the target role-player instance.
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association instance = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association!");
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association instance = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association!");
 	
 			DslModeling::ModelElement targetElement = instance.TargetEntityType;
 			DslModeling::DomainClassXmlSerializer targetSerializer = serializationContext.Directory.GetSerializer(targetElement.GetDomainClass().Id);
@@ -6948,7 +6948,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			// Always call the base class so any extensions are serialized
 			base.WritePropertiesAsAttributes(serializationContext, element, writer);
 	
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association instanceOfAssociation = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association;
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association instanceOfAssociation = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association;
 			global::System.Diagnostics.Debug.Assert(instanceOfAssociation != null, "Expecting an instance of Association");
 	
 			// Name
@@ -7034,8 +7034,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association instance = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association!");
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association instance = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association!");
 	
 			return instance.Id.ToString("D", global::System.Globalization.CultureInfo.CurrentCulture);
 		}
@@ -7085,7 +7085,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(sourceElement != null);
 			if (sourceElement == null)
 				throw new global::System.ArgumentNullException ("sourceElement");
-			global::System.Diagnostics.Debug.Assert (sourceElement is global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType, "Expecting an instance of EntityType!");
+			global::System.Diagnostics.Debug.Assert (sourceElement is global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType, "Expecting an instance of EntityType!");
 			global::System.Diagnostics.Debug.Assert (!string.IsNullOrEmpty (monikerString));
 			if (string.IsNullOrEmpty (monikerString))
 				throw new global::System.ArgumentNullException ("monikerString");
@@ -7097,14 +7097,14 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			DslModeling::MonikerKey key = null;
 			if (DslModeling::SimpleMonikerResolver.IsFullyQualified(monikerString))
 			{
-				key = new DslModeling::MonikerKey(monikerString, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.DomainClassId, domainClassId, store);
+				key = new DslModeling::MonikerKey(monikerString, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.DomainClassId, domainClassId, store);
 			}
 			else
 			{
 				DslModeling::DomainClassXmlSerializer sourceSerializer = serializationContext.Directory.GetSerializer(sourceElement.GetDomainClass().Id);
 				global::System.Diagnostics.Debug.Assert(sourceSerializer != null, "Cannot find serializer for " + sourceElement.GetDomainClass().Name + "!");
 				string sourceQualifier = sourceSerializer.GetMonikerQualifier(serializationContext.Directory, sourceElement);
-				key = new DslModeling::MonikerKey(string.Format(global::System.Globalization.CultureInfo.CurrentCulture, "{0}/{1}", sourceQualifier, monikerString), global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.DomainClassId, domainClassId, store);
+				key = new DslModeling::MonikerKey(string.Format(global::System.Globalization.CultureInfo.CurrentCulture, "{0}/{1}", sourceQualifier, monikerString), global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.DomainClassId, domainClassId, store);
 			}
 			return new DslModeling::Moniker(key, store);
 		}
@@ -7125,11 +7125,11 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(sourceElement != null);
 			if (sourceElement == null)
 				throw new global::System.ArgumentNullException ("sourceElement");
-			global::System.Diagnostics.Debug.Assert (sourceElement is global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType, "Expecting an instance of EntityType!");
+			global::System.Diagnostics.Debug.Assert (sourceElement is global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType, "Expecting an instance of EntityType!");
 			global::System.Diagnostics.Debug.Assert(targetElement != null);
 			if (targetElement == null)
 				throw new global::System.ArgumentNullException ("targetElement");
-			global::System.Diagnostics.Debug.Assert (targetElement is global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType, "Expecting an instance of EntityType!");
+			global::System.Diagnostics.Debug.Assert (targetElement is global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType, "Expecting an instance of EntityType!");
 			#endregion
 			
 			// full form reference
@@ -7183,10 +7183,10 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	}
 }
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
 	/// <summary>
-	/// Serializer EntityTypeHasNavigationPropertiesSerializer for DomainClass Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.
+	/// Serializer EntityTypeHasNavigationPropertiesSerializer for DomainClass Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties.
 	/// </summary>
 	internal partial class EntityTypeHasNavigationPropertiesSerializer : DslModeling::DomainRelationshipXmlSerializer
 	{
@@ -7360,7 +7360,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	
 			// Read the instance of target role-player NavigationProperty
 			DslModeling::ModelElement targetRolePlayer = null;
-			DslModeling::DomainClassXmlSerializer targetRoleSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty.DomainClassId);
+			DslModeling::DomainClassXmlSerializer targetRoleSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(targetRoleSerializer != null, "Cannot find serializer for NavigationProperty!");
 	
 			while (!serializationContext.Result.Failed && !reader.EOF && reader.NodeType == global::System.Xml.XmlNodeType.Element)
@@ -7369,7 +7369,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				if (targetRolePlayer != null)
 				{
 					// Attach the target role-player.
-					DslModeling::DomainRoleInfo.SetRolePlayer(element as DslModeling::ElementLink, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.NavigationPropertyDomainRoleId, targetRolePlayer);
+					DslModeling::DomainRoleInfo.SetRolePlayer(element as DslModeling::ElementLink, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties.NavigationPropertyDomainRoleId, targetRolePlayer);
 					// Read target role-player.
 					DslModeling::DomainClassXmlSerializer targetSerializer = serializationContext.Directory.GetSerializer (targetRolePlayer.GetDomainClass().Id);	
 					global::System.Diagnostics.Debug.Assert (targetSerializer != null, "Cannot find serializer for " + targetRolePlayer.GetDomainClass().Name + "!");
@@ -7538,10 +7538,10 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		protected override DslModeling::ModelElement CreateInstance(DslModeling::SerializationContext serializationContext, global::System.Xml.XmlReader reader, DslModeling::Partition partition)
 		{
 			// Create the link with place-holder role-players.
-			return new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties(
+			return new global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties(
 				partition,
-				DslModeling::RoleAssignment.CreatePlaceholderRoleAssignment (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.EntityTypeDomainRoleId), 
-				DslModeling::RoleAssignment.CreatePlaceholderRoleAssignment (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.NavigationPropertyDomainRoleId)
+				DslModeling::RoleAssignment.CreatePlaceholderRoleAssignment (global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties.EntityTypeDomainRoleId), 
+				DslModeling::RoleAssignment.CreatePlaceholderRoleAssignment (global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties.NavigationPropertyDomainRoleId)
 			);
 		}
 	
@@ -7560,7 +7560,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClasses == null); // Shouldn't construct the table more than once.
 			this.derivedClasses = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -7681,7 +7681,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClassMonikers == null); // Shouldn't construct the table more than once.
 			this.derivedClassMonikers = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -7799,8 +7799,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties instance = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties!");
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties instance = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties!");
 	
 			DslModeling::ModelElement container = instance.EntityType;
 			if(container != null)
@@ -7837,8 +7837,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties instance = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties!");
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties instance = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties!");
 			DslModeling::ModelElement container = instance.EntityType;
 			if(container != null)
 			{
@@ -7879,10 +7879,10 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	}
 }
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
 	/// <summary>
-	/// Serializer InheritanceSerializer for DomainClass Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.
+	/// Serializer InheritanceSerializer for DomainClass Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.
 	/// </summary>
 	internal partial class InheritanceSerializer : DslModeling::DomainRelationshipXmlSerializer
 	{
@@ -8056,16 +8056,16 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	
 			// Read the monikerized instance of target role-player TargetEntityType
 			DslModeling::Moniker targetRoleMoniker = null;
-			DslModeling::DomainClassXmlSerializer targetRoleSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType.DomainClassId);
+			DslModeling::DomainClassXmlSerializer targetRoleSerializer = serializationContext.Directory.GetSerializer(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(targetRoleSerializer != null, "Cannot find serializer for EntityType!");
 	
 			while (!serializationContext.Result.Failed && !reader.EOF && reader.NodeType == global::System.Xml.XmlNodeType.Element)
 			{
-				targetRoleMoniker = targetRoleSerializer.TryCreateMonikerInstance(serializationContext, reader, ((global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance)element).SourceEntityType, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.DomainClassId, element.Partition);
+				targetRoleMoniker = targetRoleSerializer.TryCreateMonikerInstance(serializationContext, reader, ((global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance)element).SourceEntityType, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.DomainClassId, element.Partition);
 				if (targetRoleMoniker != null)
 				{
 					// Attach the target role-player moniker.
-					DslModeling::DomainRoleInfo.SetRolePlayerMoniker (element as DslModeling::ElementLink, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.TargetEntityTypeDomainRoleId, targetRoleMoniker);
+					DslModeling::DomainRoleInfo.SetRolePlayerMoniker (element as DslModeling::ElementLink, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.TargetEntityTypeDomainRoleId, targetRoleMoniker);
 					// Moniker tag has no child XML elements in it, so just skip to the next element.
 					DslModeling::SerializationUtilities.Skip(reader);
 					break;
@@ -8232,10 +8232,10 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		protected override DslModeling::ModelElement CreateInstance(DslModeling::SerializationContext serializationContext, global::System.Xml.XmlReader reader, DslModeling::Partition partition)
 		{
 			// Create the link with place-holder role-players.
-			return new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance(
+			return new global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance(
 				partition,
-				DslModeling::RoleAssignment.CreatePlaceholderRoleAssignment (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.SourceEntityTypeDomainRoleId), 
-				DslModeling::RoleAssignment.CreatePlaceholderRoleAssignment (global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.TargetEntityTypeDomainRoleId)
+				DslModeling::RoleAssignment.CreatePlaceholderRoleAssignment (global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.SourceEntityTypeDomainRoleId), 
+				DslModeling::RoleAssignment.CreatePlaceholderRoleAssignment (global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.TargetEntityTypeDomainRoleId)
 			);
 		}
 	
@@ -8254,7 +8254,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClasses == null); // Shouldn't construct the table more than once.
 			this.derivedClasses = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -8375,7 +8375,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClassMonikers == null); // Shouldn't construct the table more than once.
 			this.derivedClassMonikers = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -8493,8 +8493,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance instance = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance!");
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance instance = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance!");
 	
 			DslModeling::ModelElement container = instance.SourceEntityType;
 			if(container != null)
@@ -8531,8 +8531,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance instance = element as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance!");
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance instance = element as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance!");
 			DslModeling::ModelElement container = instance.SourceEntityType;
 			if(container != null)
 			{
@@ -8566,7 +8566,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(sourceElement != null);
 			if (sourceElement == null)
 				throw new global::System.ArgumentNullException ("sourceElement");
-			global::System.Diagnostics.Debug.Assert (sourceElement is global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType, "Expecting an instance of EntityType!");
+			global::System.Diagnostics.Debug.Assert (sourceElement is global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType, "Expecting an instance of EntityType!");
 			global::System.Diagnostics.Debug.Assert (!string.IsNullOrEmpty (monikerString));
 			if (string.IsNullOrEmpty (monikerString))
 				throw new global::System.ArgumentNullException ("monikerString");
@@ -8578,14 +8578,14 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			DslModeling::MonikerKey key = null;
 			if (DslModeling::SimpleMonikerResolver.IsFullyQualified(monikerString))
 			{
-				key = new DslModeling::MonikerKey(monikerString, global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.DomainClassId, domainClassId, store);
+				key = new DslModeling::MonikerKey(monikerString, global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.DomainClassId, domainClassId, store);
 			}
 			else
 			{
 				DslModeling::DomainClassXmlSerializer sourceSerializer = serializationContext.Directory.GetSerializer(sourceElement.GetDomainClass().Id);
 				global::System.Diagnostics.Debug.Assert(sourceSerializer != null, "Cannot find serializer for " + sourceElement.GetDomainClass().Name + "!");
 				string sourceQualifier = sourceSerializer.GetMonikerQualifier(serializationContext.Directory, sourceElement);
-				key = new DslModeling::MonikerKey(string.Format(global::System.Globalization.CultureInfo.CurrentCulture, "{0}/{1}", sourceQualifier, monikerString), global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.DomainClassId, domainClassId, store);
+				key = new DslModeling::MonikerKey(string.Format(global::System.Globalization.CultureInfo.CurrentCulture, "{0}/{1}", sourceQualifier, monikerString), global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.DomainClassId, domainClassId, store);
 			}
 			return new DslModeling::Moniker(key, store);
 		}
@@ -8606,11 +8606,11 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(sourceElement != null);
 			if (sourceElement == null)
 				throw new global::System.ArgumentNullException ("sourceElement");
-			global::System.Diagnostics.Debug.Assert (sourceElement is global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType, "Expecting an instance of EntityType!");
+			global::System.Diagnostics.Debug.Assert (sourceElement is global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType, "Expecting an instance of EntityType!");
 			global::System.Diagnostics.Debug.Assert(targetElement != null);
 			if (targetElement == null)
 				throw new global::System.ArgumentNullException ("targetElement");
-			global::System.Diagnostics.Debug.Assert (targetElement is global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType, "Expecting an instance of EntityType!");
+			global::System.Diagnostics.Debug.Assert (targetElement is global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType, "Expecting an instance of EntityType!");
 			#endregion
 			
 			// full form reference
@@ -8664,10 +8664,10 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	}
 }
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
 	/// <summary>
-	/// Serializer EntityTypeShapeSerializerBase for DomainClass Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape.
+	/// Serializer EntityTypeShapeSerializerBase for DomainClass Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape.
 	/// </summary>
 	internal abstract partial class EntityTypeShapeSerializerBase : DslDiagrams::CompartmentShapeSerializer
 	{
@@ -8816,7 +8816,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			// Always call the base class so any extensions are deserialized
 			base.ReadPropertiesFromAttributes(serializationContext, element, reader);
 	
-			global::Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape instanceOfEntityTypeShape = element as global::Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape;
+			global::Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape instanceOfEntityTypeShape = element as global::Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape;
 			global::System.Diagnostics.Debug.Assert(instanceOfEntityTypeShape != null, "Expecting an instance of EntityTypeShape");
 	
 			// FillColor
@@ -8942,7 +8942,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				{
 					id = new global::System.Guid (idStr);
 				}
-				return new global::Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape(partition, new DslModeling::PropertyAssignment(DslModeling::ElementFactory.IdPropertyAssignment, id));
+				return new global::Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape(partition, new DslModeling::PropertyAssignment(DslModeling::ElementFactory.IdPropertyAssignment, id));
 			}
 			catch (global::System.ArgumentNullException /* anEx */)
 			{	
@@ -8974,7 +8974,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClasses == null); // Shouldn't construct the table more than once.
 			this.derivedClasses = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -9087,7 +9087,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			{	// Normalize the Id.
 				global::System.Guid id = new global::System.Guid(monikerString);
 				monikerString = id.ToString("D", global::System.Globalization.CultureInfo.CurrentCulture);
-				DslModeling::Moniker result = new DslModeling::Moniker(new DslModeling::MonikerKey(monikerString, relDomainClassId, global::Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape.DomainClassId, partition.Store), partition.Store);
+				DslModeling::Moniker result = new DslModeling::Moniker(new DslModeling::MonikerKey(monikerString, relDomainClassId, global::Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape.DomainClassId, partition.Store), partition.Store);
 				// Set location info if possible.
 				result.Location = serializationContext.Location;
 				global::System.Xml.IXmlLineInfo xmlLineInfo = reader as global::System.Xml.IXmlLineInfo;
@@ -9125,7 +9125,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClassMonikers == null); // Shouldn't construct the table more than once.
 			this.derivedClassMonikers = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -9251,7 +9251,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			// Always call the base class so any extensions are serialized
 			base.WritePropertiesAsAttributes(serializationContext, element, writer);
 	
-			global::Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape instanceOfEntityTypeShape = element as global::Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape;
+			global::Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape instanceOfEntityTypeShape = element as global::Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape;
 			global::System.Diagnostics.Debug.Assert(instanceOfEntityTypeShape != null, "Expecting an instance of EntityTypeShape");
 	
 			// FillColor
@@ -9314,8 +9314,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape instance = element as global::Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape!");
+			global::Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape instance = element as global::Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape!");
 	
 			return instance.Id.ToString("D", global::System.Globalization.CultureInfo.CurrentCulture);
 		}
@@ -9348,7 +9348,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	}
 	
 	/// <summary>
-	/// Serializer EntityTypeShapeSerializer for DomainClass Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape.
+	/// Serializer EntityTypeShapeSerializer for DomainClass Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape.
 	/// </summary>
 	internal partial class EntityTypeShapeSerializer : EntityTypeShapeSerializerBase
 	{
@@ -9364,10 +9364,10 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	}
 }
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
 	/// <summary>
-	/// Serializer InheritanceConnectorSerializer for DomainClass Microsoft.Data.Entity.Design.Dsl.View.InheritanceConnector.
+	/// Serializer InheritanceConnectorSerializer for DomainClass Microsoft.Data.Entity.Design.Diagrams.View.InheritanceConnector.
 	/// </summary>
 	internal partial class InheritanceConnectorSerializer : DslDiagrams::BinaryLinkShapeSerializer
 	{
@@ -9569,7 +9569,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <returns>Created InheritanceConnector instance.</returns>
 		protected override DslModeling::ModelElement CreateInstance(DslModeling::SerializationContext serializationContext, global::System.Xml.XmlReader reader, DslModeling::Partition partition)
 		{
-			return new global::Microsoft.Data.Entity.Design.Dsl.View.InheritanceConnector(partition);
+			return new global::Microsoft.Data.Entity.Design.Diagrams.View.InheritanceConnector(partition);
 		}
 	
 		/// <summary>
@@ -9587,7 +9587,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClasses == null); // Shouldn't construct the table more than once.
 			this.derivedClasses = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.View.InheritanceConnector.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.View.InheritanceConnector.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -9708,7 +9708,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClassMonikers == null); // Shouldn't construct the table more than once.
 			this.derivedClassMonikers = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.View.InheritanceConnector.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.View.InheritanceConnector.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -9818,8 +9818,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.View.InheritanceConnector instance = element as global::Microsoft.Data.Entity.Design.Dsl.View.InheritanceConnector;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.View.InheritanceConnector!");
+			global::Microsoft.Data.Entity.Design.Diagrams.View.InheritanceConnector instance = element as global::Microsoft.Data.Entity.Design.Diagrams.View.InheritanceConnector;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.View.InheritanceConnector!");
 	
 			DslModeling::ModelElement container = DslModeling::DomainClassInfo.FindEmbeddingElement(instance);
 			if(container != null)
@@ -9856,8 +9856,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.View.InheritanceConnector instance = element as global::Microsoft.Data.Entity.Design.Dsl.View.InheritanceConnector;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.View.InheritanceConnector!");
+			global::Microsoft.Data.Entity.Design.Diagrams.View.InheritanceConnector instance = element as global::Microsoft.Data.Entity.Design.Diagrams.View.InheritanceConnector;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.View.InheritanceConnector!");
 			DslModeling::ModelElement container = DslModeling::DomainClassInfo.FindEmbeddingElement(instance);
 			if(container != null)
 			{
@@ -9874,10 +9874,10 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	}
 }
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
 	/// <summary>
-	/// Serializer AssociationConnectorSerializer for DomainClass Microsoft.Data.Entity.Design.Dsl.View.AssociationConnector.
+	/// Serializer AssociationConnectorSerializer for DomainClass Microsoft.Data.Entity.Design.Diagrams.View.AssociationConnector.
 	/// </summary>
 	internal partial class AssociationConnectorSerializer : DslDiagrams::BinaryLinkShapeSerializer
 	{
@@ -10079,7 +10079,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <returns>Created AssociationConnector instance.</returns>
 		protected override DslModeling::ModelElement CreateInstance(DslModeling::SerializationContext serializationContext, global::System.Xml.XmlReader reader, DslModeling::Partition partition)
 		{
-			return new global::Microsoft.Data.Entity.Design.Dsl.View.AssociationConnector(partition);
+			return new global::Microsoft.Data.Entity.Design.Diagrams.View.AssociationConnector(partition);
 		}
 	
 		/// <summary>
@@ -10097,7 +10097,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClasses == null); // Shouldn't construct the table more than once.
 			this.derivedClasses = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.View.AssociationConnector.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.View.AssociationConnector.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -10218,7 +10218,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClassMonikers == null); // Shouldn't construct the table more than once.
 			this.derivedClassMonikers = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.View.AssociationConnector.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.View.AssociationConnector.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -10328,8 +10328,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.View.AssociationConnector instance = element as global::Microsoft.Data.Entity.Design.Dsl.View.AssociationConnector;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.View.AssociationConnector!");
+			global::Microsoft.Data.Entity.Design.Diagrams.View.AssociationConnector instance = element as global::Microsoft.Data.Entity.Design.Diagrams.View.AssociationConnector;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.View.AssociationConnector!");
 	
 			DslModeling::ModelElement container = DslModeling::DomainClassInfo.FindEmbeddingElement(instance);
 			if(container != null)
@@ -10366,8 +10366,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.View.AssociationConnector instance = element as global::Microsoft.Data.Entity.Design.Dsl.View.AssociationConnector;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.View.AssociationConnector!");
+			global::Microsoft.Data.Entity.Design.Diagrams.View.AssociationConnector instance = element as global::Microsoft.Data.Entity.Design.Diagrams.View.AssociationConnector;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.View.AssociationConnector!");
 			DslModeling::ModelElement container = DslModeling::DomainClassInfo.FindEmbeddingElement(instance);
 			if(container != null)
 			{
@@ -10384,10 +10384,10 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	}
 }
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
     /// <summary>
-	/// Serializer EntityDesignerSurfaceSerializerBase for DomainClass Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface.
+	/// Serializer EntityDesignerSurfaceSerializerBase for DomainClass Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface.
 	/// </summary>
 	internal abstract partial class EntityDesignerSurfaceSerializerBase : DslDiagrams::DiagramSerializer
 	{
@@ -10536,7 +10536,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			// Always call the base class so any extensions are deserialized
 			base.ReadPropertiesFromAttributes(serializationContext, element, reader);
 	
-			global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface instanceOfEntityDesignerSurface = element as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface;
+			global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface instanceOfEntityDesignerSurface = element as global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface;
 			global::System.Diagnostics.Debug.Assert(instanceOfEntityDesignerSurface != null, "Expecting an instance of EntityDesignerSurface");
 	
 			// Title
@@ -10649,7 +10649,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// <returns>Created EntityDesignerSurface instance.</returns>
         protected override DslModeling::ModelElement CreateInstance(DslModeling::SerializationContext serializationContext, global::System.Xml.XmlReader reader, DslModeling::Partition partition)
 		{
-			return new global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface(partition);
+			return new global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface(partition);
 		}
 	
 		/// <summary>
@@ -10667,7 +10667,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClasses == null); // Shouldn't construct the table more than once.
 			this.derivedClasses = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -10788,7 +10788,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			global::System.Diagnostics.Debug.Assert(this.derivedClassMonikers == null); // Shouldn't construct the table more than once.
 			this.derivedClassMonikers = new global::System.Collections.Generic.Dictionary<string, DslModeling::DomainClassInfo> (global::System.StringComparer.CurrentCulture);
 	
-			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface.DomainClassId);
+			DslModeling::DomainClassInfo thisClass = domainDataDirectory.GetDomainClass(global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface.DomainClassId);
 			global::System.Diagnostics.Debug.Assert(thisClass != null, "Cannot find DomainClassInfo for ModelRoot!");
 	
 			global::System.Collections.ObjectModel.ReadOnlyCollection<DslModeling::DomainClassInfo> descendents = thisClass.AllDescendants;
@@ -10890,7 +10890,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			// Always call the base class so any extensions are serialized
 			base.WritePropertiesAsAttributes(serializationContext, element, writer);
 	
-			global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface instanceOfEntityDesignerSurface = element as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface;
+			global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface instanceOfEntityDesignerSurface = element as global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface;
 			global::System.Diagnostics.Debug.Assert(instanceOfEntityDesignerSurface != null, "Expecting an instance of EntityDesignerSurface");
 	
 			// Title
@@ -10954,8 +10954,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface instance = element as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface!");
+			global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface instance = element as global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface!");
 	
 			DslModeling::ModelElement container = DslModeling::DomainClassInfo.FindEmbeddingElement(instance);
 			if(container != null)
@@ -10992,8 +10992,8 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				throw new global::System.ArgumentNullException("element");
 			#endregion	
 			
-			global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface instance = element as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface;
-			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface!");
+			global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface instance = element as global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface;
+			global::System.Diagnostics.Debug.Assert(instance != null, "Expecting an instance of global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface!");
 			DslModeling::ModelElement container = DslModeling::DomainClassInfo.FindEmbeddingElement(instance);
 			if(container != null)
 			{
@@ -11010,7 +11010,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	}
 	
 	/// <summary>
-	/// Serializer EntityDesignerSurfaceSerializer for DomainClass Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface.
+	/// Serializer EntityDesignerSurfaceSerializer for DomainClass Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface.
 	/// </summary>
 	internal partial class EntityDesignerSurfaceSerializer : EntityDesignerSurfaceSerializerBase
 	{
@@ -11026,7 +11026,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	}
 }
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
 	/// <summary>
 	/// A DomainXmlSerializationBehavior implementation for defined behavior MicrosoftDataEntityDesignSerializationBehavior.
@@ -11089,23 +11089,23 @@ namespace Microsoft.Data.Entity.Design.Dsl
 					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes = new global::System.Collections.Generic.List<DslModeling::DomainXmlSerializerDirectoryEntry>(17 + customSerializerCount);
 	
 					#region Serializers defined in this model
-					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NameableItem.DomainClassId, typeof(NameableItemSerializer)));
-					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel.DomainClassId, typeof(EntityDesignerViewModelSerializer)));
-					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType.DomainClassId, typeof(EntityTypeSerializer)));
-					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Property.DomainClassId, typeof(PropertySerializer)));
-					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.PropertyBase.DomainClassId, typeof(PropertyBaseSerializer)));
-					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty.DomainClassId, typeof(NavigationPropertySerializer)));
-					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ComplexProperty.DomainClassId, typeof(ComplexPropertySerializer)));
-					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.ScalarProperty.DomainClassId, typeof(ScalarPropertySerializer)));
-					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasProperties.DomainClassId, typeof(EntityTypeHasPropertiesSerializer)));
+					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NameableItem.DomainClassId, typeof(NameableItemSerializer)));
+					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel.DomainClassId, typeof(EntityDesignerViewModelSerializer)));
+					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType.DomainClassId, typeof(EntityTypeSerializer)));
+					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property.DomainClassId, typeof(PropertySerializer)));
+					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.PropertyBase.DomainClassId, typeof(PropertyBaseSerializer)));
+					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty.DomainClassId, typeof(NavigationPropertySerializer)));
+					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.ComplexProperty.DomainClassId, typeof(ComplexPropertySerializer)));
+					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.ScalarProperty.DomainClassId, typeof(ScalarPropertySerializer)));
+					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasProperties.DomainClassId, typeof(EntityTypeHasPropertiesSerializer)));
 					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(EntityDesignerViewModelHasEntityTypes.DomainClassId, typeof(EntityDesignerViewModelHasEntityTypesSerializer)));
-					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Association.DomainClassId, typeof(AssociationSerializer)));
-					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTypeHasNavigationProperties.DomainClassId, typeof(EntityTypeHasNavigationPropertiesSerializer)));
-					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Dsl.ViewModel.Inheritance.DomainClassId, typeof(InheritanceSerializer)));
-					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Dsl.View.EntityTypeShape.DomainClassId, typeof(EntityTypeShapeSerializer)));
-					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Dsl.View.InheritanceConnector.DomainClassId, typeof(InheritanceConnectorSerializer)));
-					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Dsl.View.AssociationConnector.DomainClassId, typeof(AssociationConnectorSerializer)));
-					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface.DomainClassId, typeof(EntityDesignerSurfaceSerializer)));
+					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association.DomainClassId, typeof(AssociationSerializer)));
+					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityTypeHasNavigationProperties.DomainClassId, typeof(EntityTypeHasNavigationPropertiesSerializer)));
+					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.Inheritance.DomainClassId, typeof(InheritanceSerializer)));
+					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape.DomainClassId, typeof(EntityTypeShapeSerializer)));
+					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Diagrams.View.InheritanceConnector.DomainClassId, typeof(InheritanceConnectorSerializer)));
+					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Diagrams.View.AssociationConnector.DomainClassId, typeof(AssociationConnectorSerializer)));
+					MicrosoftDataEntityDesignSerializationBehavior.serializerTypes.Add(new DslModeling::DomainXmlSerializerDirectoryEntry(global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface.DomainClassId, typeof(EntityDesignerSurfaceSerializer)));
 					#endregion
 					
 					// Custom ones
@@ -11128,7 +11128,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 				if (MicrosoftDataEntityDesignSerializationBehavior.namespaceEntries == null)
 				{
 					MicrosoftDataEntityDesignSerializationBehavior.namespaceEntries = new global::System.Collections.Generic.List<DslModeling::DomainXmlSerializerNamespaceEntry>();
-					MicrosoftDataEntityDesignSerializationBehavior.namespaceEntries.Add(new DslModeling::DomainXmlSerializerNamespaceEntry(DomainModelXmlNamespace, typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel)));
+					MicrosoftDataEntityDesignSerializationBehavior.namespaceEntries.Add(new DslModeling::DomainXmlSerializerNamespaceEntry(DomainModelXmlNamespace, typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel)));
 				}
 				return MicrosoftDataEntityDesignSerializationBehavior.namespaceEntries.AsReadOnly();
 			}
@@ -11172,7 +11172,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	}
 }
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
 	/// <summary>
 	/// Moniker resolver for serialization behavior MicrosoftDataEntityDesignSerializationBehavior.
@@ -11311,7 +11311,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	}
 }
 
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
 	/// <summary>
 	/// Utility class to provide serialization messages
@@ -11866,7 +11866,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		#endregion
 	}
 }
-namespace Microsoft.Data.Entity.Design.Dsl
+namespace Microsoft.Data.Entity.Design.Diagrams
 {
 	/// <summary>
 	/// Provides an implementation of the IDomainModelSerializer interface
@@ -11875,7 +11875,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 	/// <remarks>Double-derived class - the default implementation is in MicrosoftDataEntityDesignDomainModelSerializerBase.
 	/// This class exist so users can customize behavior easily.</remarks>
 	[global::System.ComponentModel.Composition.Export(typeof(DslModeling::IDomainModelSerializer))]
-	[DslModeling::DomainModelSerializer(typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel), global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignSerializationBehavior.DomainModelXmlNamespace, "edmx")]
+	[DslModeling::DomainModelSerializer(typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel), global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignSerializationBehavior.DomainModelXmlNamespace, "edmx")]
 	public partial class MicrosoftDataEntityDesignDomainModelSerializer : MicrosoftDataEntityDesignDomainModelSerializerBase
 	{
 	}
@@ -11895,7 +11895,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		public virtual string DomainModelNamespace
 		{
 			[global::System.Diagnostics.DebuggerStepThrough]
-			get { return global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignSerializationBehavior.DomainModelXmlNamespace; }
+			get { return global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignSerializationBehavior.DomainModelXmlNamespace; }
 		}
 	
 		/// <summary>
@@ -11913,7 +11913,7 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		public virtual global::System.Type DomainModelType
 		{
 			[global::System.Diagnostics.DebuggerStepThrough]
-			get { return typeof(global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel); }
+			get { return typeof(global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel); }
 		}
 	
 		/// <summary>
@@ -11933,13 +11933,13 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		#region Load / Save model methods
 		
 		/// <summary>
-		/// Loads a global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel instance and its associated diagram file.
+		/// Loads a global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel instance and its associated diagram file.
 		/// </summary>
 		/// <param name="serializationResult">Stores serialization result from the load operation.</param>
-		/// <param name="partition">Partition in which the new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel instance will be created.</param>
-		/// <param name="fileName">Name of the file from which the global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel instance will be deserialized.</param>
+		/// <param name="partition">Partition in which the new global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel instance will be created.</param>
+		/// <param name="fileName">Name of the file from which the global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel instance will be deserialized.</param>
 		/// <param name="serializerLocator">Used to locate any additional domain model types required to load the model. Can be null.</param>
-		/// <returns>The loaded global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel instance.</returns>
+		/// <returns>The loaded global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel instance.</returns>
 		public virtual DslModeling::ModelElement LoadModel(DslModeling::SerializationResult serializationResult, 
 			DslModeling::Partition partition, 
 			string fileName, 
@@ -11956,9 +11956,9 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		/// Saves the given model root to the given file, with specified encoding.
 		/// </summary>
 		/// <param name="serializationResult">Stores serialization result from the save operation.</param>
-		/// <param name="modelRoot">global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel instance to be saved.</param>
-		/// <param name="fileName">Name of the file in which the global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel instance will be saved.</param>
-		/// <param name="encoding">Encoding to use when saving the global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel instance.</param>
+		/// <param name="modelRoot">global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel instance to be saved.</param>
+		/// <param name="fileName">Name of the file in which the global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel instance will be saved.</param>
+		/// <param name="encoding">Encoding to use when saving the global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel instance.</param>
 		public void SaveModel(DslModeling::SerializationResult serializationResult, 
 			DslModeling::ModelElement modelRoot, 
 			string fileName, 
@@ -11968,11 +11968,11 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			if (modelRoot == null) { throw new global::System.ArgumentNullException("modelRoot"); }
 			if (string.IsNullOrEmpty("fileName")) { throw new global::System.ArgumentNullException("fileName"); }
 	
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel rootElement = modelRoot as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel;
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel rootElement = modelRoot as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel;
 			if (rootElement == null)
 			{
 				string errorMessage = string.Format(global::System.Globalization.CultureInfo.CurrentCulture,
-					global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("InvalidSaveRootElementType"),
+					global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("InvalidSaveRootElementType"),
 					modelRoot.GetType().ToString());
 	
 				throw new global::System.ArgumentException(errorMessage, "modelRoot");
@@ -12002,15 +12002,15 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		}
 	
 		/// <summary>
-		/// Loads a global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel instance and its associated diagram file.
+		/// Loads a global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel instance and its associated diagram file.
 		/// </summary>
 		/// <param name="serializationResult">Stores serialization result from the load operation.</param>
-		/// <param name="modelPartition">Partition in which the new global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel instance will be created.</param>
-		/// <param name="modelFileName">Name of the file from which the global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel instance will be deserialized.</param>
-		/// <param name="diagramPartition">Partition in which the new global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface instance will be created.</param>
-		/// <param name="diagramFileName">Name of the file from which the global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface instance will be deserialized.</param>
+		/// <param name="modelPartition">Partition in which the new global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel instance will be created.</param>
+		/// <param name="modelFileName">Name of the file from which the global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel instance will be deserialized.</param>
+		/// <param name="diagramPartition">Partition in which the new global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface instance will be created.</param>
+		/// <param name="diagramFileName">Name of the file from which the global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface instance will be deserialized.</param>
 		/// <param name="serializerLocator">Used to locate any additional domain model types required to load the model. Can be null.</param>
-		/// <returns>The loaded global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel instance.</returns>
+		/// <returns>The loaded global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel instance.</returns>
 		public DslModeling::ModelElement LoadModelAndDiagram(DslModeling::SerializationResult serializationResult, 
 			DslModeling::Partition modelPartition, 
 			string modelFileName, 
@@ -12028,12 +12028,12 @@ namespace Microsoft.Data.Entity.Design.Dsl
 		}
 	
 		/// <summary>
-		/// Saves the given global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel and global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface to the given files, with specified encoding.
+		/// Saves the given global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel and global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface to the given files, with specified encoding.
 		/// </summary>
 		/// <param name="serializationResult">Stores serialization result from the save operation.</param>
-		/// <param name="modelRoot">global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel instance to be saved.</param>
+		/// <param name="modelRoot">global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel instance to be saved.</param>
 		/// <param name="modelFileName">Name of the file in which the CanonicalSampleRoot instance will be saved.</param>
-		/// <param name="diagram">global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface to be saved.</param>
+		/// <param name="diagram">global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface to be saved.</param>
 		/// <param name="diagramFileName">Name of the file in which the diagram will be saved.</param>
 		/// <param name="encoding">Encoding to use when saving the diagram.</param>
 		public void SaveModelAndDiagram(DslModeling::SerializationResult serializationResult, 
@@ -12049,20 +12049,20 @@ namespace Microsoft.Data.Entity.Design.Dsl
 			if (diagram == null) { throw new global::System.ArgumentNullException("diagram"); }
 			if (string.IsNullOrEmpty("diagramFileName")) { throw new global::System.ArgumentNullException("diagramFileName"); }
 	
-			global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel typedRoot = modelRoot as global::Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityDesignerViewModel;
+			global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel typedRoot = modelRoot as global::Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel;
 			if (typedRoot == null)
 			{
 				string errorMessage = string.Format(global::System.Globalization.CultureInfo.CurrentCulture,
-					global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("InvalidSaveRootElementType"),
+					global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("InvalidSaveRootElementType"),
 					modelRoot.GetType().ToString());
 	
 				throw new global::System.ArgumentException(errorMessage, "modelRoot");
 			}
-			global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface typedDiagram = diagram as global::Microsoft.Data.Entity.Design.Dsl.View.EntityDesignerSurface;
+			global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface typedDiagram = diagram as global::Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface;
 			if (typedDiagram == null)
 			{
 				string errorMessage = string.Format(global::System.Globalization.CultureInfo.CurrentCulture,
-					global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("InvalidSaveDiagramType"),
+					global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager.GetString("InvalidSaveDiagramType"),
 					diagram.GetType().ToString());
 	
 				throw new global::System.ArgumentException(errorMessage, "diagram");

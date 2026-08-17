@@ -14,18 +14,9 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using EnvDTE;
-using Microsoft.Data.Entity.Design.Dsl;
-using Microsoft.Data.Entity.Design.Dsl.CustomSerializer;
 using XmlModelDocData = Microsoft.XmlEditor.XmlModelDocData;
-using Microsoft.Data.Entity.Design.Dsl.View;
-using Microsoft.Data.Entity.Design.Dsl.ViewModel;
-using Microsoft.Data.Entity.Design.Extensibility;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Designer;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
-using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
-using Microsoft.Data.Entity.Design.Dsl.Rules;
+using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Immutability;
@@ -35,18 +26,27 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using IServiceProvider = System.IServiceProvider;
 using Microsoft.VisualStudio.TextManager.Interop;
-using Microsoft.VisualStudio.Data.Entity.Design.Extensibility;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Explorer;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Util;
+using Microsoft.VisualStudio.Data.Entity.Extensibility;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Explorer;
+using Microsoft.Data.Entity.Design.Diagrams.CustomSerializer;
+using Microsoft.Data.Entity.Design.Diagrams;
+using Microsoft.Data.Entity.Design.Diagrams.Rules;
 
-namespace Microsoft.Data.Entity.Design.Package
+namespace Microsoft.VisualStudio.Data.Entity.Package
 {
     [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
     internal partial class MicrosoftDataEntityDesignDocData :

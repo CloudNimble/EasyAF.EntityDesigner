@@ -3,10 +3,11 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Microsoft.Data.Entity.Design.Model;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
-namespace Microsoft.Data.Entity.Design.Renderer.Headless
+namespace Microsoft.Data.Entity.Design.Diagrams.Rendering.Headless
 {
     /// <summary>
     ///     Creates an <see cref="EntityDesignArtifact" /> along with its sibling <see cref="DiagramArtifact" /> when

@@ -2,7 +2,6 @@
 
 using EnvDTE;
 using FluentAssertions;
-using Microsoft.Data.Entity.Design.Extensibility;
 using Moq;
 using Moq.Protected;
 using System;
@@ -12,10 +11,11 @@ using System.Xml.Linq;
 using Microsoft.Data.Entity.Tests.Design.TestHelpers;
 using VSLangProj;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Resources = Microsoft.VisualStudio.Data.Entity.Design.Resources;
-using Microsoft.VisualStudio.Data.Entity.Design.Extensibility;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model;
+using Resources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.VisualStudio.Data.Entity.Extensibility;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.Model
 {

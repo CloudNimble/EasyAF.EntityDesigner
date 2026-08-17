@@ -19,34 +19,34 @@ using System.Drawing.Design;
 using System.Linq;
 using System.Windows.Forms;
 	
-namespace Microsoft.Data.Entity.Design.Package
+namespace Microsoft.VisualStudio.Data.Entity.Package
 {
 	/// <summary>
 	/// This class implements the VS package that integrates this DSL into Visual Studio.
 	/// </summary>
 	[VSShell::DefaultRegistryRoot("Software\\Microsoft\\VisualStudio\\10.0")]
 	[VSShell::PackageRegistration(RegisterUsing = VSShell::RegistrationMethod.Assembly, UseManagedResourcesOnly = true)]
-	[VSShell::ProvideStaticToolboxGroup("@Entity FrameworkToolboxTab;Microsoft.Data.Entity.Design.Dsl.dll", "Microsoft.Data.Entity.Design.Package.Entity FrameworkToolboxTab")]
-	[VSShell::ProvideStaticToolboxItem("Microsoft.Data.Entity.Design.Package.Entity FrameworkToolboxTab",
-					"@EntityToolToolboxItem;Microsoft.Data.Entity.Design.Dsl.dll", 
-					"Microsoft.Data.Entity.Design.Package.EntityToolToolboxItem", 
+	[VSShell::ProvideStaticToolboxGroup("@Entity FrameworkToolboxTab;Microsoft.Data.Entity.Design.Diagrams.dll", "Microsoft.VisualStudio.Data.Entity.Package.Entity FrameworkToolboxTab")]
+	[VSShell::ProvideStaticToolboxItem("Microsoft.VisualStudio.Data.Entity.Package.Entity FrameworkToolboxTab",
+					"@EntityToolToolboxItem;Microsoft.Data.Entity.Design.Diagrams.dll", 
+					"Microsoft.VisualStudio.Data.Entity.Package.EntityToolToolboxItem", 
 					"CF_TOOLBOXITEMCONTAINER,CF_TOOLBOXITEMCONTAINER_HASH,CF_TOOLBOXITEMCONTAINER_CONTENTS", 
 					"vs.edm.common.entitytypes", 
-					"@EntityToolToolboxBitmap;Microsoft.Data.Entity.Design.Dsl.dll", 
+					"@EntityToolToolboxBitmap;Microsoft.Data.Entity.Design.Diagrams.dll", 
 					0xff00ff)]
-	[VSShell::ProvideStaticToolboxItem("Microsoft.Data.Entity.Design.Package.Entity FrameworkToolboxTab",
-					"@AssociationToolToolboxItem;Microsoft.Data.Entity.Design.Dsl.dll", 
-					"Microsoft.Data.Entity.Design.Package.AssociationToolToolboxItem", 
+	[VSShell::ProvideStaticToolboxItem("Microsoft.VisualStudio.Data.Entity.Package.Entity FrameworkToolboxTab",
+					"@AssociationToolToolboxItem;Microsoft.Data.Entity.Design.Diagrams.dll", 
+					"Microsoft.VisualStudio.Data.Entity.Package.AssociationToolToolboxItem", 
 					"CF_TOOLBOXITEMCONTAINER,CF_TOOLBOXITEMCONTAINER_HASH,CF_TOOLBOXITEMCONTAINER_CONTENTS", 
 					"vs.edm.common.associations", 
-					"@AssociationToolToolboxBitmap;Microsoft.Data.Entity.Design.Dsl.dll", 
+					"@AssociationToolToolboxBitmap;Microsoft.Data.Entity.Design.Diagrams.dll", 
 					0xff00ff)]
-	[VSShell::ProvideStaticToolboxItem("Microsoft.Data.Entity.Design.Package.Entity FrameworkToolboxTab",
-					"@InheritanceToolToolboxItem;Microsoft.Data.Entity.Design.Dsl.dll", 
-					"Microsoft.Data.Entity.Design.Package.InheritanceToolToolboxItem", 
+	[VSShell::ProvideStaticToolboxItem("Microsoft.VisualStudio.Data.Entity.Package.Entity FrameworkToolboxTab",
+					"@InheritanceToolToolboxItem;Microsoft.Data.Entity.Design.Diagrams.dll", 
+					"Microsoft.VisualStudio.Data.Entity.Package.InheritanceToolToolboxItem", 
 					"CF_TOOLBOXITEMCONTAINER,CF_TOOLBOXITEMCONTAINER_HASH,CF_TOOLBOXITEMCONTAINER_CONTENTS", 
 					"vs.edm.common.inheritancerelationships", 
-					"@InheritanceToolToolboxBitmap;Microsoft.Data.Entity.Design.Dsl.dll", 
+					"@InheritanceToolToolboxBitmap;Microsoft.Data.Entity.Design.Diagrams.dll", 
 					0xff00ff)]
 	[VSShell::ProvideEditorFactory(typeof(MicrosoftDataEntityDesignEditorFactory), 103, TrustLevel = VSShellInterop::__VSEDITORTRUSTLEVEL.ETL_AlwaysTrusted)]
 	[VSShell::ProvideEditorExtension(typeof(MicrosoftDataEntityDesignEditorFactory), "." + Constants.DesignerFileExtension, 50)]
@@ -62,7 +62,7 @@ namespace Microsoft.Data.Entity.Design.Package
 	[DslShell::ProvideXmlEditorChooserBlockSxSWithXmlEditor(@"MicrosoftDataEntityDesign", typeof(MicrosoftDataEntityDesignEditorFactory))]
 	internal abstract partial class MicrosoftDataEntityDesignPackageBase : DslShell::ModelingPackage
 	{
-		protected global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignToolboxHelper toolboxHelper;	
+		protected global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignToolboxHelper toolboxHelper;	
 		
 		/// <summary>
 		/// Initialization method called by the package base class when this package is loaded.
@@ -75,7 +75,7 @@ namespace Microsoft.Data.Entity.Design.Package
 			this.RegisterEditorFactory(new MicrosoftDataEntityDesignEditorFactory(this));
 			
 			// Initialize the toolbox helper
-			toolboxHelper = new global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignToolboxHelper(this);
+			toolboxHelper = new global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignToolboxHelper(this);
 
 			// Create the command set that handles menu commands provided by this package.
 			MicrosoftDataEntityDesignCommandSet commandSet = new MicrosoftDataEntityDesignCommandSet(this);
@@ -126,7 +126,7 @@ namespace Microsoft.Data.Entity.Design.Package
 			// This body used to live on the DSL's toolbox helper. Packing a tool into the clipboard formats
 			// Visual Studio's toolbox drags on is an IDE concern, so it belongs here; the designer only has to
 			// say which tools exist. The helper still resolves and caches the item. See specs/layer-map.md.
-			global::System.Resources.ResourceManager resourceManager = global::Microsoft.Data.Entity.Design.Dsl.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager;
+			global::System.Resources.ResourceManager resourceManager = global::Microsoft.Data.Entity.Design.Diagrams.MicrosoftDataEntityDesignDomainModel.SingletonResourceManager;
 			global::System.Globalization.CultureInfo resourceCulture = global::System.Globalization.CultureInfo.CurrentUICulture;
 
 			DslDesign::ModelingToolboxItem item = toolboxHelper.GetToolboxItem(itemId);
@@ -156,7 +156,7 @@ namespace Microsoft.Data.Entity.Design.Package
 //
 // Package attributes which may need to change are placed on the partial class below, rather than in the main include file.
 //
-namespace Microsoft.Data.Entity.Design.Package
+namespace Microsoft.VisualStudio.Data.Entity.Package
 {
 	/// <summary>
 	/// Double-derived class to allow easier code customization.
@@ -171,7 +171,7 @@ namespace Microsoft.Data.Entity.Design.Package
 	// The DSL SDK also emits a ProvideDirectiveProcessor attribute here, for the
 	// EntityFrameworkDirectiveProcessor it generates into the designer. That processor is deleted and the
 	// attribute with it: the T4 story ships through T4VSHost / FallbackT4VSHostProcessor, registered from
-	// PkgDefData\Microsoft.Data.Entity.Design.Package.pkgdef. See specs/known-issues.md 6.1.
+	// PkgDefData\Microsoft.VisualStudio.Data.Entity.Package.pkgdef. See specs/known-issues.md 6.1.
 	[global::System.Runtime.InteropServices.Guid(Constants.MicrosoftDataEntityDesignPackageId)]
 	internal sealed partial class MicrosoftDataEntityDesignPackage : MicrosoftDataEntityDesignPackageBase
 	{

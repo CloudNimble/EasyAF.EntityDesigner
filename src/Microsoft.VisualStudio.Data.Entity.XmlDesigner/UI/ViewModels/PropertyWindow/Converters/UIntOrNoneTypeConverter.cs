@@ -4,9 +4,8 @@ using System;
 using System.ComponentModel;
 using System.Globalization;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.Data.Tools.XmlDesignerBase;
 
-namespace Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow.Converters
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Converters
 {
     internal class UIntOrNoneTypeConverter : StringConverter
     {
@@ -38,7 +37,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow.Co
                     // error message
                     var attributeName = context.PropertyDescriptor.DisplayName;
                     var message = string.Format(
-                        CultureInfo.CurrentCulture, Resources.ConverterIncorrectValueForAttribute, stringValue, attributeName);
+                        CultureInfo.CurrentCulture, global::Microsoft.Data.Entity.Design.XmlEngine.Resources.ConverterIncorrectValueForAttribute, stringValue, attributeName);
                     throw new ConversionException(message);
                 }
             }

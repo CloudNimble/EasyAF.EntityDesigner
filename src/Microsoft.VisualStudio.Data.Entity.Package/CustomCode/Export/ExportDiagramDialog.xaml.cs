@@ -6,10 +6,11 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export;
 using Microsoft.VisualStudio.PlatformUI;
-using EntityDesignerResources = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
+using EntityDesignerResources = Microsoft.Data.Entity.Design.Diagrams.Properties.Resources;
 
-namespace Microsoft.Data.Entity.Design.Dsl.View.Export
+namespace Microsoft.VisualStudio.Data.Entity.Package.Export
 {
     /// <summary>
     /// WPF dialog for exporting diagrams as images with additional options.
