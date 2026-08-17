@@ -106,6 +106,64 @@ Specific traps:
 
 ## Type renames — step 5
 
+Every type in every file is catalogued in `_type-catalog.md`: 1515 files, 2068 type declarations,
+0 unreadable. Each row carries the file, type, kind, whether it is generated, whether the file
+violates one-type-per-file, the destination name, and why.
+
+| | |
+|---|---:|
+| Unchanged | 1,896 |
+| Unchanged, generated | 116 |
+| **TBD — driven by `DslDefinition.dsl` `Name`** | **41** |
+| **Decided — collides with `Diagrams`** | **10** |
+| **TBD — carries the retired `Escher` codename** | **5** |
+| Non-generated files holding more than one top-level type | **92 files** |
+
+### The 41 nobody has mentioned yet
+
+`DslDefinition.dsl` carries `Name="MicrosoftDataEntityDesign"`, and the DSL toolkit stamps that
+string onto 41 generated types — `MicrosoftDataEntityDesignDomainModel`, `…DocData`, `…DocView`,
+`…CommandSet`, `…ToolboxHelper`, `…SerializationHelper`, `…CopyClosure`, `…DeleteClosure` and the
+rest, across the Dsl, the Package and their tests.
+
+They are not renameable by hand: they regenerate from that one attribute. So the `Name` value is a
+**container-level decision that belongs in step 2**, not step 5 — pick it when the Dsl becomes
+`Diagrams` and let the 41 follow. The `.dsl` also carries `Namespace="Microsoft.Data.Entity.Design.Dsl"`
+and `PackageNamespace="Microsoft.Data.Entity.Design.Package"`, both of which move with the containers.
+
+Note `Name` is not `ElementName`. Changing `Name` is safe for the file format; changing `ElementName`
+is not.
+
+### The 5 Escher types
+
+`EscherAttributeContentValidator`, `EscherModelValidator`, `EscherModelValidatorVisitor`,
+`EscherExtensionPointManager`, and one test class. Escher was the designer's internal Microsoft
+codename. Decide whether it goes; it is the clearest case of a name that carries no meaning for
+anyone maintaining this now.
+
+### The 92 files needing extraction
+
+One-type-per-file is a repo mandate for non-generated code. Concentration, worst first:
+
+| Project | Files |
+|---|---:|
+| `VS.Data.Tools.Design.XmlCore` | 32 |
+| `VS.Data.Entity.Design` | 21 |
+| `Data.Tools.Design.XmlCore` | 14 |
+| `Design.Model` | 13 |
+| `Design.Dsl` | 8 |
+| everything else | 4 |
+
+Worst single files: `VirtualTreeGrid/Provider/VirtualTreeFlags.cs` (18 types),
+`Model/XmlModelProvider.cs` (11), `VirtualTreeGrid/Provider/ProviderEvents.cs` (10).
+
+Two thirds of the extraction work is in the two shell assemblies, and most of that is
+`VirtualTreeGrid` — a WinForms control library where enum-and-eventargs-per-file was never the
+convention. Worth deciding whether the mandate applies there or whether that folder is grandfathered,
+because it is a large amount of churn in code nobody is otherwise touching.
+
+### The 10 collisions
+
 Ten type names exist in **both** `Design.Model` and `Design.Dsl`:
 
 | Colliding type | In `Edmx` it is | In `Diagrams` it is |
