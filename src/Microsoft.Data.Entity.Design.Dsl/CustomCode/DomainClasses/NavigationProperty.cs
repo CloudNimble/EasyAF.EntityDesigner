@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Dsl.ModelChanges;
 using Microsoft.Data.Entity.Design.Dsl.Utils;
-using Microsoft.Data.Tools.VSXmlDesignerBase.VisualStudio.Modeling;
+using Microsoft.Data.Entity.Design.Dsl.Rules;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 

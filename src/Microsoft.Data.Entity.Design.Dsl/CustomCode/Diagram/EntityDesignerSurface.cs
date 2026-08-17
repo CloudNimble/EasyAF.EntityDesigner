@@ -1,8 +1,5 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.Base.Context;
-using Microsoft.Data.Entity.Design.Base.Shell;
-using Microsoft.Data.Entity.Design.Dsl.CustomCode.Utils;
 using Microsoft.Data.Entity.Design.Dsl.ModelChanges;
 using Microsoft.Data.Entity.Design.Dsl.View.Events;
 using Microsoft.Data.Entity.Design.Dsl.Rules;
@@ -13,27 +10,17 @@ using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Entity.Design.Model.Mapping;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
-using Microsoft.Data.Tools.VSXmlDesignerBase.VisualStudio.Modeling;
-using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Diagrams.GraphObject;
 using Microsoft.VisualStudio.Modeling.Immutability;
-using Microsoft.VisualStudio.PlatformUI;
-using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
 using System.Diagnostics;
-using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
-using System.Windows.Forms.Design;
 using EntityDesignerRes = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
 using ModelAssociation = Microsoft.Data.Entity.Design.Model.Entity.Association;
 using ModelDiagram = Microsoft.Data.Entity.Design.Model.Designer.Diagram;
@@ -41,7 +28,6 @@ using ViewModelEntityType = Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityTyp
 using ViewModelNavigationProperty = Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty;
 using ViewModelProperty = Microsoft.Data.Entity.Design.Dsl.ViewModel.Property;
 using ViewModelPropertyBase = Microsoft.Data.Entity.Design.Dsl.ViewModel.PropertyBase;
-using VSPackage = Microsoft.VisualStudio.Shell.Package;
 using Microsoft.Data.Entity.Design.Model.Designer;
 
 namespace Microsoft.Data.Entity.Design.Dsl.View
@@ -60,7 +46,6 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         internal AutoArrangeHelper Arranger = new AutoArrangeHelper();
 
         private bool _displayNameAndType;
-        private DeferredRequest _deferredInitialSelection;
         private bool _disableFixUpDiagramSelection;
         private EntitiesClipboardFormat _clipboardObjects;
 
@@ -97,6 +82,14 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         ///     This property allows the client to specify which diagram item to select.
         /// </summary>
         internal DiagramItemCollection InitialDiagramItemSelection { get; set; }
+
+        /// <summary>
+        ///     Whether the modeling framework has initialized this diagram yet.
+        /// </summary>
+        /// <remarks>
+        ///     Lets a host that attached after <see cref="Initialized" /> fired know it still has work to do.
+        /// </remarks>
+        internal bool IsInitialized { get; private set; }
 
         #region IViewDiagram interface
 
@@ -171,6 +164,16 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         ///     Raised when a delete would leave storage entity sets unmapped.
         /// </summary>
         internal event EventHandler<UnmappedStorageEntitySetsDeletionRequestedEventArgs> UnmappedStorageEntitySetsDeletionRequested;
+
+        /// <summary>
+        ///     Raised once the diagram has been initialized by the modeling framework.
+        /// </summary>
+        /// <remarks>
+        ///     This fires while the document is still loading, before any view exists, so a host that attaches
+        ///     later will miss it. Check <see cref="IsInitialized" /> on attach and catch up if it is already
+        ///     set.
+        /// </remarks>
+        internal event EventHandler Initialized;
 
         /// <summary>
         ///     Raised when an operation that may take a noticeable time has finished.
@@ -520,18 +523,7 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
 
         protected override void Dispose(bool disposing)
         {
-            try
-            {
-                if (disposing)
-                {
-                    _deferredInitialSelection?.Dispose();
-                    _deferredInitialSelection = null;
-                }
-            }
-            finally
-            {
-                base.Dispose(disposing);
-            }
+            base.Dispose(disposing);
         }
 
         public bool DisplayNameAndType
@@ -583,14 +575,26 @@ namespace Microsoft.Data.Entity.Design.Dsl.View
         {
             base.OnInitialize();
 
-            // select the shape that is closest to the origin, but defer until after the view is fully rendered
-            _deferredInitialSelection?.Dispose();
-
-            _deferredInitialSelection = new DeferredRequest(SetInitialSelectionCallback);
-            _deferredInitialSelection.Request();
+            IsInitialized = true;
+            Initialized?.Invoke(this, EventArgs.Empty);
         }
 
-        private void SetInitialSelectionCallback(object o)
+        /// <summary>
+        ///     Selects the shape closest to the origin, or the selection a host asked for.
+        /// </summary>
+        /// <remarks>
+        ///     <para>
+        ///         Does nothing until there is a view to select in, which is why a host has to choose the moment
+        ///         to call this: at <see cref="OnInitialize" /> the document is still loading and no view exists
+        ///         yet. Scheduling that wait means a dispatcher, which is the host's to own — see
+        ///         specs/layer-map.md.
+        ///     </para>
+        ///     <para>
+        ///         Safe to call more than once. Once <see cref="InitialDiagramItemSelection" /> has been applied
+        ///         it is cleared, so later calls fall back to the nearest-the-origin shape.
+        ///     </para>
+        /// </remarks>
+        internal void SetInitialSelection()
         {
             if (ActiveDiagramView != null)
             {

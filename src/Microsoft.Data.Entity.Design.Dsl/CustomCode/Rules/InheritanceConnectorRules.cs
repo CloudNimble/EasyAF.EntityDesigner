@@ -4,7 +4,6 @@ using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Dsl.ModelChanges;
 using Microsoft.Data.Entity.Design.Dsl.Utils;
 using Microsoft.Data.Entity.Design.Dsl.View;
-using Microsoft.Data.Tools.VSXmlDesignerBase.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 

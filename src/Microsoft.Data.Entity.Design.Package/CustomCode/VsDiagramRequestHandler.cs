@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.Base.Shell;
 using System;
 using System.Globalization;
 using Microsoft.Data.Entity.Design.Dsl.View;
@@ -35,6 +36,7 @@ namespace Microsoft.Data.Entity.Design.Package
 
         private readonly EntityDesignerSurface _surface;
         private readonly VsDiagramWatermark _watermark;
+        private DeferredRequest _deferredInitialSelection;
         private bool _isDisposed;
         private VsUtils.HourglassHelper _hourglass;
         private int _longOperationDepth;
@@ -62,8 +64,16 @@ namespace Microsoft.Data.Entity.Design.Package
             _surface.DiagramReloadFailed += OnDiagramReloadFailed;
             _surface.LongOperationStarted += OnLongOperationStarted;
             _surface.LongOperationEnded += OnLongOperationEnded;
+            _surface.Initialized += OnSurfaceInitialized;
 
             _watermark = new VsDiagramWatermark(surface);
+
+            // Initialized fires during document load, before this handler can exist, so the common case is that
+            // it has already happened. Catch up rather than wait for an event that will never arrive again.
+            if (_surface.IsInitialized)
+            {
+                OnSurfaceInitialized(_surface, EventArgs.Empty);
+            }
         }
 
         #endregion
@@ -93,6 +103,10 @@ namespace Microsoft.Data.Entity.Design.Package
             _surface.DiagramReloadFailed -= OnDiagramReloadFailed;
             _surface.LongOperationStarted -= OnLongOperationStarted;
             _surface.LongOperationEnded -= OnLongOperationEnded;
+            _surface.Initialized -= OnSurfaceInitialized;
+
+            _deferredInitialSelection?.Dispose();
+            _deferredInitialSelection = null;
 
             _watermark.Dispose();
 
@@ -161,6 +175,22 @@ namespace Microsoft.Data.Entity.Design.Package
             }
 
             _longOperationDepth++;
+        }
+
+        /// <summary>
+        ///     Schedules the designer's initial selection for once the view exists.
+        /// </summary>
+        /// <remarks>
+        ///     The designer cannot select anything at initialize time — the document is still loading and there
+        ///     is no view yet. Waiting for one means a dispatcher, so the wait lives here and the designer just
+        ///     exposes the operation. The renderer, having no dispatcher and no view, never schedules it.
+        /// </remarks>
+        private void OnSurfaceInitialized(object sender, EventArgs e)
+        {
+            _deferredInitialSelection?.Dispose();
+
+            _deferredInitialSelection = new DeferredRequest(_ => _surface.SetInitialSelection());
+            _deferredInitialSelection.Request();
         }
 
         /// <summary>

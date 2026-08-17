@@ -18,8 +18,6 @@ using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Eventing;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
-using Microsoft.Data.Tools.VSXmlDesignerBase.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 

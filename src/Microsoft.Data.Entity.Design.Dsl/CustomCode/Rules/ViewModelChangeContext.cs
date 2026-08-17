@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.VisualStudio.Modeling;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.VisualStudio.Modeling
+namespace Microsoft.Data.Entity.Design.Dsl.Rules
 {
     internal class ViewModelChangeContext
     {

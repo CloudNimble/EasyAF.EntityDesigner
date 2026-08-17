@@ -29,7 +29,7 @@ using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
-using Microsoft.Data.Tools.VSXmlDesignerBase.VisualStudio.Modeling;
+using Microsoft.Data.Entity.Design.Dsl.Rules;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Immutability;

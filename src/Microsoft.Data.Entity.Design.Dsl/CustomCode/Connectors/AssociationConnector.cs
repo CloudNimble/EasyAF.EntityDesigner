@@ -13,7 +13,6 @@ using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Diagrams.GraphObject;
 using Microsoft.VisualStudio.Modeling.Immutability;
-using Microsoft.VisualStudio.PlatformUI;
 using EntityDesignerRes = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
 
 namespace Microsoft.Data.Entity.Design.Dsl.View

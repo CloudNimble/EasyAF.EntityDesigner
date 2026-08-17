@@ -6,7 +6,6 @@ using Microsoft.Data.Entity.Design.Dsl.Utils;
 using Microsoft.Data.Entity.Design.Dsl.View;
 using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Tools.VSXmlDesignerBase.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using EntityType = Microsoft.Data.Entity.Design.Model.Entity.EntityType;

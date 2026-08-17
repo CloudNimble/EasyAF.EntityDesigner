@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using DesignerModel = Microsoft.Data.Entity.Design.Model.Designer;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -11,12 +10,9 @@ using Microsoft.Data.Entity.Design.Dsl.Utils;
 using Microsoft.Data.Entity.Design.Dsl.View;
 using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Validation;
-using Microsoft.VisualStudio.Shell.Interop;
 
 namespace Microsoft.Data.Entity.Design.Dsl
 {

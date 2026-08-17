@@ -7,7 +7,6 @@ using Microsoft.Data.Entity.Design.Dsl.ModelChanges;
 using Microsoft.Data.Entity.Design.Dsl.Utils;
 using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model.Validation;
-using Microsoft.Data.Tools.VSXmlDesignerBase.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling;
 using EntityDesignerRes = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
 

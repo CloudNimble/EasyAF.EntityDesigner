@@ -2,7 +2,6 @@
 
 using System.Collections.Generic;
 using System.Drawing;
-using EntityDesignerRes = Microsoft.Data.Entity.Design.Dsl.Properties.Resources;
 
 namespace Microsoft.Data.Entity.Design.Dsl.View
 {
