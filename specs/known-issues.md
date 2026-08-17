@@ -81,6 +81,21 @@ It also had a second, latent defect: `Returns(references.GetEnumerator())` evalu
 
 Suspect the same hazard as issue 2.3: MSTest runs at `MethodLevel` parallelism and something here is not thread safe. Worth confirming with `[DoNotParallelize]` on that class and a few hundred runs.
 
+### 1.5 The intermittent failure is not confined to one assembly
+
+Two more single-test failures during the 2026-08-16 project file work, each in a different assembly, each passing when that project was rerun on its own immediately afterwards:
+
+| Assembly | Target | Run |
+|---|---|---|
+| `Microsoft.Data.Entity.Tests.Design` | net48 | full solution, 455/456 |
+| `Microsoft.Data.Entity.Tests.Design.VersioningFacade` | net10.0 | full solution, 294/295 |
+
+**Neither test name was captured**, which is the first thing to fix — the console logger reports the count on the summary line but the name scrolls past in a full-solution run. Use `--logger "trx" --results-directory <dir>` and read `outcome="Failed"` out of the `.trx`. Three consecutive full-solution runs with trx afterwards produced no failures at all, so the rate is low and matches 1.4's rough one-in-ten.
+
+Do not read the VersioningFacade row as pointing at `DbDatabaseMappingBuilderTests`. The string `Different API visibility between official dll and locally built one` appeared next to the failure in the console output and looks like an assertion message, but it is the `[Ignore]` reason on a skipped test in that file and has nothing to do with it.
+
+What makes this worth its own entry rather than folding into 1.4: three distinct tests across three assemblies and both target frameworks now fail intermittently and pass on rerun. That is a property of the run, not of any one test, which points at the `MethodLevel` parallelism theory in 1.4 and 2.3 rather than at three unrelated bugs. The cheap experiment is a solution-wide `[DoNotParallelize]` or `<RunSettings>` with `MaxCpuCount=1` for a few dozen runs — if the failures stop, the theory holds.
+
 ## 2. Tests that never run
 
 ### 2.1 186 tests disabled with `[Ignore]`
@@ -239,6 +254,6 @@ Worth fixing at the point of emission — normalise the stylesheet's newlines �
 3. ~~**1.3** — `DatabaseGenerationAssemblyLoader` NRE.~~ **Done.**
 4. ~~**1.2 and 4.1** — theming reaching the VS shell.~~ **Done**, via decoupling work item 4.
 5. ~~**3.1** — vulnerable packages.~~ **Done.**
-6. **1.4** — confirm the parallelism theory.
+6. **1.4 and 1.5** — confirm the parallelism theory. Three assemblies and both targets now; one run with parallelism off would settle it.
 7. **2.1** — the 186 ignored tests. Largest and least certain; needs a decision about EF6 binaries first.
 8. **1.1** — wizard page tests. Needs a design decision about VS-hosted testing.
