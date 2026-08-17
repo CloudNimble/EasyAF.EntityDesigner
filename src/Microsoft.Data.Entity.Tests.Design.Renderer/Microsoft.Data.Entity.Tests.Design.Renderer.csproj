@@ -18,12 +18,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk" />
-    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams" />
+    <Reference Include="System.Drawing" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="System.Drawing" />
+    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk" />
+    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams" />
   </ItemGroup>
 
   <ItemGroup>

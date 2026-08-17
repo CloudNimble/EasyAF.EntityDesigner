@@ -14,13 +14,10 @@
 
     </PropertyGroup>
 
-    <!-- MEF ships in the framework on .NET Framework and as a package elsewhere. -->
-    <ItemGroup>
-        <PackageReference Include="System.ComponentModel.Composition" />
-    </ItemGroup>
-
     <ItemGroup>
         <PackageReference Include="Microsoft.VisualStudio.Interop" />
+        <!-- MEF ships in the framework on .NET Framework and as a package elsewhere. -->
+        <PackageReference Include="System.ComponentModel.Composition" />
     </ItemGroup>
 
     <ItemGroup>

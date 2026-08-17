@@ -13,23 +13,15 @@
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
 
-  <!-- Assembly Guid for COM interop -->
-  <ItemGroup>
-    <AssemblyAttribute Include="System.Runtime.InteropServices.GuidAttribute">
-      <_Parameter1>af5600cc-afa7-4835-8ab7-ad8c7d68235e</_Parameter1>
-    </AssemblyAttribute>
-  </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.ConnectionUI" />
-    <PackageReference Include="System.Resources.Extensions" />
     <PackageReference Include="Microsoft.Internal.VisualStudio.Interop" />
     <PackageReference Include="Microsoft.VisualStudio.ComponentModelHost" />
     <PackageReference Include="Microsoft.VisualStudio.Data.Core" />
     <PackageReference Include="Microsoft.VisualStudio.Data.Framework" />
     <PackageReference Include="Microsoft.VisualStudio.Data.Services" />
-    <PackageReference Include="Microsoft.VisualStudio.DataTools.Interop" />
     <PackageReference Include="Microsoft.VisualStudio.DataDesign.Common" />
+    <PackageReference Include="Microsoft.VisualStudio.DataTools.Interop" />
     <PackageReference Include="Microsoft.VisualStudio.Imaging" />
     <PackageReference Include="Microsoft.VisualStudio.Interop" />
     <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk" />
@@ -49,20 +41,28 @@
     <PackageReference Include="Microsoft.VisualStudio.XmlEditor" />
     <PackageReference Include="Microsoft.VSDesigner" />
     <PackageReference Include="Microsoft.WizardFramework" />
+    <PackageReference Include="System.Resources.Extensions" />
     <PackageReference Include="VsWebSite.Interop" />
     <PackageReference Include="VsWebSite.Interop90" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Microsoft.VisualStudio.Data.Tools.Design.XmlCore\Microsoft.VisualStudio.Data.Tools.Design.XmlCore.csproj" />
-    <ProjectReference Include="..\Microsoft.Data.Entity.Design.VersioningFacade\Microsoft.Data.Entity.Design.VersioningFacade.csproj" />
-    <ProjectReference Include="..\Microsoft.Data.Tools.Design.XmlCore\Microsoft.Data.Tools.Design.XmlCore.csproj" />
     <ProjectReference Include="..\Microsoft.Data.Entity.Design.DatabaseGeneration\Microsoft.Data.Entity.Design.DatabaseGeneration.csproj" />
-    <ProjectReference Include="..\Microsoft.Data.Entity.Design.Extensibility\Microsoft.Data.Entity.Design.Extensibility.csproj" />
-    <ProjectReference Include="..\Microsoft.Data.Entity.Design.Model\Microsoft.Data.Entity.Design.Model.csproj" />
     <!-- The context menu, floating zoom control and zoom dialog act on the designer surface, so the UI depends
          on the designer. The designer does not depend on the shell; see specs/layer-map.md. -->
     <ProjectReference Include="..\Microsoft.Data.Entity.Design.Dsl\Microsoft.Data.Entity.Design.Dsl.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.Extensibility\Microsoft.Data.Entity.Design.Extensibility.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.Model\Microsoft.Data.Entity.Design.Model.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.VersioningFacade\Microsoft.Data.Entity.Design.VersioningFacade.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Tools.Design.XmlCore\Microsoft.Data.Tools.Design.XmlCore.csproj" />
+    <ProjectReference Include="..\Microsoft.VisualStudio.Data.Tools.Design.XmlCore\Microsoft.VisualStudio.Data.Tools.Design.XmlCore.csproj" />
+  </ItemGroup>
+
+  <!-- Assembly Guid for COM interop -->
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.InteropServices.GuidAttribute">
+      <_Parameter1>af5600cc-afa7-4835-8ab7-ad8c7d68235e</_Parameter1>
+    </AssemblyAttribute>
   </ItemGroup>
 
   <!-- T4 Templates -->
