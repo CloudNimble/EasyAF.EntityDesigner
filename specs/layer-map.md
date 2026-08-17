@@ -1,6 +1,6 @@
 # Layer map
 
-The reference for where code goes. `platform-independence.md` says *why*; this says *where*, and what an assembly is allowed to reference.
+The reference for where code goes. `platform-independence.md` says *why*; this says *where*, and what an assembly is allowed to reference. `model-architecture.md` covers the model stack specifically — the three things called "Model", what belongs in each, and why EDMX is modelled here rather than reusing Entity Framework's metadata classes.
 
 ## The rule
 
