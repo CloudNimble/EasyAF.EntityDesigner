@@ -54,7 +54,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.TextTemplating
             if (String.IsNullOrWhiteSpace(ddlTemplatePath))
             {
                 throw new ArgumentException(
-                    String.Format(CultureInfo.CurrentCulture, Resources.DatabaseCreation_NoDDLTemplatePathSpecified, DisplayName));
+                    String.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.DatabaseCreation_NoDDLTemplatePathSpecified, DisplayName));
             }
 
             var templateInputs = BuildTemplateInputs(ssdl, existingSsdl, edmParameterBag, ddlTemplatePath);
@@ -65,7 +65,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.TextTemplating
             if (String.IsNullOrEmpty(templateOutput))
             {
                 throw new InvalidOperationException(
-                    String.Format(CultureInfo.CurrentCulture, Resources.DatabaseCreation_ErrorTemplateOutputNotSet, DisplayName));
+                    String.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.DatabaseCreation_ErrorTemplateOutputNotSet, DisplayName));
             }
 
             return templateOutput;
@@ -93,14 +93,14 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.TextTemplating
             {
                 throw new InvalidOperationException(
                     String.Format(
-                        CultureInfo.CurrentCulture, Resources.DatabaseCreation_ErrorNoParameterDefined,
+                        CultureInfo.CurrentCulture, EdmxDesignerResources.DatabaseCreation_ErrorNoParameterDefined,
                         EdmParameterBag.ParameterName.TargetVersion.ToString()));
             }
 
             if (false == EntityFrameworkVersion.IsValidVersion(targetFrameworkVersion))
             {
                 throw new InvalidOperationException(
-                    String.Format(CultureInfo.CurrentCulture, Resources.DatabaseCreation_ErrorInvalidTargetVersion, targetFrameworkVersion));
+                    String.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.DatabaseCreation_ErrorInvalidTargetVersion, targetFrameworkVersion));
             }
 
             inputs.Add(EdmParameterBag.ParameterName.TargetVersion.ToString(), targetFrameworkVersion);
@@ -111,7 +111,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.TextTemplating
             {
                 throw new InvalidOperationException(
                     String.Format(
-                        CultureInfo.CurrentCulture, Resources.DatabaseCreation_ErrorNoParameterDefined,
+                        CultureInfo.CurrentCulture, EdmxDesignerResources.DatabaseCreation_ErrorNoParameterDefined,
                         EdmParameterBag.ParameterName.ProviderInvariantName.ToString()));
             }
 
@@ -123,7 +123,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.TextTemplating
             {
                 throw new InvalidOperationException(
                     String.Format(
-                        CultureInfo.CurrentCulture, Resources.DatabaseCreation_ErrorNoParameterDefined,
+                        CultureInfo.CurrentCulture, EdmxDesignerResources.DatabaseCreation_ErrorNoParameterDefined,
                         EdmParameterBag.ParameterName.DatabaseSchemaName.ToString()));
             }
 

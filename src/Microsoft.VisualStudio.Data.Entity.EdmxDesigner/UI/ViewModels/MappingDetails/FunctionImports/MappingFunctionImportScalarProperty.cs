@@ -97,7 +97,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                     }
                     else
                     {
-                        return Resources.MappingDetails_UnknownColumnType;
+                        return EdmxDesignerResources.MappingDetails_UnknownColumnType;
                     }
                 }
             }
@@ -136,7 +136,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                     if (IsComplexProperty)
                     {
                         // ComplexProperties are not supported in the FunctionImportMapping, showing an error message
-                        return Resources.MappingDetails_ErrComplexTypePropertiesNotSupported;
+                        return EdmxDesignerResources.MappingDetails_ErrComplexTypePropertiesNotSupported;
                     }
                     // if there is no ScalarProperty associated then return default name (name of the c-side Property)
                     return Property;
@@ -159,7 +159,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                         {
                             // change the column name
                             CommandProcessorContext cpc = new CommandProcessorContext(
-                                Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_ChangeScalarProperty);
+                                Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_ChangeScalarProperty);
                             UpdateDefaultableValueCommand<string> cmd = new UpdateDefaultableValueCommand<string>(ScalarProperty.ColumnName, value);
 
                             CommandProcessor cp = new CommandProcessor(cpc, cmd);
@@ -206,7 +206,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
 
                 // create a context if we weren't passed one
                 cpc ??= new CommandProcessorContext(
-                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_ChangeScalarProperty);
+                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_ChangeScalarProperty);
 
                 // first we need to create a FunctionImportTypeMapping element (either EntityTypeMapping or ComplexTypeMapping)
                 var cmd = entityType != null
@@ -243,7 +243,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
 
                 // create a context if we weren't passed one
                 cpc ??= new CommandProcessorContext(
-                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_ChangeScalarProperty);
+                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_ChangeScalarProperty);
 
                 // use the item's delete command
                 var deleteCommand = ScalarProperty.GetDeleteCommand();

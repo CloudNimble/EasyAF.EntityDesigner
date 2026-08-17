@@ -124,7 +124,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                 throw new CommandValidationFailedException(
                     string.Format(
                         CultureInfo.CurrentCulture,
-                        Resources.Error_MemberNameSameAsParent, Name, EntityType.LocalName.Value));
+                        EdmxResources.Error_MemberNameSameAsParent, Name, EntityType.LocalName.Value));
             }
 
             if (!ModelHelper.IsUniquePropertyName(EntityType, Name, true))
@@ -132,7 +132,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                 throw new CommandValidationFailedException(
                     string.Format(
                         CultureInfo.CurrentCulture,
-                        Resources.Error_MemberNameNotUnique, Name, EntityType.LocalName.Value));
+                        EdmxResources.Error_MemberNameNotUnique, Name, EntityType.LocalName.Value));
             }
 
             CreatedProperty = CreateProperty();

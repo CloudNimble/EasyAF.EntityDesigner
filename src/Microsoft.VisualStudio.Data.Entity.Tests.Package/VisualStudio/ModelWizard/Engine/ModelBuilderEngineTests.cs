@@ -51,9 +51,9 @@ namespace Microsoft.VisualStudio.Data.Entity.Tests.Package.VisualStudio.ModelWiz
             //        ItExpr.IsAny<ModelBuilderEngineHostContext>(), ItExpr.IsAny<List<EdmSchemaError>>());
 
             //mockHostContext
-            //    .Verify(h => h.LogMessage(It.IsRegex(Resources.Engine_ModelGenSuccess)), Times.Once());
+            //    .Verify(h => h.LogMessage(It.IsRegex(ModelWizardResources.Engine_ModelGenSuccess)), Times.Once());
             //mockHostContext
-            //    .Verify(h => h.LogMessage(It.IsRegex(Resources.Engine_ModelGenException)), Times.Never());
+            //    .Verify(h => h.LogMessage(It.IsRegex(ModelWizardResources.Engine_ModelGenException)), Times.Never());
 
             //mockModelGenCache.Verify(
             //    c => c.AddErrors(It.IsAny<string>(), It.IsAny<List<EdmSchemaError>>()), Times.Never());
@@ -87,9 +87,9 @@ namespace Microsoft.VisualStudio.Data.Entity.Tests.Package.VisualStudio.ModelWiz
 
             //mockHostContext.Verify(h => h.LogMessage(It.IsAny<string>()), Times.Exactly(3));
             //mockHostContext
-            //    .Verify(h => h.LogMessage(It.IsRegex(Resources.Engine_ModelGenErrors.Substring(1, 20))), Times.Once());
+            //    .Verify(h => h.LogMessage(It.IsRegex(ModelWizardResources.Engine_ModelGenErrors.Substring(1, 20))), Times.Once());
             //mockHostContext
-            //    .Verify(h => h.LogMessage(It.IsRegex(Resources.Engine_ModelGenException)), Times.Never());
+            //    .Verify(h => h.LogMessage(It.IsRegex(ModelWizardResources.Engine_ModelGenException)), Times.Never());
 
             //Assert.Same(error, modelGenCache.GetErrors(mockModelBuilderSettings.Object.ModelPath).Single());
         }
@@ -130,9 +130,9 @@ namespace Microsoft.VisualStudio.Data.Entity.Tests.Package.VisualStudio.ModelWiz
 
             //mockHostContext.Verify(h => h.LogMessage(It.IsAny<string>()), Times.Exactly(3));
             //mockHostContext
-            //    .Verify(h => h.LogMessage(It.IsRegex(Resources.Engine_ModelGenErrors.Substring(1, 20))), Times.Once());
+            //    .Verify(h => h.LogMessage(It.IsRegex(ModelWizardResources.Engine_ModelGenErrors.Substring(1, 20))), Times.Once());
             //mockHostContext
-            //    .Verify(h => h.LogMessage(It.IsRegex(Resources.Engine_ModelGenException)), Times.Never());
+            //    .Verify(h => h.LogMessage(It.IsRegex(ModelWizardResources.Engine_ModelGenException)), Times.Never());
 
             //Assert.Same(error, modelGenCache.GetErrors(mockModelBuilderSettings.Object.ModelPath).Single());
         }
@@ -165,12 +165,12 @@ namespace Microsoft.VisualStudio.Data.Entity.Tests.Package.VisualStudio.ModelWiz
 
             mockHostContext.Verify(h => h.LogMessage(It.IsAny<string>()), Times.Exactly(3));
             mockHostContext
-                .Verify(h => h.LogMessage(It.IsRegex(Resources.Engine_ModelGenException + ".+Test exception")), Times.Once());
+                .Verify(h => h.LogMessage(It.IsRegex(ModelWizardResources.Engine_ModelGenException + ".+Test exception")), Times.Once());
             mockHostContext
-                .Verify(h => h.LogMessage(It.IsRegex(Resources.Engine_ModelGenSuccess)), Times.Never());
+                .Verify(h => h.LogMessage(It.IsRegex(ModelWizardResources.Engine_ModelGenSuccess)), Times.Never());
 
             mockVsUtils.Verify(u => u.ShowErrorDialog(string.Format(
-                Resources.Engine_ModelGenExceptionMessageBox, exception.GetType().Name, exception.Message)));
+                ModelWizardResources.Engine_ModelGenExceptionMessageBox, exception.GetType().Name, exception.Message)));
         }
 
         [TestMethod, Ignore("Different API Visiblity between official dll and locally built")]

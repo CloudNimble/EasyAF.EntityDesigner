@@ -232,10 +232,10 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer
         internal override ModelSearchResults SearchModelByDisplayName(string searchCriteria)
         {
             ModelSearchResults searchResults = new ModelSearchResults();
-            searchResults.Action = Resources.SearchResultItemsMatching;
+            searchResults.Action = EdmxDesignerResources.SearchResultItemsMatching;
             searchResults.SearchCriteria = String.Format(
                 CultureInfo.CurrentCulture,
-                Resources.SearchResultSearchCriteria, searchCriteria);
+                EdmxDesignerResources.SearchResultSearchCriteria, searchCriteria);
             SearchVisitor visitor = new SearchVisitor(searchCriteria, SearchOnDisplayName);
             searchResults.TargetString = searchCriteria;
             searchResults.ElementTextToSearch = SearchOnDisplayName;

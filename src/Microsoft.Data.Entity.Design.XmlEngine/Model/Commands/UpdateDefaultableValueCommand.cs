@@ -27,7 +27,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Commands
             if (Value != null
                 && DefaultableValue.IsValidValue(Value) == false)
             {
-                var msg = string.Format(CultureInfo.CurrentCulture, Resources.INVALID_FORMAT, Value);
+                var msg = string.Format(CultureInfo.CurrentCulture, XmlEngineResources.INVALID_FORMAT, Value);
                 throw new CommandValidationFailedException(msg);
             }
 

@@ -109,7 +109,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
                     VsUtils.LogStandardError(
                         String.Format(
                             CultureInfo.CurrentCulture,
-                            Resources.VSUtils_ExceptionParsingXml,
+                            EdmxDesignerResources.VSUtils_ExceptionParsingXml,
                             configFilePath,
                             e.Message),
                         configFilePath,
@@ -142,7 +142,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
                     _project,
                     string.Format(
                         CultureInfo.CurrentCulture, 
-                        Resources.ConnectionManager_SaveXmlError, 
+                        EdmxDesignerResources.ConnectionManager_SaveXmlError, 
                         configFilePath, 
                         e.Message));
                 throw;

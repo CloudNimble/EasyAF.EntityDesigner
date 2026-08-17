@@ -116,7 +116,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Entity
                 var entitySet = EntitySet;
                 if (entitySet == null)
                 {
-                    ModelHelper.InvalidSchemaError(Resources.UnresolvedEntitySet_0, NormalizedNameExternal);
+                    ModelHelper.InvalidSchemaError(EdmxResources.UnresolvedEntitySet_0, NormalizedNameExternal);
                 }
                 return entitySet;
             }
@@ -241,7 +241,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Entity
                 if (_key != null)
                 {
                     // multiple key elements
-                    Artifact.AddParseErrorForObject(this, Resources.TOO_MANY_KEY_ELEMENTS, ErrorCodes.TOO_MANY_KEY_ELEMENTS);
+                    Artifact.AddParseErrorForObject(this, EdmxResources.TOO_MANY_KEY_ELEMENTS, ErrorCodes.TOO_MANY_KEY_ELEMENTS);
                 }
                 else
                 {

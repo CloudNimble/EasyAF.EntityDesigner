@@ -22,7 +22,7 @@
         MinHeight="230"
         MinWidth="430"
         SizeToContent="WidthAndHeight"
-        Title="{x:Static Design:Resources.RefactorRenameDialog_Title}"
+        Title="{x:Static Design:EdmxDesignerResources.RefactorRenameDialog_Title}"
         FocusManager.FocusedElement="{Binding ElementName=newNameTextBox}">
 
     <Window.Resources>
@@ -43,14 +43,14 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Content="{x:Static Design:Resources.RefactorRenameDialog_NewNameLabel}" Height="25" HorizontalAlignment="Left" Margin="8,12,0,0"/>
-        <TextBox x:Name="newNameTextBox" Grid.Row="1" HorizontalAlignment="Stretch" Margin="12,0,12,2" TextChanged="OnNewNameTextBoxTextChanged" AutomationProperties.Name="{x:Static Design:Resources.RefactorRenameDialog_NewNameLabel}"/>
-        <Label Grid.Row="2" Content="{x:Static Design:Resources.RefactorRenameDialog_LocationLabel}" Height="25" HorizontalAlignment="Left" Margin="8,2,0,0"/>
-        <TextBox x:Name="locationTextBox" Grid.Row="3" HorizontalAlignment="Stretch" Margin="12,0,12,12" IsEnabled="False" AutomationProperties.Name="{x:Static Design:Resources.RefactorRenameDialog_LocationLabel}"/>
-        <CheckBox x:Name="previewCheckBox" Grid.Row="4" Content="{x:Static Design:Resources.RefactorRenameDialog_PreviewReferenceChangesLabel}" HorizontalAlignment="Left" IsChecked="True" Margin="12,2,0,0"/>
+        <Label Grid.Row="0" Content="{x:Static Design:EdmxDesignerResources.RefactorRenameDialog_NewNameLabel}" Height="25" HorizontalAlignment="Left" Margin="8,12,0,0"/>
+        <TextBox x:Name="newNameTextBox" Grid.Row="1" HorizontalAlignment="Stretch" Margin="12,0,12,2" TextChanged="OnNewNameTextBoxTextChanged" AutomationProperties.Name="{x:Static Design:EdmxDesignerResources.RefactorRenameDialog_NewNameLabel}"/>
+        <Label Grid.Row="2" Content="{x:Static Design:EdmxDesignerResources.RefactorRenameDialog_LocationLabel}" Height="25" HorizontalAlignment="Left" Margin="8,2,0,0"/>
+        <TextBox x:Name="locationTextBox" Grid.Row="3" HorizontalAlignment="Stretch" Margin="12,0,12,12" IsEnabled="False" AutomationProperties.Name="{x:Static Design:EdmxDesignerResources.RefactorRenameDialog_LocationLabel}"/>
+        <CheckBox x:Name="previewCheckBox" Grid.Row="4" Content="{x:Static Design:EdmxDesignerResources.RefactorRenameDialog_PreviewReferenceChangesLabel}" HorizontalAlignment="Left" IsChecked="True" Margin="12,2,0,0"/>
         <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button x:Name="okButton" Content="{x:Static Design:Resources.RefactorRenameDialog_OK}" Height="25" HorizontalAlignment="Left" Margin="12,12,0,12" VerticalAlignment="Bottom" MinWidth="75" Click="OnOkButtonClick" IsDefault="True"/>
-            <Button Content="{x:Static Design:Resources.RefactorRenameDialog_Cancel}" Height="25" HorizontalAlignment="Left" Margin="12,12,12,12" VerticalAlignment="Bottom" MinWidth="75" IsCancel="True"/>
+            <Button x:Name="okButton" Content="{x:Static Design:EdmxDesignerResources.RefactorRenameDialog_OK}" Height="25" HorizontalAlignment="Left" Margin="12,12,0,12" VerticalAlignment="Bottom" MinWidth="75" Click="OnOkButtonClick" IsDefault="True"/>
+            <Button Content="{x:Static Design:EdmxDesignerResources.RefactorRenameDialog_Cancel}" Height="25" HorizontalAlignment="Left" Margin="12,12,12,12" VerticalAlignment="Bottom" MinWidth="75" IsCancel="True"/>
         </StackPanel>
     </Grid>
 </vs:DialogWindow>

@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using DslResources = Microsoft.Data.Entity.Design.Diagrams.Properties.Resources;
+using DslResources = Microsoft.Data.Entity.Design.Diagrams.Properties.DiagramsResources;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

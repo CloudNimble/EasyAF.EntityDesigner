@@ -73,7 +73,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                     && ModelHelper.IsValidValueForType(type, Value) == false)
                 {
                     throw new CommandValidationFailedException(
-                        String.Format(CultureInfo.CurrentCulture, Resources.BadEnumTypeMemberValue, Value));
+                        String.Format(CultureInfo.CurrentCulture, EdmxResources.BadEnumTypeMemberValue, Value));
                 }
 
                 EnumTypeMember member = new EnumTypeMember(EnumType, null);

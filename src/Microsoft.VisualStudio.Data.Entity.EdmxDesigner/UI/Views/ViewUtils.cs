@@ -31,7 +31,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views
 
             VsUtils.ShowErrorDialog(
                 String.Format(
-                    CultureInfo.CurrentCulture, Resources.Error_CircularInheritanceAborted, derivedEntity.LocalName.Value,
+                    CultureInfo.CurrentCulture, EdmxDesignerResources.Error_CircularInheritanceAborted, derivedEntity.LocalName.Value,
                     baseEntity.LocalName.Value));
 
             return false;

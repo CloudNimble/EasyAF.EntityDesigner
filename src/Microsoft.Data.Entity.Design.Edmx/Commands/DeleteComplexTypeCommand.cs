@@ -6,7 +6,7 @@ using Microsoft.Data.Entity.Design.Edmx.Entity;
 using Microsoft.Data.Entity.Design.Edmx.Mapping;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
-using XamlDesignerBaseResources = Microsoft.Data.Entity.Design.XmlEngine.Resources;
+using XamlDesignerBaseResources = Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources;
 
 
 namespace Microsoft.Data.Entity.Design.Edmx.Commands

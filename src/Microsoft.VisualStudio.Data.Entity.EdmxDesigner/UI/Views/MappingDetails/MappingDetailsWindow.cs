@@ -85,12 +85,12 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
         private void SetUpDefaultWatermarkInfo()
         {
             // set up default watermark info
-            var watermarkText = String.Format(CultureInfo.CurrentCulture, Resources.MappingDetails_Watermark, Resources.ExplorerWindowTitle);
+            var watermarkText = String.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.MappingDetails_Watermark, EdmxDesignerResources.ExplorerWindowTitle);
             // container will only be null when we initialize this through the constructor.
             if (MappingDetailsWindowContainer != null)
             {
-                var linkStart = watermarkText.IndexOf(Resources.ExplorerWindowTitle, StringComparison.Ordinal);
-                var linkLength = Resources.ExplorerWindowTitle.Length;
+                var linkStart = watermarkText.IndexOf(EdmxDesignerResources.ExplorerWindowTitle, StringComparison.Ordinal);
+                var linkLength = EdmxDesignerResources.ExplorerWindowTitle.Length;
                 _defaultWatermarkInfo = new TreeGridDesignerWatermarkInfo(
                     watermarkText,
                     new TreeGridDesignerWatermarkInfo.LinkData(
@@ -614,7 +614,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
             }
             else
             {
-                SetWatermarkInfo(string.Format(CultureInfo.CurrentCulture, Resources.MappingDetails_ErrMslGeneral, errorMessage));
+                SetWatermarkInfo(string.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.MappingDetails_ErrMslGeneral, errorMessage));
                 return false;
             }
         }
@@ -656,7 +656,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
             // check whether we should lit up the function import mapping.
             if (EdmFeatureManager.GetFunctionImportMappingFeatureState(fi.Artifact.SchemaVersion).IsEnabled() == false)
             {
-                SetWatermarkInfo(Resources.MappingDetails_ErrMappingNotSupported);
+                SetWatermarkInfo(EdmxDesignerResources.MappingDetails_ErrMappingNotSupported);
                 return false;
             }
             else if (MappingViewModelHelper.CanEditMappingsForFunctionImport(fi, ref errorMessage))
@@ -665,7 +665,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
             }
             else
             {
-                SetWatermarkInfo(string.Format(CultureInfo.CurrentCulture, Resources.MappingDetails_ErrMslGeneral, errorMessage));
+                SetWatermarkInfo(string.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.MappingDetails_ErrMslGeneral, errorMessage));
                 return false;
             }
         }
@@ -701,7 +701,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
         // </summary>
         public override string WindowTitle
         {
-            get { return Resources.MappingDetails_WindowTitle; }
+            get { return EdmxDesignerResources.MappingDetails_WindowTitle; }
         }
 
         // <summary>
@@ -865,7 +865,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
         // </summary>
         private void UpdateTitleBar(string name)
         {
-            var fullName = Resources.MappingDetails_WindowTitle;
+            var fullName = EdmxDesignerResources.MappingDetails_WindowTitle;
             if (!string.IsNullOrEmpty(name))
             {
                 fullName = String.Format(CultureInfo.CurrentCulture, "{0} - {1}", fullName, name);
@@ -886,7 +886,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
         // </summary>
         protected override string AccessibilityName
         {
-            get { return Resources.MappingDetails_WindowTitle; }
+            get { return EdmxDesignerResources.MappingDetails_WindowTitle; }
         }
 
         // <summary>

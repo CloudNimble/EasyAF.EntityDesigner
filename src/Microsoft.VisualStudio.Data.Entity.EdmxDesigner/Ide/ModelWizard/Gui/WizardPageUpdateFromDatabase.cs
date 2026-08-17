@@ -21,7 +21,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
-using WizardResources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.Resources;
+using WizardResources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.ModelWizardResources;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
 {
@@ -166,7 +166,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
             }
             else
             {
-                toolTip.SetToolTip(chkIncludeForeignKeys, Resources.DisabledFeatureTooltip);
+                toolTip.SetToolTip(chkIncludeForeignKeys, EdmxDesignerResources.DisabledFeatureTooltip);
                 chkIncludeForeignKeys.Parent.MouseMove += IncludeForeignKeysArea_OnMouseMove;
                 chkIncludeForeignKeys.Parent.MouseLeave += IncludeForeignKeysArea_OnMouseLeave;
                 chkIncludeForeignKeys.Enabled = false;

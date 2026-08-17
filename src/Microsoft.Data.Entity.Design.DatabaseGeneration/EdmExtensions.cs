@@ -34,7 +34,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration
         /// <returns>A localized exception from the database generation process if the name supplied in the store schema definition language (SSDL) contains invalid characters for the target database</returns>
         public static string GetInvalidCharsException(string userInput)
         {
-            return String.Format(CultureInfo.CurrentCulture, Resources.ErrorInvalidCharsException, userInput);
+            return String.Format(CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorInvalidCharsException, userInput);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration
             if (!EntityFrameworkVersion.IsValidVersion(targetFrameworkVersion))
             {
                 throw new ArgumentException(
-                    string.Format(CultureInfo.CurrentCulture, Resources.ErrorNonValidTargetVersion, targetFrameworkVersion),
+                    string.Format(CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorNonValidTargetVersion, targetFrameworkVersion),
                     "targetFrameworkVersion");
             }
 
@@ -82,7 +82,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration
                 throw new InvalidOperationException(
                     String.Format(
                         CultureInfo.CurrentCulture,
-                        Resources.ErrorCsdlNotValid,
+                        DatabaseGenerationResources.ErrorCsdlNotValid,
                         string.Join(Environment.NewLine, schemaErrors.Select(e => e.Message))));
             }
 
@@ -91,7 +91,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration
                 throw new InvalidOperationException(
                     String.Format(
                         CultureInfo.CurrentCulture,
-                        Resources.TargetVersionSchemaVersionMismatch,
+                        DatabaseGenerationResources.TargetVersionSchemaVersionMismatch,
                         edmItemCollection.CsdlVersion(),
                         targetFrameworkVersion));
             }
@@ -125,7 +125,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration
             if (!EntityFrameworkVersion.IsValidVersion(targetFrameworkVersion))
             {
                 throw new ArgumentException(
-                    string.Format(CultureInfo.CurrentCulture, Resources.ErrorNonValidTargetVersion, targetFrameworkVersion),
+                    string.Format(CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorNonValidTargetVersion, targetFrameworkVersion),
                     "targetFrameworkVersion");
             }
 
@@ -170,7 +170,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration
                         // we'll just throw a special one here instead
                         InvalidOperationException namingErrorException =
                             new InvalidOperationException(
-                                String.Format(CultureInfo.CurrentCulture, Resources.ErrorNameCollision, namingError.Message));
+                                String.Format(CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorNameCollision, namingError.Message));
                         namingErrorException.Data.Add(SsdlErrorExDataKey, ssdlErrors);
 
                         throw namingErrorException;
@@ -181,7 +181,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration
                     new InvalidOperationException(
                         String.Format(
                             CultureInfo.CurrentCulture,
-                            Resources.ErrorNonValidSsdl,
+                            DatabaseGenerationResources.ErrorNonValidSsdl,
                             string.Join(Environment.NewLine, ssdlErrors.Select(e => e.Message))));
 
                 invalidSsdlException.Data.Add(SsdlErrorExDataKey, ssdlErrors);

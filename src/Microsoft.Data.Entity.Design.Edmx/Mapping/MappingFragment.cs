@@ -290,7 +290,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Mapping
             string resource;
             if (localize)
             {
-                resource = Resources.MappingModel_MappingFragmentDisplayName;
+                resource = EdmxResources.MappingModel_MappingFragmentDisplayName;
             }
             else
             {

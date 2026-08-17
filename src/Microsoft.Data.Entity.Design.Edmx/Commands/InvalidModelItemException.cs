@@ -9,7 +9,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
     internal class InvalidModelItemException : Exception
     {
         internal InvalidModelItemException()
-            : base(Resources.Command_InvalidModelItem)
+            : base(EdmxResources.Command_InvalidModelItem)
         {
         }
 

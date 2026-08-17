@@ -110,7 +110,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Data.Sql
 
         public override string ToString()
         {
-            return string.Format(CultureInfo.InvariantCulture, EdmxModel.Resources.DatabaseObjectNameFormat, Schema, Name);
+            return string.Format(CultureInfo.InvariantCulture, EdmxModel.EdmxResources.DatabaseObjectNameFormat, Schema, Name);
         }
 
         #endregion

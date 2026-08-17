@@ -139,14 +139,14 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
             }
 
             // derive some default names
-            var entityName = ModelHelper.GetUniqueNameWithNumber(typeof(EntityType), model, Resources.Model_DefaultEntityTypeName);
+            var entityName = ModelHelper.GetUniqueNameWithNumber(typeof(EntityType), model, EdmxResources.Model_DefaultEntityTypeName);
             var entitySetName = ModelHelper.GetUniqueName(
                 typeof(EntitySet), model.FirstEntityContainer, ModelHelper.ConstructProposedEntitySetName(artifact, entityName));
 
             // go create it
             EntityType entityType = CreateConceptualEntityTypeAndEntitySetAndProperty(
                 cpc, entityName, entitySetName, true,
-                Resources.Model_IdPropertyName, ModelConstants.Int32PropertyType, ModelConstants.StoreGeneratedPattern_Identity, false, true);
+                EdmxResources.Model_IdPropertyName, ModelConstants.Int32PropertyType, ModelConstants.StoreGeneratedPattern_Identity, false, true);
 
             return entityType;
         }

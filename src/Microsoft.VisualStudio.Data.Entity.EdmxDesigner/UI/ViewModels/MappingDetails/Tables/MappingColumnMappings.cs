@@ -38,7 +38,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
 
         internal override string Name
         {
-            get { return Resources.MappingDetails_ColumnMappingsName; }
+            get { return EdmxDesignerResources.MappingDetails_ColumnMappingsName; }
         }
 
         // <summary>

@@ -159,7 +159,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility
 
         private void OnBeforeChange(object sender, XObjectChangeEventArgs e)
         {
-            throw new InvalidOperationException(Resources.Extensibility_CantEditOriginalOnSave);
+            throw new InvalidOperationException(EdmxDesignerResources.Extensibility_CantEditOriginalOnSave);
         }
     }
 }

@@ -97,7 +97,7 @@
                   </ControlTemplate>
                 </Setter.Value>
               </Setter>
-              <Setter Property="ToolTip" Value="{x:Static Design:Resources.ExplorerContent_CollapseSearchResults}"/>
+              <Setter Property="ToolTip" Value="{x:Static Design:EdmxDesignerResources.ExplorerContent_CollapseSearchResults}"/>
               <Setter Property="Focusable"  Value="False" />
               <Setter Property="Visibility" Value="Visible" />
             </MultiDataTrigger.Setters>
@@ -716,7 +716,7 @@
               HorizontalContentAlignment="Center"
               Margin="2,0,0,0"
               Command="{Binding SearchCommand}"
-              ToolTip="{x:Static Design:Resources.ExplorerContent_Search}"
+              ToolTip="{x:Static Design:EdmxDesignerResources.ExplorerContent_Search}"
               AutomationProperties.Name="{Binding RelativeSource={RelativeSource Self}, Path=ToolTip}"
               KeyboardNavigation.TabIndex="2">
         <Image Width="16" Height="16">
@@ -742,7 +742,7 @@
       <Border x:Name="comboPanel">
         <Grid>
           <xdb:SearchComboBox x:Name="searchBox"
-                    AutomationProperties.Name="{x:Static Design:Resources.ExplorerContent_PromptSearch}"
+                    AutomationProperties.Name="{x:Static Design:EdmxDesignerResources.ExplorerContent_PromptSearch}"
                     BorderThickness="0.0"
                     Background="{DynamicResource VsBrush.ComboBoxBackground}"
                     Foreground="{DynamicResource VsBrush.ComboBoxGlyph}"
@@ -759,12 +759,12 @@
                     StaysOpenOnEdit=    "True" />
           <!-- Note: searchPrompt will only be visible if searchBox.IsHitTestVisible is set to false -->
           <TextBlock x:Name="searchPrompt" x:Uid="searchPrompt" Padding="5,5,20,0" IsHitTestVisible="False"
-                     AutomationProperties.Name="{x:Static Design:Resources.ExplorerContent_PromptSearch}"
+                     AutomationProperties.Name="{x:Static Design:EdmxDesignerResources.ExplorerContent_PromptSearch}"
                      MaxWidth="{Binding ElementName=comboPanel, Path=ActualWidth}"
                      TextTrimming="CharacterEllipsis"
                      Background="{DynamicResource VsBrush.ComboBoxBackground}"
                      Foreground="{DynamicResource VsBrush.GrayText}"
-                     Text="{x:Static Design:Resources.ExplorerContent_PromptSearch}" >
+                     Text="{x:Static Design:EdmxDesignerResources.ExplorerContent_PromptSearch}" >
             <TextBlock.Style>
               <Style TargetType="{x:Type TextBlock}">
                 <Setter Property="TextBlock.Visibility" Value="Collapsed" />
@@ -798,7 +798,7 @@
                 x:Uid="searchNavPrevious"
                 Style="{StaticResource ToolBarButtonStyle}"
                 MinWidth="16" MinHeight="16"
-                ToolTip="{x:Static Design:Resources.ExplorerContent_SearchNavPrev}"
+                ToolTip="{x:Static Design:EdmxDesignerResources.ExplorerContent_SearchNavPrev}"
                 AutomationProperties.Name="{Binding RelativeSource={RelativeSource Self}, Path=ToolTip}"
                 IsEnabled="{Binding CanGotoPreviousResult}"
                 Command="{Binding SelectPreviousSearchResult}"
@@ -813,7 +813,7 @@
                 x:Uid="searchNavNext"
                 Style="{StaticResource ToolBarButtonStyle}"
                 MinWidth="16" MinHeight="16"
-                ToolTip="{x:Static Design:Resources.ExplorerContent_SearchNavNext}"
+                ToolTip="{x:Static Design:EdmxDesignerResources.ExplorerContent_SearchNavNext}"
                 AutomationProperties.Name="{Binding RelativeSource={RelativeSource Self}, Path=ToolTip}"
                 IsEnabled="{Binding CanGotoNextResult}"
                 Command="{Binding SelectNextSearchResult}"
@@ -828,7 +828,7 @@
         <Button x:Name="resetSearchButton"
                 x:Uid="resetSearchButton"
                         MinWidth="16" MinHeight="16"
-                        ToolTip="{x:Static Design:Resources.ExplorerContent_ClearSearch}"
+                        ToolTip="{x:Static Design:EdmxDesignerResources.ExplorerContent_ClearSearch}"
                         AutomationProperties.Name="{Binding RelativeSource={RelativeSource Self}, Path=ToolTip}"
                         Margin="0,0,4,0"
                         Style="{StaticResource ToolBarButtonStyle}"

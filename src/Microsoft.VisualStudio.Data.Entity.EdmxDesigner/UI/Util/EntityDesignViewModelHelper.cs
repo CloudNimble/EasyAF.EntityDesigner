@@ -135,7 +135,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Util
                     }
                 }
 
-                CommandProcessor cp = new CommandProcessor(editingContext, originatingId, Resources.Tx_CreateFunctionImport, commands);
+                CommandProcessor cp = new CommandProcessor(editingContext, originatingId, EdmxDesignerResources.Tx_CreateFunctionImport, commands);
                 cp.Invoke();
 
                 functionImportResult = cmdFuncImp.FunctionImport;
@@ -181,7 +181,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Util
             if (DialogResult.OK == result.DialogResult)
             {
                 List<Command> commands = new List<Command>();
-                CommandProcessor cp = new CommandProcessor(editingContext, originatingId, Resources.Tx_UpdateFunctionImport);
+                CommandProcessor cp = new CommandProcessor(editingContext, originatingId, EdmxDesignerResources.Tx_UpdateFunctionImport);
                 CreateComplexTypeCommand createComplexTypeCommand = null;
 
                 // Make the decision based on what is returned by the dialog.
@@ -301,7 +301,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Util
                 var enumType = enumTypeViewModel.EnumType;
                 if (result == true)
                 {
-                    CommandProcessor cp = new CommandProcessor(editingContext, originatingId, Resources.Tx_UpdateEnumType);
+                    CommandProcessor cp = new CommandProcessor(editingContext, originatingId, EdmxDesignerResources.Tx_UpdateEnumType);
 
                     cp.EnqueueCommand(
                         new SetEnumTypeFacetCommand(
@@ -359,7 +359,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Util
                 if (result == true
                     && vm.IsValid)
                 {
-                    CommandProcessor cp = new CommandProcessor(editingContext, originatingId, Resources.Tx_CreateEnumType);
+                    CommandProcessor cp = new CommandProcessor(editingContext, originatingId, EdmxDesignerResources.Tx_CreateEnumType);
                     CreateEnumTypeCommand createEnumTypeCommand = new CreateEnumTypeCommand(
                         vm.Name, vm.SelectedUnderlyingType
                         , (vm.IsReferenceExternalType ? vm.ExternalTypeName : String.Empty), vm.IsFlag, false);

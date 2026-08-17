@@ -36,7 +36,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
         {
             return _imageListToolbar
                        ??= ThemeUtils.GetThemedImageList(
-                           Resources.MappingDetailsCommandStrip,
+                           EdmxDesignerResources.MappingDetailsCommandStrip,
                            EnvironmentColors.CommandBarOptionsBackgroundColorKey);
         }
 
@@ -44,7 +44,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
         {
             return _imageListIcons
                        ??= ThemeUtils.GetThemedImageList(
-                           Resources.MappingDetailsIconsImageList,
+                           EdmxDesignerResources.MappingDetailsIconsImageList,
                            TreeViewColors.BackgroundColorKey);
         }
 
@@ -52,7 +52,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
         {
             return _imageListArrows
                        ??= ThemeUtils.GetThemedImageList(
-                           Resources.MappingDetailsArrowsImageList,
+                           EdmxDesignerResources.MappingDetailsArrowsImageList,
                            TreeViewColors.BackgroundColorKey);
         }
 

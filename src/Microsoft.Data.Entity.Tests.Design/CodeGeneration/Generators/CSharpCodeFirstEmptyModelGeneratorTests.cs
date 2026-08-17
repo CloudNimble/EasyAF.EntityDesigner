@@ -6,6 +6,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Generators;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
 
 namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration.Generators
 {
@@ -24,7 +25,7 @@ namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration.Generators
             var ctorComment = NormalizeCode(
                 string.Format(
                     CultureInfo.CurrentCulture,
-                    Resources.CodeFirstCodeFile_CtorComment_CS,
+                    ModelWizardResources.CodeFirstCodeFile_CtorComment_CS,
                     "MyContext",
                     "ConsoleApplication.Data"));
 
@@ -42,7 +43,7 @@ namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration.Generators
         {
         }
 
-        " + NormalizeCode(Resources.CodeFirstCodeFile_DbSetComment_CS) + @"
+        " + NormalizeCode(ModelWizardResources.CodeFirstCodeFile_DbSetComment_CS) + @"
 
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
     }

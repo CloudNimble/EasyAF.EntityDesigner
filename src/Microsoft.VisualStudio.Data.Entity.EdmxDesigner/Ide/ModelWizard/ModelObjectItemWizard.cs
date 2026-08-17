@@ -179,7 +179,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard
                 VsUtils.ShowErrorDialog(
                     string.Format(
                         CultureInfo.CurrentCulture,
-                        Resources.ModelObjectItemWizard_UnexpectedExceptionHasOccurred,
+                        EdmxDesignerResources.ModelObjectItemWizard_UnexpectedExceptionHasOccurred,
                         ex.Message));
 
                 ClearErrors();
@@ -222,7 +222,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard
             // make sure we can access the data package           
             if (serviceProvider.GetService(typeof(IVsDataConnectionManager)) == null)
             {
-                VsUtils.ShowErrorDialog(Resources.LoadDataPackageError);
+                VsUtils.ShowErrorDialog(EdmxDesignerResources.LoadDataPackageError);
                 throw new WizardCancelledException();
             }
 
@@ -234,14 +234,14 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard
             catch (Exception ex)
             {
                 // an exception occurred loading our package, so raise an error dialog, and cancel the wizard
-                var message = Resources.LoadOurPackageError;
+                var message = EdmxDesignerResources.LoadOurPackageError;
 #if DEBUG
                 message += " " + ex;
 #else
                 message += " " + ex.Message;
 #endif
                 VsUtils.ShowErrorDialog(message);
-                throw new WizardCancelledException(Resources.LoadOurPackageError, ex);
+                throw new WizardCancelledException(EdmxDesignerResources.LoadOurPackageError, ex);
             }
 
             if (!VsUtils.EntityFrameworkSupportedInProject(project, serviceProvider, allowMiscProject: false))
@@ -249,7 +249,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard
                 VsUtils.ShowErrorDialog(
                     string.Format(
                         CultureInfo.CurrentCulture,
-                        Resources.EdmUtils_NotValidTargetFramework));
+                        EdmxDesignerResources.EdmUtils_NotValidTargetFramework));
                 Marshal.ThrowExceptionForHR(VSConstants.E_ABORT);
             }
         }
@@ -265,7 +265,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard
                 VsUtils.ShowErrorDialog(
                     string.Format(
                         CultureInfo.CurrentCulture,
-                        Resources.ModelObjectItemWizard_NonValidXmlAttributeValue,
+                        EdmxDesignerResources.ModelObjectItemWizard_NonValidXmlAttributeValue,
                         modelName));
                 Marshal.ThrowExceptionForHR(VSConstants.E_ABORT);
             }
@@ -361,7 +361,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard
                             _edmxItem.ContainingProject,
                             string.Format(
                                 CultureInfo.CurrentCulture,
-                                Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.Resources.WritingModelTimeMsg,
+                                Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.ModelWizardResources.WritingModelTimeMsg,
                                 writingModelWatch.Elapsed));
                     }
 
@@ -436,7 +436,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard
                                         CommandProcessorContext cpc = new CommandProcessorContext(
                                             editingContext,
                                             EfiTransactionOriginator.CreateNewModelId,
-                                            Resources.Tx_SetCodeGenerationStrategy);
+                                            EdmxDesignerResources.Tx_SetCodeGenerationStrategy);
                                         cp = new CommandProcessor(cpc, cmd);
                                     }
                                     else
@@ -517,7 +517,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard
                 CommandProcessorContext cpc = new CommandProcessorContext(
                     editingContext,
                     EfiTransactionOriginator.CreateNewModelId,
-                    Resources.Tx_CreateFunctionImport);
+                    EdmxDesignerResources.Tx_CreateFunctionImport);
 
                 // We propagate facets by default only for Sql Server or Sql Server CE since for other providers facets in C-Space might be intentionally
                 // out of sync with facets from S-Space and we should not break this. For Sql Server and Sql Server CE facets should be in sync in most cases.

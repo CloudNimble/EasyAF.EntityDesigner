@@ -93,7 +93,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
             else
             {
                 // if not a valid namespace, throw an error message
-                var msg = string.Format(CultureInfo.CurrentCulture, Resources.INVALID_NC_NAME_CHAR, _newAlias);
+                var msg = string.Format(CultureInfo.CurrentCulture, EdmxResources.INVALID_NC_NAME_CHAR, _newAlias);
                 throw new CommandValidationFailedException(msg);
             }
         }

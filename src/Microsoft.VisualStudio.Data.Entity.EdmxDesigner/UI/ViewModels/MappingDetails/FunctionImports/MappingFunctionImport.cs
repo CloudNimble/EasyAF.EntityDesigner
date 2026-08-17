@@ -75,7 +75,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                 if (function != null)
                 {
                     return string.Format(
-                        CultureInfo.CurrentCulture, Resources.MappingDetailsViewModel_StorageEntityTypeName, function.LocalName.Value);
+                        CultureInfo.CurrentCulture, EdmxDesignerResources.MappingDetailsViewModel_StorageEntityTypeName, function.LocalName.Value);
                 }
                 else
                 {
@@ -195,7 +195,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                     // resolver (e.g. Mapping Details window on a newly-opened project) - so ensure
                     // provider is registered here before any commands are invoked
                     CommandProcessorContext cpc = new CommandProcessorContext(
-                        context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_ChangeFuncImpMapping);
+                        context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_ChangeFuncImpMapping);
                     VsUtils.EnsureProvider(cpc.Artifact);
                     CommandProcessor.InvokeSingleCommand(cpc, cmd);
                 }

@@ -7,6 +7,6 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Commands
     internal class DesignerViewCommands
     {
         public static readonly RoutedUICommand ChangeCenter =
-            new RoutedUICommand(global::Microsoft.Data.Entity.Design.XmlEngine.Resources.DesignerViewCommandsText, "ChangeCenter", typeof(DesignerViewCommands));
+            new RoutedUICommand(XmlDesignerResources.DesignerViewCommandsText, "ChangeCenter", typeof(DesignerViewCommands));
     }
 }

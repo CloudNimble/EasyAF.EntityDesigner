@@ -61,12 +61,12 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators
         {
             if (edmItemCollection is null)
             {
-                throw new InvalidOperationException(Resources.ErrorCouldNotFindCSDL);
+                throw new InvalidOperationException(DatabaseGenerationResources.ErrorCouldNotFindCSDL);
             }
 
             if (edmParameterBag is null)
             {
-                throw new InvalidOperationException(Resources.ErrorNoEdmParameterBag);
+                throw new InvalidOperationException(DatabaseGenerationResources.ErrorNoEdmParameterBag);
             }
 
             // Find the ProviderInvariantName parameter
@@ -75,7 +75,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators
             {
                 throw new InvalidOperationException(
                     String.Format(
-                        CultureInfo.CurrentCulture, Resources.ErrorNoParameterDefined, EdmParameterBag.ParameterName.ProviderInvariantName));
+                        CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorNoParameterDefined, EdmParameterBag.ParameterName.ProviderInvariantName));
             }
 
             // Find the ProviderManifestToken parameter
@@ -84,7 +84,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators
             {
                 throw new InvalidOperationException(
                     String.Format(
-                        CultureInfo.CurrentCulture, Resources.ErrorNoParameterDefined, EdmParameterBag.ParameterName.ProviderManifestToken));
+                        CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorNoParameterDefined, EdmParameterBag.ParameterName.ProviderManifestToken));
             }
 
             // Find the TargetVersion parameter
@@ -93,7 +93,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators
             {
                 throw new InvalidOperationException(
                     String.Format(
-                        CultureInfo.CurrentCulture, Resources.ErrorNoParameterDefined, EdmParameterBag.ParameterName.TargetVersion));
+                        CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorNoParameterDefined, EdmParameterBag.ParameterName.TargetVersion));
             }
 
             // Find the DatabaseSchemaName parameter
@@ -102,7 +102,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators
             {
                 throw new InvalidOperationException(
                     String.Format(
-                        CultureInfo.CurrentCulture, Resources.ErrorNoParameterDefined, EdmParameterBag.ParameterName.DatabaseSchemaName));
+                        CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorNoParameterDefined, EdmParameterBag.ParameterName.DatabaseSchemaName));
             }
 
             DbProviderManifest providerManifest = null;
@@ -116,21 +116,21 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators
                 // This can happen if the ProviderInvariantName is not valid
                 throw new InvalidOperationException(
                     String.Format(
-                        CultureInfo.CurrentCulture, Resources.ErrorProviderManifestEx_ProviderInvariantName, providerInvariantName), ae);
+                        CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorProviderManifestEx_ProviderInvariantName, providerInvariantName), ae);
             }
             catch (ProviderIncompatibleException pie)
             {
                 // This can happen if the ProviderManifestToken is not valid
                 throw new InvalidOperationException(
                     String.Format(
-                        CultureInfo.CurrentCulture, Resources.ErrorProviderManifestEx_ProviderManifestToken, providerManifestToken), pie);
+                        CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorProviderManifestEx_ProviderManifestToken, providerManifestToken), pie);
             }
 
             if (providerManifest == null)
             {
                 throw new InvalidOperationException(
                     String.Format(
-                        CultureInfo.CurrentCulture, Resources.ErrorCouldNotFindProviderManifest, providerInvariantName,
+                        CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorCouldNotFindProviderManifest, providerInvariantName,
                         providerManifestToken));
             }
 
@@ -163,7 +163,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators
             catch (Exception e)
             {
                 throw new ArgumentException(
-                    String.Format(CultureInfo.CurrentCulture, Resources.ErrorSerializing_CsdlToSsdl, e.Message), e);
+                    String.Format(CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorSerializing_CsdlToSsdl, e.Message), e);
             }
             return serializedSchemaElement;
         }
@@ -574,7 +574,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators
                     new XAttribute(
                         "Name",
                         String.Format(
-                            CultureInfo.CurrentCulture, Resources.CodeViewFKConstraintDerivedType, derivedType.Name,
+                            CultureInfo.CurrentCulture, DatabaseGenerationResources.CodeViewFKConstraintDerivedType, derivedType.Name,
                             derivedType.BaseType.Name)));
                 XElement baseTypeRole = new XElement(
                     _ssdl + "End",
@@ -746,10 +746,10 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators
                     ConstructAssociationSet(
                         ssdlNamespace,
                         String.Format(
-                            CultureInfo.CurrentCulture, Resources.CodeViewFKConstraintDerivedType, derivedType.Name,
+                            CultureInfo.CurrentCulture, DatabaseGenerationResources.CodeViewFKConstraintDerivedType, derivedType.Name,
                             derivedType.BaseType.Name),
                         String.Format(
-                            CultureInfo.CurrentCulture, Resources.CodeViewFKConstraintDerivedType, derivedType.Name,
+                            CultureInfo.CurrentCulture, DatabaseGenerationResources.CodeViewFKConstraintDerivedType, derivedType.Name,
                             derivedType.BaseType.Name),
                         derivedType.BaseType.Name,
                         OutputGeneratorHelpers.GetStorageEntityTypeName(derivedType.BaseType as EntityType, edm),

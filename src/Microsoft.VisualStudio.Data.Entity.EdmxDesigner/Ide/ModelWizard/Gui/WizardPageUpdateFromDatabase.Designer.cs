@@ -107,7 +107,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
             this.AddTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.AddTabPage.Size = new System.Drawing.Size(488, 196);
             this.AddTabPage.TabIndex = 0;
-            this.AddTabPage.Text = global::Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.Resources.UpdateFromDatabase_AddTabPageTitle;
+            this.AddTabPage.Text = global::Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.ModelWizardResources.UpdateFromDatabase_AddTabPageTitle;
             this.AddTabPage.UseVisualStyleBackColor = true;
             this.AddTabPage.Enter += new System.EventHandler(this.AddTabPage_Enter);
             // 
@@ -133,7 +133,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
             // 
             // AddTreeView
             // 
-            this.AddTreeView.AccessibleName = global::Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.Resources.UpdateFromDatabase_AddTreeViewAccessibleName;
+            this.AddTreeView.AccessibleName = global::Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.ModelWizardResources.UpdateFromDatabase_AddTreeViewAccessibleName;
             this.AddTreeView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.AddTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AddTreeView.Location = new System.Drawing.Point(3, 3);
@@ -148,7 +148,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
             this.chkPluralize.Name = "chkPluralize";
             this.chkPluralize.Size = new System.Drawing.Size(476, 19);
             this.chkPluralize.TabIndex = 1;
-            this.chkPluralize.Text = global::Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.Resources.SelectTables_PluralizeCheckbox;
+            this.chkPluralize.Text = global::Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.ModelWizardResources.SelectTables_PluralizeCheckbox;
             this.chkPluralize.UseVisualStyleBackColor = true;
             //
             // chkIncludeForeignKeys
@@ -158,7 +158,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
             this.chkIncludeForeignKeys.Name = "chkIncludeForeignKeys";
             this.chkIncludeForeignKeys.Size = new System.Drawing.Size(476, 19);
             this.chkIncludeForeignKeys.TabIndex = 3;
-            this.chkIncludeForeignKeys.Text = Properties.Resources.SelectTablesPage_IncludeForeignKeys;
+            this.chkIncludeForeignKeys.Text = Properties.ModelWizardResources.SelectTablesPage_IncludeForeignKeys;
             this.chkIncludeForeignKeys.UseVisualStyleBackColor = true;
             this.toolTip.SetToolTip(this.chkIncludeForeignKeys, string.Empty);
             //
@@ -169,9 +169,9 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
             this.chkCreateFunctionImports.Name = "chkCreateFunctionImports";
             this.chkCreateFunctionImports.Size = new System.Drawing.Size(476, 19);
             this.chkCreateFunctionImports.TabIndex = 4;
-            this.chkCreateFunctionImports.Text = Properties.Resources.SelectTablesPage_CreateFunctionImports;
+            this.chkCreateFunctionImports.Text = Properties.ModelWizardResources.SelectTablesPage_CreateFunctionImports;
             this.chkCreateFunctionImports.UseVisualStyleBackColor = true;
-            this.toolTip.SetToolTip(this.chkCreateFunctionImports, Properties.Resources.CreateFunctionImportsCheckBoxToolTipText);
+            this.toolTip.SetToolTip(this.chkCreateFunctionImports, Properties.ModelWizardResources.CreateFunctionImportsCheckBoxToolTipText);
             // 
             // RefreshTabPage
             // 
@@ -181,13 +181,13 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
             this.RefreshTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.RefreshTabPage.Size = new System.Drawing.Size(488, 214);
             this.RefreshTabPage.TabIndex = 1;
-            this.RefreshTabPage.Text = global::Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.Resources.UpdateFromDatabase_RefreshTabPageTitle;
+            this.RefreshTabPage.Text = global::Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.ModelWizardResources.UpdateFromDatabase_RefreshTabPageTitle;
             this.RefreshTabPage.UseVisualStyleBackColor = true;
             this.RefreshTabPage.Enter += new System.EventHandler(this.RefreshTabPage_Enter);
             // 
             // RefreshTreeView
             // 
-            this.RefreshTreeView.AccessibleName = global::Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.Resources.UpdateFromDatabase_RefreshTreeViewAccessibleName;
+            this.RefreshTreeView.AccessibleName = global::Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.ModelWizardResources.UpdateFromDatabase_RefreshTreeViewAccessibleName;
             this.RefreshTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -205,13 +205,13 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
             this.DeleteTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.DeleteTabPage.Size = new System.Drawing.Size(488, 214);
             this.DeleteTabPage.TabIndex = 2;
-            this.DeleteTabPage.Text = global::Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.Resources.UpdateFromDatabase_DeleteTabPageTitle;
+            this.DeleteTabPage.Text = global::Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.ModelWizardResources.UpdateFromDatabase_DeleteTabPageTitle;
             this.DeleteTabPage.UseVisualStyleBackColor = true;
             this.DeleteTabPage.Enter += new System.EventHandler(this.DeleteTabPage_Enter);
             // 
             // DeleteTreeView
             // 
-            this.DeleteTreeView.AccessibleName = global::Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.Resources.UpdateFromDatabase_DeleteTreeViewAccessibleName;
+            this.DeleteTreeView.AccessibleName = global::Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.ModelWizardResources.UpdateFromDatabase_DeleteTreeViewAccessibleName;
             this.DeleteTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));

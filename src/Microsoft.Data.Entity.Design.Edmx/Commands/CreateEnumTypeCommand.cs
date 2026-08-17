@@ -69,7 +69,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                 && ModelHelper.UnderlyingEnumTypes.Count(t => String.CompareOrdinal(t.Name, UnderlyingType) == 0) == 0)
             {
                 throw new CommandValidationFailedException(
-                    String.Format(CultureInfo.CurrentCulture, Resources.Incorrect_Enum_UnderlyingType, UnderlyingType));
+                    String.Format(CultureInfo.CurrentCulture, EdmxResources.Incorrect_Enum_UnderlyingType, UnderlyingType));
             }
 
             // create the new item in our model
@@ -130,7 +130,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                 throw new CannotLocateParentItemException();
             }
 
-            var enumTypeName = ModelHelper.GetUniqueNameWithNumber(typeof(EnumType), model, Resources.Model_DefaultEnumTypeName);
+            var enumTypeName = ModelHelper.GetUniqueNameWithNumber(typeof(EnumType), model, EdmxResources.Model_DefaultEnumTypeName);
 
             // go create it
             CommandProcessor cp = new CommandProcessor(cpc);

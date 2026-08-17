@@ -404,9 +404,6 @@ Add existing entities and relationships to this diagram by dragging them from th
   <data name="Tx_AddEntityType" xml:space="preserve">
     <value>Add EntityType</value>
   </data>
-  <data name="CustomDialog_CancelButton" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
   <data name="CustomDialog_OKButton" xml:space="preserve">
     <value>OK</value>
   </data>
@@ -415,21 +412,6 @@ Add existing entities and relationships to this diagram by dragging them from th
   </data>
   <data name="CustomZoom_ZoomLevel" xml:space="preserve">
     <value>Percentage zoom:</value>
-  </data>
-  <data name="ExportImage_BrowseButton" xml:space="preserve">
-    <value>Browse...</value>
-  </data>
-  <data name="ExportImage_DialogTitle" xml:space="preserve">
-    <value>Export Diagram</value>
-  </data>
-  <data name="ExportImage_ExportButton" xml:space="preserve">
-    <value>Export</value>
-  </data>
-  <data name="ExportImage_FormatLabel" xml:space="preserve">
-    <value>Image Format:</value>
-  </data>
-  <data name="ExportImage_LocationLabel" xml:space="preserve">
-    <value>Location:</value>
   </data>
   <data name="ExportImage_OverwriteCheckbox" xml:space="preserve">
     <value>Overwrite existing file</value>
@@ -451,18 +433,6 @@ Add existing entities and relationships to this diagram by dragging them from th
   </data>
   <data name="ExportImage_InvalidFileNameError" xml:space="preserve">
     <value>The file name contains invalid characters.</value>
-  </data>
-  <data name="ExportImage_FileNameLabel" xml:space="preserve">
-    <value>File name:</value>
-  </data>
-  <data name="ExportImage_OptionsLabel" xml:space="preserve">
-    <value>Options:</value>
-  </data>
-  <data name="ExportImage_TransparentBackground" xml:space="preserve">
-    <value>Transparent Background</value>
-  </data>
-  <data name="ExportImage_ShowTypes" xml:space="preserve">
-    <value>Show data types</value>
   </data>
   <data name="Tx_AddAssociation" xml:space="preserve">
     <value>Add Association</value>

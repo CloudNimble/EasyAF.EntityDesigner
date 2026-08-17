@@ -138,7 +138,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyW
 
         protected virtual ResourceManager ResourceManager
         {
-            get { return Resources.ResourceManager; }
+            get { return global::Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources.ResourceManager; }
         }
 
         /// <include file='doc\PropertyPages.uex' path='docs/doc[@for="LocDisplayNameAttribute.DisplayName"]/*' />
@@ -169,7 +169,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyW
 
         protected virtual ResourceManager ResourceManager
         {
-            get { return Resources.ResourceManager; }
+            get { return global::Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources.ResourceManager; }
         }
 
         public override string Description
@@ -202,7 +202,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyW
 
         protected virtual ResourceManager ResourceManager
         {
-            get { return Resources.ResourceManager; }
+            get { return global::Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources.ResourceManager; }
         }
 
         protected override string GetLocalizedString(string value)

@@ -220,7 +220,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Commands
                         Debug.Fail("Could not parse the LocalPath from the URI for this particular Artifact");
                     }
                     throw new FileNotEditableException(
-                        String.Format(CultureInfo.CurrentCulture, Resources.FileNotEditableErrorMessage, documentPath));
+                        String.Format(CultureInfo.CurrentCulture, XmlEngineResources.FileNotEditableErrorMessage, documentPath));
                 }
             }
 

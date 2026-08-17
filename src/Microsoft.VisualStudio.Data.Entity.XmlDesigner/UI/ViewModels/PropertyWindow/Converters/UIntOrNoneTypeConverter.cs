@@ -37,7 +37,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyW
                     // error message
                     var attributeName = context.PropertyDescriptor.DisplayName;
                     var message = string.Format(
-                        CultureInfo.CurrentCulture, global::Microsoft.Data.Entity.Design.XmlEngine.Resources.ConverterIncorrectValueForAttribute, stringValue, attributeName);
+                        CultureInfo.CurrentCulture, global::Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources.ConverterIncorrectValueForAttribute, stringValue, attributeName);
                     throw new ConversionException(message);
                 }
             }

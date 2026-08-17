@@ -33,10 +33,10 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Update="Resources.Designer.cs">
+        <Compile Update="EdmxResources.Designer.cs">
             <DesignTime>True</DesignTime>
             <AutoGen>True</AutoGen>
-            <DependentUpon>Resources.resx</DependentUpon>
+            <DependentUpon>EdmxResources.resx</DependentUpon>
         </Compile>
 
         <None Include="Designer\EntityDesignerDiagramConstant.tt">
@@ -45,9 +45,9 @@
         </None>
 
         <EmbeddedResource Include="Microsoft.Data.Entity.Design.Edmx_3.xsd" />
-        <EmbeddedResource Update="Resources.resx">
+        <EmbeddedResource Update="EdmxResources.resx">
             <Generator>ResXFileCodeGenerator</Generator>
-            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+            <LastGenOutput>EdmxResources.Designer.cs</LastGenOutput>
         </EmbeddedResource>
     </ItemGroup>
 

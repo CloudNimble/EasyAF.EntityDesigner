@@ -11,7 +11,7 @@ using Microsoft.Data.Entity.Design.Edmx.Entity;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using ComplexType = Microsoft.Data.Entity.Design.Edmx.Entity.ComplexType;
-using XamlDesignerBaseResources = Microsoft.Data.Entity.Design.XmlEngine.Resources;
+using XamlDesignerBaseResources = Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources;
 
 namespace Microsoft.Data.Entity.Design.Edmx.Commands
 {

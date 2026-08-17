@@ -88,7 +88,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                 var associationEnd = ModelHelper.FindAssociationEnd(parentAssociation, Role);
                 if (associationEnd != null)
                 {
-                    var msg = String.Format(CultureInfo.CurrentCulture, Resources.Error_AssociationEndInAssocNotUnique, Role);
+                    var msg = String.Format(CultureInfo.CurrentCulture, EdmxResources.Error_AssociationEndInAssocNotUnique, Role);
                     throw new CommandValidationFailedException(msg);
                 }
             }

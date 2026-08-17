@@ -85,7 +85,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
                     artifact.ArtifactSet.GetAllErrors()
                         .Count(ei => ei.ErrorClass == ErrorClass.Runtime_CSDL || ei.ErrorClass == ErrorClass.Escher_CSDL) > 0)
                 {
-                    VsUtils.ShowErrorDialog(Resources.DatabaseCreation_ValidationFailed);
+                    VsUtils.ShowErrorDialog(EdmxDesignerResources.DatabaseCreation_ValidationFailed);
                     return;
                 }
 
@@ -110,7 +110,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
                 VsUtils.ShowErrorDialog(
                     String.Format(
                         CultureInfo.CurrentCulture,
-                        Resources.ModelObjectItemWizard_UnexpectedExceptionHasOccurred,
+                        EdmxDesignerResources.ModelObjectItemWizard_UnexpectedExceptionHasOccurred,
                         e.Message));
                 return;
             }
@@ -170,7 +170,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
                     PackageManager.Package.DocumentFrameMgr.EditingContextManager.GetNewOrExistingContext(settings.Artifact.Uri);
                 CommandProcessorContext cpc = new CommandProcessorContext(
                     editingContext,
-                    EfiTransactionOriginator.GenerateDatabaseScriptFromModelId, Resources.Tx_GenerateDatabaseScriptFromModel);
+                    EfiTransactionOriginator.GenerateDatabaseScriptFromModelId, EdmxDesignerResources.Tx_GenerateDatabaseScriptFromModel);
                 CommandProcessor cp = new CommandProcessor(cpc, cmd);
                 var addUseLegacyProviderCommand = ModelHelper.CreateSetDesignerPropertyValueCommandFromArtifact(
                     cpc.Artifact,
@@ -211,7 +211,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
                         "We should have caught this exception '" + e.Message + "' immediately after the user clicked the 'Finish' button");
                     VsUtils.ShowErrorDialog(
                         String.Format(
-                            CultureInfo.CurrentCulture, Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.Resources.ErrorCouldNotParseDdlFileName, settings.DdlFileName,
+                            CultureInfo.CurrentCulture, Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.ModelWizardResources.ErrorCouldNotParseDdlFileName, settings.DdlFileName,
                             e.Message));
                     return false;
                 }
@@ -228,13 +228,13 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
                     {
                         VsUtils.ShowErrorDialog(
                             String.Format(
-                                CultureInfo.CurrentCulture, Resources.DatabaseCreation_ErrorWritingDdl, canonicalFilePath, e.Message));
+                                CultureInfo.CurrentCulture, EdmxDesignerResources.DatabaseCreation_ErrorWritingDdl, canonicalFilePath, e.Message));
                     }
                     else
                     {
                         VsUtils.ShowErrorDialog(
                             String.Format(
-                                CultureInfo.CurrentCulture, Resources.DatabaseCreation_ErrorWritingDdlWithInner, canonicalFilePath,
+                                CultureInfo.CurrentCulture, EdmxDesignerResources.DatabaseCreation_ErrorWritingDdlWithInner, canonicalFilePath,
                                 e.Message, e.InnerException.Message));
                     }
                     return false;

@@ -24,19 +24,19 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer
             : base(context, entityModel, parent)
         {
             _typesGhostNode = new ExplorerTypes(
-                Resources.ConceptualTypesGhostNodeName, context, this);
-            _complexTypesGhostNode = new ExplorerComplexTypes(Resources.ComplexTypesGhostNodeName, context, this);
+                EdmxDesignerResources.ConceptualTypesGhostNodeName, context, this);
+            _complexTypesGhostNode = new ExplorerComplexTypes(EdmxDesignerResources.ComplexTypesGhostNodeName, context, this);
             _assocsGhostNode = new ExplorerAssociations(
-                Resources.ConceptualAssociationsGhostNodeName, context, this);
+                EdmxDesignerResources.ConceptualAssociationsGhostNodeName, context, this);
             _funcImportsGhostNode = new ExplorerFunctionImports(
-                Resources.FunctionImportsGhostNodeName, context, this);
+                EdmxDesignerResources.FunctionImportsGhostNodeName, context, this);
 
             _enumTypesGhostNode = null;
 
             if (EdmFeatureManager.GetEnumTypeFeatureState(entityModel.Artifact).IsEnabled())
             {
                 _enumTypesGhostNode = new ExplorerEnumTypes(
-                    Resources.EnumTypesGhostNodeName, context, this);
+                    EdmxDesignerResources.EnumTypesGhostNodeName, context, this);
             }
         }
 
@@ -152,7 +152,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer
                 throw new InvalidOperationException(
                     string.Format(
                         CultureInfo.CurrentCulture,
-                        Resources.BadChildForParentException, GetType().FullName, childElementType.FullName));
+                        EdmxDesignerResources.BadChildForParentException, GetType().FullName, childElementType.FullName));
             }
         }
 
@@ -181,7 +181,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer
             {
                 Debug.Fail(
                     string.Format(
-                        CultureInfo.CurrentCulture, Resources.BadRemoveBadChildType,
+                        CultureInfo.CurrentCulture, EdmxDesignerResources.BadRemoveBadChildType,
                         efElementToRemove.GetType().FullName, Name, GetType().FullName));
                 return false;
             }

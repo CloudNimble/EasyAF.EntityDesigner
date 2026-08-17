@@ -459,7 +459,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility
         private static string GetEnableLayerCommandText(string layerName, bool isEnabled)
         {
             return String.Format(
-                CultureInfo.CurrentCulture, isEnabled ? Resources.Layer_DisableLayer : Resources.Layer_EnableLayer, layerName);
+                CultureInfo.CurrentCulture, isEnabled ? EdmxDesignerResources.Layer_DisableLayer : EdmxDesignerResources.Layer_EnableLayer, layerName);
         }
 
         /// <summary>
@@ -549,7 +549,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility
             if (editingContextMgr.DoesContextExist(_artifact.Uri))
             {
                 var txname = string.Format(
-                    CultureInfo.CurrentCulture, enable ? Resources.Tx_LayerEnable : Resources.Tx_LayerDisable, layer.Name);
+                    CultureInfo.CurrentCulture, enable ? EdmxDesignerResources.Tx_LayerEnable : EdmxDesignerResources.Tx_LayerDisable, layer.Name);
                 CommandProcessorContext cpc = new CommandProcessorContext(
                     editingContextMgr.GetNewOrExistingContext(_artifact.Uri), EfiTransactionOriginator.EntityDesignerOriginatorId, txname);
                 var cmd = ModelHelper.CreateSetDesignerPropertyValueCommandFromArtifact(

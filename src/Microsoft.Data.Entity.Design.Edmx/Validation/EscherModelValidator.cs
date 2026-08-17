@@ -162,7 +162,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
                     {
                         ArtifactSet.AddError(
                             new ErrorInfo(
-                                ErrorInfo.Severity.ERROR, Resources.EscherValidation_UsingNotSupported, obj,
+                                ErrorInfo.Severity.ERROR, EdmxResources.EscherValidation_UsingNotSupported, obj,
                                 ErrorCodes.ESCHER_VALIDATOR_INCLUDES_USING, ErrorClass.Escher_CSDL));
                     }
                 }
@@ -178,7 +178,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
                         if (baseTypes.Contains(t))
                         {
                             var msg = String.Format(
-                                CultureInfo.CurrentCulture, Resources.EscherValidation_CiricularInheritance,
+                                CultureInfo.CurrentCulture, EdmxResources.EscherValidation_CiricularInheritance,
                                 NameableItemsToCommaSeparatedString(baseTypes));
                             ArtifactSet.AddError(
                                 new ErrorInfo(
@@ -197,7 +197,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
                 if (ModelHelper.ContainsCircularComplexTypeDefinition(complexType))
                 {
                     var msg = String.Format(
-                        CultureInfo.CurrentCulture, Resources.EscherValidation_CiricularComplexTypeDefinition, complexType.LocalName.Value);
+                        CultureInfo.CurrentCulture, EdmxResources.EscherValidation_CiricularComplexTypeDefinition, complexType.LocalName.Value);
                     ArtifactSet.AddError(
                         new ErrorInfo(
                             ErrorInfo.Severity.ERROR, msg, complexType, ErrorCodes.ESCHER_VALIDATOR_CIRCULAR_COMPLEX_TYPE_DEFINITION,
@@ -218,7 +218,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
                     if (allEntitySets.Count > 1)
                     {
                         var msg = String.Format(
-                            CultureInfo.CurrentCulture, Resources.EscherValidation_MultipleEntitySetsPerType, t.LocalName.Value,
+                            CultureInfo.CurrentCulture, EdmxResources.EscherValidation_MultipleEntitySetsPerType, t.LocalName.Value,
                             NameableItemsToCommaSeparatedString(allEntitySets));
                         var errorClass = ErrorClass.Escher_CSDL;
                         if (t is StorageEntityType)
@@ -239,7 +239,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
                     if (t.EntitySet == null)
                     {
                         var msg = String.Format(
-                            CultureInfo.CurrentCulture, Resources.EscherValidation_EntityTypesWithoutEntitySets, t.LocalName.Value);
+                            CultureInfo.CurrentCulture, EdmxResources.EscherValidation_EntityTypesWithoutEntitySets, t.LocalName.Value);
                         var errorClass = ErrorClass.Escher_CSDL;
                         if (t is StorageEntityType)
                         {
@@ -261,7 +261,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
                         if (a.AssociationSet == null)
                         {
                             var msg = String.Format(
-                                CultureInfo.CurrentCulture, Resources.EscherValidation_AssociationWithtouAssociationSet, a.LocalName.Value);
+                                CultureInfo.CurrentCulture, EdmxResources.EscherValidation_AssociationWithtouAssociationSet, a.LocalName.Value);
                             ArtifactSet.AddError(
                                 new ErrorInfo(
                                     ErrorInfo.Severity.WARNING, msg, a, ErrorCodes.ESCHER_VALIDATOR_ASSOCIATION_WITHOUT_ASSOCIATION_SET,
@@ -292,7 +292,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
                         }
 
                         var msg = String.Format(
-                            CultureInfo.CurrentCulture, Resources.EscherValidation_UnmappedEntityType, et.LocalName.Value);
+                            CultureInfo.CurrentCulture, EdmxResources.EscherValidation_UnmappedEntityType, et.LocalName.Value);
                         ArtifactSet.AddError(
                             new ErrorInfo(severity, msg, et, ErrorCodes.ESCHER_VALIDATOR_UNMAPPED_ENTITY_TYPE, ErrorClass.Escher_MSL));
                         return;
@@ -307,7 +307,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
                             if (sps.Count == 0)
                             {
                                 var msg = String.Format(
-                                    CultureInfo.CurrentCulture, Resources.EscherValidation_UnmappedProperty, p.LocalName.Value);
+                                    CultureInfo.CurrentCulture, EdmxResources.EscherValidation_UnmappedProperty, p.LocalName.Value);
                                 ArtifactSet.AddError(
                                     new ErrorInfo(severity, msg, p, ErrorCodes.ESCHER_VALIDATOR_UNMAPPED_PROPERTY, ErrorClass.Escher_MSL));
                             }
@@ -351,7 +351,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
                             if (unmapped)
                             {
                                 var msg = String.Format(
-                                    CultureInfo.CurrentCulture, Resources.EscherValidation_UnmappedProperty,
+                                    CultureInfo.CurrentCulture, EdmxResources.EscherValidation_UnmappedProperty,
                                     propertyName + "." + property.LocalName.Value);
                                 ArtifactSet.AddError(
                                     new ErrorInfo(
@@ -394,7 +394,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
                         }
 
                         var msg = String.Format(
-                            CultureInfo.CurrentCulture, Resources.EscherValidation_UnmappedAssociation, a.LocalName.Value);
+                            CultureInfo.CurrentCulture, EdmxResources.EscherValidation_UnmappedAssociation, a.LocalName.Value);
                         ArtifactSet.AddError(
                             new ErrorInfo(severity, msg, a, ErrorCodes.ESCHER_VALIDATOR_UNMAPPED_ASSOCIATION, ErrorClass.Escher_MSL));
                         return;
@@ -421,7 +421,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
                                 objectForError ??= a;
 
                                 var msg = String.Format(
-                                    CultureInfo.CurrentCulture, Resources.EscherValidation_UnmappedAssociationEnd,
+                                    CultureInfo.CurrentCulture, EdmxResources.EscherValidation_UnmappedAssociationEnd,
                                     ae.GetNameAttribute().Value);
                                 ArtifactSet.AddError(
                                     new ErrorInfo(
@@ -477,7 +477,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
                                     {
                                         // didn't find the key property mapped so add an error
                                         var msg = String.Format(
-                                            CultureInfo.CurrentCulture, Resources.EscherValidation_UnmappedAssociationEndKey,
+                                            CultureInfo.CurrentCulture, EdmxResources.EscherValidation_UnmappedAssociationEndKey,
                                             prop.LocalName.Value);
                                         ArtifactSet.AddError(
                                             new ErrorInfo(
@@ -511,7 +511,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
                         ArtifactSet.AddError(
                             new ErrorInfo(
                                 ErrorInfo.Severity.WARNING,
-                                Resources.EnumPropertyHasNonEmptyStoreGeneratedPattern,
+                                EdmxResources.EnumPropertyHasNonEmptyStoreGeneratedPattern,
                                 property,
                                 ErrorCodes.ESCHER_VALIDATOR_ENUM_PROPERTY_WITH_STOREGENERATEDPATTERN,
                                 ErrorClass.Escher_CSDL));
@@ -529,7 +529,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
                     i++;
                     if (i < types.Count)
                     {
-                        sb.Append(Resources.SeparatorCharacterForMultipleItemsInAnErrorMessage);
+                        sb.Append(EdmxResources.SeparatorCharacterForMultipleItemsInAnErrorMessage);
                     }
                 }
                 return sb.ToString();

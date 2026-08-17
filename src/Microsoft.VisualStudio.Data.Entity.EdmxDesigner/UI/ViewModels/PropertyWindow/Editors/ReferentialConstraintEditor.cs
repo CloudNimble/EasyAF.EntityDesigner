@@ -36,7 +36,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
                     CommandProcessorContext cpc = new CommandProcessorContext(
                         desc.EditingContext,
                         EfiTransactionOriginator.PropertyWindowOriginatorId,
-                        Resources.Tx_ReferentialContraint);
+                        EdmxDesignerResources.Tx_ReferentialContraint);
                     CommandProcessor cp = new CommandProcessor(cpc);
                     foreach (var c in commands)
                     {

@@ -21,7 +21,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
     internal class ColumnNameColumn : BaseColumn
     {
         public ColumnNameColumn()
-            : base(Resources.MappingDetails_ColumnName)
+            : base(EdmxDesignerResources.MappingDetails_ColumnName)
         {
         }
 
@@ -192,7 +192,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
                     // they switched to a different table so delete the old
                     // underlying model item and create a new one
                     CommandProcessorContext cpc = new CommandProcessorContext(
-                        Host.Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_UpdateMappingFragment);
+                        Host.Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_UpdateMappingFragment);
                     mset.SwitchModelItem(cpc, Host.Context, et, false);
                     OnValueChanged(this, new ColumnValueChangedEventArgs(new TreeGridDesignerBranchChangedArgs()));
                 }

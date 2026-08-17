@@ -4,8 +4,8 @@ using System;
 using System.Globalization;
 using Microsoft.Data.Entity.Design.Edmx.Validation;
 using Microsoft.VisualStudio.Modeling.Validation;
-using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.Resources;
-using ModelRes = Microsoft.Data.Entity.Design.Edmx.Resources;
+using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.DiagramsResources;
+using ModelRes = Microsoft.Data.Entity.Design.Edmx.EdmxResources;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
 {

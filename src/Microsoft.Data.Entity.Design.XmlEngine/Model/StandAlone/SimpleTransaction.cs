@@ -190,7 +190,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model.StandAlone
             if (status == XmlTransactionStatus.Committed
                 || status == XmlTransactionStatus.Aborted)
             {
-                throw new XmlTransactionException(Resources.VanillaProvider_TxAlreadyCompleted);
+                throw new XmlTransactionException(XmlEngineResources.VanillaProvider_TxAlreadyCompleted);
             }
 
             try
@@ -223,7 +223,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model.StandAlone
             if (status == XmlTransactionStatus.Committed
                 || status == XmlTransactionStatus.Aborted)
             {
-                throw new XmlTransactionException(Resources.VanillaProvider_TxAlreadyCompleted);
+                throw new XmlTransactionException(XmlEngineResources.VanillaProvider_TxAlreadyCompleted);
             }
 
             try

@@ -155,7 +155,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common
                 if (Services.ContainsKey(serviceType))
                 {
                     throw new InvalidOperationException(
-                        CommonResourceUtil.GetString(Resources.ServiceProvider_ServiceAlreadyExists, serviceType.FullName));
+                        CommonResourceUtil.GetString(XmlDesignerResources.ServiceProvider_ServiceAlreadyExists, serviceType.FullName));
                 }
                 Services.Add(serviceType, callback);
             }
@@ -181,7 +181,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common
                 !serviceType.IsInstanceOfType(serviceInstance))
             {
                 throw new ArgumentException(
-                    CommonResourceUtil.GetString(Resources.ServiceProvider_InvalidServiceInstance, serviceType.FullName, "serviceInstance"));
+                    CommonResourceUtil.GetString(XmlDesignerResources.ServiceProvider_InvalidServiceInstance, serviceType.FullName, "serviceInstance"));
             }
 
             if (promote && ParentContainer != null)
@@ -195,7 +195,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common
                 if (Services.ContainsKey(serviceType))
                 {
                     throw new InvalidOperationException(
-                        CommonResourceUtil.GetString(Resources.ServiceProvider_ServiceAlreadyExists, serviceType.FullName));
+                        CommonResourceUtil.GetString(XmlDesignerResources.ServiceProvider_ServiceAlreadyExists, serviceType.FullName));
                 }
                 Services.Add(serviceType, serviceInstance);
             }

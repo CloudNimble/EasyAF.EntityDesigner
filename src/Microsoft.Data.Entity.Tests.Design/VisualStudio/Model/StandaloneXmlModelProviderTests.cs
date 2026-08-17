@@ -11,11 +11,12 @@ using System.Xml.Linq;
 using Microsoft.Data.Entity.Tests.Design.TestHelpers;
 using VSLangProj;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Resources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources;
+using Resources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.EdmxDesignerResources;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.VisualStudio.Data.Entity.Extensibility;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.Model
 {
@@ -82,7 +83,7 @@ namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.Model
                 new[] { transformer }, out string outputDocument, out List<ExtensionError> errors);
 
             action.Should().Throw<InvalidOperationException>()
-                .WithMessage(Resources.Extensibility_NoConverterForExtension);
+                .WithMessage(EdmxDesignerResources.Extensibility_NoConverterForExtension);
         }
 
         [TestMethod]

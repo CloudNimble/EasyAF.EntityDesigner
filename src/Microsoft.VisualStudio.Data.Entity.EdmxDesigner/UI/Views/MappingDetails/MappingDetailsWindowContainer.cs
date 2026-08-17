@@ -229,7 +229,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
                 CommandProcessorContext cpc = new CommandProcessorContext(
                     _hostContext,
                     EfiTransactionOriginator.MappingDetailsOriginatorId,
-                    Resources.Tx_DeleteAssociationSetMapping);
+                    EdmxDesignerResources.Tx_DeleteAssociationSetMapping);
                 CommandProcessor cp = new CommandProcessor(cpc);
                 foreach (var associationSetMapping in associationSetMappings)
                 {
@@ -326,7 +326,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
 
             // TODO: do we really need to do this?
             // Ensure that the sproc button text is reset
-            sprocsButton.Text = Resources.MappingDetails_SProcsButtonText;
+            sprocsButton.Text = EdmxDesignerResources.MappingDetails_SProcsButtonText;
 
             if (_hostContext == null)
             {

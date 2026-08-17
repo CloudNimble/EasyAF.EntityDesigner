@@ -108,7 +108,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
 
                     ChangeFunctionScalarPropertyCommand cmd = new ChangeFunctionScalarPropertyCommand(ScalarProperty, version);
                     CommandProcessor cp = new CommandProcessor(
-                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_ChangeScalarProperty, cmd);
+                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_ChangeScalarProperty, cmd);
                     cp.Invoke();
                 }
                 else
@@ -255,7 +255,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                     // delete old and create new FunctionScalarProperty in one transaction - this takes care of
                     // removing any old ComplexProperty or AssociationEnd parent nodes as necessary
                     CommandProcessorContext cpc = new CommandProcessorContext(
-                        context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_ChangeScalarProperty);
+                        context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_ChangeScalarProperty);
                     var version = (ScalarProperty.Version?.Value);
                     // Version is used only for Update ModificationFunctions
                     ChangeFunctionScalarPropertyCommand cmd = new ChangeFunctionScalarPropertyCommand(
@@ -490,7 +490,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
 
             // create a context if we weren't passed one
             cpc ??= new CommandProcessorContext(
-                    Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_CreateScalarProperty);
+                    Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_CreateScalarProperty);
 
             // create the FunctionScalarProperty command (including any intermediate ComplexProperty's or AssociationEnd's)
             var version = (MappingModificationFunctionMapping.ModificationFunctionType == ModificationFunctionType.Update
@@ -541,7 +541,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
 
                 // create a context if we weren't passed one
                 cpc ??= new CommandProcessorContext(
-                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_DeleteScalarProperty);
+                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_DeleteScalarProperty);
 
                 // use the item's delete command
                 var deleteCommand = ScalarProperty.GetDeleteCommand();

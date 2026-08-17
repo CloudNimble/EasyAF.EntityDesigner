@@ -36,7 +36,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                 && String.IsNullOrWhiteSpace(NewName))
             {
                 // not valid content
-                var msg = string.Format(CultureInfo.CurrentCulture, Resources.BAD_DIAGRAM_NAME);
+                var msg = string.Format(CultureInfo.CurrentCulture, EdmxResources.BAD_DIAGRAM_NAME);
                 throw new CommandValidationFailedException(msg);
             }
             else

@@ -23,7 +23,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Mapping
             string resource;
             if (localize)
             {
-                resource = Resources.MappingModel_InsertFunctionDisplayName;
+                resource = EdmxResources.MappingModel_InsertFunctionDisplayName;
             }
             else
             {

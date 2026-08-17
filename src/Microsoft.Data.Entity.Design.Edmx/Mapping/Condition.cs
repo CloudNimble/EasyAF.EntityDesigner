@@ -131,7 +131,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Mapping
             string resource;
             if (localize)
             {
-                resource = Resources.MappingModel_ConditionDisplayName;
+                resource = EdmxResources.MappingModel_ConditionDisplayName;
             }
             else
             {
@@ -182,7 +182,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Mapping
                 && ColumnName.Status == BindingStatus.Known)
             {
                 ErrorInfo errorInfo = new ErrorInfo(
-                    ErrorInfo.Severity.ERROR, Resources.RESOLVE_CONDITION_BOUND_TO_PROP_AND_COLUMN, this,
+                    ErrorInfo.Severity.ERROR, EdmxResources.RESOLVE_CONDITION_BOUND_TO_PROP_AND_COLUMN, this,
                     ErrorCodes.RESOLVE_CONDITION_BOUND_TO_PROP_AND_COLUMN, ErrorClass.ResolveError);
                 artifactSet.AddError(errorInfo);
             }

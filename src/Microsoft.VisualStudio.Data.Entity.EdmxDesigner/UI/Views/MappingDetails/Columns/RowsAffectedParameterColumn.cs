@@ -11,7 +11,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
     internal class RowsAffectedParameterColumn : BaseColumn
     {
         public RowsAffectedParameterColumn()
-            : base(Resources.MappingDetails_RowsAffectedParameterColumn)
+            : base(EdmxDesignerResources.MappingDetails_RowsAffectedParameterColumn)
         {
         }
 

@@ -206,4 +206,44 @@ Caught exception of type {2} with message {3} and stack trace {4}</value>
   <data name="ServiceProvider_ServiceAlreadyExists" xml:space="preserve">
     <value>Service {0} already exists in the service container.</value>
   </data>
+  <data name="BadInsertBadChildType" xml:space="preserve">
+    <value>Cannot insert a child of type '{0}' into a parent of type '{1}'.</value>
+  </data>
+  <data name="BadInsertChildAlreadyExists" xml:space="preserve">
+    <value>Cannot insert a child of type '{0}' into a parent of type '{1}' because the child already exists.</value>
+  </data>
+  <data name="BadRemoveChildNotParent" xml:space="preserve">
+    <value>Cannot remove the child '{0}' from the node '{1}' because the node is not the child's parent.</value>
+  </data>
+  <data name="DesignerViewCommandsText" xml:space="preserve">
+    <value>Change Center</value>
+  </data>
+  <data name="ExplorerSearchResults_IndividualFormat" xml:space="preserve">
+    <value>[{0}] = {1} ({2})</value>
+  </data>
+  <data name="ExplorerSearchResults_OverallFormat" xml:space="preserve">
+    <value>Number of Search Results = {0}
+Results = [{1}]
+Index of Previous = {2}
+Index of Next = {3}
+Current Selection in Search Results = {4}</value>
+  </data>
+  <data name="NumOfSearchResultsFound" xml:space="preserve">
+    <value>({0} found)</value>
+  </data>
+  <data name="PropertyWindow_Value_False" xml:space="preserve">
+    <value>False</value>
+  </data>
+  <data name="PropertyWindow_Value_True" xml:space="preserve">
+    <value>True</value>
+  </data>
+  <data name="RenameTransactionNameFormat" xml:space="preserve">
+    <value>Rename {0}</value>
+  </data>
+  <data name="SwitchConverterErrorMessage" xml:space="preserve">
+    <value>{0} is OneWay</value>
+  </data>
+  <data name="Tx_PropertyChangeUndoString" xml:space="preserve">
+    <value>Set {0}</value>
+  </data>
 </root>

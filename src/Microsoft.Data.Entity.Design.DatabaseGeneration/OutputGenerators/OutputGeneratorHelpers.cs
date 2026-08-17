@@ -63,7 +63,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators
                 && principalEnd != null)
             {
                 associationName = String.Format(
-                    CultureInfo.CurrentCulture, Resources.CodeViewManyToManyAssocName, association.Name, principalEnd.Name);
+                    CultureInfo.CurrentCulture, DatabaseGenerationResources.CodeViewManyToManyAssocName, association.Name, principalEnd.Name);
             }
             return associationName;
         }
@@ -84,7 +84,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators
                 && principalEnd != null)
             {
                 associationSetName = String.Format(
-                    CultureInfo.CurrentCulture, Resources.CodeViewManyToManyAssocName, associationSet.Name, principalEnd.Name);
+                    CultureInfo.CurrentCulture, DatabaseGenerationResources.CodeViewManyToManyAssocName, associationSet.Name, principalEnd.Name);
             }
             return associationSetName;
         }

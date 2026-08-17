@@ -59,7 +59,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
             // 
             // toolbar
             // 
-            this.toolbar.AccessibleName = string.Format(System.Globalization.CultureInfo.CurrentCulture, Resources.MappingDetails_Toolbar_AccessibleName);
+            this.toolbar.AccessibleName = string.Format(System.Globalization.CultureInfo.CurrentCulture, EdmxDesignerResources.MappingDetails_Toolbar_AccessibleName);
             this.toolbar.CanOverflow = false;
             this.toolbar.Dock = System.Windows.Forms.DockStyle.Left;
             this.toolbar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
@@ -84,7 +84,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
             this.tablesButton.Margin = new System.Windows.Forms.Padding(2, 1, 2, 2);
             this.tablesButton.Name = "tablesButton";
             this.tablesButton.Size = new System.Drawing.Size(25, 25);
-            this.tablesButton.Text = string.Format(System.Globalization.CultureInfo.CurrentCulture, Resources.MappingDetails_TablesButtonText);
+            this.tablesButton.Text = string.Format(System.Globalization.CultureInfo.CurrentCulture, EdmxDesignerResources.MappingDetails_TablesButtonText);
             this.tablesButton.Click += new System.EventHandler(this.tablesButton_Click);
             // 
             // sprocsButton
@@ -97,7 +97,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
             this.sprocsButton.Margin = new System.Windows.Forms.Padding(2, 1, 2, 2);
             this.sprocsButton.Name = "sprocsButton";
             this.sprocsButton.Size = new System.Drawing.Size(25, 25);
-            this.sprocsButton.Text = string.Format(System.Globalization.CultureInfo.CurrentCulture, Resources.MappingDetails_SProcsButtonText);
+            this.sprocsButton.Text = string.Format(System.Globalization.CultureInfo.CurrentCulture, EdmxDesignerResources.MappingDetails_SProcsButtonText);
             this.sprocsButton.Click += new System.EventHandler(this.sprocsButton_Click);
             // 
             // contentsPanel
@@ -121,7 +121,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
             this.watermarkLabel.Name = "watermarkLabel";
             this.watermarkLabel.Size = new System.Drawing.Size(442, 193);
             this.watermarkLabel.TabIndex = 0;
-            this.watermarkLabel.Text = string.Format(System.Globalization.CultureInfo.CurrentCulture, Resources.MappingDetails_WatermarkLabelText);
+            this.watermarkLabel.Text = string.Format(System.Globalization.CultureInfo.CurrentCulture, EdmxDesignerResources.MappingDetails_WatermarkLabelText);
             this.watermarkLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MappingDetailsWindowContainer

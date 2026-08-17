@@ -63,7 +63,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
             if (!designerProperty.ValueAttr.IsValidValue(_value))
             {
                 throw new CommandValidationFailedException(
-                    String.Format(CultureInfo.CurrentCulture, Resources.NonValidDesignerProperty, _value, _name));
+                    String.Format(CultureInfo.CurrentCulture, EdmxResources.NonValidDesignerProperty, _value, _name));
             }
 
             // now we update the value of the designer property

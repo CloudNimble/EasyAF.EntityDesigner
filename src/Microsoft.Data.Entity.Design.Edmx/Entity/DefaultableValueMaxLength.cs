@@ -2,7 +2,7 @@
 
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using System;
-using XamlDesignerBaseResources = Microsoft.Data.Entity.Design.XmlEngine.Resources;
+using XamlDesignerBaseResources = Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources;
 
 
 namespace Microsoft.Data.Entity.Design.Edmx.Entity

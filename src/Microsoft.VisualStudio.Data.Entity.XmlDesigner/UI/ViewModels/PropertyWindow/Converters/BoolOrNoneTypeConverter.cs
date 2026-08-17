@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
 using System.ComponentModel;
@@ -20,15 +20,15 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyW
                 {
                     if (BoolOrNone.TrueValue.Equals(v))
                     {
-                        return global::Microsoft.Data.Entity.Design.XmlEngine.Resources.PropertyWindow_Value_True;
+                        return XmlDesignerResources.PropertyWindow_Value_True;
                     }
                     else if (BoolOrNone.FalseValue.Equals(v))
                     {
-                        return global::Microsoft.Data.Entity.Design.XmlEngine.Resources.PropertyWindow_Value_False;
+                        return XmlDesignerResources.PropertyWindow_Value_False;
                     }
                     else
                     {
-                        return global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX;
+                        return global::Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources.NoneDisplayValueUsedForUX;
                     }
                 }
             }

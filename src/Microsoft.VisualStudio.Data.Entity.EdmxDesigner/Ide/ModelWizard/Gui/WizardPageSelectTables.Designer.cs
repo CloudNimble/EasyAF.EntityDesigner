@@ -70,7 +70,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
             this.labelPrompt.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.labelPrompt.Size = new System.Drawing.Size(303, 18);
             this.labelPrompt.TabIndex = 0;
-            this.labelPrompt.Text = Properties.Resources.WhichDatabaseObjectsLabel;
+            this.labelPrompt.Text = Properties.ModelWizardResources.WhichDatabaseObjectsLabel;
             // 
             // modelNamespaceLabel
             // 
@@ -80,11 +80,11 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
             this.modelNamespaceLabel.Name = "modelNamespaceLabel";
             this.modelNamespaceLabel.Size = new System.Drawing.Size(100, 18);
             this.modelNamespaceLabel.TabIndex = 3; 
-            this.modelNamespaceLabel.Text = Properties.Resources.SelectTablesPage_ModelNamespaceLabel;
+            this.modelNamespaceLabel.Text = Properties.ModelWizardResources.SelectTablesPage_ModelNamespaceLabel;
             // 
             // modelNamespaceTextBox
             // 
-            this.modelNamespaceTextBox.AccessibleName = global::Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.Resources.SelectTablesPage_ModelNamespaceAccessibleName;
+            this.modelNamespaceTextBox.AccessibleName = global::Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.ModelWizardResources.SelectTablesPage_ModelNamespaceAccessibleName;
             this.modelNamespaceTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.modelNamespaceTextBox.Location = new System.Drawing.Point(0, 264);
             this.modelNamespaceTextBox.Name = "modelNamespaceTextBox";
@@ -98,9 +98,9 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
             this.chkPluralize.Name = "chkPluralize";
             this.chkPluralize.Size = new System.Drawing.Size(497, 17);
             this.chkPluralize.TabIndex = 2;
-            this.chkPluralize.Text = Properties.Resources.SelectTables_PluralizeCheckbox;
+            this.chkPluralize.Text = Properties.ModelWizardResources.SelectTables_PluralizeCheckbox;
             this.chkPluralize.UseVisualStyleBackColor = true;
-            this.toolTip.SetToolTip(this.chkPluralize, Properties.Resources.PluralizeCheckBoxToolTipText);
+            this.toolTip.SetToolTip(this.chkPluralize, Properties.ModelWizardResources.PluralizeCheckBoxToolTipText);
             // 
             // chkIncludeForeignKeys
             // 
@@ -109,7 +109,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
             this.chkIncludeForeignKeys.Name = "chkIncludeForeignKeys";
             this.chkIncludeForeignKeys.Size = new System.Drawing.Size(497, 17);
             this.chkIncludeForeignKeys.TabIndex = 3;
-            this.chkIncludeForeignKeys.Text = Properties.Resources.SelectTablesPage_IncludeForeignKeys;
+            this.chkIncludeForeignKeys.Text = Properties.ModelWizardResources.SelectTablesPage_IncludeForeignKeys;
             this.chkIncludeForeignKeys.UseVisualStyleBackColor = true;
             this.toolTip.SetToolTip(this.chkIncludeForeignKeys, string.Empty);
             // 
@@ -120,9 +120,9 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
             this.chkCreateFunctionImports.Name = "chkCreateFunctionImports";
             this.chkCreateFunctionImports.Size = new System.Drawing.Size(497, 17);
             this.chkCreateFunctionImports.TabIndex = 4;
-            this.chkCreateFunctionImports.Text = Properties.Resources.SelectTablesPage_CreateFunctionImports;
+            this.chkCreateFunctionImports.Text = Properties.ModelWizardResources.SelectTablesPage_CreateFunctionImports;
             this.chkCreateFunctionImports.UseVisualStyleBackColor = true;
-            this.toolTip.SetToolTip(this.chkCreateFunctionImports, Properties.Resources.CreateFunctionImportsCheckBoxToolTipText);
+            this.toolTip.SetToolTip(this.chkCreateFunctionImports, Properties.ModelWizardResources.CreateFunctionImportsCheckBoxToolTipText);
             // 
             // WizardPageSelectTables
             // 

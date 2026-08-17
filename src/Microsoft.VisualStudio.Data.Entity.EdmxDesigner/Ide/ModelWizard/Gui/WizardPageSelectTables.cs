@@ -43,12 +43,12 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
         {
             InitializeComponent();
 
-            Logo = ModelWizard.Properties.Resources.PageIcon;
-            Headline = ModelWizard.Properties.Resources.SelectTablesPage_Title;
+            Logo = ModelWizard.Properties.ModelWizardResources.PageIcon;
+            Headline = ModelWizard.Properties.ModelWizardResources.SelectTablesPage_Title;
             Id = "WizardPageSelectTablesId";
             ShowInfoPanel = false;
 
-            labelPrompt.Text = ModelWizard.Properties.Resources.WhichDatabaseObjectsLabel;
+            labelPrompt.Text = ModelWizard.Properties.ModelWizardResources.WhichDatabaseObjectsLabel;
             labelPrompt.Font = LabelFont;
 
             HelpKeyword = null;
@@ -75,19 +75,19 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
                 // default to checked if culture is english
                 chkPluralize.Enabled = true;
                 chkPluralize.Checked = true;
-                toolTip.SetToolTip(chkPluralize, ModelWizard.Properties.Resources.PluralizeCheckBoxToolTipText);
+                toolTip.SetToolTip(chkPluralize, ModelWizard.Properties.ModelWizardResources.PluralizeCheckBoxToolTipText);
             }
             else
             {
                 // even if non-english, we still want the option available, just not checked by default
                 chkPluralize.Enabled = true;
                 chkPluralize.Checked = false;
-                toolTip.SetToolTip(chkPluralize, ModelWizard.Properties.Resources.PluralizeCheckBoxDisabledToolTipText);
+                toolTip.SetToolTip(chkPluralize, ModelWizard.Properties.ModelWizardResources.PluralizeCheckBoxDisabledToolTipText);
             }
 
             toolTip.SetToolTip(
                 chkIncludeForeignKeys,
-                ModelWizard.Properties.Resources.SelectTablesPage_IncludeForeignKeysToolTip);
+                ModelWizard.Properties.ModelWizardResources.SelectTablesPage_IncludeForeignKeysToolTip);
 
             // assume we have no Stored Procs and so default the Create Function Imports checkbox to unchecked and not enabled
             chkCreateFunctionImports.Enabled = false;
@@ -136,7 +136,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
                 databaseObjectTreeView.TreeViewControl.Nodes.Clear();
 
                 // Put up a status message
-                databaseObjectTreeView.ShowStatus(ModelWizard.Properties.Resources.SelectTablesPage_StatusRetrievingTablesText);
+                databaseObjectTreeView.ShowStatus(ModelWizard.Properties.ModelWizardResources.SelectTablesPage_StatusRetrievingTablesText);
 
                 // Get table names in a background thread
                 _stopwatch.Reset();
@@ -284,7 +284,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
             {
                 if (VsUtils.ShowMessageBox(
                     PackageManager.Package,
-                    ModelWizard.Properties.Resources.SelectTablesPage_ConfirmNoTables,
+                    ModelWizard.Properties.ModelWizardResources.SelectTablesPage_ConfirmNoTables,
                     OLEMSGBUTTON.OLEMSGBUTTON_YESNO,
                     OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST,
                     OLEMSGICON.OLEMSGICON_QUERY) != DialogResult.Yes)
@@ -307,7 +307,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
         {
             if (!EdmUtils.IsValidModelNamespace(modelNamespaceTextBox.Text))
             {
-                var s = ModelWizard.Properties.Resources.ConnectionStringNonValidIdentifier;
+                var s = ModelWizard.Properties.ModelWizardResources.ConnectionStringNonValidIdentifier;
                 VsUtils.ShowErrorDialog(String.Format(CultureInfo.CurrentCulture, s, modelNamespaceTextBox.Text));
                 modelNamespaceTextBox.Focus();
                 return false;
@@ -316,7 +316,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
             // the Model Namespace and the Entity Container name must differ
             if (ModelBuilderWizardForm.ModelNamespaceAndEntityContainerNameSame(modelBuilderSettings))
             {
-                var s = ModelWizard.Properties.Resources.NamespaceAndEntityContainerSame;
+                var s = ModelWizard.Properties.ModelWizardResources.NamespaceAndEntityContainerSame;
                 VsUtils.ShowErrorDialog(String.Format(CultureInfo.CurrentCulture, s, modelBuilderSettings.AppConfigConnectionPropertyName));
                 modelNamespaceTextBox.Focus();
                 return false;
@@ -439,7 +439,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
                 databaseObjectTreeView.ShowStatus(
                     String.Format(
                         CultureInfo.CurrentCulture,
-                        ModelWizard.Properties.Resources.SelectTablesPage_ErrorRetrievingTablesText, e.Message));
+                        ModelWizard.Properties.ModelWizardResources.SelectTablesPage_ErrorRetrievingTablesText, e.Message));
                 Wizard.EnableButton(ButtonType.Cancel, true);
             }
         }
@@ -451,11 +451,11 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
         {
             databaseObjectTreeView.TreeViewControl.Nodes.Add(
                 DatabaseObjectTreeView.CreateRootNodeAndDescendents(
-                    tableEntries, ModelWizard.Properties.Resources.SelectTablesPage_TablesNode,
+                    tableEntries, ModelWizard.Properties.ModelWizardResources.SelectTablesPage_TablesNode,
                     DatabaseObjectTreeView.TreeViewImage.DbTablesImage, DatabaseObjectTreeView.TreeViewImage.TableImage));
             databaseObjectTreeView.TreeViewControl.Nodes.Add(
                 DatabaseObjectTreeView.CreateRootNodeAndDescendents(
-                    viewEntries, ModelWizard.Properties.Resources.SelectTablesPage_ViewsNode,
+                    viewEntries, ModelWizard.Properties.ModelWizardResources.SelectTablesPage_ViewsNode,
                     DatabaseObjectTreeView.TreeViewImage.DbViewsImage, DatabaseObjectTreeView.TreeViewImage.ViewImage));
 
             // sprocEntries will be null for CodeFirst from database
@@ -463,7 +463,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
             {
                 databaseObjectTreeView.TreeViewControl.Nodes.Add(
                     DatabaseObjectTreeView.CreateRootNodeAndDescendents(
-                        sprocEntries, ModelWizard.Properties.Resources.SelectTablesPage_StoredProceduresNode,
+                        sprocEntries, ModelWizard.Properties.ModelWizardResources.SelectTablesPage_StoredProceduresNode,
                         DatabaseObjectTreeView.TreeViewImage.DbStoreProcsImage, DatabaseObjectTreeView.TreeViewImage.StoreProcImage));
             }
         }

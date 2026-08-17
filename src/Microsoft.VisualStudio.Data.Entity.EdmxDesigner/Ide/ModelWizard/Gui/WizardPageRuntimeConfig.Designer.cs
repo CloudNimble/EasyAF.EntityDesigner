@@ -60,7 +60,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
             // notificationPictureBox
             // 
             resources.ApplyResources(this.notificationPictureBox, "notificationPictureBox");
-            this.notificationPictureBox.Image = global::Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.Resources.Information;
+            this.notificationPictureBox.Image = global::Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.ModelWizardResources.Information;
             this.notificationPictureBox.Name = "notificationPictureBox";
             this.notificationPictureBox.TabStop = false;
             // 

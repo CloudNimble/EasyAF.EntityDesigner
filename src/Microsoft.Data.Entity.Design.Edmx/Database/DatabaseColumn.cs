@@ -42,7 +42,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Database
 
         public override string ToString()
         {
-            return string.Format(CultureInfo.InvariantCulture, Resources.DatabaseColumnNameFormat, Table.ToString(), Column);
+            return string.Format(CultureInfo.InvariantCulture, EdmxResources.DatabaseColumnNameFormat, Table.ToString(), Column);
         }
 
         internal static DatabaseColumn CreateFromProperty(Property prop)

@@ -107,7 +107,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
                 artifactSet.AddError(
                     new ErrorInfo(
                         ErrorInfo.Severity.ERROR,
-                        Resources.ErrorValidatingArtifact_ConceptualModelMissing,
+                        EdmxResources.ErrorValidatingArtifact_ConceptualModelMissing,
                         designArtifact,
                         ErrorCodes.ErrorValidatingArtifact_ConceptualModelMissing,
                         ErrorClass.Runtime_CSDL));
@@ -121,7 +121,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
                 artifactSet.AddError(
                     new ErrorInfo(
                         ErrorInfo.Severity.ERROR,
-                        Resources.ErrorValidatingArtifact_InvalidCSDLNamespaceForTargetFrameworkVersion,
+                        EdmxResources.ErrorValidatingArtifact_InvalidCSDLNamespaceForTargetFrameworkVersion,
                         designArtifact.ConceptualModel,
                         ErrorCodes.ErrorValidatingArtifact_InvalidCSDLNamespaceForTargetFrameworkVersion,
                         ErrorClass.Runtime_CSDL));
@@ -151,7 +151,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
                 artifactSet.AddError(
                     new ErrorInfo(
                         ErrorInfo.Severity.ERROR,
-                        Resources.ErrorValidatingArtifact_StorageModelMissing,
+                        EdmxResources.ErrorValidatingArtifact_StorageModelMissing,
                         designArtifact,
                         ErrorCodes.ErrorValidatingArtifact_StorageModelMissing,
                         ErrorClass.Runtime_SSDL));
@@ -165,7 +165,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
                 artifactSet.AddError(
                     new ErrorInfo(
                         ErrorInfo.Severity.ERROR,
-                        Resources.ErrorValidatingArtifact_InvalidSSDLNamespaceForTargetFrameworkVersion,
+                        EdmxResources.ErrorValidatingArtifact_InvalidSSDLNamespaceForTargetFrameworkVersion,
                         designArtifact.StorageModel,
                         ErrorCodes.ErrorValidatingArtifact_InvalidSSDLNamespaceForTargetFrameworkVersion,
                         ErrorClass.Runtime_CSDL));
@@ -204,7 +204,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
                 artifactSet.AddError(
                     new ErrorInfo(
                         ErrorInfo.Severity.ERROR,
-                        Resources.ErrorValidatingArtifact_MappingModelMissing,
+                        EdmxResources.ErrorValidatingArtifact_MappingModelMissing,
                         designArtifact,
                         ErrorCodes.ErrorValidatingArtifact_MappingModelMissing,
                         ErrorClass.Runtime_MSL));
@@ -220,7 +220,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
                 artifactSet.AddError(
                     new ErrorInfo(
                         ErrorInfo.Severity.ERROR,
-                        Resources.ErrorValidatingArtifact_InvalidMSLNamespaceForTargetFrameworkVersion,
+                        EdmxResources.ErrorValidatingArtifact_InvalidMSLNamespaceForTargetFrameworkVersion,
                         designArtifact.MappingModel,
                         ErrorCodes.ErrorValidatingArtifact_InvalidMSLNamespaceForTargetFrameworkVersion,
                         ErrorClass.Runtime_MSL));
@@ -270,13 +270,13 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
                     // is classified as a Runtime_CSDL error even though we are using an Escher error code
                     // since we are basically re-interpreting a runtime error.
                     if (efObject is ComplexConceptualProperty property
-                        && property.ComplexType.RefName == Resources.ComplexPropertyUndefinedType)
+                        && property.ComplexType.RefName == EdmxResources.ComplexPropertyUndefinedType)
                     {
                         artifactSet.AddError(
                             new ErrorInfo(
                                 ErrorInfo.Severity.ERROR,
                                 string.Format(
-                                    CultureInfo.CurrentCulture, Resources.EscherValidation_UndefinedComplexPropertyType,
+                                    CultureInfo.CurrentCulture, EdmxResources.EscherValidation_UndefinedComplexPropertyType,
                                     property.LocalName.Value),
                                 property,
                                 ErrorCodes.ESCHER_VALIDATOR_UNDEFINED_COMPLEX_PROPERTY_TYPE,
@@ -296,7 +296,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
                             new ErrorInfo(
                                 GetErrorInfoSeverity(error),
                                 string.Format(
-                                    CultureInfo.CurrentCulture, Resources.EscherValidation_IgnoreMappedFKAssociation,
+                                    CultureInfo.CurrentCulture, EdmxResources.EscherValidation_IgnoreMappedFKAssociation,
                                     associationSetMapping.Name.RefName),
                                 efObject,
                                 error.ErrorCode,

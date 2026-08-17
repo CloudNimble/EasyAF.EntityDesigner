@@ -145,16 +145,16 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.SingleFileGenerato
             {
                 // It would be nice to add an error in the error list, but you need an IServiceProvider to do this
                 // We use our package usually for this, but here, our pacakge failed to load.  Raise a message box
-                VsUtils.ShowErrorDialog(Resources.LoadOurPackageError);
+                VsUtils.ShowErrorDialog(EdmxDesignerResources.LoadOurPackageError);
 
                 string commentString;
                 if (languageOption == LanguageOption.GenerateVBCode)
                 {
-                    commentString = "' " + Resources.LoadOurPackageError;
+                    commentString = "' " + EdmxDesignerResources.LoadOurPackageError;
                 }
                 else
                 {
-                    commentString = "// " + Resources.LoadOurPackageError;
+                    commentString = "// " + EdmxDesignerResources.LoadOurPackageError;
                 }
                 generatedBytes = Encoding.UTF8.GetBytes(commentString);
                 return generatedBytes;

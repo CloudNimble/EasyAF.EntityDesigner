@@ -97,7 +97,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
                     if (nname == null)
                     {
                         throw new InvalidOperationException(
-                            string.Format(CultureInfo.CurrentCulture, Resources.UnresolvedReference_0, RefName));
+                            string.Format(CultureInfo.CurrentCulture, EdmxResources.UnresolvedReference_0, RefName));
                     }
                     else
                     {
@@ -168,7 +168,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
                 var target = Target;
                 if (target == null)
                 {
-                    ModelHelper.InvalidSchemaError(Resources.UnresolvedReference_0, RefName);
+                    ModelHelper.InvalidSchemaError(EdmxResources.UnresolvedReference_0, RefName);
                 }
                 return target;
             }

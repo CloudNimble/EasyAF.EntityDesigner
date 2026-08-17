@@ -54,7 +54,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor
                         name = item.SemanticName;
                     }
                 }
-                var message = string.Format(CultureInfo.CurrentCulture, Resources.ErrorResolvingItem, name, e.Message);
+                var message = string.Format(CultureInfo.CurrentCulture, XmlEngineResources.ErrorResolvingItem, name, e.Message);
                 ErrorInfo errorInfo = new ErrorInfo(
                     ErrorInfo.Severity.ERROR, message, item, ErrorCodes.FATAL_RESOLVE_ERROR, ErrorClass.ResolveError);
                 _artifactSet.AddError(errorInfo);

@@ -119,7 +119,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                 {
                     throw new CommandValidationFailedException(
                         String.Format(
-                            CultureInfo.CurrentCulture, Resources.Error_CircularComplexTypeDefinitionOnAdd, ComplexType.LocalName.Value));
+                            CultureInfo.CurrentCulture, EdmxResources.Error_CircularComplexTypeDefinitionOnAdd, ComplexType.LocalName.Value));
                 }
             }
             // create the property

@@ -107,13 +107,13 @@ namespace Microsoft.Data.Entity.Design.Edmx.Mapping
             if (String.IsNullOrEmpty(GetAttributeValue(AttributeKey)))
             {
                 Artifact.AddParseErrorForObject(
-                    this, Resources.ModelParse_AliasElementMissingKeyAttribute, ErrorCodes.ModelParse_AliasElementMissingKeyAttribute);
+                    this, EdmxResources.ModelParse_AliasElementMissingKeyAttribute, ErrorCodes.ModelParse_AliasElementMissingKeyAttribute);
             }
 
             if (String.IsNullOrEmpty(GetAttributeValue(AttributeValue)))
             {
                 Artifact.AddParseErrorForObject(
-                    this, Resources.ModelParse_AliasElementMissingValueAttribute, ErrorCodes.ModelParse_AliasElementMissingValueAttribute);
+                    this, EdmxResources.ModelParse_AliasElementMissingValueAttribute, ErrorCodes.ModelParse_AliasElementMissingValueAttribute);
             }
 
             base.PostParse(unprocessedElements);
@@ -134,7 +134,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Mapping
             string resource;
             if (localize)
             {
-                resource = Resources.MappingModel_AliasDisplayName;
+                resource = EdmxResources.MappingModel_AliasDisplayName;
             }
             else
             {

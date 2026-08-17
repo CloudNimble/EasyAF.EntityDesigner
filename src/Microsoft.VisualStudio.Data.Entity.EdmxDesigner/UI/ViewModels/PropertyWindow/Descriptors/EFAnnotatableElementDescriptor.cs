@@ -126,7 +126,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
                                             {
                                                 var exceptionMessage = VsUtils.ConstructInnerExceptionErrorMessage(e);
                                                 var errorMessage = String.Format(
-                                                    CultureInfo.CurrentCulture, Resources.Extensibility_ErrorOccurredDuringCallToExtension,
+                                                    CultureInfo.CurrentCulture, EdmxDesignerResources.Extensibility_ErrorOccurredDuringCallToExtension,
                                                     factory.GetType().FullName, exceptionMessage);
                                                 VsUtils.ShowErrorDialog(errorMessage);
                                             }

@@ -48,7 +48,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                 if (_newNamespace == bec.LocalName.Value)
                 {
                     var msg = string.Format(
-                        CultureInfo.CurrentCulture, Resources.EntityContainerNameConflictsWithNamespaceName, _newNamespace);
+                        CultureInfo.CurrentCulture, EdmxResources.EntityContainerNameConflictsWithNamespaceName, _newNamespace);
                     throw new CommandValidationFailedException(msg);
                 }
             }
@@ -98,7 +98,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
             else
             {
                 // if not a valid namespace, throw an error message
-                var msg = string.Format(CultureInfo.CurrentCulture, Resources.InvalidNamespaceName, _newNamespace);
+                var msg = string.Format(CultureInfo.CurrentCulture, EdmxResources.InvalidNamespaceName, _newNamespace);
                 throw new CommandValidationFailedException(msg);
             }
         }

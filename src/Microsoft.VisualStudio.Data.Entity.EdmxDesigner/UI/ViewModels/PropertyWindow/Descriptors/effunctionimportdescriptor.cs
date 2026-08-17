@@ -12,7 +12,7 @@ using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindo
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing.Design;
-using XmlDesignerBaseResources = Microsoft.Data.Entity.Design.XmlEngine.Resources;
+using XmlDesignerBaseResources = Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.PropertyWindow.Descriptors
 {

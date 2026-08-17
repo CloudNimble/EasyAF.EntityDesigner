@@ -105,12 +105,12 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Dialog
                     if (string.IsNullOrWhiteSpace(Name)
                         || !EscherAttributeContentValidator.IsValidCsdlEnumMemberName(Name))
                     {
-                        sb.AppendLine(String.Format(CultureInfo.CurrentCulture, Resources.EnumDialog_ErrorEnumMemberBadname, Name));
+                        sb.AppendLine(String.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.EnumDialog_ErrorEnumMemberBadname, Name));
                     }
                     else if (Parent.Members.Count(etm => String.Compare(etm.Name, Name, StringComparison.CurrentCulture) == 0) > 1)
                     {
                         sb.AppendLine(
-                            String.Format(CultureInfo.CurrentCulture, Resources.EnumDialog_ErrorEnumMemberDuplicateName, Name));
+                            String.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.EnumDialog_ErrorEnumMemberDuplicateName, Name));
                     }
                 }
 
@@ -131,7 +131,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Dialog
                         if (type != null
                             && ModelHelper.IsValidValueForType(type, Value) == false)
                         {
-                            sb.AppendLine(String.Format(CultureInfo.CurrentCulture, Microsoft.Data.Entity.Design.Edmx.Resources.BadEnumTypeMemberValue, Value));
+                            sb.AppendLine(String.Format(CultureInfo.CurrentCulture, Microsoft.Data.Entity.Design.Edmx.EdmxResources.BadEnumTypeMemberValue, Value));
                         }
                     }
                 }

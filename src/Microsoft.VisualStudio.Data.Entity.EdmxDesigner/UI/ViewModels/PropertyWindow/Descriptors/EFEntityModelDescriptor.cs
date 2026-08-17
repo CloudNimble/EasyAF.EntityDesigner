@@ -71,7 +71,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
                                 {
                                     CommandProcessorContext cpc = new CommandProcessorContext(
                                         editingContext, EfiTransactionOriginator.PropertyWindowOriginatorId,
-                                        Resources.Tx_ChangeMetadataArtifactProcessing);
+                                        EdmxDesignerResources.Tx_ChangeMetadataArtifactProcessing);
                                     UpdateDefaultableValueCommand<string> cmd =
                                         new UpdateDefaultableValueCommand<string>(
                                             connectionDesigner.MetadataArtifactProcessingProperty.ValueAttr, mapDefault);
@@ -149,7 +149,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
                     {
                         if (PackageManager.Package.ConnectionManager.HasConnectionString(project, value))
                         {
-                            var msg = string.Format(CultureInfo.CurrentCulture, Resources.DuplicateEntityContainerName, value);
+                            var msg = string.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.DuplicateEntityContainerName, value);
                             throw new CommandValidationFailedException(msg);
                         }
                     }
@@ -201,10 +201,10 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
                        .IsEnabled())
             {
                 return String.Format(
-                    CultureInfo.CurrentCulture, "({0}) {1}", Resources.DisabledFeatureTooltip,
-                    Resources.PropertyWindow_Description_EntityContainerAccess);
+                    CultureInfo.CurrentCulture, "({0}) {1}", EdmxDesignerResources.DisabledFeatureTooltip,
+                    EdmxDesignerResources.PropertyWindow_Description_EntityContainerAccess);
             }
-            return Resources.PropertyWindow_Description_EntityContainerAccess;
+            return EdmxDesignerResources.PropertyWindow_Description_EntityContainerAccess;
         }
 
         internal virtual bool IsReadOnlyEntityContainerAccess()
@@ -488,10 +488,10 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
             if (!EdmFeatureManager.GetLazyLoadingFeatureState(TypedEFElement.Artifact.SchemaVersion).IsEnabled())
             {
                 return String.Format(
-                    CultureInfo.CurrentCulture, "({0}) {1}", Resources.DisabledFeatureTooltip,
-                    Resources.PropertyWindow_Description_LazyLoadingEnabled);
+                    CultureInfo.CurrentCulture, "({0}) {1}", EdmxDesignerResources.DisabledFeatureTooltip,
+                    EdmxDesignerResources.PropertyWindow_Description_LazyLoadingEnabled);
             }
-            return Resources.PropertyWindow_Description_LazyLoadingEnabled;
+            return EdmxDesignerResources.PropertyWindow_Description_LazyLoadingEnabled;
         }
 
         [LocCategory("PropertyWindow_Category_CodeGeneration")]
@@ -540,10 +540,10 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
                      .IsEnabled())
             {
                 return String.Format(
-                    CultureInfo.CurrentCulture, "({0}) {1}", Resources.DisabledFeatureTooltip,
-                    Resources.PropertyWindow_Description_UseStrongSpatialTypes);
+                    CultureInfo.CurrentCulture, "({0}) {1}", EdmxDesignerResources.DisabledFeatureTooltip,
+                    EdmxDesignerResources.PropertyWindow_Description_UseStrongSpatialTypes);
             }
-            return Resources.PropertyWindow_Description_UseStrongSpatialTypes;
+            return EdmxDesignerResources.PropertyWindow_Description_UseStrongSpatialTypes;
         }
 
         public override string GetComponentName()

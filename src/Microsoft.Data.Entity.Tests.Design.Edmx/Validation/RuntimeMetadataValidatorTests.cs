@@ -93,9 +93,9 @@ namespace Microsoft.Data.Entity.Tests.Design.Edmx.Validation
                         var errors = artifactSet.GetAllErrors();
                         errors.Count.Should().Be(2);
                         errors.First().ErrorCode.Should().Be(ErrorCodes.ErrorValidatingArtifact_StorageModelMissing);
-                        errors.First().Message.Should().Contain(Resources.ErrorValidatingArtifact_StorageModelMissing);
+                        errors.First().Message.Should().Contain(EdmxResources.ErrorValidatingArtifact_StorageModelMissing);
                         errors.Last().ErrorCode.Should().Be(ErrorCodes.ErrorValidatingArtifact_ConceptualModelMissing);
-                        errors.Last().Message.Should().Contain(Resources.ErrorValidatingArtifact_ConceptualModelMissing);
+                        errors.Last().Message.Should().Contain(EdmxResources.ErrorValidatingArtifact_ConceptualModelMissing);
                         errors.All(e => ReferenceEquals(e.Item, artifactSet.GetEntityDesignArtifact())).Should().BeTrue();
 
                         // these errors should not clear error class flags
@@ -122,10 +122,10 @@ namespace Microsoft.Data.Entity.Tests.Design.Edmx.Validation
                         var errors = artifactSet.GetAllErrors();
                         errors.Count.Should().Be(2);
                         errors.First().ErrorCode.Should().Be(ErrorCodes.ErrorValidatingArtifact_InvalidSSDLNamespaceForTargetFrameworkVersion);
-                        errors.First().Message.Should().Contain(Resources.ErrorValidatingArtifact_InvalidSSDLNamespaceForTargetFrameworkVersion);
+                        errors.First().Message.Should().Contain(EdmxResources.ErrorValidatingArtifact_InvalidSSDLNamespaceForTargetFrameworkVersion);
                         errors.First().Item.Should().Be(artifactSet.GetEntityDesignArtifact().StorageModel);
                         errors.Last().ErrorCode.Should().Be(ErrorCodes.ErrorValidatingArtifact_InvalidCSDLNamespaceForTargetFrameworkVersion);
-                        errors.Last().Message.Should().Contain(Resources.ErrorValidatingArtifact_InvalidCSDLNamespaceForTargetFrameworkVersion);
+                        errors.Last().Message.Should().Contain(EdmxResources.ErrorValidatingArtifact_InvalidCSDLNamespaceForTargetFrameworkVersion);
                         errors.Last().Item.Should().Be(artifactSet.GetEntityDesignArtifact().ConceptualModel);
 
                         // these error should not clear error class flags
@@ -503,7 +503,7 @@ namespace Microsoft.Data.Entity.Tests.Design.Edmx.Validation
                             };
                         mockProperty.Setup(m => m.Artifact).Returns(artifact);
                         var property = mockProperty.Object;
-                        property.ComplexType.SetXObject(new XAttribute("typeName", Resources.ComplexPropertyUndefinedType));
+                        property.ComplexType.SetXObject(new XAttribute("typeName", EdmxResources.ComplexPropertyUndefinedType));
 
                         Mock.Get(artifact)
                             .Setup(m => m.FindEFObjectForLineAndColumn(It.IsAny<int>(), It.IsAny<int>()))
@@ -526,7 +526,7 @@ namespace Microsoft.Data.Entity.Tests.Design.Edmx.Validation
                             artifactSet.GetAllErrors().Count.Should().Be(1);
                             var error = artifactSet.GetAllErrors().Single();
                             error.Message.Should().Contain(
-                                string.Format(Resources.EscherValidation_UndefinedComplexPropertyType, string.Empty));
+                                string.Format(EdmxResources.EscherValidation_UndefinedComplexPropertyType, string.Empty));
                             error.ErrorCode.Should().Be(ErrorCodes.ESCHER_VALIDATOR_UNDEFINED_COMPLEX_PROPERTY_TYPE);
                             error.Item.Should().Be(property);
                             error.Level.Should().Be(ErrorInfo.Severity.ERROR);
@@ -579,7 +579,7 @@ namespace Microsoft.Data.Entity.Tests.Design.Edmx.Validation
                             artifactSet.GetAllErrors().Count.Should().Be(1);
                             var error = artifactSet.GetAllErrors().Single();
                             error.Message.Should().Contain(
-                                string.Format(Resources.EscherValidation_IgnoreMappedFKAssociation, string.Empty));
+                                string.Format(EdmxResources.EscherValidation_IgnoreMappedFKAssociation, string.Empty));
                             error.ErrorCode.Should().Be(NonValidAssociationSet);
                             error.Level.Should().Be(ErrorInfo.Severity.WARNING);
                         }

@@ -278,14 +278,14 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model
                 // The schema version is not one we can validate against, so we cannot vouch for the document.
                 errors.Add(
                     string.Format(
-                        CultureInfo.CurrentCulture, Resources.XmlValidation_UnsupportedSchemaVersion,
+                        CultureInfo.CurrentCulture, EdmxDesignerResources.XmlValidation_UnsupportedSchemaVersion,
                         documentSchemaVersion is null ? "(none)" : documentSchemaVersion.ToString()));
             }
             catch (Exception ex)
             {
                 // Loading or validating threw. Report why rather than reporting a bare "the XML is not valid": the
                 // exception message is the only description of the failure that exists.
-                errors.Add(string.Format(CultureInfo.CurrentCulture, Resources.XmlValidation_ExceptionDuringValidation, ex.Message));
+                errors.Add(string.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.XmlValidation_ExceptionDuringValidation, ex.Message));
             }
 
             return false;
@@ -387,7 +387,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model
         {
             if (XmlModelProvider.CurrentTransaction == null)
             {
-                //throw new InvalidOperationException(Resources.ChangingModelOutsideTransaction);
+                //throw new InvalidOperationException(EdmxDesignerResources.ChangingModelOutsideTransaction);
             }
         }
 
@@ -486,13 +486,13 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model
 
             if (matches.Count == 0)
             {
-                throw new InvalidOperationException(Resources.Extensibility_NoConverterForExtension);
+                throw new InvalidOperationException(EdmxDesignerResources.Extensibility_NoConverterForExtension);
             }
 
             if (matches.Count > 1)
             {
                 throw new InvalidOperationException(
-                    string.Format(CultureInfo.CurrentCulture, Resources.Extensibility_TooManyConverters, DescribeConverters(matches)));
+                    string.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.Extensibility_TooManyConverters, DescribeConverters(matches)));
             }
 
             // Only now is the single winner instantiated, so a rejected converter is never constructed.

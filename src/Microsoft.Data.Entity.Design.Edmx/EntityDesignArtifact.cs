@@ -288,7 +288,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
                 // add an error & return false. 
                 if (addParseErrorOnFailure)
                 {
-                    var msg = String.Format(CultureInfo.CurrentCulture, Resources.ModelParse_NonQualifiedElement, element.Name.LocalName);
+                    var msg = String.Format(CultureInfo.CurrentCulture, EdmxResources.ModelParse_NonQualifiedElement, element.Name.LocalName);
                     ErrorInfo error = new ErrorInfo(ErrorInfo.Severity.ERROR, msg, this, ErrorCodes.NON_QUALIFIED_ELEMENT, ErrorClass.ParseError);
                     AddParseErrorForObject(this, error);
                 }
@@ -320,7 +320,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
 
                         if (runtimeElementProcessed)
                         {
-                            var msg = String.Format(CultureInfo.CurrentCulture, Resources.DuplicatedElementMsg, elem2.Name.LocalName);
+                            var msg = String.Format(CultureInfo.CurrentCulture, EdmxResources.DuplicatedElementMsg, elem2.Name.LocalName);
                             ErrorInfo error = new ErrorInfo(
                                 ErrorInfo.Severity.ERROR, msg, this, ErrorCodes.DUPLICATED_ELEMENT_ENCOUNTERED, ErrorClass.ParseError);
                             AddParseErrorForObject(this, error);
@@ -346,7 +346,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
 
                         if (designerElementProcessed)
                         {
-                            var msg = String.Format(CultureInfo.CurrentCulture, Resources.DuplicatedElementMsg, elem2.Name.LocalName);
+                            var msg = String.Format(CultureInfo.CurrentCulture, EdmxResources.DuplicatedElementMsg, elem2.Name.LocalName);
                             ErrorInfo error = new ErrorInfo(
                                 ErrorInfo.Severity.ERROR, msg, this, ErrorCodes.DUPLICATED_ELEMENT_ENCOUNTERED, ErrorClass.ParseError);
                             AddParseErrorForObject(this, error);
@@ -358,7 +358,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
                     }
                     else
                     {
-                        var msg = String.Format(CultureInfo.CurrentCulture, Resources.UnexpectedElementMsg, elem2.Name.LocalName);
+                        var msg = String.Format(CultureInfo.CurrentCulture, EdmxResources.UnexpectedElementMsg, elem2.Name.LocalName);
                         ErrorInfo error = new ErrorInfo(
                             ErrorInfo.Severity.ERROR, msg, this, ErrorCodes.UNEXPECTED_ELEMENT_ENCOUNTERED, ErrorClass.ParseError);
                         AddParseErrorForObject(this, error);
@@ -369,7 +369,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
             }
             else
             {
-                var msg = String.Format(CultureInfo.CurrentCulture, Resources.UnexpectedElementMsg, elem.Name.LocalName);
+                var msg = String.Format(CultureInfo.CurrentCulture, EdmxResources.UnexpectedElementMsg, elem.Name.LocalName);
                 ErrorInfo error = new ErrorInfo(
                     ErrorInfo.Severity.ERROR, msg, this, ErrorCodes.UNEXPECTED_ELEMENT_ENCOUNTERED, ErrorClass.ParseError);
                 AddParseErrorForObject(this, error);
@@ -434,7 +434,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
             {
                 if (conceptualModelsProcessed)
                 {
-                    var msg = String.Format(CultureInfo.CurrentCulture, Resources.DuplicatedElementMsg, entityModelXElement.Name.LocalName);
+                    var msg = String.Format(CultureInfo.CurrentCulture, EdmxResources.DuplicatedElementMsg, entityModelXElement.Name.LocalName);
                     ErrorInfo error = new ErrorInfo(
                         ErrorInfo.Severity.ERROR, msg, this, ErrorCodes.DUPLICATED_ELEMENT_ENCOUNTERED, ErrorClass.ParseError);
                     AddParseErrorForObject(this, error);
@@ -448,7 +448,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
             {
                 if (storageModelsProcessed)
                 {
-                    var msg = String.Format(CultureInfo.CurrentCulture, Resources.DuplicatedElementMsg, entityModelXElement.Name.LocalName);
+                    var msg = String.Format(CultureInfo.CurrentCulture, EdmxResources.DuplicatedElementMsg, entityModelXElement.Name.LocalName);
                     ErrorInfo error = new ErrorInfo(
                         ErrorInfo.Severity.ERROR, msg, this, ErrorCodes.DUPLICATED_ELEMENT_ENCOUNTERED, ErrorClass.ParseError);
                     AddParseErrorForObject(this, error);
@@ -462,7 +462,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
             {
                 if (mappingsProcessed)
                 {
-                    var msg = String.Format(CultureInfo.CurrentCulture, Resources.DuplicatedElementMsg, entityModelXElement.Name.LocalName);
+                    var msg = String.Format(CultureInfo.CurrentCulture, EdmxResources.DuplicatedElementMsg, entityModelXElement.Name.LocalName);
                     ErrorInfo error = new ErrorInfo(
                         ErrorInfo.Severity.ERROR, msg, this, ErrorCodes.DUPLICATED_ELEMENT_ENCOUNTERED, ErrorClass.ParseError);
                     AddParseErrorForObject(this, error);
@@ -474,7 +474,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
             }
             else
             {
-                var msg = String.Format(CultureInfo.CurrentCulture, Resources.UnexpectedElementMsg, entityModelXElement.Name.LocalName);
+                var msg = String.Format(CultureInfo.CurrentCulture, EdmxResources.UnexpectedElementMsg, entityModelXElement.Name.LocalName);
                 ErrorInfo error = new ErrorInfo(
                     ErrorInfo.Severity.ERROR, msg, this, ErrorCodes.UNEXPECTED_ELEMENT_ENCOUNTERED, ErrorClass.ParseError);
                 AddParseErrorForObject(this, error);
@@ -525,7 +525,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
 
                     if (_storageEntityModel != null)
                     {
-                        var msg = String.Format(CultureInfo.CurrentCulture, Resources.DuplicatedElementMsg, elem.Name.LocalName);
+                        var msg = String.Format(CultureInfo.CurrentCulture, EdmxResources.DuplicatedElementMsg, elem.Name.LocalName);
                         ErrorInfo error = new ErrorInfo(
                             ErrorInfo.Severity.ERROR, msg, this, ErrorCodes.DUPLICATED_ELEMENT_ENCOUNTERED, ErrorClass.ParseError);
                         AddParseErrorForObject(this, error);
@@ -537,7 +537,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
                 }
                 else
                 {
-                    var msg = String.Format(CultureInfo.CurrentCulture, Resources.UnexpectedElementMsg, elem.Name.LocalName);
+                    var msg = String.Format(CultureInfo.CurrentCulture, EdmxResources.UnexpectedElementMsg, elem.Name.LocalName);
                     ErrorInfo error = new ErrorInfo(
                         ErrorInfo.Severity.ERROR, msg, this, ErrorCodes.UNEXPECTED_ELEMENT_ENCOUNTERED, ErrorClass.ParseError);
                     AddParseErrorForObject(this, error);
@@ -564,7 +564,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
 
                     if (_mappingModel != null)
                     {
-                        var msg = String.Format(CultureInfo.CurrentCulture, Resources.DuplicatedElementMsg, elem.Name.LocalName);
+                        var msg = String.Format(CultureInfo.CurrentCulture, EdmxResources.DuplicatedElementMsg, elem.Name.LocalName);
                         ErrorInfo error = new ErrorInfo(
                             ErrorInfo.Severity.ERROR, msg, this, ErrorCodes.DUPLICATED_ELEMENT_ENCOUNTERED, ErrorClass.ParseError);
                         AddParseErrorForObject(this, error);
@@ -576,7 +576,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
                 }
                 else
                 {
-                    var msg = String.Format(CultureInfo.CurrentCulture, Resources.UnexpectedElementMsg, elem.Name.LocalName);
+                    var msg = String.Format(CultureInfo.CurrentCulture, EdmxResources.UnexpectedElementMsg, elem.Name.LocalName);
                     ErrorInfo error = new ErrorInfo(
                         ErrorInfo.Severity.ERROR, msg, this, ErrorCodes.UNEXPECTED_ELEMENT_ENCOUNTERED, ErrorClass.ParseError);
                     AddParseErrorForObject(this, error);
@@ -597,7 +597,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
 
                     if (_conceptualEntityModel != null)
                     {
-                        var msg = String.Format(CultureInfo.CurrentCulture, Resources.DuplicatedElementMsg, elem.Name.LocalName);
+                        var msg = String.Format(CultureInfo.CurrentCulture, EdmxResources.DuplicatedElementMsg, elem.Name.LocalName);
                         ErrorInfo error = new ErrorInfo(
                             ErrorInfo.Severity.ERROR, msg, this, ErrorCodes.DUPLICATED_ELEMENT_ENCOUNTERED, ErrorClass.ParseError);
                         AddParseErrorForObject(this, error);
@@ -609,7 +609,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
                 }
                 else
                 {
-                    var msg = String.Format(CultureInfo.CurrentCulture, Resources.UnexpectedElementMsg, elem.Name.LocalName);
+                    var msg = String.Format(CultureInfo.CurrentCulture, EdmxResources.UnexpectedElementMsg, elem.Name.LocalName);
                     ErrorInfo error = new ErrorInfo(
                         ErrorInfo.Severity.ERROR, msg, this, ErrorCodes.UNEXPECTED_ELEMENT_ENCOUNTERED, ErrorClass.ParseError);
                     AddParseErrorForObject(this, error);
@@ -740,7 +740,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
                 if (xmlValidationErrors.Count == 0)
                 {
                     AddStructuralError(
-                        Resources.EscherValidation_Structural_XmlNotValid, ErrorCodes.ESCHER_VALIDATOR_STRUCTURAL_XML_NOT_VALID);
+                        EdmxResources.EscherValidation_Structural_XmlNotValid, ErrorCodes.ESCHER_VALIDATOR_STRUCTURAL_XML_NOT_VALID);
                 }
                 else
                 {
@@ -748,7 +748,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
                     {
                         AddStructuralError(
                             string.Format(
-                                CultureInfo.CurrentCulture, Resources.EscherValidation_Structural_XmlNotValidDetail, xmlValidationError),
+                                CultureInfo.CurrentCulture, EdmxResources.EscherValidation_Structural_XmlNotValidDetail, xmlValidationError),
                             ErrorCodes.ESCHER_VALIDATOR_STRUCTURAL_XML_NOT_VALID);
                     }
                 }
@@ -758,20 +758,20 @@ namespace Microsoft.Data.Entity.Design.Edmx
             {
                 _isStructurallySafe = false;
                 AddStructuralError(
-                    Resources.EscherValidation_Structural_MissingDesigner, ErrorCodes.ESCHER_VALIDATOR_STRUCTURAL_MISSING_DESIGNER);
+                    EdmxResources.EscherValidation_Structural_MissingDesigner, ErrorCodes.ESCHER_VALIDATOR_STRUCTURAL_MISSING_DESIGNER);
             }
             else if (DesignerInfo.Diagrams == null)
             {
                 _isStructurallySafe = false;
                 AddStructuralError(
-                    Resources.EscherValidation_Structural_MissingDiagrams, ErrorCodes.ESCHER_VALIDATOR_STRUCTURAL_MISSING_DIAGRAMS);
+                    EdmxResources.EscherValidation_Structural_MissingDiagrams, ErrorCodes.ESCHER_VALIDATOR_STRUCTURAL_MISSING_DIAGRAMS);
             }
 
             if (ConceptualModel == null)
             {
                 _isStructurallySafe = false;
                 AddStructuralError(
-                    Resources.EscherValidation_Structural_MissingConceptualModel,
+                    EdmxResources.EscherValidation_Structural_MissingConceptualModel,
                     ErrorCodes.ESCHER_VALIDATOR_STRUCTURAL_MISSING_CONCEPTUAL_MODEL);
             }
             else if (ConceptualModel.EntityContainerCount > 1)
@@ -779,7 +779,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
                 _isStructurallySafe = false;
                 AddStructuralError(
                     string.Format(
-                        CultureInfo.CurrentCulture, Resources.EscherValidation_Structural_MultipleEntityContainers,
+                        CultureInfo.CurrentCulture, EdmxResources.EscherValidation_Structural_MultipleEntityContainers,
                         ConceptualModel.EntityContainerCount),
                     ErrorCodes.ESCHER_VALIDATOR_STRUCTURAL_MULTIPLE_ENTITY_CONTAINERS);
             }
@@ -788,7 +788,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
             {
                 _isStructurallySafe = false;
                 AddStructuralError(
-                    Resources.EscherValidation_Structural_MissingStorageModel,
+                    EdmxResources.EscherValidation_Structural_MissingStorageModel,
                     ErrorCodes.ESCHER_VALIDATOR_STRUCTURAL_MISSING_STORAGE_MODEL);
             }
 
@@ -796,7 +796,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
             {
                 _isStructurallySafe = false;
                 AddStructuralError(
-                    Resources.EscherValidation_Structural_MissingMappingModel,
+                    EdmxResources.EscherValidation_Structural_MissingMappingModel,
                     ErrorCodes.ESCHER_VALIDATOR_STRUCTURAL_MISSING_MAPPING_MODEL);
             }
 

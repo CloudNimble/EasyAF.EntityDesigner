@@ -20,11 +20,11 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer
             : base(context, entityModel, parent)
         {
             _typesGhostNode = new ExplorerTypes(
-                Resources.StorageTypesGhostNodeName, context, this);
+                EdmxDesignerResources.StorageTypesGhostNodeName, context, this);
             _funcsGhostNode = new ExplorerFunctions(
-                Resources.StorageFunctionsGhostNodeName, context, this);
+                EdmxDesignerResources.StorageFunctionsGhostNodeName, context, this);
             _assocsGhostNode = new ExplorerAssociations(
-                Resources.StorageAssociationsGhostNodeName, context, this);
+                EdmxDesignerResources.StorageAssociationsGhostNodeName, context, this);
         }
 
         public override string Name
@@ -97,12 +97,12 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer
                 Debug.Fail(
                     string.Format(
                         CultureInfo.CurrentCulture,
-                        Resources.BadChildForParentException, GetType().FullName, childElementType.FullName));
+                        EdmxDesignerResources.BadChildForParentException, GetType().FullName, childElementType.FullName));
                 return null;
                 // TODO: we need to provide a general exception-handling mechanism and replace the above Assert()
                 // by e.g. the excepiton below
                 // throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture,
-                //     Resources.BadChildForParentException, this.GetType().FullName, childElementType.FullName));
+                //     EdmxDesignerResources.BadChildForParentException, this.GetType().FullName, childElementType.FullName));
             }
         }
 

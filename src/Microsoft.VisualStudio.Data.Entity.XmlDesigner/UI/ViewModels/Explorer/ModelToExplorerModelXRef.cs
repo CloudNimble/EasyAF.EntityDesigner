@@ -95,11 +95,11 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer
                     Debug.Fail(
                         string.Format(
                             CultureInfo.CurrentCulture,
-                            global::Microsoft.Data.Entity.Design.XmlEngine.Resources.BadInsertChildAlreadyExists, efElement.GetType().FullName, parent.GetType().FullName));
+                            XmlDesignerResources.BadInsertChildAlreadyExists, efElement.GetType().FullName, parent.GetType().FullName));
                     return null;
                     // TODO: we need to provide a general exception-handling mechanism and replace the above Assert()
                     // by e.g. the excepiton below
-                    // throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, global::Microsoft.Data.Entity.Design.XmlEngine.Resources.BadInsertChildAlreadyExists, efElement.GetType().FullName, parent.GetType().FullName));
+                    // throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, XmlDesignerResources.BadInsertChildAlreadyExists, efElement.GetType().FullName, parent.GetType().FullName));
                 }
                 else
                 {

@@ -118,13 +118,13 @@
 
   <!-- Embedded Resources -->
   <ItemGroup>
-    <EmbeddedResource Update="Resources.resx">
+    <EmbeddedResource Update="ModelWizardEdmxDesignerResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelWizardEdmxDesignerResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="TemplateResources.resx">
+    <EmbeddedResource Update="TemplateModelWizardEdmxDesignerResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>TemplateResources.Designer.cs</LastGenOutput>
+      <LastGenOutput>TemplateModelWizardEdmxDesignerResources.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Templates</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Update="UI\Views\Dialogs\DialogsResource.resx">
@@ -132,9 +132,9 @@
       <LastGenOutput>DialogsResource.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Update="Ide\ModelWizard\Properties\Resources.resx">
+    <EmbeddedResource Update="Ide\ModelWizard\Properties\ModelWizardEdmxDesignerResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelWizardEdmxDesignerResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Ide\SingleFileGenerator\Strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -236,10 +236,10 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Ide\ModelWizard\Properties\Resources.Designer.cs">
+    <Compile Update="Ide\ModelWizard\Properties\ModelWizardEdmxDesignerResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
+      <DependentUpon>ModelWizardEdmxDesignerResources.resx</DependentUpon>
     </Compile>
     <Compile Update="Ide\SingleFileGenerator\Strings.Designer.cs">
       <DesignTime>True</DesignTime>

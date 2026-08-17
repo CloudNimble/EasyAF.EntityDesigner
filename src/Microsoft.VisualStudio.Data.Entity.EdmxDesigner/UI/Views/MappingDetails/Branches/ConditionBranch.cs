@@ -79,7 +79,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
 
         protected override string GetCreatorNodeText(int index)
         {
-            return Resources.MappingDetails_ConditionCreatorNode;
+            return EdmxDesignerResources.MappingDetails_ConditionCreatorNode;
         }
 
         // Note: index is the index number of which Condition we are creating

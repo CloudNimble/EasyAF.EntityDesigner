@@ -27,7 +27,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
-using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.Resources;
+using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.DiagramsResources;
 using ModelAssociation = Microsoft.Data.Entity.Design.Edmx.Entity.Association;
 using ModelDiagram = Microsoft.Data.Entity.Design.Edmx.Designer.Diagram;
 using ViewModelEntityType = Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType;

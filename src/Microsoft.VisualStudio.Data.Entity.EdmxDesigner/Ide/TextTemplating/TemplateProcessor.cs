@@ -74,7 +74,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.TextTemplating
             if (String.IsNullOrWhiteSpace(templatePath))
             {
                 throw new InvalidOperationException(
-                    String.Format(CultureInfo.CurrentCulture, Resources.DatabaseCreation_ErrorTemplatePathNotSet, _displayName));
+                    String.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.DatabaseCreation_ErrorTemplatePathNotSet, _displayName));
             }
 
             var inputs = templateInputs ?? new Dictionary<string, object>();
@@ -132,17 +132,17 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.TextTemplating
             DatabaseGenerationEngine.PathValidationErrorMessages errorMessages = new DatabaseGenerationEngine.PathValidationErrorMessages
                 {
                     NullFile = String.Format(
-                        CultureInfo.CurrentCulture, Resources.DatabaseCreation_ErrorTemplatePathNotSet, _displayName),
+                        CultureInfo.CurrentCulture, EdmxDesignerResources.DatabaseCreation_ErrorTemplatePathNotSet, _displayName),
                     NonValid = String.Format(
-                        CultureInfo.CurrentCulture, Resources.DatabaseCreation_ErrorTemplatePathNotValid, _displayName),
+                        CultureInfo.CurrentCulture, EdmxDesignerResources.DatabaseCreation_ErrorTemplatePathNotValid, _displayName),
                     ParseError = String.Format(
-                        CultureInfo.CurrentCulture, Resources.DatabaseCreation_ExceptionParsingTemplateFilePath, _displayName),
+                        CultureInfo.CurrentCulture, EdmxDesignerResources.DatabaseCreation_ExceptionParsingTemplateFilePath, _displayName),
                     NonFile = String.Format(
-                        CultureInfo.CurrentCulture, Resources.DatabaseCreation_ErrorTemplatePathNonFile, _displayName),
+                        CultureInfo.CurrentCulture, EdmxDesignerResources.DatabaseCreation_ErrorTemplatePathNonFile, _displayName),
                     NotInProject = String.Format(
-                        CultureInfo.CurrentCulture, Resources.DatabaseCreation_ErrorTemplateFileNotInProject, _displayName),
+                        CultureInfo.CurrentCulture, EdmxDesignerResources.DatabaseCreation_ErrorTemplateFileNotInProject, _displayName),
                     NonExistant = String.Format(
-                        CultureInfo.CurrentCulture, Resources.DatabaseCreation_TemplateFileNotExists, _displayName)
+                        CultureInfo.CurrentCulture, EdmxDesignerResources.DatabaseCreation_TemplateFileNotExists, _displayName)
                 };
 
             var templateFileInfo = DatabaseGenerationEngine.ResolveAndValidatePath(
@@ -189,7 +189,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.TextTemplating
             {
                 throw new InvalidOperationException(
                     String.Format(
-                        CultureInfo.CurrentCulture, Resources.DatabaseCreation_ErrorTextTemplatingServiceNotFound, resolvedTemplatePath));
+                        CultureInfo.CurrentCulture, EdmxDesignerResources.DatabaseCreation_ErrorTextTemplatingServiceNotFound, resolvedTemplatePath));
             }
 
             // Process the template, keeping track of errors
@@ -201,7 +201,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.TextTemplating
             {
                 throw new InvalidOperationException(
                     String.Format(
-                        CultureInfo.CurrentCulture, Resources.TemplateErrorsEncountered, resolvedTemplatePath,
+                        CultureInfo.CurrentCulture, EdmxDesignerResources.TemplateErrorsEncountered, resolvedTemplatePath,
                         templateCallback.ErrorStringBuilder));
             }
 

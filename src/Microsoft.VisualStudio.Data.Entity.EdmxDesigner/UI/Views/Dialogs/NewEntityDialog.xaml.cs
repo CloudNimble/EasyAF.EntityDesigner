@@ -11,7 +11,7 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using Model = Microsoft.Data.Entity.Design.Edmx;
-using XmlDesignerBaseResources = Microsoft.Data.Entity.Design.XmlEngine.Resources;
+using XmlDesignerBaseResources = Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
 {
@@ -65,8 +65,8 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
             }
 
             EntityNameTextBox.Text = ModelHelper.GetUniqueNameWithNumber(
-                typeof(EntityType), model, Model.Resources.Model_DefaultEntityTypeName);
-            PropertyNameTextBox.Text = Model.Resources.Model_IdPropertyName;
+                typeof(EntityType), model, Model.EdmxResources.Model_DefaultEntityTypeName);
+            PropertyNameTextBox.Text = Model.EdmxResources.Model_IdPropertyName;
         }
 
         internal string EntityName => EntityNameTextBox.Text;

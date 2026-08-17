@@ -82,7 +82,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
                 VsUtils.ShowErrorDialog(
                     string.Format(
                         CultureInfo.CurrentCulture,
-                        Resources.ModelObjectItemWizard_UnexpectedExceptionHasOccurred,
+                        EdmxDesignerResources.ModelObjectItemWizard_UnexpectedExceptionHasOccurred,
                         e.Message));
                 return;
             }
@@ -179,7 +179,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
 
                 CommandProcessorContext cpc = new CommandProcessorContext(
                     editingContext, EfiTransactionOriginator.UpdateModelFromDatabaseId,
-                    Resources.Tx_UpdateModelFromDatabase, null, transactionContext);
+                    EdmxDesignerResources.Tx_UpdateModelFromDatabase, null, transactionContext);
 
                 if (schemaVersionChanged)
                 {
@@ -350,11 +350,11 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
                 var message = string.Empty;
                 if (kind == WizardKind.Generate)
                 {
-                    message = Resources.Extensibility_ExtensionMadeBadModel;
+                    message = EdmxDesignerResources.Extensibility_ExtensionMadeBadModel;
                 }
                 else if (kind == WizardKind.UpdateModel)
                 {
-                    message = Resources.Extensibility_ExtensionMadeBadModel_Update;
+                    message = EdmxDesignerResources.Extensibility_ExtensionMadeBadModel_Update;
                 }
 
                 if (caughtException == null)

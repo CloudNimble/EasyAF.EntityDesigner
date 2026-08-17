@@ -146,7 +146,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Mapping
             string etmDisplayName;
             if (localize)
             {
-                resource = Resources.MappingModel_ModificationFunctionMappingDisplayName;
+                resource = EdmxResources.MappingModel_ModificationFunctionMappingDisplayName;
                 etmDisplayName = EntityTypeMapping.DisplayName;
             }
             else

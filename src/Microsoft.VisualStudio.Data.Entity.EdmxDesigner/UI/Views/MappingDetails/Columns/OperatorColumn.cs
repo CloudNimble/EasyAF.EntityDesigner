@@ -21,7 +21,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
         internal static readonly MappingLovEFElement ArrowIconPlaceholder = new MappingLovEFElement(" ");
 
         public OperatorColumn()
-            : base(Resources.MappingDetails_Operator)
+            : base(EdmxDesignerResources.MappingDetails_Operator)
         {
         }
 

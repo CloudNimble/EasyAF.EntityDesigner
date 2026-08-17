@@ -51,7 +51,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
                 e.Exception is null
                     ? e.Message
                     : string.Format(
-                        CultureInfo.CurrentCulture, Resources.EscherValidation_Structural_XmlSchemaErrorLocation, e.Message,
+                        CultureInfo.CurrentCulture, EdmxResources.EscherValidation_Structural_XmlSchemaErrorLocation, e.Message,
                         e.Exception.LineNumber, e.Exception.LinePosition));
         }
     }

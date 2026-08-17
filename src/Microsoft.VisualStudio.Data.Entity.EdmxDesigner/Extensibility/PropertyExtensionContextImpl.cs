@@ -61,7 +61,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility
 
             if (_scope != null)
             {
-                throw new InvalidOperationException(Resources.Extensibility_StartChangeScopeFailed);
+                throw new InvalidOperationException(EdmxDesignerResources.Extensibility_StartChangeScopeFailed);
             }
 
             EfiTransaction txn = new EfiTransaction(_editingContext.GetEFArtifactService().Artifact, PROPERTY_EXTENSION_ORIGINATOR_ID, name);

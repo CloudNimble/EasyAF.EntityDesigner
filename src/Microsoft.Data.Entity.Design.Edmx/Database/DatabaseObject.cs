@@ -43,7 +43,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Database
 
         public override string ToString()
         {
-            return string.Format(CultureInfo.InvariantCulture, Resources.DatabaseObjectNameFormat, Schema, Name);
+            return string.Format(CultureInfo.InvariantCulture, EdmxResources.DatabaseObjectNameFormat, Schema, Name);
         }
 
         internal static DatabaseObject CreateFromEntitySet(StorageEntitySet ses)

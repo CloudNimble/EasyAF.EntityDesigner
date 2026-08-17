@@ -19,7 +19,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
     internal class ValueColumn : BaseColumn
     {
         public ValueColumn()
-            : base(Resources.MappingDetails_Value)
+            : base(EdmxDesignerResources.MappingDetails_Value)
         {
         }
 

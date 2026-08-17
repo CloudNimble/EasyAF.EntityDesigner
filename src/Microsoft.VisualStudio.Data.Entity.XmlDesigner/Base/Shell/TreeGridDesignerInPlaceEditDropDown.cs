@@ -125,7 +125,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
         {
             // set edit control accessible name because this is the focused item.
             EditAccessibleName = TreeGridDesignerInPlaceEdit.GetAccessibleObjectName(Parent as VirtualTreeControl);
-            EditAccessibleDescription = Resources.TridDes_LauncherAccDesc;
+            EditAccessibleDescription = XmlDesignerResources.TridDes_LauncherAccDesc;
             return base.CreateAccessibilityInstance();
         }
     }

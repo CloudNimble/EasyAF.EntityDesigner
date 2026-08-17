@@ -48,10 +48,10 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
             Debug.Assert(entityFrameworkVersion != null, "entityFrameworkVersion is null.");
 
             return string.Format(CultureInfo.InvariantCulture,
-                Resources.EntityFrameworkVersionName,
+                EdmxDesignerResources.EntityFrameworkVersionName,
                 entityFrameworkVersion < Version6
                     ? entityFrameworkVersion.ToString(2)
-                    : Resources.EntityFrameworkVersion6_x);
+                    : EdmxDesignerResources.EntityFrameworkVersion6_x);
         }
 
         public static bool RequiresLegacyProvider(Version entityFrameworkVersion)

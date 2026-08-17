@@ -10,7 +10,7 @@ using Microsoft.Data.Entity.Tests.Design.TestHelpers;
 using VSLangProj;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
-using Resources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources;
+using Resources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.EdmxDesignerResources;
 using Microsoft.VisualStudio.Data.Entity.Extensibility;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility;
 

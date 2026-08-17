@@ -74,7 +74,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                     {
                         ChangeResultBindingCommand cmd = new ChangeResultBindingCommand(ResultBinding, null, newColumnName);
                         CommandProcessor cp = new CommandProcessor(
-                            Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_ChangeResultBinding, cmd);
+                            Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_ChangeResultBinding, cmd);
                         cp.Invoke();
                     }
                 }
@@ -116,7 +116,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                 {
                     ChangeResultBindingCommand cmd = new ChangeResultBindingCommand(ResultBinding, property, null);
                     CommandProcessor cp = new CommandProcessor(
-                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_ChangeResultBinding, cmd);
+                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_ChangeResultBinding, cmd);
                     cp.Invoke();
                 }
             }
@@ -238,7 +238,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
             {
                 // create a context if we weren't passed one
                 cpc ??= new CommandProcessorContext(
-                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_CreateResultBinding);
+                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_CreateResultBinding);
 
                 // create the command
                 CreateResultBindingCommand cmd = new CreateResultBindingCommand(
@@ -291,7 +291,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
             if (IsModelItemDeleted() == false)
             {
                 cpc ??= new CommandProcessorContext(
-                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_DeleteResultBinding);
+                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_DeleteResultBinding);
 
                 // use the item's delete command
                 var deleteCommand = ResultBinding.GetDeleteCommand();

@@ -22,7 +22,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer
         public ExplorerDiagrams(EditingContext context, Diagrams diagrams, ExplorerEFElement parent)
             : base(context, diagrams, parent)
         {
-            var name = Resources.DiagramTypesGhostNodeName;
+            var name = EdmxDesignerResources.DiagramTypesGhostNodeName;
             base.Name = name;
 
             _typesGhostNode = new ExplorerTypes(name, context, this);
@@ -86,7 +86,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer
                 Debug.Fail(
                     string.Format(
                         CultureInfo.CurrentCulture,
-                        Resources.BadRemoveBadChildType,
+                        EdmxDesignerResources.BadRemoveBadChildType,
                         efElementToRemove.GetType().FullName,
                         Name,
                         GetType().FullName));

@@ -31,13 +31,13 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
                         }
                         AddMapping(
                             ModelConstants.Multiplicity_Many,
-                            String.Format(CultureInfo.CurrentCulture, Resources.PropertyWindow_Value_MultiplicityManyOf, typeName));
+                            String.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.PropertyWindow_Value_MultiplicityManyOf, typeName));
                         AddMapping(
                             ModelConstants.Multiplicity_One,
-                            String.Format(CultureInfo.CurrentCulture, Resources.PropertyWindow_Value_MultiplicityOneOf, typeName));
+                            String.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.PropertyWindow_Value_MultiplicityOneOf, typeName));
                         AddMapping(
                             ModelConstants.Multiplicity_ZeroOrOne,
-                            String.Format(CultureInfo.CurrentCulture, Resources.PropertyWindow_Value_MultiplicityZeroOrOneOf, typeName));
+                            String.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.PropertyWindow_Value_MultiplicityZeroOrOneOf, typeName));
                     }
                 }
             }

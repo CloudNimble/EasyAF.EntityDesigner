@@ -46,14 +46,14 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
                     return String.Format(
                         CultureInfo.InvariantCulture, "{0} {1}",
                         extFilePath.Substring(indexOfUserMacro + UserPathWithMacro.Length).TrimStart('\\'),
-                        Resources.DbGenExtensibileListConverter_UserDir);
+                        EdmxDesignerResources.DbGenExtensibileListConverter_UserDir);
                 }
                 else if (indexOfVSMacro != -1)
                 {
                     return String.Format(
                         CultureInfo.InvariantCulture, "{0} {1}",
                         extFilePath.Substring(indexOfVSMacro + VSPathWithMacro.Length).TrimStart('\\'),
-                        Resources.DbGenExtensibleListConverter_VSDir);
+                        EdmxDesignerResources.DbGenExtensibleListConverter_VSDir);
                 }
                 return extFilePath;
             }
@@ -71,11 +71,11 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
                 if (lastIndexOfSpace != -1)
                 {
                     var filename = v.Substring(0, lastIndexOfSpace);
-                    if (v.Substring(lastIndexOfSpace + 1).Equals(Resources.DbGenExtensibileListConverter_UserDir))
+                    if (v.Substring(lastIndexOfSpace + 1).Equals(EdmxDesignerResources.DbGenExtensibileListConverter_UserDir))
                     {
                         return Path.Combine(UserPathWithMacro, filename);
                     }
-                    else if (v.Substring(lastIndexOfSpace + 1).Equals(Resources.DbGenExtensibleListConverter_VSDir))
+                    else if (v.Substring(lastIndexOfSpace + 1).Equals(EdmxDesignerResources.DbGenExtensibleListConverter_VSDir))
                     {
                         return Path.Combine(VSPathWithMacro, filename);
                     }

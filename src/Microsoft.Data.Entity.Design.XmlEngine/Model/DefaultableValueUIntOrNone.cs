@@ -9,10 +9,10 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
     /// </summary>
     internal abstract class DefaultableValueUIntOrNone : DefaultableValue<StringOrPrimitive<UInt32>>
     {
-        internal static readonly StringOrPrimitive<UInt32> NoneValue = new StringOrPrimitive<UInt32>(global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX);
+        internal static readonly StringOrPrimitive<UInt32> NoneValue = new StringOrPrimitive<UInt32>(global::Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources.NoneDisplayValueUsedForUX);
 
         internal static readonly StringOrPrimitiveConverter<UInt32> _uintOrNoneConverter =
-            new StringOrPrimitiveConverter<UInt32>(UInt32.TryParse, global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX);
+            new StringOrPrimitiveConverter<UInt32>(UInt32.TryParse, global::Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources.NoneDisplayValueUsedForUX);
 
         internal static StringOrPrimitiveConverter<UInt32> Converter
         {

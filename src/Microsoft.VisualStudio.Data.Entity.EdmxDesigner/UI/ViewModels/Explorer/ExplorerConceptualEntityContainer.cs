@@ -66,7 +66,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer
                 throw new InvalidOperationException(
                     string.Format(
                         CultureInfo.CurrentCulture,
-                        Resources.BadChildForParentException, GetType().FullName, childElementType.FullName));
+                        EdmxDesignerResources.BadChildForParentException, GetType().FullName, childElementType.FullName));
             }
         }
 

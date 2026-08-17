@@ -470,7 +470,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model.StandAlone
             // We do not allow editing DTDs through XmlModel
             if (node is XDocumentType)
             {
-                var msg = String.Format(CultureInfo.CurrentCulture, Resources.VanillaProvider_DtdNodesReadOnly);
+                var msg = String.Format(CultureInfo.CurrentCulture, XmlEngineResources.VanillaProvider_DtdNodesReadOnly);
                 throw new NotSupportedException(msg);
             }
             var action = e.ObjectChange;

@@ -190,7 +190,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                 if (String.IsNullOrWhiteSpace(paramDev.Type))
                 {
                     throw new ArgumentException(
-                        String.Format(CultureInfo.CurrentCulture, Resources.BadFunctionParameterType, paramDev.Name));
+                        String.Format(CultureInfo.CurrentCulture, EdmxResources.BadFunctionParameterType, paramDev.Name));
                 }
             }
         }

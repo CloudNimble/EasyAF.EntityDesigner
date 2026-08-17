@@ -30,7 +30,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.TextTemplating
             // Throw an exception which will get caught by the pipeline and displayed to the user
             if (warning == false)
             {
-                ErrorStringBuilder.AppendLine(String.Format(CultureInfo.CurrentCulture, Resources.TemplateError, line, column, message));
+                ErrorStringBuilder.AppendLine(String.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.TemplateError, line, column, message));
             }
         }
 

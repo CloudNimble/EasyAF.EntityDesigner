@@ -1,6 +1,6 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using DesignRes = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources;
+using DesignRes = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.EdmxDesignerResources;
 using ModelEntity = Microsoft.Data.Entity.Design.Edmx.Entity;
 using System;
 using System.Collections.Generic;
@@ -913,7 +913,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                         || explorerSelection is ExplorerEntityType)
                     {
                         cmd.Enabled = cmd.Visible = true;
-                        cmd.Text = Resources.AddEntityTypeCommand_ExplorerText;
+                        cmd.Text = PackageResources.AddEntityTypeCommand_ExplorerText;
                         return;
                     }
                 }
@@ -921,7 +921,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                 else if (IsOurDiagramSelected())
                 {
                     cmd.Enabled = cmd.Visible = true;
-                    cmd.Text = Resources.AddEntityTypeCommand_DesignerText;
+                    cmd.Text = PackageResources.AddEntityTypeCommand_DesignerText;
                     return;
                 }
             }
@@ -1157,7 +1157,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
             Debug.Assert(cmd != null, "Null MenuCommand");
             if (cmd != null)
             {
-                cmd.Text = Resources.DeleteFromModelCommandText;
+                cmd.Text = PackageResources.DeleteFromModelCommandText;
                 cmd.Enabled = cmd.Visible = false;
 
                 var diagram = GetDiagram();
@@ -1226,7 +1226,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                             if (explorerDiagram.Parent != null
                                 && explorerDiagram.Parent.Children.Count() > 1)
                             {
-                                cmd.Text = Resources.RemoveDiagramCommandText;
+                                cmd.Text = PackageResources.RemoveDiagramCommandText;
                                 cmd.Enabled = cmd.Visible = true;
                             }
                             return;
@@ -1234,7 +1234,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
 
                         if (explorerSelection is ExplorerEntityTypeShape explorerEntityTypeShape)
                         {
-                            cmd.Text = Resources.RemoveFromDiagramCommandText;
+                            cmd.Text = PackageResources.RemoveFromDiagramCommandText;
                             cmd.Enabled = cmd.Visible = true;
                             return;
                         }
@@ -1408,7 +1408,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                             new CommandProcessor(
                                 editingContext,
                                 EfiTransactionOriginator.ExplorerWindowOriginatorId,
-                                String.Format(CultureInfo.CurrentCulture, Resources.Tx_Delete, element.ModelItem.DisplayName),
+                                String.Format(CultureInfo.CurrentCulture, PackageResources.Tx_Delete, element.ModelItem.DisplayName),
                                 commands);
                         cp.Invoke();
                     }
@@ -1996,7 +1996,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                 if (diagram.NestedChildShapes == null
                     || diagram.NestedChildShapes.Count == 0)
                 {
-                    VsUtils.ShowErrorDialog(String.Format(CultureInfo.CurrentCulture, Resources.Error_EmptyDiagram, diagram.Title));
+                    VsUtils.ShowErrorDialog(String.Format(CultureInfo.CurrentCulture, PackageResources.Error_EmptyDiagram, diagram.Title));
                     return;
                 }
                 DiagramExportHelper.ExportDiagram(diagram);
@@ -2416,7 +2416,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                 if (null != dte
                     && null != dte.StatusBar)
                 {
-                    dte.StatusBar.Text = Resources.StatusBarValidatingText;
+                    dte.StatusBar.Text = PackageResources.StatusBarValidatingText;
                 }
                 Debug.Assert(CurrentDocData != null, "CurrentDocData is null");
                 if (CurrentDocData != null)
@@ -2444,7 +2444,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                 if (null != dte
                     && null != dte.StatusBar)
                 {
-                    dte.StatusBar.Text = Resources.StatusBarValidationCompletedText;
+                    dte.StatusBar.Text = PackageResources.StatusBarValidationCompletedText;
                 }
             }
         }
@@ -2538,7 +2538,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                 VsUtils.ShowErrorDialog(
                     string.Format(
                         CultureInfo.CurrentCulture,
-                        Microsoft.Data.Entity.Design.Edmx.Resources.UpdateFromDatabaseExceptionMessage,
+                        PackageResources.UpdateFromDatabaseExceptionMessage,
                         ex.GetType().FullName,
                         ex.Message));
             }
@@ -2564,7 +2564,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                 VsUtils.ShowErrorDialog(
                     string.Format(
                         CultureInfo.CurrentCulture,
-                        Microsoft.Data.Entity.Design.Edmx.Resources.GenerateDatabaseScriptExceptionMessage,
+                        PackageResources.GenerateDatabaseScriptExceptionMessage,
                         ex.GetType().FullName,
                         ex.Message));
             }
@@ -2725,7 +2725,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                             var name = (end == ConnectorEnd.Source)
                                            ? SelectedAssociationConnector.ModelElement.SourceEntityType.Name
                                            : SelectedAssociationConnector.ModelElement.TargetEntityType.Name;
-                            cmd.Text = String.Format(CultureInfo.CurrentCulture, Resources.SelectAssociationEndCommnadText, name);
+                            cmd.Text = String.Format(CultureInfo.CurrentCulture, PackageResources.SelectAssociationEndCommnadText, name);
                         }
                         else
                         {
@@ -2783,7 +2783,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                                 {
                                     cmd.Enabled = cmd.Visible = true;
                                     cmd.Text = String.Format(
-                                        CultureInfo.CurrentCulture, Resources.SelectAssociationPropertyCommandText, navProp.Name);
+                                        CultureInfo.CurrentCulture, PackageResources.SelectAssociationPropertyCommandText, navProp.Name);
                                 }
                             }
                         }
@@ -3173,7 +3173,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                                 {
                                     CommandProcessorContext cpc = new CommandProcessorContext(
                                         diagram.ModelElement.EditingContext, EfiTransactionOriginator.EntityDesignerOriginatorId,
-                                        Resources.Tx_Paste);
+                                        PackageResources.Tx_Paste);
 
                                     // When a property is selected, that means the user wants to paste the property next to the selected property.
                                     InsertPropertyPosition position = null;
@@ -3218,7 +3218,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                             && clipboardEntities.ClipboardEntities.Count > 0)
                         {
                             CommandProcessorContext cpc = new CommandProcessorContext(
-                                diagram.ModelElement.EditingContext, EfiTransactionOriginator.EntityDesignerOriginatorId, Resources.Tx_Paste);
+                                diagram.ModelElement.EditingContext, EfiTransactionOriginator.EntityDesignerOriginatorId, PackageResources.Tx_Paste);
                             Command cmd = new CopyEntitiesCommand(modelDiagram, clipboardEntities, Command.ModelSpace.Conceptual);
                             CommandProcessor cp = new CommandProcessor(cpc, cmd);
                             diagram.Arranger.Start(GetPositionForNewElements());
@@ -3242,7 +3242,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
             // explorer case
             var uri = Utils.FileName2Uri(CurrentDocData.FileName);
             var editingContext = PackageManager.Package.DocumentFrameMgr.EditingContextManager.GetNewOrExistingContext(uri);
-            CommandProcessorContext cpc = new CommandProcessorContext(editingContext, EfiTransactionOriginator.ExplorerWindowOriginatorId, Resources.Tx_Paste);
+            CommandProcessorContext cpc = new CommandProcessorContext(editingContext, EfiTransactionOriginator.ExplorerWindowOriginatorId, PackageResources.Tx_Paste);
 
             var clipboardComplexType = CopyPasteUtils.GetComplexTypeFromClipboard();
             var clipboardEnumType = CopyPasteUtils.GetEnumTypeFromClipboard();
@@ -3515,7 +3515,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                     if (IsOurDiagramSelected())
                     {
                         cmd.Enabled = cmd.Visible = true;
-                        cmd.Text = Resources.AddComplexTypeCommand_DesignerText;
+                        cmd.Text = PackageResources.AddComplexTypeCommand_DesignerText;
                         return;
                     }
                 }
@@ -3526,7 +3526,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                         || explorerSelection is ExplorerComplexType)
                     {
                         cmd.Enabled = cmd.Visible = true;
-                        cmd.Text = Resources.AddComplexTypeCommand_ExplorerText;
+                        cmd.Text = PackageResources.AddComplexTypeCommand_ExplorerText;
                         return;
                     }
                 }
@@ -3675,7 +3675,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                     && modelProperties.Count > 0)
                 {
                     CommandProcessorContext cpc = new CommandProcessorContext(
-                        viewModel.EditingContext, EfiTransactionOriginator.EntityDesignerOriginatorId, Resources.Tx_CreateComplexType);
+                        viewModel.EditingContext, EfiTransactionOriginator.EntityDesignerOriginatorId, PackageResources.Tx_CreateComplexType);
                     CreateComplexTypeFromPropertiesCommand cmd = new CreateComplexTypeFromPropertiesCommand(modelEntity, modelProperties);
                     CommandProcessor cp = new CommandProcessor(cpc, cmd);
                     cp.Invoke();
@@ -4187,7 +4187,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
 
                         if (deleteCommands.Count > 0)
                         {
-                            var transactionName = Resources.Tx_DeleteItems;
+                            var transactionName = PackageResources.Tx_DeleteItems;
                             if (deleteCommands.Count == 1)
                             {
                                 var ets = SelectedEntityTypeShapes.FirstOrDefault();
@@ -4195,7 +4195,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                                 if (null != ets)
                                 {
                                     transactionName = String.Format(
-                                        CultureInfo.CurrentCulture, Resources.Tx_Delete, ets.TypedModelElement.Name);
+                                        CultureInfo.CurrentCulture, PackageResources.Tx_Delete, ets.TypedModelElement.Name);
                                 }
                             }
                             var uri = Utils.FileName2Uri(CurrentDocData.FileName);
@@ -4254,7 +4254,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                         var uri = Utils.FileName2Uri(CurrentDocData.FileName);
                         var editingContext = PackageManager.Package.DocumentFrameMgr.EditingContextManager.GetNewOrExistingContext(uri);
                         CommandProcessorContext cpc = new CommandProcessorContext(
-                            editingContext, EfiTransactionOriginator.EntityDesignerOriginatorId, Resources.Tx_IncludeRelatedEntityTypeShape);
+                            editingContext, EfiTransactionOriginator.EntityDesignerOriginatorId, PackageResources.Tx_IncludeRelatedEntityTypeShape);
 
                         // Find all related entity types.
                         var relatedEntityTypes = ModelHelper.GetRelatedEntityTypes(entityType);
@@ -4415,7 +4415,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
             }
 
             var result = VsUtils.ShowMessageBox(
-                PackageManager.Package, Resources.MoveDiagramNodesWarning
+                PackageManager.Package, PackageResources.MoveDiagramNodesWarning
                 , OLEMSGBUTTON.OLEMSGBUTTON_YESNO, OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_SECOND, OLEMSGICON.OLEMSGICON_WARNING);
 
             if (result != DialogResult.Yes)
@@ -4578,7 +4578,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                             var uri = Utils.FileName2Uri(CurrentDocData.FileName);
                             var editingContext = PackageManager.Package.DocumentFrameMgr.EditingContextManager.GetNewOrExistingContext(uri);
                             CommandProcessorContext cpc = new CommandProcessorContext(
-                                editingContext, EfiTransactionOriginator.EntityDesignerOriginatorId, Resources.Tx_MoveProperty);
+                                editingContext, EfiTransactionOriginator.EntityDesignerOriginatorId, PackageResources.Tx_MoveProperty);
                             CommandProcessor.InvokeSingleCommand(cpc, new MovePropertiesCommand(modelProperties, moveDirection, moveStep));
 
                             // Restore the selections
@@ -4664,7 +4664,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                         if (IsOurDiagramSelected())
                         {
                             cmd.Enabled = cmd.Visible = true;
-                            cmd.Text = Resources.AddEnumTypeCommand_DesignerText;
+                            cmd.Text = PackageResources.AddEnumTypeCommand_DesignerText;
                         }
                     }
                     else
@@ -4674,7 +4674,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                             && (explorerSelection is ExplorerEnumTypes || explorerSelection is ExplorerEnumType))
                         {
                             cmd.Enabled = cmd.Visible = true;
-                            cmd.Text = Resources.AddEnumTypeCommand_ExplorerText;
+                            cmd.Text = PackageResources.AddEnumTypeCommand_ExplorerText;
                         }
                     }
                 }

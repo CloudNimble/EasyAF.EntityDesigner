@@ -277,7 +277,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Explorer
                 {
                     CommandProcessorContext cpc = new CommandProcessorContext(
                         Context, EfiTransactionOriginator.ExplorerWindowOriginatorId,
-                        Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources.Tx_AddComplexType, null, context);
+                        Microsoft.VisualStudio.Data.Entity.EdmxDesigner.EdmxDesignerResources.Tx_AddComplexType, null, context);
                     var complexType = CreateComplexTypeCommand.CreateComplexTypeWithDefaultName(cpc);
                     Debug.Assert(complexType != null, "Creating ComplexType failed");
                     NavigateToElementAndPutInRenameMode(complexType);
@@ -291,7 +291,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Explorer
                         CommandProcessorContext cpc = new CommandProcessorContext(
                             Context,
                             EfiTransactionOriginator.ExplorerWindowOriginatorId,
-                            Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources.Tx_CreateScalarProperty, null, context);
+                            Microsoft.VisualStudio.Data.Entity.EdmxDesigner.EdmxDesignerResources.Tx_CreateScalarProperty, null, context);
                         var property = CreateComplexTypePropertyCommand.CreateDefaultProperty(
                             cpc, complexType,
                             ModelConstants.DefaultPropertyType);
@@ -314,7 +314,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Explorer
                         CommandProcessorContext cpc = new CommandProcessorContext(
                             Context,
                             EfiTransactionOriginator.ExplorerWindowOriginatorId,
-                            Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources.Tx_CreateScalarProperty, null, context);
+                            Microsoft.VisualStudio.Data.Entity.EdmxDesigner.EdmxDesignerResources.Tx_CreateScalarProperty, null, context);
                         var enumType = CreateEnumTypeCommand.CreateEnumTypeWithDefaultName(cpc);
                         Debug.Assert(enumType != null, "Creating Enum failed");
                         NavigateToElementAndPutInRenameMode(enumType);
@@ -330,7 +330,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Explorer
                         CommandProcessorContext cpc = new CommandProcessorContext(
                             Context,
                             EfiTransactionOriginator.ExplorerWindowOriginatorId,
-                            Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources.Tx_CreateDiagram, null, context);
+                            Microsoft.VisualStudio.Data.Entity.EdmxDesigner.EdmxDesignerResources.Tx_CreateDiagram, null, context);
                         var diagram = CreateDiagramCommand.CreateDiagramWithDefaultName(cpc);
                         Debug.Assert(diagram != null, "The selected ExplorerEFElementItem is not type of diagram.");
                         NavigateToElementAndPutInRenameMode(diagram);

@@ -224,7 +224,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                                         {
                                             new ExtensionError(
                                                 string.Format(
-                                                    CultureInfo.CurrentCulture, Resources.ExtensionError_SourceControlLock,
+                                                    CultureInfo.CurrentCulture, PackageResources.ExtensionError_SourceControlLock,
                                                     Path.GetFileName(FileName)),
                                                 ErrorCodes.ExtensionsError_BufferNotEditable,
                                                 ExtensionErrorSeverity.Error)
@@ -277,7 +277,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                                     {
                                         new ExtensionError(
                                             string.Format(
-                                                CultureInfo.CurrentCulture, Resources.ExtensionError_SourceControlLock,
+                                                CultureInfo.CurrentCulture, PackageResources.ExtensionError_SourceControlLock,
                                                 Path.GetFileName(FileName)),
                                             ErrorCodes.ExtensionsError_BufferNotEditable,
                                             ExtensionErrorSeverity.Error)
@@ -995,7 +995,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                         {
                             // Swallow exceptions here, since we don't want a custom tool to interfere with the file save.
                             var errorMsg = String.Format(
-                                CultureInfo.CurrentCulture, Resources.ErrorOccurredRunningCustomTool, vsFileInfo.Path, e.Message);
+                                CultureInfo.CurrentCulture, PackageResources.ErrorOccurredRunningCustomTool, vsFileInfo.Path, e.Message);
                             VsUtils.LogOutputWindowPaneMessage(VSHelpers.GetProject(Hierarchy), errorMsg);
                         }
                     }
@@ -1016,7 +1016,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                 }
                 catch (Exception e)
                 {
-                    var errorMsg = String.Format(CultureInfo.CurrentCulture, Resources.ErrorOccurredLoadingFile, fileInfo.Path, e.Message);
+                    var errorMsg = String.Format(CultureInfo.CurrentCulture, PackageResources.ErrorOccurredLoadingFile, fileInfo.Path, e.Message);
                     VsUtils.LogOutputWindowPaneMessage(VSHelpers.GetProject(Hierarchy), errorMsg);
                     contents = null;
                 }

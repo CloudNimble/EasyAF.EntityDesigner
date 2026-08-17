@@ -259,7 +259,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Refactoring
         protected virtual PreviewChangesNode CreateEmptyNode()
         {
             return CreatePreviewNode(
-                Resources.RefactoringOperation_NoChanges, CommonConstants.OM_GLYPH_REFERENCE, IntPtr.Zero, null, false, false, false);
+                XmlDesignerResources.RefactoringOperation_NoChanges, CommonConstants.OM_GLYPH_REFERENCE, IntPtr.Zero, null, false, false, false);
         }
 
         protected static PreviewChangesNode CreatePreviewNode(

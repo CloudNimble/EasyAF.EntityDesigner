@@ -432,7 +432,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer
             throw new InvalidOperationException(
                 string.Format(
                     CultureInfo.CurrentCulture,
-                    global::Microsoft.Data.Entity.Design.XmlEngine.Resources.BadInsertBadChildType, efElementToInsert.GetType().FullName, GetType().FullName));
+                    XmlDesignerResources.BadInsertBadChildType, efElementToInsert.GetType().FullName, GetType().FullName));
         }
 
         internal virtual void RemoveChildIfLoaded(EFElement efChildElementToRemove)
@@ -471,12 +471,12 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer
                     Debug.Assert(
                         false, string.Format(
                             CultureInfo.CurrentCulture,
-                            global::Microsoft.Data.Entity.Design.XmlEngine.Resources.BadRemoveChildNotParent, explorerElement.Name, Name));
+                            XmlDesignerResources.BadRemoveChildNotParent, explorerElement.Name, Name));
                     return;
                     // TODO: we need to provide a general exception-handling mechanism and replace the above Assert()
                     // by e.g. the excepiton below
                     // throw new ArgumentException(string.Format(CultureInfo.CurrentCulture,
-                    //     global::Microsoft.Data.Entity.Design.XmlEngine.Resources.BadRemoveChildNotParent, explorerElement.Name, this.Name));
+                    //     XmlDesignerResources.BadRemoveChildNotParent, explorerElement.Name, this.Name));
                 }
 
                 // otherwise the Model child element does not map to any
@@ -668,7 +668,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer
         /// </summary>
         protected virtual string RenameTransactionName
         {
-            get { return string.Format(CultureInfo.CurrentCulture, global::Microsoft.Data.Entity.Design.XmlEngine.Resources.RenameTransactionNameFormat, _name); }
+            get { return string.Format(CultureInfo.CurrentCulture, XmlDesignerResources.RenameTransactionNameFormat, _name); }
         }
 
         public virtual bool IsKeyProperty

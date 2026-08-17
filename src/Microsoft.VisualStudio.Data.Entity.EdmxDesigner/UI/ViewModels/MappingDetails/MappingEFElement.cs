@@ -37,8 +37,8 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
     internal abstract class MappingEFElement : IDisposable
     {
         internal static readonly MappingLovEFElement LovBlankPlaceHolder = new MappingLovEFElement(string.Empty);
-        internal static readonly MappingLovEFElement LovEmptyPlaceHolder = new MappingLovEFElement(Resources.MappingDetails_LovEmpty);
-        internal static readonly MappingLovEFElement LovDeletePlaceHolder = new MappingLovEFElement(Resources.MappingDetails_LovDelete);
+        internal static readonly MappingLovEFElement LovEmptyPlaceHolder = new MappingLovEFElement(EdmxDesignerResources.MappingDetails_LovEmpty);
+        internal static readonly MappingLovEFElement LovDeletePlaceHolder = new MappingLovEFElement(EdmxDesignerResources.MappingDetails_LovDelete);
 
         protected EditingContext _context;
         protected EFElement _modelItem;

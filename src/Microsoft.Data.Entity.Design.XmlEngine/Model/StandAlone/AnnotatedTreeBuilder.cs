@@ -113,7 +113,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model.StandAlone
                     case XmlNodeType.EndEntity:
                         break;
                     default:
-                        throw new InvalidOperationException(Resources.TreeBuilder_UnknownNodeType);
+                        throw new InvalidOperationException(XmlEngineResources.TreeBuilder_UnknownNodeType);
                 }
             }
             doc = new XDocument(_root);

@@ -62,7 +62,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
         internal const string WebConfigFileName = "Web.Config";
         private const string MacroMatch = "macroMatch";
         private static readonly Regex MacroRegex = new Regex(@"\$\((?<" + MacroMatch + @">\w+)\)");
-        private static readonly string OutputWindowPaneTitle = Resources.EDMOutputWindowPaneTitle;
+        private static readonly string OutputWindowPaneTitle = EdmxDesignerResources.EDMOutputWindowPaneTitle;
         internal static readonly string DevEnvDirMacroName = "DevEnvDir";
 
         /// <summary>
@@ -252,7 +252,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
             if (String.IsNullOrEmpty(macroValue))
             {
                 throw new InvalidOperationException(
-                    String.Format(CultureInfo.CurrentCulture, Resources.VsUtils_ErrorResolvingMacro, macroName));
+                    String.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.VsUtils_ErrorResolvingMacro, macroName));
             }
 
             return macroValue;
@@ -844,7 +844,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
                     options = MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading;
                 }
                 MessageBox.Show(
-                    null, messageText, Resources.Application_Caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation,
+                    null, messageText, EdmxDesignerResources.Application_Caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation,
                     MessageBoxDefaultButton.Button1, options);
             }
 
@@ -1579,7 +1579,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
                 // There is already a file at the proposed location, ask the user if they'd like to delete it
                 var result = ShowMessageBox(
                     serviceProvider,
-                    string.Format(CultureInfo.CurrentCulture, Resources.LocalDatabaseFileAlreadyExists, Path.GetFileName(filePath)),
+                    string.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.LocalDatabaseFileAlreadyExists, Path.GetFileName(filePath)),
                     OLEMSGBUTTON.OLEMSGBUTTON_YESNO,
                     OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST,
                     OLEMSGICON.OLEMSGICON_QUERY);
@@ -1805,7 +1805,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
                 sbErrMsg.Append(Environment.NewLine);
                 sbErrMsg.Append(
                     String.Format(
-                        CultureInfo.CurrentCulture, Resources.VSUtils_InnerExceptionErrorFormat, innerException.GetType().FullName,
+                        CultureInfo.CurrentCulture, EdmxDesignerResources.VSUtils_InnerExceptionErrorFormat, innerException.GetType().FullName,
                         innerException.Message));
                 innerException = innerException.InnerException;
             }

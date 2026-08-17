@@ -12,7 +12,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
     internal class UseOriginalValueColumn : BaseColumn
     {
         public UseOriginalValueColumn()
-            : base(Resources.MappingDetails_UseOriginalValueColumn)
+            : base(EdmxDesignerResources.MappingDetails_UseOriginalValueColumn)
         {
         }
 

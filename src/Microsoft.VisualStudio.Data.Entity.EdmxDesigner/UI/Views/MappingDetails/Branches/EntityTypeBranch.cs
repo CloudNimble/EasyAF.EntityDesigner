@@ -54,7 +54,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
                                   ? GetObject(locateData.Row, 0, ObjectStyle.ExpandedBranch) as IBranch
                                   : new TableBranch(_mappingConceptualTypeMapping, _columns);
             }
-            childBranches.Add(new ChildBranchInfo(tableBranch, Resources.MappingDetails_TablesHeader, "TABLE"));
+            childBranches.Add(new ChildBranchInfo(tableBranch, EdmxDesignerResources.MappingDetails_TablesHeader, "TABLE"));
 
             SetHeaderInfo(childBranches.ToArray(), _columns);
         }

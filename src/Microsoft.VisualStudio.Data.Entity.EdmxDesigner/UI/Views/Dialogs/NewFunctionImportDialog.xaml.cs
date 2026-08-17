@@ -27,7 +27,7 @@ using System.Windows.Input;
 using ComplexType = Microsoft.Data.Entity.Design.Edmx.Entity.ComplexType;
 using EntityProperty = Microsoft.Data.Entity.Design.Edmx.Entity.Property;
 using EntityType = Microsoft.Data.Entity.Design.Edmx.Entity.EntityType;
-using XmlDesignerBaseResources = Microsoft.Data.Entity.Design.XmlEngine.Resources;
+using XmlDesignerBaseResources = Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
 {

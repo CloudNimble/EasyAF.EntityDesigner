@@ -214,7 +214,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Entity
                 else
                 {
                     // multiple OnDelete elements
-                    var msg = String.Format(CultureInfo.CurrentCulture, Resources.DuplicatedElementMsg, elem.Name.LocalName);
+                    var msg = String.Format(CultureInfo.CurrentCulture, EdmxResources.DuplicatedElementMsg, elem.Name.LocalName);
                     Artifact.AddParseErrorForObject(this, msg, ErrorCodes.DUPLICATED_ELEMENT_ENCOUNTERED);
                 }
             }

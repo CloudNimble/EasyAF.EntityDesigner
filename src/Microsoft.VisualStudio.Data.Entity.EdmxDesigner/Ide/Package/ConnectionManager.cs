@@ -214,7 +214,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
                 }
                 catch (Exception e)
                 {
-                    var s = Resources.ConnectionManager_InitializeError;
+                    var s = EdmxDesignerResources.ConnectionManager_InitializeError;
                     s = String.Format(CultureInfo.CurrentCulture, s, e.Message);
                     Project project = null;
                     foreach (var p in VsUtils.GetAllProjectsInSolution(PackageManager.Package))
@@ -266,7 +266,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
             if (connStringsElement is null)
             {
                 // can happen if the document element is not "configuration"
-                throw new XmlException(Resources.ConnectionManager_CorruptConfig);
+                throw new XmlException(EdmxDesignerResources.ConnectionManager_CorruptConfig);
             }
 
             AddConnectionStringElement(connStringsElement, connStringName, connString, providerName);
@@ -851,7 +851,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
             {
                 Debug.Fail(
                     String.Format(
-                        CultureInfo.CurrentCulture, Resources.ConnectionManager_UpdateError, "Metadata portion of connection string",
+                        CultureInfo.CurrentCulture, EdmxDesignerResources.ConnectionManager_UpdateError, "Metadata portion of connection string",
                         "No project was found"));
                 return VSConstants.E_INVALIDARG;
             }
@@ -1037,7 +1037,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
             var connStringsElement = GetConnectionStringsElement(configXmlDoc);
             if (connStringsElement is null)
             {
-                throw new XmlException(Resources.ConnectionManager_CorruptConfig);
+                throw new XmlException(EdmxDesignerResources.ConnectionManager_CorruptConfig);
             }
 
             foreach (var nameToConnString in entityConnectionStrings)
@@ -1152,7 +1152,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
                 }
                 else
                 {
-                    var s = String.Format(CultureInfo.CurrentCulture, Resources.ConnectionManager_NoConnectionString, entityContainerName);
+                    var s = String.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.ConnectionManager_NoConnectionString, entityContainerName);
                     VsUtils.LogOutputWindowPaneMessage(project, s);
                 }
             }
@@ -1573,7 +1573,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
                     }
                     catch (Exception e)
                     {
-                        var s = Resources.ConnectionManager_InitializeError;
+                        var s = EdmxDesignerResources.ConnectionManager_InitializeError;
                         s = String.Format(CultureInfo.CurrentCulture, s, e.Message);
                         Project project = null;
                         foreach (var p in VsUtils.GetAllProjectsInSolution(PackageManager.Package))
@@ -1627,7 +1627,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
 
             if (!ConnStringsByProjectHash.TryGetValue(project, out Dictionary<string, ConnectionString> hash))
             {
-                var s = String.Format(CultureInfo.CurrentCulture, Resources.ConnectionManager_GetConfigError);
+                var s = String.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.ConnectionManager_GetConfigError);
                 VsUtils.LogOutputWindowPaneMessage(project, s);
                 return;
             }
@@ -1696,7 +1696,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
         {
             if (args.ProjectObj is null)
             {
-                Debug.Fail(Resources.ConnectionManager_InitializeError);
+                Debug.Fail(EdmxDesignerResources.ConnectionManager_InitializeError);
                 return VSConstants.E_FAIL;
             }
 
@@ -1995,19 +1995,19 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
             {
                 var ddexNotInstalledMsg =
                     !DDEXProviderInstalled(serviceProvider, invariantName) ?
-                    string.Format(CultureInfo.CurrentCulture, Resources.DDEXNotInstalled, invariantName) :
+                    string.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.DDEXNotInstalled, invariantName) :
                     string.Empty;
 
                 // ConnectionStringConverterServiceException has no Message - convert to a more descriptive exception
                 var errMsg = fromDesignTime
                                  ? string.Format(
                                      CultureInfo.CurrentCulture,
-                                     Resources.CannotTranslateDesignTimeConnectionString,
+                                     EdmxDesignerResources.CannotTranslateDesignTimeConnectionString,
                                      ddexNotInstalledMsg,
                                      connectionString)
                                  : string.Format(
                                      CultureInfo.CurrentCulture,
-                                     Resources.CannotTranslateRuntimeConnectionString,
+                                     EdmxDesignerResources.CannotTranslateRuntimeConnectionString,
                                      ddexNotInstalledMsg,
                                      connectionString);
                 throw new ArgumentException(errMsg);

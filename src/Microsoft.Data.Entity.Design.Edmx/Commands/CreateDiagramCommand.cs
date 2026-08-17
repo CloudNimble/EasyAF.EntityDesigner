@@ -69,7 +69,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                 }
 
                 var diagramName = ModelHelper.GetUniqueNameWithNumber(
-                    typeof(Diagram), entityDesignArtifact.DesignerInfo.Diagrams, Resources.Model_DefaultDiagramName);
+                    typeof(Diagram), entityDesignArtifact.DesignerInfo.Diagrams, EdmxResources.Model_DefaultDiagramName);
 
                 // go create it
                 CommandProcessor cp = new CommandProcessor(cpc);

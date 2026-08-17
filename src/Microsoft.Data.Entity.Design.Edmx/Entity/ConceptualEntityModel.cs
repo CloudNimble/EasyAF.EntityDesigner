@@ -216,7 +216,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Entity
                 if (_entityContainers.Count > 0)
                 {
                     // multiple EntityContainers detected, report an error
-                    var msg = String.Format(CultureInfo.CurrentCulture, Resources.TOO_MANY_ENTITY_CONTAINER_ELEMENTS, Namespace.Value);
+                    var msg = String.Format(CultureInfo.CurrentCulture, EdmxResources.TOO_MANY_ENTITY_CONTAINER_ELEMENTS, Namespace.Value);
                     ErrorInfo error = new ErrorInfo(
                         ErrorInfo.Severity.ERROR, msg, this, ErrorCodes.TOO_MANY_ENTITY_CONTAINER_ELEMENTS, ErrorClass.ParseError);
                     Artifact.AddParseErrorForObject(this, error);

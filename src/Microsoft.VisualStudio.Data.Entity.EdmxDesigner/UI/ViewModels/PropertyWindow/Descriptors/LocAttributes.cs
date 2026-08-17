@@ -17,7 +17,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
 
         protected override ResourceManager ResourceManager
         {
-            get { return Resources.ResourceManager; }
+            get { return EdmxDesignerResources.ResourceManager; }
         }
     }
 
@@ -31,7 +31,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
 
         protected override ResourceManager ResourceManager
         {
-            get { return Resources.ResourceManager; }
+            get { return EdmxDesignerResources.ResourceManager; }
         }
     }
 
@@ -45,7 +45,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
 
         protected override ResourceManager ResourceManager
         {
-            get { return Resources.ResourceManager; }
+            get { return EdmxDesignerResources.ResourceManager; }
         }
     }
 }

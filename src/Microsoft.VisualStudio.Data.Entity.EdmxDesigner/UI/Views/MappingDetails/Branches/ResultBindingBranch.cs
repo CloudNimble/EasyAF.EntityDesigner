@@ -77,7 +77,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
 
         protected override string GetCreatorNodeText(int index)
         {
-            return Resources.MappingDetails_ResultBindingCreatorNode;
+            return EdmxDesignerResources.MappingDetails_ResultBindingCreatorNode;
         }
 
         protected override LabelEditResult OnCreatorNodeEditCommitted(int index, object value, int insertIndex)

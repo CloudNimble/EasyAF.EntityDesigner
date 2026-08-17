@@ -4,7 +4,7 @@ using System;
 using System.Globalization;
 using Microsoft.Data.Entity.Design.Diagrams.View;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs;
-using DesignRes = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources;
+using DesignRes = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.EdmxDesignerResources;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;

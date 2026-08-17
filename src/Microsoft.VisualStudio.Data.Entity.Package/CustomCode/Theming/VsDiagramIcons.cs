@@ -3,7 +3,7 @@
 using Microsoft.Data.Entity.Design.Diagrams.View;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
 using System.Drawing;
-using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.Resources;
+using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.DiagramsResources;
 
 namespace Microsoft.VisualStudio.Data.Entity.Package.Theming
 {

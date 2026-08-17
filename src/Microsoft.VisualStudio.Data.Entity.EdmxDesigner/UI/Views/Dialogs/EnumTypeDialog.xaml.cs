@@ -10,7 +10,7 @@ using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Input;
-using EntityDesignerResources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources;
+using EntityDesignerResources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.EdmxDesignerResources;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
 {

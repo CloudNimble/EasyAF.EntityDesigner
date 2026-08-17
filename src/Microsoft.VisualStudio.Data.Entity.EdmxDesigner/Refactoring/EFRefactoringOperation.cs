@@ -47,12 +47,12 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Refactoring
 
         protected internal override string OperationName
         {
-            get { return Resources.RefactorRenameOperation_Description; }
+            get { return EdmxDesignerResources.RefactorRenameOperation_Description; }
         }
 
         protected internal override string OperationNameDescription
         {
-            get { return Resources.RefactorRenameOperation_Description; }
+            get { return EdmxDesignerResources.RefactorRenameOperation_Description; }
         }
 
         protected override PreviewWindowInfo PreviewWindowInfo
@@ -62,10 +62,10 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Refactoring
                 if (_previewWindowInfo == null)
                 {
                     _previewWindowInfo = new PreviewWindowInfo();
-                    _previewWindowInfo.ConfirmButtonText = Resources.RefactorRenameOperation_ConfirmButtonText;
-                    _previewWindowInfo.Description = Resources.RefactorRenameOperation_Description;
-                    _previewWindowInfo.TextViewDescription = Resources.RefactorRenameOperation_TextViewDescription;
-                    _previewWindowInfo.Title = string.Format(CultureInfo.CurrentCulture, Resources.RefactorRenameOperation_Title);
+                    _previewWindowInfo.ConfirmButtonText = EdmxDesignerResources.RefactorRenameOperation_ConfirmButtonText;
+                    _previewWindowInfo.Description = EdmxDesignerResources.RefactorRenameOperation_Description;
+                    _previewWindowInfo.TextViewDescription = EdmxDesignerResources.RefactorRenameOperation_TextViewDescription;
+                    _previewWindowInfo.Title = string.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.RefactorRenameOperation_Title);
                 }
                 return _previewWindowInfo;
             }
@@ -77,7 +77,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Refactoring
             {
                 return string.Format(
                     CultureInfo.CurrentCulture,
-                    Resources.RefactorRename_UndoDescription,
+                    EdmxDesignerResources.RefactorRename_UndoDescription,
                     _contributorInput.OldName,
                     _contributorInput.NewName);
             }
@@ -136,17 +136,17 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Refactoring
                             {
                                 EntityDesignRenameCommand renameCommand = new EntityDesignRenameCommand(_objectToRename, _newName, false);
                                 CommandProcessorContext cpc = new CommandProcessorContext(
-                                    artifact.EditingContext, "EFRefactoringOperation->OnApplyChanges", Resources.Tx_RefactorRenameCommand);
+                                    artifact.EditingContext, "EFRefactoringOperation->OnApplyChanges", EdmxDesignerResources.Tx_RefactorRenameCommand);
                                 CommandProcessor.InvokeSingleCommand(cpc, renameCommand);
                             }
                         }
                         catch (IOException)
                         {
-                            errorMessage = string.Format(CultureInfo.CurrentCulture, Resources.Error_FailedApplyChangeToFile, fileName);
+                            errorMessage = string.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.Error_FailedApplyChangeToFile, fileName);
                         }
                         catch (InvalidOperationException)
                         {
-                            errorMessage = string.Format(CultureInfo.CurrentCulture, Resources.Error_FailedApplyChangeToFile, fileName);
+                            errorMessage = string.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.Error_FailedApplyChangeToFile, fileName);
                         }
 
                         if (errorMessage != null)
@@ -184,7 +184,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Refactoring
                 }
                 else
                 {
-                    OnError(string.Format(CultureInfo.CurrentCulture, Resources.Error_FailedApplyChangeToFile, string.Empty));
+                    OnError(string.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.Error_FailedApplyChangeToFile, string.Empty));
                 }
             }
             finally
@@ -281,7 +281,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Refactoring
                                     fileChangeProposals = [];
                                     fileChange.ChangeList.Add(
                                         new KeyValuePair<RefactoringPreviewGroup, HashSet<ChangeProposal>>(
-                                            new RefactoringPreviewGroup(Resources.RefactorPreviewGroupName), fileChangeProposals));
+                                            new RefactoringPreviewGroup(EdmxDesignerResources.RefactorPreviewGroupName), fileChangeProposals));
                                     fileChangeMap.Add(changeProposal.FileName, fileChange);
                                 }
 

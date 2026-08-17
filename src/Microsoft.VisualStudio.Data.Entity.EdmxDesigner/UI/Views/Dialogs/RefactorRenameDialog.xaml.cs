@@ -82,7 +82,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
             if (!contentValidator.IsValidAttributeValue(this.NewName, attr))
             {
                 // not valid content
-                errorMessage = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources.RefactorRename_InvalidName;
+                errorMessage = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.EdmxDesignerResources.RefactorRename_InvalidName;
                 return false;
             }
 
@@ -97,7 +97,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
             {
                 if (!ModelHelper.IsUniqueNameForExistingItem(property, this.NewName, true, out errorMessage))
                 {
-                    errorMessage = string.Format(CultureInfo.CurrentCulture, Microsoft.Data.Entity.Design.Edmx.Resources.NAME_NOT_UNIQUE, this.NewName);
+                    errorMessage = string.Format(CultureInfo.CurrentCulture, Microsoft.Data.Entity.Design.Edmx.EdmxResources.NAME_NOT_UNIQUE, this.NewName);
                     return false;
                 }
             }

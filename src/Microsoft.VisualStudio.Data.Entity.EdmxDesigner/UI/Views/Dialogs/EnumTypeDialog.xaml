@@ -44,13 +44,13 @@
         </VisualBrush.Transform>
         <VisualBrush.Visual>
           <Grid>
-            <TextBlock FontStyle="Italic" Opacity="0.8" Text="{x:Static ded:Resources.EnumDialog_ExternalTypeHint}" />
+            <TextBlock FontStyle="Italic" Opacity="0.8" Text="{x:Static ded:EdmxDesignerResources.EnumDialog_ExternalTypeHint}" />
           </Grid>
         </VisualBrush.Visual>
       </VisualBrush>
 
       <Style x:Key="ErrorImageStyle" TargetType="{x:Type Image}">
-        <Setter Property="AutomationProperties.Name" Value="{x:Static ded:Resources.EnumDialog_Error_AccName}" />
+        <Setter Property="AutomationProperties.Name" Value="{x:Static ded:EdmxDesignerResources.EnumDialog_Error_AccName}" />
         <Setter Property="Source" Value="{StaticResource WarningPngIcon}" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled" />
         <Setter Property="Stretch" Value="None" />
@@ -58,7 +58,7 @@
       </Style>
 
       <Style x:Key="BasePopupStyle" TargetType="{x:Type Popup}">
-        <Setter Property="AutomationProperties.Name" Value="{x:Static ded:Resources.EnumDialog_Error_AccName}" />
+        <Setter Property="AutomationProperties.Name" Value="{x:Static ded:EdmxDesignerResources.EnumDialog_Error_AccName}" />
         <Setter Property="Margin" Value="3,3,3,3" />
         <Setter Property="Placement" Value="Bottom" />
         <Setter Property="VerticalOffset" Value="6" />
@@ -153,7 +153,7 @@
     </ResourceDictionary>
  </vs:DialogWindow.Resources>
     
-    <Grid Margin="10,10,10,10" AutomationProperties.Name="{x:Static ded:Resources.EnumDialog_AutomationName}">
+    <Grid Margin="10,10,10,10" AutomationProperties.Name="{x:Static ded:EdmxDesignerResources.EnumDialog_AutomationName}">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto" />
         <RowDefinition Height="Auto" />
@@ -170,12 +170,12 @@
         <ColumnDefinition Width="*" />
       </Grid.ColumnDefinitions>
 
-      <TextBlock Grid.Column="0" Grid.Row="0" Text="{x:Static ded:Resources.EnumDialog_NameLabel}" 
+      <TextBlock Grid.Column="0" Grid.Row="0" Text="{x:Static ded:EdmxDesignerResources.EnumDialog_NameLabel}" 
                  VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="5,5,5,2"/>
 
       <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal">
         <TextBox Name="txtEnumTypeName" HorizontalAlignment="Left" 
-                 Margin="5,0,5,5" AutomationProperties.Name="{x:Static ded:Resources.EnumDialog_NameLabel}"
+                 Margin="5,0,5,5" AutomationProperties.Name="{x:Static ded:EdmxDesignerResources.EnumDialog_NameLabel}"
                  Width="250px" TextChanged="OnTextBoxTextChanged" LostFocus="OnTextBoxLostFocus" >
           <TextBox.Text>
             <Binding Path="Name">
@@ -220,22 +220,22 @@
         </Popup>
       </StackPanel>
 
-      <TextBlock Grid.Column="0" Grid.Row="2" Text="{x:Static ded:Resources.EnumDialog_UnderlyingTypeLabel}" Margin="5,2,5,2" />
+      <TextBlock Grid.Column="0" Grid.Row="2" Text="{x:Static ded:EdmxDesignerResources.EnumDialog_UnderlyingTypeLabel}" Margin="5,2,5,2" />
 
       <ComboBox Grid.Column="0" Grid.Row="3"  HorizontalAlignment="Left" Name="cmbUnderlyingType"
                 Margin="5,0,5,5" Width="250px"
                 Style="{StaticResource ThemedComboBoxStyle}"
                 ItemsSource="{Binding Path=UnderlyingTypes}"
                 SelectedItem="{Binding Path=SelectedUnderlyingType,Mode=TwoWay}"
-                AutomationProperties.Name="{x:Static ded:Resources.EnumDialog_UnderlyingTypeLabel}"
-                ToolTip="{x:Static ded:Resources.PropertyWindow_Description_EnumUnderlyingType}"/>
+                AutomationProperties.Name="{x:Static ded:EdmxDesignerResources.EnumDialog_UnderlyingTypeLabel}"
+                ToolTip="{x:Static ded:EdmxDesignerResources.PropertyWindow_Description_EnumUnderlyingType}"/>
 
       <DataGrid Grid.Column="0" Grid.Row="4" HorizontalAlignment="Stretch"
                 Name="dgEnumTypeMembers" VerticalAlignment="Stretch" ItemsSource="{Binding Path=Members}"
                 CanUserAddRows="True" CanUserDeleteRows="True" AutoGenerateColumns="False"
                 HorizontalGridLinesBrush="{DynamicResource VsBrush.ThreeDFace}"
                 VerticalGridLinesBrush="{DynamicResource VsBrush.ThreeDFace}"
-                AutomationProperties.Name="{x:Static ded:Resources.EnumDialog_AccEnumTypeMembers}"
+                AutomationProperties.Name="{x:Static ded:EdmxDesignerResources.EnumDialog_AccEnumTypeMembers}"
                 Margin="5,10,5,5"
                 CellEditEnding="dgEnumTypeMembers_CellEditEnding"
                 CurrentCellChanged="dgEnumTypeMembers_CurrentCellChanged"
@@ -245,10 +245,10 @@
         </DataGrid.RowValidationRules>
         <DataGrid.Columns>
 
-          <DataGridTextColumn Header="{x:Static ded:Resources.EnumDialog_EnumTypeMemberNameLabel}"
+          <DataGridTextColumn Header="{x:Static ded:EdmxDesignerResources.EnumDialog_EnumTypeMemberNameLabel}"
                               CanUserSort="False" MinWidth="225" MaxWidth="325" Width="Auto"
-                              AutomationProperties.Name="{x:Static ded:Resources.EnumDialog_EnumTypeMemberNameLabel}"
-                              AutomationProperties.HelpText="{x:Static ded:Resources.EnumDialog_EnumTypeMemberHelpText}">
+                              AutomationProperties.Name="{x:Static ded:EdmxDesignerResources.EnumDialog_EnumTypeMemberNameLabel}"
+                              AutomationProperties.HelpText="{x:Static ded:EdmxDesignerResources.EnumDialog_EnumTypeMemberHelpText}">
             <DataGridTextColumn.Binding>
               <Binding Path="Name">
                 <Binding.ValidationRules>
@@ -258,10 +258,10 @@
             </DataGridTextColumn.Binding>
           </DataGridTextColumn>
 
-                <DataGridTextColumn Header="{x:Static ded:Resources.EnumDialog_EnumTypeMemberValueLabel}"
+                <DataGridTextColumn Header="{x:Static ded:EdmxDesignerResources.EnumDialog_EnumTypeMemberValueLabel}"
                                     CanUserSort="False" MinWidth="200" MaxWidth="300" Width="Auto"
-                                    AutomationProperties.Name="{x:Static ded:Resources.EnumDialog_EnumTypeMemberValueLabel}"
-                                    AutomationProperties.HelpText="{x:Static ded:Resources.EnumDialog_EnumTypeMemberHelpText}">
+                                    AutomationProperties.Name="{x:Static ded:EdmxDesignerResources.EnumDialog_EnumTypeMemberValueLabel}"
+                                    AutomationProperties.HelpText="{x:Static ded:EdmxDesignerResources.EnumDialog_EnumTypeMemberHelpText}">
             <DataGridTextColumn.Binding>
               <Binding Path="Value">
                 <Binding.ValidationRules>
@@ -273,19 +273,19 @@
         </DataGrid.Columns>
       </DataGrid>
 
-      <CheckBox Content="{x:Static ded:Resources.EnumDialog_IsFlagLabel}" Grid.Column="0" Grid.Row="5"
+      <CheckBox Content="{x:Static ded:EdmxDesignerResources.EnumDialog_IsFlagLabel}" Grid.Column="0" Grid.Row="5"
                 Style="{StaticResource ThemedCheckBoxStyle}"
                 Name="chkIsFlag" VerticalAlignment="Center" Margin="8,10,5,5" Padding="8,0,5,0"
-                IsChecked="{Binding Path=IsFlag}" ToolTip="{x:Static ded:Resources.EnumDialog_IsFlagLabelDescription}" />
+                IsChecked="{Binding Path=IsFlag}" ToolTip="{x:Static ded:EdmxDesignerResources.EnumDialog_IsFlagLabelDescription}" />
 
-      <CheckBox Content="{x:Static ded:Resources.EnumDialog_ExternalTypeLabel}" Grid.Column="0" Grid.Row="6"
+      <CheckBox Content="{x:Static ded:EdmxDesignerResources.EnumDialog_ExternalTypeLabel}" Grid.Column="0" Grid.Row="6"
                 Style="{StaticResource ThemedCheckBoxStyle}"
                 Name="chkReferenceExternalType" VerticalAlignment="Center" Margin="8,5,5,2" Padding="8,0,5,0" IsChecked="{Binding Path=IsReferenceExternalType}"
-                ToolTip="{x:Static ded:Resources.PropertyWindow_Description_EnumExternalTypeAttribute}" Click="OnRefrenceExternalTypeClick"/>
+                ToolTip="{x:Static ded:EdmxDesignerResources.PropertyWindow_Description_EnumExternalTypeAttribute}" Click="OnRefrenceExternalTypeClick"/>
 
       <StackPanel Grid.Column="0" Grid.Row="7" Orientation="Horizontal">
         <Border MaxWidth="{Binding ElementName=chkIsFlag,Path=ActualWidth}" Margin="0,0,0,0" BorderThickness="0,0,0,0">
-          <TextBox Margin="23,5,5,5" Name="txtExternalType" HorizontalAlignment="Left" AutomationProperties.Name="{x:Static ded:Resources.EnumDialog_ExternalTypeLabel}"
+          <TextBox Margin="23,5,5,5" Name="txtExternalType" HorizontalAlignment="Left" AutomationProperties.Name="{x:Static ded:EdmxDesignerResources.EnumDialog_ExternalTypeLabel}"
                    Width="230px" IsReadOnly="{Binding Path=IsChecked, ElementName=chkReferenceExternalType, Converter={StaticResource InverseBooleanConverter}}"
                    TextChanged="OnTextBoxTextChanged" LostFocus="OnTextBoxLostFocus">
             <TextBox.Text>
@@ -355,15 +355,15 @@
          <Button Name="btnOk"
                  Style="{StaticResource ThemedButtonStyle}"
                  Margin="5,15,5,5" MinWidth="70" IsDefault="True"
-                 Click="btnOk_Click" Content="{x:Static ded:Resources.EnumDialog_OkButtonLabel}"
+                 Click="btnOk_Click" Content="{x:Static ded:EdmxDesignerResources.EnumDialog_OkButtonLabel}"
                  IsEnabled="{Binding Path=IsValid}"
-                 AutomationProperties.Name="{x:Static ded:Resources.EnumDialog_OkButtonLabel}"/>
+                 AutomationProperties.Name="{x:Static ded:EdmxDesignerResources.EnumDialog_OkButtonLabel}"/>
 
         <Button Name="btnCancel"
                 Style="{StaticResource ThemedButtonStyle}"
                 Margin="5,15,5,5" MinWidth="70" IsCancel="True"
-                Click="btnCancel_Click" Content="{x:Static ded:Resources.EnumDialog_CancelButtonLabel}"
-                AutomationProperties.Name="{x:Static ded:Resources.EnumDialog_CancelButtonLabel}"/>
+                Click="btnCancel_Click" Content="{x:Static ded:EdmxDesignerResources.EnumDialog_CancelButtonLabel}"
+                AutomationProperties.Name="{x:Static ded:EdmxDesignerResources.EnumDialog_CancelButtonLabel}"/>
       </StackPanel>
   </Grid>
 </vs:DialogWindow>

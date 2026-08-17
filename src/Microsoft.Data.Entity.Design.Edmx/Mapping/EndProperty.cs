@@ -131,7 +131,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Mapping
             string resource;
             if (localize)
             {
-                resource = Resources.MappingModel_EndPropertyDisplayName;
+                resource = EdmxResources.MappingModel_EndPropertyDisplayName;
             }
             else
             {

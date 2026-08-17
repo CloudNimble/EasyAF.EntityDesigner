@@ -18,7 +18,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyW
                 {
                     if (StringOrNone.NoneValue.Equals(v))
                     {
-                        return global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX;
+                        return global::Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources.NoneDisplayValueUsedForUX;
                     }
                     else
                     {

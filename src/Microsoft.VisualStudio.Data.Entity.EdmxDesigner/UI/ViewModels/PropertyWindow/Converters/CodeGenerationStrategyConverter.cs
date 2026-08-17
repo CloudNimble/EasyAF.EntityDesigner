@@ -10,8 +10,8 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
     {
         protected override void PopulateMappingForSelectedObject(EFEntityModelDescriptor selectedObject)
         {
-            AddMapping(Resources.None, Resources.CodeGenerationStrategy_T4);
-            AddMapping(Resources.Default, Resources.CodeGenerationStrategy_LegacyObjectContext);
+            AddMapping(EdmxDesignerResources.None, EdmxDesignerResources.CodeGenerationStrategy_T4);
+            AddMapping(EdmxDesignerResources.Default, EdmxDesignerResources.CodeGenerationStrategy_LegacyObjectContext);
         }
     }
 }

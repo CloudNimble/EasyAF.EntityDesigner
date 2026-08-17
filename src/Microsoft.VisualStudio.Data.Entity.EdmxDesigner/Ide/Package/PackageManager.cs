@@ -126,7 +126,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
                     hr = vsShell.LoadPackage(ref packageGuid, out package);
                     if (NativeMethods.Failed(hr))
                     {
-                        var msg = String.Format(CultureInfo.CurrentCulture, Resources.PackageLoadFailureExceptionMessage, hr);
+                        var msg = String.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.PackageLoadFailureExceptionMessage, hr);
                         throw new InvalidOperationException(msg);
                     }
                 }

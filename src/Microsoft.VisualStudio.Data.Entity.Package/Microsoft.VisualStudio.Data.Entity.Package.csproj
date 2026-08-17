@@ -213,10 +213,10 @@
             <ManifestResourceName>Microsoft.VisualStudio.Data.Entity.Package.VSPackageCTO</ManifestResourceName>
             <Generator></Generator>
         </EmbeddedResource>
-        <EmbeddedResource Include="Resources.resx">
+        <EmbeddedResource Include="PackageResources.resx">
             <ManifestResourceName>Microsoft.VisualStudio.Data.Entity.Package.Resources</ManifestResourceName>
             <Generator>ResXFileCodeGenerator</Generator>
-            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+            <LastGenOutput>PackageResources.Designer.cs</LastGenOutput>
         </EmbeddedResource>
         <EmbeddedResource Include="Resources\MappingDetailsBitmap.bmp" />
         <EmbeddedResource Include="Resources\ModelBrowserBitmap.bmp" />
@@ -238,6 +238,13 @@
     </ItemGroup>
     <ItemGroup>
       <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Update="PackageResources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>PackageResources.resx</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 

@@ -51,10 +51,10 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
             if (!EdmFeatureManager.GetGenerateUpdateViewsFeatureState(TypedEFElement.Artifact.SchemaVersion).IsEnabled())
             {
                 return String.Format(
-                    CultureInfo.CurrentCulture, "({0}) {1}", Resources.DisabledFeatureTooltip,
-                    Resources.PropertyWindow_Description_GenerateUpdateViews);
+                    CultureInfo.CurrentCulture, "({0}) {1}", EdmxDesignerResources.DisabledFeatureTooltip,
+                    EdmxDesignerResources.PropertyWindow_Description_GenerateUpdateViews);
             }
-            return Resources.PropertyWindow_Description_GenerateUpdateViews;
+            return EdmxDesignerResources.PropertyWindow_Description_GenerateUpdateViews;
         }
 
         internal virtual bool IsReadOnlyGenerateUpdateViews()
@@ -99,10 +99,10 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
                        .IsEnabled())
             {
                 return String.Format(
-                    CultureInfo.CurrentCulture, "({0}) {1}", Resources.DisabledFeatureTooltip,
-                    Resources.PropertyWindow_Description_EntityContainerAccess);
+                    CultureInfo.CurrentCulture, "({0}) {1}", EdmxDesignerResources.DisabledFeatureTooltip,
+                    EdmxDesignerResources.PropertyWindow_Description_EntityContainerAccess);
             }
-            return Resources.PropertyWindow_Description_EntityContainerAccess;
+            return EdmxDesignerResources.PropertyWindow_Description_EntityContainerAccess;
         }
 
         internal virtual bool IsReadOnlyTypeAccess()

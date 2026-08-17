@@ -146,7 +146,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
                 {
                     VsUtils.ShowMessageBox(
                         PackageManager.Package,
-                        EdmxDesigner.Resources.Error_CannotEditRefConstraint,
+                        EdmxDesigner.EdmxDesignerResources.Error_CannotEditRefConstraint,
                         OLEMSGBUTTON.OLEMSGBUTTON_OK,
                         OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST,
                         OLEMSGICON.OLEMSGICON_WARNING);
@@ -858,7 +858,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
                 {
                     return string.Format(
                         CultureInfo.CurrentCulture,
-                        Resources.RefConstraintDialog_ErrorInRCPrincipalProperty,
+                        EdmxDesignerResources.RefConstraintDialog_ErrorInRCPrincipalProperty,
                         _item.PrincipalKey.GetLocalName());
                 }
                 return _item.PrincipalKey.GetLocalName();
@@ -882,7 +882,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
                 {
                     return string.Format(
                         CultureInfo.CurrentCulture,
-                        Resources.RefConstraintDialog_ErrorInRCDependentProperty,
+                        EdmxDesignerResources.RefConstraintDialog_ErrorInRCDependentProperty,
                         _item.DependentProperty.GetLocalName());
                 }
             }

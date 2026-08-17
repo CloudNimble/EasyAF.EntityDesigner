@@ -98,14 +98,14 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyW
                         var selectedItem = listBox.SelectedItem as string;
                         Debug.Assert(
                             null == selectedItem
-                            || global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX.Equals(selectedItem, StringComparison.CurrentCulture),
+                            || global::Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources.NoneDisplayValueUsedForUX.Equals(selectedItem, StringComparison.CurrentCulture),
                             typeof(NoneOptionListBox).Name + ": selectedItem should be null or NoneObject");
 
                         // desubscribe from the SelectedValueChanged event handler
                         listBox.SelectedValueChanged -= listBox_SelectedValueChanged;
 
                         // return value dependent on what user chose
-                        if (global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX.Equals(selectedItem, StringComparison.CurrentCulture))
+                        if (global::Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources.NoneDisplayValueUsedForUX.Equals(selectedItem, StringComparison.CurrentCulture))
                         {
                             value = StringOrNone.NoneValue;
                         }
@@ -132,7 +132,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyW
             {
                 BorderStyle = BorderStyle.FixedSingle;
                 SelectionMode = SelectionMode.One; // only allow single-select
-                Items.Add(global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX);
+                Items.Add(global::Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources.NoneDisplayValueUsedForUX);
                 Height = PreferredHeight; // scale to height of single item
             }
 

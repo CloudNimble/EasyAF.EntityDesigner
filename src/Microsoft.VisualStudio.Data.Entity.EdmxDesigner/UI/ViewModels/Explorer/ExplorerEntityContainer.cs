@@ -21,9 +21,9 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer
             : base(context, entityContainer, parent)
         {
             _entitySetsGhostNode = new ExplorerEntityContainerEntitySets(
-                Resources.EntitySetsGhostNodeName, context, this);
+                EdmxDesignerResources.EntitySetsGhostNodeName, context, this);
             _assocSetsGhostNode = new ExplorerEntityContainerAssociationSets(
-                Resources.AssociationSetsGhostNodeName, context, this);
+                EdmxDesignerResources.AssociationSetsGhostNodeName, context, this);
         }
 
         #region Properties
@@ -34,7 +34,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer
             {
                 return string.Format(
                     CultureInfo.CurrentCulture,
-                    Resources.EntityContainerNodeName, base.Name);
+                    EdmxDesignerResources.EntityContainerNodeName, base.Name);
             }
         }
 

@@ -356,7 +356,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                     }
 
                     // if the new value is 'None' then set the return type to null
-                    if (returnTypeStringValue != global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX)
+                    if (returnTypeStringValue != global::Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources.NoneDisplayValueUsedForUX)
                     {
                         updatedReturnTypeAsString = String.Format(
                             CultureInfo.InvariantCulture, FunctionImport.CollectionFormat, returnTypeStringValue);

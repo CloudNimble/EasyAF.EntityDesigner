@@ -50,14 +50,14 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
             // make sure that the MSL is not using Ghost Nodes
             if (ModelHelper.IsAntiDepPartOfGhostMappingNode<EntityTypeMapping>(entityType))
             {
-                errorMessage = Resources.MappingDetails_ErrMslUsesGhostNodes;
+                errorMessage = EdmxDesignerResources.MappingDetails_ErrMslUsesGhostNodes;
                 return false;
             }
 
             // make sure that we have an EntitySet (or can find one)
             if (entityType.EntitySet == null)
             {
-                errorMessage = Resources.MappingDetails_ErrMslCantFindEntitySet;
+                errorMessage = EdmxDesignerResources.MappingDetails_ErrMslCantFindEntitySet;
                 return false;
             }
 
@@ -65,7 +65,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
             var esms = entityType.EntitySet.GetAntiDependenciesOfType<EntitySetMapping>();
             if (esms.Count > 1)
             {
-                errorMessage = Resources.MappingDetails_ErrMslTooManyEntitySetMappings;
+                errorMessage = EdmxDesignerResources.MappingDetails_ErrMslTooManyEntitySetMappings;
                 return false;
             }
             else
@@ -80,7 +80,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                     // if the EntitySetMapping contains QueryView
                     if (esm.HasQueryViewElement)
                     {
-                        errorMessage = Resources.MappingDetails_ErrMslEntitySetMappingHasQueryView;
+                        errorMessage = EdmxDesignerResources.MappingDetails_ErrMslEntitySetMappingHasQueryView;
                         return false;
                     }
                 }
@@ -106,7 +106,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                 && null != entityType.Key.PropertyRefs
                 && entityType.Key.PropertyRefs.Count > 0)
             {
-                errorMessage = Resources.MappingDetails_ErrKeyInDerivedType;
+                errorMessage = EdmxDesignerResources.MappingDetails_ErrKeyInDerivedType;
                 return false;
             }
 
@@ -130,7 +130,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                     // 1. we have at most one Default ETM, one IsTypeOf ETM and one Function ETM
                     if (foundDefaultETM)
                     {
-                        errorMessage = Resources.MappingDetails_ErrMslTooManyDefaultEtms;
+                        errorMessage = EdmxDesignerResources.MappingDetails_ErrMslTooManyDefaultEtms;
                         return false;
                     }
                     foundDefaultETM = true;
@@ -148,7 +148,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                     // 1. we have at most one Default ETM, one IsTypeOf ETM and one Function ETM
                     if (foundIsTypeOfETM)
                     {
-                        errorMessage = Resources.MappingDetails_ErrMslTooManyIsTypeOfETMs;
+                        errorMessage = EdmxDesignerResources.MappingDetails_ErrMslTooManyIsTypeOfETMs;
                         return false;
                     }
                     foundIsTypeOfETM = true;
@@ -166,7 +166,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                     // 1. we have at most one Default ETM, one IsTypeOf ETM and one Function ETM
                     if (foundFunctionETM)
                     {
-                        errorMessage = Resources.MappingDetails_ErrMslTooManyFunctionETMs;
+                        errorMessage = EdmxDesignerResources.MappingDetails_ErrMslTooManyFunctionETMs;
                         return false;
                     }
 
@@ -175,7 +175,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                     // 4. make sure that function mappings are in their own ETM
                     if (etm.MappingFragments().Count != 0)
                     {
-                        errorMessage = Resources.MappingDetails_ErrMslFunctionMappingsShouldBeSeparate;
+                        errorMessage = EdmxDesignerResources.MappingDetails_ErrMslFunctionMappingsShouldBeSeparate;
                         return false;
                     }
                 }
@@ -183,7 +183,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                 // 2. that each ETM only points to a single EntityType
                 if (etm.TypeName.IsTypeOfs.Count > 1)
                 {
-                    errorMessage = Resources.MappingDetails_ErrMslEtmRefsMultipleTypes;
+                    errorMessage = EdmxDesignerResources.MappingDetails_ErrMslEtmRefsMultipleTypes;
                     return false;
                 }
 
@@ -191,7 +191,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                 if (!(etm.EntitySetMapping.Name.Status == BindingStatus.Known &&
                       etm.EntitySetMapping.Name.Target == entityType.EntitySet))
                 {
-                    errorMessage = Resources.MappingDetails_ErrMslBadEntitySetMapping;
+                    errorMessage = EdmxDesignerResources.MappingDetails_ErrMslBadEntitySetMapping;
                     return false;
                 }
             }
@@ -199,7 +199,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
             if (!CheckDuplicateEntityProperty(entityType, out string duplicatePropertyName))
             {
                 errorMessage = string.Format(
-                    CultureInfo.CurrentCulture, Resources.MappingDetails_ErrDupePropertyNames, entityType.LocalName.Value,
+                    CultureInfo.CurrentCulture, EdmxDesignerResources.MappingDetails_ErrDupePropertyNames, entityType.LocalName.Value,
                     duplicatePropertyName);
                 return false;
             }
@@ -219,8 +219,8 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
             if (association.AssociationSet == null)
             {
                 var errorMessage = String.Format(
-                    CultureInfo.CurrentCulture, Resources.MappingDetails_ErrMslGeneral,
-                    Resources.MappingDetails_ErrMslCantFindAssociationSet);
+                    CultureInfo.CurrentCulture, EdmxDesignerResources.MappingDetails_ErrMslGeneral,
+                    EdmxDesignerResources.MappingDetails_ErrMslCantFindAssociationSet);
                 watermarkInfo = new TreeGridDesignerWatermarkInfo(errorMessage);
                 return false;
             }
@@ -285,8 +285,8 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
             if (asms.Count > 1)
             {
                 var errorMessage = String.Format(
-                    CultureInfo.CurrentCulture, Resources.MappingDetails_ErrMslGeneral,
-                    Resources.MappingDetails_ErrMslTooManyAssociationSetMappings);
+                    CultureInfo.CurrentCulture, EdmxDesignerResources.MappingDetails_ErrMslGeneral,
+                    EdmxDesignerResources.MappingDetails_ErrMslTooManyAssociationSetMappings);
                 watermarkInfo = new TreeGridDesignerWatermarkInfo(errorMessage);
                 return false;
             }
@@ -298,8 +298,8 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                     if (asm.HasQueryViewElement)
                     {
                         var errorMessage = String.Format(
-                            CultureInfo.CurrentCulture, Resources.MappingDetails_ErrMslGeneral,
-                            Resources.MappingDetails_ErrMslAssociationSetMappingHasQueryView);
+                            CultureInfo.CurrentCulture, EdmxDesignerResources.MappingDetails_ErrMslGeneral,
+                            EdmxDesignerResources.MappingDetails_ErrMslAssociationSetMappingHasQueryView);
                         watermarkInfo = new TreeGridDesignerWatermarkInfo(errorMessage);
                         return false;
                     }
@@ -308,7 +308,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                     var errorMsg = string.Empty;
                     if (EnsureResolvedStatus(asm, ref errorMsg) == false)
                     {
-                        var errorMessage = String.Format(CultureInfo.CurrentCulture, Resources.MappingDetails_ErrMslGeneral, errorMsg);
+                        var errorMessage = String.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.MappingDetails_ErrMslGeneral, errorMsg);
                         watermarkInfo = new TreeGridDesignerWatermarkInfo(errorMessage);
                         return false;
                     }
@@ -319,8 +319,8 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                         if (cond.Name.RefName != null)
                         {
                             var errorMessage = String.Format(
-                                CultureInfo.CurrentCulture, Resources.MappingDetails_ErrMslGeneral,
-                                Resources.MappingDetails_ErrMslUnsupportedCondition);
+                                CultureInfo.CurrentCulture, EdmxDesignerResources.MappingDetails_ErrMslGeneral,
+                                EdmxDesignerResources.MappingDetails_ErrMslUnsupportedCondition);
                             watermarkInfo = new TreeGridDesignerWatermarkInfo(errorMessage);
                             return false;
                         }
@@ -334,9 +334,9 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                 if (!CheckDuplicateEntityProperty(entityType, out string duplicatePropertyName))
                 {
                     var errorMessage = String.Format(
-                        CultureInfo.CurrentCulture, Resources.MappingDetails_ErrDuplicatePropertyNameForAssociationEndEntity,
+                        CultureInfo.CurrentCulture, EdmxDesignerResources.MappingDetails_ErrDuplicatePropertyNameForAssociationEndEntity,
                         entityType.LocalName.Value, duplicatePropertyName);
-                    errorMessage = String.Format(CultureInfo.CurrentCulture, Resources.MappingDetails_ErrMslGeneral, errorMessage);
+                    errorMessage = String.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.MappingDetails_ErrMslGeneral, errorMessage);
                     watermarkInfo = new TreeGridDesignerWatermarkInfo(errorMessage);
                     return false;
                 }
@@ -349,21 +349,21 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
         {
             var errorMessage = String.Format(
                 CultureInfo.CurrentCulture,
-                Resources.MappingDetails_ReferentialConstraintOnAssociation_PKToPK_ASM,
-                Resources.MappingDetails_ReferentialConstraintOnAssociation_PKToPK_ASM_Delete,
-                Resources.MappingDetails_ReferentialConstraintOnAssociation_PKToPK_ASM_Display);
+                EdmxDesignerResources.MappingDetails_ReferentialConstraintOnAssociation_PKToPK_ASM,
+                EdmxDesignerResources.MappingDetails_ReferentialConstraintOnAssociation_PKToPK_ASM_Delete,
+                EdmxDesignerResources.MappingDetails_ReferentialConstraintOnAssociation_PKToPK_ASM_Display);
             var idx1 = errorMessage.IndexOf(
-                Resources.MappingDetails_ReferentialConstraintOnAssociation_PKToPK_ASM_Delete, StringComparison.Ordinal);
+                EdmxDesignerResources.MappingDetails_ReferentialConstraintOnAssociation_PKToPK_ASM_Delete, StringComparison.Ordinal);
             var idx2 = errorMessage.IndexOf(
-                Resources.MappingDetails_ReferentialConstraintOnAssociation_PKToPK_ASM_Display, StringComparison.Ordinal);
+                EdmxDesignerResources.MappingDetails_ReferentialConstraintOnAssociation_PKToPK_ASM_Display, StringComparison.Ordinal);
             TreeGridDesignerWatermarkInfo watermarkInfo = new TreeGridDesignerWatermarkInfo(
                 errorMessage,
                 new TreeGridDesignerWatermarkInfo.LinkData(
                     idx1,
-                    Resources.MappingDetails_ReferentialConstraintOnAssociation_PKToPK_ASM_Delete.Length,
+                    EdmxDesignerResources.MappingDetails_ReferentialConstraintOnAssociation_PKToPK_ASM_Delete.Length,
                     windowContainer.watermarkLabel_LinkClickedDeleteAssociation),
                 new TreeGridDesignerWatermarkInfo.LinkData(
-                    idx2, Resources.MappingDetails_ReferentialConstraintOnAssociation_PKToPK_ASM_Display.Length,
+                    idx2, EdmxDesignerResources.MappingDetails_ReferentialConstraintOnAssociation_PKToPK_ASM_Display.Length,
                     windowContainer.watermarkLabel_LinkClickedDisplayAssociation));
             return watermarkInfo;
         }
@@ -372,15 +372,15 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
         {
             var errorMessage = String.Format(
                 CultureInfo.CurrentCulture,
-                Resources.MappingDetails_ReferentialConstraintOnAssociation_PKToPK_NoASM,
-                Resources.MappingDetails_ReferentialConstraintOnAssociation_PKToPK_NoASM_Display);
+                EdmxDesignerResources.MappingDetails_ReferentialConstraintOnAssociation_PKToPK_NoASM,
+                EdmxDesignerResources.MappingDetails_ReferentialConstraintOnAssociation_PKToPK_NoASM_Display);
             var idx1 = errorMessage.IndexOf(
-                Resources.MappingDetails_ReferentialConstraintOnAssociation_PKToPK_NoASM_Display, StringComparison.Ordinal);
+                EdmxDesignerResources.MappingDetails_ReferentialConstraintOnAssociation_PKToPK_NoASM_Display, StringComparison.Ordinal);
             TreeGridDesignerWatermarkInfo watermarkInfo = new TreeGridDesignerWatermarkInfo(
                 errorMessage,
                 new TreeGridDesignerWatermarkInfo.LinkData(
                     idx1,
-                    Resources.MappingDetails_ReferentialConstraintOnAssociation_PKToPK_NoASM_Display.Length,
+                    EdmxDesignerResources.MappingDetails_ReferentialConstraintOnAssociation_PKToPK_NoASM_Display.Length,
                     windowContainer.watermarkLabel_LinkClickedDisplayAssociation));
             return watermarkInfo;
         }
@@ -389,21 +389,21 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
         {
             var errorMessage = String.Format(
                 CultureInfo.CurrentCulture,
-                Resources.MappingDetails_ReferentialConstraintOnAssociation_PKToFK_ASM,
-                Resources.MappingDetails_ReferentialConstraintOnAssociation_PKToFK_ASM_Delete,
-                Resources.MappingDetails_ReferentialConstraintOnAssociation_PKToFK_ASM_Display);
+                EdmxDesignerResources.MappingDetails_ReferentialConstraintOnAssociation_PKToFK_ASM,
+                EdmxDesignerResources.MappingDetails_ReferentialConstraintOnAssociation_PKToFK_ASM_Delete,
+                EdmxDesignerResources.MappingDetails_ReferentialConstraintOnAssociation_PKToFK_ASM_Display);
             var idx1 = errorMessage.IndexOf(
-                Resources.MappingDetails_ReferentialConstraintOnAssociation_PKToFK_ASM_Delete, StringComparison.Ordinal);
+                EdmxDesignerResources.MappingDetails_ReferentialConstraintOnAssociation_PKToFK_ASM_Delete, StringComparison.Ordinal);
             var idx2 = errorMessage.IndexOf(
-                Resources.MappingDetails_ReferentialConstraintOnAssociation_PKToFK_ASM_Display, StringComparison.Ordinal);
+                EdmxDesignerResources.MappingDetails_ReferentialConstraintOnAssociation_PKToFK_ASM_Display, StringComparison.Ordinal);
             TreeGridDesignerWatermarkInfo watermarkInfo = new TreeGridDesignerWatermarkInfo(
                 errorMessage,
                 new TreeGridDesignerWatermarkInfo.LinkData(
                     idx1,
-                    Resources.MappingDetails_ReferentialConstraintOnAssociation_PKToFK_ASM_Delete.Length,
+                    EdmxDesignerResources.MappingDetails_ReferentialConstraintOnAssociation_PKToFK_ASM_Delete.Length,
                     windowContainer.watermarkLabel_LinkClickedDeleteAssociation),
                 new TreeGridDesignerWatermarkInfo.LinkData(
-                    idx2, Resources.MappingDetails_ReferentialConstraintOnAssociation_PKToFK_ASM_Display.Length,
+                    idx2, EdmxDesignerResources.MappingDetails_ReferentialConstraintOnAssociation_PKToFK_ASM_Display.Length,
                     windowContainer.watermarkLabel_LinkClickedDisplayAssociation));
             return watermarkInfo;
         }
@@ -411,7 +411,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
         private static TreeGridDesignerWatermarkInfo CreateWatermarkInfoPKToFKRC_NoASM()
         {
             TreeGridDesignerWatermarkInfo watermarkInfo = new TreeGridDesignerWatermarkInfo(
-                Resources.MappingDetails_ReferentialConstraintOnAssociation_PKToFK_NoASM);
+                EdmxDesignerResources.MappingDetails_ReferentialConstraintOnAssociation_PKToFK_NoASM);
             return watermarkInfo;
         }
 
@@ -420,14 +420,14 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
             // make sure that we have a FunctionImportMapping defined
             if (fi.FunctionImportMapping == null)
             {
-                errorMessage = Resources.MappingDetails_ErrMslCantFindFunctionImportMapping;
+                errorMessage = EdmxDesignerResources.MappingDetails_ErrMslCantFindFunctionImportMapping;
                 return false;
             }
 
             // make sure that there we can find mapped s-side Function
             if (fi.Function == null)
             {
-                errorMessage = Resources.MappingDetails_ErrMslCantFindMappedFunction;
+                errorMessage = EdmxDesignerResources.MappingDetails_ErrMslCantFindMappedFunction;
                 return false;
             }
 
@@ -443,7 +443,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                 {
                     if (cond.Name.RefName != null)
                     {
-                        errorMessage = Resources.MappingDetails_ErrMslUnsupportedCondition;
+                        errorMessage = EdmxDesignerResources.MappingDetails_ErrMslUnsupportedCondition;
                         return false;
                     }
                 }
@@ -452,7 +452,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
             // 4. make sure that function mappings are in their own ETM
             if (etm.ModificationFunctionMapping != null)
             {
-                errorMessage = Resources.MappingDetails_ErrMslFunctionMappingsShouldBeSeparate;
+                errorMessage = EdmxDesignerResources.MappingDetails_ErrMslFunctionMappingsShouldBeSeparate;
                 return false;
             }
 
@@ -464,7 +464,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                 {
                     if (mappedStorageEntitySets.Contains(fragment.StoreEntitySet.Target))
                     {
-                        errorMessage = Resources.MappingDetails_ErrMslTooManyFragments;
+                        errorMessage = EdmxDesignerResources.MappingDetails_ErrMslTooManyFragments;
                         return false;
                     }
                     else
@@ -486,7 +486,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
 
             if (container.State != EFElementState.Resolved)
             {
-                errorMessage = Resources.MappingDetails_ErrMslUnresolvedItems;
+                errorMessage = EdmxDesignerResources.MappingDetails_ErrMslUnresolvedItems;
                 return false;
             }
 
@@ -548,7 +548,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                 {
                     if (!first)
                     {
-                        sb.Append(Resources.MappingDetails_ErrDupePropertyNamesSeparator);
+                        sb.Append(EdmxDesignerResources.MappingDetails_ErrDupePropertyNamesSeparator);
                     }
                     else
                     {

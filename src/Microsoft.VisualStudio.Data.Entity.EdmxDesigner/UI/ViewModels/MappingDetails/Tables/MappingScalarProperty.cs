@@ -52,7 +52,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                 }
             }
 
-            _columnType = Resources.MappingDetails_UnknownColumnType;
+            _columnType = EdmxDesignerResources.MappingDetails_UnknownColumnType;
         }
 
         internal ScalarProperty ScalarProperty
@@ -204,7 +204,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                     }
                     else
                     {
-                        return Resources.MappingDetails_UnknownColumnType;
+                        return EdmxDesignerResources.MappingDetails_UnknownColumnType;
                     }
                 }
             }
@@ -314,7 +314,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                     {
                         // delete old and create new ScalarProperty in one transaction
                         CommandProcessorContext cpc = new CommandProcessorContext(
-                            context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_ChangeScalarProperty);
+                            context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_ChangeScalarProperty);
                         var cmd1 = ScalarProperty.GetDeleteCommand();
                         CreateFragmentScalarPropertyTreeCommand cmd2 = new CreateFragmentScalarPropertyTreeCommand(
                             MappingConceptualEntityType.ConceptualEntityType, newPropertiesChain, ScalarProperty.ColumnName.Target);
@@ -473,7 +473,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
             {
                 // now make the change
                 cpc ??= new CommandProcessorContext(
-                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_CreateScalarProperty);
+                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_CreateScalarProperty);
                 CreateFragmentScalarPropertyTreeCommand cmd = new CreateFragmentScalarPropertyTreeCommand(entityType, propertiesChain, tableColumn);
                 cmd.PostInvokeEvent += (o, eventsArgs) =>
                     {
@@ -514,7 +514,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
 
                 // create a context if we weren't passed one
                 cpc ??= new CommandProcessorContext(
-                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_DeleteScalarProperty);
+                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_DeleteScalarProperty);
 
                 // use the item's delete command
                 var deleteCommand = ScalarProperty.GetDeleteCommand();

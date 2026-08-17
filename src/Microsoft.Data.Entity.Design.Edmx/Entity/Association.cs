@@ -169,7 +169,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Entity
                 if (_referentialConstraint != null)
                 {
                     var msg = String.Format(
-                        CultureInfo.CurrentCulture, Resources.TOO_MANY_REFERENTIAL_CONSTRAINTS_IN_ASSOCIATION, LocalName.Value);
+                        CultureInfo.CurrentCulture, EdmxResources.TOO_MANY_REFERENTIAL_CONSTRAINTS_IN_ASSOCIATION, LocalName.Value);
                     Artifact.AddParseErrorForObject(this, msg, ErrorCodes.TOO_MANY_REFERENTIAL_CONSTRAINTS_IN_ASSOCIATION);
                 }
                 else
@@ -241,7 +241,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Entity
                         && (!PrincipalRoleProperties.Any() ||
                             PrincipalRoleProperties.Count() != DependentRoleProperties.Count())))
                 {
-                    ModelHelper.InvalidSchemaError(Resources.UnresolvedAssociationSet_0, NormalizedNameExternal);
+                    ModelHelper.InvalidSchemaError(EdmxResources.UnresolvedAssociationSet_0, NormalizedNameExternal);
                 }
                 return associationSet;
             }

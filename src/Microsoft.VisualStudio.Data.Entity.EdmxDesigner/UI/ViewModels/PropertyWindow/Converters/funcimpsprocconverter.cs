@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.PropertyWind
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Converters;
 using System.Diagnostics;
 using EFExtensions = Microsoft.Data.Entity.Design.Edmx.EFExtensions;
-using XmlDesignerBaseResources = Microsoft.Data.Entity.Design.XmlEngine.Resources;
+using XmlDesignerBaseResources = Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.PropertyWindow.Converters
 {

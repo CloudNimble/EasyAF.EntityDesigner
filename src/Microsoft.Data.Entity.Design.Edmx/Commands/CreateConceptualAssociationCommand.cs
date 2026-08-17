@@ -140,25 +140,25 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                 else if (ShouldCreateNavigationPropertyEnd1
                          && (!ModelHelper.IsUniquePropertyName(End1Entity, NavigationPropertyInEnd1Entity, true)))
                 {
-                    msg = string.Format(CultureInfo.CurrentCulture, Resources.NAME_NOT_UNIQUE, NavigationPropertyInEnd1Entity);
+                    msg = string.Format(CultureInfo.CurrentCulture, EdmxResources.NAME_NOT_UNIQUE, NavigationPropertyInEnd1Entity);
                     throw new InvalidOperationException(msg);
                 }
                 else if (ShouldCreateNavigationPropertyEnd2
                          && (!ModelHelper.IsUniquePropertyName(End2Entity, NavigationPropertyInEnd2Entity, true)))
                 {
-                    msg = string.Format(CultureInfo.CurrentCulture, Resources.NAME_NOT_UNIQUE, NavigationPropertyInEnd2Entity);
+                    msg = string.Format(CultureInfo.CurrentCulture, EdmxResources.NAME_NOT_UNIQUE, NavigationPropertyInEnd2Entity);
                     throw new InvalidOperationException(msg);
                 }
                 else if (NavigationPropertyInEnd1Entity == End1Entity.LocalName.Value)
                 {
                     msg = string.Format(
-                        CultureInfo.CurrentCulture, Resources.NavPropNameSameAsContainer, NavigationPropertyInEnd1Entity);
+                        CultureInfo.CurrentCulture, EdmxResources.NavPropNameSameAsContainer, NavigationPropertyInEnd1Entity);
                     throw new InvalidOperationException(msg);
                 }
                 else if (NavigationPropertyInEnd2Entity == End2Entity.LocalName.Value)
                 {
                     msg = string.Format(
-                        CultureInfo.CurrentCulture, Resources.NavPropNameSameAsContainer, NavigationPropertyInEnd2Entity);
+                        CultureInfo.CurrentCulture, EdmxResources.NavPropNameSameAsContainer, NavigationPropertyInEnd2Entity);
                     throw new InvalidOperationException(msg);
                 }
             }

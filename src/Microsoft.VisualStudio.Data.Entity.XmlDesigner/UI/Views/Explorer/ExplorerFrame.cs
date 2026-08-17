@@ -965,7 +965,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views.Explorer
                 new Run(
                     string.Format(
                         CultureInfo.CurrentCulture,
-                        global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NumOfSearchResultsFound, found)));
+                        XmlDesignerResources.NumOfSearchResultsFound, found)));
         }
 
         internal double GetY(ExplorerTreeViewItem treeViewItem)

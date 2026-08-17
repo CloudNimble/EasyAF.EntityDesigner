@@ -312,7 +312,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                 {
                     Frame.SetProperty(
                         (int)__VSFPROPID.VSFPROPID_EditorCaption,
-                        String.Format(CultureInfo.CurrentCulture, Resources.EditorCaptionFormat, entityDesignerDiagram.Title));
+                        String.Format(CultureInfo.CurrentCulture, PackageResources.EditorCaptionFormat, entityDesignerDiagram.Title));
                 }
             }
         }

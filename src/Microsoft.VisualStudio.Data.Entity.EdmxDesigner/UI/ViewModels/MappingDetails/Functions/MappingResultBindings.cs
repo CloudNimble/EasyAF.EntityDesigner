@@ -46,7 +46,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
 
         internal override string Name
         {
-            get { return Resources.MappingDetails_ResultBindings; }
+            get { return EdmxDesignerResources.MappingDetails_ResultBindings; }
         }
 
         // we override this property because we don't want to use the base setter; otherwise

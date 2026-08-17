@@ -290,7 +290,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Entity
                 if (_definingQuery != null)
                 {
                     // multiple DefiningQuery elements
-                    var msg = String.Format(CultureInfo.CurrentCulture, Resources.DuplicatedElementMsg, elem.Name.LocalName);
+                    var msg = String.Format(CultureInfo.CurrentCulture, EdmxResources.DuplicatedElementMsg, elem.Name.LocalName);
                     Artifact.AddParseErrorForObject(this, msg, ErrorCodes.DUPLICATED_ELEMENT_ENCOUNTERED);
                 }
                 else

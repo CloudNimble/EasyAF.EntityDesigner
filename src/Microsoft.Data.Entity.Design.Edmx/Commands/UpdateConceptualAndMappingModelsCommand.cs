@@ -140,7 +140,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                     throw new UpdateModelFromDatabaseException(
                         string.Format(
                             CultureInfo.CurrentCulture,
-                            Resources.UpdateFromDatabaseCannotCreateEntityType,
+                            EdmxResources.UpdateFromDatabaseCannotCreateEntityType,
                             etFromTempArtifact.ToPrettyString()));
                 }
             }
@@ -208,7 +208,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                         throw new UpdateModelFromDatabaseException(
                             string.Format(
                                 CultureInfo.CurrentCulture,
-                                Resources.UpdateFromDatabaseCannotFindRootEntityTypeForProperty,
+                                EdmxResources.UpdateFromDatabaseCannotFindRootEntityTypeForProperty,
                                 newStoragePropertiesForDbObj.Count,
                                 dbObj.ToString()));
                     }
@@ -308,7 +308,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                     throw new UpdateModelFromDatabaseException(
                         string.Format(
                             CultureInfo.CurrentCulture,
-                            Resources.UpdateFromDatabaseAssociationWrongNumberEnds,
+                            EdmxResources.UpdateFromDatabaseAssociationWrongNumberEnds,
                             assocInTempArtifact.ToPrettyString(),
                             assocInTempArtifact.AssociationEnds().Count));
                 }
@@ -320,7 +320,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                     throw new UpdateModelFromDatabaseException(
                         string.Format(
                             CultureInfo.CurrentCulture,
-                            Resources.UpdateFromDatabaseAssociationEndNoTarget,
+                            EdmxResources.UpdateFromDatabaseAssociationEndNoTarget,
                             end1InTempArtifact.ToPrettyString()));
                 }
 
@@ -330,7 +330,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                     throw new UpdateModelFromDatabaseException(
                         string.Format(
                             CultureInfo.CurrentCulture,
-                            Resources.UpdateFromDatabaseAssociationEndNoTarget,
+                            EdmxResources.UpdateFromDatabaseAssociationEndNoTarget,
                             end2InTempArtifact.ToPrettyString()));
                 }
 
@@ -342,7 +342,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                     throw new UpdateModelFromDatabaseException(
                         string.Format(
                             CultureInfo.CurrentCulture,
-                            Resources.UpdateFromDatabaseAssociationNoMatchingNavProp,
+                            EdmxResources.UpdateFromDatabaseAssociationNoMatchingNavProp,
                             end1EntityTypeInTempArtifact.ToPrettyString(),
                             end1InTempArtifact.ToPrettyString()));
                 }
@@ -354,7 +354,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                     throw new UpdateModelFromDatabaseException(
                         string.Format(
                             CultureInfo.CurrentCulture,
-                            Resources.UpdateFromDatabaseAssociationNoMatchingNavProp,
+                            EdmxResources.UpdateFromDatabaseAssociationNoMatchingNavProp,
                             end2EntityTypeInTempArtifact.ToPrettyString(),
                             end2InTempArtifact.ToPrettyString()));
                 }
@@ -1056,7 +1056,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                         throw new UpdateModelFromDatabaseException(
                             string.Format(
                                 CultureInfo.CurrentCulture,
-                                Resources.UpdateFromDatabaseEntitySetMappingCannotFindEntityType,
+                                EdmxResources.UpdateFromDatabaseEntitySetMappingCannotFindEntityType,
                                 etToBeCloned.ToPrettyString()));
                     }
                 }
@@ -1180,7 +1180,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                 throw new UpdateModelFromDatabaseException(
                     string.Format(
                         CultureInfo.CurrentCulture,
-                        Resources.UpdateFromDatabaseCannotCreateAssociation,
+                        EdmxResources.UpdateFromDatabaseCannotCreateAssociation,
                         assocInTempArtifact.ToPrettyString()));
             }
 
@@ -1250,7 +1250,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                     throw new UpdateModelFromDatabaseException(
                         string.Format(
                             CultureInfo.CurrentCulture,
-                            Resources.UpdateFromDatabaseAssociationSetMappingCannotFind,
+                            EdmxResources.UpdateFromDatabaseAssociationSetMappingCannotFind,
                             assocInTempArtifact.ToPrettyString()));
                 }
                 else
@@ -1267,7 +1267,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                 throw new UpdateModelFromDatabaseException(
                     string.Format(
                         CultureInfo.CurrentCulture,
-                        Resources.UpdateFromDatabaseAssociationSetMappingCannotFindTempSSideEntitySet,
+                        EdmxResources.UpdateFromDatabaseAssociationSetMappingCannotFindTempSSideEntitySet,
                         asmInTempArtifact.ToPrettyString()));
             }
 
@@ -1288,7 +1288,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                 throw new UpdateModelFromDatabaseException(
                     string.Format(
                         CultureInfo.CurrentCulture,
-                        Resources.UpdateFromDatabaseAssociationSetMappingCannotFindMatchingSSideEntitySet,
+                        EdmxResources.UpdateFromDatabaseAssociationSetMappingCannotFindMatchingSSideEntitySet,
                         storeEntitySetInTempArtifact.LocalName.Value));
             }
 
@@ -1327,7 +1327,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                 throw new UpdateModelFromDatabaseException(
                     string.Format(
                         CultureInfo.CurrentCulture,
-                        Resources.UpdateFromDatabaseCannotCreateAssociationSetMapping,
+                        EdmxResources.UpdateFromDatabaseCannotCreateAssociationSetMapping,
                         existingAssociationSet.ToPrettyString()));
             }
 
@@ -1341,7 +1341,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                 throw new UpdateModelFromDatabaseException(
                     string.Format(
                         CultureInfo.CurrentCulture,
-                        Resources.UpdateFromDatabaseAssociationSetMappingWrongNumberAssociationSetEnds,
+                        EdmxResources.UpdateFromDatabaseAssociationSetMappingWrongNumberAssociationSetEnds,
                         existingAssociationSet.ToPrettyString(),
                         existingAssocSetEnds.Length));
             }
@@ -1352,7 +1352,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                 throw new UpdateModelFromDatabaseException(
                     string.Format(
                         CultureInfo.CurrentCulture,
-                        Resources.UpdateFromDatabaseAssociationSetMappingWrongNumberAssociationSetEnds,
+                        EdmxResources.UpdateFromDatabaseAssociationSetMappingWrongNumberAssociationSetEnds,
                         existingAssociationSet.ToPrettyString(),
                         existingAssocSetEnds.Length));
             }
@@ -1513,7 +1513,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                 {
                     if (false == isFirst)
                     {
-                        propertyList.Append(Resources.SeparatorCharacterForMultipleItemsInAnErrorMessage);
+                        propertyList.Append(EdmxResources.SeparatorCharacterForMultipleItemsInAnErrorMessage);
                     }
                     propertyList.Append(p);
                     isFirst = false;
@@ -1522,7 +1522,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                 {
                     if (false == isFirst)
                     {
-                        propertyList.Append(Resources.SeparatorCharacterForMultipleItemsInAnErrorMessage);
+                        propertyList.Append(EdmxResources.SeparatorCharacterForMultipleItemsInAnErrorMessage);
                     }
                     propertyList.Append(p);
                     isFirst = false;
@@ -1531,7 +1531,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                 var prinicpalEntityTypeName = principalEntityType.LocalName.Value;
                 var dependentEntityTypeName = dependentEntityType.LocalName.Value;
                 var s = String.Format(
-                    CultureInfo.CurrentCulture, Resources.UpdateFromDatabaseUnableToBringRefConstraint, associationName,
+                    CultureInfo.CurrentCulture, EdmxResources.UpdateFromDatabaseUnableToBringRefConstraint, associationName,
                     prinicpalEntityTypeName, dependentEntityTypeName, propertyList);
                 var errorMessageTarget = unfoundPrincipalProperties.Count > 0 ? principalEntityType : dependentEntityType;
                 ErrorInfo errorInfo = new ErrorInfo(
@@ -1561,7 +1561,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                 throw new UpdateModelFromDatabaseException(
                     string.Format(
                         CultureInfo.CurrentCulture,
-                        Resources.UpdateFromDatabaseCannotCreateAssociationSetMappingEndProperty,
+                        EdmxResources.UpdateFromDatabaseCannotCreateAssociationSetMappingEndProperty,
                         aseInExistingArtifact.ToPrettyString()));
             }
 
@@ -1575,7 +1575,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                     throw new UpdateModelFromDatabaseException(
                         string.Format(
                             CultureInfo.CurrentCulture,
-                            Resources.UpdateFromDatabaseScalarPropertyNoNameTarget,
+                            EdmxResources.UpdateFromDatabaseScalarPropertyNoNameTarget,
                             sp.ToPrettyString()));
                 }
                 if (null == sp.ColumnName.Target)
@@ -1583,7 +1583,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                     throw new UpdateModelFromDatabaseException(
                         string.Format(
                             CultureInfo.CurrentCulture,
-                            Resources.UpdateFromDatabaseScalarPropertyNoColumnNameTarget,
+                            EdmxResources.UpdateFromDatabaseScalarPropertyNoColumnNameTarget,
                             sp.ToPrettyString()));
                 }
 
@@ -1592,7 +1592,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                     throw new UpdateModelFromDatabaseException(
                         string.Format(
                             CultureInfo.CurrentCulture,
-                            Resources.UpdateFromDatabaseAssociationSetMappingCannotFindEntityTypeForProperty,
+                            EdmxResources.UpdateFromDatabaseAssociationSetMappingCannotFindEntityTypeForProperty,
                             sp.Name.Target.ToPrettyString()));
                 }
 
@@ -1601,7 +1601,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                     throw new UpdateModelFromDatabaseException(
                         string.Format(
                             CultureInfo.CurrentCulture,
-                            Resources.UpdateFromDatabaseAssociationSetMappingCannotFindEntityTypeForProperty,
+                            EdmxResources.UpdateFromDatabaseAssociationSetMappingCannotFindEntityTypeForProperty,
                             sp.ColumnName.Target.ToPrettyString()));
                 }
 
@@ -1614,7 +1614,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                     throw new UpdateModelFromDatabaseException(
                         string.Format(
                             CultureInfo.CurrentCulture,
-                            Resources.UpdateFromDatabaseAssociationSetMappingCannotFindMatchingEntityType,
+                            EdmxResources.UpdateFromDatabaseAssociationSetMappingCannotFindMatchingEntityType,
                             sp.ToPrettyString(),
                             spCSideEntityTypeinTempArtifact.ToPrettyString()));
                 }
@@ -1626,7 +1626,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                     throw new UpdateModelFromDatabaseException(
                         string.Format(
                             CultureInfo.CurrentCulture,
-                            Resources.UpdateFromDatabaseAssociationSetMappingCannotFindMatchingEntityType,
+                            EdmxResources.UpdateFromDatabaseAssociationSetMappingCannotFindMatchingEntityType,
                             sp.ToPrettyString(),
                             spSSideEntityTypeinTempArtifact.ToPrettyString()));
                 }
@@ -1677,7 +1677,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                         throw new UpdateModelFromDatabaseException(
                             string.Format(
                                 CultureInfo.CurrentCulture,
-                                Resources.UpdateFromDatabaseAssociationSetMappingCannotFindSSideForCSideProperty,
+                                EdmxResources.UpdateFromDatabaseAssociationSetMappingCannotFindSSideForCSideProperty,
                                 sp.ToPrettyString(),
                                 sp.Name.Target.ToPrettyString()));
                     }
@@ -1690,7 +1690,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                         throw new UpdateModelFromDatabaseException(
                             string.Format(
                                 CultureInfo.CurrentCulture,
-                                Resources.UpdateFromDatabaseAssociationSetMappingCannotFindMatchingSSideProperty,
+                                EdmxResources.UpdateFromDatabaseAssociationSetMappingCannotFindMatchingSSideProperty,
                                 sp.ToPrettyString(),
                                 sSidePropertyToBeMappedInTempArtifact.ToPrettyString()));
                     }
@@ -1705,7 +1705,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                         throw new UpdateModelFromDatabaseException(
                             string.Format(
                                 CultureInfo.CurrentCulture,
-                                Resources.UpdateFromDatabaseAssociationSetMappingCannotFindOrCreateMatchingProperty,
+                                EdmxResources.UpdateFromDatabaseAssociationSetMappingCannotFindOrCreateMatchingProperty,
                                 sp.ToPrettyString(),
                                 sp.Name.Target.ToPrettyString(),
                                 csdlEntityTypeInExistingArtifact.ToPrettyString()));
@@ -1718,7 +1718,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                     throw new UpdateModelFromDatabaseException(
                         string.Format(
                             CultureInfo.CurrentCulture,
-                            Resources.UpdateFromDatabaseAssociationSetMappingCannotFindMatchingProperty,
+                            EdmxResources.UpdateFromDatabaseAssociationSetMappingCannotFindMatchingProperty,
                             sp.ToPrettyString(),
                             sp.ColumnName.Target.ToPrettyString(),
                             ssdlEntityTypeInExistingArtifact.ToPrettyString()));
@@ -1732,7 +1732,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                     throw new UpdateModelFromDatabaseException(
                         string.Format(
                             CultureInfo.CurrentCulture,
-                            Resources.UpdateFromDatabaseCannotCreateAssociationSetMappingScalarProperty,
+                            EdmxResources.UpdateFromDatabaseCannotCreateAssociationSetMappingScalarProperty,
                             entityProperty.ToPrettyString(),
                             tableColumn.ToPrettyString()));
                 }

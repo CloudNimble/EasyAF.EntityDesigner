@@ -60,7 +60,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Entity
 
             public override string DefaultValue
             {
-                get { return Resources.Default_Alias; }
+                get { return EdmxResources.Default_Alias; }
             }
         }
 

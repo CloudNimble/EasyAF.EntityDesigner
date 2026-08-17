@@ -50,7 +50,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
                                      ? GetObject(locateData.Row, 0, ObjectStyle.ExpandedBranch) as IBranch
                                      : new AssociationSetBranch(_mappingAssociation, _columns);
             }
-            childBranches.Add(new ChildBranchInfo(assocSetBranch, Resources.MappingDetails_AssociationHeader, "ASSOCIATION"));
+            childBranches.Add(new ChildBranchInfo(assocSetBranch, EdmxDesignerResources.MappingDetails_AssociationHeader, "ASSOCIATION"));
 
             SetHeaderInfo(childBranches.ToArray(), _columns);
         }

@@ -66,13 +66,13 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
                     if (TypedEFElement.ToRole.Target.Multiplicity.Value == ModelConstants.Multiplicity_Many)
                     {
                         return string.Format(
-                            CultureInfo.CurrentCulture, Resources.NavPropType_CollectionText,
+                            CultureInfo.CurrentCulture, EdmxDesignerResources.NavPropType_CollectionText,
                             TypedEFElement.ToRole.Target.Type.Target.LocalName.Value);
                     }
                     else
                     {
                         return string.Format(
-                            CultureInfo.CurrentCulture, Resources.NavPropType_InstanceText,
+                            CultureInfo.CurrentCulture, EdmxDesignerResources.NavPropType_InstanceText,
                             TypedEFElement.ToRole.Target.Type.Target.LocalName.Value);
                     }
                 }

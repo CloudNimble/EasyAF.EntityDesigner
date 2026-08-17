@@ -110,7 +110,7 @@ namespace Microsoft.Data.Entity.Tests.Design.DatabaseGeneration
             var exception = act.Should().Throw<ArgumentException>().Which;
             exception.ParamName.Should().Be("targetFrameworkVersion");
             exception.Message.Should().StartWith(
-                string.Format(CultureInfo.CurrentCulture, Resources.ErrorNonValidTargetVersion, "0.0"));
+                string.Format(CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorNonValidTargetVersion, "0.0"));
         }
 
         [TestMethod]
@@ -126,7 +126,7 @@ namespace Microsoft.Data.Entity.Tests.Design.DatabaseGeneration
             Action act = () => EdmExtension.CreateAndValidateEdmItemCollection(invalidCsdl.ToString(), new Version(3, 0, 0, 0));
             var exception = act.Should().Throw<InvalidOperationException>().Which;
 
-            exception.Message.Should().StartWith(Resources.ErrorCsdlNotValid.Replace("{0}", string.Empty));
+            exception.Message.Should().StartWith(DatabaseGenerationResources.ErrorCsdlNotValid.Replace("{0}", string.Empty));
             var errorMessages = exception.Message.Split('\n');
             errorMessages.Length.Should().Be(3);
             errorMessages[0].Should().Contain("PropertyRef");
@@ -159,7 +159,7 @@ namespace Microsoft.Data.Entity.Tests.Design.DatabaseGeneration
             Action act = () => EdmExtension.CreateAndValidateEdmItemCollection(invalidCsdl.ToString(), new Version(3, 0, 0, 0));
             var exception = act.Should().Throw<InvalidOperationException>().Which;
 
-            exception.Message.Should().StartWith(Resources.ErrorCsdlNotValid.Replace("{0}", string.Empty));
+            exception.Message.Should().StartWith(DatabaseGenerationResources.ErrorCsdlNotValid.Replace("{0}", string.Empty));
             var errorMessages = exception.Message.Split('\n');
             errorMessages.Length.Should().Be(3);
             errorMessages[0].Should().Contain("PropertyRef");
@@ -213,7 +213,7 @@ namespace Microsoft.Data.Entity.Tests.Design.DatabaseGeneration
             var exception = act.Should().Throw<ArgumentException>().Which;
             exception.ParamName.Should().Be("targetFrameworkVersion");
             exception.Message.Should().StartWith(
-                string.Format(CultureInfo.CurrentCulture, Resources.ErrorNonValidTargetVersion, "0.0"));
+                string.Format(CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorNonValidTargetVersion, "0.0"));
         }
 
         [TestMethod]
@@ -271,7 +271,7 @@ namespace Microsoft.Data.Entity.Tests.Design.DatabaseGeneration
             var exception = act.Should().Throw<ArgumentException>().Which;
             exception.ParamName.Should().Be("targetFrameworkVersion");
             exception.Message.Should().StartWith(
-                string.Format(CultureInfo.CurrentCulture, Resources.ErrorNonValidTargetVersion, "0.0"));
+                string.Format(CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorNonValidTargetVersion, "0.0"));
         }
 
         [TestMethod]
@@ -290,7 +290,7 @@ namespace Microsoft.Data.Entity.Tests.Design.DatabaseGeneration
                 catchThrowNamingConflicts: false);
             var exception = act.Should().Throw<InvalidOperationException>().Which;
 
-            exception.Message.Should().StartWith(Resources.ErrorNonValidSsdl.Replace("{0}", string.Empty));
+            exception.Message.Should().StartWith(DatabaseGenerationResources.ErrorNonValidSsdl.Replace("{0}", string.Empty));
             IList<EdmSchemaError> exceptionData = (IList<EdmSchemaError>)exception.Data["ssdlErrors"];
             exceptionData.Count.Should().Be(3);
             exceptionData.All(e => exception.Message.Contains(e.Message)).Should().BeTrue();
@@ -313,7 +313,7 @@ namespace Microsoft.Data.Entity.Tests.Design.DatabaseGeneration
             var exception = act.Should().Throw<InvalidOperationException>().Which;
 
             IList<EdmSchemaError> exceptionData = (IList<EdmSchemaError>)exception.Data["ssdlErrors"];
-            exception.Message.Should().Be(string.Format(Resources.ErrorNameCollision, exceptionData[0].Message));
+            exception.Message.Should().Be(string.Format(DatabaseGenerationResources.ErrorNameCollision, exceptionData[0].Message));
             exceptionData.Count.Should().Be(3);
             exceptionData[0].Message.Should().Contain("'AdventureWorksModel.Store.Entities'");
             exceptionData[1].Message.Should().Contain("InvalidElement");

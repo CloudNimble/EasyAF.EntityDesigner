@@ -93,7 +93,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
 
         protected override string GetCreatorNodeText(int index)
         {
-            return Resources.MappingDetails_TableCreatorNode;
+            return EdmxDesignerResources.MappingDetails_TableCreatorNode;
         }
 
         protected override bool IsExpandable(int index)

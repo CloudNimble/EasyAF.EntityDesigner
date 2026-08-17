@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.Resources;
+using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.DiagramsResources;
 using ModelDesigner = Microsoft.Data.Entity.Design.Edmx.Designer;
 using ModelDiagram = Microsoft.Data.Tools.Model.Diagram;
 using System;

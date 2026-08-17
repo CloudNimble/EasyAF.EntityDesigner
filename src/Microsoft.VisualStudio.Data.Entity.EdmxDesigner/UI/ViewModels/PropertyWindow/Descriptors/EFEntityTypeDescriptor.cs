@@ -187,7 +187,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
                             // only show the warning dialog if the Entity has any Function mapping
                             var result = VsUtils.ShowMessageBox(
                                 PackageManager.Package,
-                                Resources.PropertyWindow_MessageBox_SetAbstract,
+                                EdmxDesignerResources.PropertyWindow_MessageBox_SetAbstract,
                                 OLEMSGBUTTON.OLEMSGBUTTON_OKCANCEL,
                                 OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST,
                                 OLEMSGICON.OLEMSGICON_WARNING);

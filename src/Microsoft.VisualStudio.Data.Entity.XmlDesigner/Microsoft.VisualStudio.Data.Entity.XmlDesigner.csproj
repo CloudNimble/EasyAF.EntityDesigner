@@ -35,13 +35,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Resources.resx">
+    <EmbeddedResource Update="XmlDesignerResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>XmlDesignerResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="UI\ViewModels\PropertyWindow\Converters\ControlsResources.resx">
+    <EmbeddedResource Update="UI\ViewModels\PropertyWindow\Converters\ControlsXmlDesignerResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ControlsResources.Designer.cs</LastGenOutput>
+      <LastGenOutput>ControlsXmlDesignerResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="VisualStudio\UI\ProgressDialog.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
@@ -69,15 +69,15 @@
     <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.Tests.XmlDesigner, $(StrongNamePublicKey)" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Resources.Designer.cs">
+    <Compile Update="XmlDesignerResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
+      <DependentUpon>XmlDesignerResources.resx</DependentUpon>
     </Compile>
-    <Compile Update="UI\ViewModels\PropertyWindow\Converters\ControlsResources.Designer.cs">
+    <Compile Update="UI\ViewModels\PropertyWindow\Converters\ControlsXmlDesignerResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>ControlsResources.resx</DependentUpon>
+      <DependentUpon>ControlsXmlDesignerResources.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 

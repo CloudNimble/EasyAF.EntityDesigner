@@ -378,8 +378,8 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
                 // check box - {column header} {state image text}
                 return new VirtualTreeAccessibilityData(
                     "{0} {5}", _descriptionAccessibilityReplacementFields,
-                    Resources.MappingDetails_Up_And_Down, new AccessibilityReplacementField[0],
-                    Resources.MappingDetails_Up_And_Down);
+                    XmlDesignerResources.MappingDetails_Up_And_Down, new AccessibilityReplacementField[0],
+                    XmlDesignerResources.MappingDetails_Up_And_Down);
             }
 
             var eltCount = ElementCount;
@@ -399,16 +399,16 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
                     // standard outline item - {display text} {row} {column header}
                     return new VirtualTreeAccessibilityData(
                         "{1}, {3} {0}", _descriptionAccessibilityReplacementFields,
-                        Resources.MappingDetails_Up_And_Down, new AccessibilityReplacementField[0],
-                        Resources.MappingDetails_Up_And_Down);
+                        XmlDesignerResources.MappingDetails_Up_And_Down, new AccessibilityReplacementField[0],
+                        XmlDesignerResources.MappingDetails_Up_And_Down);
                 }
                 else
                 {
                     // standard cell - {row} {column header}.  Note that text in the cell is already reported in the value field of the accessible object.
                     return new VirtualTreeAccessibilityData(
                         "{3} {0}", _descriptionAccessibilityReplacementFields,
-                        Resources.MappingDetails_Up_And_Down, new AccessibilityReplacementField[0],
-                        Resources.MappingDetails_Up_And_Down);
+                        XmlDesignerResources.MappingDetails_Up_And_Down, new AccessibilityReplacementField[0],
+                        XmlDesignerResources.MappingDetails_Up_And_Down);
                 }
             }
             else
@@ -416,8 +416,8 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
                 // creator row - {display text} {row}
                 return new VirtualTreeAccessibilityData(
                     "{1}, {3}", _descriptionAccessibilityReplacementFields,
-                    Resources.MappingDetails_Up_And_Down, new AccessibilityReplacementField[0],
-                    Resources.MappingDetails_Up_And_Down);
+                    XmlDesignerResources.MappingDetails_Up_And_Down, new AccessibilityReplacementField[0],
+                    XmlDesignerResources.MappingDetails_Up_And_Down);
             }
         }
 

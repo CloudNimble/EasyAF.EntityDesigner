@@ -188,7 +188,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
 
             if (!root1.Name.ToUpperInvariant().Equals(root2.Name.ToUpperInvariant()))
             {
-                throw new ArgumentException(Resources.ModelObjectItemWizard_CantBeRelative);
+                throw new ArgumentException(EdmxDesignerResources.ModelObjectItemWizard_CantBeRelative);
             }
 
             LinkedList<DirectoryInfo> filePathParts = new LinkedList<DirectoryInfo>();
@@ -363,7 +363,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
                         catch (Exception ex)
                         {
                             var errMsg = String.Format(
-                                CultureInfo.CurrentCulture, Resources.ErrorDuringSqlCeUpgrade, vsFileInfo.Path, ex.Message);
+                                CultureInfo.CurrentCulture, EdmxDesignerResources.ErrorDuringSqlCeUpgrade, vsFileInfo.Path, ex.Message);
                             logger.LogMessage((uint)__VSUL_ERRORLEVEL.VSUL_ERROR, project.Name, vsFileInfo.Path, errMsg);
                             return;
                         }
@@ -390,7 +390,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
                     catch (Exception ex)
                     {
                         var errMsg = String.Format(
-                            CultureInfo.CurrentCulture, Resources.ErrorDuringSqlCeUpgrade, configFileUtils.GetConfigPath(), ex.Message);
+                            CultureInfo.CurrentCulture, EdmxDesignerResources.ErrorDuringSqlCeUpgrade, configFileUtils.GetConfigPath(), ex.Message);
                         logger.LogMessage((uint)__VSUL_ERRORLEVEL.VSUL_ERROR, project.Name, configFileUtils.GetConfigPath(), errMsg);
                     }
                 }
@@ -443,7 +443,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
             {
                 // if there were errors above then do not try to change the files on disk - just log the message and return
                 var errMsg = String.Format(
-                    CultureInfo.CurrentCulture, Resources.ErrorDuringSqlDatabaseFileUpgrade, configFileUtils.GetConfigPath(), ex.Message);
+                    CultureInfo.CurrentCulture, EdmxDesignerResources.ErrorDuringSqlDatabaseFileUpgrade, configFileUtils.GetConfigPath(), ex.Message);
                 logger.LogMessage((uint)__VSUL_ERRORLEVEL.VSUL_ERROR, project.Name, configFileUtils.GetConfigPath(), errMsg);
             }
         }
@@ -500,15 +500,15 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
                 OptionsDesignerInfo.ElementName, OptionsDesignerInfo.AttributeCodeGenerationStrategy, artifact);
             if (string.IsNullOrWhiteSpace(existingCodeGenStrategy))
             {
-                existingCodeGenStrategy = Resources.Default; // which is the default value of CodeGenerationStrategy attribute
+                existingCodeGenStrategy = EdmxDesignerResources.Default; // which is the default value of CodeGenerationStrategy attribute
             }
 
-            if (!string.Equals(existingCodeGenStrategy, Resources.None))
+            if (!string.Equals(existingCodeGenStrategy, EdmxDesignerResources.None))
             {
                 return ModelHelper.CreateSetDesignerPropertyValueCommandFromArtifact(
                     artifact, OptionsDesignerInfo.ElementName,
                     OptionsDesignerInfo.AttributeCodeGenerationStrategy,
-                    Resources.None);
+                    EdmxDesignerResources.None);
             }
 
             return null;

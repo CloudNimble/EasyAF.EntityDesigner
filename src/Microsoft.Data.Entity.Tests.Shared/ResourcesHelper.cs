@@ -54,15 +54,15 @@ namespace Microsoft.Data.Entity.Tests.Shared
 
             filepath = Path.Combine(_vsInstallDir, "Microsoft.VisualStudio.Data.Entity.Package.dll");
             _designPackageResourceLookup = new AssemblyResourceLookup(
-                Assembly.LoadFile(filepath), "Microsoft.VisualStudio.Data.Entity.Package.Resources");
+                Assembly.LoadFile(filepath), "Microsoft.VisualStudio.Data.Entity.Package.PackageResources");
 
             filepath = Path.Combine(_vsInstallDir, "Microsoft.VisualStudio.Data.Entity.EdmxDesigner.dll");
             _modelWizardResourceLookup = new AssemblyResourceLookup(
-                Assembly.LoadFile(filepath), "Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.Resources");
+                Assembly.LoadFile(filepath), "Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.ModelWizardResources");
             _viewsDialogsResourceLookup = new AssemblyResourceLookup(
                 Assembly.LoadFile(filepath), "Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs.DialogsResource");
             _entityDesignResourceLookup = new AssemblyResourceLookup(
-                Assembly.LoadFile(filepath), "Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources");
+                Assembly.LoadFile(filepath), "Microsoft.VisualStudio.Data.Entity.EdmxDesigner.EdmxDesignerResources");
         }
 
         /// <summary>

@@ -82,7 +82,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer
             {
                 Debug.Fail(
                     string.Format(
-                        CultureInfo.CurrentCulture, Resources.BadRemoveBadChildType,
+                        CultureInfo.CurrentCulture, EdmxDesignerResources.BadRemoveBadChildType,
                         efElementToRemove.GetType().FullName, Name, GetType().FullName));
                 return false;
             }

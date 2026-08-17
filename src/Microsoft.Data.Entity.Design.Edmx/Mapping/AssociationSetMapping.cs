@@ -206,7 +206,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Mapping
             string resource;
             if (localize)
             {
-                resource = Resources.MappingModel_AssociationSetMappingDisplayName;
+                resource = EdmxResources.MappingModel_AssociationSetMappingDisplayName;
             }
             else
             {

@@ -85,7 +85,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Converters
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new InvalidOperationException(
-                string.Format(CultureInfo.CurrentCulture, global::Microsoft.Data.Entity.Design.XmlEngine.Resources.SwitchConverterErrorMessage, typeof(SwitchConverter).Name));
+                string.Format(CultureInfo.CurrentCulture, XmlDesignerResources.SwitchConverterErrorMessage, typeof(SwitchConverter).Name));
         }
 
         #endregion IValueConverter implementation

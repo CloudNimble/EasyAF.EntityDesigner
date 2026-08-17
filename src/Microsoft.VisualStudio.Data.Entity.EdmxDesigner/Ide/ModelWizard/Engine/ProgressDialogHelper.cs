@@ -33,9 +33,9 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
         {
             GatherAndReturnSprocInfo args = new GatherAndReturnSprocInfo(newFunctionEntries, modelBuilderSettings);
             using (ProgressDialog pd = new ProgressDialog(
-                Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources.RetrievingSprocReturnTypeProgressDialogTitle,
-                Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources.RetrievingSprocReturnTypeProgressDialogDescription,
-                Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources.RetrievingSprocReturnTypeProgressDialogInitialStatus, GatherAndStoreSchemaProcedureInformation, args))
+                Microsoft.VisualStudio.Data.Entity.EdmxDesigner.EdmxDesignerResources.RetrievingSprocReturnTypeProgressDialogTitle,
+                Microsoft.VisualStudio.Data.Entity.EdmxDesigner.EdmxDesignerResources.RetrievingSprocReturnTypeProgressDialogDescription,
+                Microsoft.VisualStudio.Data.Entity.EdmxDesigner.EdmxDesignerResources.RetrievingSprocReturnTypeProgressDialogInitialStatus, GatherAndStoreSchemaProcedureInformation, args))
             {
                 return pd.ShowDialog(owner);
             }
@@ -52,14 +52,14 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
             {
                 throw new ProgressDialogException(
                     string.Format(
-                        CultureInfo.CurrentCulture, Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources.RetrievingSprocReturnTypeErrorMessage, "null BackgroundWorker"));
+                        CultureInfo.CurrentCulture, Microsoft.VisualStudio.Data.Entity.EdmxDesigner.EdmxDesignerResources.RetrievingSprocReturnTypeErrorMessage, "null BackgroundWorker"));
             }
 
             if (e.Argument is not GatherAndReturnSprocInfo arg)
             {
                 throw new ProgressDialogException(
                     string.Format(
-                        CultureInfo.CurrentCulture, Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources.RetrievingSprocReturnTypeErrorMessage, "null DoWorkEventArgs"));
+                        CultureInfo.CurrentCulture, Microsoft.VisualStudio.Data.Entity.EdmxDesigner.EdmxDesignerResources.RetrievingSprocReturnTypeErrorMessage, "null DoWorkEventArgs"));
             }
 
             var newFunctionFilterEntries = arg.NewFunctionEntries;
@@ -67,7 +67,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
             {
                 throw new ProgressDialogException(
                     string.Format(
-                        CultureInfo.CurrentCulture, Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources.RetrievingSprocReturnTypeErrorMessage, "null newFunctionFilterEntries"));
+                        CultureInfo.CurrentCulture, Microsoft.VisualStudio.Data.Entity.EdmxDesigner.EdmxDesignerResources.RetrievingSprocReturnTypeErrorMessage, "null newFunctionFilterEntries"));
             }
 
             var modelBuilderSettings = arg.ModelBuilderSettings;
@@ -75,7 +75,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
             {
                 throw new ProgressDialogException(
                     string.Format(
-                        CultureInfo.CurrentCulture, Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources.RetrievingSprocReturnTypeErrorMessage, "null modelBuilderSettings"));
+                        CultureInfo.CurrentCulture, Microsoft.VisualStudio.Data.Entity.EdmxDesigner.EdmxDesignerResources.RetrievingSprocReturnTypeErrorMessage, "null modelBuilderSettings"));
             }
 
             // clear map first (if user has clicked backwards and forwards between wizard pages this can already be populated)
@@ -138,7 +138,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
             {
                 throw new ProgressDialogException(
                     string.Format(
-                        CultureInfo.CurrentCulture, Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources.RetrievingSprocReturnTypeErrorMessage, "null IVsDataConnection"));
+                        CultureInfo.CurrentCulture, Microsoft.VisualStudio.Data.Entity.EdmxDesigner.EdmxDesignerResources.RetrievingSprocReturnTypeErrorMessage, "null IVsDataConnection"));
             }
 
             // open the database connection and collect info for each Function
@@ -175,7 +175,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
                             userState.CurrentIteration = numFunctionFilterEntryCurrent;
                             userState.CurrentStatusMessage = string.Format(
                                 CultureInfo.CurrentCulture,
-                                Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources.RetrievingSprocReturnTypeInfoMessage,
+                                Microsoft.VisualStudio.Data.Entity.EdmxDesigner.EdmxDesignerResources.RetrievingSprocReturnTypeInfoMessage,
                                 numFunctionFilterEntryCurrent,
                                 numFunctionFilterEntries,
                                 entry.Schema,

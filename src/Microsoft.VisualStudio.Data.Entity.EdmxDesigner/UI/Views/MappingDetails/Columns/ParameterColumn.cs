@@ -20,7 +20,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
     internal class ParameterColumn : BaseColumn
     {
         public ParameterColumn()
-            : base(Resources.MappingDetails_ParameterName)
+            : base(EdmxDesignerResources.MappingDetails_ParameterName)
         {
         }
 
@@ -167,7 +167,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
                         {
                             // they switched to a different one so delete the old underlying model item and then create a new one
                             CommandProcessorContext cpc = new CommandProcessorContext(
-                                Host.Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_UpdateMappingFragment);
+                                Host.Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_UpdateMappingFragment);
                             mfm.SwitchModelItem(cpc, Host.Context, func, true);
                         }
                         else

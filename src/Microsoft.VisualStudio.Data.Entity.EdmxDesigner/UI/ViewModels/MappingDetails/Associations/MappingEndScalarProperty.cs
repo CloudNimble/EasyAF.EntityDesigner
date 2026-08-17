@@ -31,7 +31,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
         public MappingEndScalarProperty(EditingContext context, ScalarProperty sp, MappingEFElement parent)
             : base(context, sp, parent)
         {
-            _propertyType = Resources.MappingDetails_UnknownColumnType;
+            _propertyType = EdmxDesignerResources.MappingDetails_UnknownColumnType;
         }
 
         internal ScalarProperty ScalarProperty
@@ -50,7 +50,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
             {
                 if (MappingAssociationSet.AssociationSet.AssociationSetMapping == null)
                 {
-                    return Resources.Mapping_AssocMappingNoTable;
+                    return EdmxDesignerResources.Mapping_AssocMappingNoTable;
                 }
                 else
                 {
@@ -111,7 +111,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                     }
                     else
                     {
-                        return Resources.MappingDetails_UnknownColumnType;
+                        return EdmxDesignerResources.MappingDetails_UnknownColumnType;
                     }
                 }
             }
@@ -192,7 +192,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                             if (tableColumn != null)
                             {
                                 CommandProcessorContext cpc = new CommandProcessorContext(
-                                    Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_ChangeScalarProperty);
+                                    Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_ChangeScalarProperty);
                                 ChangeScalarPropertyCommand cmd = new ChangeScalarPropertyCommand(ScalarProperty, null, tableColumn);
                                 CommandProcessor.InvokeSingleCommand(cpc, cmd);
                             }
@@ -303,7 +303,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
 
             // create our context if we don't have one
             cpc ??= new CommandProcessorContext(
-                    Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_CreateScalarProperty);
+                    Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_CreateScalarProperty);
 
             // create the right command
             CreateEndScalarPropertyCommand cmd = null;
@@ -362,7 +362,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
 
                 // create a context if we weren't passed one
                 cpc ??= new CommandProcessorContext(
-                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_DeleteScalarProperty);
+                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_DeleteScalarProperty);
 
                 // use the item's delete command
                 var deleteCommand = ScalarProperty.GetDeleteCommand();

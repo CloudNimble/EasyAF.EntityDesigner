@@ -51,7 +51,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
                 }
                 else
                 {
-                    var message = string.Format(CultureInfo.CurrentCulture, Resources.ConversionExceptionMessage, value);
+                    var message = string.Format(CultureInfo.CurrentCulture, XmlEngineResources.ConversionExceptionMessage, value);
                     throw new ConversionException(message);
                 }
             }

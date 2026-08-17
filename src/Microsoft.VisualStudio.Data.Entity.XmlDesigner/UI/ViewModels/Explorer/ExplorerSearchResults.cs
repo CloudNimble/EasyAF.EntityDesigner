@@ -418,12 +418,12 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer
                 }
                 individualResultsAsStringBuilder.AppendLine(
                     string.Format(
-                        CultureInfo.CurrentCulture, global::Microsoft.Data.Entity.Design.XmlEngine.Resources.ExplorerSearchResults_IndividualFormat, index++, explorerElement.Name,
+                        CultureInfo.CurrentCulture, XmlDesignerResources.ExplorerSearchResults_IndividualFormat, index++, explorerElement.Name,
                         explorerElement.GetType().Name));
             }
 
             return string.Format(
-                CultureInfo.CurrentCulture, global::Microsoft.Data.Entity.Design.XmlEngine.Resources.ExplorerSearchResults_OverallFormat, _results.Count, individualResultsAsStringBuilder,
+                CultureInfo.CurrentCulture, XmlDesignerResources.ExplorerSearchResults_OverallFormat, _results.Count, individualResultsAsStringBuilder,
                 _previousSearchResultItemIndex, _nextSearchResultItemIndex, _currentSelectionIsInResults);
         }
     }

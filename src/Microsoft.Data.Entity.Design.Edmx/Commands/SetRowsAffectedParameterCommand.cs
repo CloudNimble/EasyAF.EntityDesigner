@@ -33,7 +33,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                 if (!_param.CanBeUsedAsRowsAffectedParameter())
                 {
                     var errMsg = string.Format(
-                        CultureInfo.CurrentCulture, Resources.SetRowsAffectedParameterErrorMessage_CannotUse, _param.NormalizedNameExternal,
+                        CultureInfo.CurrentCulture, EdmxResources.SetRowsAffectedParameterErrorMessage_CannotUse, _param.NormalizedNameExternal,
                         _param.InOut.ToString(), _param.Type.Value);
                     throw new CommandValidationFailedException(errMsg);
                 }

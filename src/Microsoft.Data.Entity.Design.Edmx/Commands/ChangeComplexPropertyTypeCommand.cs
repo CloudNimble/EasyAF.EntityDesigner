@@ -65,7 +65,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                 {
                     throw new CommandValidationFailedException(
                         String.Format(
-                            CultureInfo.CurrentCulture, Resources.Error_CircularComplexTypeDefinitionOnChange, _newType.LocalName.Value));
+                            CultureInfo.CurrentCulture, EdmxResources.Error_CircularComplexTypeDefinitionOnChange, _newType.LocalName.Value));
                 }
             }
 

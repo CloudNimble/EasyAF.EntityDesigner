@@ -57,11 +57,11 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                 if (table != null)
                 {
                     return string.Format(
-                        CultureInfo.CurrentCulture, Resources.MappingDetailsViewModel_StorageEntityTypeName, table.LocalName.Value);
+                        CultureInfo.CurrentCulture, EdmxDesignerResources.MappingDetailsViewModel_StorageEntityTypeName, table.LocalName.Value);
                 }
                 else
                 {
-                    return Resources.MappingDetails_TableCreatorNode;
+                    return EdmxDesignerResources.MappingDetails_TableCreatorNode;
                 }
             }
         }
@@ -193,7 +193,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
 
             // create a context if we weren't passed one
             cpc ??= new CommandProcessorContext(
-                    Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_CreateAssociationSetMapping);
+                    Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_CreateAssociationSetMapping);
 
             // create the item
             CreateAssociationSetMappingCommand cmd1 = new CreateAssociationSetMappingCommand(MappingAssociation.Association, storeEntityType);
@@ -240,7 +240,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
             {
                 // create a context if we weren't passed one
                 cpc ??= new CommandProcessorContext(
-                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_DeleteAssociationSetMapping);
+                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_DeleteAssociationSetMapping);
                 DeleteEFElementCommand.DeleteInTransaction(cpc, AssociationSet.AssociationSetMapping);
             }
         }

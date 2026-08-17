@@ -22,14 +22,14 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
                 if (appType != VisualStudioProjectSystem.Website)
                 {
                     AddMapping(
-                        ConnectionDesignerInfo.MAP_CopyToOutputDirectory, Resources.PropertyWindow_DisplayName_MAP_CopyToOutputDirectory);
+                        ConnectionDesignerInfo.MAP_CopyToOutputDirectory, EdmxDesignerResources.PropertyWindow_DisplayName_MAP_CopyToOutputDirectory);
                 }
             }
             else
             {
-                AddMapping(ConnectionDesignerInfo.MAP_CopyToOutputDirectory, Resources.PropertyWindow_DisplayName_MAP_CopyToOutputDirectory);
+                AddMapping(ConnectionDesignerInfo.MAP_CopyToOutputDirectory, EdmxDesignerResources.PropertyWindow_DisplayName_MAP_CopyToOutputDirectory);
             }
-            AddMapping(ConnectionDesignerInfo.MAP_EmbedInOutputAssembly, Resources.PropertyWindow_DisplayName_MAP_EmbedInOutputAssembly);
+            AddMapping(ConnectionDesignerInfo.MAP_EmbedInOutputAssembly, EdmxDesignerResources.PropertyWindow_DisplayName_MAP_EmbedInOutputAssembly);
         }
     }
 }

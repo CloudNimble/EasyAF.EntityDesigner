@@ -136,12 +136,12 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
             if (returnSingleTypeString != null)
             {
                 // make sure that this is a primitive type or a complex type and build a "Collection()" around it.
-                if (returnSingleTypeString != global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX)
+                if (returnSingleTypeString != global::Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources.NoneDisplayValueUsedForUX)
                 {
                     var edmPrimitiveTypes = ModelHelper.AllPrimitiveTypes(_fi.Artifact.SchemaVersion);
                     if (!edmPrimitiveTypes.Contains(returnSingleTypeString))
                     {
-                        var msg = string.Format(CultureInfo.CurrentCulture, Resources.INVALID_FORMAT, returnSingleTypeString);
+                        var msg = string.Format(CultureInfo.CurrentCulture, EdmxResources.INVALID_FORMAT, returnSingleTypeString);
                         throw new CommandValidationFailedException(msg);
                     }
 
@@ -155,7 +155,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                 if (!complexTypes.Contains(returnSingleTypeComplexType))
                 {
                     var msg = string.Format(
-                        CultureInfo.CurrentCulture, Resources.INVALID_FORMAT, returnSingleTypeComplexType.NormalizedNameExternal);
+                        CultureInfo.CurrentCulture, EdmxResources.INVALID_FORMAT, returnSingleTypeComplexType.NormalizedNameExternal);
                     throw new CommandValidationFailedException(msg);
                 }
 

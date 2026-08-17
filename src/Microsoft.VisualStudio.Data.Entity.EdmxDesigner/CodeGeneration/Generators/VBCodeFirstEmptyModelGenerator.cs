@@ -2,7 +2,7 @@
 
 using System.Data.Entity.Infrastructure;
 using System.Globalization;
-using WizardResources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.Resources;
+using WizardResources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.ModelWizardResources;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Generators
 {

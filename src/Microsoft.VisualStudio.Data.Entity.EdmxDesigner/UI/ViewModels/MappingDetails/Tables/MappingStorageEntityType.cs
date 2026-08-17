@@ -53,7 +53,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                     Debug.Assert(et != null, "ModelItem is of wrong type " + ModelItem.GetType().FullName);
 
                     return string.Format(
-                        CultureInfo.CurrentCulture, Resources.MappingDetailsViewModel_StorageEntityTypeName, et.LocalName.Value);
+                        CultureInfo.CurrentCulture, EdmxDesignerResources.MappingDetailsViewModel_StorageEntityTypeName, et.LocalName.Value);
                 }
             }
         }
@@ -211,7 +211,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
 
             // create a context if we weren't passed one
             cpc ??= new CommandProcessorContext(
-                    Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_CreateMappingFragment);
+                    Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_CreateMappingFragment);
 
             // create the MappingFragment - if we already have a default EntityTypeMapping then just add
             // the MappingFragment to that mapping, otherwise if we already have an IsTypeOf
@@ -280,7 +280,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
             {
                 // create a context if we weren't passed one
                 cpc ??= new CommandProcessorContext(
-                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_DeleteMappingFragment);
+                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_DeleteMappingFragment);
 
                 var fragment = ModelHelper.FindMappingFragment(
                     cpc, MappingConceptualEntityType.ConceptualEntityType, StorageEntityType, false);

@@ -80,7 +80,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
                         if (a.State != EFElementState.Resolved
                             || a.Value.Status != BindingStatus.Known)
                         {
-                            var msg = string.Format(CultureInfo.CurrentCulture, Resources.RESOLVE_UNRESOLVED_ALIAS, refName);
+                            var msg = string.Format(CultureInfo.CurrentCulture, EdmxResources.RESOLVE_UNRESOLVED_ALIAS, refName);
                             var artifactSet = parent.Artifact.ModelManager.GetArtifactSet(parent.Artifact.Uri);
                             ErrorInfo errorInfo = new ErrorInfo(
                                 ErrorInfo.Severity.ERROR, msg, parent, ErrorCodes.RESOLVE_UNRESOLVED_ALIAS, ErrorClass.ResolveError);

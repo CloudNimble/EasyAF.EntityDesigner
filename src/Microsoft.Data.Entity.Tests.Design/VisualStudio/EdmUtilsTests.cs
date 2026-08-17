@@ -11,7 +11,7 @@ using Microsoft.Data.Entity.Tests.Design.TestHelpers;
 using VSLangProj;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
-using Resources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Resources;
+using Resources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.EdmxDesignerResources;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.Edmx.Designer;
@@ -19,6 +19,7 @@ using Microsoft.Data.Entity.Design.Edmx;
 using Microsoft.Data.Entity.Design.EntityFramework;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio
 {
@@ -335,7 +336,7 @@ namespace Microsoft.Data.Entity.Tests.Design.VisualStudio
                 mockLogger.Object);
 
             var expectedErrorMessage =
-                string.Format(Resources.ErrorDuringSqlDatabaseFileUpgrade, null, "Loading Failed");
+                string.Format(EdmxDesignerResources.ErrorDuringSqlDatabaseFileUpgrade, null, "Loading Failed");
 
             mockLogger
                 .Verify(l => l.LogMessage(2, It.IsAny<string>(), It.IsAny<string>(), expectedErrorMessage), Times.Once());

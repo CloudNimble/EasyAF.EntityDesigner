@@ -45,7 +45,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration
             var entityContainer = itemCollection.GetItems<EntityContainer>().FirstOrDefault();
             if (entityContainer == null)
             {
-                throw new InvalidDataException(Resources.ErrorNoEntityContainer);
+                throw new InvalidDataException(DatabaseGenerationResources.ErrorNoEntityContainer);
             }
             return entityContainer.Name;
         }
@@ -165,7 +165,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration
             {
                 throw new InvalidOperationException(
                     String.Format(
-                        CultureInfo.CurrentCulture, Resources.ErrorNoPropertyInRefConstraint, property.Name, refConstraint.FromRole.Name,
+                        CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorNoPropertyInRefConstraint, property.Name, refConstraint.FromRole.Name,
                         refConstraint.ToRole.Name));
             }
 
@@ -227,13 +227,13 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration
                             {
                                 throw new InvalidOperationException(
                                     String.Format(
-                                        CultureInfo.CurrentCulture, Resources.ErrorComplexTypeCycle, subProperty.Name,
+                                        CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorComplexTypeCycle, subProperty.Name,
                                         subProperty.TypeUsage.EdmType.Name));
                             }
                             else
                             {
                                 throw new InvalidOperationException(
-                                    String.Format(CultureInfo.CurrentCulture, Resources.ErrorNonSpecificComplexTypeCycle, subProperty.Name));
+                                    String.Format(CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorNonSpecificComplexTypeCycle, subProperty.Name));
                             }
                         }
                         visitedProperties.Add(subProperty);
@@ -317,7 +317,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration
             {
                 throw new NotSupportedException(
                     String.Format(
-                        CultureInfo.CurrentCulture, Resources.ErrorIncompatibleTypeForProvider, edmMember.TypeUsage.EdmType.Name,
+                        CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorIncompatibleTypeForProvider, edmMember.TypeUsage.EdmType.Name,
                         edmMember.Name));
             }
             return storePrimitiveType;
@@ -460,7 +460,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration
             catch (IndexOutOfRangeException iore)
             {
                 throw new InvalidOperationException(
-                    String.Format(CultureInfo.CurrentCulture, Resources.ErrorNonValidAssociationEnds, association.Name), iore);
+                    String.Format(CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorNonValidAssociationEnds, association.Name), iore);
             }
         }
 
@@ -486,7 +486,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration
             catch (IndexOutOfRangeException iore)
             {
                 throw new InvalidOperationException(
-                    String.Format(CultureInfo.CurrentCulture, Resources.ErrorNonValidAssociationEnds, association.Name), iore);
+                    String.Format(CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorNonValidAssociationEnds, association.Name), iore);
             }
         }
 
@@ -553,10 +553,10 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration
         /// <exception cref="InvalidOperationException">if this association is *:*</exception>
         public static AssociationEndMember GetDependentEnd(this AssociationType association)
         {
-            Debug.Assert(false == association.IsManyToMany(), Resources.ErrorGetDependentEndOnManyToMany);
+            Debug.Assert(false == association.IsManyToMany(), DatabaseGenerationResources.ErrorGetDependentEndOnManyToMany);
             if (association.IsManyToMany())
             {
-                throw new InvalidOperationException(Resources.ErrorGetDependentEndOnManyToMany);
+                throw new InvalidOperationException(DatabaseGenerationResources.ErrorGetDependentEndOnManyToMany);
             }
 
             if (association.ReferentialConstraints.Count > 0)
@@ -596,14 +596,14 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration
                 || end.TypeUsage.EdmType == null
                 || !(end.TypeUsage.EdmType is RefType))
             {
-                throw new InvalidOperationException(Resources.ErrorFindingEntityTypeForEnd);
+                throw new InvalidOperationException(DatabaseGenerationResources.ErrorFindingEntityTypeForEnd);
             }
 
             RefType refType = end.TypeUsage.EdmType as RefType;
 
             if (refType.ElementType is not EntityType entityTypeForEnd)
             {
-                throw new InvalidOperationException(Resources.ErrorFindingEntityTypeForEnd);
+                throw new InvalidOperationException(DatabaseGenerationResources.ErrorFindingEntityTypeForEnd);
             }
 
             return entityTypeForEnd;
@@ -802,7 +802,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration
                 || dataSpace == DataSpace.OSpace)
             {
                 throw new ArgumentException(
-                    String.Format(CultureInfo.CurrentCulture, Resources.ErrorNonValidDataSpace, dataSpace.ToString()));
+                    String.Format(CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorNonValidDataSpace, dataSpace.ToString()));
             }
 
             if (dataSpace == DataSpace.CSpace)
@@ -812,7 +812,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration
                 if (String.IsNullOrEmpty(sgpNamespace))
                 {
                     throw new ArgumentException(
-                        String.Format(CultureInfo.CurrentCulture, Resources.ErrorNonValidTargetVersion, targetVersion));
+                        String.Format(CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorNonValidTargetVersion, targetVersion));
                 }
 
                 if (property.MetadataProperties.TryGetValue(

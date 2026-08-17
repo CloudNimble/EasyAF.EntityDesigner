@@ -54,7 +54,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
                                                  ? GetObject(locateData.Row, 0, ObjectStyle.ExpandedBranch) as IBranch
                                                  : new ModificationFunctionBranch(_mappingFunctionTypeMapping, _columns);
             }
-            childBranches.Add(new ChildBranchInfo(modificationFunctionBranch, Resources.MappingDetails_FunctionsHeader, "FUNCTION"));
+            childBranches.Add(new ChildBranchInfo(modificationFunctionBranch, EdmxDesignerResources.MappingDetails_FunctionsHeader, "FUNCTION"));
 
             SetHeaderInfo(childBranches.ToArray(), _columns);
         }

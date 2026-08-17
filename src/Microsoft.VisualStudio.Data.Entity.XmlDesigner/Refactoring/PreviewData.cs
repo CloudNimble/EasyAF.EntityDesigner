@@ -163,7 +163,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Refactoring
                         throw new InvalidOperationException(
                             string.Format(
                                 CultureInfo.CurrentCulture,
-                                Resources.Exception_DuplicateChanges,
+                                XmlDesignerResources.Exception_DuplicateChanges,
                                 filename));
                     }
                 }

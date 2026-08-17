@@ -22,6 +22,7 @@ using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties;
 
 namespace Microsoft.VisualStudio.Data.Entity.Tests.Package.VisualStudio.ModelWizard
 {
@@ -243,8 +244,8 @@ namespace Microsoft.VisualStudio.Data.Entity.Tests.Package.VisualStudio.ModelWiz
                 var second = c.Last();
 
                 return c.All(i => i.ItemPath == itemPath && i.ErrorClass == ErrorClass.Runtime_All) &&
-                    first.IsError() && first.Message == string.Format(Resources.Error_Message_With_Error_Code_Prefix, 20, "error") && first.ErrorCode == 20 &&
-                    second.IsWarning() && second.Message == string.Format(Resources.Error_Message_With_Error_Code_Prefix, 10, "warning") && second.ErrorCode == 10;
+                    first.IsError() && first.Message == string.Format(XmlEngineResources.Error_Message_With_Error_Code_Prefix, 20, "error") && first.ErrorCode == 20 &&
+                    second.IsWarning() && second.Message == string.Format(XmlEngineResources.Error_Message_With_Error_Code_Prefix, 10, "warning") && second.ErrorCode == 10;
             };
 
             mockErrorListHelper.Verify(

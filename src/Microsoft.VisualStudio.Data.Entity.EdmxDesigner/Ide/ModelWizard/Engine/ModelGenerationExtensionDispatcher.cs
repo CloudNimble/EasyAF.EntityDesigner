@@ -116,7 +116,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
                         VsUtils.ShowErrorDialog(
                             string.Format(
                                 CultureInfo.CurrentCulture,
-                                Resources.Extensibility_ErrorOccurredDuringCallToExtension,
+                                EdmxDesignerResources.Extensibility_ErrorOccurredDuringCallToExtension,
                                 extension.GetType().FullName,
                                 VsUtils.ConstructInnerExceptionErrorMessage(e)));
                     }
@@ -139,7 +139,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
 
         protected void OnBeforeChange(object sender, XObjectChangeEventArgs e)
         {
-            throw new InvalidOperationException(Resources.Extensibility_CantEditModel);
+            throw new InvalidOperationException(EdmxDesignerResources.Extensibility_CantEditModel);
         }
 
         // event handler to record when an extension makes changes to the current document

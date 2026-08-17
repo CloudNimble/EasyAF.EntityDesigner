@@ -97,13 +97,13 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                 {
                     if (Function == null)
                     {
-                        return Resources.MappingDetails_InsertFunction_CreatorNode;
+                        return EdmxDesignerResources.MappingDetails_InsertFunction_CreatorNode;
                     }
                     else
                     {
                         return string.Format(
                             CultureInfo.CurrentCulture,
-                            Resources.MappingDetails_InsertFunction_Display,
+                            EdmxDesignerResources.MappingDetails_InsertFunction_Display,
                             Function.LocalName.Value);
                     }
                 }
@@ -111,13 +111,13 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                 {
                     if (Function == null)
                     {
-                        return Resources.MappingDetails_UpdateFunction_CreatorNode;
+                        return EdmxDesignerResources.MappingDetails_UpdateFunction_CreatorNode;
                     }
                     else
                     {
                         return string.Format(
                             CultureInfo.CurrentCulture,
-                            Resources.MappingDetails_UpdateFunction_Display,
+                            EdmxDesignerResources.MappingDetails_UpdateFunction_Display,
                             Function.LocalName.Value);
                     }
                 }
@@ -125,13 +125,13 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                 {
                     if (Function == null)
                     {
-                        return Resources.MappingDetails_DeleteFunction_CreatorNode;
+                        return EdmxDesignerResources.MappingDetails_DeleteFunction_CreatorNode;
                     }
                     else
                     {
                         return string.Format(
                             CultureInfo.CurrentCulture,
-                            Resources.MappingDetails_DeleteFunction_Display,
+                            EdmxDesignerResources.MappingDetails_DeleteFunction_Display,
                             Function.LocalName.Value);
                     }
                 }
@@ -162,7 +162,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                 {
                     SetRowsAffectedParameterCommand cmd = new SetRowsAffectedParameterCommand(ModificationFunction, value);
                     CommandProcessor cp = new CommandProcessor(
-                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_ChangeScalarProperty, cmd);
+                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_ChangeScalarProperty, cmd);
                     cp.Invoke();
                 }
             }
@@ -261,7 +261,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
 
             // create a context if we weren't passed one
             cpc ??= new CommandProcessorContext(
-                    Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_CreateFunctionMapping);
+                    Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_CreateFunctionMapping);
 
             // create the commands
             CreateFunctionMappingCommand cmd = new CreateFunctionMappingCommand(MappingFunctionEntityType.EntityType, function, null, _functionType);
@@ -375,7 +375,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
             {
                 // create a context if we weren't passed one
                 cpc ??= new CommandProcessorContext(
-                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_DeleteFunctionMapping);
+                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_DeleteFunctionMapping);
 
                 // use the item's delete command
                 var deleteCommand = ModificationFunction.GetDeleteCommand(MappingFunctionEntityType.EntityType, Function, _functionType);

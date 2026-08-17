@@ -69,13 +69,13 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
                 Entity2ComboBox.Items.Add(entityType);
             }
 
-            Multiplicity1ComboBox.Items.Add(new MultiplicityComboBoxItem(EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityOne, ModelConstants.Multiplicity_One));
-            Multiplicity1ComboBox.Items.Add(new MultiplicityComboBoxItem(EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityZeroOrOne, ModelConstants.Multiplicity_ZeroOrOne));
-            Multiplicity1ComboBox.Items.Add(new MultiplicityComboBoxItem(EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityMany, ModelConstants.Multiplicity_Many));
+            Multiplicity1ComboBox.Items.Add(new MultiplicityComboBoxItem(EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityOne, ModelConstants.Multiplicity_One));
+            Multiplicity1ComboBox.Items.Add(new MultiplicityComboBoxItem(EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityZeroOrOne, ModelConstants.Multiplicity_ZeroOrOne));
+            Multiplicity1ComboBox.Items.Add(new MultiplicityComboBoxItem(EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityMany, ModelConstants.Multiplicity_Many));
 
-            Multiplicity2ComboBox.Items.Add(new MultiplicityComboBoxItem(EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityOne, ModelConstants.Multiplicity_One));
-            Multiplicity2ComboBox.Items.Add(new MultiplicityComboBoxItem(EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityZeroOrOne, ModelConstants.Multiplicity_ZeroOrOne));
-            Multiplicity2ComboBox.Items.Add(new MultiplicityComboBoxItem(EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityMany, ModelConstants.Multiplicity_Many));
+            Multiplicity2ComboBox.Items.Add(new MultiplicityComboBoxItem(EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityOne, ModelConstants.Multiplicity_One));
+            Multiplicity2ComboBox.Items.Add(new MultiplicityComboBoxItem(EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityZeroOrOne, ModelConstants.Multiplicity_ZeroOrOne));
+            Multiplicity2ComboBox.Items.Add(new MultiplicityComboBoxItem(EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityMany, ModelConstants.Multiplicity_Many));
 
             // Set values before adding event handlers
             Multiplicity1ComboBox.SelectedIndex = 0;
@@ -325,16 +325,16 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
             // FKs are enabled when one end is "many" and the other end is not many
             var supported = false;
 
-            if (string.Compare(end1, EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityMany, StringComparison.CurrentCulture) == 0)
+            if (string.Compare(end1, EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityMany, StringComparison.CurrentCulture) == 0)
             {
-                if (string.Compare(end2, EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityMany, StringComparison.CurrentCulture) != 0)
+                if (string.Compare(end2, EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityMany, StringComparison.CurrentCulture) != 0)
                 {
                     supported = true;
                 }
             }
-            else if (string.Compare(end2, EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityMany, StringComparison.CurrentCulture) == 0)
+            else if (string.Compare(end2, EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityMany, StringComparison.CurrentCulture) == 0)
             {
-                if (string.Compare(end1, EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityMany, StringComparison.CurrentCulture) != 0)
+                if (string.Compare(end1, EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityMany, StringComparison.CurrentCulture) != 0)
                 {
                     supported = true;
                 }
@@ -348,42 +348,42 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
             principal = null;
             dependent = null;
 
-            if (string.Equals(End1MultiplicityText, EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityOne, StringComparison.CurrentCulture)
-                && string.Equals(End2MultiplicityText, EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityOne, StringComparison.CurrentCulture))
+            if (string.Equals(End1MultiplicityText, EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityOne, StringComparison.CurrentCulture)
+                && string.Equals(End2MultiplicityText, EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityOne, StringComparison.CurrentCulture))
             {
                 dependent = End2Entity;
                 principal = End1Entity;
             }
-            else if (string.Equals(End1MultiplicityText, EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityZeroOrOne, StringComparison.CurrentCulture)
-                     && string.Equals(End2MultiplicityText, EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityZeroOrOne, StringComparison.CurrentCulture))
+            else if (string.Equals(End1MultiplicityText, EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityZeroOrOne, StringComparison.CurrentCulture)
+                     && string.Equals(End2MultiplicityText, EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityZeroOrOne, StringComparison.CurrentCulture))
             {
                 dependent = End2Entity;
                 principal = End1Entity;
             }
-            else if (string.Equals(End1MultiplicityText, EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityZeroOrOne, StringComparison.CurrentCulture)
-                     && string.Equals(End2MultiplicityText, EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityMany, StringComparison.CurrentCulture))
+            else if (string.Equals(End1MultiplicityText, EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityZeroOrOne, StringComparison.CurrentCulture)
+                     && string.Equals(End2MultiplicityText, EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityMany, StringComparison.CurrentCulture))
             {
                 dependent = End2Entity;
                 principal = End1Entity;
             }
-            else if (string.Equals(End2MultiplicityText, EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityZeroOrOne, StringComparison.CurrentCulture)
-                     && string.Equals(End1MultiplicityText, EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityMany, StringComparison.CurrentCulture))
+            else if (string.Equals(End2MultiplicityText, EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityZeroOrOne, StringComparison.CurrentCulture)
+                     && string.Equals(End1MultiplicityText, EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityMany, StringComparison.CurrentCulture))
             {
                 dependent = End1Entity;
                 principal = End2Entity;
             }
             else
             {
-                if (string.Equals(End1MultiplicityText, EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityOne, StringComparison.CurrentCulture)
-                    && (string.Equals(End2MultiplicityText, EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityZeroOrOne, StringComparison.CurrentCulture)
-                        || string.Equals(End2MultiplicityText, EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityMany, StringComparison.CurrentCulture)))
+                if (string.Equals(End1MultiplicityText, EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityOne, StringComparison.CurrentCulture)
+                    && (string.Equals(End2MultiplicityText, EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityZeroOrOne, StringComparison.CurrentCulture)
+                        || string.Equals(End2MultiplicityText, EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityMany, StringComparison.CurrentCulture)))
                 {
                     dependent = End2Entity;
                     principal = End1Entity;
                 }
-                else if (string.Equals(End2MultiplicityText, EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityOne, StringComparison.CurrentCulture)
-                         && (string.Equals(End1MultiplicityText, EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityZeroOrOne, StringComparison.CurrentCulture)
-                             || string.Equals(End1MultiplicityText, EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityMany, StringComparison.CurrentCulture)))
+                else if (string.Equals(End2MultiplicityText, EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityOne, StringComparison.CurrentCulture)
+                         && (string.Equals(End1MultiplicityText, EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityZeroOrOne, StringComparison.CurrentCulture)
+                             || string.Equals(End1MultiplicityText, EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityMany, StringComparison.CurrentCulture)))
                 {
                     dependent = End1Entity;
                     principal = End2Entity;
@@ -437,7 +437,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
 
             sentence1 = string.Format(
                 CultureInfo.CurrentCulture,
-                string.Equals(End2MultiplicityText, EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityOne, StringComparison.CurrentCulture)
+                string.Equals(End2MultiplicityText, EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityOne, StringComparison.CurrentCulture)
                     ? sentenceBase1
                     : sentenceBase2,
                 End1Entity.LocalName.Value,
@@ -454,7 +454,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
 
             sentence2 = string.Format(
                 CultureInfo.CurrentCulture,
-                string.Equals(End1MultiplicityText, EdmxDesigner.Resources.PropertyWindow_Value_MultiplicityOne, StringComparison.CurrentCulture)
+                string.Equals(End1MultiplicityText, EdmxDesigner.EdmxDesignerResources.PropertyWindow_Value_MultiplicityOne, StringComparison.CurrentCulture)
                     ? sentenceBase1
                     : sentenceBase2,
                 End2Entity.LocalName.Value,

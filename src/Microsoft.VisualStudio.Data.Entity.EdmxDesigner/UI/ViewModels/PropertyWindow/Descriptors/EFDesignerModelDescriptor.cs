@@ -152,7 +152,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
         {
             get
             {
-                var val = Resources.Default;
+                var val = EdmxDesignerResources.Default;
                 if (TypedEFElement != null
                     && TypedEFElement.CodeGenerationStrategy != null
                     && TypedEFElement.CodeGenerationStrategy.ValueAttr != null)
@@ -309,7 +309,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
             }
             if (propertyDescriptorMethodName.Equals("CodeGenerationStrategy"))
             {
-                return Resources.Default;
+                return EdmxDesignerResources.Default;
             }
             if (propertyDescriptorMethodName.Equals("SynchronizePropertyFacets"))
             {

@@ -43,7 +43,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
             this.Name = "ModelBuilderWizardForm";
             this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
-            this.Text = Properties.Resources.WizardFormDialog_Title;
+            this.Text = Properties.ModelWizardResources.WizardFormDialog_Title;
             this.ResumeLayout(false);
 
         }

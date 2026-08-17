@@ -114,14 +114,14 @@
   <!-- Embedded Resources -->
   <ItemGroup>
     <EmbeddedResource Include="Resources\*.cur" />
-    <EmbeddedResource Update="Properties\Resources.resx">
+    <EmbeddedResource Update="Properties\DiagramsResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>DiagramsResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Update="Properties\Resources.Designer.cs">
+    <Compile Update="Properties\DiagramsResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
+      <DependentUpon>DiagramsResources.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

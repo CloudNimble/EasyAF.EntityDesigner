@@ -29,7 +29,7 @@ namespace Microsoft.Data.Entity.Tests.Design.XmlEngine.Model.Validation
             edmxErrorInfo.IsError().Should().BeTrue();
             edmxErrorInfo.IsWarning().Should().BeFalse();
             edmxErrorInfo.IsInfo().Should().BeFalse();
-            edmxErrorInfo.Message.Should().Be(string.Format(Resources.Error_Message_With_Error_Code_Prefix, 42, "test"));
+            edmxErrorInfo.Message.Should().Be(string.Format(XmlEngineResources.Error_Message_With_Error_Code_Prefix, 42, "test"));
             edmxErrorInfo.Item.Should().BeSameAs(mockEFObject.Object);
             edmxErrorInfo.ItemPath.Should().Be(@"c:\project\model.edmx");
             edmxErrorInfo.ErrorCode.Should().Be(42);
@@ -48,7 +48,7 @@ namespace Microsoft.Data.Entity.Tests.Design.XmlEngine.Model.Validation
             edmxErrorInfo.IsWarning().Should().BeTrue();
             edmxErrorInfo.IsInfo().Should().BeFalse();
 
-            edmxErrorInfo.Message.Should().Be(string.Format(Resources.Error_Message_With_Error_Code_Prefix, 17, "test"));
+            edmxErrorInfo.Message.Should().Be(string.Format(XmlEngineResources.Error_Message_With_Error_Code_Prefix, 17, "test"));
             edmxErrorInfo.Item.Should().BeNull();
             edmxErrorInfo.ItemPath.Should().Be(@"c:\project\model.edmx");
             edmxErrorInfo.ErrorCode.Should().Be(17);

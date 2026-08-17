@@ -104,7 +104,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration
         {
             if (edmItemCollection is null)
             {
-                throw new InvalidOperationException(Resources.ErrorCouldNotFindCSDL);
+                throw new InvalidOperationException(DatabaseGenerationResources.ErrorCouldNotFindCSDL);
             }
 
             if (edmParameterBag is null)
@@ -117,14 +117,14 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration
             {
                 throw new InvalidOperationException(
                     String.Format(
-                        CultureInfo.CurrentCulture, Resources.ErrorNoParameterDefined,
+                        CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorNoParameterDefined,
                         EdmParameterBag.ParameterName.TargetVersion.ToString()));
             }
 
             if (false == EntityFrameworkVersion.IsValidVersion(targetFrameworkVersion))
             {
                 throw new InvalidOperationException(
-                    String.Format(CultureInfo.CurrentCulture, Resources.ErrorNonValidTargetVersion, targetFrameworkVersion));
+                    String.Format(CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorNonValidTargetVersion, targetFrameworkVersion));
             }
 
             var ssdl = _ssdlGenerator.Generate(edmItemCollection, edmParameterBag);

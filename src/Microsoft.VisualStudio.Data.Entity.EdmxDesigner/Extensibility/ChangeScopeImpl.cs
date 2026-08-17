@@ -136,7 +136,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility
         {
             if (_isComplete)
             {
-                throw new InvalidOperationException(Resources.Extensibility_ChangeScope_AlreadyComplete);
+                throw new InvalidOperationException(EdmxDesignerResources.Extensibility_ChangeScope_AlreadyComplete);
             }
 
             var valid = false;
@@ -184,7 +184,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility
 
             if (!valid)
             {
-                throw new InvalidOperationException(Resources.Extensibility_ChangeScope_EditingWrongNamespace);
+                throw new InvalidOperationException(EdmxDesignerResources.Extensibility_ChangeScope_EditingWrongNamespace);
             }
         }
 
@@ -233,7 +233,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility
 
             if (!valid)
             {
-                throw new InvalidOperationException(Resources.Extensibility_ChangeScope_EditingWrongNamespace);
+                throw new InvalidOperationException(EdmxDesignerResources.Extensibility_ChangeScope_EditingWrongNamespace);
             }
         }
 

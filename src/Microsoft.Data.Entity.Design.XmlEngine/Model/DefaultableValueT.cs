@@ -33,14 +33,14 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
         }
 
         /// <summary>
-        ///     For ploc builds global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX will be the localized version of the
+        ///     For ploc builds global::Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources.NoneDisplayValueUsedForUX will be the localized version of the
         ///     '(None)' string. Convert it back to a non-localized string so that baseline files do not
         ///     need to be localized
         /// </summary>
         internal static object GetNonLocalizedAttributeValue(T attribute)
         {
             if (null != attribute
-                && global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX.Equals(attribute.ToString(), StringComparison.CurrentCulture))
+                && global::Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources.NoneDisplayValueUsedForUX.Equals(attribute.ToString(), StringComparison.CurrentCulture))
             {
                 return "(None)";
             }
@@ -190,7 +190,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
                         Debug.Assert(contentValidator != null, "Attribute content validator is null");
                         if (!contentValidator.IsValidAttributeValue(newValueString, this))
                         {
-                            var msg = string.Format(CultureInfo.CurrentCulture, Resources.INVALID_FORMAT, value);
+                            var msg = string.Format(CultureInfo.CurrentCulture, XmlEngineResources.INVALID_FORMAT, value);
                             Artifact.AddParseErrorForObject(
                                 this, new ErrorInfo(ErrorInfo.Severity.ERROR, msg, this, ErrorCodes.INVALID_VALUE, ErrorClass.ParseError));
                         }

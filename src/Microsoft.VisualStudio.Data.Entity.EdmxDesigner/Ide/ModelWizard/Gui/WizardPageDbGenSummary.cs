@@ -40,8 +40,8 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
         {
             InitializeComponent();
 
-            Logo = Properties.Resources.PageIcon;
-            Headline = Properties.Resources.DbGenSummary_Title;
+            Logo = Properties.ModelWizardResources.PageIcon;
+            Headline = Properties.ModelWizardResources.DbGenSummary_Title;
             Id = "WizardPageGenerateDatabaseScriptId";
             ShowInfoPanel = false;
 
@@ -103,7 +103,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
                 Wizard.EnableButton(ButtonType.Cancel, true);
 
                 // Display a status message
-                ShowStatus(Properties.Resources.DbGenSummary_StatusDeterminingDDL);
+                ShowStatus(Properties.ModelWizardResources.DbGenSummary_StatusDeterminingDDL);
 
                 // Extract the XML from the EDMX file and convert it into an EdmItemCollection for the workflow
                 EdmItemCollection edm = null;
@@ -244,7 +244,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
                 // Make sure that the DDL filename is not null
                 if (String.IsNullOrEmpty(txtSaveDdlAs.Text))
                 {
-                    VsUtils.ShowErrorDialog(Properties.Resources.ErrorDdlFileNameIsNull);
+                    VsUtils.ShowErrorDialog(Properties.ModelWizardResources.ErrorDdlFileNameIsNull);
                     return false;
                 }
 
@@ -258,14 +258,14 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
                         || projectUri == null)
                     {
                         VsUtils.ShowErrorDialog(
-                            String.Format(CultureInfo.CurrentCulture, Properties.Resources.ErrorResolvingProjectFile, projectFullName));
+                            String.Format(CultureInfo.CurrentCulture, Properties.ModelWizardResources.ErrorResolvingProjectFile, projectFullName));
                         return false;
                     }
                 }
                 catch (UriFormatException)
                 {
                     VsUtils.ShowErrorDialog(
-                        String.Format(CultureInfo.CurrentCulture, Properties.Resources.ErrorResolvingProjectFile, projectFullName));
+                        String.Format(CultureInfo.CurrentCulture, Properties.ModelWizardResources.ErrorResolvingProjectFile, projectFullName));
                 }
 
                 // Attempt to create a URI from the DDL path, either relative to the project URI or absolute. 
@@ -277,7 +277,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
                     {
                         VsUtils.ShowErrorDialog(
                             String.Format(
-                                CultureInfo.CurrentCulture, Properties.Resources.ErrorResolvingDdlFileNameException, txtSaveDdlAs.Text));
+                                CultureInfo.CurrentCulture, Properties.ModelWizardResources.ErrorResolvingDdlFileNameException, txtSaveDdlAs.Text));
                         return false;
                     }
                 }
@@ -285,7 +285,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
                 {
                     VsUtils.ShowErrorDialog(
                         String.Format(
-                            CultureInfo.CurrentCulture, Properties.Resources.ErrorResolvingDdlFileNameException, txtSaveDdlAs.Text));
+                            CultureInfo.CurrentCulture, Properties.ModelWizardResources.ErrorResolvingDdlFileNameException, txtSaveDdlAs.Text));
                 }
 
                 var ddlFilePath = ddlUri.LocalPath;
@@ -297,20 +297,20 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
                     if (String.IsNullOrEmpty(ddlFileName))
                     {
                         VsUtils.ShowErrorDialog(
-                            String.Format(CultureInfo.CurrentCulture, Properties.Resources.ErrorDdlPathNotFile, ddlFilePath));
+                            String.Format(CultureInfo.CurrentCulture, Properties.ModelWizardResources.ErrorDdlPathNotFile, ddlFilePath));
                         return false;
                     }
 
                     if (!VsUtils.IsValidFileName(ddlFileName))
                     {
-                        VsUtils.ShowErrorDialog(String.Format(CultureInfo.CurrentCulture, Resources.ErrorNonValidFileName, ddlFilePath));
+                        VsUtils.ShowErrorDialog(String.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.ErrorNonValidFileName, ddlFilePath));
                         return false;
                     }
                 }
                 catch (ArgumentException)
                 {
                     VsUtils.ShowErrorDialog(
-                        String.Format(CultureInfo.CurrentCulture, Properties.Resources.ErrorResolvingDdlFileNameException, ddlFilePath));
+                        String.Format(CultureInfo.CurrentCulture, Properties.ModelWizardResources.ErrorResolvingDdlFileNameException, ddlFilePath));
                     return false;
                 }
 
@@ -326,7 +326,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
                     "DDL filename should either be not null or we should have handled an exception before continuing...");
                 if (String.IsNullOrEmpty(ddlFilePath))
                 {
-                    VsUtils.ShowErrorDialog(Properties.Resources.ErrorDdlFileNameIsNull);
+                    VsUtils.ShowErrorDialog(Properties.ModelWizardResources.ErrorDdlFileNameIsNull);
                     return false;
                 }
 
@@ -340,7 +340,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
                         if (false == parentDirInfo.Exists)
                         {
                             VsUtils.ShowErrorDialog(
-                                String.Format(CultureInfo.CurrentCulture, Properties.Resources.ErrorNoDdlParentDir, ddlFilePath));
+                                String.Format(CultureInfo.CurrentCulture, Properties.ModelWizardResources.ErrorNoDdlParentDir, ddlFilePath));
                             return false;
                         }
                     }
@@ -350,7 +350,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
                     // various exceptions could occur here, such as PathTooLong or Security. In this case we will display an error.
                     VsUtils.ShowErrorDialog(
                         String.Format(
-                            CultureInfo.CurrentCulture, Properties.Resources.ErrorCouldNotParseDdlFileName, ddlFilePath, e.Message));
+                            CultureInfo.CurrentCulture, Properties.ModelWizardResources.ErrorCouldNotParseDdlFileName, ddlFilePath, e.Message));
                     return false;
                 }
 
@@ -369,8 +369,8 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
                         if (displayDdlOverwriteWarning)
                         {
                             var cancelledDuringOverwriteDdl = DismissableWarningDialog.ShowWarningDialogAndSaveDismissOption(
-                                Resources.DatabaseCreation_DDLOverwriteWarningTitle,
-                                String.Format(CultureInfo.CurrentCulture, Resources.DatabaseCreation_WarningOverwriteDdl, ddlFilePath),
+                                EdmxDesignerResources.DatabaseCreation_DDLOverwriteWarningTitle,
+                                String.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.DatabaseCreation_WarningOverwriteDdl, ddlFilePath),
                                 RegKeyNameDdlOverwriteWarning,
                                 DismissableWarningDialog.ButtonMode.YesNo);
                             if (cancelledDuringOverwriteDdl)
@@ -385,7 +385,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
                         VsUtils.ShowMessageBox(
                             PackageManager.Package,
                             String.Format(
-                                CultureInfo.CurrentCulture, Resources.ErrorReadingWritingUserSetting, RegKeyNameDdlOverwriteWarning,
+                                CultureInfo.CurrentCulture, EdmxDesignerResources.ErrorReadingWritingUserSetting, RegKeyNameDdlOverwriteWarning,
                                 e.Message),
                             OLEMSGBUTTON.OLEMSGBUTTON_OK,
                             OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST,
@@ -416,8 +416,8 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
                     if (displayEdmxOverwriteWarning)
                     {
                         var cancelledDuringOverwriteSsdl = DismissableWarningDialog.ShowWarningDialogAndSaveDismissOption(
-                            Resources.DatabaseCreation_EdmxOverwriteWarningTitle,
-                            Resources.DatabaseCreation_WarningOverwriteMappings,
+                            EdmxDesignerResources.DatabaseCreation_EdmxOverwriteWarningTitle,
+                            EdmxDesignerResources.DatabaseCreation_WarningOverwriteMappings,
                             RegKeyNameEdmxOverwriteWarning,
                             DismissableWarningDialog.ButtonMode.YesNo);
                         if (cancelledDuringOverwriteSsdl)
@@ -432,7 +432,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
                     VsUtils.ShowMessageBox(
                         PackageManager.Package,
                         String.Format(
-                            CultureInfo.CurrentCulture, Resources.ErrorReadingWritingUserSetting, RegKeyNameEdmxOverwriteWarning,
+                            CultureInfo.CurrentCulture, EdmxDesignerResources.ErrorReadingWritingUserSetting, RegKeyNameEdmxOverwriteWarning,
                             e.Message),
                         OLEMSGBUTTON.OLEMSGBUTTON_OK,
                         OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST,

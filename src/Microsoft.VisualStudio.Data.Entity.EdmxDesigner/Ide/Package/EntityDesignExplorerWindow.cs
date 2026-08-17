@@ -38,7 +38,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
             BitmapResourceID = 105;
             BitmapIndex = 0;
 
-            Caption = Resources.ExplorerWindowCaption;
+            Caption = EdmxDesignerResources.ExplorerWindowCaption;
         }
 
         // <summary>
@@ -197,7 +197,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
                         {
                             EfiTransactionContext context = new EfiTransactionContext();
                             CommandProcessorContext cpc = new CommandProcessorContext(
-                                EditingContext, EfiTransactionOriginator.ExplorerWindowOriginatorId, Resources.Tx_CreateScalarProperty, null,
+                                EditingContext, EfiTransactionOriginator.ExplorerWindowOriginatorId, EdmxDesignerResources.Tx_CreateScalarProperty, null,
                                 context);
                             Property createdProperty = null;
                             if (cmd.Properties[PackageConstants.guidEscherCmdSet] is string type)

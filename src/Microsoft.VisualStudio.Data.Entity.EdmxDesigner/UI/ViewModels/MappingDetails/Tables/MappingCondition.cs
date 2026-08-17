@@ -28,15 +28,15 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
     [TreeGridDesignerColumn(typeof(ValueColumn), Order = 3)]
     internal class MappingCondition : MappingEntityMappingRoot
     {
-        internal static readonly MappingLovEFElement LovOperatorIsPlaceHolder = new MappingLovEFElement(Resources.MappingDetails_OperatorIs);
+        internal static readonly MappingLovEFElement LovOperatorIsPlaceHolder = new MappingLovEFElement(EdmxDesignerResources.MappingDetails_OperatorIs);
 
         internal static readonly MappingLovEFElement LovOperatorEqualsPlaceHolder =
-            new MappingLovEFElement(Resources.MappingDetails_OperatorEquals);
+            new MappingLovEFElement(EdmxDesignerResources.MappingDetails_OperatorEquals);
 
-        internal static readonly MappingLovEFElement LovValueNullPlaceHolder = new MappingLovEFElement(Resources.MappingDetails_ValueNull);
+        internal static readonly MappingLovEFElement LovValueNullPlaceHolder = new MappingLovEFElement(EdmxDesignerResources.MappingDetails_ValueNull);
 
         internal static readonly MappingLovEFElement LovValueNotNullPlaceHolder =
-            new MappingLovEFElement(Resources.MappingDetails_ValueNotNull);
+            new MappingLovEFElement(EdmxDesignerResources.MappingDetails_ValueNotNull);
 
         private string _modelItemColumnName;
 
@@ -130,11 +130,11 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
 
                     if (isFirst)
                     {
-                        return string.Format(CultureInfo.CurrentCulture, Resources.MappingDetails_ConditionLine1, ColumnName);
+                        return string.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.MappingDetails_ConditionLine1, ColumnName);
                     }
                     else
                     {
-                        return string.Format(CultureInfo.CurrentCulture, Resources.MappingDetails_ConditionLine2, ColumnName);
+                        return string.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.MappingDetails_ConditionLine2, ColumnName);
                     }
                 }
 
@@ -176,7 +176,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                         Debug.Assert(tableColumn != null, "tableColumn should not be null");
 
                         CommandProcessorContext cpc = new CommandProcessorContext(
-                            Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_ChangeConditionColumn);
+                            Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_ChangeConditionColumn);
                         ChangeConditionColumnCommand cmd = new ChangeConditionColumnCommand(Condition, tableColumn);
                         CommandProcessor.InvokeSingleCommand(cpc, cmd);
                     }
@@ -240,7 +240,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                         }
 
                         CommandProcessorContext cpc = new CommandProcessorContext(
-                            Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_ChangeConditionValue);
+                            Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_ChangeConditionValue);
                         ChangeConditionPredicateCommand cmd = new ChangeConditionPredicateCommand(Condition, isNull, conditionValue);
                         CommandProcessor.InvokeSingleCommand(cpc, cmd);
                     }
@@ -292,11 +292,11 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                         // return the correct display value, "Null" or "Not Null"
                         if (string.CompareOrdinal(Condition.IsNull.Value, Condition.IsNullConstant) == 0)
                         {
-                            return Resources.MappingDetails_ValueNull;
+                            return EdmxDesignerResources.MappingDetails_ValueNull;
                         }
                         else
                         {
-                            return Resources.MappingDetails_ValueNotNull;
+                            return EdmxDesignerResources.MappingDetails_ValueNotNull;
                         }
                     }
                     else
@@ -304,7 +304,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                         // its a value condition, return the value if we have one
                         if (string.IsNullOrEmpty(Condition.Value.Value))
                         {
-                            return Resources.MappingDetails_ValueEmptyString;
+                            return EdmxDesignerResources.MappingDetails_ValueEmptyString;
                         }
                         else
                         {
@@ -330,7 +330,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                         if (Operator == LovOperatorIsPlaceHolder)
                         {
                             // this is an "Is" condition, so set the correct boolean value
-                            isNull = (string.CompareOrdinal(newValue, Resources.MappingDetails_ValueNull) == 0);
+                            isNull = (string.CompareOrdinal(newValue, EdmxDesignerResources.MappingDetails_ValueNull) == 0);
                         }
                         else
                         {
@@ -339,7 +339,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
                         }
 
                         CommandProcessorContext cpc = new CommandProcessorContext(
-                            Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_ChangeConditionValue);
+                            Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_ChangeConditionValue);
                         ChangeConditionPredicateCommand cmd = new ChangeConditionPredicateCommand(Condition, isNull, conditionValue);
                         CommandProcessor.InvokeSingleCommand(cpc, cmd);
                     }
@@ -445,7 +445,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
 
             // create a context if we weren't passed one
             cpc ??= new CommandProcessorContext(
-                    Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_CreateCondition);
+                    Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_CreateCondition);
 
             // use empty string as a default condition value
             CreateFragmentConditionCommand cmd = new CreateFragmentConditionCommand(entityType, tableColumn, null, String.Empty);
@@ -487,7 +487,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingD
             {
                 // create a context if we weren't passed one
                 cpc ??= new CommandProcessorContext(
-                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, Resources.Tx_DeleteCondition);
+                        Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_DeleteCondition);
 
                 // use the item's delete command
                 var deleteCommand = Condition.GetDeleteCommand();

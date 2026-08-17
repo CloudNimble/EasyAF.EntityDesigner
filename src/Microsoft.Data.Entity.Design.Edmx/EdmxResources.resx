@@ -393,9 +393,6 @@
   <data name="UpdateFromDatabaseAssociationSetMappingCannotFindOrCreateMatchingProperty" xml:space="preserve">
     <value>Cannot update from the database. Unable to clone scalar property '{0}' while processing an AssociationSetMapping. Cannot find or create a matching property for the database property '{1}' in EntityType '{2}'.</value>
   </data>
-  <data name="UpdateFromDatabaseExceptionMessage" xml:space="preserve">
-    <value>An exception of type '{0}' occurred while attempting to update from the database. The exception message is: '{1}'.</value>
-  </data>
   <data name="UpdateFromDatabaseAssociationSetMappingCannotFindMatchingSSideProperty" xml:space="preserve">
     <value>Cannot update from the database. Unable to clone scalar property '{0}' while processing an AssociationSetMapping. Cannot find a matching storage property for database storage property '{1}'.</value>
   </data>
@@ -440,9 +437,6 @@
   </data>
   <data name="ComplexPropertyUndefinedType" xml:space="preserve">
     <value>Undefined</value>
-  </data>
-  <data name="GenerateDatabaseScriptExceptionMessage" xml:space="preserve">
-    <value>An exception of type '{0}' occurred while attempting to generate the database script from the model. The exception message is: '{1}'.</value>
   </data>
   <data name="ErrorValidatingArtifact_InvalidCSDLNamespaceForTargetFrameworkVersion" xml:space="preserve">
     <value>The XML namespace for the conceptual model's Schema element is not supported on this Entity Framework schema version.</value>

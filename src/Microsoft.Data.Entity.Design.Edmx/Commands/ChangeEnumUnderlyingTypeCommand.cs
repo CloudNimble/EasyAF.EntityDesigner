@@ -27,7 +27,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
             if (ModelHelper.UnderlyingEnumTypes.Count(t => String.CompareOrdinal(t.Name, NewTypeName) == 0) == 0)
             {
                 throw new CommandValidationFailedException(
-                    String.Format(CultureInfo.CurrentCulture, Resources.Incorrect_Enum_UnderlyingType, NewTypeName));
+                    String.Format(CultureInfo.CurrentCulture, EdmxResources.Incorrect_Enum_UnderlyingType, NewTypeName));
             }
             EnumType.UnderlyingType.Value = NewTypeName;
         }

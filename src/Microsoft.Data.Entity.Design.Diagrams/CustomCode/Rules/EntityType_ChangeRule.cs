@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.Modeling;
 using System;
 using System.Diagnostics;
 using System.Globalization;
-using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.Resources;
+using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.DiagramsResources;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.Rules
 {

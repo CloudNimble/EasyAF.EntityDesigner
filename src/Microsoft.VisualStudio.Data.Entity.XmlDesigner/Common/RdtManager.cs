@@ -799,7 +799,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common
                         throw new InvalidOperationException(
                             string.Format(
                                 CultureInfo.CurrentCulture,
-                                Resources.Exception_FailedToSaveFile, filePath));
+                                XmlDesignerResources.Exception_FailedToSaveFile, filePath));
                     }
                     _ = NativeMethods.ThrowOnFailure(rdt.NotifyOnAfterSave(cookie));
                 }

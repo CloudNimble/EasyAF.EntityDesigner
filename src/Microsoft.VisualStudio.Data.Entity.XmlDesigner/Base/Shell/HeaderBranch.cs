@@ -126,8 +126,8 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
             {
                 return new VirtualTreeAccessibilityData(
                     "{1}, {3} {2}", TreeGridDesignerBranch._descriptionAccessibilityReplacementFields,
-                    Resources.MappingDetails_Up_And_Down, new AccessibilityReplacementField[0],
-                    Resources.MappingDetails_Up_And_Down);
+                    XmlDesignerResources.MappingDetails_Up_And_Down, new AccessibilityReplacementField[0],
+                    XmlDesignerResources.MappingDetails_Up_And_Down);
             }
 
             // header check box columns
@@ -137,15 +137,15 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
                 // check box - {column header} {state image text} {row}
                 return new VirtualTreeAccessibilityData(
                     "{0} {5} {3}", TreeGridDesignerBranch._descriptionAccessibilityReplacementFields,
-                    Resources.MappingDetails_Up_And_Down, new AccessibilityReplacementField[0],
-                    Resources.MappingDetails_Up_And_Down);
+                    XmlDesignerResources.MappingDetails_Up_And_Down, new AccessibilityReplacementField[0],
+                    XmlDesignerResources.MappingDetails_Up_And_Down);
             }
 
             // other header columns - {row} {column header)
             return new VirtualTreeAccessibilityData(
                 "{3} {0}", TreeGridDesignerBranch._descriptionAccessibilityReplacementFields,
-                Resources.MappingDetails_Up_And_Down, new AccessibilityReplacementField[0],
-                Resources.MappingDetails_Up_And_Down);
+                XmlDesignerResources.MappingDetails_Up_And_Down, new AccessibilityReplacementField[0],
+                XmlDesignerResources.MappingDetails_Up_And_Down);
         }
 
         /// <summary>

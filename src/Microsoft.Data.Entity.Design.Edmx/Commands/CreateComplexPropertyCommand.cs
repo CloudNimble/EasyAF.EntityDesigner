@@ -157,7 +157,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
             }
             else
             {
-                _createdProperty.ComplexType.SetXAttributeValue(Resources.ComplexPropertyUndefinedType);
+                _createdProperty.ComplexType.SetXAttributeValue(EdmxResources.ComplexPropertyUndefinedType);
             }
 
             // runtime does not support nullable complex properties, need to set it to false since the default is true

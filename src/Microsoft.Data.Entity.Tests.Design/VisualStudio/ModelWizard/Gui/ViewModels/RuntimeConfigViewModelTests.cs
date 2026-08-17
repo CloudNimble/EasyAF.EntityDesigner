@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui.ViewModels;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Gui.ViewModels
 {
@@ -31,8 +32,8 @@ namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Gui.ViewMo
             first.IsDefault.Should().BeTrue();
 
             viewModel.State.Should().Be(RuntimeConfigState.Error);
-            viewModel.Message.Should().Be(Resources.RuntimeConfig_NoProvider);
-            viewModel.HelpUrl.Should().Be(Resources.RuntimeConfig_LearnProvidersUrl);
+            viewModel.Message.Should().Be(ModelWizardResources.RuntimeConfig_NoProvider);
+            viewModel.HelpUrl.Should().Be(ModelWizardResources.RuntimeConfig_LearnProvidersUrl);
         }
 
         [TestMethod]
@@ -104,8 +105,8 @@ namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Gui.ViewMo
             first.IsDefault.Should().BeTrue();
 
             viewModel.State.Should().Be(RuntimeConfigState.Error);
-            viewModel.Message.Should().Be(Resources.RuntimeConfig_SixInstalledButNoProvider);
-            viewModel.HelpUrl.Should().Be(Resources.RuntimeConfig_LearnProvidersUrl);
+            viewModel.Message.Should().Be(ModelWizardResources.RuntimeConfig_SixInstalledButNoProvider);
+            viewModel.HelpUrl.Should().Be(ModelWizardResources.RuntimeConfig_LearnProvidersUrl);
         }
 
         [TestMethod]
@@ -166,8 +167,8 @@ namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Gui.ViewMo
             efVersion.Disabled.Should().BeTrue();
             efVersion.IsDefault.Should().BeTrue();
 
-            viewModel.Message.Should().Be(Resources.RuntimeConfig_NoProvider);
-            viewModel.HelpUrl.Should().Be(Resources.RuntimeConfig_LearnProvidersUrl);
+            viewModel.Message.Should().Be(ModelWizardResources.RuntimeConfig_NoProvider);
+            viewModel.HelpUrl.Should().Be(ModelWizardResources.RuntimeConfig_LearnProvidersUrl);
         }
 
         [TestMethod]
@@ -208,8 +209,8 @@ namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Gui.ViewMo
             efVersion.Disabled.Should().BeTrue();
             efVersion.IsDefault.Should().BeTrue();
 
-            viewModel.Message.Should().Be(Resources.RuntimeConfig_SixInstalledButNoProvider);
-            viewModel.HelpUrl.Should().Be(Resources.RuntimeConfig_LearnProvidersUrl);
+            viewModel.Message.Should().Be(ModelWizardResources.RuntimeConfig_SixInstalledButNoProvider);
+            viewModel.HelpUrl.Should().Be(ModelWizardResources.RuntimeConfig_LearnProvidersUrl);
         }
     }
 }

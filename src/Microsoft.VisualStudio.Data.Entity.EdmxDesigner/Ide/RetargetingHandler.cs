@@ -70,7 +70,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
                 {
                     // TODO: When there is an exception; should we continue?
                     VsUtils.LogStandardError(
-                        string.Format(CultureInfo.CurrentCulture, Resources.ErrorSynchingEdmxNamespaces, vsFileInfo.Path, ex.Message),
+                        string.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.ErrorSynchingEdmxNamespaces, vsFileInfo.Path, ex.Message),
                         vsFileInfo.Path, 0, 0);
                     throw;
                 }
@@ -116,7 +116,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
                 VsUtils.WriteCheckoutXmlFilesInProject(documentMap);
                 VsUtils.LogOutputWindowPaneMessage(
                     project,
-                    string.Format(CultureInfo.CurrentCulture, Resources.UpdateEdmxNamespacesSuccessful, project.Name));
+                    string.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.UpdateEdmxNamespacesSuccessful, project.Name));
             }
         }
     }

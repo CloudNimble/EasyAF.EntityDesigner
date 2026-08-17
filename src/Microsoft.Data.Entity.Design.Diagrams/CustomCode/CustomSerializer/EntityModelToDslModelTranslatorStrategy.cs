@@ -12,7 +12,7 @@ using Microsoft.Data.Entity.Design.Diagrams.View;
 using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Diagrams.GraphObject;
-using EntityDesignerResources = Microsoft.Data.Entity.Design.Diagrams.Properties.Resources;
+using EntityDesignerResources = Microsoft.Data.Entity.Design.Diagrams.Properties.DiagramsResources;
 using ModelAssociation = Microsoft.Data.Entity.Design.Edmx.Entity.Association;
 using ModelEntityType = Microsoft.Data.Entity.Design.Edmx.Entity.EntityType;
 using ModelNavigationProperty = Microsoft.Data.Entity.Design.Edmx.Entity.NavigationProperty;

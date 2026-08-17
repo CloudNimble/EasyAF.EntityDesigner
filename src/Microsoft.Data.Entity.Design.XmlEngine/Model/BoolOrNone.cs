@@ -10,7 +10,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
     [Serializable]
     internal class BoolOrNone : StringOrPrimitive<bool>
     {
-        internal static readonly BoolOrNone NoneValue = new BoolOrNone(global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX);
+        internal static readonly BoolOrNone NoneValue = new BoolOrNone(global::Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources.NoneDisplayValueUsedForUX);
         internal static readonly BoolOrNone TrueValue = new BoolOrNone(true);
         internal static readonly BoolOrNone FalseValue = new BoolOrNone(false);
 

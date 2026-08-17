@@ -91,7 +91,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Refactoring
                     throw new InvalidOperationException(
                         string.Format(
                             CultureInfo.CurrentCulture,
-                            Resources.Exception_CannotGetTextBuffer,
+                            XmlDesignerResources.Exception_CannotGetTextBuffer,
                             tempFilePath));
                 }
             }

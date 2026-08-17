@@ -9,8 +9,8 @@ using System;
 using System.Diagnostics;
 using System.Globalization;
 using EDMModelUtils = Microsoft.Data.Entity.Design.Edmx.ModelHelper;
-using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.Resources;
-using ModelRes = Microsoft.Data.Entity.Design.Edmx.Resources;
+using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.DiagramsResources;
+using ModelRes = Microsoft.Data.Entity.Design.Edmx.EdmxResources;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.Rules
 {

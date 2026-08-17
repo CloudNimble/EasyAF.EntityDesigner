@@ -274,7 +274,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Mapping
                     // Add an error - we don't want to support this syntax in the designer.  This can be on an EntitySetMapping or an EntityTypeMapping node
                     var elementName = XElement.Name.LocalName;
                     var msg = String.Format(
-                        CultureInfo.CurrentCulture, Resources.ModelParse_GhostNodeNotSupportedByDesigner,
+                        CultureInfo.CurrentCulture, EdmxResources.ModelParse_GhostNodeNotSupportedByDesigner,
                         MappingFragment.AttributeStoreEntitySet, elementName);
                     Artifact.AddParseErrorForObject(this, msg, ErrorCodes.ModelParse_GhostNodeNotSupportedByDesigner);
                 }
@@ -282,7 +282,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Mapping
                 {
                     // TypeName attribute and EntityTypeMapping children.  These are mutually exclusive.
                     var msg = String.Format(
-                        CultureInfo.CurrentCulture, Resources.ModelParse_MutuallyExclusiveAttributeAndChildElement,
+                        CultureInfo.CurrentCulture, EdmxResources.ModelParse_MutuallyExclusiveAttributeAndChildElement,
                         MappingFragment.AttributeStoreEntitySet, MappingFragment.ElementName);
                     Artifact.AddParseErrorForObject(this, msg, ErrorCodes.ModelParse_MutuallyExclusiveAttributeAndChildElement);
                 }
@@ -323,7 +323,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Mapping
             string resource;
             if (localize)
             {
-                resource = Resources.MappingModel_EntityTypeMappingDisplayName;
+                resource = EdmxResources.MappingModel_EntityTypeMappingDisplayName;
             }
             else
             {

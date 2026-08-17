@@ -99,7 +99,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Mapping
                 if (_resultMapping != null)
                 {
                     // multiple ResultMapping elements
-                    var msg = String.Format(CultureInfo.CurrentCulture, Resources.DuplicatedElementMsg, elem.Name.LocalName);
+                    var msg = String.Format(CultureInfo.CurrentCulture, EdmxResources.DuplicatedElementMsg, elem.Name.LocalName);
                     Artifact.AddParseErrorForObject(this, msg, ErrorCodes.DUPLICATED_ELEMENT_ENCOUNTERED);
                 }
                 else

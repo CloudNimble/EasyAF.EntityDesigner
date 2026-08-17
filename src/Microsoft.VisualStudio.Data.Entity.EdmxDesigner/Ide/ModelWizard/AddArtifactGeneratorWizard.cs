@@ -117,7 +117,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard
                     {
                         CommandProcessorContext cpc = new CommandProcessorContext(
                             editingContextMgr.GetNewOrExistingContext(EdmxUri), EfiTransactionOriginator.AddNewArtifactGenerationItemId,
-                            Resources.Tx_SetCodeGenerationStrategy);
+                            EdmxDesignerResources.Tx_SetCodeGenerationStrategy);
                         var cmd = EdmUtils.SetCodeGenStrategyToNoneCommand(cpc.Artifact);
                         if (cmd != null)
                         {

@@ -48,7 +48,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Commands
             if (!contentValidator.IsValidAttributeValue(NewName, attr))
             {
                 // not valid content
-                var msg = string.Format(CultureInfo.CurrentCulture, Resources.INVALID_NC_NAME_CHAR, NewName);
+                var msg = string.Format(CultureInfo.CurrentCulture, XmlEngineResources.INVALID_NC_NAME_CHAR, NewName);
                 throw new CommandValidationFailedException(msg);
             }
 
@@ -56,7 +56,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Commands
             {
                 if (String.IsNullOrEmpty(errorMessage))
                 {
-                    errorMessage = string.Format(CultureInfo.CurrentCulture, Resources.NAME_NOT_UNIQUE, NewName);
+                    errorMessage = string.Format(CultureInfo.CurrentCulture, XmlEngineResources.NAME_NOT_UNIQUE, NewName);
                 }
                 throw new CommandValidationFailedException(errorMessage);
             }

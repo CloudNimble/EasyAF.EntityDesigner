@@ -46,12 +46,12 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators
         {
             if (edmItemCollection is null)
             {
-                throw new InvalidOperationException(Resources.ErrorCouldNotFindCSDL);
+                throw new InvalidOperationException(DatabaseGenerationResources.ErrorCouldNotFindCSDL);
             }
 
             if (edmParameterBag is null)
             {
-                throw new InvalidOperationException(Resources.ErrorNoEdmParameterBag);
+                throw new InvalidOperationException(DatabaseGenerationResources.ErrorNoEdmParameterBag);
             }
 
             // Find the TargetVersion parameter
@@ -60,7 +60,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators
             {
                 throw new InvalidOperationException(
                     String.Format(
-                        CultureInfo.CurrentCulture, Resources.ErrorNoParameterDefined, EdmParameterBag.ParameterName.TargetVersion));
+                        CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorNoParameterDefined, EdmParameterBag.ParameterName.TargetVersion));
             }
 
             // Find the MSL namespace parameter
@@ -84,7 +84,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators
             }
             catch (Exception e)
             {
-                throw new ArgumentException(String.Format(CultureInfo.CurrentCulture, Resources.ErrorSerializing_CsdlToMsl, e.Message), e);
+                throw new ArgumentException(String.Format(CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorSerializing_CsdlToMsl, e.Message), e);
             }
             return serializedMappingElement;
         }

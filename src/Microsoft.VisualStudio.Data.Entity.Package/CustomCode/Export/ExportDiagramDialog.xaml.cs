@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export;
 using Microsoft.VisualStudio.PlatformUI;
-using EntityDesignerResources = Microsoft.Data.Entity.Design.Diagrams.Properties.Resources;
+using EntityDesignerResources = Microsoft.Data.Entity.Design.Diagrams.Properties.DiagramsResources;
 
 namespace Microsoft.VisualStudio.Data.Entity.Package.Export
 {

@@ -58,7 +58,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Entity
                     // if we've already found the entity type during our previous traversal, throw an error
                     if (existingDerivedTypes.Contains(et))
                     {
-                        ModelHelper.InvalidSchemaError(Resources.CyclicInheritanceHierarchy, et.NormalizedNameExternal);
+                        ModelHelper.InvalidSchemaError(EdmxResources.CyclicInheritanceHierarchy, et.NormalizedNameExternal);
                     }
                     else
                     {
@@ -129,7 +129,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Entity
                 {
                     if (safeTypesInInheritanceTree.Contains(currentType))
                     {
-                        ModelHelper.InvalidSchemaError(Resources.CyclicInheritanceHierarchy, currentType.NormalizedNameExternal);
+                        ModelHelper.InvalidSchemaError(EdmxResources.CyclicInheritanceHierarchy, currentType.NormalizedNameExternal);
                     }
 
                     safeTypesInInheritanceTree.Add(currentType);
@@ -151,7 +151,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Entity
                             if (safeTypesInInheritanceTree.Contains(directDerivedType))
                             {
                                 ModelHelper.InvalidSchemaError(
-                                    Resources.CyclicInheritanceHierarchy, directDerivedType.NormalizedNameExternal);
+                                    EdmxResources.CyclicInheritanceHierarchy, directDerivedType.NormalizedNameExternal);
                             }
 
                             safeTypesInInheritanceTree.Add(directDerivedType);
@@ -161,7 +161,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Entity
                                 if (safeTypesInInheritanceTree.Contains(descendantTypeOfDirectDerivedType))
                                 {
                                     ModelHelper.InvalidSchemaError(
-                                        Resources.CyclicInheritanceHierarchy, descendantTypeOfDirectDerivedType.NormalizedNameExternal);
+                                        EdmxResources.CyclicInheritanceHierarchy, descendantTypeOfDirectDerivedType.NormalizedNameExternal);
                                 }
 
                                 safeTypesInInheritanceTree.Add(descendantTypeOfDirectDerivedType);
@@ -351,7 +351,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Entity
                     default:
                         var etbt = BaseType;
                         Debug.Assert(etbt != null, "BaseType is not an EntiytTypeBaseType");
-                        ModelHelper.InvalidSchemaError(Resources.UnresolvedBaseType_1, etbt.RefName, NormalizedNameExternal);
+                        ModelHelper.InvalidSchemaError(EdmxResources.UnresolvedBaseType_1, etbt.RefName, NormalizedNameExternal);
                         return null;
                 }
             }

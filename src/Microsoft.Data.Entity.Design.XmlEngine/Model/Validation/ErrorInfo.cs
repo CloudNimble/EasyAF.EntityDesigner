@@ -39,7 +39,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Validation
             _item = item;
             _itemPath = itemPath;
             // prefix the error code in front of the error message.  This is here to help identify runtime errors that cause safe-mode
-            _message = String.Format(CultureInfo.CurrentCulture, Resources.Error_Message_With_Error_Code_Prefix, errorCode, message);
+            _message = String.Format(CultureInfo.CurrentCulture, XmlEngineResources.Error_Message_With_Error_Code_Prefix, errorCode, message);
             _item = item;
             _errorCode = errorCode;
             _errorClass = errorClass;

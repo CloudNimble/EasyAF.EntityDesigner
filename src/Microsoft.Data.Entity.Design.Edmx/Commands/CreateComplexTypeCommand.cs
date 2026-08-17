@@ -108,7 +108,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
                 throw new CannotLocateParentItemException();
             }
 
-            var complexTypeName = ModelHelper.GetUniqueNameWithNumber(typeof(ComplexType), model, Resources.Model_DefaultComplexTypeName);
+            var complexTypeName = ModelHelper.GetUniqueNameWithNumber(typeof(ComplexType), model, EdmxResources.Model_DefaultComplexTypeName);
 
             // go create it
             CommandProcessor cp = new CommandProcessor(cpc);

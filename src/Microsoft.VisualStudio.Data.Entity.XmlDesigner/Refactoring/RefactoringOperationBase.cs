@@ -197,8 +197,8 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Refactoring
                             || PreviewData.ChangeList.Count == 0)
                         {
                             if (System.Windows.MessageBox.Show(
-                                    Resources.RefactoringOperation_NoChangesToPreview,
-                                    Resources.RefactoringOperation_NoChangesToPreviewTitle,
+                                    XmlDesignerResources.RefactoringOperation_NoChangesToPreview,
+                                    XmlDesignerResources.RefactoringOperation_NoChangesToPreviewTitle,
                                     MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                             {
                                 ApplyChanges();
@@ -225,18 +225,18 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Refactoring
             }
             catch (InvalidOperationException ex)
             {
-                OnError(string.Format(CultureInfo.CurrentCulture, Resources.Error_FailedOperation, ex.Message));
+                OnError(string.Format(CultureInfo.CurrentCulture, XmlDesignerResources.Error_FailedOperation, ex.Message));
             }
             catch (OperationCanceledException ex)
             {
                 var errorMessage = ex.Message;
                 if (string.IsNullOrEmpty(errorMessage))
                 {
-                    errorMessage = Resources.Dialog_CancelRefactoring;
+                    errorMessage = XmlDesignerResources.Dialog_CancelRefactoring;
                 }
                 CancelOperation();
                 CommonVsUtilities.ShowMessageBoxEx(
-                    Resources.RefactorDialog_Title, errorMessage,
+                    XmlDesignerResources.RefactorDialog_Title, errorMessage,
                     MessageBoxButtons.OK, MessageBoxDefaultButton.Button1, MessageBoxIcon.Error);
             }
             finally
@@ -291,7 +291,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Refactoring
             }
             else
             {
-                OnError(Resources.Error_FailedInvokePreviewWindow);
+                OnError(XmlDesignerResources.Error_FailedInvokePreviewWindow);
             }
         }
 
@@ -332,7 +332,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Refactoring
             }
             catch (Exception ex)
             {
-                OnError(string.Format(CultureInfo.CurrentCulture, Resources.Error_FailedOperation, ex.Message));
+                OnError(string.Format(CultureInfo.CurrentCulture, XmlDesignerResources.Error_FailedOperation, ex.Message));
             }
 
             return true;
@@ -529,7 +529,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Refactoring
         {
             ErrorOccurred = true;
             CommonVsUtilities.ShowMessageBoxEx(
-                Resources.ErrorDialog_Title,
+                XmlDesignerResources.ErrorDialog_Title,
                 errorMessage,
                 MessageBoxButtons.OK,
                 MessageBoxDefaultButton.Button1,
@@ -561,7 +561,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Refactoring
                 {
                     if (userCanceled)
                     {
-                        OnError(Resources.Error_FailedToCheckOut);
+                        OnError(XmlDesignerResources.Error_FailedToCheckOut);
                     }
 
                     return false;

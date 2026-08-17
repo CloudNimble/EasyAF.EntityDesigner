@@ -73,7 +73,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
                     var displayableSymbol = EFNormalizableItem.ConvertSymbolToExternal(symbol);
 
                     // add an duplicate symbol error
-                    var msg = String.Format(CultureInfo.CurrentCulture, Resources.NORMALIZE_DUPLICATE_SYMBOL_DEFINED, displayableSymbol);
+                    var msg = String.Format(CultureInfo.CurrentCulture, XmlEngineResources.NORMALIZE_DUPLICATE_SYMBOL_DEFINED, displayableSymbol);
                     ErrorInfo errorInfo = new ErrorInfo(
                         ErrorInfo.Severity.ERROR, msg, item, ErrorCodes.NORMALIZE_DUPLICATE_SYMBOL_DEFINED, ErrorClass.ResolveError);
                     AddError(errorInfo);

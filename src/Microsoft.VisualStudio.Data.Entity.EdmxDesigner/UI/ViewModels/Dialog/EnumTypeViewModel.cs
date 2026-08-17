@@ -273,13 +273,13 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Dialog
                     if (string.IsNullOrWhiteSpace(_name)
                         || !EscherAttributeContentValidator.IsValidCsdlEnumTypeName(_name))
                     {
-                        return String.Format(CultureInfo.CurrentCulture, Resources.EnumDialog_ErrorEnumTypeBadname, _name);
+                        return String.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.EnumDialog_ErrorEnumTypeBadname, _name);
                     }
                     else if (IsNew
                              && ModelHelper.IsUniqueName(typeof(EnumType), _artifact.ConceptualModel, _name, true, out string errorMessage)
                              == false)
                     {
-                        return Resources.EnumDialog_EnsureEnumTypeUnique;
+                        return EdmxDesignerResources.EnumDialog_EnsureEnumTypeUnique;
                     }
                     // if the name has changed, ensure that it will be unique across other types.
                     else if (IsNew == false
@@ -293,7 +293,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Dialog
                 {
                     if (IsReferenceExternalType && String.IsNullOrWhiteSpace(ExternalTypeName))
                     {
-                        return Resources.EnumDialog_ErrorEnterValueForExternalTypeName;
+                        return EdmxDesignerResources.EnumDialog_ErrorEnterValueForExternalTypeName;
                     }
                 }
                 return String.Empty;

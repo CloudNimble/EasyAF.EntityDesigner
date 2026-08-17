@@ -147,7 +147,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyW
 
         protected internal override string UndoString
         {
-            get { return string.Format(CultureInfo.CurrentCulture, global::Microsoft.Data.Entity.Design.XmlEngine.Resources.Tx_PropertyChangeUndoString, _reflectedPropDescriptor.Name); }
+            get { return string.Format(CultureInfo.CurrentCulture, XmlDesignerResources.Tx_PropertyChangeUndoString, _reflectedPropDescriptor.Name); }
         }
     }
 }

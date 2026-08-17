@@ -93,7 +93,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Entity
                 {
                     // multiple Documentation elements
                     Artifact.AddParseErrorForObject(
-                        this, Resources.TOO_MANY_DOCUMENTATION_ELEMENTS, ErrorCodes.TOO_MANY_DOCUMENTATION_ELEMENTS);
+                        this, EdmxResources.TOO_MANY_DOCUMENTATION_ELEMENTS, ErrorCodes.TOO_MANY_DOCUMENTATION_ELEMENTS);
                 }
                 else
                 {

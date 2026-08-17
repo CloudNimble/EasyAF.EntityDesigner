@@ -1533,7 +1533,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
             {
                 VsUtils.ShowMessageBox(
                     PackageManager.Package,
-                    Resources.ContextMenu_AddAssociation_NoEntities,
+                    PackageResources.ContextMenu_AddAssociation_NoEntities,
                     OLEMSGBUTTON.OLEMSGBUTTON_OK,
                     OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST,
                     OLEMSGICON.OLEMSGICON_INFO);
@@ -1550,7 +1550,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
             {
                 VsUtils.ShowMessageBox(
                     PackageManager.Package,
-                    Resources.ContextMenu_AddInheritance_NotEnoughEntities,
+                    PackageResources.ContextMenu_AddInheritance_NotEnoughEntities,
                     OLEMSGBUTTON.OLEMSGBUTTON_OK,
                     OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST,
                     OLEMSGICON.OLEMSGICON_INFO);

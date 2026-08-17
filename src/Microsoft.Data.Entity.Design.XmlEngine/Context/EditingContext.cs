@@ -239,7 +239,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Context
                     /*
                     throw new ArgumentException(
                         string.Format(CultureInfo.CurrentCulture, 
-                        Resources.Error_ArgIncorrectType, 
+                        XmlEngineResources.Error_ArgIncorrectType, 
                         "itemType", typeof(ContextItem).FullName));
                     */
                 }
@@ -259,7 +259,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Context
                     /*
                     throw new ArgumentException(
                         string.Format(CultureInfo.CurrentCulture, 
-                        Resources.Error_ArgIncorrectType, 
+                        XmlEngineResources.Error_ArgIncorrectType, 
                         "itemType", typeof(ContextItem).FullName));
                     */
                 }
@@ -308,7 +308,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Context
                             /*
                             throw new ArgumentException(string.Format(
                                 CultureInfo.CurrentCulture, 
-                                Resources.Error_DerivedContextItem,
+                                XmlEngineResources.Error_DerivedContextItem,
                                 itemType.FullName,
                                 item.ItemType.FullName));
                             */
@@ -339,7 +339,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Context
                     /*                
                     throw new ArgumentException(
                         string.Format(CultureInfo.CurrentCulture, 
-                        Resources.Error_ArgIncorrectType, 
+                        XmlEngineResources.Error_ArgIncorrectType, 
                         "itemType", typeof(ContextItem).FullName));
                     */
                 }
@@ -442,7 +442,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Context
                     /*
                     throw new ArgumentException(
                         string.Format(CultureInfo.CurrentCulture,
-                        Resources.Error_ArgIncorrectType,
+                        XmlEngineResources.Error_ArgIncorrectType,
                         "contextItemType", typeof(ContextItem).FullName));
                     */
                 }
@@ -483,7 +483,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Context
                     /*
                     throw new ArgumentException(
                         string.Format(CultureInfo.CurrentCulture,
-                        Resources.Error_ArgIncorrectType,
+                        XmlEngineResources.Error_ArgIncorrectType,
                         "contextItemType", typeof(ContextItem).FullName));
                     */
                 }

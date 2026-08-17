@@ -10,9 +10,9 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
     {
         protected override void PopulateMapping()
         {
-            AddMapping(ModelConstants.Multiplicity_Many, Resources.PropertyWindow_Value_MultiplicityMany);
-            AddMapping(ModelConstants.Multiplicity_One, Resources.PropertyWindow_Value_MultiplicityOne);
-            AddMapping(ModelConstants.Multiplicity_ZeroOrOne, Resources.PropertyWindow_Value_MultiplicityZeroOrOne);
+            AddMapping(ModelConstants.Multiplicity_Many, EdmxDesignerResources.PropertyWindow_Value_MultiplicityMany);
+            AddMapping(ModelConstants.Multiplicity_One, EdmxDesignerResources.PropertyWindow_Value_MultiplicityOne);
+            AddMapping(ModelConstants.Multiplicity_ZeroOrOne, EdmxDesignerResources.PropertyWindow_Value_MultiplicityZeroOrOne);
         }
     }
 }

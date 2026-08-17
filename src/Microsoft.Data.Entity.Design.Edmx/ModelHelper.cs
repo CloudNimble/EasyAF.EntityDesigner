@@ -170,7 +170,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
             out string errorMessage)
         {
             // default error message
-            errorMessage = string.Format(CultureInfo.CurrentCulture, Resources.NAME_NOT_UNIQUE, proposedName);
+            errorMessage = string.Format(CultureInfo.CurrentCulture, EdmxResources.NAME_NOT_UNIQUE, proposedName);
 
             if ((typeof(EntityType)).IsAssignableFrom(type))
             {
@@ -254,7 +254,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
                     if (baseEntityModel.Namespace.Value == proposedName)
                     {
                         errorMessage = string.Format(
-                            CultureInfo.CurrentCulture, Resources.EntityContainerNameConflictsWithNamespaceName, proposedName);
+                            CultureInfo.CurrentCulture, EdmxResources.EntityContainerNameConflictsWithNamespaceName, proposedName);
                         return false;
                     }
                 }
@@ -293,21 +293,21 @@ namespace Microsoft.Data.Entity.Design.Edmx
             // Check if the name is a valid CSDL property name.
             if (!EscherAttributeContentValidator.IsValidCsdlPropertyName(proposedName))
             {
-                errorMessage = string.Format(CultureInfo.CurrentCulture, Resources.Error_PropertyNameInvalid, proposedName);
+                errorMessage = string.Format(CultureInfo.CurrentCulture, EdmxResources.Error_PropertyNameInvalid, proposedName);
                 return false;
             }
                 // Check if the property name is not equal to parent entity name.
             else if (entityType.LocalName.Value.Equals(proposedName))
             {
                 errorMessage = string.Format(
-                    CultureInfo.CurrentCulture, Resources.Error_MemberNameSameAsParent, proposedName, entityType.LocalName.Value);
+                    CultureInfo.CurrentCulture, EdmxResources.Error_MemberNameSameAsParent, proposedName, entityType.LocalName.Value);
                 return false;
             }
                 // Check if the property name is unique within the passed in EntityType scope.
             else if (!IsUniquePropertyName(entityType, proposedName, uniquenessIsCaseSensitive))
             {
                 errorMessage = string.Format(
-                    CultureInfo.CurrentCulture, Resources.Error_MemberNameNotUnique, proposedName, entityType.LocalName.Value);
+                    CultureInfo.CurrentCulture, EdmxResources.Error_MemberNameNotUnique, proposedName, entityType.LocalName.Value);
                 return false;
             }
             else
@@ -333,21 +333,21 @@ namespace Microsoft.Data.Entity.Design.Edmx
             // Check if the name is a valid CSDL property name.
             if (!EscherAttributeContentValidator.IsValidCsdlPropertyName(proposedName))
             {
-                errorMessage = string.Format(CultureInfo.CurrentCulture, Resources.Error_PropertyNameInvalid, proposedName);
+                errorMessage = string.Format(CultureInfo.CurrentCulture, EdmxResources.Error_PropertyNameInvalid, proposedName);
                 return false;
             }
                 // Check if the property name is not equal to parent entity name.
             else if (complexType.LocalName.Value.Equals(proposedName))
             {
                 errorMessage = string.Format(
-                    CultureInfo.CurrentCulture, Resources.Error_MemberNameSameAsParent, proposedName, complexType.LocalName.Value);
+                    CultureInfo.CurrentCulture, EdmxResources.Error_MemberNameSameAsParent, proposedName, complexType.LocalName.Value);
                 return false;
             }
                 // Check if the property name is unique within the passed in EntityType scope.
             else if (!IsUniqueComplexTypePropertyName(complexType, proposedName, uniquenessIsCaseSensitive))
             {
                 errorMessage = string.Format(
-                    CultureInfo.CurrentCulture, Resources.Error_ComplexTypePropertyNameNotUnique, proposedName, complexType.LocalName.Value);
+                    CultureInfo.CurrentCulture, EdmxResources.Error_ComplexTypePropertyNameNotUnique, proposedName, complexType.LocalName.Value);
                 return false;
             }
             else
@@ -1086,7 +1086,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
         internal static void InvalidSchemaError(string formatString, params object[] args)
         {
             var message = string.Format(CultureInfo.CurrentCulture, formatString, args)
-                + " " + Resources.OperationRequiresValidSchema;
+                + " " + EdmxResources.OperationRequiresValidSchema;
             throw new InvalidSchemaException(message);
         }
 
@@ -1217,13 +1217,13 @@ namespace Microsoft.Data.Entity.Design.Edmx
             if (pluralizationService == null)
             {
                 // indicates pluralization not needed so just return entityTypeName with "Set" suffix
-                return entityTypeName + Resources.Model_DefaultEntitySetSuffix;
+                return entityTypeName + EdmxResources.Model_DefaultEntitySetSuffix;
             }
 
             if (!char.IsLetterOrDigit(entityTypeName[entityTypeName.Length - 1]))
             {
                 // if entityTypeName ends with a non-alphanumeric character then add "Set" to end
-                return entityTypeName + Resources.Model_DefaultEntitySetSuffix;
+                return entityTypeName + EdmxResources.Model_DefaultEntitySetSuffix;
             }
             else
             {
@@ -1808,9 +1808,9 @@ namespace Microsoft.Data.Entity.Design.Edmx
         internal static object FindComplexTypeEntityTypeOrPrimitiveTypeForFunctionImportReturnType(
             ConceptualEntityModel cModel, string returnTypeAsString)
         {
-            if (returnTypeAsString == global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX)
+            if (returnTypeAsString == global::Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources.NoneDisplayValueUsedForUX)
             {
-                return global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX;
+                return global::Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources.NoneDisplayValueUsedForUX;
             }
 
             // this will remove the 'Collection' around the return type. It will now either be 'None',
@@ -1851,7 +1851,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
         {
             if (returnTypeAsString == null)
             {
-                return global::Microsoft.Data.Entity.Design.XmlEngine.Resources.NoneDisplayValueUsedForUX;
+                return global::Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources.NoneDisplayValueUsedForUX;
             }
             Match collectionReturnTypeMatch = null;
 
@@ -2617,7 +2617,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
                 if (mappedType == null)
                 {
                     throw new InvalidOperationException(
-                        string.Format(CultureInfo.CurrentCulture, Resources.UnresolvedTypeReferences_0, assignments.RefName));
+                        string.Format(CultureInfo.CurrentCulture, EdmxResources.UnresolvedTypeReferences_0, assignments.RefName));
                 }
                 yield return mappedType;
 
