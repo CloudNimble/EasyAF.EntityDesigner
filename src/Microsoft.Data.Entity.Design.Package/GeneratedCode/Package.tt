@@ -4,9 +4,6 @@
 	string dslAssembly = "Microsoft.Data.Entity.Design.Dsl.dll";
 #>
 <#@ include file="Templates\Package.tt" #>
-<#
-	string directiveName = "EntityFramework";
-#>
 //
 // Package attributes which may need to change are placed on the partial class below, rather than in the main include file.
 //
@@ -22,7 +19,10 @@ namespace <#= CodeGenerationUtilities.GetPackageNamespace(this.Dsl) #>
 	/// [VSShell::ProvideLoadKey("Standard", Constants.ProductVersion, Constants.ProductName, Constants.CompanyName, 1)]
 	/// </remarks>
 	[VSShell::ProvideToolboxItems(1)]
-	//[VSTextTemplatingHost::ProvideDirectiveProcessor(typeof(global::<#= this.Dsl.Namespace #>.<#= directiveName #>DirectiveProcessor), global::<#= this.Dsl.Namespace #>.<#= directiveName #>DirectiveProcessor.<#= directiveName #>DirectiveProcessorName, "A directive processor that provides access to <#= directiveName #> files")]
+	// The DSL SDK also emits a ProvideDirectiveProcessor attribute here, for the
+	// EntityFrameworkDirectiveProcessor it generates into the designer. That processor is deleted and the
+	// attribute with it: the T4 story ships through T4VSHost / FallbackT4VSHostProcessor, registered from
+	// PkgDefData\Microsoft.Data.Entity.Design.Package.pkgdef. See specs/known-issues.md 6.1.
 	[global::System.Runtime.InteropServices.Guid(Constants.<#= dslName #>PackageId)]
 	internal sealed partial class <#= dslName #>Package : <#= dslName #>PackageBase
 	{

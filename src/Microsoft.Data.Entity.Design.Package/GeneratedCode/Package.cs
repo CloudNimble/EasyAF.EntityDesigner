@@ -168,7 +168,10 @@ namespace Microsoft.Data.Entity.Design.Package
 	/// [VSShell::ProvideLoadKey("Standard", Constants.ProductVersion, Constants.ProductName, Constants.CompanyName, 1)]
 	/// </remarks>
 	[VSShell::ProvideToolboxItems(1)]
-	//[VSTextTemplatingHost::ProvideDirectiveProcessor(typeof(global::Microsoft.Data.Entity.Design.Dsl.EntityFrameworkDirectiveProcessor), global::Microsoft.Data.Entity.Design.Dsl.EntityFrameworkDirectiveProcessor.EntityFrameworkDirectiveProcessorName, "A directive processor that provides access to EntityFramework files")]
+	// The DSL SDK also emits a ProvideDirectiveProcessor attribute here, for the
+	// EntityFrameworkDirectiveProcessor it generates into the designer. That processor is deleted and the
+	// attribute with it: the T4 story ships through T4VSHost / FallbackT4VSHostProcessor, registered from
+	// PkgDefData\Microsoft.Data.Entity.Design.Package.pkgdef. See specs/known-issues.md 6.1.
 	[global::System.Runtime.InteropServices.Guid(Constants.MicrosoftDataEntityDesignPackageId)]
 	internal sealed partial class MicrosoftDataEntityDesignPackage : MicrosoftDataEntityDesignPackageBase
 	{

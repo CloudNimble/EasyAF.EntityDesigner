@@ -27,10 +27,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk" />
     <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams" />
-    <!-- GeneratedCode\DirectiveProcessor.cs derives from RequiresProvidesDirectiveProcessor. This used to
-         arrive transitively through Microsoft.VisualStudio.Data.Entity.Design; that reference is gone. -->
-    <PackageReference Include="Microsoft.VisualStudio.TextTemplating" />
-    <PackageReference Include="Microsoft.VisualStudio.TextTemplating.Interfaces" />
     <PackageReference Include="System.Resources.Extensions" />
   </ItemGroup>
 

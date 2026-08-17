@@ -247,6 +247,38 @@ For an unsupported version it `Debug.Assert`s and then indexes the dictionary re
 
 Worth fixing at the point of emission — normalise the stylesheet's newlines — rather than by pinning the file's line endings. Note the output is already mixed: `<title>` ends with LF while `<defs>` ends with CRLF, so the writer is inconsistent about newlines more broadly. `Microsoft.Data.Entity.Design.Renderer/Export/Svg/SvgStylesheetManager.cs`.
 
+## 6. Registration defects
+
+### 6.1 The T4 directive processor is registered under a namespace that no longer exists
+
+`PkgDefData\Microsoft.Data.Entity.Design.Package.pkgdef` registers:
+
+```
+[$RootKey$\TextTemplating\DirectiveProcessors\T4VSHost]
+"Class"="Microsoft.Data.Entity.Design.VisualStudio.Directives.FallbackT4VSHostProcessor"
+"CodeBase"="$PackageFolder$\\Microsoft.VisualStudio.Data.Entity.Design.dll"
+```
+
+The type's actual full name is `Microsoft.VisualStudio.Data.Entity.Design.Ide.CustomDirectiveProcessor.FallbackT4VSHostProcessor`. The `CodeBase` was updated during the assembly renames; the `Class` was not, so the registration resolves to a type that does not exist and the processor never loads.
+
+Fails silently by design — a T4 template naming `T4VSHost` gets a directive-processor-not-found error at transform time, not at install, so nothing in a build or test run surfaces it. Compare against `EFTools.disabled\Microsoft.Data.Entity.Design.Package.pkgdef.disabled` in the Visual Studio install, which is the shipped original and names the old assembly and the old namespace consistently.
+
+`FallbackT4VSHostProcessor` is a no-op shim whose only job is to satisfy older T4 hosts that lack a built-in `T4VSHost`, so on a current Visual Studio the practical impact may be nil. That should be confirmed rather than assumed before deciding whether to fix the name or drop the registration.
+
+### 6.2 The T4 include folder points at a directory that is never installed
+
+The same pkgdef registers an include path:
+
+```
+[$RootKey$\TextTemplating\IncludeFolders\.tt]
+"Include67826F5E-E1F5-4618-B91C-957E4A34F0D9"="$RootFolder$Common7\IDE\Extensions\Microsoft\Entity Framework Tools\Templates\Includes\"
+
+```
+
+That folder holds the EF6 DbContext and EntityObject generator `.ttinclude` files in a machine with the original EF tools installed. It does not exist in Visual Studio 18, and this VSIX does not ship it, so the entry registers an include path to nothing.
+
+This is the other half of the same question as 6.1: whether user-authored T4 codegen against an EDMX is in scope at all. If it is, the `.ttinclude` files have to be shipped by this VSIX and the path pointed at them. If it is not, both registrations should go. The related `EntityFrameworkDirectiveProcessor` the DSL SDK generated into the designer has already been deleted as superseded — see the commit that removed `Dsl\GeneratedCode\DirectiveProcessor.cs`.
+
 ## Suggested order
 
 1. **2.2** — delete `static` from 17 tests. Minutes, and it tells us whether they pass.
