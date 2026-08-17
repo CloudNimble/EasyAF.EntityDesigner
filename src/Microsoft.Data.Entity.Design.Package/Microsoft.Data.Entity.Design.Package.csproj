@@ -108,7 +108,7 @@
         <ProjectReference Include="..\Microsoft.Data.Entity.Design.Renderer\Microsoft.Data.Entity.Design.Renderer.csproj">
             <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
         </ProjectReference>
-        <ProjectReference Include="..\Microsoft.Data.Tools.Design.XmlCore\Microsoft.Data.Tools.Design.XmlCore.csproj">
+        <ProjectReference Include="..\Microsoft.Data.Entity.Design.XmlEngine\Microsoft.Data.Entity.Design.XmlEngine.csproj">
             <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
         </ProjectReference>
         <ProjectReference Include="..\Microsoft.VisualStudio.Data.Entity.Design\Microsoft.VisualStudio.Data.Entity.Design.csproj">
@@ -172,7 +172,7 @@
             </VSIXSourceItem>-->
             <!-- XmlCore multi-targets, so its output is under a framework subfolder rather than at this flat path.
                  Commented out to let the ProjectReference's BuiltProjectOutputGroup resolve the right one. -->
-            <!--<VSIXSourceItem Include="..\Microsoft.Data.Tools.Design.XmlCore\bin\$(Configuration)\Microsoft.Data.Tools.Design.XmlCore.dll">
+            <!--<VSIXSourceItem Include="..\Microsoft.Data.Entity.Design.XmlEngine\bin\$(Configuration)\Microsoft.Data.Entity.Design.XmlEngine.dll">
                 <VSIXSubPath></VSIXSubPath>
             </VSIXSourceItem>-->
             <VSIXSourceItem Include="..\Microsoft.VisualStudio.Data.Tools.Design.XmlCore\bin\$(Configuration)\Microsoft.VisualStudio.Data.Tools.Design.XmlCore.dll">

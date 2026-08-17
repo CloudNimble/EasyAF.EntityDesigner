@@ -21,7 +21,7 @@
     <ProjectReference Include="..\Microsoft.Data.Entity.Design.Dsl\Microsoft.Data.Entity.Design.Dsl.csproj" />
     <ProjectReference Include="..\Microsoft.Data.Entity.Design.Model\Microsoft.Data.Entity.Design.Model.csproj" />
     <ProjectReference Include="..\Microsoft.Data.Entity.Design.VersioningFacade\Microsoft.Data.Entity.Design.VersioningFacade.csproj" />
-    <ProjectReference Include="..\Microsoft.Data.Tools.Design.XmlCore\Microsoft.Data.Tools.Design.XmlCore.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.XmlEngine\Microsoft.Data.Entity.Design.XmlEngine.csproj" />
     <ProjectReference Include="..\Microsoft.VisualStudio.Data.Entity.Design\Microsoft.VisualStudio.Data.Entity.Design.csproj" />
     <ProjectReference Include="..\Microsoft.VisualStudio.Data.Tools.Design.XmlCore\Microsoft.VisualStudio.Data.Tools.Design.XmlCore.csproj" />
   </ItemGroup>

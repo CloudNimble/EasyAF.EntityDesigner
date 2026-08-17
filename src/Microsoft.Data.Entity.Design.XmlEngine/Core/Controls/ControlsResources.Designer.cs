@@ -39,7 +39,7 @@ namespace Microsoft.Data.Tools.XmlDesignerBase.Core.Controls {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Microsoft.Data.Tools.XmlDesignerBase.Core.Controls.ControlsResources", typeof(ControlsResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Microsoft.Data.Entity.Design.XmlEngine.Core.Controls.ControlsResources", typeof(ControlsResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

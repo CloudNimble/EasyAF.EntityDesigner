@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>Microsoft.Data.Tools.XmlDesignerBase</RootNamespace>
-    <AssemblyName>Microsoft.Data.Tools.Design.XmlCore</AssemblyName>
+    <RootNamespace>Microsoft.Data.Entity.Design.XmlEngine</RootNamespace>
+    <AssemblyName>Microsoft.Data.Entity.Design.XmlEngine</AssemblyName>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <NoWarn>$(NoWarn);VSTHRD001;VSSDK006</NoWarn>
 

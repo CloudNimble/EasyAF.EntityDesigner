@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Microsoft.Data.Entity.Design.VersioningFacade\Microsoft.Data.Entity.Design.VersioningFacade.csproj" />
-    <ProjectReference Include="..\Microsoft.Data.Tools.Design.XmlCore\Microsoft.Data.Tools.Design.XmlCore.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.XmlEngine\Microsoft.Data.Entity.Design.XmlEngine.csproj" />
   </ItemGroup>
 
   <ItemGroup>

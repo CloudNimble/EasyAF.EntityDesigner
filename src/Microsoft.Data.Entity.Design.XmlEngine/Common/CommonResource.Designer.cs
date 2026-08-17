@@ -39,7 +39,7 @@ namespace Microsoft.Data.Tools.XmlDesignerBase.Common {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Microsoft.Data.Tools.XmlDesignerBase.Common.CommonResource", typeof(CommonResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Microsoft.Data.Entity.Design.XmlEngine.Common.CommonResource", typeof(CommonResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

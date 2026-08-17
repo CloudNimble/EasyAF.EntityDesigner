@@ -3,7 +3,7 @@
     <Project Path="Microsoft.Data.Entity.Design.Dsl/Microsoft.Data.Entity.Design.Dsl.csproj" Id="488b84c2-9358-4b90-bc2d-ed688939e6bb" />
     <Project Path="Microsoft.Data.Entity.Design.Model/Microsoft.Data.Entity.Design.Model.csproj" />
     <Project Path="Microsoft.Data.Entity.Design.VersioningFacade/Microsoft.Data.Entity.Design.VersioningFacade.csproj" />
-    <Project Path="Microsoft.Data.Tools.Design.XmlCore/Microsoft.Data.Tools.Design.XmlCore.csproj" />
+    <Project Path="Microsoft.Data.Entity.Design.XmlEngine/Microsoft.Data.Entity.Design.XmlEngine.csproj" />
   </Folder>
   <Folder Name="/Deliverables/">
     <Project Path="Microsoft.Data.Entity.Design.Package/Microsoft.Data.Entity.Design.Package.csproj">
@@ -38,7 +38,7 @@
     <Project Path="Microsoft.Data.Entity.Tests.Design.VersioningFacade/Microsoft.Data.Entity.Tests.Design.VersioningFacade.csproj" />
     <Project Path="Microsoft.Data.Entity.Tests.Design/Microsoft.Data.Entity.Tests.Design.csproj" />
     <Project Path="Microsoft.Data.Entity.Tests.Shared/Microsoft.Data.Entity.Tests.Shared.csproj" Id="59a6ab41-2aca-4949-8fc8-dff1229d5a81" />
-    <Project Path="Microsoft.Data.Tools.Tests.Design.XmlCore/Microsoft.Data.Tools.Tests.Design.XmlCore.csproj" />
+    <Project Path="Microsoft.Data.Entity.Tests.Design.XmlEngine/Microsoft.Data.Entity.Tests.Design.XmlEngine.csproj" />
     <Project Path="Microsoft.VisualStudio.Data.Tools.Tests.Design.XmlCore/Microsoft.VisualStudio.Data.Tools.Tests.Design.XmlCore.csproj" />
     <Project Path="Microsoft.VisualStudio.TestTools.VsIdeTesting/Microsoft.VisualStudio.TestTools.VsIdeTesting.csproj" Id="614ac98e-a68e-4eb4-af27-1cedba7ca3b4" />
   </Folder>

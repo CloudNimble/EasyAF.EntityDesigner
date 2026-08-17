@@ -9,7 +9,9 @@ var root = @"D:\GitHub\EasyAF.EntityDesigner\src";
 // old assembly name -> new assembly name
 var renames = new Dictionary<string, string>
 {
-    ["Microsoft.Data.Tools.Design.XmlCore"] = "Microsoft.Data.Entity.Design.XmlEngine",
+    // Container renamed in step 2. Any hit on these two is remaining work, not a pending rename.
+    ["Microsoft.Data.Tools.Design.XmlCore"] = "DONE — assembly is now Microsoft.Data.Entity.Design.XmlEngine",
+    ["Microsoft.Data.Tools.XmlDesignerBase"] = "step 4 — old root namespace, Roslyn moves this",
     ["Microsoft.Data.Entity.Design.Model"] = "Microsoft.Data.Entity.Design.Edmx",
     ["Microsoft.Data.Entity.Design.VersioningFacade"] = "Microsoft.Data.Entity.Design.EntityFramework",
     ["Microsoft.Data.Entity.Design.Dsl"] = "Microsoft.Data.Entity.Design.Diagrams",

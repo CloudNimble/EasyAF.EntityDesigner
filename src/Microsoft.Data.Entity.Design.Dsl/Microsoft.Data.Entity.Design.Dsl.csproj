@@ -32,7 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Microsoft.Data.Entity.Design.Model\Microsoft.Data.Entity.Design.Model.csproj" />
-    <ProjectReference Include="..\Microsoft.Data.Tools.Design.XmlCore\Microsoft.Data.Tools.Design.XmlCore.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.XmlEngine\Microsoft.Data.Entity.Design.XmlEngine.csproj" />
   </ItemGroup>
 
   <!-- ReliabilityContract attribute -->
