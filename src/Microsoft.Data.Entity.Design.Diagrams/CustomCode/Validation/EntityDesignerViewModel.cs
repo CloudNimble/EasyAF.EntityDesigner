@@ -23,7 +23,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
                 string message = String.Format(CultureInfo.CurrentCulture, Properties.EntityDesignerRes.Error_ModelNamespaceEmpty);
                 context.LogError(message, Properties.EntityDesignerRes.ErrorCode_ModelNamespaceEmpty, this);
             }
-            else if (EscherAttributeContentValidator.IsValidCSDLNamespaceName(this.Namespace) == false)
+            else if (EdmxAttributeContentValidator.IsValidCSDLNamespaceName(this.Namespace) == false)
             {
                 string message = String.Format(CultureInfo.CurrentCulture, Properties.EntityDesignerRes.Error_ModelNamespaceInvalid, this.Namespace);
                 context.LogError(message, Properties.EntityDesignerRes.ErrorCode_ModelNamespaceInvalid, this);

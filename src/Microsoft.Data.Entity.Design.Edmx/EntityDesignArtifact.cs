@@ -707,7 +707,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
 
             // Do escher validation.  Doing this lets us determine if we want to keep MSL validation errors
             // in the artifact set, or just ignore them.
-            EscherModelValidator.ValidateEscherModel(artifactSet, true);
+            EdmxModelValidator.ValidateEscherModel(artifactSet, true);
 
             var shouldValidateMappings = artifactSet.ShouldDoRuntimeMappingValidation();
 
@@ -719,7 +719,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
             // scan all of the validation errors to see if we need to go into safe mode
             foreach (var ei in artifactSet.GetAllErrors())
             {
-                if (EscherModelValidator.IsOpenInEditorError(ei)
+                if (EdmxModelValidator.IsOpenInEditorError(ei)
                     || RuntimeMetadataValidator.IsOpenInEditorError(ei, this))
                 {
                     _isStructurallySafe = false;

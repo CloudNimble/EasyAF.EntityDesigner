@@ -18,7 +18,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
         [ValidationMethod(ValidationCategories.Open | ValidationCategories.Save, CustomCategory = "OnTransactionCommited")]
         private void ValidateName(ValidationContext context)
         {
-            if (!EscherAttributeContentValidator.IsValidCsdlAssociationName(Name))
+            if (!EdmxAttributeContentValidator.IsValidCsdlAssociationName(Name))
             {
                 var message = String.Format(CultureInfo.CurrentCulture, EntityDesignerRes.Error_AssociationNameInvalid, Name);
                 context.LogError(message, EntityDesignerRes.ErrorCode_AssociationNameInvalid, this);

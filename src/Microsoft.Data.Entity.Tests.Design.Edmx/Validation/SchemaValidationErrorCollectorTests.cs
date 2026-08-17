@@ -83,7 +83,7 @@ namespace Microsoft.Data.Entity.Tests.Design.Edmx.Validation
         {
             XmlDocument document = new XmlDocument
             {
-                Schemas = EscherAttributeContentValidator.GetInstance(EntityFrameworkVersion.Version3).EdmxSchemaSet
+                Schemas = EdmxAttributeContentValidator.GetInstance(EntityFrameworkVersion.Version3).EdmxSchemaSet
             };
             document.LoadXml(edmx);
 

@@ -207,7 +207,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility
         internal void Load()
         {
             // Load all the layers first
-            var extensions = EscherExtensionPointManager.LoadLayerExtensions();
+            var extensions = EdmxExtensionPointManager.LoadLayerExtensions();
             if (extensions != null)
             {
                 EFElement selectedEFElement = SelectedEFObject as EFElement;
@@ -437,7 +437,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility
         private static IEnumerable<EntityDesignerCommand> GetCommands(IEntityDesignerLayer layer = null)
         {
             List<EntityDesignerCommand> commandsToReturn = new List<EntityDesignerCommand>();
-            var commandsForLayer = EscherExtensionPointManager.LoadCommandExtensions(layer == null, layer != null);
+            var commandsForLayer = EdmxExtensionPointManager.LoadCommandExtensions(layer == null, layer != null);
 
             foreach (var lazyFactory in commandsForLayer)
             {

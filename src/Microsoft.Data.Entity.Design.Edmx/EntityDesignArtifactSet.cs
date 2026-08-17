@@ -25,7 +25,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
         {
             foreach (var error in GetErrors(ErrorClass.Escher_All))
             {
-                if (EscherModelValidator.IsSkipRuntimeValidationError(error))
+                if (EdmxModelValidator.IsSkipRuntimeValidationError(error))
                 {
                     return false;
                 }

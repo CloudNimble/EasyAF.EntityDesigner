@@ -79,7 +79,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
         /// </remarks>
         internal override AttributeContentValidator GetAttributeContentValidator(EFArtifact artifact)
         {
-            return EscherAttributeContentValidator.GetInstance(artifact.SchemaVersion);
+            return EdmxAttributeContentValidator.GetInstance(artifact.SchemaVersion);
         }
 
         /// <summary>
@@ -151,11 +151,11 @@ namespace Microsoft.Data.Entity.Design.Edmx
 
             if (doEscherValidation)
             {
-                EscherModelValidator.ValidateEscherModel(artifactSet, false);
+                EdmxModelValidator.ValidateEscherModel(artifactSet, false);
             }
             else
             {
-                EscherModelValidator.ClearErrors(artifactSet);
+                EdmxModelValidator.ClearErrors(artifactSet);
                 artifact?.SetValidityDirtyForErrorClass(ErrorClass.Escher_All, true);
             }
 

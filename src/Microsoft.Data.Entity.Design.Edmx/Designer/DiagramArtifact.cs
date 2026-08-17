@@ -136,7 +136,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Designer
             if (IsDesignerSafe = SchemaManager.GetEDMXNamespaceNames().Contains(XDocument.Root.Name.NamespaceName))
             {
                 XDocument.Validate(
-                    EscherAttributeContentValidator.GetInstance(SchemaVersion).EdmxSchemaSet,
+                    EdmxAttributeContentValidator.GetInstance(SchemaVersion).EdmxSchemaSet,
                     (sender, args) => IsDesignerSafe = false);
             }
         }

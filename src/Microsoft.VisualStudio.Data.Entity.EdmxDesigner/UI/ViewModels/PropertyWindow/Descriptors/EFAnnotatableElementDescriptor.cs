@@ -68,13 +68,13 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
                 Debug.Assert(el != null, "wrapped item is null");
                 if (el != null)
                 {
-                    var currentSelectionOrNull = EscherExtensionPointManager.DetermineEntityDesignerSelection(el);
+                    var currentSelectionOrNull = EdmxExtensionPointManager.DetermineEntityDesignerSelection(el);
 
                     if (currentSelectionOrNull != null)
                     {
                         EntityDesignerSelection currentSelection = (EntityDesignerSelection)currentSelectionOrNull;
                         Debug.Assert((int)currentSelection != 0, "unexpected value for current selection");
-                        var extensions = EscherExtensionPointManager.LoadPropertyDescriptorExtensions();
+                        var extensions = EdmxExtensionPointManager.LoadPropertyDescriptorExtensions();
                         if (extensions.Length > 0)
                         {
                             // Note that if the user adds an EDMX file to their project and chooses not to save the project file,

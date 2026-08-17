@@ -58,7 +58,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Rules
                             return;
                         }
 
-                        if (!EscherAttributeContentValidator.IsValidCsdlEntityTypeName(changedEntity.Name))
+                        if (!EdmxAttributeContentValidator.IsValidCsdlEntityTypeName(changedEntity.Name))
                         {
                             throw new InvalidOperationException(
                                 String.Format(CultureInfo.CurrentCulture, EntityDesignerRes.Error_EntityNameInvalid, changedEntity.Name));

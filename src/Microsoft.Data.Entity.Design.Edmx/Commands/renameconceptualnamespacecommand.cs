@@ -54,7 +54,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
             }
 
             // check to see if the new namespace is valid
-            if (EscherAttributeContentValidator.GetInstance(artifact.SchemaVersion)
+            if (EdmxAttributeContentValidator.GetInstance(artifact.SchemaVersion)
                 .IsValidAttributeValue(_newNamespace, _conceptualEntityModel.Namespace))
             {
                 var previousConceptualNamespace = _conceptualEntityModel.Namespace.Value;

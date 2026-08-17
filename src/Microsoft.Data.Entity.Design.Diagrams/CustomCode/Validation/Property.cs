@@ -18,7 +18,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
         [ValidationMethod(ValidationCategories.Open | ValidationCategories.Save, CustomCategory = "OnTransactionCommited")]
         private void ValidateName(ValidationContext context)
         {
-            if (!EscherAttributeContentValidator.IsValidCsdlPropertyName(Name))
+            if (!EdmxAttributeContentValidator.IsValidCsdlPropertyName(Name))
             {
                 var message = String.Format(CultureInfo.CurrentCulture, ModelRes.Error_PropertyNameInvalid, Name);
                 context.LogError(message, EntityDesignerRes.ErrorCode_PropertyNameInvalid, this);

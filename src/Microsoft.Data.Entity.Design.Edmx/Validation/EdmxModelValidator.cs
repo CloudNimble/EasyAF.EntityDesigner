@@ -14,7 +14,7 @@ using Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor;
 
 namespace Microsoft.Data.Entity.Design.Edmx.Validation
 {
-    internal static class EscherModelValidator
+    internal static class EdmxModelValidator
     {
         internal static void ValidateEscherModel(EFArtifactSet set, bool forceValidation)
         {
@@ -30,7 +30,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
             var artifact = set.GetEntityDesignArtifact();
             if (artifact != null)
             {
-                EscherModelValidatorVisitor visitor = new EscherModelValidatorVisitor(set);
+                EdmxModelValidatorVisitor visitor = new EdmxModelValidatorVisitor(set);
                 visitor.Traverse(artifact);
                 artifact.SetValidityDirtyForErrorClass(ErrorClass.Escher_All, false);
             }
@@ -85,11 +85,11 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
             return false;
         }
 
-        internal class EscherModelValidatorVisitor : global::Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor.Visitor
+        internal class EdmxModelValidatorVisitor : global::Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor.Visitor
         {
             private readonly EFArtifactSet _artifactSet;
 
-            internal EscherModelValidatorVisitor(EFArtifactSet artifactSet)
+            internal EdmxModelValidatorVisitor(EFArtifactSet artifactSet)
             {
                 _artifactSet = artifactSet;
             }

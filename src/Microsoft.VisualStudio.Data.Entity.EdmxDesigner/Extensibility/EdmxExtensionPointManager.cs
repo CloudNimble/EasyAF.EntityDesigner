@@ -27,7 +27,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility
     ///     <see cref="IEntityDesignerLayerData" /> are additionally filtered against the layers enabled on the current
     ///     artifact, so an installed-but-disabled layer contributes nothing.
     /// </remarks>
-    internal class EscherExtensionPointManager
+    internal class EdmxExtensionPointManager
     {
 
         #region Fields
@@ -44,7 +44,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility
         /// <summary>
         ///     Backing store for <see cref="Instance" />.
         /// </summary>
-        private static EscherExtensionPointManager _instance;
+        private static EdmxExtensionPointManager _instance;
 
         #endregion
 
@@ -82,11 +82,11 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility
         ///     Construction is deferred rather than done in a static initializer because the constructor reaches into
         ///     the VS package for the MEF component model, which is only available once the package has sited itself.
         /// </remarks>
-        private static EscherExtensionPointManager Instance
+        private static EdmxExtensionPointManager Instance
         {
             get
             {
-                _instance ??= new EscherExtensionPointManager();
+                _instance ??= new EdmxExtensionPointManager();
                 return _instance;
             }
         }
@@ -102,7 +102,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility
         ///     Private because callers go through <see cref="Instance" />; see that member for why the lookup cannot
         ///     happen any earlier than first use.
         /// </remarks>
-        private EscherExtensionPointManager()
+        private EdmxExtensionPointManager()
         {
             IComponentModel componentModelService = (IComponentModel)PackageManager.Package.GetService(typeof(SComponentModel));
             _exportProvider = componentModelService.DefaultExportProvider;

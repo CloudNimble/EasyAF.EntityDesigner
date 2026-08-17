@@ -163,7 +163,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
                 Debug.Assert(ReturnType != null, "ReturnType is null.");
 
                 _needsValidation = false;
-                if (!EscherAttributeContentValidator.IsValidCsdlFunctionImportName(FunctionImportName))
+                if (!EdmxAttributeContentValidator.IsValidCsdlFunctionImportName(FunctionImportName))
                 {
                     VsUtils.ShowErrorDialog(DialogsResource.NewFunctionImportDialog_InvalidFunctionImportNameMsg);
                     e.Cancel = true;
@@ -183,7 +183,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
 
                 if (ComplexTypeReturnButton.IsChecked == true
                     && ComplexTypeReturnComboBox.SelectedItem == null
-                    && !EscherAttributeContentValidator.IsValidCsdlComplexTypeName(ComplexTypeReturnComboBox.Text))
+                    && !EdmxAttributeContentValidator.IsValidCsdlComplexTypeName(ComplexTypeReturnComboBox.Text))
                 {
                     var errorMessage = String.Format(
                         CultureInfo.CurrentCulture, DialogsResource.NewFunctionImportDialog_NotValidComplexTypeName,

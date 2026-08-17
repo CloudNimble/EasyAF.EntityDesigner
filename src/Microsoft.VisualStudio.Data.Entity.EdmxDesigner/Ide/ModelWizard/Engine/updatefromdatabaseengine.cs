@@ -252,7 +252,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
                 commands.Add(createMatchingFunctionImportsDelegateCommand);
 
                 // if needed, create a command to dispatch any extensions
-                if (EscherExtensionPointManager.LoadModelGenerationExtensions().Length > 0)
+                if (EdmxExtensionPointManager.LoadModelGenerationExtensions().Length > 0)
                 {
                     DispatchToExtensionsCommand dispatchCommand = new DispatchToExtensionsCommand(settings);
                     commands.Add(dispatchCommand);

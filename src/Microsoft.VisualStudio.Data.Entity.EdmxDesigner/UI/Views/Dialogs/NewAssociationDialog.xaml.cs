@@ -139,21 +139,21 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
             {
                 _needsValidation = false;
 
-                if (!EscherAttributeContentValidator.IsValidCsdlAssociationName(AssociationName))
+                if (!EdmxAttributeContentValidator.IsValidCsdlAssociationName(AssociationName))
                 {
                     VsUtils.ShowErrorDialog(DialogsResource.NewAssociationDialog_InvalidAssociationNameMsg);
                     e.Cancel = true;
                     AssociationNameTextBox.Focus();
                 }
                 else if (NavigationProperty1Checkbox.IsChecked == true
-                         && !EscherAttributeContentValidator.IsValidCsdlNavigationPropertyName(End1NavigationPropertyName))
+                         && !EdmxAttributeContentValidator.IsValidCsdlNavigationPropertyName(End1NavigationPropertyName))
                 {
                     VsUtils.ShowErrorDialog(DialogsResource.NewAssociationDialog_InvalidNavigationPropertyNameMsg);
                     e.Cancel = true;
                     NavigationProperty1TextBox.Focus();
                 }
                 else if (NavigationProperty2Checkbox.IsChecked == true
-                         && !EscherAttributeContentValidator.IsValidCsdlNavigationPropertyName(End2NavigationPropertyName))
+                         && !EdmxAttributeContentValidator.IsValidCsdlNavigationPropertyName(End2NavigationPropertyName))
                 {
                     VsUtils.ShowErrorDialog(DialogsResource.NewAssociationDialog_InvalidNavigationPropertyNameMsg);
                     e.Cancel = true;
@@ -219,7 +219,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
 
         private void AssociationNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!EscherAttributeContentValidator.IsValidCsdlAssociationName(AssociationName))
+            if (!EdmxAttributeContentValidator.IsValidCsdlAssociationName(AssociationName))
             {
                 End1GroupBox.IsEnabled = false;
                 End2GroupBox.IsEnabled = false;

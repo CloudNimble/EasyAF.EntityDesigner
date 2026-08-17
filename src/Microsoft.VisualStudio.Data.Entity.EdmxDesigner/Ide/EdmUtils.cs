@@ -65,7 +65,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
         {
             return
                 !string.IsNullOrEmpty(proposedModelNamespace) &&
-                EscherAttributeContentValidator.IsValidCsdlNamespaceName(proposedModelNamespace);
+                EdmxAttributeContentValidator.IsValidCsdlNamespaceName(proposedModelNamespace);
         }
 
         // <summary>
@@ -89,7 +89,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
             }
 
             var trialModelNamespace = proposedModelNamespace.Replace("<", "").Replace(">", "").Replace("&", "");
-            if (!EscherAttributeContentValidator.IsValidXmlAttributeValue(trialModelNamespace)
+            if (!EdmxAttributeContentValidator.IsValidXmlAttributeValue(trialModelNamespace)
                 || string.IsNullOrEmpty(trialModelNamespace))
             {
                 return defaultModelNamespace;

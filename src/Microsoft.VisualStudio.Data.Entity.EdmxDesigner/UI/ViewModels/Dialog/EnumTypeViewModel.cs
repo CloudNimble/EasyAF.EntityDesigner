@@ -271,7 +271,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Dialog
                 if (propertyName == "Name")
                 {
                     if (string.IsNullOrWhiteSpace(_name)
-                        || !EscherAttributeContentValidator.IsValidCsdlEnumTypeName(_name))
+                        || !EdmxAttributeContentValidator.IsValidCsdlEnumTypeName(_name))
                     {
                         return String.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.EnumDialog_ErrorEnumTypeBadname, _name);
                     }

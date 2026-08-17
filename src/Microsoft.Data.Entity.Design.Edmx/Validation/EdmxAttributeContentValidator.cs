@@ -16,7 +16,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
     /// <summary>
     ///     This class can be used to validate attribute content specific to EDMX documents *before* updating the XLinq tree, and without revalidating the entire document.
     /// </summary>
-    internal class EscherAttributeContentValidator : AttributeContentValidator
+    internal class EdmxAttributeContentValidator : AttributeContentValidator
     {
         private static readonly Regex QualifiedNameRegex =
             new Regex(
@@ -25,18 +25,18 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
         private static readonly Regex SimpleIdentifierRegex =
             new Regex(@"^[\p{L}\p{Nl}][\p{L}\p{Nl}\p{Nd}\p{Mn}\p{Mc}\p{Pc}\p{Cf}]{0,}$");
 
-        private static IDictionary<Version, EscherAttributeContentValidator> _instances;
+        private static IDictionary<Version, EdmxAttributeContentValidator> _instances;
 
         /// <summary>
-        ///     Returns the static instance of the EscherAttributeContentValidator
+        ///     Returns the static instance of the EdmxAttributeContentValidator
         /// </summary>
-        internal static EscherAttributeContentValidator GetInstance(Version schemaVersion)
+        internal static EdmxAttributeContentValidator GetInstance(Version schemaVersion)
         {
-            _instances ??= new Dictionary<Version, EscherAttributeContentValidator>(3);
+            _instances ??= new Dictionary<Version, EdmxAttributeContentValidator>(3);
 
             if (!_instances.ContainsKey(schemaVersion))
             {
-                _instances[schemaVersion] = new EscherAttributeContentValidator();
+                _instances[schemaVersion] = new EdmxAttributeContentValidator();
             }
             return _instances[schemaVersion];
         }
@@ -49,7 +49,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
         /// <summary>
         ///     Access this class via the Instance property
         /// </summary>
-        private EscherAttributeContentValidator()
+        private EdmxAttributeContentValidator()
             : base(BuildEdmxSchemaSet())
         {
         }

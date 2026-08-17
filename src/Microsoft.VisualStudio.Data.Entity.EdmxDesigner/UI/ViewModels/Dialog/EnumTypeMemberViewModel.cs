@@ -103,7 +103,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Dialog
                     || propertyName == "Name")
                 {
                     if (string.IsNullOrWhiteSpace(Name)
-                        || !EscherAttributeContentValidator.IsValidCsdlEnumMemberName(Name))
+                        || !EdmxAttributeContentValidator.IsValidCsdlEnumMemberName(Name))
                     {
                         sb.AppendLine(String.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.EnumDialog_ErrorEnumMemberBadname, Name));
                     }

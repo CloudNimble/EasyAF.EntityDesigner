@@ -275,7 +275,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
             if (checkBoxSaveInAppConfig.Checked)
             {
                 var id = textBoxAppConfigConnectionName.Text;
-                if (!EscherAttributeContentValidator.IsValidCsdlEntityContainerName(id)
+                if (!EdmxAttributeContentValidator.IsValidCsdlEntityContainerName(id)
                     || !_identifierUtil.IsValidIdentifier(id))
                 {
                     VsUtils.ShowErrorDialog(

@@ -54,7 +54,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Rules
                             return;
                         }
 
-                        if (!EscherAttributeContentValidator.IsValidCsdlNavigationPropertyName(changedNavigationProperty.Name))
+                        if (!EdmxAttributeContentValidator.IsValidCsdlNavigationPropertyName(changedNavigationProperty.Name))
                         {
                             throw new InvalidOperationException(
                                 String.Format(

@@ -260,7 +260,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard
             var fixedModelName = XmlConvert.EncodeName(modelName).TrimStart('_');
 
             //  make sure that the model name is a valid xml attribute value
-            if (!EscherAttributeContentValidator.IsValidXmlAttributeValue(fixedModelName))
+            if (!EdmxAttributeContentValidator.IsValidXmlAttributeValue(fixedModelName))
             {
                 VsUtils.ShowErrorDialog(
                     string.Format(
@@ -339,7 +339,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard
                                 _modelBuilderSettings.TargetSchemaVersion,
                                 modelEdmx);
                             VSArtifact.DispatchToConversionExtensions(
-                                EscherExtensionPointManager.LoadModelConversionExtensions(),
+                                EdmxExtensionPointManager.LoadModelConversionExtensions(),
                                 fileExtension,
                                 conversionContext,
                                 loading: false);

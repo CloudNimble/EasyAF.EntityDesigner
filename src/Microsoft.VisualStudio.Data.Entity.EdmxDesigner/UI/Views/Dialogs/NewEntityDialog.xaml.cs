@@ -100,7 +100,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
             {
                 _needsValidation = false;
 
-                if (!EscherAttributeContentValidator.IsValidCsdlEntityTypeName(EntityNameTextBox.Text))
+                if (!EdmxAttributeContentValidator.IsValidCsdlEntityTypeName(EntityNameTextBox.Text))
                 {
                     VsUtils.ShowErrorDialog(DialogsResource.NewEntityDialog_InvalidEntityNameMsg);
                     e.Cancel = true;
@@ -118,7 +118,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
 
                     if (EntitySetTextBox.IsEnabled)
                     {
-                        if (!EscherAttributeContentValidator.IsValidCsdlEntitySetName(EntitySetName))
+                        if (!EdmxAttributeContentValidator.IsValidCsdlEntitySetName(EntitySetName))
                         {
                             VsUtils.ShowErrorDialog(DialogsResource.NewEntityDialog_InvalidEntitySetMsg);
                             e.Cancel = true;
@@ -137,7 +137,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
 
                     if (PropertyNameTextBox.IsEnabled)
                     {
-                        if (!EscherAttributeContentValidator.IsValidCsdlPropertyName(PropertyNameTextBox.Text))
+                        if (!EdmxAttributeContentValidator.IsValidCsdlPropertyName(PropertyNameTextBox.Text))
                         {
                             VsUtils.ShowErrorDialog(DialogsResource.NewEntityDialog_InvalidKeyPropertyNameMsg);
                             e.Cancel = true;
@@ -168,7 +168,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
 
         private void UpdateSettingsFromGui()
         {
-            if (!EscherAttributeContentValidator.IsValidCsdlEntityTypeName(EntityNameTextBox.Text))
+            if (!EdmxAttributeContentValidator.IsValidCsdlEntityTypeName(EntityNameTextBox.Text))
             {
                 BaseTypeComboBox.IsEnabled = false;
                 EntitySetTextBox.IsEnabled = false;

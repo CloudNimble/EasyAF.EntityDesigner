@@ -99,7 +99,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
             Debug.Assert(
                 WizardKind == WizardKind.UpdateModel || WizardKind == WizardKind.Generate, "Unexpected value for WizardKind = " + WizardKind);
 
-            var modelGenerationExtensions = EscherExtensionPointManager.LoadModelGenerationExtensions();
+            var modelGenerationExtensions = EdmxExtensionPointManager.LoadModelGenerationExtensions();
             if (modelGenerationExtensions.Length > 0) // don't create context if not needed
             {
                 var modelGenerationExtensionContext = CreateContext();

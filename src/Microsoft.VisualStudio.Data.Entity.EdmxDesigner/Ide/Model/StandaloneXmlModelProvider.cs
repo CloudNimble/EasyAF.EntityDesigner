@@ -102,8 +102,8 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model
             ProjectItem projectItem, string fileContents,
             out string documentViaExtensions, out List<ExtensionError> errors)
         {
-            var converters = EscherExtensionPointManager.LoadModelConversionExtensions();
-            var serializers = EscherExtensionPointManager.LoadModelTransformExtensions();
+            var converters = EdmxExtensionPointManager.LoadModelConversionExtensions();
+            var serializers = EdmxExtensionPointManager.LoadModelTransformExtensions();
 
             if (projectItem == null
                 || !VsUtils.EntityFrameworkSupportedInProject(projectItem.ContainingProject, PackageManager.Package, allowMiscProject: false)

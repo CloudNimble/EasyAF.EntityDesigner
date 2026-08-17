@@ -291,7 +291,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
             EntityType entityType, string proposedName, bool uniquenessIsCaseSensitive, out string errorMessage)
         {
             // Check if the name is a valid CSDL property name.
-            if (!EscherAttributeContentValidator.IsValidCsdlPropertyName(proposedName))
+            if (!EdmxAttributeContentValidator.IsValidCsdlPropertyName(proposedName))
             {
                 errorMessage = string.Format(CultureInfo.CurrentCulture, EdmxResources.Error_PropertyNameInvalid, proposedName);
                 return false;
@@ -331,7 +331,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
             Debug.Assert(complexType != null, "ComplexType is null");
 
             // Check if the name is a valid CSDL property name.
-            if (!EscherAttributeContentValidator.IsValidCsdlPropertyName(proposedName))
+            if (!EdmxAttributeContentValidator.IsValidCsdlPropertyName(proposedName))
             {
                 errorMessage = string.Format(CultureInfo.CurrentCulture, EdmxResources.Error_PropertyNameInvalid, proposedName);
                 return false;
@@ -1122,7 +1122,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
             HashSet<EFObject> childEFObjectsToIgnore = null, bool alwaysAddSuffix = false)
         {
             Debug.Assert(
-                EscherAttributeContentValidator.IsValidCsdlPropertyName(
+                EdmxAttributeContentValidator.IsValidCsdlPropertyName(
                     alwaysAddSuffix ? propertyNameCandidate + DefaultPropertySuffixSeed : propertyNameCandidate),
                     "Candidate property name is not valid");
 
@@ -1142,7 +1142,7 @@ namespace Microsoft.Data.Entity.Design.Edmx
                 alwaysAddSuffix ? DefaultPropertySuffixSeed : (int?)null);
 
             Debug.Assert(
-                EscherAttributeContentValidator.IsValidCsdlPropertyName(propertyName),
+                EdmxAttributeContentValidator.IsValidCsdlPropertyName(propertyName),
                 "ModelHelper.GetUniqueConceptualPropertyName(): Generated non-valid unique property name");
 
             return propertyName;

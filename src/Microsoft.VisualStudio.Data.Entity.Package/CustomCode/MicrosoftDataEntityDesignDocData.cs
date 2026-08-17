@@ -296,8 +296,8 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
             // see if any extensions want to participate in saving
             if (Hierarchy != null)
             {
-                var serializers = EscherExtensionPointManager.LoadModelTransformExtensions();
-                var converters = EscherExtensionPointManager.LoadModelConversionExtensions();
+                var serializers = EdmxExtensionPointManager.LoadModelTransformExtensions();
+                var converters = EdmxExtensionPointManager.LoadModelConversionExtensions();
 
                 var projectItem = VsUtils.GetProjectItem(Hierarchy, ItemId);
 

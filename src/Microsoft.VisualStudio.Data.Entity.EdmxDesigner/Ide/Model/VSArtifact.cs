@@ -259,7 +259,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model
                 {
                     var nsMgr = SchemaManager.GetEdmxNamespaceManager(xmldoc.NameTable, documentSchemaVersion);
                     // Do XSD validation on the document.
-                    xmldoc.Schemas = EscherAttributeContentValidator.GetInstance(documentSchemaVersion).EdmxSchemaSet;
+                    xmldoc.Schemas = EdmxAttributeContentValidator.GetInstance(documentSchemaVersion).EdmxSchemaSet;
                     SchemaValidationErrorCollector svec = new SchemaValidationErrorCollector();
 
                     // remove runtime specific lines
@@ -431,7 +431,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model
                     { ExtensionEdmx, ExtensionDiagram };
 
                 // add any other extensions registered by converters
-                foreach (var exportInfo in EscherExtensionPointManager.LoadModelConversionExtensions())
+                foreach (var exportInfo in EdmxExtensionPointManager.LoadModelConversionExtensions())
                 {
                     var fileExtension = exportInfo.Metadata.FileExtension;
 
