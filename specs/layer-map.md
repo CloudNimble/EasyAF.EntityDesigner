@@ -50,12 +50,17 @@ Depends on the Modeling SDK, which is Windows-only and single threaded — the h
 
 ### 3. Headless consumers
 
-| Assembly | Holds |
-|---|---|
-| `Microsoft.Data.Entity.Design.Renderer` | SVG export, `EdmxDiagramLoader` |
-| `Microsoft.Data.Entity.Tools` | The `edmx` CLI (net10.0-windows) |
+| Assembly | Holds | Reaches for |
+|---|---|---|
+| `Microsoft.Data.Entity.Design.Renderer` | SVG, Mermaid and raster export, `EdmxDiagramLoader` | `Dsl`, `Model` |
+| `Microsoft.Data.Entity.Design.DatabaseGeneration` | Model to DDL, over `EdmItemCollection` | `VersioningFacade`, `XmlCore` |
+| `Microsoft.Data.Entity.Tools` | The `edmx` CLI (net10.0-windows) | `Renderer` |
 
 These exist to prove layer 2 has no shell in it. When the renderer has to fork designer logic to avoid a shell call — as `EdmxDiagramLoader` forks `LoadModel` — that fork is the bug report.
+
+**Do not merge `DatabaseGeneration` into the renderer.** It looks like the same kind of thing — model in, text out, no host — and the solution groups both under `/Output/`. The reason it stays separate is the third column. The rendering stack reaches for `Dsl`, `Model` and `System.Drawing` and nothing else; `DatabaseGeneration` reaches for `VersioningFacade`, which carries EntityFramework plus the SQL Server, SQL Server Compact, Npgsql, MySQL and Oracle providers. Merging puts five database drivers behind `edmx render`.
+
+Note what that argument is *not*. It is not about file counts, and it is not about keeping DDL generation portable — the CLI already loads the Modeling SDK through the renderer, so both halves run in a Windows-pinned process either way, and no consumer wants DDL without the renderer. The measure that decides it is **transitive dependency closure into a stack that is currently clean**. Weigh that, not the size of the project or a portability boundary nothing crosses.
 
 ### 4. Shell — Visual Studio, WinForms, WPF, GDI
 
