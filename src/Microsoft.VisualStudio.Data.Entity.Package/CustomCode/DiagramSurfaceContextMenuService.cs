@@ -11,50 +11,12 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.Data.Entity.Design.Edmx;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
-using Microsoft.VisualStudio.Data.Entity.Package;
 using Microsoft.VisualStudio.Data.Entity.Package.Export;
 using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export;
 
 namespace Microsoft.VisualStudio.Data.Entity.Package
 {
-    /// <summary>
-    /// Identifies the type of element that was clicked in the diagram.
-    /// </summary>
-    internal enum DiagramHitTarget
-    {
-        /// <summary>Empty diagram surface (no element)</summary>
-        Surface,
-        /// <summary>An association connector</summary>
-        Association,
-        /// <summary>An entity type shape</summary>
-        EntityType,
-        /// <summary>An inheritance connector</summary>
-        Inheritance,
-        /// <summary>A scalar property within an entity</summary>
-        ScalarProperty,
-        /// <summary>A complex property within an entity</summary>
-        ComplexProperty,
-        /// <summary>A navigation property within an entity</summary>
-        NavigationProperty,
-        /// <summary>Unknown or unsupported element</summary>
-        Unknown
-    }
-
-    /// <summary>
-    /// Result of a hit test on the diagram.
-    /// </summary>
-    internal class DiagramHitResult
-    {
-        public DiagramHitTarget Target { get; set; }
-        public ShapeElement Shape { get; set; }
-        public object ModelElement { get; set; }
-        /// <summary>The compartment containing the clicked property (if applicable)</summary>
-        public ElementListCompartment Compartment { get; set; }
-        /// <summary>The index of the clicked item within the compartment (if applicable)</summary>
-        public int CompartmentItemIndex { get; set; } = -1;
-    }
 
     /// <summary>
     /// Service that provides Windows 11-style context menus for the Entity Designer.
@@ -2105,4 +2067,5 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
 
         #endregion
     }
+
 }

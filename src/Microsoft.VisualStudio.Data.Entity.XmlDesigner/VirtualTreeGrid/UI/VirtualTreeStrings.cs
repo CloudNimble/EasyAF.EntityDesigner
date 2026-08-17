@@ -19,7 +19,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
             get
             {
                 resourceManager ??= new ResourceManager(
-                        "Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid.VirtualTreeControl", Assembly.GetExecutingAssembly());
+                        "Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI.VirtualTreeControl", Assembly.GetExecutingAssembly());
 
                 return resourceManager;
             }

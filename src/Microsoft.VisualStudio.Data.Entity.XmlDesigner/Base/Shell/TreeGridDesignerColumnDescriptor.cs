@@ -3,26 +3,11 @@
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
-using Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider;
 using Microsoft.VisualStudio.Modeling;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
 {
-    /// <summary>
-    ///     Represents a tri-state checkbox
-    /// </summary>
-    internal enum CheckBoxState
-    {
-        Unsupported = -1,
-        // values below correspond to indexes into the state image list
-        Checked = StandardCheckBoxImage.Checked,
-        Unchecked = StandardCheckBoxImage.Unchecked,
-        Indeterminate = StandardCheckBoxImage.Indeterminate,
-        Inactive = StandardCheckBoxImage.Inactive,
-        CheckedDisabled = StandardCheckBoxImage.CheckedDisabled,
-        UncheckedDisabled = StandardCheckBoxImage.UncheckedDisabled
-    }
 
     /// <summary>
     ///     Class which represents a column in the tree.  Derived from property descriptor so it can
@@ -278,4 +263,5 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
 
         #endregion
     }
+
 }

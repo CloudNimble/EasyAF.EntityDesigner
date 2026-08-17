@@ -7,6 +7,7 @@ using System.Windows.Controls;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views.Explorer
 {
+
     /// <summary>
     ///     This API supports the Entity Framework infrastructure and is not intended to be used directly from your code.
     /// </summary>
@@ -64,17 +65,4 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views.Explorer
         }
     }
 
-    internal class SearchComboBoxAutomationPeer : ComboBoxAutomationPeer
-    {
-        internal SearchComboBoxAutomationPeer(SearchComboBox owner)
-            : base(owner)
-        {
-            // do nothing 
-        }
-
-        protected override void SetFocusCore()
-        {
-            Owner.Focus();
-        }
-    }
 }

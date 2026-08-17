@@ -81,6 +81,10 @@ It also had a second, latent defect: `Returns(references.GetEnumerator())` evalu
 
 Suspect the same hazard as issue 2.3: MSTest runs at `MethodLevel` parallelism and something here is not thread safe. Worth confirming with `[DoNotParallelize]` on that class and a few hundred runs.
 
+**2026-08-17 — the rate is far higher than "one in ten", and it is not caused by the ongoing refactor.** Running the test alone with `--filter FullyQualifiedName~Generate_returns_code` (8 tests in the filtered set) failed 1 of 3 on the working tree. A detached worktree at `ff6422f0`, built and run the same way with none of the refactor present, failed **2 of 5** — same test, same exception. So the flake is pre-existing and reproduces at roughly 20-40% when the class is run in a small filtered set, versus rarely in a full-solution run.
+
+That inversion is itself the clue. A smaller run is *more* likely to fail, which is backwards for a contention bug that needs many threads. It fits an ordering hazard instead: with fewer tests scheduled, `Generate_returns_code` is more likely to run before whatever sibling test initialises the state it reads. Filtering to that one class is therefore a much cheaper reproduction than a few hundred full runs — use it when someone actually chases this down.
+
 ### 1.5 The intermittent failure is not confined to one assembly
 
 Two more single-test failures during the 2026-08-16 project file work, each in a different assembly, each passing when that project was rerun on its own immediately afterwards:
@@ -89,10 +93,13 @@ Two more single-test failures during the 2026-08-16 project file work, each in a
 |---|---|---|
 | `Microsoft.Data.Entity.Tests.Design` | net48 | full solution, 455/456 |
 | `Microsoft.Data.Entity.Tests.Design.VersioningFacade` | net10.0 | full solution, 294/295 |
+| `Microsoft.VisualStudio.Data.Entity.Tests.Package` | net48 | full solution, 59/60 (2026-08-17) |
 
 **Neither test name was captured**, which is the first thing to fix — the console logger reports the count on the summary line but the name scrolls past in a full-solution run. Use `--logger "trx" --results-directory <dir>` and read `outcome="Failed"` out of the `.trx`. Three consecutive full-solution runs with trx afterwards produced no failures at all, so the rate is low and matches 1.4's rough one-in-ten.
 
 Do not read the VersioningFacade row as pointing at `DbDatabaseMappingBuilderTests`. The string `Different API visibility between official dll and locally built one` appeared next to the failure in the console output and looks like an assertion message, but it is the `[Ignore]` reason on a skipped test in that file and has nothing to do with it.
+
+The 2026-08-17 run failed two assemblies at once — `Tests.Design` and `Tests.Package` — and an immediate rerun of the identical binaries passed all fourteen assemblies with zero failures. The Package name was again not captured, because the trx rerun is what passed; **run with `--logger trx` from the start, not as a follow-up**, or the name is lost every time.
 
 What makes this worth its own entry rather than folding into 1.4: three distinct tests across three assemblies and both target frameworks now fail intermittently and pass on rerun. That is a property of the run, not of any one test, which points at the `MethodLevel` parallelism theory in 1.4 and 2.3 rather than at three unrelated bugs. The cheap experiment is a solution-wide `[DoNotParallelize]` or `<RunSettings>` with `MaxCpuCount=1` for a few dozen runs — if the failures stop, the theory holds.
 

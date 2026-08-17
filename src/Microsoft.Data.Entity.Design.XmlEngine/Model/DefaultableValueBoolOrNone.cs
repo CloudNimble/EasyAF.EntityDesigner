@@ -2,13 +2,6 @@
 
 namespace Microsoft.Data.Entity.Design.XmlEngine.Model
 {
-    internal enum BoolOrNoneComparison
-    {
-        Equal,
-        NotEqual,
-        Unknown,
-    }
-
     /// <summary>
     ///     This is the Defaultable Value class for the any _optional_ bool attribute.
     /// </summary>

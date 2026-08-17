@@ -10,11 +10,11 @@ using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetai
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetails.Tables;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell;
 using System;
-using System.ComponentModel;
 using System.Diagnostics;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails.Columns
 {
+
     // <summary>
     //     Based on the type of item being shown, show the correct text for the Column Name column.
     // </summary>
@@ -345,62 +345,4 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
         }
     }
 
-    internal class ColumnNameColumnConverter : BaseColumnConverter<ColumnNameColumn>
-    {
-        protected override void PopulateMapping(ITypeDescriptorContext context)
-        {
-            if (context != null)
-            {
-                _context = context;
-            }
-
-            Debug.Assert(_context != null, "Should have a context for the PopulateMapping call.");
-
-            PopulateMappingForSelectedObject(_context.PropertyDescriptor as ColumnNameColumn);
-        }
-
-        protected override void PopulateMappingForSelectedObject(ColumnNameColumn selectedObject)
-        {
-            Debug.Assert(selectedObject != null, "selectedObject should not be null");
-
-            if (selectedObject != null
-                && selectedObject.Element != null)
-            {
-                if (selectedObject.Element is MappingCondition
-                    || selectedObject.Element is MappingStorageEntityType)
-                {
-                    var lov = selectedObject.Element.GetListOfValues(ListOfValuesCollection.FirstColumn);
-                    foreach (var key in lov.Keys)
-                    {
-                        AddMapping(key, lov[key]);
-                    }
-                    return;
-                }
-
-                if (selectedObject.Element is MappingEndScalarProperty)
-                {
-                    var lov = selectedObject.Element.GetListOfValues(ListOfValuesCollection.ThirdColumn);
-                    foreach (var key in lov.Keys)
-                    {
-                        AddMapping(key, lov[key]);
-                    }
-                    return;
-                }
-            }
-        }
-    }
-
-    // <summary>
-    //     Used to override conversion for the case where the ColumnNameColumn is representing
-    //     a MappingFunctionImportScalarProperty
-    // </summary>
-    internal class NoDropDownColumnNameColumnConverter : ColumnNameColumnConverter
-    {
-        // needs to return false so as to provide ordinary Textbox for editing
-        // (instead of drop-down) see TreeGridDesignerTreeControl.CreateTypeEditorHost()
-        public override bool /* TypeConverter */ GetStandardValuesSupported(ITypeDescriptorContext context)
-        {
-            return false;
-        }
-    }
 }

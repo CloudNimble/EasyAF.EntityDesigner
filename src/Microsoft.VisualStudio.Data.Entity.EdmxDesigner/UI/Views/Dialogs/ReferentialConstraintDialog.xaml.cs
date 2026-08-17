@@ -7,6 +7,7 @@ using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Dialog;
 using Microsoft.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio.Shell.Interop;
 using System;
@@ -23,6 +24,7 @@ using System.Windows.Input;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
 {
+
     [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
     internal partial class ReferentialConstraintDialog : DialogWindow
     {
@@ -832,138 +834,4 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
         }
     }
 
-    /// <summary>
-    /// ViewModel for displaying MappingListItem in the ListView.
-    /// </summary>
-    internal class MappingListItemViewModel
-    {
-        private readonly MappingListItem _item;
-        private readonly EFArtifact _dependentArtifact;
-
-        internal MappingListItemViewModel(MappingListItem item, EFArtifact dependentArtifact)
-        {
-            _item = item;
-            _dependentArtifact = dependentArtifact;
-        }
-
-        internal MappingListItem MappingItem => _item;
-
-        internal bool IsValidPrincipalKey => _item.IsValidPrincipalKey;
-
-        public string PrincipalKeyDisplay
-        {
-            get
-            {
-                if (_item.IsValidPrincipalKey == false)
-                {
-                    return string.Format(
-                        CultureInfo.CurrentCulture,
-                        EdmxDesignerResources.RefConstraintDialog_ErrorInRCPrincipalProperty,
-                        _item.PrincipalKey.GetLocalName());
-                }
-                return _item.PrincipalKey.GetLocalName();
-            }
-        }
-
-        public string DependentPropertyDisplay
-        {
-            get
-            {
-                if (_item.DependentProperty == null)
-                {
-                    return string.Empty;
-                }
-
-                if (_dependentArtifact?.ArtifactSet.LookupSymbol(_item.DependentProperty) is Property)
-                {
-                    return _item.DependentProperty.GetLocalName();
-                }
-                else
-                {
-                    return string.Format(
-                        CultureInfo.CurrentCulture,
-                        EdmxDesignerResources.RefConstraintDialog_ErrorInRCDependentProperty,
-                        _item.DependentProperty.GetLocalName());
-                }
-            }
-        }
-    }
-
-    internal class RoleListItem
-    {
-        private readonly AssociationEnd _end;
-        private readonly bool _useRoleName;
-
-        internal RoleListItem(AssociationEnd end, bool useRoleName)
-        {
-            _end = end;
-            _useRoleName = useRoleName;
-        }
-
-        internal AssociationEnd End => _end;
-
-        public override string ToString()
-        {
-            if (_end != null && _useRoleName)
-            {
-                return _end.Role.Value;
-            }
-            else if (_end != null && _end.Type.Target != null && _useRoleName == false)
-            {
-                return _end.Type.Target.LocalName.Value;
-            }
-
-            return string.Empty;
-        }
-    }
-
-    internal class MappingListItem
-    {
-        private readonly Symbol _principalSymbol;
-
-        internal bool IsValidPrincipalKey { get; private set; }
-
-        internal MappingListItem(Symbol principalSymbol, Symbol dependentSymbol, bool isValidPrincipalKey)
-        {
-            _principalSymbol = principalSymbol;
-            DependentProperty = dependentSymbol;
-            IsValidPrincipalKey = isValidPrincipalKey;
-        }
-
-        internal Symbol PrincipalKey => _principalSymbol;
-
-        internal Symbol DependentProperty { get; set; }
-
-        internal int CurrentIndex { get; set; }
-
-        public override string ToString()
-        {
-            if (_principalSymbol != null)
-            {
-                return _principalSymbol.GetLocalName();
-            }
-            return string.Empty;
-        }
-    }
-
-    internal class KeyListItem
-    {
-        private readonly Symbol _key;
-
-        internal KeyListItem(Symbol key)
-        {
-            _key = key;
-        }
-
-        internal Symbol Key => _key;
-
-        public override string ToString()
-        {
-            if (_key != null)
-            {
-                return _key.GetLocalName();
-            }
-            return string.Empty;
-        }
-    }
 }

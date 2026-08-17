@@ -5,11 +5,6 @@ using System.Collections.Generic;
 
 namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing
 {
-    // All user data that are stored in transaction context must implement this interface.
-    internal interface ITransactionContextItem
-    {
-    }
-
     /// <summary>
     ///     Context object that allows clients to associated user data with the transaction.
     /// </summary>

@@ -24,64 +24,8 @@ using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using Microsoft.Win32;
 using Timer = System.Windows.Forms.Timer;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
 {
-    #region ModifySelectionAction enum
-
-    /// <summary>
-    ///     Used with the VirtualTreeControl.SetCurrentExtendedMultiSelectIndex to specify the
-    ///     modification to make to the selection state of the new caret index.
-    /// </summary>
-    internal enum ModifySelectionAction
-    {
-        /// <summary>
-        ///     Do not take any special action.
-        /// </summary>
-        None,
-
-        /// <summary>
-        ///     Toggle the selection state of the item
-        /// </summary>
-        Toggle,
-
-        /// <summary>
-        ///     The item should be selected
-        /// </summary>
-        Select,
-
-        /// <summary>
-        ///     The item should not be selected
-        /// </summary>
-        Clear,
-    }
-
-    #endregion // ModifySelectionAction enum
-
-    #region DragEffectCombinationMode enum
-
-    /// <summary>
-    ///     Specifies how drag effects are combined when multiple
-    ///     items are selected for dragging. The drag object returned
-    ///     by the tree needs to decide if feedback should be provided
-    ///     as a union or intersection of the effects supported by the
-    ///     different drag objects.
-    /// </summary>
-    internal enum DragEffectCombinationMode
-    {
-        /// <summary>
-        ///     Combine drag/drop effects with the 'binary and' operator. If
-        ///     the intersection is empty, then the drag operation is aborted.
-        /// </summary>
-        Intersection,
-
-        /// <summary>
-        ///     Combine drag/drop effects with the 'binary or' operator. The
-        ///     returned effects for a union of effects supported by all of the nodes.
-        /// </summary>
-        Union,
-    }
-
-    #endregion // DragEffectCombinationMode enum
 
     /// <summary>
     ///     A control to display ITree and IMultiColumnTree implementations

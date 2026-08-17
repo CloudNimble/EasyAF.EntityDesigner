@@ -6,14 +6,6 @@ using EnvDTE;
 
 namespace Microsoft.Data.Entity.Tests.Shared.VS
 {
-    public enum OperationType
-    {
-        UI,
-        Model,
-        MenuCommand,
-        Keyboard,
-        Custom
-    }
 
     public class DesignerUtilities
     {
@@ -179,4 +171,5 @@ namespace Microsoft.Data.Entity.Tests.Shared.VS
             }
         }
     }
+
 }

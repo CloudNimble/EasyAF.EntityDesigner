@@ -92,32 +92,4 @@ namespace Microsoft.Data.Entity.Design.Edmx.Entity
             set { _propertyName = value; }
         }
     }
-
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Property, AllowMultiple = true)]
-    internal sealed class ClipboardPropertyMapAttribute : Attribute
-    {
-        private readonly string _attributeName;
-        private readonly bool _isExcluded;
-
-        internal ClipboardPropertyMapAttribute(string attributeName)
-            : this(attributeName, false)
-        {
-        }
-
-        internal ClipboardPropertyMapAttribute(string attributeName, bool isExcluded)
-        {
-            _attributeName = attributeName;
-            _isExcluded = isExcluded;
-        }
-
-        internal string AttributeName
-        {
-            get { return _attributeName; }
-        }
-
-        internal bool IsExcluded
-        {
-            get { return _isExcluded; }
-        }
-    }
 }

@@ -9,6 +9,7 @@ using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Data.Sql;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Dialog;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using Microsoft.VisualStudio.Data.Services;
@@ -1126,20 +1127,5 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs
         }
 
         #endregion
-    }
-
-    /// <summary>
-    /// Data item for the return type columns ListView.
-    /// </summary>
-    internal class ReturnTypeColumnItem
-    {
-        public string Action { get; set; }
-        public string Name { get; set; }
-        public string EdmType { get; set; }
-        public string DbType { get; set; }
-        public string Nullable { get; set; }
-        public string MaxLength { get; set; }
-        public string Precision { get; set; }
-        public string Scale { get; set; }
     }
 }

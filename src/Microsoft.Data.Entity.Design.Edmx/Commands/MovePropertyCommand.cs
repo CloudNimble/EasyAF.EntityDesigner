@@ -6,11 +6,6 @@ using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 
 namespace Microsoft.Data.Entity.Design.Edmx.Commands
 {
-    internal enum MoveDirection
-    {
-        Up = 0,
-        Down
-    }
 
     /// <summary>
     ///     Command to move property with the given the move direction and number of steps.
@@ -58,4 +53,5 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
             }
         }
     }
+
 }

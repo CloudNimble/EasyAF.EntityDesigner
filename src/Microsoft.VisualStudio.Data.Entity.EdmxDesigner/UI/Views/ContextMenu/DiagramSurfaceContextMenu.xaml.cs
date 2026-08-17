@@ -8,7 +8,6 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using Microsoft.VisualStudio.PlatformUI;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu
 {
@@ -254,21 +253,5 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu
         }
 
         #endregion
-    }
-
-    /// <summary>
-    /// Event arguments for menu action events.
-    /// </summary>
-    internal class MenuActionEventArgs : EventArgs
-    {
-        /// <summary>
-        /// Gets the ID of the command that was executed.
-        /// </summary>
-        public string ActionName { get; }
-
-        public MenuActionEventArgs(string actionName)
-        {
-            ActionName = actionName;
-        }
     }
 }

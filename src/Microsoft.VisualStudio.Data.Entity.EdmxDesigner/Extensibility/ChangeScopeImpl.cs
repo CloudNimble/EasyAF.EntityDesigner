@@ -12,10 +12,6 @@ using System.Xml.Linq;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility
 {
-    internal interface IChangeScopeContainer
-    {
-        void OnScopeDisposed();
-    }
 
     internal class ChangeScopeImpl : EntityDesignerChangeScope, IDisposable
     {
@@ -283,4 +279,5 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility
             _editingContext.GetEFArtifactService().Artifact.XDocument.Changed -= AfterEventHandler;
         }
     }
+
 }

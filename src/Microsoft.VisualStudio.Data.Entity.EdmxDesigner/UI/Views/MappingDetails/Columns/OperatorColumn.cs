@@ -8,11 +8,11 @@ using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetai
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetails.Tables;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell;
 using System;
-using System.ComponentModel;
 using System.Diagnostics;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails.Columns
 {
+
     // <summary>
     //     Based on the type of item being shown, show the correct text for the Operator column.
     // </summary>
@@ -164,38 +164,4 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
         }
     }
 
-    internal class OperatorColumnConverter : BaseColumnConverter<OperatorColumn>
-    {
-        protected override void PopulateMapping(ITypeDescriptorContext context)
-        {
-            if (context != null)
-            {
-                _context = context;
-            }
-
-            Debug.Assert(_context != null, "Should have a context for the PopulateMapping call.");
-
-            PopulateMappingForSelectedObject(_context.PropertyDescriptor as OperatorColumn);
-        }
-
-        protected override void PopulateMappingForSelectedObject(OperatorColumn selectedObject)
-        {
-            Debug.Assert(selectedObject != null, "selectedObject should not be null");
-
-            if (selectedObject != null
-                &&
-                selectedObject.Element != null)
-            {
-                if (selectedObject.Element is MappingCondition)
-                {
-                    var lov = selectedObject.Element.GetListOfValues(ListOfValuesCollection.SecondColumn);
-                    foreach (var key in lov.Keys)
-                    {
-                        AddMapping(key, lov[key]);
-                    }
-                    return;
-                }
-            }
-        }
-    }
 }

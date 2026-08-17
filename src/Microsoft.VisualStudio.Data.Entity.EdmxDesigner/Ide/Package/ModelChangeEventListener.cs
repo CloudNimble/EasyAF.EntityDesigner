@@ -20,13 +20,6 @@ using ModelChangeEventArgs = Microsoft.VisualStudio.Data.Entity.XmlDesigner.Visu
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
 {
-    internal interface ITrackEdmxUIEvents
-    {
-        // if we have no App.Config/Web.Config for the edmx file then we have to create it
-        int OnBeforeGenerateDDL(Project project, EFArtifact artifact);
-        // if we don't have an App.Config/Web.Config for the edmx file then we have to create it (this also gets raised during build)
-        int OnBeforeValidateModel(Project project, EFArtifact artifact, bool onBuild);
-    }
 
     internal class ModelChangeEventListener : IVsTrackProjectDocumentsEvents2, IVsRunningDocTableEvents3, ITrackEdmxUIEvents,
                                               IVsSolutionEvents, IDisposable
@@ -659,4 +652,5 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
 
         #endregion
     }
+
 }

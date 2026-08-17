@@ -47,13 +47,15 @@
       <DependentUpon>ProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Update="VirtualTreeGrid\UI\VirtualTreeControl.resx">
-      <LogicalName>Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid.VirtualTreeControl.resources</LogicalName>
+      <!-- Must match the literal in VirtualTreeStrings.ResourceManager, which names VirtualTreeControl's namespace. -->
+      <LogicalName>Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI.VirtualTreeControl.resources</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="VirtualTreeGrid\Resources\arrow.ico">
-      <LogicalName>Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid.arrow.ico</LogicalName>
+      <!-- No .UI segment: loaded via new Icon(typeof(TypeEditorHost), ...), which resolves against TypeEditorHost's namespace. -->
+      <LogicalName>Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.arrow.ico</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="VirtualTreeGrid\Resources\dotdotdot.ico">
-      <LogicalName>Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid.dotdotdot.ico</LogicalName>
+      <LogicalName>Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.dotdotdot.ico</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
 

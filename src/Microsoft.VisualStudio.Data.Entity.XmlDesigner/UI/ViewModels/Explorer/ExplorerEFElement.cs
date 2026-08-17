@@ -16,33 +16,6 @@ using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer
 {
-    internal class ExplorerHierarchyComparer : IComparer<ExplorerEFElement>
-    {
-        private static ExplorerHierarchyComparer _instance;
-
-        internal static ExplorerHierarchyComparer Instance
-        {
-            get
-            {
-                if (null == _instance)
-                {
-                    _instance = new ExplorerHierarchyComparer();
-                }
-
-                return _instance;
-            }
-        }
-
-        private ExplorerHierarchyComparer()
-        {
-            // constructor made private to implement singleton pattern
-        }
-
-        public int Compare(ExplorerEFElement x, ExplorerEFElement y)
-        {
-            return ExplorerEFElement.HierarchyCompare(x, y);
-        }
-    }
 
     internal abstract class ExplorerEFElement : INotifyPropertyChanged
     {
@@ -909,4 +882,5 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer
 
         #endregion
     }
+
 }

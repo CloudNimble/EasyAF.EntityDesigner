@@ -8,19 +8,6 @@ using System.Diagnostics;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails
 {
-    internal enum EntityMappingModes
-    {
-        None,
-        Tables,
-        Functions
-    }
-
-    internal enum EntityMappingSelectionSource
-    {
-        None,
-        EntityDesigner,
-        ModelBrowser
-    }
 
     internal class MappingDetailsInfo : ContextItem
     {
@@ -107,4 +94,5 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
             set { _selectionSource = value; }
         }
     }
+
 }

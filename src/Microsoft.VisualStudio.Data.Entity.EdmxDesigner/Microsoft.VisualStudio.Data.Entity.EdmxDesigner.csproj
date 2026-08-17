@@ -142,6 +142,26 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <!--
+    File nesting for UI\Views\Dialogs: a .resx belongs to the like-named .xaml. `*` does not cross
+    directory separators, so subfolders stay out. The exceptions override it afterwards, since a later
+    Update wins. CustomZoomDialog is the folder's only WinForms Form and its resx belongs to the .cs;
+    the entry is kept even though no resx is checked in, because the WinForms designer recreates one
+    the moment anyone edits that Form. DialogsResource is a standalone string table with no view.
+    A .xaml.cs needs no entry - VS nests it under its .xaml by convention.
+  -->
+  <ItemGroup>
+    <EmbeddedResource Update="UI\Views\Dialogs\*.resx">
+      <DependentUpon>%(Filename).xaml</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="UI\Views\Dialogs\CustomZoomDialog.resx">
+      <DependentUpon>CustomZoomDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="UI\Views\Dialogs\DialogsResource.resx">
+      <DependentUpon></DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
   <!-- Intellisense files -->
   <ItemGroup>
     <IntellisenseFiles Include="IntellisenseFiles\**\*.xml" />
@@ -245,6 +265,12 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Update="UI\Views\Dialogs\CustomZoomDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UI\Views\Dialogs\CustomZoomDialog.Designer.cs">
+      <DependentUpon>CustomZoomDialog.cs</DependentUpon>
     </Compile>
     <Compile Update="UI\Views\Dialogs\DialogsResource.Designer.cs">
       <DesignTime>True</DesignTime>

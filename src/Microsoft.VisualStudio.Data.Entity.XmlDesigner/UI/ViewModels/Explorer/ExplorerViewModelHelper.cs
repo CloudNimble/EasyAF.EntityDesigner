@@ -9,14 +9,6 @@ using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer
 {
-    /// <summary>
-    ///     Represents the ViewModel that will be exposed in the Explorer Window.
-    /// </summary>
-    internal interface IExplorerViewModel
-    {
-        EditingContext EditingContext { get; }
-        ExplorerEFElement RootNode { get; }
-    }
 
     /// <summary>
     ///     This class provides a wrapper around ExplorerViewModel so as to provide
@@ -255,4 +247,5 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer
             return explorerElement;
         }
     }
+
 }

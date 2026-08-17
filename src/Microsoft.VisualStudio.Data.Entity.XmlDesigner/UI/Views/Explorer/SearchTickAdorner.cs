@@ -14,6 +14,7 @@ using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views.Explorer
 {
+
     internal class SearchTickAdorner : Adorner
     {
         private readonly List<ExplorerEFElement> _explorerElements = [];
@@ -126,7 +127,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views.Explorer
 
         protected override AutomationPeer OnCreateAutomationPeer()
         {
-            return new AdornerAutomationPeer(this);
+            return new SearchTickAdornerAutomationPeer(this);
         }
 
         internal static Size GetSize(double tickSize)
@@ -204,44 +205,4 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views.Explorer
         //    }
     }
 
-    internal class AdornerAutomationPeer : FrameworkElementAutomationPeer
-    {
-        public AdornerAutomationPeer(SearchTickAdorner owner)
-            : base(owner)
-        {
-            // do nothing
-        }
-
-        protected override string GetClassNameCore()
-        {
-            return "SearchTickAdorner";
-        }
-
-        protected override Point GetClickablePointCore()
-        {
-            var adornerBounds = GetBoundingRectangleCore();
-            return new Point(adornerBounds.Left + adornerBounds.Width / 2, adornerBounds.Top + adornerBounds.Height / 2);
-        }
-
-        protected override Rect GetBoundingRectangleCore()
-        {
-            var baseRect = base.GetBoundingRectangleCore();
-            var adornerBounds = ((SearchTickAdorner)Owner).Bounds;
-            return new Rect(baseRect.X + adornerBounds.X, baseRect.Y + adornerBounds.Y, adornerBounds.Width, adornerBounds.Height);
-        }
-
-        protected override string GetItemStatusCore()
-        {
-            StringBuilder itemStatus = new StringBuilder();
-            SearchTickAdorner searchTickAdorner = (SearchTickAdorner)Owner;
-
-            foreach (var seXsdInfo in searchTickAdorner.ExplorerElements)
-            {
-                itemStatus.Append("[Name]");
-                itemStatus.Append(seXsdInfo.Name);
-            }
-
-            return itemStatus.ToString();
-        }
-    }
 }

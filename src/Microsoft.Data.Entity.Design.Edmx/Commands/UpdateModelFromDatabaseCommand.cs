@@ -110,13 +110,4 @@ namespace Microsoft.Data.Entity.Design.Edmx.Commands
             }
         }
     }
-
-    [Serializable]
-    internal class UpdateModelFromDatabaseException : Exception
-    {
-        internal UpdateModelFromDatabaseException(string message)
-            : base(message)
-        {
-        }
-    }
 }

@@ -25,21 +25,4 @@ namespace Microsoft.Data.Entity.Design.Edmx
         /// </summary>
         Invisible
     }
-
-    /// <summary>
-    ///     These extension methods allow the simplicity of setting enum values as states and the simplicity
-    ///     of checking mutually exclusive states (enabled/invisible) on clients.
-    /// </summary>
-    internal static class FeatureSupportedStateExtensions
-    {
-        internal static bool IsEnabled(this FeatureState state)
-        {
-            return state == FeatureState.VisibleAndEnabled;
-        }
-
-        internal static bool IsVisible(this FeatureState state)
-        {
-            return state != FeatureState.Invisible;
-        }
-    }
 }

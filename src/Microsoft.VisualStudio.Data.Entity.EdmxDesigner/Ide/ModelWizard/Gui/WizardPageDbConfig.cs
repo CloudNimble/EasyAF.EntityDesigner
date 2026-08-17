@@ -22,12 +22,12 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Runtime.Serialization;
 using System.Windows.Forms;
 using WizardResources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.ModelWizardResources;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
 {
+
     // <summary>
     //     This is the second page in the ModelGen VS wizard and is invoked if the user wants to generate the model from a database.
     //     In this page the user can:
@@ -958,17 +958,4 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
         }
     }
 
-    [Serializable]
-    internal class FileCopyException : Exception
-    {
-        internal FileCopyException(string msg)
-            : base(msg)
-        {
-        }
-
-        protected FileCopyException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-        }
-    }
 }

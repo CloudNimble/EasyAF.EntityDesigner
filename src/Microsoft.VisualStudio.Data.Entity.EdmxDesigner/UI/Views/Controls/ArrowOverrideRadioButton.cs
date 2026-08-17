@@ -4,6 +4,7 @@ using System.Windows.Forms;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Controls
 {
+
     // <summary>
     //     This class overrides the default behavior of the Up and Down arrow (cursor) keys on a radio button to call an event handler. This
     //     allows users of this control to react to those events themselves to override the default focusing behavior which would otherwise be taken.
@@ -37,5 +38,4 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Controls
         }
     }
 
-    internal delegate void ArrowPressedEventHandler(object sender, Keys key);
 }

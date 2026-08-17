@@ -4,13 +4,13 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
-using System.Runtime.Serialization;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.VisualStudio.UI
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.UI
 {
+
     /// <summary>
     ///     This dialog shows a description, a progress bar, and a labelled status area. Through a BackgroundWorker
     ///     it runs the ProgressDialogWork delegate passed in.
@@ -194,36 +194,4 @@ namespace Microsoft.Data.Tools.VSXmlDesignerBase.VisualStudio.UI
         }
     }
 
-    internal delegate object ProgressDialogWork(BackgroundWorker worker, DoWorkEventArgs e);
-
-    /// <summary>
-    ///     Keeps track of state of current iteration being processed, the total number of iterations to be processed
-    ///     and the current status message to be displayed.
-    /// </summary>
-    internal struct ProgressDialogUserState
-    {
-        internal int NumberIterations;
-        internal int CurrentIteration;
-        internal string CurrentStatusMessage;
-        internal bool IsError;
-    }
-
-    [Serializable]
-    internal class ProgressDialogException : Exception
-    {
-        internal ProgressDialogException(string message)
-            : base(message)
-        {
-        }
-
-        internal ProgressDialogException(string message, Exception innerException)
-            : base(message, innerException)
-        {
-        }
-
-        protected ProgressDialogException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-        }
-    }
 }

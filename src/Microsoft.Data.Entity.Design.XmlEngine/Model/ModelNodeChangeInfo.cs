@@ -2,12 +2,6 @@
 
 namespace Microsoft.Data.Entity.Design.XmlEngine.Model
 {
-    internal enum ModelNodeChangeType
-    {
-        Added,
-        Deleted,
-        Changed
-    };
 
     internal class ModelNodeChangeInfo
     {
@@ -30,4 +24,5 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
             get { return _modelNode; }
         }
     }
+
 }

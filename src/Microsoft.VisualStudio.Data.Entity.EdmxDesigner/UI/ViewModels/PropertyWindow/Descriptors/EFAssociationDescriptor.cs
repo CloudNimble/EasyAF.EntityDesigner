@@ -5,11 +5,9 @@ using Microsoft.Data.Entity.Design.Edmx.Commands;
 using Microsoft.Data.Entity.Design.Edmx.Entity;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.PropertyWindow.Converters;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.PropertyWindow.Editors;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow;
 using System;
 using System.ComponentModel;
-using System.Drawing.Design;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.PropertyWindow.Descriptors
 {
@@ -340,15 +338,6 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
                 return ModelConstants.OnDeleteAction_None;
             }
             return null;
-        }
-    }
-
-    [TypeConverter(typeof(ReferentialConstraintConverter))]
-    [Editor(typeof(ReferentialConstraintEditor), typeof(UITypeEditor))]
-    internal class ReferentialConstraintProperty
-    {
-        public ReferentialConstraintProperty()
-        {
         }
     }
 }

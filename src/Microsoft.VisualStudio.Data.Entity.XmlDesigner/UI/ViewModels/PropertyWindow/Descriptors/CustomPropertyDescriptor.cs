@@ -3,12 +3,11 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Globalization;
-using System.Resources;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Descriptors
 {
+
     /// <summary>
     ///     base class for a PropertyDescriptor that describes a property of an EFElement
     /// </summary>
@@ -125,95 +124,4 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyW
         }
     }
 
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Property | AttributeTargets.Field, Inherited = false, AllowMultiple = false)]
-    internal class CommonLocDisplayNameAttribute : DisplayNameAttribute
-    {
-        private readonly string name;
-
-        /// <include file='doc\PropertyPages.uex' path='docs/doc[@for="LocDisplayNameAttribute.DisplayNameAttribute"]/*' />
-        public CommonLocDisplayNameAttribute(string name)
-        {
-            this.name = name;
-        }
-
-        protected virtual ResourceManager ResourceManager
-        {
-            get { return global::Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources.ResourceManager; }
-        }
-
-        /// <include file='doc\PropertyPages.uex' path='docs/doc[@for="LocDisplayNameAttribute.DisplayName"]/*' />
-        public override string DisplayName
-        {
-            get
-            {
-                var result = ResourceManager.GetString(name, CultureInfo.CurrentUICulture);
-                if (result == null)
-                {
-                    Debug.Assert(false, "String resource '" + name + "' is missing");
-                    result = name;
-                }
-                return result;
-            }
-        }
-    }
-
-    [AttributeUsage(AttributeTargets.All)]
-    internal class CommonLocDescriptionAttribute : DescriptionAttribute
-    {
-        private bool replaced;
-
-        public CommonLocDescriptionAttribute(string description)
-            : base(description)
-        {
-        }
-
-        protected virtual ResourceManager ResourceManager
-        {
-            get { return global::Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources.ResourceManager; }
-        }
-
-        public override string Description
-        {
-            get
-            {
-                if (!replaced)
-                {
-                    replaced = true;
-                    var result = ResourceManager.GetString(base.Description, CultureInfo.CurrentUICulture);
-                    if (result == null)
-                    {
-                        Debug.Assert(false, "String resource '" + base.Description + "' is missing");
-                        result = base.Description;
-                    }
-                    DescriptionValue = result;
-                }
-                return base.Description;
-            }
-        }
-    }
-
-    [AttributeUsage(AttributeTargets.All)]
-    internal class CommonLocCategoryAttribute : CategoryAttribute
-    {
-        public CommonLocCategoryAttribute(string category)
-            : base(category)
-        {
-        }
-
-        protected virtual ResourceManager ResourceManager
-        {
-            get { return global::Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources.ResourceManager; }
-        }
-
-        protected override string GetLocalizedString(string value)
-        {
-            var result = ResourceManager.GetString(value, CultureInfo.CurrentUICulture);
-            if (result == null)
-            {
-                Debug.Assert(false, "String resource '" + value + "' is missing");
-                result = value;
-            }
-            return result;
-        }
-    }
 }

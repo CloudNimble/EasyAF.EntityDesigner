@@ -406,15 +406,6 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is OneWay.
-        /// </summary>
-        internal static string SwitchConverterErrorMessage {
-            get {
-                return ResourceManager.GetString("SwitchConverterErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Set {0}.
         /// </summary>
         internal static string Tx_PropertyChangeUndoString {

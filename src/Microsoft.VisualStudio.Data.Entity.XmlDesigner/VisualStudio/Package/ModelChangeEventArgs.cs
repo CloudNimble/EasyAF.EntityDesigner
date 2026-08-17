@@ -6,7 +6,6 @@ using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package
 {
-    internal delegate int ModelChangeEventHandler(object sender, ModelChangeEventArgs args);
 
     internal sealed class ModelChangeEventArgs : EventArgs
     {
@@ -28,4 +27,5 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package
 
         internal Project ProjectObj { get; set; }
     }
+
 }

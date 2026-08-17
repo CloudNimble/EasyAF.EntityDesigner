@@ -10,7 +10,7 @@ using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 
-namespace Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
 {
     /// <summary>
     ///     Selection support for the VirtualTreeControl.  The motivation for implementing this here, rather than allowing the

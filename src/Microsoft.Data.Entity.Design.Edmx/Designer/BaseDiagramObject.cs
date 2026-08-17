@@ -5,18 +5,9 @@ using System.Xml.Linq;
 using Microsoft.Data.Entity.Design.Edmx.Designer;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
-// Temporary workaround, this interface should be remove shortly.
-
-namespace Microsoft.Data.Entity.Design.Edmx.Designer
-{
-    internal interface DiagramEFObject
-    {
-        // denotes EntityTypeShapes, InheritanceConnectors, AssociationConnectors, etc.
-    }
-}
-
 namespace Microsoft.Data.Tools.Model.Diagram
 {
+
     internal abstract class BaseDiagramObject : EFElement, DiagramEFObject
     {
         protected BaseDiagramObject(EFElement parent, XElement element)
@@ -36,4 +27,5 @@ namespace Microsoft.Data.Tools.Model.Diagram
 
         internal abstract EFObject ModelItem { get; }
     }
+
 }

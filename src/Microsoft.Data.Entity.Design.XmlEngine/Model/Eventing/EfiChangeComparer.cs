@@ -4,31 +4,6 @@ using System.Collections.Generic;
 
 namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing
 {
-    /// <summary>
-    ///     This class is used to sort EfiChanges using stable sort algorithm (i.e. one that is preserving order of equal values)
-    ///     It remembers original position of EfiChange so the compare method can decide which should come first.
-    /// </summary>
-    internal class EfiChangeStableSortItem
-    {
-        private readonly EfiChange _change;
-        private readonly int _position;
-
-        public EfiChangeStableSortItem(EfiChange change, int position)
-        {
-            _change = change;
-            _position = position;
-        }
-
-        public EfiChange EfiChange
-        {
-            get { return _change; }
-        }
-
-        public int Position
-        {
-            get { return _position; }
-        }
-    }
 
     internal abstract class EfiChangeComparer : IComparer<EfiChangeStableSortItem>
     {
@@ -72,4 +47,5 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing
 
         protected abstract int GetVal(EfiChange change);
     }
+
 }

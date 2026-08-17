@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer
 {
+
     // <summary>
     //     contains the ViewModel to support the Explorer View of the
     //     conceptual and storage spaces
@@ -31,14 +32,4 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer
         #endregion
     }
 
-    // <summary>
-    //     Extension methods for the IExplorerViewModel interface.
-    // </summary>
-    internal static class IExplorerViewModelExtensions
-    {
-        internal static ExplorerRootNode EDMRootNode(this IExplorerViewModel viewModel)
-        {
-            return ((ExplorerViewModel)viewModel).EDMRootNode;
-        }
-    }
 }

@@ -6,7 +6,7 @@ using Microsoft.Data.Entity.Design.Edmx.Database;
 using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
-using Microsoft.Data.Tools.VSXmlDesignerBase.VisualStudio.UI;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.UI;
 using Microsoft.VisualStudio.Data.Core;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Data.Sql;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;

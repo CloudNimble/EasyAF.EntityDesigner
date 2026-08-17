@@ -5,14 +5,6 @@ using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Descriptors
 {
-    /// <summary>
-    ///     Used to announce that a component can provide default values for the
-    ///     property descriptors it contains
-    /// </summary>
-    internal interface IPropertyDescriptorDefaultsProvider
-    {
-        object GetDescriptorDefaultValue(string propertyDescriptorMethodName);
-    }
 
     /// <summary>
     ///     this class is defined so that all generic types defined by derived types
@@ -37,4 +29,5 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyW
 
         public abstract object GetDescriptorDefaultValue(string propertyDescriptorMethodName);
     }
+
 }

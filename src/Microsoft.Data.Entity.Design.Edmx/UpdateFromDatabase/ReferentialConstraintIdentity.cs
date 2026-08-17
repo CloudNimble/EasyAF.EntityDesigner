@@ -131,23 +131,4 @@ namespace Microsoft.Data.Entity.Design.Edmx.UpdateFromDatabase
             return tables;
         }
     }
-
-    internal class ReferentialConstraintIdentityComparer : IComparer<ReferentialConstraintIdentity>
-    {
-        private static readonly ReferentialConstraintIdentityComparer _instance = new ReferentialConstraintIdentityComparer();
-
-        internal static ReferentialConstraintIdentityComparer Instance
-        {
-            get { return _instance; }
-        }
-
-        private ReferentialConstraintIdentityComparer()
-        {
-        }
-
-        public int Compare(ReferentialConstraintIdentity x, ReferentialConstraintIdentity y)
-        {
-            return SortedListAllowDupes<AssociationPropertyIdentity>.CompareListContents(x.PropertyIdentities, y.PropertyIdentities);
-        }
-    }
 }

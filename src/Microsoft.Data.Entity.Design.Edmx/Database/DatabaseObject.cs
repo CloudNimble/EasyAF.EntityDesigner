@@ -1,13 +1,12 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
 using System.Globalization;
 using Microsoft.Data.Entity.Design.Edmx.Entity;
 using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb;
 
 namespace Microsoft.Data.Entity.Design.Edmx.Database
 {
+
     /// <summary>
     ///     Represents the full name of an object (e.g. a table) on a database
     ///     Consists of the name of the object plus the name of the schema
@@ -88,19 +87,4 @@ namespace Microsoft.Data.Entity.Design.Edmx.Database
         }
     }
 
-    internal class DatabaseObjectComparer : IComparer<DatabaseObject>
-    {
-        public int Compare(DatabaseObject x, DatabaseObject y)
-        {
-            var compareSchemas = String.Compare(x.Schema, y.Schema, StringComparison.CurrentCulture);
-            if (compareSchemas != 0)
-            {
-                return compareSchemas;
-            }
-            else
-            {
-                return String.Compare(x.Name, y.Name, StringComparison.CurrentCulture);
-            }
-        }
-    }
 }

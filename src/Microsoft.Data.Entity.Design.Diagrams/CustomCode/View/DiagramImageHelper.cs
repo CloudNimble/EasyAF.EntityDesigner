@@ -5,32 +5,6 @@ using System.Drawing;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.View
 {
-    /// <summary>
-    /// Contains the set of header icons for an entity type shape, colorized to match the header text.
-    /// </summary>
-    internal sealed class HeaderIconSet
-    {
-        public HeaderIconSet(Bitmap entityGlyph, Bitmap baseTypeIcon, Bitmap chevronExpanded, Bitmap chevronCollapsed)
-        {
-            EntityGlyph = entityGlyph;
-            BaseTypeIcon = baseTypeIcon;
-            ChevronExpanded = chevronExpanded;
-            ChevronCollapsed = chevronCollapsed;
-        }
-
-        public Bitmap EntityGlyph { get; }
-        public Bitmap BaseTypeIcon { get; }
-        public Bitmap ChevronExpanded { get; }
-        public Bitmap ChevronCollapsed { get; }
-
-        public void Dispose()
-        {
-            EntityGlyph?.Dispose();
-            BaseTypeIcon?.Dispose();
-            ChevronExpanded?.Dispose();
-            ChevronCollapsed?.Dispose();
-        }
-    }
 
     /// <summary>
     /// A singleton helper that pre-loads and themes all property icons at diagram startup.
@@ -299,4 +273,5 @@ namespace Microsoft.Data.Entity.Design.Diagrams.View
             IsLoaded = false;
         }
     }
+
 }

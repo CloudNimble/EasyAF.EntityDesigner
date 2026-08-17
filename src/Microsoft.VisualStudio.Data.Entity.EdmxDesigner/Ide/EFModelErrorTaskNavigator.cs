@@ -5,7 +5,6 @@ using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.Diagnostics;
 using System.IO;
-using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.XLinqAnnotations;
 using Microsoft.Data.Entity.Design.XmlEngine.Util;
 using Microsoft.Data.Entity.Design.Edmx.Mapping;
@@ -19,7 +18,6 @@ using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
 {
-    internal delegate void NavigateTo(EFObject efobject);
 
     // <summary>
     //     This class handles navigation from an ErrorTask/IEFModelErrorTask.  It will set focus to the appropriate
@@ -273,4 +271,5 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
             }
         }
     }
+
 }

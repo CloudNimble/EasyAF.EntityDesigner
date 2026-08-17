@@ -8,36 +8,6 @@ using Microsoft.VisualStudio.Shell.Interop;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package
 {
-    // <summary>
-    //     This is just wrapper for project item path
-    // </summary>
-    internal struct VsProjectItemPath
-    {
-        internal Url BaseUrl;
-        internal string RelativePath;
-
-        internal VsProjectItemPath(Url baseUrl, string relativePath)
-        {
-            BaseUrl = baseUrl;
-            RelativePath = relativePath;
-        }
-
-        internal string Path
-        {
-            get
-            {
-                if (BaseUrl != null
-                    && !string.IsNullOrEmpty(RelativePath))
-                {
-                    Url url = new Url(BaseUrl, RelativePath);
-                    return url.AbsoluteUrl;
-                }
-                return RelativePath;
-            }
-        }
-    }
-
-    internal delegate void HierarchyHandler(IVsHierarchy item, uint id, VsProjectItemPath path);
 
     // <summary>
     //     HierarchyVisitor walks IVsHierarchy and calls a given delegate for each item
@@ -161,4 +131,5 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package
             return VSConstants.VSITEMID_NIL;
         }
     }
+
 }

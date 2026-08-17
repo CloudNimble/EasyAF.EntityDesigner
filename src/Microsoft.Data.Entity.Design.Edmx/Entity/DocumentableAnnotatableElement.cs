@@ -5,6 +5,7 @@ using System.Xml.Linq;
 
 namespace Microsoft.Data.Entity.Design.Edmx.Entity
 {
+
     internal abstract class DocumentableAnnotatableElement : EFDocumentableItem
     {
         internal DocumentableAnnotatableElement(EFElement parent, XElement element)
@@ -28,18 +29,4 @@ namespace Microsoft.Data.Entity.Design.Edmx.Entity
         }
     }
 
-    internal abstract class NameableAnnotatableElement : EFNameableItem
-    {
-        internal NameableAnnotatableElement(EFElement parent, XElement element)
-            : base(parent, element)
-        {
-        }
-
-        // This will be called from the child EFObject's constructor, so not all of the member variables may be hooked up yet. 
-        // be careful.  referencing certain fields may cause null-reference exceptions 
-        internal override void GetXLinqInsertPosition(EFElement child, out XNode insertAt, out bool insertBefore)
-        {
-            AnnotatableElement.GetInsertPointForAnnotatableElements(this, out insertAt, out insertBefore);
-        }
-    }
 }

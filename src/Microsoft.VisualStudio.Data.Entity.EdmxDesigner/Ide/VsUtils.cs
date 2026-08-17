@@ -44,12 +44,6 @@ using VSErrorHandler = Microsoft.VisualStudio.ErrorHandler;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
 {
-    internal enum VisualStudioProjectSystem
-    {
-        WindowsApplication = 0,
-        WebApplication = 1,
-        Website = 2
-    }
 
     // <summary>
     //     Helper class to work with the VS DTE
@@ -2323,4 +2317,5 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
             return current;
         }
     }
+
 }

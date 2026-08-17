@@ -13,12 +13,12 @@ using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetai
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails.Columns
 {
+
     internal class PropertyColumn : BaseColumn
     {
         public PropertyColumn()
@@ -348,49 +348,4 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
         }
     }
 
-    internal class PropertyColumnConverter : BaseColumnConverter<PropertyColumn>
-    {
-        protected override void PopulateMapping(ITypeDescriptorContext context)
-        {
-            if (context != null)
-            {
-                _context = context;
-            }
-
-            Debug.Assert(_context != null, "Should have a context for the PopulateMapping call.");
-
-            PopulateMappingForSelectedObject(_context.PropertyDescriptor as PropertyColumn);
-        }
-
-        protected override void PopulateMappingForSelectedObject(PropertyColumn selectedObject)
-        {
-            Debug.Assert(selectedObject != null, "selectedObject should not be null");
-
-            if (selectedObject != null
-                && selectedObject.Element != null)
-            {
-                if (selectedObject.Element is MappingAssociationSet
-                    || selectedObject.Element is MappingFunctionImport)
-                {
-                    var lov = selectedObject.Element.GetListOfValues(ListOfValuesCollection.FirstColumn);
-                    foreach (var key in lov.Keys)
-                    {
-                        AddMapping(key, lov[key]);
-                    }
-                    return;
-                }
-
-                if (selectedObject.Element is MappingFunctionScalarProperty
-                    || selectedObject.Element is MappingResultBinding)
-                {
-                    var lov = selectedObject.Element.GetListOfValues(ListOfValuesCollection.ThirdColumn);
-                    foreach (var key in lov.Keys)
-                    {
-                        AddMapping(key, lov[key]);
-                    }
-                    return;
-                }
-            }
-        }
-    }
 }

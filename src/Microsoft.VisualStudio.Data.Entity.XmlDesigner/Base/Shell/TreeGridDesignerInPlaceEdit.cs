@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Security;
 using System.Security.Permissions;
 using System.Windows.Forms;
-using Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 

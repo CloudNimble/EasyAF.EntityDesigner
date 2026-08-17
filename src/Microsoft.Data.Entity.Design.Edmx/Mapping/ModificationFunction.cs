@@ -11,14 +11,6 @@ using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 
 namespace Microsoft.Data.Entity.Design.Edmx.Mapping
 {
-    internal enum ModificationFunctionType
-    {
-        None,
-        Delete,
-        Insert,
-        Update
-    }
-
     /// <summary>
     ///     Common base type of the DeleteFunction, InsertFunction and UpdateFunction elements
     /// </summary>

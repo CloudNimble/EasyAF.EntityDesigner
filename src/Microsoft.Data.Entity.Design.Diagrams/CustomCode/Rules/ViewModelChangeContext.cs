@@ -49,24 +49,4 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Rules
             get { return _modelChanges; }
         }
     }
-
-    internal abstract class CommonViewModelChange
-    {
-        /// <summary>
-        ///     Changes will be invoked in order of priority (less number means it will be invoked sooner)
-        ///     This property MUST be immutable since changes are sorted based on this
-        /// </summary>
-        internal virtual int InvokeOrderPriority
-        {
-            get { return 1000; }
-        }
-    }
-
-    internal class ViewModelChangeComparer : IComparer<CommonViewModelChange>
-    {
-        public int Compare(CommonViewModelChange x, CommonViewModelChange y)
-        {
-            return x.InvokeOrderPriority < y.InvokeOrderPriority ? -1 : 1;
-        }
-    }
 }

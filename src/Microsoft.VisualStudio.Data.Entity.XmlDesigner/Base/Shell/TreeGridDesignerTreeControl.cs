@@ -9,7 +9,7 @@ using System.Diagnostics;
 using System.Drawing.Design;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
-using Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider;
@@ -20,6 +20,7 @@ using Microsoft.VisualStudio.Shell.Interop;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
 {
+
     /// <summary>
     ///     Class derived from VirtualTreeControl containing TreeGrid designer-specific code
     ///     such as special key bindings
@@ -1218,39 +1219,4 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
         #endregion
     }
 
-    internal enum KeyAction
-    {
-        Handle,
-        Discard,
-        Process
-    }
-
-    internal enum NavigationDirection
-    {
-        Up,
-        Down,
-        Left,
-        Right
-    }
-
-    /// <summary>
-    ///     Enum returned from TreeGridDesignerTreeControl.ProcessKeyDown and TreeGridDesignerTreeControl.ProcessKeyPress.
-    /// </summary>
-    internal enum ProcessKeyReturn
-    {
-        /// <summary>
-        ///     Branch indicated it did not want to handle the key.
-        /// </summary>
-        NotHandled = 0,
-
-        /// <summary>
-        ///     Branch indicated it wanted the key, but no action occurred as a result of handling.
-        /// </summary>
-        KeyHandledNoAction = 1,
-
-        /// <summary>
-        ///     Branch indicated it wanted the key, and an action occurred as a result of handling.
-        /// </summary>
-        KeyHandledActionOccurred = 2
-    }
 }

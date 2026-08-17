@@ -7,12 +7,12 @@ using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetai
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails.Columns
 {
+
     // <summary>
     //     Based on the type of item being shown, show the correct text for the Value column.
     // </summary>
@@ -253,52 +253,4 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetail
         }
     }
 
-    internal class ValueColumnConverter : BaseColumnConverter<ValueColumn>
-    {
-        protected override void PopulateMapping(ITypeDescriptorContext context)
-        {
-            if (context != null)
-            {
-                _context = context;
-            }
-
-            Debug.Assert(_context != null, "Should have a context for the PopulateMapping call.");
-
-            PopulateMappingForSelectedObject(_context.PropertyDescriptor as ValueColumn);
-        }
-
-        protected override void PopulateMappingForSelectedObject(ValueColumn selectedObject)
-        {
-            Debug.Assert(selectedObject != null, "selectedObject should not be null");
-
-            if (selectedObject != null
-                && selectedObject.Element != null)
-            {
-                if (selectedObject.Element is MappingCondition
-                    || selectedObject.Element is MappingScalarProperty)
-                {
-                    var lov = selectedObject.Element.GetListOfValues(ListOfValuesCollection.ThirdColumn);
-                    foreach (var key in lov.Keys)
-                    {
-                        AddMapping(key, lov[key]);
-                    }
-                    return;
-                }
-            }
-        }
-    }
-
-    // <summary>
-    //     Used to override conversion for the case where the ValueColumn is representing
-    //     the value for a MappingCondition with Operation '='
-    // </summary>
-    internal class EqualsConditionValueColumnConverter : ValueColumnConverter
-    {
-        // needs to return false so as to provide ordinary Textbox for editing
-        // see TreeGridDesignerTreeControl.CreateTypeEditorHost()
-        public override bool /* TypeConverter */ GetStandardValuesSupported(ITypeDescriptorContext context)
-        {
-            return false;
-        }
-    }
 }

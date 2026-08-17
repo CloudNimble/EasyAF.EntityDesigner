@@ -4,9 +4,6 @@ using System;
 
 namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Commands
 {
-    // Event handler that knows about CommandProcessorContext
-    internal delegate void CommandEventHandler(object sender, CommandEventArgs args);
-
     internal class CommandEventArgs : EventArgs
     {
         internal CommandEventArgs(CommandProcessorContext cpc)

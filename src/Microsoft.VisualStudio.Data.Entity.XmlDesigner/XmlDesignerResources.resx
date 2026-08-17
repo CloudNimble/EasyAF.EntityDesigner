@@ -240,9 +240,6 @@ Current Selection in Search Results = {4}</value>
   <data name="RenameTransactionNameFormat" xml:space="preserve">
     <value>Rename {0}</value>
   </data>
-  <data name="SwitchConverterErrorMessage" xml:space="preserve">
-    <value>{0} is OneWay</value>
-  </data>
   <data name="Tx_PropertyChangeUndoString" xml:space="preserve">
     <value>Set {0}</value>
   </data>
