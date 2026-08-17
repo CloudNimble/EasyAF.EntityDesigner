@@ -82,7 +82,7 @@ foreach (var file in files)
 
 (string, string) Destination(string project, string rel, string name, bool generated)
 {
-    if (project == "Microsoft.Data.Entity.Design.Model" && collisions.Contains(name))
+    if (project == "Microsoft.Data.Entity.Design.Edmx" && collisions.Contains(name))
         return ("Edmx" + name, "collides with Diagrams");
 
     if (name.StartsWith("MicrosoftDataEntityDesign", StringComparison.Ordinal))

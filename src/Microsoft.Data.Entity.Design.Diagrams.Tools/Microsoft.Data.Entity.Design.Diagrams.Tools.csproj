@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+    <!-- Clears the net48 default from Directory.Build.props so TargetFrameworks below applies. -->
+    <TargetFramework></TargetFramework>
+    <!-- net10.0-windows, not net10.0: the renderer sits on the WinForms/WPF based Modeling SDK assemblies. -->
+    <TargetFrameworks>net48;net10.0-windows</TargetFrameworks>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <RuntimeIdentifier></RuntimeIdentifier>
+    <!-- Directory.Build.props flattens output, which collides when multi-targeting. -->
+    <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
+        <RootNamespace>Microsoft.Data.Entity.Design.Diagrams.Tools</RootNamespace>
+        <AssemblyName>Microsoft.Data.Entity.Design.Diagrams.Tools</AssemblyName>
+        <OutputType>Exe</OutputType>
+        <!-- The Modeling SDK's GraphObject layout engine has an x64 native dependency. Without this the net48 exe
+             defaults to AnyCPU with Prefer32Bit, launches 32 bit, and fails to load it with a BadImageFormatException. -->
+        <PlatformTarget>x64</PlatformTarget>
+        <NoWarn>$(NoWarn);CA1822;NU1701;NU1608;</NoWarn>
+        <!-- Assembly properties -->
+        <Title>Microsoft.Data.Entity.Design.Diagrams.Tools</Title>
+        <Description>Command line tool for rendering EDMX diagrams without Visual Studio.</Description>
+        <CLSCompliant>false</CLSCompliant>
+
+        <!-- Shipped identity. The assembly keeps the Microsoft.Data.Entity root like every other project here;
+             only the package and command names are ours, because Microsoft.* package ids cannot be published.
+             `dotnet edmx` is deliberately not `dotnet easyaf edmx` - they are separate tools. -->
+        <PackageId>EasyAF.Edmx.DiagramTools</PackageId>
+        <PackAsTool>true</PackAsTool>
+        <ToolCommandName>dotnet-edmx</ToolCommandName>
+    </PropertyGroup>
+
+    <!-- NOTE: PackAsTool does not support multiple target frameworks - `dotnet pack` fails with NETSDK1146 while
+         TargetFrameworks lists both. Building is unaffected. Before this packs, pick one: either drop net48 here
+         and ship the net10.0-windows tool only, or keep both targets and pack from a separate single-target
+         project. The tool is Windows-only either way, because the Modeling SDK underneath the renderer is. -->
+
+    <ItemGroup>
+        <PackageReference Include="McMaster.Extensions.Hosting.CommandLine" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" />
+        <PackageReference Include="Microsoft.Extensions.Logging" />
+        <PackageReference Include="Svg.Skia" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Microsoft.Data.Entity.Design.Diagrams.Rendering\Microsoft.Data.Entity.Design.Diagrams.Rendering.csproj" />
+    </ItemGroup>
+
+</Project>

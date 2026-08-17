@@ -1,0 +1,58 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <!-- Clears the net48 default from Directory.Build.props so TargetFrameworks below applies. -->
+        <TargetFramework></TargetFramework>
+        <TargetFrameworks>net48;netstandard2.1;net10.0</TargetFrameworks>
+        <RuntimeIdentifier></RuntimeIdentifier>
+        <!-- Directory.Build.props flattens output, which collides when multi-targeting. -->
+        <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
+        <RootNamespace>Microsoft.Data.Entity.Design.Edmx</RootNamespace>
+        <AssemblyName>Microsoft.Data.Entity.Design.Edmx</AssemblyName>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Microsoft.Data.Entity.Design.EntityFramework\Microsoft.Data.Entity.Design.EntityFramework.csproj" />
+        <ProjectReference Include="..\Microsoft.Data.Entity.Design.XmlEngine\Microsoft.Data.Entity.Design.XmlEngine.csproj" />
+    </ItemGroup>
+
+    <!-- InternalsVisibleTo for projects that need access to internal types -->
+    <ItemGroup>
+        <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.EdmxDesigner, $(StrongNamePublicKey)" />
+        <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.Package, $(StrongNamePublicKey)" />
+        <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Diagrams, $(StrongNamePublicKey)" />
+        <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Diagrams.Rendering, $(StrongNamePublicKey)" />
+        <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering, $(StrongNamePublicKey)" />
+        <!-- Test projects -->
+        <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design, $(StrongNamePublicKey)" />
+        <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.Diagrams, $(StrongNamePublicKey)" />
+        <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.Edmx, $(StrongNamePublicKey)" />
+        <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.Tests.Package, $(StrongNamePublicKey)" />
+        <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.Tests.XmlDesigner, $(StrongNamePublicKey)" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="Resources.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Resources.resx</DependentUpon>
+        </Compile>
+
+        <None Include="Designer\EntityDesignerDiagramConstant.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>EntityDesignerDiagramConstant.cs</LastGenOutput>
+        </None>
+
+        <EmbeddedResource Include="Microsoft.Data.Entity.Design.Edmx_3.xsd" />
+        <EmbeddedResource Update="Resources.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+    </ItemGroup>
+
+    <Target Name="AfterBuild">
+        <Copy SourceFiles="Microsoft.Data.Entity.Design.Edmx_3.xsd" DestinationFolder="$(OutputPath)EntityDesigner\Schemas" />
+    </Target>
+
+</Project>

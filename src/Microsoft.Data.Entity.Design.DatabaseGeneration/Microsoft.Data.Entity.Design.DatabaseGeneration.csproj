@@ -13,7 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Microsoft.Data.Entity.Design.VersioningFacade\Microsoft.Data.Entity.Design.VersioningFacade.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.EntityFramework\Microsoft.Data.Entity.Design.EntityFramework.csproj" />
     <ProjectReference Include="..\Microsoft.Data.Entity.Design.XmlEngine\Microsoft.Data.Entity.Design.XmlEngine.csproj" />
   </ItemGroup>
 
@@ -27,7 +27,7 @@
   <!-- InternalsVisibleTo for other projects that need access to internals -->
   <ItemGroup>
     <!-- Primary projects that depend on this assembly -->
-    <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.Design, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.EdmxDesigner, $(StrongNamePublicKey)" />
     <!-- Legacy test projects -->
     <InternalsVisibleTo Include="EFDesigner.InProcTests, $(StrongNamePublicKey)" />
     <!-- Modern test projects -->

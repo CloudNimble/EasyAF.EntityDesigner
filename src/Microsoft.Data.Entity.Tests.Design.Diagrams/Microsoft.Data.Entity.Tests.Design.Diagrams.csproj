@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Builds a DSL Store, which is not safe to use concurrently. See Directory.Build.props. -->
+    <UsesDslStore>true</UsesDslStore>
+    <RootNamespace>Microsoft.Data.Entity.Tests.Design.Diagrams</RootNamespace>
+    <AssemblyName>Microsoft.Data.Entity.Tests.Design.Diagrams</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk" />
+    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.Diagrams\Microsoft.Data.Entity.Design.Diagrams.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.Edmx\Microsoft.Data.Entity.Design.Edmx.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.EntityFramework\Microsoft.Data.Entity.Design.EntityFramework.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.XmlEngine\Microsoft.Data.Entity.Design.XmlEngine.csproj" />
+    <ProjectReference Include="..\Microsoft.VisualStudio.Data.Entity.EdmxDesigner\Microsoft.VisualStudio.Data.Entity.EdmxDesigner.csproj" />
+    <ProjectReference Include="..\Microsoft.VisualStudio.Data.Entity.XmlDesigner\Microsoft.VisualStudio.Data.Entity.XmlDesigner.csproj" />
+  </ItemGroup>
+
+</Project>

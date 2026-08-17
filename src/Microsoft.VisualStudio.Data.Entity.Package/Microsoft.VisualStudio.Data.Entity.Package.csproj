@@ -1,0 +1,327 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <!-- VSSDK path for targets import -->
+        <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+        <!-- Opt out of Central Package Management - VSSDK manages its own package versions -->
+        <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+        <TargetFramework>net48</TargetFramework>
+        <!-- .NET SDK 10+ requires this for non-string resources (images, icons, etc.) -->
+        <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+        <!-- Disable auto-inclusion of embedded resources to avoid duplicates -->
+        <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+        <RootNamespace>Microsoft.VisualStudio.Data.Entity.Package</RootNamespace>
+        <AssemblyName>Microsoft.VisualStudio.Data.Entity.Package</AssemblyName>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <ApplicationIcon>Resources\File.ico</ApplicationIcon>
+        <UseWPF>true</UseWPF>
+        <UseWindowsForms>true</UseWindowsForms>
+        <CLSCompliant>true</CLSCompliant>
+
+        <!-- VSIX settings -->
+        <CreateVsixContainer>true</CreateVsixContainer>
+        <TargetVsixContainerName>EasyAF.EntityDesigner.vsix</TargetVsixContainerName>
+        <DeployExtension>true</DeployExtension>
+        <!-- Template output directory for VSSDK - use absolute path since IntermediateOutputPath isn't set yet -->
+        <TemplateOutputDirectory>$(MSBuildProjectDirectory)\obj\$(Configuration)\</TemplateOutputDirectory>
+        <!-- Disable auto-generation - use manual pkgdef (auto-gen fails due to assembly loading issues) -->
+        <GeneratePkgDefFile>false</GeneratePkgDefFile>
+        <UseCodebase>true</UseCodebase>
+        <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
+        <IncludeDebugSymbolsInVSIXContainer>false</IncludeDebugSymbolsInVSIXContainer>
+        <IncludeDebugSymbolsInLocalVSIXDeployment>true</IncludeDebugSymbolsInLocalVSIXDeployment>
+        <CopyBuildOutputToOutputDirectory>true</CopyBuildOutputToOutputDirectory>
+        <CopyOutputSymbolsToOutputDirectory>true</CopyOutputSymbolsToOutputDirectory>
+
+        <!-- Warnings -->
+        <NoWarn>$(NoWarn);VSTHRD010;VSSDK006;VSTHRD001;1591;1573;1572;1570;1711;1712;1587;1584;1571;1589</NoWarn>
+        <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+
+        <!-- Debugging -->
+        <StartAction>Program</StartAction>
+        <StartProgram Condition="'$(DevEnvDir)' != ''">$(DevEnvDir)devenv.exe</StartProgram>
+        <StartArguments>/rootsuffix Exp /log</StartArguments>
+    </PropertyGroup>
+
+    <!-- Framework References -->
+    <ItemGroup>
+        <Reference Include="Accessibility" />
+        <Reference Include="PresentationCore" />
+        <Reference Include="PresentationFramework" />
+        <Reference Include="ReachFramework" />
+        <Reference Include="System.ComponentModel.Composition" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Design" />
+        <Reference Include="System.Drawing" />
+        <!-- GeneratedCode\Package.cs uses ToolboxItemContainer to pack a tool into the clipboard formats
+             Visual Studio drags toolbox items on. See specs/layer-map.md. -->
+        <Reference Include="System.Drawing.Design" />
+        <Reference Include="System.Printing" />
+        <Reference Include="System.Windows.Forms" />
+        <Reference Include="System.Xaml" />
+        <Reference Include="System.Xml" />
+        <Reference Include="System.Xml.Linq" />
+        <Reference Include="UIAutomationProvider" />
+        <Reference Include="UIAutomationTypes" />
+        <Reference Include="WindowsBase" />
+        <Reference Include="WindowsFormsIntegration" />
+    </ItemGroup>
+
+    <!-- Package References -->
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Internal.VisualStudio.Interop" Version="17.10.39524" />
+        <PackageReference Include="Microsoft.VisualStudio.ComponentModelHost" Version="17.10.191" />
+        <PackageReference Include="Microsoft.VisualStudio.DataDesign.Interfaces" Version="17.10.40130" />
+        <PackageReference Include="Microsoft.VisualStudio.Interop" Version="17.10.40130" />
+        <!-- VS Modeling SDK - don't copy to output, VS provides these -->
+        <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk" Version="17.10.40171" ExcludeAssets="runtime" />
+        <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams" Version="17.10.40171" ExcludeAssets="runtime" />
+        <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams.GraphObject" Version="17.10.40171" ExcludeAssets="runtime" />
+        <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Shell" Version="17.10.40171" ExcludeAssets="runtime" />
+        <PackageReference Include="Microsoft.VisualStudio.Package.LanguageService.15.0" Version="17.10.40119" />
+        <PackageReference Include="Microsoft.VisualStudio.Shell.15.0" Version="17.10.40130" />
+        <PackageReference Include="Microsoft.VisualStudio.Shell.Design" Version="17.10.40119" />
+        <PackageReference Include="Microsoft.VisualStudio.TemplateWizardInterface" Version="17.10.39524" />
+        <PackageReference Include="Microsoft.VisualStudio.TextTemplating.Interfaces" Version="17.10.40130" />
+        <PackageReference Include="Microsoft.VisualStudio.TextTemplating.VSHost" Version="17.10.40125" />
+        <PackageReference Include="Microsoft.VisualStudio.Utilities" Version="17.10.40130" />
+        <PackageReference Include="Microsoft.VSDesigner" Version="17.10.40133" />
+        <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.14.2120" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.XmlEditor" Version="17.10.40088" />
+        <PackageReference Include="Nerdbank.Streams" Version="2.11.79" />
+        <!--<PackageReference Include="System.Resources.Extensions" Version="9.0.0" />-->
+        <PackageReference Include="VsWebSite.Interop" Version="17.10.40086" />
+        <PackageReference Update="Microsoft.SourceLink.GitHub" Version="8.0.0" />
+    </ItemGroup>
+
+    <!-- Project References - include outputs in VSIX -->
+    <ItemGroup>
+        <ProjectReference Include="..\Microsoft.Data.Entity.Design.Diagrams\Microsoft.Data.Entity.Design.Diagrams.csproj">
+            <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
+        </ProjectReference>
+        <ProjectReference Include="..\Microsoft.VisualStudio.Data.Entity.Extensibility\Microsoft.VisualStudio.Data.Entity.Extensibility.csproj">
+            <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
+        </ProjectReference>
+        <ProjectReference Include="..\Microsoft.Data.Entity.Design.Edmx\Microsoft.Data.Entity.Design.Edmx.csproj">
+            <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
+        </ProjectReference>
+        <ProjectReference Include="..\Microsoft.Data.Entity.Design.Diagrams.Rendering\Microsoft.Data.Entity.Design.Diagrams.Rendering.csproj">
+            <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
+        </ProjectReference>
+        <ProjectReference Include="..\Microsoft.Data.Entity.Design.XmlEngine\Microsoft.Data.Entity.Design.XmlEngine.csproj">
+            <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
+        </ProjectReference>
+        <ProjectReference Include="..\Microsoft.VisualStudio.Data.Entity.EdmxDesigner\Microsoft.VisualStudio.Data.Entity.EdmxDesigner.csproj">
+            <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
+        </ProjectReference>
+        <ProjectReference Include="..\Microsoft.VisualStudio.Data.Entity.XmlDesigner\Microsoft.VisualStudio.Data.Entity.XmlDesigner.csproj">
+            <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
+        </ProjectReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="EasyAF.EntityDesigner.Northwind1.png" />
+      <None Remove="LICENSE.txt" />
+      <None Remove="merged.source.extension.vsixmanifest" />
+      <None Remove="**\*.vsix" />
+    </ItemGroup>
+
+    <!-- InternalsVisibleTo for test projects -->
+    <ItemGroup>
+        <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.Tests.Package, $(StrongNamePublicKey)" />
+    </ItemGroup>
+
+    <!-- Copy manual pkgdef to intermediate output and include in VSIX -->
+    <Target Name="CopyPkgDefToIntermediate" BeforeTargets="GetVsixSourceItems;CreateVsixContainer" AfterTargets="Build">
+        <PropertyGroup>
+            <PkgDefSourceFile>$(MSBuildProjectDirectory)\PkgDefData\Microsoft.VisualStudio.Data.Entity.Package.pkgdef</PkgDefSourceFile>
+            <PkgDefIntermediateFile>$(MSBuildProjectDirectory)\obj\$(Configuration)\$(AssemblyName).pkgdef</PkgDefIntermediateFile>
+        </PropertyGroup>
+        <WriteLinesToFile File="$(PkgDefIntermediateFile)" Lines="$([System.IO.File]::ReadAllText('$(PkgDefSourceFile)').Replace('EFDESIGNERVERSIONTOKEN','$(Version)'))" Overwrite="true" />
+        <!-- Add pkgdef to VSIX -->
+        <ItemGroup>
+            <VSIXSourceItem Include="$(PkgDefIntermediateFile)">
+                <VSIXSubPath></VSIXSubPath>
+            </VSIXSourceItem>
+        </ItemGroup>
+    </Target>
+
+    <!-- Include project reference outputs in VSIX -->
+    <Target Name="IncludeProjectReferencesInVSIX" BeforeTargets="GetVsixSourceItems">
+        <ItemGroup>
+            <VSIXSourceItem Include="..\Microsoft.VisualStudio.Data.Entity.EdmxDesigner\bin\$(Configuration)\Microsoft.VisualStudio.Data.Entity.EdmxDesigner.dll">
+                <VSIXSubPath></VSIXSubPath>
+            </VSIXSourceItem>
+            <!-- Model multi-targets, so its output is under a framework subfolder rather than at this flat path.
+                 Commented out to let the ProjectReference's BuiltProjectOutputGroup resolve the right one. -->
+            <!--<VSIXSourceItem Include="..\Microsoft.Data.Entity.Design.Edmx\bin\$(Configuration)\Microsoft.Data.Entity.Design.Edmx.dll">
+                <VSIXSubPath></VSIXSubPath>
+            </VSIXSourceItem>-->
+            <VSIXSourceItem Include="..\Microsoft.Data.Entity.Design.Diagrams\bin\$(Configuration)\Microsoft.Data.Entity.Design.Diagrams.dll">
+                <VSIXSubPath></VSIXSubPath>
+            </VSIXSourceItem>
+            <!-- Extensibility multi-targets, so its output is under a framework subfolder rather than at this flat
+                 path. Commented out to let the ProjectReference's BuiltProjectOutputGroup resolve the right one. -->
+            <!--<VSIXSourceItem Include="..\Microsoft.VisualStudio.Data.Entity.Extensibility\bin\$(Configuration)\Microsoft.VisualStudio.Data.Entity.Extensibility.dll">
+                <VSIXSubPath></VSIXSubPath>
+            </VSIXSourceItem>-->
+            <!-- VersioningFacade multi-targets, so its output is under a framework subfolder rather than at this flat
+                 path. Commented out to let the ProjectReference's BuiltProjectOutputGroup resolve the right one. -->
+            <!--<VSIXSourceItem Include="..\Microsoft.Data.Entity.Design.EntityFramework\bin\$(Configuration)\Microsoft.Data.Entity.Design.EntityFramework.dll">
+                <VSIXSubPath></VSIXSubPath>
+            </VSIXSourceItem>-->
+            <!-- XmlCore multi-targets, so its output is under a framework subfolder rather than at this flat path.
+                 Commented out to let the ProjectReference's BuiltProjectOutputGroup resolve the right one. -->
+            <!--<VSIXSourceItem Include="..\Microsoft.Data.Entity.Design.XmlEngine\bin\$(Configuration)\Microsoft.Data.Entity.Design.XmlEngine.dll">
+                <VSIXSubPath></VSIXSubPath>
+            </VSIXSourceItem>-->
+            <VSIXSourceItem Include="..\Microsoft.VisualStudio.Data.Entity.XmlDesigner\bin\$(Configuration)\Microsoft.VisualStudio.Data.Entity.XmlDesigner.dll">
+                <VSIXSubPath></VSIXSubPath>
+            </VSIXSourceItem>
+        </ItemGroup>
+    </Target>
+
+    <!-- VSCT Command Table -->
+    <ItemGroup>
+        <VSCTCompile Include="Commands.vsct">
+            <ResourceName>EntityDesigner.ctmenu</ResourceName>
+        </VSCTCompile>
+    </ItemGroup>
+
+    <!-- T4 Templates -->
+    <ItemGroup>
+        <None Update="GeneratedCode\CommandSet.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>CommandSet.cs</LastGenOutput>
+        </None>
+        <None Update="GeneratedCode\Constants.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>Constants.cs</LastGenOutput>
+        </None>
+        <None Update="GeneratedCode\DocData.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>DocData.cs</LastGenOutput>
+        </None>
+        <None Update="GeneratedCode\DocView.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>DocView.cs</LastGenOutput>
+        </None>
+        <None Update="GeneratedCode\EditorFactory.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>EditorFactory.cs</LastGenOutput>
+        </None>
+        <None Update="GeneratedCode\ModelExplorer.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>ModelExplorer.cs</LastGenOutput>
+        </None>
+        <None Update="GeneratedCode\ModelExplorerToolWindow.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>ModelExplorerToolWindow.cs</LastGenOutput>
+        </None>
+        <None Update="GeneratedCode\Package.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>Package.cs</LastGenOutput>
+        </None>
+        <!-- T4 template for VSCT is disabled - Commands.vsct contains all content manually maintained -->
+        <None Update="GeneratedCode\GeneratedVSCT.tt">
+            <Generator></Generator>
+            <LastGenOutput>GeneratedVSCT.vsct</LastGenOutput>
+        </None>
+    </ItemGroup>
+
+    <!-- Resources -->
+    <ItemGroup>
+        <!-- VSPackage.resx has non-string resources, so it uses preserialized format (SDK 10+) -->
+        <EmbeddedResource Include="VSPackage.resx">
+            <ManifestResourceName>Microsoft.VisualStudio.Data.Entity.Package.VSPackage</ManifestResourceName>
+            <Generator></Generator>
+        </EmbeddedResource>
+        <!-- VSPackageCTO.resx is strings-only for CTO merging (VSSDK can't read preserialized) -->
+        <EmbeddedResource Include="VSPackageCTO.resx">
+            <MergeWithCTO>true</MergeWithCTO>
+            <ManifestResourceName>Microsoft.VisualStudio.Data.Entity.Package.VSPackageCTO</ManifestResourceName>
+            <Generator></Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Resources.resx">
+            <ManifestResourceName>Microsoft.VisualStudio.Data.Entity.Package.Resources</ManifestResourceName>
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Resources\MappingDetailsBitmap.bmp" />
+        <EmbeddedResource Include="Resources\ModelBrowserBitmap.bmp" />
+    </ItemGroup>
+
+    <!-- Content files -->
+    <ItemGroup>
+        <Content Include="EasyAF.EntityDesigner.Northwind1.png">
+          <IncludeInVSIX>true</IncludeInVSIX>
+        </Content>
+        <Content Include="LICENSE.txt">
+          <IncludeInVSIX>true</IncludeInVSIX>
+        </Content>
+        <Content Include="Resources\mappingdetailscommandstrip.png" />
+        <Content Include="Resources\ViewBrowserMenu.png" />
+        <Content Include="Resources\ViewMappingDetailsMenu.png" />
+        <Content Include="Resources\__TemplateIcon.ico" />
+        <None Include="PkgDefData\Microsoft.VisualStudio.Data.Entity.Package.pkgdef" />
+    </ItemGroup>
+    <ItemGroup>
+      <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Update="GeneratedCode\CommandSet.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>CommandSet.tt</DependentUpon>
+      </Compile>
+      <Compile Update="GeneratedCode\Constants.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Constants.tt</DependentUpon>
+      </Compile>
+      <Compile Update="GeneratedCode\DocData.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>DocData.tt</DependentUpon>
+      </Compile>
+      <Compile Update="GeneratedCode\DocView.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>DocView.tt</DependentUpon>
+      </Compile>
+      <Compile Update="GeneratedCode\EditorFactory.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>EditorFactory.tt</DependentUpon>
+      </Compile>
+      <Compile Update="GeneratedCode\ModelExplorer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>ModelExplorer.tt</DependentUpon>
+      </Compile>
+      <Compile Update="GeneratedCode\ModelExplorerToolWindow.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>ModelExplorerToolWindow.tt</DependentUpon>
+      </Compile>
+      <Compile Update="GeneratedCode\Package.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Package.tt</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+
+    <!-- Define output paths before VSSDK import (VSSDK evaluates too early in SDK-style projects) -->
+    <PropertyGroup>
+        <IntermediateOutputPath Condition="'$(IntermediateOutputPath)' == ''">obj\$(Configuration)\</IntermediateOutputPath>
+        <OutDir Condition="'$(OutDir)' == ''">bin\$(Configuration)\</OutDir>
+    </PropertyGroup>
+
+    <!-- Import VSSDK targets for VSIX creation -->
+    <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
+
+    <!-- Ensure VSIX is created on every build -->
+    <Target Name="CreateVsixAfterBuild" AfterTargets="Build" DependsOnTargets="CreateVsixContainer" />
+
+</Project>

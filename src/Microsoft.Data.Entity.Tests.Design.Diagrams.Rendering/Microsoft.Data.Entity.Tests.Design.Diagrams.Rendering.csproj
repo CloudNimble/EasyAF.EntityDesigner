@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Builds a DSL Store, which is not safe to use concurrently. See Directory.Build.props. -->
+    <UsesDslStore>true</UsesDslStore>
+    <!-- Clears the net48 default from Directory.Build.props so TargetFrameworks below applies. -->
+    <TargetFramework></TargetFramework>
+    <!-- Must match the renderer: the Modeling SDK types under test are WinForms and WPF based, so a plain
+         net10.0 target cannot load System.Windows.Forms and every test that builds a Store fails. -->
+    <TargetFrameworks>net48;net10.0-windows</TargetFrameworks>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <RuntimeIdentifier></RuntimeIdentifier>
+    <!-- Directory.Build.props flattens output, which collides when multi-targeting. -->
+    <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
+    <RootNamespace>Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering</RootNamespace>
+    <AssemblyName>Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk" />
+    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.Diagrams\Microsoft.Data.Entity.Design.Diagrams.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.Edmx\Microsoft.Data.Entity.Design.Edmx.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.Diagrams.Rendering\Microsoft.Data.Entity.Design.Diagrams.Rendering.csproj" />
+  </ItemGroup>
+
+</Project>

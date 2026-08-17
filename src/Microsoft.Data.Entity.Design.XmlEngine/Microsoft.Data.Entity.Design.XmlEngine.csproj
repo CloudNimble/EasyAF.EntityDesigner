@@ -35,20 +35,20 @@
   <ItemGroup>
     <!-- Primary projects that depend on this assembly -->
     <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.DatabaseGeneration, $(StrongNamePublicKey)" />
-    <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.Design, $(StrongNamePublicKey)" />
-    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Package, $(StrongNamePublicKey)" />
-    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Dsl, $(StrongNamePublicKey)" />
-    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Renderer, $(StrongNamePublicKey)" />
-    <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.Renderer, $(StrongNamePublicKey)" />
-    <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Tools.Design.XmlCore, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.EdmxDesigner, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.Package, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Diagrams, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Diagrams.Rendering, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.XmlDesigner, $(StrongNamePublicKey)" />
     <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.DataSourceWizardExtension, $(StrongNamePublicKey)" />
-    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Model, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Edmx, $(StrongNamePublicKey)" />
     <!-- Test projects -->
     <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design, $(StrongNamePublicKey)" />
-    <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.Dsl, $(StrongNamePublicKey)" />
-    <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.Model, $(StrongNamePublicKey)" />
-    <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.Package, $(StrongNamePublicKey)" />
-    <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Tools.Tests.Design.XmlCore, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.Diagrams, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.Edmx, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.Tests.Package, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.Tests.XmlDesigner, $(StrongNamePublicKey)" />
     <!-- Legacy test projects -->
     <InternalsVisibleTo Include="EFDesigner.InProcTests, $(StrongNamePublicKey)" />
     <InternalsVisibleTo Include="EFDesigner.FunctionalTests, $(StrongNamePublicKey)" />

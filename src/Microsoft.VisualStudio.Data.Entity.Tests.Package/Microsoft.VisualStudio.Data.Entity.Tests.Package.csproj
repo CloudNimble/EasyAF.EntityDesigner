@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>Microsoft.Data.Entity.Tests.Design</RootNamespace>
-    <AssemblyName>Microsoft.Data.Entity.Tests.Design</AssemblyName>
+    <RootNamespace>Microsoft.VisualStudio.Data.Entity.Tests.Package</RootNamespace>
+    <AssemblyName>Microsoft.VisualStudio.Data.Entity.Tests.Package</AssemblyName>
     <NoWarn>$(NoWarn);VSTHRD010</NoWarn>
   </PropertyGroup>
 
@@ -33,30 +33,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Microsoft.VisualStudio.Data.Entity.Extensibility\Microsoft.VisualStudio.Data.Entity.Extensibility.csproj" />
-    <!-- Package excluded - incompatible with .NET SDK 10 resource serialization -->
-    <!-- <ProjectReference Include="..\Microsoft.VisualStudio.Data.Entity.Package\Microsoft.VisualStudio.Data.Entity.Package.csproj" /> -->
+    <ProjectReference Include="..\Microsoft.VisualStudio.Data.Entity.Package\Microsoft.VisualStudio.Data.Entity.Package.csproj" />
     <ProjectReference Include="..\Microsoft.Data.Entity.Design.EntityFramework\Microsoft.Data.Entity.Design.EntityFramework.csproj" />
-    <ProjectReference Include="..\Microsoft.Data.Entity.Tests.Shared\Microsoft.Data.Entity.Tests.Shared.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Tests.Design\Microsoft.Data.Entity.Tests.Design.csproj">
+      <!-- Reference for TestHelpers only -->
+      <PrivateAssets>all</PrivateAssets>
+    </ProjectReference>
     <ProjectReference Include="..\Microsoft.VisualStudio.Data.Entity.EdmxDesigner\Microsoft.VisualStudio.Data.Entity.EdmxDesigner.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <!-- Test projects that reference shared test helpers -->
-    <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.Diagrams, $(StrongNamePublicKey)" />
-    <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.Tests.Package, $(StrongNamePublicKey)" />
-  </ItemGroup>
-
-
-  <!-- Schema files for ConfigurationFileSchemaTests - copied to output root -->
-  <ItemGroup>
-    <None Include="TestData\EntityFrameworkConfig_6_1_4.xsd">
-      <Link>EntityFrameworkConfig_6_1_4.xsd</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <Content Include="TestData\EntityFrameworkCatalog.xml">
-      <Link>EntityFrameworkCatalog.xml</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
 </Project>
