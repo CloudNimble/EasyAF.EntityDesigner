@@ -107,10 +107,30 @@ is not "they ignored the runtime model" — it is "the runtime model answers *is
 
 ## Why there is no shared core
 
-The upstream tools repository is [dotnet/ef6tools](https://github.com/dotnet/ef6tools), separate from the
-runtime at [dotnet/ef6](https://github.com/dotnet/ef6). Its `src/` holds `Common`, `EFTools`, `Migrate`,
-`PowerTools` — and, revealingly, `EntityFramework/Core`. That last folder is where a shared core would be, and
-it contains exactly two files:
+Two teams, two wrong assumptions, no shared owner. This section says so plainly because the alternative —
+reading the result as a considered design — is how the same mistakes get preserved.
+
+**The runtime team modelled the build output and called it the model.** EDMX is a *design-time* artifact. At
+build time the designer extracts `.csdl`, `.ssdl` and `.msl` from it, and those extracted files are what the
+runtime consumes ([CSDL](https://learn.microsoft.com/en-us/ef/ef6/modeling/designer/advanced/edmx/csdl-spec),
+[SSDL](https://learn.microsoft.com/en-us/ef/ef6/modeling/designer/advanced/edmx/ssdl-spec),
+[MSL](https://learn.microsoft.com/en-us/ef/ef6/modeling/designer/advanced/edmx/msl-spec) specs). So the runtime
+metadata stack was designed against compiler *output*: already extracted, already valid, never edited. Freezing
+it with `SetReadOnly()` is coherent under that assumption. The mistake was that nobody modelled the source
+artifact developers actually edit, and the one model that existed was locked shut. `EdmxReader` arrived later
+and does not change this — it returns a frozen `DbCompiledModel` for execution.
+
+**A different team had to solve the editing problem from outside.** The designers live in
+[dotnet/ef6tools](https://github.com/dotnet/ef6tools), a separate repository from the runtime at
+[dotnet/ef6](https://github.com/dotnet/ef6), and it describes itself as "the codebase for the Entity Framework
+6 **and LINQ-To-SQL** designers". That is a Visual Studio designers codebase, not an Entity Framework one —
+which is also why `XmlCore` was written as a schema-agnostic substrate: it had more than one designer to serve.
+That team could not extend the runtime's model, because it was immutable, validity-gated and owned elsewhere.
+So they built a second complete model of the same three schemas.
+
+**Neither team owned the seam, so it was solved by copying.** `src/` in the tools repo holds `Common`,
+`EFTools`, `Migrate`, `PowerTools` — and `EntityFramework/Core`, which is exactly where a shared core would
+live. It contains two files:
 
 ```
 src/EntityFramework/Core/Mapping/MappingErrorCode.cs
@@ -130,23 +150,28 @@ Both are error-code enums copied verbatim from the runtime, keeping their origin
 // The Range 10,000-15,000 is reserved for tools
 ```
 
-That is the whole story. The runtime team **did** plan for the tools: they reserved an error-number range for
-them, and froze the numbering so both sides could hard-code it. But the enums carrying those numbers are
-`internal` to the runtime assembly, so the tools could not reference them — and rather than extract a shared
-assembly, the tools repository copies the two files and relies on the reserved range and the do-not-renumber
-rule to stay in sync.
+The runtime team knew the tools existed — they reserved a number range and froze the numbering. But the enums
+holding those numbers stayed `internal`, so the tools could not reference them. Rather than either side
+publishing a shared contract, the tools repository copies the two files and the two codebases stay in sync by
+convention and a comment. That is not a design; it is what teams do when neither owns the boundary and the
+release trains do not line up.
 
-So the question "why re-implement EDMX in both systems instead of sharing a core" has a concrete answer: **the
-only thing that genuinely needed sharing was error identity, and the intersection of the two systems is
-literally two enums.** Everything else diverges by requirement, not by accident — the runtime wants a
-validated, frozen, execution-oriented model; the tools want an editable, round-trippable, error-tolerant
-document plus a designer envelope the runtime does not model. A shared core would have had to be the
-intersection of those two, and the intersection is a numbering convention.
+**So the honest answer is that both models exist because the architecture is bad, in two distinct ways.** The
+runtime made the source artifact unrepresentable by modelling only its compiled form and sealing it. The tools
+team, working around that from another org, built a parallel stack with its own problems — a "generic"
+substrate with EDMX hard-coded into it, one namespace split across two assemblies at two layers, designer types
+sealed `internal` so its own extensibility point could never work. Each decision is locally explicable. The sum
+is two full implementations of one file format, maintained separately, coupled by two hand-copied enums.
 
-Both files are still here, unchanged, at
+Both copies are still here, unchanged, at
 `Microsoft.Data.Entity.Design.Model/Validation/RuntimeErrorCodes/{ErrorCode,MappingErrorCode}.cs`. They are the
-seam. If the runtime ever renumbers, the designer's error reporting silently mismaps, which is the cost of the
-copy and the reason for the do-not-change comment.
+only real seam, and they are load-bearing: if the runtime ever renumbers, the designer's error reporting
+silently mismaps. Nothing detects that.
+
+**What this means here.** We own the tools side only, so the runtime's assumption is a fact of life, not
+something to fix. What is ours to fix is the second layer of damage — and the standing instruction is to
+inherit none of it by default. Where the upstream structure is bad, say so and change it; do not reconstruct a
+rationale for it.
 
 ## Where the current code breaks its own rule
 
