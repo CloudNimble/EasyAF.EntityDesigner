@@ -19,6 +19,7 @@
          .NET Core, but the runtime still has to load the assembly that declares it. -->
     <PackageReference Include="System.Security.Permissions" />
   </ItemGroup>
+
   <ItemGroup>
     <EmbeddedResource Update="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -56,6 +57,7 @@
     <InternalsVisibleTo Include="EFDesigner.InProcTests, $(StrongNamePublicKey)" />
     <InternalsVisibleTo Include="EFDesigner.FunctionalTests, $(StrongNamePublicKey)" />
   </ItemGroup>
+
   <ItemGroup>
     <Compile Update="Common\CommonResource.Designer.cs">
       <DesignTime>True</DesignTime>
