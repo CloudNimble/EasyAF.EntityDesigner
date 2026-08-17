@@ -213,8 +213,16 @@
             <ManifestResourceName>Microsoft.VisualStudio.Data.Entity.Package.VSPackageCTO</ManifestResourceName>
             <Generator></Generator>
         </EmbeddedResource>
+        <!--
+            Must match the literal in PackageResources.Designer.cs. This pin survived the
+            Resources -> PackageResources rename still naming the old file, which threw
+            MissingManifestResourceException at runtime - a failure no build can catch.
+            Do not drop the element: name derivation does not work in this project (the VSSDK
+            resx pipeline yields an empty manifest name), which is why all three entries here
+            are pinned explicitly.
+        -->
         <EmbeddedResource Include="PackageResources.resx">
-            <ManifestResourceName>Microsoft.VisualStudio.Data.Entity.Package.Resources</ManifestResourceName>
+            <ManifestResourceName>Microsoft.VisualStudio.Data.Entity.Package.PackageResources</ManifestResourceName>
             <Generator>ResXFileCodeGenerator</Generator>
             <LastGenOutput>PackageResources.Designer.cs</LastGenOutput>
         </EmbeddedResource>
