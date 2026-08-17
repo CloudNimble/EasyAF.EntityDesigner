@@ -4,6 +4,11 @@ Why there are three things called "Model", what belongs in each, and why this co
 instead of using Entity Framework's own metadata classes. `layer-map.md` says which assembly may reference
 which; this says what the model stack *is*.
 
+Upstream is [dotnet/ef6tools](https://github.com/dotnet/ef6tools) — `src/EFTools/` there maps onto this
+repository's projects, with `XmlCore` and `DesignXmlCore` as the two halves described below. The runtime is a
+separate repository, [dotnet/ef6](https://github.com/dotnet/ef6). Claims about runtime internals in this
+document are checked against that repository, not against any local copy.
+
 ## The stack
 
 | Tier | Lives in | Is |
@@ -57,13 +62,22 @@ The obvious question is why `Microsoft.Data.Entity.Design.Model` exists when Ent
 `EdmItemCollection`, `StoreItemCollection`, `StorageMappingItemCollection` and `MetadataWorkspace` that parse
 exactly these schemas. Four reasons, each checkable against the source:
 
-**1. EDMX is a designer format; the runtime has no reader for it.** EDMX is an envelope. Alongside
-`<ConceptualModels>`, `<StorageModels>` and `<Mappings>` it carries `<Designer>`, `<Diagrams>`, `<Diagram>`,
-`<AssociationConnector>`, `<ConnectorPoint>`, `<DesignerProperty>`, `<DesignerInfoPropertySet>`, `<Connection>`
-and `<CopyToSSDL>` — shape positions, connector routing and designer settings that the runtime neither reads
-nor models. Entity Framework's only EDMX code is `EdmxWriter.WriteEdmx(DbContext, XmlWriter)`, a one-way
-debugging aid for Code First. There is no `EdmxReader`. The runtime consumes the three inner schemas; the
-envelope belongs to the tools.
+**1. The runtime reads EDMX only to execute it.** EDMX is an envelope. Alongside `<ConceptualModels>`,
+`<StorageModels>` and `<Mappings>` it carries `<Designer>`, `<Diagrams>`, `<Diagram>`, `<AssociationConnector>`,
+`<ConnectorPoint>`, `<DesignerProperty>`, `<DesignerInfoPropertySet>`, `<Connection>` and `<CopyToSSDL>` — shape
+positions, connector routing and designer settings.
+
+Entity Framework does have an `EdmxReader` (`src/EntityFramework/Infrastructure/EdmxReader.cs` in
+[dotnet/ef6](https://github.com/dotnet/ef6)), but its whole signature is the argument:
+
+```csharp
+public static DbCompiledModel Read(XmlReader reader, string defaultSchema)
+```
+
+It pulls the storage mapping item collection out of the document and returns a `DbCompiledModel` — a compiled,
+frozen artifact for running queries. The designer half of the envelope is not read, nothing is retained that
+would let the document be written back, and the result is not editable. Reading EDMX to execute it and reading
+EDMX to edit it are different problems, and the runtime solves only the first.
 
 **2. The runtime model is immutable.** `MetadataItem.SetReadOnly()` and `ReadOnlyMetadataCollection<T>` freeze
 the graph once it is built. That is correct for a metadata cache consulted on every query, and useless as the
@@ -90,6 +104,49 @@ to Entity Framework's metadata classes to validate. `Design.Model` touches `EdmI
 `Microsoft.Data.Entity.Design.VersioningFacade` wraps the same classes for version-specific work. So the answer
 is not "they ignored the runtime model" — it is "the runtime model answers *is this valid*, and cannot answer
 *what is in the file and how do I change it*."
+
+## Why there is no shared core
+
+The upstream tools repository is [dotnet/ef6tools](https://github.com/dotnet/ef6tools), separate from the
+runtime at [dotnet/ef6](https://github.com/dotnet/ef6). Its `src/` holds `Common`, `EFTools`, `Migrate`,
+`PowerTools` — and, revealingly, `EntityFramework/Core`. That last folder is where a shared core would be, and
+it contains exactly two files:
+
+```
+src/EntityFramework/Core/Mapping/MappingErrorCode.cs
+src/EntityFramework/Core/SchemaObjectModel/ErrorCode.cs
+```
+
+Both are error-code enums copied verbatim from the runtime, keeping their original
+`System.Data.Entity.Core.*` namespaces, and both are still `internal`. Both carry the same comment:
+
+```
+// error numbers end up being hard coded in test cases; they can be removed, but should not be changed.
+// reusing error numbers is probably OK, but not recommended.
+//
+// The acceptable range for this enum is
+// 0000 - 0999
+//
+// The Range 10,000-15,000 is reserved for tools
+```
+
+That is the whole story. The runtime team **did** plan for the tools: they reserved an error-number range for
+them, and froze the numbering so both sides could hard-code it. But the enums carrying those numbers are
+`internal` to the runtime assembly, so the tools could not reference them — and rather than extract a shared
+assembly, the tools repository copies the two files and relies on the reserved range and the do-not-renumber
+rule to stay in sync.
+
+So the question "why re-implement EDMX in both systems instead of sharing a core" has a concrete answer: **the
+only thing that genuinely needed sharing was error identity, and the intersection of the two systems is
+literally two enums.** Everything else diverges by requirement, not by accident — the runtime wants a
+validated, frozen, execution-oriented model; the tools want an editable, round-trippable, error-tolerant
+document plus a designer envelope the runtime does not model. A shared core would have had to be the
+intersection of those two, and the intersection is a numbering convention.
+
+Both files are still here, unchanged, at
+`Microsoft.Data.Entity.Design.Model/Validation/RuntimeErrorCodes/{ErrorCode,MappingErrorCode}.cs`. They are the
+seam. If the runtime ever renumbers, the designer's error reporting silently mismaps, which is the cost of the
+copy and the reason for the do-not-change comment.
 
 ## Where the current code breaks its own rule
 
