@@ -26,9 +26,10 @@ Each layer may reference only layers below it.
 | `Microsoft.Data.Tools.Design.XmlCore` | XML/model plumbing, `EFObject`, `EFArtifact`, `ModelManager`, `EditingContext` |
 | `Microsoft.Data.Entity.Design.VersioningFacade` | EDMX version handling |
 | `Microsoft.Data.Entity.Design.Model` | The EF model over XLinq: entities, associations, mappings, commands, `Model.Designer.Diagram` |
-| `Microsoft.Data.Entity.Design.Extensibility` | Extension contracts |
 
 Runs anywhere. A console app, a build task, a test.
+
+These three are exactly the contents of the solution's `/Core/` folder. That is not a coincidence and it is worth trusting: if an assembly is not in `/Core/`, it is not foundation, whatever its name suggests.
 
 ### 2. Designer — Modeling SDK, still no shell
 
@@ -63,8 +64,24 @@ These exist to prove layer 2 has no shell in it. When the renderer has to fork d
 | `Microsoft.VisualStudio.Data.Tools.Design.XmlCore` | VS-flavoured plumbing: `VSHelpers`, `DocumentFrameMgr`, `EditingContextManager` |
 | `Microsoft.VisualStudio.Data.Entity.Design` | All UI: dialogs, wizards, explorer, mapping details, `PackageManager`, `VsUtils`, `Services` |
 | `Microsoft.Data.Entity.Design.Package` | The VSIX: package, doc data, doc view, commands, request handlers |
+| `Microsoft.Data.Entity.Design.Extensibility` | Extension contracts handed to third-party authors: `ModelTransformExtensionContext` and friends |
 
 Everything that needs a shell belongs here, and only here.
+
+`Extensibility` reads like foundation and is not. Its contexts expose `EnvDTE.Project` and
+`EnvDTE.ProjectItem`, because the extensions implementing them run inside Visual Studio and need the
+project system — that is the point of the contract, not a leak in it. Nothing below the shell
+references the assembly: the consumers are the package, the VS UI assembly, and tests. No headless
+path goes near it, so the `EnvDTE` dependency costs the .NET 10 goal nothing.
+
+Two things make the misfiling easy, and both are worth remembering as tells:
+
+- `EnvDTE` is not under `Microsoft.VisualStudio.*`, so it does not show up in a namespace sweep for
+  shell types. Grepping the source said this assembly was clean. Deleting the package reference and
+  reading the compiler errors said otherwise. **Prefer the second method.**
+- The solution folders already had it right. `Extensibility` has always sat in `/Designer/`, never in
+  `/Core/`. When this document and the solution layout disagree, the solution layout is the one that
+  has been maintained by people.
 
 ## Moving code out of a lower layer
 
