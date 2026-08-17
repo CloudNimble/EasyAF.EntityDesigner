@@ -114,25 +114,37 @@ violates one-type-per-file, the destination name, and why.
 |---|---:|
 | Unchanged | 1,896 |
 | Unchanged, generated | 116 |
-| **TBD — driven by `DslDefinition.dsl` `Name`** | **41** |
+| Unchanged — `MicrosoftDataEntityDesign` prefix, see below | 41 |
 | **Decided — collides with `Diagrams`** | **10** |
-| **TBD — carries the retired `Escher` codename** | **5** |
+| **Deferred — carries the retired `Escher` codename** | **5** |
 | Non-generated files holding more than one top-level type | **92 files** |
 
-### The 41 nobody has mentioned yet
+`Escher` renames are deferred, not cancelled. One-type-per-file applies everywhere including
+`VirtualTreeGrid` — no folder is grandfathered.
 
-`DslDefinition.dsl` carries `Name="MicrosoftDataEntityDesign"`, and the DSL toolkit stamps that
-string onto 41 generated types — `MicrosoftDataEntityDesignDomainModel`, `…DocData`, `…DocView`,
-`…CommandSet`, `…ToolboxHelper`, `…SerializationHelper`, `…CopyClosure`, `…DeleteClosure` and the
-rest, across the Dsl, the Package and their tests.
+### The `MicrosoftDataEntityDesign` prefix — leave it alone
 
-They are not renameable by hand: they regenerate from that one attribute. So the `Name` value is a
-**container-level decision that belongs in step 2**, not step 5 — pick it when the Dsl becomes
-`Diagrams` and let the 41 follow. The `.dsl` also carries `Namespace="Microsoft.Data.Entity.Design.Dsl"`
-and `PackageNamespace="Microsoft.Data.Entity.Design.Package"`, both of which move with the containers.
+41 types carry it, 30 of them generated. It comes from `Name="MicrosoftDataEntityDesign"` on the
+`<Dsl>` element, via `string dslName = this.Dsl.Name;` in the SDK templates.
 
-Note `Name` is not `ElementName`. Changing `Name` is safe for the file format; changing `ElementName`
-is not.
+**It is not stale and it is not changing.** The value is `Microsoft.Data.Entity.Design` with the dots
+stripped — a squash of the *root* namespace, not a name anyone chose. Every Core project keeps that
+root, so the prefix stays accurate.
+
+Upstream proves the decoupling. `dotnet/ef6tools` has the same `Name="MicrosoftDataEntityDesign"` with
+`Namespace="Microsoft.Data.Entity.Design.EntityDesigner"`; this fork already moved the leaf to `.Dsl`
+and left `Name` untouched, with no build, test or round-trip consequence. The attribute has already
+survived the exact change we are about to make again.
+
+### Two `.dsl` attributes that *are* step 2
+
+| Attribute | Now | Becomes |
+|---|---|---|
+| `Namespace` | `Microsoft.Data.Entity.Design.Dsl` | `Microsoft.Data.Entity.Design.Diagrams` |
+| `PackageNamespace` | `Microsoft.Data.Entity.Design.Package` | `Microsoft.VisualStudio.Data.Entity.Package` |
+
+Both feed generated namespaces and move with their containers, so they change in the same commit as
+the corresponding `.csproj`. `Name` does not move, and neither does any `ElementName`.
 
 ### The 5 Escher types
 
