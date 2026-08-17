@@ -2,7 +2,7 @@
 
 using System;
 
-namespace Microsoft.Data.Entity.Design.Model.Validation
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Validation
 {
     [Flags]
     internal enum ErrorClass : uint

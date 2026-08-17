@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 
-namespace Microsoft.Data.Entity.Design.Model.Eventing
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing
 {
     /// <summary>
     ///     This represents the argument that will be sent to subscribers for the

@@ -1,21 +1,18 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design;
-using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Entity.Design.Base.Shell;
-using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Entity.Design.Model.Mapping;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails.Associations;
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails.Branches;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails.Columns;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Resources = Microsoft.VisualStudio.Data.Entity.Design.Resources;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails.Associations
 {

@@ -9,7 +9,6 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Entity.Design.Dsl.CustomSerializer;
 using Microsoft.Data.Entity.Design.Dsl.ModelChanges;
 using Microsoft.Data.Entity.Design.Dsl.Rules;
@@ -17,9 +16,12 @@ using Microsoft.Data.Entity.Design.Dsl.View;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
 
 namespace Microsoft.Data.Entity.Design.Dsl.ViewModel
 {

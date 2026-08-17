@@ -3,6 +3,7 @@
 using System;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;

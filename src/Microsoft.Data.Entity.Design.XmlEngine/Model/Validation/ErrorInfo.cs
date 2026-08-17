@@ -5,7 +5,7 @@ using System;
 using System.Diagnostics;
 using System.Globalization;
 
-namespace Microsoft.Data.Entity.Design.Model.Validation
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Validation
 {
     [DebuggerDisplay("{_errorClass.ToString()} | {_message}")]
     internal class ErrorInfo

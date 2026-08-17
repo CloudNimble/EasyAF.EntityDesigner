@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Entity.Design.Base.Shell;
 using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails.Branches;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails.Columns;
 using System.Diagnostics;

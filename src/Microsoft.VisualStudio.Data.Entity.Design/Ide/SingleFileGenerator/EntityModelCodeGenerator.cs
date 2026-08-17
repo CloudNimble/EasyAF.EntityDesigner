@@ -1,13 +1,9 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using EnvDTE;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Designer;
-using Microsoft.Data.Entity.Design.Model.Validation;
 using Microsoft.Data.Entity.Design.VersioningFacade;
 using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Tools.XmlDesignerBase.Base.Util;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -19,7 +15,9 @@ using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
-using Resources = Microsoft.VisualStudio.Data.Entity.Design.Resources;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
+using Microsoft.Data.Entity.Design.XmlEngine.Util;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.SingleFileGenerator
 {

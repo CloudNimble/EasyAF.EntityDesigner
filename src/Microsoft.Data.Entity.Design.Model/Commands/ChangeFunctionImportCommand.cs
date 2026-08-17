@@ -7,6 +7,8 @@ using System.Globalization;
 using System.Linq;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Mapping;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 
 namespace Microsoft.Data.Entity.Design.Model.Commands
 {

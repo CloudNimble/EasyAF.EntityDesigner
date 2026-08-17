@@ -4,7 +4,7 @@ using System;
 using System.Globalization;
 using Microsoft.Data.Tools.XmlDesignerBase;
 
-namespace Microsoft.Data.Entity.Design.Model.Commands
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Commands
 {
     internal class UpdateDefaultableValueCommand<T> : Command
     {

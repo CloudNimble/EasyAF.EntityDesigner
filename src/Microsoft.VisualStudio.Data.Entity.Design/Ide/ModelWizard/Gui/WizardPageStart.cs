@@ -1,9 +1,7 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.Common;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.VisualStudio.PlatformUI;
 using Microsoft.WizardFramework;
@@ -16,7 +14,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Resources = Microsoft.VisualStudio.Data.Entity.Design.Resources;
 using WizardResources = Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Properties.Resources;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui

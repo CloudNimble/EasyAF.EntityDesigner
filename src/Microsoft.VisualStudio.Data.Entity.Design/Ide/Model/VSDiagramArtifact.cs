@@ -2,7 +2,7 @@
 
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Tools.XmlDesignerBase.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;

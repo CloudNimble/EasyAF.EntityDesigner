@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 
-namespace Microsoft.Data.Entity.Design.Model.Eventing
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing
 {
     /// <summary>
     ///     This class is used to sort EfiChanges using stable sort algorithm (i.e. one that is preserving order of equal values)

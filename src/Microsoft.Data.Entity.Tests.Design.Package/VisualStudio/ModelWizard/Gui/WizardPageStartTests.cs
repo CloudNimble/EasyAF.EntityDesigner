@@ -2,7 +2,6 @@
 
 using System;
 using EnvDTE;
-using Microsoft.Data.Entity.Design.Common;
 using Microsoft.Data.Entity.Design.VersioningFacade;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui;
 using Moq;
@@ -18,6 +17,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Gui
 {

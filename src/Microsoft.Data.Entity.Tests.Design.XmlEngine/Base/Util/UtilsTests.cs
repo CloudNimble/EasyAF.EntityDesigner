@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using FluentAssertions;
-using Microsoft.Data.Tools.XmlDesignerBase.Base.Util;
+using Microsoft.Data.Entity.Design.XmlEngine.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Microsoft.Data.Tools.Tests.Design.XmlCore.Base.Util

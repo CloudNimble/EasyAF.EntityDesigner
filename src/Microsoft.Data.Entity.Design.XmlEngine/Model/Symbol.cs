@@ -4,7 +4,7 @@ using System;
 using System.Diagnostics;
 using System.Text;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model
 {
     /// <summary>
     ///     Represents a name consisting of parts.  A symbol uniquely identifies a normalizeable item in the model.

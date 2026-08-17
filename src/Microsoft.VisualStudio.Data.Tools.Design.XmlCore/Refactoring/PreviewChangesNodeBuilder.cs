@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using Microsoft.Data.Entity.Design.Common;
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Common;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Data.Tools.Design.XmlCore;

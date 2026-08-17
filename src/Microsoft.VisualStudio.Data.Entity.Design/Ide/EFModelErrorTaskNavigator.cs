@@ -3,19 +3,19 @@
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Mapping;
-using Microsoft.Data.Entity.Design.Model.XLinqAnnotations;
 using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
-using Microsoft.Data.Tools.XmlDesignerBase.Base.Util;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Explorer;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.Diagnostics;
 using System.IO;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.XLinqAnnotations;
+using Microsoft.Data.Entity.Design.XmlEngine.Util;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.Ide
 {

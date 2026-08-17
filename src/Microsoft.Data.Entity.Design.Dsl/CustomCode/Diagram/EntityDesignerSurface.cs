@@ -8,7 +8,6 @@ using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Entity.Design.Model.Mapping;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
@@ -29,6 +28,9 @@ using ViewModelNavigationProperty = Microsoft.Data.Entity.Design.Dsl.ViewModel.N
 using ViewModelProperty = Microsoft.Data.Entity.Design.Dsl.ViewModel.Property;
 using ViewModelPropertyBase = Microsoft.Data.Entity.Design.Dsl.ViewModel.PropertyBase;
 using Microsoft.Data.Entity.Design.Model.Designer;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 
 namespace Microsoft.Data.Entity.Design.Dsl.View
 {

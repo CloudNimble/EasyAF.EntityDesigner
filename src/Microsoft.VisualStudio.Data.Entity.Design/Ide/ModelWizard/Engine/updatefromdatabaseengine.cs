@@ -1,21 +1,16 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using EnvDTE;
-using Microsoft.Data.Entity.Design;
-using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Entity.Design.Extensibility;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Designer;
-using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
-using Microsoft.Data.Tools.XmlDesignerBase.Model.StandAlone;
 using Microsoft.VisualStudio.Data.Entity.Design.Extensibility;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Explorer;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui;
 using System;
 using System.Collections.Generic;
@@ -24,8 +19,12 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Xml.Linq;
-using Command = Microsoft.Data.Entity.Design.Model.Commands.Command;
-using Resources = Microsoft.VisualStudio.Data.Entity.Design.Resources;
+using Command = Microsoft.Data.Entity.Design.XmlEngine.Model.Commands.Command;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.StandAlone;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine
 {

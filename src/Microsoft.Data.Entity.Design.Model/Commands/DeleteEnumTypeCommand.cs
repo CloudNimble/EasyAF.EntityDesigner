@@ -2,6 +2,8 @@
 
 using System.Collections.Generic;
 using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 
 namespace Microsoft.Data.Entity.Design.Model.Commands
 {

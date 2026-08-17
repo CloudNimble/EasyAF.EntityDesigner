@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Microsoft.Data.Entity.Design.Common
+namespace Microsoft.Data.Entity.Design.XmlEngine.Common
 {
     /// <summary>
     ///     This is the dictionary to use if the key is a type.  This dictionary understands

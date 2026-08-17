@@ -3,7 +3,6 @@
 using System.Data.Entity.Infrastructure;
 using System.IO;
 using EnvDTE;
-using Microsoft.Data.Entity.Design.Model.Validation;
 using Microsoft.Data.Tools.XmlDesignerBase;
 using Microsoft.VisualStudio.Shell.Interop;
 using Moq;
@@ -22,6 +21,7 @@ using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard
 {

@@ -13,11 +13,13 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
-using Microsoft.Data.Entity.Design.Base.Context;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Entity.Design.UI.Commands;
-using Microsoft.Data.Entity.Design.UI.ViewModels.Explorer;
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
+using Microsoft.Data.Entity.Design.XmlEngine.UI;
+using Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.Explorer;
+using Microsoft.Data.Entity.Design.XmlEngine.UI.Views.Explorer;
 
 namespace Microsoft.Data.Entity.Design.UI.Views.Explorer
 {

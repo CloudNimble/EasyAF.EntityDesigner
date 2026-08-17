@@ -5,6 +5,7 @@ using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Designer;
 using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using EntityType = Microsoft.Data.Entity.Design.Model.Entity.EntityType;
 using InheritanceConnector = Microsoft.Data.Entity.Design.Dsl.View.InheritanceConnector;
 

@@ -2,9 +2,7 @@
 
 using Microsoft.Data.Entity.Design.DatabaseGeneration;
 using Microsoft.Data.Entity.Design.Model;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -20,7 +18,6 @@ using System.Security;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Resources = Microsoft.VisualStudio.Data.Entity.Design.Resources;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui
 {

@@ -6,6 +6,7 @@ using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Integrity;
 using Microsoft.Data.Entity.Design.Model.Mapping;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using XamlDesignerBaseResources = Microsoft.Data.Tools.XmlDesignerBase.Resources;
 
 namespace Microsoft.Data.Entity.Design.Model.Commands

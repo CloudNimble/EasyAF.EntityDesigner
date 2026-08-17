@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using EnvDTE;
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Designer;
 using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Common;
 using Microsoft.VisualStudio.Data.Core;
 using Microsoft.VisualStudio.DataTools.Interop;
@@ -26,7 +25,6 @@ using Constants = EnvDTE.Constants;
 // Before this file moved to the Microsoft.VisualStudio.* namespace, the unqualified name bound to the type in this
 // file's own namespace. Now both candidates arrive via using directives, so the intended one is named explicitly.
 using ModelChangeEventArgs = Microsoft.Data.Entity.Design.VisualStudio.Package.ModelChangeEventArgs;
-using Resources = Microsoft.VisualStudio.Data.Entity.Design.Resources;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.Package
 {

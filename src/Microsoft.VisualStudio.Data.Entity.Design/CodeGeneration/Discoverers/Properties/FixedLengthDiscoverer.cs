@@ -1,4 +1,3 @@
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
 using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration;
 using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration.Properties;
 using System.Data.Entity.Core.Metadata.Edm;

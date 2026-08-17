@@ -5,14 +5,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.Model.Eventing;
-using Microsoft.Data.Entity.Design.Model.Validation;
-using Microsoft.Data.Entity.Design.Model.Visitor;
-using Microsoft.Data.Entity.Design.Model.XLinqAnnotations;
-using Microsoft.Data.Tools.XmlDesignerBase.Model;
-using Microsoft.Data.Entity.Design.Common;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.XLinqAnnotations;
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model
 {
     internal abstract class EFArtifact : EFContainer
     {

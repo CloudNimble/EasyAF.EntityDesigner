@@ -3,8 +3,8 @@
 using EnvDTE;
 using Microsoft.Data.Entity.Design.Extensibility;
 using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Tools.XmlDesignerBase.Base.Util;
-using Microsoft.Data.Tools.XmlDesignerBase.Model.StandAlone;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.StandAlone;
+using Microsoft.Data.Entity.Design.XmlEngine.Util;
 using Microsoft.VisualStudio.Data.Entity.Design.Extensibility;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.VisualStudio.Shell.Interop;

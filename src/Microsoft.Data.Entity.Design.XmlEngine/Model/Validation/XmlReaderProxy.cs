@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Xml;
 using System.Xml.Schema;
 
-namespace Microsoft.Data.Entity.Design.Model.Validation
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Validation
 {
     internal class XmlReaderProxy : XmlReader, IXmlLineInfo
     {

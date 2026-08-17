@@ -11,8 +11,6 @@ using System.Globalization;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
-using Microsoft.Data.Tools.XmlDesignerBase.Base.Util;
-using Microsoft.Data.Entity.Design.Common;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Mapping;
 using Microsoft.Data.Entity.Design.VersioningFacade;
@@ -20,6 +18,10 @@ using NavigationProperty = Microsoft.Data.Entity.Design.Model.Entity.NavigationP
 using ReferentialConstraint = Microsoft.Data.Entity.Design.Model.Entity.ReferentialConstraint;
 using AssociationSetMapping = Microsoft.Data.Entity.Design.Model.Mapping.AssociationSetMapping;
 using ModificationFunctionMapping = Microsoft.Data.Entity.Design.Model.Mapping.ModificationFunctionMapping;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
+using Microsoft.Data.Entity.Design.XmlEngine.Util;
 
 namespace Microsoft.Data.Entity.Design.Model.Validation
 {

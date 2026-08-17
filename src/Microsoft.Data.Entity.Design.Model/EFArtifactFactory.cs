@@ -2,7 +2,7 @@
 
 using System;
 using System.Collections.Generic;
-using Microsoft.Data.Tools.XmlDesignerBase.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
 namespace Microsoft.Data.Entity.Design.Model
 {

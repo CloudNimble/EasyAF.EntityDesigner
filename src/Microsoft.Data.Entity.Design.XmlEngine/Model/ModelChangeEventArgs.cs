@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model
 {
     internal abstract class ModelChangeEventArgs : EventArgs
     {

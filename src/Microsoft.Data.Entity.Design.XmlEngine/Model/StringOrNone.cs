@@ -2,7 +2,7 @@
 
 using System;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model
 {
     /// <summary>
     ///     Class that represents a choice between a value indicating "not set" which will generally be

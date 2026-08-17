@@ -8,6 +8,8 @@ using System.Globalization;
 using System.Linq;
 using Microsoft.Data.Entity.Design.Model.Database;
 using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using ComplexType = Microsoft.Data.Entity.Design.Model.Entity.ComplexType;
 using XamlDesignerBaseResources = Microsoft.Data.Tools.XmlDesignerBase.Resources;
 

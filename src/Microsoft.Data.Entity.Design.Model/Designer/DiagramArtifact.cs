@@ -9,9 +9,10 @@ using System.Xml.Schema;
 using Microsoft.Data.Entity.Design.Model.Designer;
 using Microsoft.Data.Entity.Design.Model.Validation;
 using Microsoft.Data.Entity.Design.Model.Visitor;
-using Microsoft.Data.Entity.Design.Model.XLinqAnnotations;
 using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.Data.Tools.XmlDesignerBase.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.XLinqAnnotations;
 
 namespace Microsoft.Data.Entity.Design.Model
 {

@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using EnvDTE;
-using Microsoft.Data.Entity.Design;
-using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Entity.Design.Extensibility;
-using Microsoft.Data.Entity.Design.Model.Eventing;
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 using System;
 using System.Diagnostics;
 

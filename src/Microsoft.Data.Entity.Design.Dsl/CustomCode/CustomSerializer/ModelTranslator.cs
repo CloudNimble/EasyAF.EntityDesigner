@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using DslModeling = Microsoft.VisualStudio.Modeling;
-using Microsoft.Data.Entity.Design.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
 namespace Microsoft.Data.Tools.Dsl.ModelTranslator
 {

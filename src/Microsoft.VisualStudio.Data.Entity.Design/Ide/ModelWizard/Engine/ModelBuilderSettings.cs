@@ -6,7 +6,7 @@ using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Database;
 using Microsoft.Data.Entity.Design.VersioningFacade;
 using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using System;
 using System.Collections.Generic;

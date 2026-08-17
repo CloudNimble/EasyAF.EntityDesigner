@@ -5,9 +5,8 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Xml;
 using System.Xml.Linq;
-using Microsoft.Data.Tools.XmlDesignerBase.Model;
 
-namespace Microsoft.Data.Entity.Design.Model.Validation
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Validation
 {
     internal class XNodeReaderLineNumberService : XObjectLineNumberService, IXmlLineInfo
     {

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Mapping;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
 namespace Microsoft.Data.Entity.Design.Model
 {

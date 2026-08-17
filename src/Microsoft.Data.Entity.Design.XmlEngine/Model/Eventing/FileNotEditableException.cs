@@ -2,7 +2,7 @@
 
 using System;
 
-namespace Microsoft.Data.Entity.Design.Model.Eventing
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing
 {
     [Serializable]
     internal class FileNotEditableException : Exception

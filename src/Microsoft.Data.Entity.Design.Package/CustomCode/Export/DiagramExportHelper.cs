@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.IO;
 using Microsoft.Data.Entity.Design.Dsl.View;
 using Microsoft.Data.Entity.Design.Dsl.View.Export;
-using Microsoft.Data.Entity.Design.Model;
 
 namespace Microsoft.Data.Entity.Design.Package
 {

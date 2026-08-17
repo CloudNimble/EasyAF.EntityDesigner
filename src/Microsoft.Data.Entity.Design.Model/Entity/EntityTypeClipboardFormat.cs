@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using Microsoft.Data.Entity.Design.Model.Designer;
-using Microsoft.Data.Tools.XmlDesignerBase.Common.Diagnostics;
+using Microsoft.Data.Entity.Design.XmlEngine.Common.Diagnostics;
 
 namespace Microsoft.Data.Entity.Design.Model.Entity
 {

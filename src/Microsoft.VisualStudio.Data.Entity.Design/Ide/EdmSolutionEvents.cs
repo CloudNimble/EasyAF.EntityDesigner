@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Tools.XmlDesignerBase.Base.Util;
+using Microsoft.Data.Entity.Design.XmlEngine.Util;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.VisualStudio.Shell.Interop;

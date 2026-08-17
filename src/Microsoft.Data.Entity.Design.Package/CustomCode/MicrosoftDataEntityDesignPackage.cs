@@ -7,7 +7,6 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Windows.Threading;
-using Microsoft.Data.Entity.Design.Dsl.View;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model;
@@ -23,7 +22,7 @@ using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails;
 using Microsoft.Data.Entity.Design.Package.Theming;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
 namespace Microsoft.Data.Entity.Design.Package
 {

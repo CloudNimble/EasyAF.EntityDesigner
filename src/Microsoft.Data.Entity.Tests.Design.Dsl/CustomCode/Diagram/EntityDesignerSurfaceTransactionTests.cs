@@ -4,7 +4,7 @@ using System;
 using FluentAssertions;
 using Microsoft.Data.Entity.Design.Dsl;
 using Microsoft.Data.Entity.Design.Dsl.View;
-using Microsoft.Data.Entity.Design.Model.Eventing;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

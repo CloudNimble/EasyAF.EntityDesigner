@@ -3,7 +3,8 @@
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Converters;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Editors;
 using System;

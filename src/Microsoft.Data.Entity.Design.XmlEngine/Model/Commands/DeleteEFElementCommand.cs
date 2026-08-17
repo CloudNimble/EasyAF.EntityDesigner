@@ -2,9 +2,9 @@
 
 using System;
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.Model.Integrity;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Integrity;
 
-namespace Microsoft.Data.Entity.Design.Model.Commands
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Commands
 {
     /// <summary>
     ///     A generic command that can delete an EFElement

@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 
-namespace Microsoft.Data.Entity.Design.Model.Visitor
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor
 {
     /// <summary>
     ///     This class will traverse from the starting node, visiting all children, and accumulate

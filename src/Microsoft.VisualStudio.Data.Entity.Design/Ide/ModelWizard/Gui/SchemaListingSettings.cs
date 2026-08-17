@@ -2,7 +2,6 @@
 
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui;
 using System;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui

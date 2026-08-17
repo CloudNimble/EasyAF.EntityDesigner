@@ -2,7 +2,7 @@
 
 using System;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Clipboard
 {
     [Serializable]
     internal abstract class EFElementClipboardFormat

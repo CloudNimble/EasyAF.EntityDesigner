@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Xml.Linq;
 using Microsoft.Data.Entity.Design.Model.Entity;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
 namespace Microsoft.Data.Entity.Design.Model.Mapping
 {

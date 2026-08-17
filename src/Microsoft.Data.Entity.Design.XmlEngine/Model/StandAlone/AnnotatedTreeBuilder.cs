@@ -1,10 +1,11 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Tools.XmlDesignerBase;
 using System;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace Microsoft.Data.Tools.XmlDesignerBase.Model.StandAlone
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model.StandAlone
 {
     internal class AnnotatedTreeBuilder
     {

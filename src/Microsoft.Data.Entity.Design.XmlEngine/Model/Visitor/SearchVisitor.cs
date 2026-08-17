@@ -6,7 +6,7 @@ using System.Globalization;
 
 // using System.Text.RegularExpressions;
 
-namespace Microsoft.Data.Entity.Design.Model.Visitor
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor
 {
     internal class SearchVisitor : Visitor
     {

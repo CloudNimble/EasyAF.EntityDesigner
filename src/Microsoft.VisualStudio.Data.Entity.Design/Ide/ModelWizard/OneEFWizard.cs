@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using EnvDTE;
-using Microsoft.Data.Entity.Design.Model.Validation;
-using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
 using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;

@@ -10,7 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using Microsoft.Data.Entity.Design.UI.ViewModels.Explorer;
+using Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.Explorer;
 
 namespace Microsoft.Data.Entity.Design.UI.Views.Explorer
 {

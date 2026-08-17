@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design;
 using Microsoft.Data.Entity.Design.VersioningFacade;
 using System;
 using System.Diagnostics;

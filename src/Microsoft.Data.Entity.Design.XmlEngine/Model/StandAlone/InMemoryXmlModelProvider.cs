@@ -5,7 +5,7 @@ using System.IO;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace Microsoft.Data.Tools.XmlDesignerBase.Model.StandAlone
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model.StandAlone
 {
     /// <summary>
     ///     This class will provide an XML model over an in-memory string.

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Mapping;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 
 namespace Microsoft.Data.Entity.Design.Dsl.View

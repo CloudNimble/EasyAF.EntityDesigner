@@ -8,7 +8,6 @@ using Microsoft.VisualStudio.PlatformUI;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Model = Microsoft.Data.Entity.Design.Model;

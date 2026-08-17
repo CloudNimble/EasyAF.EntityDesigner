@@ -10,13 +10,13 @@ using System.Windows.Forms.Integration;
 using Microsoft.Data.Entity.Design.Dsl.View;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.ContextMenu;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Controls;
-using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 using Microsoft.VisualStudio.Imaging;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Shell;
 using Microsoft.VisualStudio.PlatformUI;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 
 namespace Microsoft.Data.Entity.Design.Package
 {

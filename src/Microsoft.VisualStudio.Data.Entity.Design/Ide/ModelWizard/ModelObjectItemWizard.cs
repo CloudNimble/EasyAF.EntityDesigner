@@ -2,14 +2,9 @@
 
 using EnvDTE;
 using EnvDTE80;
-using Microsoft.Data.Entity.Design;
-using Microsoft.Data.Entity.Design.Base.Context;
-using Microsoft.Data.Entity.Design.Common;
 using Microsoft.Data.Entity.Design.Extensibility;
 using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Entity.Design.Model.Integrity;
 using Microsoft.Data.Entity.Design.Model.Validation;
 using Microsoft.Data.Entity.Design.VisualStudio;
@@ -31,9 +26,12 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Xml;
-using Command = Microsoft.Data.Entity.Design.Model.Commands.Command;
+using Command = Microsoft.Data.Entity.Design.XmlEngine.Model.Commands.Command;
 using IOleServiceProvider = Microsoft.VisualStudio.OLE.Interop.IServiceProvider;
-using Resources = Microsoft.VisualStudio.Data.Entity.Design.Resources;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard
 {

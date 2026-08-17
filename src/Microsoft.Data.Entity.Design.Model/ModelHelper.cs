@@ -20,6 +20,8 @@ using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Mapping;
 using Microsoft.Data.Entity.Design.Model.Validation;
 using Microsoft.Data.Entity.Design.VersioningFacade;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using AssociationSet = Microsoft.Data.Entity.Design.Model.Entity.AssociationSet;
 using ComplexType = Microsoft.Data.Entity.Design.Model.Entity.ComplexType;
 using EntitySet = Microsoft.Data.Entity.Design.Model.Entity.EntitySet;

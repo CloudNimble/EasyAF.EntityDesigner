@@ -1,7 +1,5 @@
 using EnvDTE;
-using Microsoft.Data.Entity.Design.Common;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
 using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Generators;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 using System.Collections.Generic;

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Microsoft.Data.Tools.XmlDesignerBase.Common.Diagnostics
+namespace Microsoft.Data.Entity.Design.XmlEngine.Common.Diagnostics
 {
     /// <summary>
     ///     Provides utility methods for formatting Trace strings

@@ -4,17 +4,17 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Entity.Design.Dsl.CustomSerializer;
 using Microsoft.Data.Entity.Design.Dsl.View;
 using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Tools.XmlDesignerBase.Model;
-using Microsoft.Data.Tools.XmlDesignerBase.Model.StandAlone;
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.StandAlone;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using DesignerModel = Microsoft.Data.Entity.Design.Model.Designer;
-using Utils = Microsoft.Data.Tools.XmlDesignerBase.Base.Util.Utils;
+using Utils = Microsoft.Data.Entity.Design.XmlEngine.Util.Utils;
 
 namespace Microsoft.Data.Entity.Design.Renderer.Headless
 {

@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 
-namespace Microsoft.Data.Entity.Design.Model.Visitor
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor
 {
     internal interface IVisitable
     {

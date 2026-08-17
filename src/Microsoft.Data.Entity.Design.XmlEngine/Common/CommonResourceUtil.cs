@@ -2,7 +2,7 @@
 
 using Microsoft.Data.Tools.XmlDesignerBase.Common;
 
-namespace Microsoft.Data.Entity.Design.Common
+namespace Microsoft.Data.Entity.Design.XmlEngine.Common
 {
     internal static class CommonResourceUtil
     {

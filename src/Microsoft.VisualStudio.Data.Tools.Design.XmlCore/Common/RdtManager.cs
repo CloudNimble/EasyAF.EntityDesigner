@@ -11,12 +11,12 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using EnvDTE;
-using Microsoft.Data.Entity.Design.Common;
 using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Data.Tools.Design.XmlCore;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
 
 namespace Microsoft.Data.Tools.VSXmlDesignerBase.Common
 {

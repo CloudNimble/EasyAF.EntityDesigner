@@ -4,7 +4,7 @@ using System;
 using System.Diagnostics;
 using System.Xml.Linq;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model
 {
     internal abstract class EFNormalizableItem : EFElement
     {

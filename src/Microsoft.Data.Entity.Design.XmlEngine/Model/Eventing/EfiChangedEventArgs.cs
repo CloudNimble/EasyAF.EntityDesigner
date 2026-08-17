@@ -1,9 +1,9 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
-using Microsoft.Data.Entity.Design.Model.Commands;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 
-namespace Microsoft.Data.Entity.Design.Model.Eventing
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing
 {
     /// <summary>
     ///     EventArgs based class for communicating an EfiChangeGroup to those

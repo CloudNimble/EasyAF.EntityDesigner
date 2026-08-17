@@ -3,7 +3,7 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model
 {
     internal abstract class ItemBinding : EFAttribute
     {

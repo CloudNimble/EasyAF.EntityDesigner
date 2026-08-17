@@ -2,6 +2,7 @@
 
 using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Model.Mapping;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 
 namespace Microsoft.Data.Entity.Design.Model.Commands
 {

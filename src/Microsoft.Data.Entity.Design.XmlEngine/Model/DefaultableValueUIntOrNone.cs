@@ -3,7 +3,7 @@
 using System;
 using Microsoft.Data.Tools.XmlDesignerBase;
 
-namespace Microsoft.Data.Entity.Design.Model.Entity
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model
 {
     /// <summary>
     ///     This is the Defaultable Value class for the Property's MaxLength Facet.

@@ -2,11 +2,9 @@
 
 using EnvDTE;
 using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.VersioningFacade;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model;
 using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.Diagnostics;
@@ -14,7 +12,8 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Xml.Linq;
-using Command = Microsoft.Data.Entity.Design.Model.Commands.Command;
+using Command = Microsoft.Data.Entity.Design.XmlEngine.Model.Commands.Command;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.Model.Commands
 {

@@ -2,7 +2,7 @@
 
 using System.Xml.Linq;
 
-namespace Microsoft.Data.Entity.Design.Model.XLinqAnnotations
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model.XLinqAnnotations
 {
     internal class ModelAnnotation
     {

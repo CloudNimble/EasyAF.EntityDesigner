@@ -7,7 +7,6 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using FluentAssertions;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Configuration.Properties;
 using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Discoverers.Properties;

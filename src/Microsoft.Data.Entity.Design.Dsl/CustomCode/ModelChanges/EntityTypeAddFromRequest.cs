@@ -5,6 +5,7 @@ using Microsoft.Data.Entity.Design.Dsl.Rules;
 using Microsoft.Data.Entity.Design.Dsl.View.Events;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 
 namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges
 {

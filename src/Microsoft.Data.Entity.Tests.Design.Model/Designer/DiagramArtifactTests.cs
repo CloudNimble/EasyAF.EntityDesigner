@@ -3,10 +3,10 @@
 using System;
 using System.Xml.Linq;
 using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Tools.XmlDesignerBase.Model;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
 namespace Microsoft.Data.Entity.Tests.Design.Model
 {

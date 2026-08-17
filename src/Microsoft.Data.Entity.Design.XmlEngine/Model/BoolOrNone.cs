@@ -3,7 +3,7 @@
 using System;
 using Microsoft.Data.Tools.XmlDesignerBase;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model
 {
     /// <summary>
     ///     Class that represents a choice between true, false or '(None)' i.e. "not set"

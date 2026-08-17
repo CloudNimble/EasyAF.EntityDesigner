@@ -2,7 +2,6 @@
 
 using System;
 using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
 
 namespace Microsoft.Data.Entity.Tests.Shared.EFDesigner
 {

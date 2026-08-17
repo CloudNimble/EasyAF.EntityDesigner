@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Xml.Linq;
 using Microsoft.Data.Entity.Design.Model.Designer;
 using Microsoft.Data.Entity.Design.VersioningFacade;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
 namespace Microsoft.Data.Entity.Design.Model
 {

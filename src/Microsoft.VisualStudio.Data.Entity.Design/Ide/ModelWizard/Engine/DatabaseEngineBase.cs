@@ -6,13 +6,13 @@ using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.VersioningFacade;
 using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb;
 using Microsoft.VisualStudio.Data.Core;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui;
 using Microsoft.VisualStudio.Data.Services;
 using System;
 using System.Data.Entity.Core.EntityClient;
 using System.Diagnostics;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine
 {

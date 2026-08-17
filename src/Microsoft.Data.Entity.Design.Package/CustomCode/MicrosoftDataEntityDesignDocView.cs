@@ -12,14 +12,11 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using Microsoft.Data.Entity.Design.Base.Context;
-using Microsoft.Data.Tools.XmlDesignerBase.Base.Util;
 using Microsoft.Data.Entity.Design.Dsl;
 using Microsoft.Data.Entity.Design.Dsl.CustomSerializer;
 using Microsoft.Data.Entity.Design.Dsl.View;
 using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.EntityDesigner;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.VisualStudio.Modeling.Shell;
@@ -31,6 +28,10 @@ using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow.Descriptors;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.Data.Entity.Design.XmlEngine.Util;
 
 namespace Microsoft.Data.Entity.Design.Package
 {

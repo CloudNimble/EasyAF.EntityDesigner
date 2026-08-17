@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.Model.XLinqAnnotations;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.XLinqAnnotations;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using System.Xml.Linq;
 
-namespace Microsoft.Data.Entity.Design.Model.Visitor
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor
 {
 
 #if DEBUG

@@ -6,7 +6,6 @@ using Microsoft.VisualStudio.TextTemplating.VSHost;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
-using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration;
 using Microsoft.VisualStudio.Data.Entity.Design.CodeGeneration.Generators;
 
 namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration

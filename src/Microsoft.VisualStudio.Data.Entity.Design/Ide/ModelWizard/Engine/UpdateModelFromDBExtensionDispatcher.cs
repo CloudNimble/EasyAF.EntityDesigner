@@ -3,7 +3,6 @@
 using EnvDTE;
 using Microsoft.Data.Entity.Design.Extensibility;
 using Microsoft.VisualStudio.Data.Entity.Design.Extensibility;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using System.Diagnostics;
 using System.Xml.Linq;

@@ -2,9 +2,8 @@
 
 using System;
 using System.Collections.Generic;
-using Microsoft.Data.Tools.XmlDesignerBase.Model;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model
 {
     internal interface IEFArtifactFactory
     {

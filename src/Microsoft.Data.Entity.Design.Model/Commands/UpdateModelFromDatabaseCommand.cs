@@ -5,7 +5,9 @@ using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Model.Designer;
 using Microsoft.Data.Entity.Design.Model.Integrity;
 using Microsoft.Data.Entity.Design.Model.UpdateFromDatabase;
-using Microsoft.Data.Entity.Design.Model.Validation;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
 
 namespace Microsoft.Data.Entity.Design.Model.Commands
 {

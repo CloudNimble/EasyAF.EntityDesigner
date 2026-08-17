@@ -4,7 +4,7 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.Data.Entity.Design.Dsl.ViewModel;
-using Microsoft.Data.Entity.Design.Model.Commands;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Diagram = Microsoft.Data.Entity.Design.Model.Designer.Diagram;
 using EntityType = Microsoft.Data.Entity.Design.Model.Entity.EntityType;

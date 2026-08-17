@@ -2,9 +2,7 @@
 
 using Microsoft.Data.Entity.Design.VersioningFacade;
 using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui.ViewModels;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.WizardFramework;

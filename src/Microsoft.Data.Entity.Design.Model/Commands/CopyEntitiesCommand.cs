@@ -5,7 +5,8 @@ using System.Diagnostics;
 using System.Linq;
 using Microsoft.Data.Entity.Design.Model.Designer;
 using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Model.Eventing;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 
 namespace Microsoft.Data.Entity.Design.Model.Commands
 {

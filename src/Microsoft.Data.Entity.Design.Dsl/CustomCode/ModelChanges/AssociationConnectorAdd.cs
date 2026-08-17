@@ -4,6 +4,7 @@ using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Designer;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Association = Microsoft.Data.Entity.Design.Model.Entity.Association;
 using AssociationConnector = Microsoft.Data.Entity.Design.Dsl.View.AssociationConnector;
 

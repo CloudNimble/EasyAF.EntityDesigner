@@ -3,11 +3,11 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.Model.Commands;
-using Microsoft.Data.Entity.Design.Model.Visitor;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor;
 
 
-namespace Microsoft.Data.Entity.Design.Model.Integrity
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Integrity
 {
 
 

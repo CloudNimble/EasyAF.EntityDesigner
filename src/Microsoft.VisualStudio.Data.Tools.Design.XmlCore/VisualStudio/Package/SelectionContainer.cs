@@ -3,12 +3,12 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Threading;
-using Microsoft.Data.Entity.Design.Base.Context;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Eventing;
-using Microsoft.Data.Entity.Design.UI;
-using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors;
 using Microsoft.Data.Entity.Design.VisualStudio.Providers;
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
+using Microsoft.Data.Entity.Design.XmlEngine.UI;
+using Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow.Descriptors;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
 

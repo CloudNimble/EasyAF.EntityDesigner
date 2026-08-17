@@ -11,17 +11,18 @@ using System.Data.Entity.Infrastructure.DependencyResolution;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.Common;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.Model.Mapping;
 using Microsoft.Data.Entity.Design.Model.Validation;
-using Microsoft.Data.Tools.XmlDesignerBase.Model;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using ComplexType = Microsoft.Data.Entity.Design.Model.Entity.ComplexType;
 using DesignAssociationSetMapping = Microsoft.Data.Entity.Design.Model.Mapping.AssociationSetMapping;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
 
 namespace Microsoft.Data.Entity.Tests.Design.Model.Validation
 {

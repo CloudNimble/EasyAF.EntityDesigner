@@ -4,7 +4,6 @@ using EnvDTE;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
-using Microsoft.Data.Tools.XmlDesignerBase.Base.Util;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model;
 using Microsoft.VisualStudio.Shell;
@@ -15,6 +14,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using IServiceProvider = Microsoft.VisualStudio.OLE.Interop.IServiceProvider;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Util;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.Ide
 {

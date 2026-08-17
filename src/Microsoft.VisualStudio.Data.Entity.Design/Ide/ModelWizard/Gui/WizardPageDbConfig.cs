@@ -3,11 +3,8 @@
 using EnvDTE;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Validation;
-using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Data.Core;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.VisualStudio.Data.Services;
 using Microsoft.VisualStudio.DataTools.Interop;

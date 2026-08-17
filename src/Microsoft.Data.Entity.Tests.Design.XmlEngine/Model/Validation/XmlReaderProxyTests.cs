@@ -5,6 +5,7 @@ using System.Xml;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
 
 namespace Microsoft.Data.Entity.Design.Model.Validation
 {

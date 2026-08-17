@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Automation.Peers;
 using System.Windows.Controls;
 using System.Windows.Documents;
-using Microsoft.Data.Entity.Design.UI.ViewModels.Explorer;
+using Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.Explorer;
 
 namespace Microsoft.Data.Entity.Design.UI.Views.Explorer
 {

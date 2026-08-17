@@ -10,7 +10,6 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Microsoft.Data.Entity.Tests.Design.TestHelpers;
-using Microsoft.Data.Entity.Design;
 using Resources = Microsoft.VisualStudio.Data.Entity.Design.Resources;
 using VSLangProj;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

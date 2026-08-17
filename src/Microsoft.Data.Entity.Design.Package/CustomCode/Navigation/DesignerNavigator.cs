@@ -8,6 +8,7 @@ using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.VisualStudio.Modeling.Shell;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
 namespace Microsoft.Data.Entity.Design.Package
 {

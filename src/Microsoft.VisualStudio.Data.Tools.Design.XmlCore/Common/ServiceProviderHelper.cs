@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using Microsoft.Data.Entity.Design.Common;
 using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.VisualStudio.Data.Tools.Design.XmlCore;
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
 
 namespace Microsoft.Data.Tools.VSXmlDesignerBase.Common
 {

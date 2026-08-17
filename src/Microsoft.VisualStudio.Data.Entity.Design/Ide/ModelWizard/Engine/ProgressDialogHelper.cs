@@ -4,6 +4,8 @@ using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Database;
 using Microsoft.Data.Entity.Design.VersioningFacade.ReverseEngineerDb;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.Data.Tools.VSXmlDesignerBase.VisualStudio.UI;
 using Microsoft.VisualStudio.Data.Core;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Data.Sql;

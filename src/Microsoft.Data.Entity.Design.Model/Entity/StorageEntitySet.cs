@@ -5,9 +5,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.Common;
 using Microsoft.Data.Entity.Design.Model.Mapping;
 using Microsoft.Data.Entity.Design.VersioningFacade;
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
 namespace Microsoft.Data.Entity.Design.Model.Entity
 {

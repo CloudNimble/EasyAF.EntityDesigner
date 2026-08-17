@@ -5,10 +5,10 @@ using System.Xml.Linq;
 using FluentAssertions;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Designer;
-using Microsoft.Data.Tools.XmlDesignerBase.Model;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio
 {

@@ -3,7 +3,6 @@
 using Microsoft.Data.Entity.Design.Base.Shell;
 using Microsoft.Data.Tools.VSXmlDesignerBase.VirtualTreeGrid;
 using Microsoft.VisualStudio.Data.Entity.Design.UI.ViewModels.MappingDetails.FunctionImports;
-using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails.Branches;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.MappingDetails.Branches
 {

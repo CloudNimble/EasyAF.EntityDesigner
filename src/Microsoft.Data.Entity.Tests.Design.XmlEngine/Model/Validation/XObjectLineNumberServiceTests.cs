@@ -2,10 +2,11 @@
 
 using System;
 using System.Xml.Linq;
-using Microsoft.Data.Tools.XmlDesignerBase.Model;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
 
 namespace Microsoft.Data.Entity.Design.Model.Validation
 {

@@ -3,9 +3,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml.Linq;
-using Microsoft.Data.Tools.XmlDesignerBase.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.VisualStudio.XmlEditor;
-using XmlModel = Microsoft.Data.Tools.XmlDesignerBase.Model.XmlModel;
+using XmlModel = Microsoft.Data.Entity.Design.XmlEngine.Model.XmlModel;
 
 namespace Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio
 {

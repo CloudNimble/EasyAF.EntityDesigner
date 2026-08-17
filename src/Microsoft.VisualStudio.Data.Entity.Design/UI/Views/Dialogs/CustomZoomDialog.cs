@@ -3,7 +3,6 @@
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using System.Windows.Forms;
 using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Dialogs
 {

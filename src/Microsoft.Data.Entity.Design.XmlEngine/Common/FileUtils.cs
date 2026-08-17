@@ -6,7 +6,7 @@ using System.IO;
 using System.Security;
 using System.Text;
 
-namespace Microsoft.Data.Entity.Design.Common
+namespace Microsoft.Data.Entity.Design.XmlEngine.Common
 {
     /// <summary>
     ///     Used to create temporary files.

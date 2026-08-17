@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.XmlEngine.Util;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Microsoft.Data.Tools.XmlDesignerBase.Base.Util;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model
 {
     /// <summary>
     ///     Class for managing and maintaining dependency info.  This class is a specialized form of a

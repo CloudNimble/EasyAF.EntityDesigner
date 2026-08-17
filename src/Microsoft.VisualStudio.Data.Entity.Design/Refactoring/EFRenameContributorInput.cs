@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.Common;
-using Microsoft.Data.Entity.Design.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Refactoring;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.Refactoring

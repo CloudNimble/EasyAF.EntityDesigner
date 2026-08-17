@@ -1,16 +1,15 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using EFVisitor = Microsoft.Data.Entity.Design.Model.Visitor.Visitor;
+using EFVisitor = Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor.Visitor;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.Model.Visitor;
-using Microsoft.Data.Entity.Design.Model.XLinqAnnotations;
-using Microsoft.Data.Tools.XmlDesignerBase.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.XLinqAnnotations;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model
 {
     internal abstract class EFObject : IVisitable, IDisposable
     {

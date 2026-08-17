@@ -11,7 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using Microsoft.Data.Entity.Design.UI.Commands;
-using Microsoft.Data.Entity.Design.UI.ViewModels.Explorer;
+using Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.Explorer;
 
 namespace Microsoft.Data.Entity.Design.UI.Views.Explorer
 {

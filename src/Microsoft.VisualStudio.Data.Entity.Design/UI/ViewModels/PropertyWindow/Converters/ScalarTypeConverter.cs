@@ -2,7 +2,8 @@
 
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.UI.ViewModels.PropertyWindow.Descriptors;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.UI.ViewModels.PropertyWindow.Descriptors;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

@@ -2,8 +2,8 @@
 
 using System.Diagnostics;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Designer;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
 // Temporary workaround, this interface should be remove shortly.
 

@@ -2,9 +2,8 @@
 
 using EnvDTE;
 using Microsoft.Data.Entity.Design.Extensibility;
-using Microsoft.Data.Entity.Design.Model.Validation;
 using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Tools.XmlDesignerBase.Base.Util;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -20,15 +19,6 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.Ide
     // Helpful utility functions for finding and using the proper error list for a given document
     internal static class ErrorListHelper
     {
-        // Uniquely identifies a given document so it can be associated with an error list
-        private class SingleDocErrorListsIdentifier : Pair<IVsHierarchy, uint>
-        {
-            internal SingleDocErrorListsIdentifier(IVsHierarchy hier, uint ItemID)
-                : base(hier, ItemID)
-            {
-            }
-        }
-
         private enum MultiDocErrorListIdentifier
         {
             Extension,
@@ -40,7 +30,11 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.Ide
         private static uint _solutionEventsCookie;
         private static uint _updateSolutionEventsCookie;
 
-        private static readonly Dictionary<SingleDocErrorListsIdentifier, DesignerErrorList> _singleDocErrorLists =
+        // Keyed by the pair that uniquely identifies a document. A value tuple rather than a named type:
+        // it is only ever a dictionary key, and ValueTuple already compares by contents. It also
+        // null-checks both members, which the Pair<,> base class this replaced did not - Pair.Equals
+        // dereferenced First without a guard while GetHashCode guarded it.
+        private static readonly Dictionary<(IVsHierarchy Hierarchy, uint ItemId), DesignerErrorList> _singleDocErrorLists =
             [];
 
         private static readonly Dictionary<MultiDocErrorListIdentifier, DesignerErrorList> _multiDocErrorLists =
@@ -74,9 +68,9 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.Ide
         }
 
         private static bool TryGetSingleDocErrorList(
-            IVsHierarchy hier, uint ItemID, out SingleDocErrorListsIdentifier id, out DesignerErrorList errorList)
+            IVsHierarchy hier, uint ItemID, out (IVsHierarchy Hierarchy, uint ItemId) id, out DesignerErrorList errorList)
         {
-            id = new SingleDocErrorListsIdentifier(hier, ItemID);
+            id = (hier, ItemID);
             if (_singleDocErrorLists == null)
             {
                 errorList = null;
@@ -102,13 +96,13 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.Ide
 
             if (EdmSolutionEvents.Instance.IsAfterErrorListClearedOnSolutionClose == false)
             {
-                _singleDocErrorLists.TryGetValue(new SingleDocErrorListsIdentifier(hier, ItemID), out errorList);
+                _singleDocErrorLists.TryGetValue((hier, ItemID), out errorList);
 
                 // Create a new error list if one doesn't already exist for the given document
                 if (errorList == null)
                 {
                     errorList = new DesignerErrorList(PackageManager.Package);
-                    _singleDocErrorLists.Add(new SingleDocErrorListsIdentifier(hier, ItemID), errorList);
+                    _singleDocErrorLists.Add((hier, ItemID), errorList);
                 }
             }
             return errorList;
@@ -154,7 +148,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.Ide
         {
             foreach (var pair in _singleDocErrorLists)
             {
-                if (pair.Key.First == hierarchy)
+                if (pair.Key.Hierarchy == hierarchy)
                 {
                     pair.Value.Clear();
                 }
@@ -177,11 +171,11 @@ namespace Microsoft.VisualStudio.Data.Entity.Design.Ide
         {
             //
             // WARNING!  DO NOT call GetSingleDocErrorList here.  This code-path can get called after the solution-closed event has been raised. 
-            // this means that calling GetSingleDocErrorList will create a new SingleDocErrorListsIdentifier and store it in a static dictionary, and 
-            // that dictionary won't be cleared.  The SingleDocErrorListIdentifier will hold a pointer to the IVSHierarchy as well, preventing that 
-            // from being GC'd.  This is bad.  Don't do this. 
+            // this means that calling GetSingleDocErrorList will add a new key to a static dictionary, and that dictionary
+            // won't be cleared.  The key holds a pointer to the IVsHierarchy as well, preventing that from being GC'd.
+            // This is bad.  Don't do this.
             //
-            if (TryGetSingleDocErrorList(pHier, itemId, out SingleDocErrorListsIdentifier id, out DesignerErrorList singleDocErrorList))
+            if (TryGetSingleDocErrorList(pHier, itemId, out (IVsHierarchy Hierarchy, uint ItemId) id, out DesignerErrorList singleDocErrorList))
             {
                 singleDocErrorList.Clear();
                 _singleDocErrorLists.Remove(id);

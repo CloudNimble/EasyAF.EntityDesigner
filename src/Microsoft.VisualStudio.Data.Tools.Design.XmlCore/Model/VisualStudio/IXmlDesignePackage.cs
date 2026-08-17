@@ -2,8 +2,8 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
 namespace Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio
 {

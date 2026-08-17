@@ -2,9 +2,8 @@
 
 using EnvDTE;
 using EnvDTE80;
-using Microsoft.Data.Entity.Design.Common;
-using Microsoft.Data.Tools.XmlDesignerBase.Base.Util;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
+using Microsoft.Data.Entity.Design.XmlEngine.Util;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using System;
 using System.Collections.Generic;

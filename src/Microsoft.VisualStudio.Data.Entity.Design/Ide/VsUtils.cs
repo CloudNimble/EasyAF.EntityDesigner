@@ -2,11 +2,11 @@
 
 using EnvDTE;
 using EnvDTE80;
-using Microsoft.Data.Entity.Design;
-using Microsoft.Data.Entity.Design.Common;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.VersioningFacade;
 using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Design;
@@ -39,7 +39,6 @@ using VsWebSite90;
 using ConfigurationManager = System.Configuration.ConfigurationManager;
 using Constants = EnvDTE.Constants;
 using PrjKind = VSLangProj.PrjKind;
-using Resources = Microsoft.VisualStudio.Data.Entity.Design.Resources;
 using VSErrorHandler = Microsoft.VisualStudio.ErrorHandler;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.Ide

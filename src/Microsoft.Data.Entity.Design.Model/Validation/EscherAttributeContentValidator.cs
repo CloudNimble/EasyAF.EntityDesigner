@@ -8,6 +8,8 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
 using Microsoft.Data.Entity.Design.VersioningFacade;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
 
 namespace Microsoft.Data.Entity.Design.Model.Validation
 {

@@ -2,7 +2,6 @@
 
 using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Engine;
-using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Gui;
 using Microsoft.WizardFramework;
 using System;
 using System.Drawing;

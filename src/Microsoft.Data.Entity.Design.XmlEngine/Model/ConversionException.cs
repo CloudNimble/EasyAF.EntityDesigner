@@ -3,7 +3,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Microsoft.Data.Entity.Design.Model
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model
 {
     [Serializable]
     internal class ConversionException : Exception

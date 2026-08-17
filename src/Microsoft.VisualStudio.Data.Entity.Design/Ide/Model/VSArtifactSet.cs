@@ -3,6 +3,7 @@
 using EnvDTE;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 
 namespace Microsoft.VisualStudio.Data.Entity.Design.Ide.Model

@@ -2,7 +2,6 @@
 
 using EnvDTE;
 using EnvDTE80;
-using Microsoft.Data.Entity.Design.Common;
 using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.VisualStudio.TextManager.Interop;
 using Moq;
@@ -14,6 +13,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.Package
 {

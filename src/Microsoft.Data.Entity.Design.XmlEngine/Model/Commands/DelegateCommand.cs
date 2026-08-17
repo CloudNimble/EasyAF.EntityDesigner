@@ -2,7 +2,7 @@
 
 using System;
 
-namespace Microsoft.Data.Entity.Design.Model.Commands
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Commands
 {
     internal class DelegateCommand : Command
     {

@@ -9,14 +9,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using Microsoft.Data.Entity.Design.Base.Context;
 using Microsoft.Data.Entity.Design.Dsl.ModelChanges;
 using Microsoft.Data.Entity.Design.Dsl.View;
 using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Tools.Dsl.ModelTranslator;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Diagrams.GraphObject;
@@ -29,6 +26,10 @@ using ViewModelAssociation = Microsoft.Data.Entity.Design.Dsl.ViewModel.Associat
 using ViewModelEntityType = Microsoft.Data.Entity.Design.Dsl.ViewModel.EntityType;
 using ViewModelNavigationProperty = Microsoft.Data.Entity.Design.Dsl.ViewModel.NavigationProperty;
 using ViewModelProperty = Microsoft.Data.Entity.Design.Dsl.ViewModel.Property;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
 
 namespace Microsoft.Data.Entity.Design.Dsl.CustomSerializer
 {

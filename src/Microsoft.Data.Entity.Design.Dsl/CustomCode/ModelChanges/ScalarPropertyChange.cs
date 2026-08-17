@@ -4,6 +4,7 @@ using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Dsl.Rules;
 using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Model.Commands;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Property = Microsoft.Data.Entity.Design.Model.Entity.Property;
 
 namespace Microsoft.Data.Entity.Design.Dsl.ModelChanges

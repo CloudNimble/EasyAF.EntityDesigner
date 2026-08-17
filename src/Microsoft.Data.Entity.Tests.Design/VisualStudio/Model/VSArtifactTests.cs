@@ -6,10 +6,8 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Xml.Linq;
 using EnvDTE;
 using FluentAssertions;
-using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Entity;
 using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.Data.Tools.XmlDesignerBase.Model;
 using Moq;
 using Moq.Protected;
 using Microsoft.Data.Entity.Tests.Design.TestHelpers;
@@ -17,6 +15,7 @@ using VSLangProj;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.Model
 {

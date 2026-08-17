@@ -7,12 +7,12 @@ using System.Xml.Linq;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Commands;
 using Microsoft.Data.Entity.Design.Model.Entity;
-using Microsoft.Data.Entity.Design.Model.Validation;
 using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.Data.Tools.XmlDesignerBase.Model;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
 
 namespace Microsoft.Data.Entity.Tests.Design.Model.Commands
 {

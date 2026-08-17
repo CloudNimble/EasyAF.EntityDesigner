@@ -9,7 +9,7 @@ using System.Security;
 using System.Xml;
 using System.Xml.Schema;
 
-namespace Microsoft.Data.Entity.Design.Model.Validation
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Validation
 {
     /// <summary>
     ///     This class can be used to validate attribute content specific *before* updating an xml document, and without revalidating the entire document.

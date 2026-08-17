@@ -14,9 +14,6 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using EnvDTE;
-using Microsoft.Data.Entity.Design.Base.Context;
-using Microsoft.Data.Tools.XmlDesignerBase.Base.Util;
-using Microsoft.Data.Entity.Design.Common;
 using Microsoft.Data.Entity.Design.Dsl;
 using Microsoft.Data.Entity.Design.Dsl.CustomSerializer;
 using XmlModelDocData = Microsoft.XmlEditor.XmlModelDocData;
@@ -25,7 +22,6 @@ using Microsoft.Data.Entity.Design.Dsl.ViewModel;
 using Microsoft.Data.Entity.Design.Extensibility;
 using Microsoft.Data.Entity.Design.Model;
 using Microsoft.Data.Entity.Design.Model.Designer;
-using Microsoft.Data.Entity.Design.Model.Eventing;
 using Microsoft.Data.Entity.Design.VisualStudio;
 using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Model.VisualStudio;
@@ -44,6 +40,11 @@ using Microsoft.VisualStudio.Data.Entity.Design.UI.Views.Explorer;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Model;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.Package;
 using Microsoft.VisualStudio.Data.Entity.Design.Ide;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.Data.Entity.Design.XmlEngine.Util;
 
 namespace Microsoft.Data.Entity.Design.Package
 {

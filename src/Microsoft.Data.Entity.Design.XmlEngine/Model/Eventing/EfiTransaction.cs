@@ -3,9 +3,8 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Microsoft.Data.Tools.XmlDesignerBase.Model;
 
-namespace Microsoft.Data.Entity.Design.Model.Eventing
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing
 {
     /// <summary>
     ///     Represents a transaction that encapsulates a set of changes.

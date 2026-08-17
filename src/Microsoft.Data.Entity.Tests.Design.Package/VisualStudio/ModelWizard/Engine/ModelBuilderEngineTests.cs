@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using Microsoft.VisualStudio.Data.Entity.Design.Ide.ModelWizard.Properties;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
 using Moq;
 using System;
 using System.Collections.Generic;

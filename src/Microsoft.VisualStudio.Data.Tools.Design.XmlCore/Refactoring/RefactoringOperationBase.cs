@@ -7,7 +7,7 @@ using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Forms;
-using Microsoft.Data.Entity.Design.Common;
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
 using Microsoft.Data.Tools.VSXmlDesignerBase.Common;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Data.Tools.Design.XmlCore;
