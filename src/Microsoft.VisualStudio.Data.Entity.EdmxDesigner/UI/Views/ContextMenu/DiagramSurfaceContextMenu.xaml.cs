@@ -3,10 +3,12 @@
 using Microsoft.Data.Entity.Design.Diagrams.View;
 using System;
 using System.Collections.ObjectModel;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using System.Windows.Interop;
 using Microsoft.VisualStudio.PlatformUI;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu
@@ -21,6 +23,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu
         private EntityDesignerSurface _diagram;
         private Action _closeCallback;
         private bool _isExecutingCommand;
+        private IntPtr _ownerHwnd;
 
         #region Dependency Properties
 
@@ -89,11 +92,22 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu
         /// </summary>
         /// <param name="diagram">The diagram associated with this menu.</param>
         /// <param name="screenPosition">The screen coordinates where the menu should appear.</param>
+        /// <param name="ownerHwnd">
+        ///     Top-level window that should own the popup, normally the Visual Studio main window from
+        ///     <c>IVsUIShell.GetDialogOwnerHwnd</c>. Pass <see cref="IntPtr.Zero" /> to leave the popup unowned.
+        /// </param>
         /// <param name="closeCallback">Optional callback invoked when the menu closes.</param>
-        internal void Show(EntityDesignerSurface diagram, Point screenPosition, Action closeCallback = null)
+        /// <remarks>
+        ///     The popup sets <c>AllowsTransparency</c>, so WPF gives it its own top-level window rather than
+        ///     drawing inside the parent. That window is unowned unless something says otherwise, which lets any
+        ///     other application be activated into the z-order between the menu and Visual Studio. Owning it to
+        ///     the shell keeps it above VS, and closes it with VS, the way a context menu is expected to behave.
+        /// </remarks>
+        internal void Show(EntityDesignerSurface diagram, Point screenPosition, IntPtr ownerHwnd, Action closeCallback = null)
         {
             _diagram = diagram;
             _closeCallback = closeCallback;
+            _ownerHwnd = ownerHwnd;
 
             // Create popup if needed
             if (_popup == null)
@@ -108,6 +122,10 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu
                 };
 
                 _popup.Closed += OnPopupClosed;
+
+                // WPF tears down and recreates the popup's window between opens, so the owner has to be
+                // reapplied every time rather than set once here.
+                _popup.Opened += OnPopupOpened;
             }
 
             // Position and show
@@ -134,6 +152,22 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu
         /// Gets the currently associated diagram.
         /// </summary>
         internal EntityDesignerSurface Diagram => _diagram;
+
+        private void OnPopupOpened(object sender, EventArgs e)
+        {
+            if (_ownerHwnd == IntPtr.Zero)
+            {
+                return;
+            }
+
+            // The popup's window only exists once it is open, so this cannot be done in Show().
+            if (PresentationSource.FromVisual(this) is not HwndSource source || source.Handle == IntPtr.Zero)
+            {
+                return;
+            }
+
+            NativeMethods.SetOwner(source.Handle, _ownerHwnd);
+        }
 
         private void OnPopupClosed(object sender, EventArgs e)
         {
@@ -247,11 +281,45 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu
             if (_popup != null)
             {
                 _popup.Closed -= OnPopupClosed;
+                _popup.Opened -= OnPopupOpened;
                 _popup.IsOpen = false;
                 _popup = null;
             }
         }
 
         #endregion
+
+        private static class NativeMethods
+        {
+            private const int GWLP_HWNDPARENT = -8;
+
+            [DllImport("user32.dll", EntryPoint = "SetWindowLongW", SetLastError = true)]
+            private static extern int SetWindowLong32(IntPtr hWnd, int nIndex, int dwNewLong);
+
+            [DllImport("user32.dll", EntryPoint = "SetWindowLongPtrW", SetLastError = true)]
+            private static extern IntPtr SetWindowLongPtr64(IntPtr hWnd, int nIndex, IntPtr dwNewLong);
+
+            /// <summary>
+            /// Makes <paramref name="owner" /> the owner window of <paramref name="hWnd" />.
+            /// </summary>
+            /// <param name="hWnd">The window to be owned.</param>
+            /// <param name="owner">The owning top-level window.</param>
+            /// <remarks>
+            ///     SetWindowLongPtrW only exists in the 64-bit user32, so the 32-bit entry point is used when
+            ///     the process is 32-bit. Truncating a handle to int there is safe because window handles are
+            ///     32-bit in a 32-bit process.
+            /// </remarks>
+            internal static void SetOwner(IntPtr hWnd, IntPtr owner)
+            {
+                if (IntPtr.Size == 8)
+                {
+                    SetWindowLongPtr64(hWnd, GWLP_HWNDPARENT, owner);
+                }
+                else
+                {
+                    SetWindowLong32(hWnd, GWLP_HWNDPARENT, owner.ToInt32());
+                }
+            }
+        }
     }
 }

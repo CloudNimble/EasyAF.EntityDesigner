@@ -253,7 +253,24 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
             var screenPoint = _diagramClientView.PointToScreen(new System.Drawing.Point((int)clientPoint.X, (int)clientPoint.Y));
             var wpfScreenPoint = new Point(screenPoint.X, screenPoint.Y);
 
-            menu.Show(diagram, wpfScreenPoint);
+            menu.Show(diagram, wpfScreenPoint, GetDialogOwnerHwnd());
+        }
+
+        /// <summary>
+        /// Gets the window Visual Studio wants used as the owner for shell-modal UI.
+        /// </summary>
+        /// <returns>The owner window handle, or <see cref="IntPtr.Zero" /> if the shell cannot be reached.</returns>
+        private static IntPtr GetDialogOwnerHwnd()
+        {
+            IServiceProvider sp = PackageManager.Package;
+            if (sp?.GetService(typeof(SVsUIShell)) is not IVsUIShell uiShell)
+            {
+                return IntPtr.Zero;
+            }
+
+            uiShell.GetDialogOwnerHwnd(out var hwndOwner);
+
+            return hwndOwner;
         }
 
         /// <summary>
@@ -1540,17 +1557,10 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
 
             var dialog = new ExportDiagramDialog(modelName, diagramShowsTypes);
 
-            // Get the VS main window handle via IVsUIShell
-            IServiceProvider sp = PackageManager.Package;
-            if (sp != null)
+            var hwndOwner = GetDialogOwnerHwnd();
+            if (hwndOwner != IntPtr.Zero)
             {
-                var uiShell = sp.GetService(typeof(SVsUIShell)) as IVsUIShell;
-                if (uiShell != null)
-                {
-                    uiShell.GetDialogOwnerHwnd(out IntPtr hwndOwner);
-                    var hwnd = new System.Windows.Interop.WindowInteropHelper(dialog);
-                    hwnd.Owner = hwndOwner;
-                }
+                new System.Windows.Interop.WindowInteropHelper(dialog).Owner = hwndOwner;
             }
 
             if (dialog.ShowDialog() == true)
