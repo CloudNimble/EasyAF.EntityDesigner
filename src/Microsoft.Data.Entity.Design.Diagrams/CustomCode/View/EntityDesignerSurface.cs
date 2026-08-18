@@ -4,6 +4,7 @@ using Microsoft.Data.Entity.Design.Diagrams.View.Events;
 using Microsoft.Data.Entity.Design.Diagrams.View;
 using Microsoft.Data.Entity.Design.Diagrams.View.Events;
 using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
+using Microsoft.Data.Entity.Design.Diagrams.Layout;
 using Microsoft.Data.Entity.Design.Diagrams.ModelChanges;
 using Microsoft.Data.Entity.Design.Diagrams.Rules;
 using Microsoft.Data.Entity.Design.Diagrams.Utils;
@@ -18,7 +19,6 @@ using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
-using Microsoft.VisualStudio.Modeling.Diagrams.GraphObject;
 using Microsoft.VisualStudio.Modeling.Immutability;
 using System;
 using System.Collections;
@@ -49,6 +49,16 @@ namespace Microsoft.Data.Entity.Design.Diagrams.View
 
         [NonSerialized]
         internal AutoArrangeHelper Arranger = new AutoArrangeHelper();
+
+        /// <summary>
+        ///     The layout engines this surface can arrange itself with, and which one is in effect.
+        /// </summary>
+        /// <remarks>
+        ///     Seeded with the Modeling SDK's own layout so the designer behaves exactly as it always has until
+        ///     something moves <see cref="LayoutEngineManager.Current" />. See specs/diagram-layout-engines.md.
+        /// </remarks>
+        [NonSerialized]
+        internal LayoutEngineManager LayoutEngines = new LayoutEngineManager([new DslLayoutEngine()]);
 
         private bool _displayNameAndType;
         private bool _disableFixUpDiagramSelection;
@@ -978,168 +988,17 @@ namespace Microsoft.Data.Entity.Design.Diagrams.View
         }
 
         /// <summary>
-        ///     Performs an AutoLayoutDiagram command on the list of shapes passed in
+        ///     Arranges the given shapes using the current layout engine.
         /// </summary>
+        /// <param name="shapes">The shapes to arrange.</param>
+        /// <remarks>
+        ///     The surface does not know how the arranging is done. Which engine runs is
+        ///     <see cref="LayoutEngineManager.Current" />, moved by the designer's Advanced Layout toggle.
+        ///     See specs/diagram-layout-engines.md.
+        /// </remarks>
         public void AutoLayoutDiagram(IList shapes)
         {
-            // Put up an hourglass because this may take a while
-            using (BeginLongOperation())
-            {
-                // Inheritance lines need to be placed using a different styling
-                // so that the lines join at the same point. Sort out which shapes we have
-                List<ShapeElement> inheritanceLinks = new List<ShapeElement>();
-                List<ShapeElement> inheritanceShapes = new List<ShapeElement>();
-                List<ShapeElement> otherShapes = new List<ShapeElement>();
-
-                foreach (ShapeElement shape in shapes)
-                {
-                    // Fix a bug when the user tries to layout a diagram that contains inheritance classes multiple times, the shapes are moved to the bottom of the screen.
-                    // The fix is to include both base class and derived class in the inheritance shapes list; before the fix we only includes the derived class in the list.
-                    var isInheritanceClass = false;
-
-                    // get a list of all lines leading to/from the shape
-                    if (shape is EntityTypeShape entityTypeShape)
-                    {
-                        ArrayList allLinks = new ArrayList(entityTypeShape.FromRoleLinkShapes);
-                        allLinks.AddRange(entityTypeShape.ToRoleLinkShapes);
-
-                        foreach (LinkShape link in allLinks)
-                        {
-                            if (link is InheritanceConnector)
-                            {
-                                isInheritanceClass = true;
-                                break;
-                            }
-                        }
-                    }
-
-                    if (isInheritanceClass)
-                    {
-                        inheritanceShapes.Add(shape);
-                    }
-                    else if (shape is InheritanceConnector)
-                    {
-                        inheritanceLinks.Add(shape);
-                    }
-                    else
-                    {
-                        otherShapes.Add(shape);
-                    }
-                }
-
-                // These flags are based on AutoLayout code from the ClassDesigner
-                // Flags we set so the graph object ignores a shape (treats that shape as invisible) when doing layout
-                const VGNodeFixedStates ignoreShapeFlags =
-                    VGNodeFixedStates.FixedPlace | // don't consider for placement
-                    VGNodeFixedStates.PermeablePlace; // place on top if desired (ignore for placement purposes)
-
-                // Flags we set so the graph object recognizes but doesn't move a shape when doing layout
-                const VGNodeFixedStates noMoveShapeFlags = VGNodeFixedStates.FixedPlace;
-
-                // Perform the auto layout
-                InDiagramTransaction(
-                    EntityDesignerRes.Tx_LayoutDiagram,
-                    () =>
-                {
-                    using (new SaveLayoutFlags(inheritanceShapes, ignoreShapeFlags))
-                    {
-                        // Since the inheritance shapes will be moved later,
-                        // tell this layout to ignore them and place other objects on
-                        // top if necessary
-                        AutoLayoutShapeElements(
-                            shapes,
-                            VGRoutingStyle.VGRouteNetwork,
-                            PlacementValueStyle.VGPlaceWE,
-                            false);
-                    }
-
-                    using (new SaveLayoutFlags(otherShapes, noMoveShapeFlags))
-                    {
-                        // DD 40487: Move any classes that have inheritance, while keeping
-                        // the others in place. Use org chart and PlaceSN so that parent
-                        // classes appear above child ones
-                        AutoLayoutShapeElements(
-                            shapes,
-                            VGRoutingStyle.VGRouteOrgChartNS,
-                            PlacementValueStyle.VGPlaceSN,
-                            false);
-                    }
-
-                    using (new SaveLayoutFlags(shapes, noMoveShapeFlags))
-                    {
-                        // DD 40516: Make inheritance lines connect at single point and
-                        // don't move anything else
-                        AutoLayoutShapeElements(
-                            inheritanceLinks,
-                            VGRoutingStyle.VGRouteRightAngle,
-                            PlacementValueStyle.VGPlaceUndirected,
-                            false);
-                    }
-
-                    Reroute();
-                });
-            } // restore cursor
-        }
-
-        /// <summary>
-        ///     This class saves the VGNodeFixedStates of the objects
-        ///     passed, and restores them on the disposed. It can also
-        ///     be used to change all the flags to the same value.
-        /// </summary>
-        private sealed class SaveLayoutFlags : IDisposable
-        {
-            private readonly IList _elements;
-            private VGNodeFixedStates[] _savedFlags;
-
-            public SaveLayoutFlags(IList elements)
-            {
-                _elements = elements;
-                Save();
-            }
-
-            public SaveLayoutFlags(IList elements, VGNodeFixedStates flags)
-                : this(elements)
-            {
-                SetFlags(flags);
-            }
-
-            public void Dispose()
-            {
-                Restore();
-            }
-
-            // Sets all the flags on the elements stored to this value
-            public void SetFlags(VGNodeFixedStates flags)
-            {
-                for (var i = 0; i < _elements.Count; i++)
-                {
-                    NodeShape node = _elements[i] as NodeShape;
-                    node?.LayoutObjectFixedFlags = flags;
-                }
-            }
-
-            // Keeps a copy of the old values of all these flags
-            private void Save()
-            {
-                _savedFlags = new VGNodeFixedStates[_elements.Count];
-                for (var i = 0; i < _elements.Count; i++)
-                {
-                    if (_elements[i] is NodeShape node)
-                    {
-                        _savedFlags[i] = node.LayoutObjectFixedFlags;
-                    }
-                }
-            }
-
-            // Restores the old flag values
-            private void Restore()
-            {
-                for (var i = 0; i < _elements.Count; i++)
-                {
-                    NodeShape node = _elements[i] as NodeShape;
-                    node?.LayoutObjectFixedFlags = _savedFlags[i];
-                }
-            }
+            LayoutEngines.Current.Layout(this, shapes);
         }
 
         /// <summary>

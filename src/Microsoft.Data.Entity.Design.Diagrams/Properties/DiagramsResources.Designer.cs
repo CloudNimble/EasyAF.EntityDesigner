@@ -1135,6 +1135,15 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Standard.
+        /// </summary>
+        public static string LayoutEngine_Dsl {
+            get {
+                return ResourceManager.GetString("LayoutEngine_Dsl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Layout diagram.
         /// </summary>
         public static string Tx_LayoutDiagram {

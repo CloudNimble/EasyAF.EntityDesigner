@@ -30,7 +30,7 @@ Observed failure modes on a real 39-entity model:
 ```
 LayoutEngineBase (abstract)
     Key, DisplayName
-    Layout(EntityDesignerSurface surface, IList<ShapeElement> shapes)
+    Layout(EntityDesignerSurface surface, IList shapes)
 
     DslLayoutEngine      today's three-pass AutoLayoutShapeElements + Reroute, moved verbatim
     MsAglLayoutEngine    grouping -> MSAGL placement -> rectilinear routing -> persisted routes
