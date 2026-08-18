@@ -223,7 +223,7 @@
         -->
         <EmbeddedResource Include="PackageResources.resx">
             <ManifestResourceName>Microsoft.VisualStudio.Data.Entity.Package.PackageResources</ManifestResourceName>
-            <Generator>ResXFileCodeGenerator</Generator>
+            <Generator>PublicResXFileCodeGenerator</Generator>
             <LastGenOutput>PackageResources.Designer.cs</LastGenOutput>
         </EmbeddedResource>
         <EmbeddedResource Include="Resources\MappingDetailsBitmap.bmp" />
