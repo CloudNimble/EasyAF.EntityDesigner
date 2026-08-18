@@ -175,12 +175,39 @@ What is used:
 | Piece | For |
 |---|---|
 | `GeometryGraph`, `Cluster`, `RectangularClusterBoundary` | groups as first-class nested clusters |
-| `SugiyamaLayoutSettings` via `LayoutHelpers.CalculateLayout` | placement |
+| `LayoutHelpers.CalculateLayout` | placement |
 | `RectilinearEdgeRouter` | orthogonal routing with obstacle avoidance |
 
-Placement uses the layered (Sugiyama) algorithm rather than MDS, because foreign keys are directed and a layered arrangement puts dependents below the things they reference — which is what an ER diagram is trying to show. `MdsGraphLayout` stays available as a fallback if layering proves poor on wide, shallow schemas, but layered is the default and MDS is not wired up until something demonstrates it is needed.
+### Choosing the placement algorithm
+
+MSAGL offers several ways to decide where boxes go. The two that matter here:
+
+- **Layered** — arranges boxes in rows with edges flowing one direction, like an org chart. If `Post` has a `PostTypeId`, `PostType` sits in a row above `Post`.
+- **Force-directed** — a physics simulation where boxes repel and edges pull like springs. Produces organic clumps with no consistent direction.
+
+Layered is the default. In a database the foreign key direction means something — this table depends on that one — and layered puts that on screen as "up means depended-on". Force-directed discards it.
+
+**Swapping is a one-line change, not an architectural fork.** `LayoutHelpers.CalculateLayout(geometryGraph, settings, cancelToken)` dispatches on the runtime type of `settings`, and `SugiyamaLayoutSettings` (layered), `MdsLayoutSettings` (force-directed), `FastIncrementalLayoutSettings` and `RankingLayoutSettings` all derive from `LayoutAlgorithmSettings`. Everything around the call — building the graph, assigning groups to clusters, routing, writing positions back — is identical whichever is chosen.
+
+So the algorithm is a constructor-injected setting on `MsAglLayoutEngine`, and a pre-built `LayoutAlgorithmSettings` for each option lives as a constant on `MsAglConstants`. Tuned defaults per algorithm in one place, and switching between them is picking a different constant.
 
 `RectilinearEdgeRouter` is the slow option — reports of it bogging down around 90 nodes. That is acceptable here precisely because Advanced mode bakes once on an explicit user action rather than routing per frame, and `EntityDesignerSurface.BeginLongOperation` already exists to report it.
+
+## The `edmx layout` command
+
+Layout gets its own CLI subcommand. It does **not** become a flag on `edmx render`.
+
+`render` reads an EDMX and writes a picture somewhere else; every one of its options is output-side (`--format`, `--output`, `--transparent`, `--show-types`). Layout rewrites the source file — positions, connector routes, `GroupName`. A flag that turns a read-only command into a mutating one is a trap, and nothing else works that way: Graphviz can emit computed coordinates but only via `-Tdot` into a new file, and `dotnet build` does not run `dotnet format`.
+
+```
+edmx layout <input.edmx> [--algorithm layered|force-directed] [--diagram <name>]
+```
+
+It runs the same `MsAglLayoutEngine` the designer runs, through the existing headless store, and saves the file. The CLI already uses `McMaster.Extensions.CommandLineUtils` with `[Subcommand(typeof(RenderCommand))]` on `EntityDesignerRootCommand`, so this is one attribute and one class.
+
+This is also how algorithm comparisons get produced. Copy the model, run `edmx layout` over each copy with a different `--algorithm`, then `edmx render` each result to SVG. Each command keeps doing one thing, and the comparison yields both the laid-out EDMX files and the pictures.
+
+`--algorithm` exists because the CLI is where comparison happens. The designer toolbar stays the plain on/off toggle; no algorithm picker ships in the UI unless a comparison shows more than one option is worth keeping.
 
 ## Testing
 
