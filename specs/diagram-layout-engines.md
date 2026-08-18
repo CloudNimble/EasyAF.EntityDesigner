@@ -189,7 +189,15 @@ Layered is the default. In a database the foreign key direction means something 
 
 **Swapping is a one-line change, not an architectural fork.** `LayoutHelpers.CalculateLayout(geometryGraph, settings, cancelToken)` dispatches on the runtime type of `settings`, and `SugiyamaLayoutSettings` (layered), `MdsLayoutSettings` (force-directed), `FastIncrementalLayoutSettings` and `RankingLayoutSettings` all derive from `LayoutAlgorithmSettings`. Everything around the call — building the graph, assigning groups to clusters, routing, writing positions back — is identical whichever is chosen.
 
-So the algorithm is a constructor-injected setting on `MsAglLayoutEngine`, and a pre-built `LayoutAlgorithmSettings` for each option lives as a constant on `MsAglConstants`. Tuned defaults per algorithm in one place, and switching between them is picking a different constant.
+So the algorithm is a settable **property** on `MsAglLayoutEngine`, defaulting to layered:
+
+```csharp
+public LayoutAlgorithmSettings Algorithm { get; set; } = MsAglConstants.Layered;
+```
+
+A pre-built, tuned `LayoutAlgorithmSettings` for each option lives as a constant on `MsAglConstants`, so defaults sit in one place and switching is assigning a different constant.
+
+It is a property rather than a constructor argument because of how the engine is used. `LayoutEngineManager` holds one keyed instance of each engine for the life of the designer; taking the algorithm at construction would mean either an instance per algorithm or rebuilding the manager to change it. A property lets `edmx layout --algorithm` set it before invoking, and leaves room for a designer-side picker later without disturbing registration.
 
 `RectilinearEdgeRouter` is the slow option — reports of it bogging down around 90 nodes. That is acceptable here precisely because Advanced mode bakes once on an explicit user action rather than routing per frame, and `EntityDesignerSurface.BeginLongOperation` already exists to report it.
 
