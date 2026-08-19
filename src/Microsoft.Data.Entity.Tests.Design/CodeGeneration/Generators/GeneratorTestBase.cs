@@ -22,7 +22,7 @@ namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration.Generators
         ///     those two reads hands the generator an entity set belonging to a different <see cref="DbModel" />.
         ///     <c>TableDiscoverer</c> then looks the set up in the model's mappings, finds nothing, and
         ///     <c>First</c> throws "Sequence contains no matching element". That was the intermittent failure
-        ///     recorded as issues 1.4 and 1.5 in specs/known-issues.md.
+        ///     recorded as issue 1.4 in specs/fixed-bugs.md.
         ///     </para>
         /// </remarks>
         private static readonly Lazy<DbModel> LazyModel =
