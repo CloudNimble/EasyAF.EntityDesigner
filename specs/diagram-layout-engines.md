@@ -21,7 +21,7 @@ Observed failure modes on a real 39-entity model:
 
 `Microsoft.VisualStudio.Modeling.Sdk.Diagrams.GraphObject.dll` is a mixed-mode assembly with PE machine type `0x8664` — x64 only. `PlatformTarget=x64` in `Microsoft.Data.Entity.Design.Diagrams.Tools.csproj` is load-bearing and stays. Nothing in this document changes that, and no proposal should cite it as a benefit.
 
-**It does not replace DSL routing globally.** `GraphEdge.RouteJIT` keeps handling interactive drags in the default mode. MSAGL runs when the user asks for it.
+**It does not replace DSL routing in the default engine.** `DslLayoutEngine` is unchanged and `GraphEdge.RouteJIT` keeps handling interactive drags there. That is the *only* place DSL routing survives — Advanced mode never touches it, at any stage. See *Routing and persistence*.
 
 **It does not build a taxonomy of table roles.** Only reference tables are detected, because that is the one convention that holds across arbitrary schemas and has an obvious geometric payoff. Everything else is the user's to correct via `GroupName`.
 
@@ -141,7 +141,11 @@ So `EntityTypeShape` gains `ConnectedLinks`, returning `IEnumerable<BinaryLinkSh
 
 ## Routing and persistence
 
-Advanced mode does not fall back to DSL routing. `MsAglLayoutEngine` always sets `ManuallyRouted = true` and assigns `EdgePoints`; routes are required to be persisted.
+**Advanced mode never uses the DSL line drawing routines. Not as a fallback, not as an intermediate step, not to isolate a variable while placement is evaluated. There is no version of this feature in which MSAGL places the shapes and DSL routes the connectors.**
+
+The DSL routing is the reason this work exists. Shipping MSAGL placement on top of it would be measuring the new thing through the defect it replaces.
+
+`MsAglLayoutEngine` always sets `ManuallyRouted = true` and assigns `EdgePoints`; routes are required to be persisted. The first version of the engine does this, the same as every version after it.
 
 **None of the persistence is new code.** The path exists end to end:
 
