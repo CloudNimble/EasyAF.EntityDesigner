@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Msagl" />
     <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk" />
     <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams" />
     <PackageReference Include="System.Resources.Extensions" />

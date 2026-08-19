@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
@@ -149,6 +150,28 @@ namespace Microsoft.Data.Entity.Design.Diagrams.View
             ClassStyleSet.OverridePenColor(DiagramPens.EmphasisOutline, EmphasisShapeOutlineColor);
             // We shouldn't need to do this again uless the user changes the theme.
             IsColorThemeSet = true;
+        }
+
+        /// <summary>
+        ///     Every connector attached to this shape, whichever end it is attached by.
+        /// </summary>
+        /// <example>
+        ///     <code>
+        ///     var inherits = shape.ConnectedLinks.OfType&lt;InheritanceConnector&gt;().Any();
+        ///     </code>
+        /// </example>
+        /// <remarks>
+        ///     The Modeling SDK splits these across <c>FromRoleLinkShapes</c> and <c>ToRoleLinkShapes</c>, neither
+        ///     of which is generic, so every caller that wants both ends was copying them into an
+        ///     <see cref="System.Collections.ArrayList" /> first. Reads the way the SVG exporter reads a diagram.
+        /// </remarks>
+        public IEnumerable<BinaryLinkShape> ConnectedLinks
+        {
+            get
+            {
+                return FromRoleLinkShapes.OfType<BinaryLinkShape>()
+                    .Concat(ToRoleLinkShapes.OfType<BinaryLinkShape>());
+            }
         }
 
         public EntityType TypedModelElement

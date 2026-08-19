@@ -95,6 +95,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
         private static void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<LayoutEngineBase, DslLayoutEngine>();
+            services.AddSingleton<LayoutEngineBase, MsAglLayoutEngine>();
             services.AddSingleton<LayoutEngineManager>();
         }
 

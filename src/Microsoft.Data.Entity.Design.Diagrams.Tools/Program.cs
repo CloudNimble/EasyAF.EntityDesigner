@@ -44,6 +44,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Tools
                     // Layout engines. Registration order is the priority order - LayoutEngineManager takes the
                     // first as its default, and IEnumerable<T> resolves in the order registered here.
                     services.AddSingleton<LayoutEngineBase, DslLayoutEngine>();
+                    services.AddSingleton<LayoutEngineBase, MsAglLayoutEngine>();
                     services.AddSingleton<LayoutEngineManager>();
                 })
                 .RunCommandLineApplicationAsync<EntityDesignerRootCommand>(args);

@@ -1135,6 +1135,15 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advanced.
+        /// </summary>
+        public static string LayoutEngine_MsAgl {
+            get {
+                return ResourceManager.GetString("LayoutEngine_MsAgl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Standard.
         /// </summary>
         public static string LayoutEngine_Dsl {
