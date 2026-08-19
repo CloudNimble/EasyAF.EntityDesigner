@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
+using Microsoft.Data.Entity.Design.Diagrams.Layout;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -13,6 +14,7 @@ using Microsoft.VisualStudio.Imaging;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Shell;
 using Microsoft.VisualStudio.PlatformUI;
+using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu;
@@ -31,6 +33,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
         private DiagramSurfaceContextMenuService _contextMenuService;
         private FloatingZoomControl _floatingZoomControl;
         private ElementHost _floatingZoomHost;
+        private MenuCommandDefinition _advancedLayoutCommand;
         private MenuCommandDefinition _showGridCommand;
         private MenuCommandDefinition _snapToGridCommand;
 
@@ -148,6 +151,20 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                 () => (CurrentDiagram as EntityDesignerSurface)?.AutoLayoutDiagram(),
                 "Auto-arrange entity layout"));
 
+            // Chooses which engine the Layout command above runs. Sits next to it rather than with the grid
+            // toggles because it changes what that button does rather than what the surface looks like.
+            _advancedLayoutCommand = new MenuCommandDefinition
+            {
+                Id = "AdvancedLayout",
+                Tooltip = "Advanced Layout",
+                Icon = KnownMonikers.MagicWand,
+                IsToggle = true,
+                IsChecked = false
+            };
+            _advancedLayoutCommand.PropertyChanged += AdvancedLayoutCommand_PropertyChanged;
+
+            _floatingZoomControl.Commands.Add(_advancedLayoutCommand);
+
             // Calculate margin based on scrollbar width
             var rightMargin = scrollbarWidth + 4;  // scrollbar width + small gap
 
@@ -228,6 +245,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
 
             // Sync grid command states on first zoom event (when diagram is loaded)
             SyncGridCommandStates(diagram);
+            SyncAdvancedLayoutCommandState(diagram);
 
             try
             {
@@ -358,6 +376,67 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
 
             diagram.ShowGrid = _showGridCommand.IsChecked;
             diagram.PersistShowGrid();
+        }
+
+        /// <summary>
+        ///     Handler for the Advanced Layout toggle, which selects the engine the Layout command runs.
+        /// </summary>
+        /// <remarks>
+        ///     Toggling only changes which engine is current; it does not lay the diagram out. Re-arranging
+        ///     everything the moment a toggle is clicked would throw away positions the user may have spent time
+        ///     on, so the Layout button beside it stays the thing that moves shapes.
+        /// </remarks>
+        private void AdvancedLayoutCommand_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName != nameof(MenuCommandDefinition.IsChecked))
+            {
+                return;
+            }
+
+            if (CurrentDiagram is not EntityDesignerSurface diagram
+                || diagram.LayoutManager is null)
+            {
+                return;
+            }
+
+            var key = _advancedLayoutCommand.IsChecked ? MsAglLayoutEngine.EngineKey : DslLayoutEngine.EngineKey;
+
+            if (!diagram.LayoutManager.TrySetCurrent(key))
+            {
+                // The engine was not registered. Leave whatever is running in place and put the toggle back, so
+                // the button never claims a mode the designer is not actually in.
+                VsUtils.LogToActivityLog(
+                    $"AdvancedLayoutCommand: no layout engine registered under '{key}'.",
+                    __ACTIVITYLOG_ENTRYTYPE.ALE_WARNING);
+
+                SyncAdvancedLayoutCommandState(diagram);
+            }
+        }
+
+        /// <summary>
+        ///     Points the Advanced Layout toggle at whichever engine is actually current.
+        /// </summary>
+        private void SyncAdvancedLayoutCommandState(EntityDesignerSurface diagram)
+        {
+            if (_advancedLayoutCommand is null
+                || diagram.LayoutManager?.Current is null)
+            {
+                return;
+            }
+
+            var isAdvanced = string.Equals(
+                diagram.LayoutManager.Current.Key, MsAglLayoutEngine.EngineKey, StringComparison.OrdinalIgnoreCase);
+
+            if (_advancedLayoutCommand.IsChecked == isAdvanced)
+            {
+                return;
+            }
+
+            // Unhook while loading the state, the same as the grid toggles, so reflecting what is already current
+            // does not read as the user asking to change it.
+            _advancedLayoutCommand.PropertyChanged -= AdvancedLayoutCommand_PropertyChanged;
+            _advancedLayoutCommand.IsChecked = isAdvanced;
+            _advancedLayoutCommand.PropertyChanged += AdvancedLayoutCommand_PropertyChanged;
         }
 
         /// <summary>
