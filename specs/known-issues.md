@@ -10,7 +10,7 @@ Resolved issues move to `fixed-bugs.md` rather than staying here marked FIXED. *
 
 | Category | Count |
 |---|---|
-| Failing tests | 0 deterministic; 1 named intermittent with a root cause — see 2.5; 2 still unnamed — see 1.5 |
+| Failing tests | 0 deterministic; 1 open intermittent — see 2.6; 2 still unnamed — see 1.5 |
 | Tests disabled with `[Ignore]` | 194 |
 | Tests that never run because of an invalid signature | 0 — fixed, see `fixed-bugs.md` 2.2 and 2.4 |
 | `MSTEST0003` warnings | 0 — was 98 |
@@ -27,7 +27,7 @@ Single-test failures, each passing when that project was rerun on its own immedi
 | Assembly | Target | Status |
 |---|---|---|
 | `Microsoft.Data.Entity.Tests.Design` | net48 | **named and fixed** — `Generate_returns_code`, see `fixed-bugs.md` 1.4 |
-| `Microsoft.Data.Entity.Tests.Design.EntityFramework` | net10.0 | **named** — see 2.5, root cause found |
+| `Microsoft.Data.Entity.Tests.Design.EntityFramework` | net10.0 | **named and fixed** — see `fixed-bugs.md` 2.5 |
 | `Microsoft.Data.Entity.Tests.Design.VersioningFacade` | net10.0 | still unnamed, full solution 294/295 |
 | `Microsoft.VisualStudio.Data.Entity.Tests.Package` | net48 | still unnamed, full solution 59/60 (2026-08-17) |
 
@@ -68,31 +68,26 @@ This is the single largest hole in the suite. Fixing it means deciding whether t
 
 At minimum the reason strings should be normalized to one spelling so the count is greppable.
 
-### 2.5 `StoreSchemaConnectionFactory.EnsureSqlClientRegistered` races — this is the 1.5 intermittent
+### 2.6 Process-wide static registries are initialised ad hoc, in at least three places
 
-**Named on the first run after trx logging became unconditional.** `Create_creates_valid_EntityConnection` and `Create_creates_valid_EntityConnection_and_returns_EF_version`, in `StoreSchemaConnectionFactoryTests`, net10 only:
+Three intermittent failures have now been traced, and all three are the same shape: **a one-time initialization of process-wide static state whose "done" marker becomes visible before the work is finished, or which several tests mutate concurrently.**
 
-```
-System.ArgumentException: The specified invariant name 'System.Data.SqlClient'
-wasn't found in the list of registered .NET Data Providers.
-   at System.Data.Common.DbProviderFactories.GetFactory(String, Boolean)
-```
+| Registry | Where | Status |
+|---|---|---|
+| `GeneratorTestBase.Model` (a `DbModel`) | test base class | fixed, `fixed-bugs.md` 1.4 |
+| `DbProviderFactories` (BCL) | `StoreSchemaConnectionFactory` | fixed, `fixed-bugs.md` 2.5 |
+| `DependencyResolver.ProviderServicesResolver` | `Microsoft.Data.Entity.Design.EntityFramework` | **open** |
 
-The cause is in **production code**, `Microsoft.Data.Entity.Design.EntityFramework/ReverseEngineerDb/StoreSchemaConnectionFactory.cs`:
+The third is still open and still unnamed as a single test. Two different tests in `DependencyResolverTests` have failed once each — `DependencyResolver_preregisters_MicrosoftDataSqlClient` on pre-fix code across 32 runs, and `EnsureProvider_registers_provider` on post-fix code across 12. Both sightings straddle the 2.5 change, so **the failure is independent of it**; the shared `static readonly DbProviderServicesResolver` that several tests register and unregister against in parallel is the thing to look at.
 
-```csharp
-if (_sqlClientRegistrationChecked) { return; }
-_sqlClientRegistrationChecked = true;      // set before the work it guards
+**Both fixes so far are patches.** The pattern underneath is that these registries are initialised at whatever call site happens to reach them first, guarded by hand-rolled one-time checks. The intended shape is to register what is needed into a DI container and resolve it later — a container singleton is not constructed until first resolved, which is what the hand-rolled guards are imitating, and it blocks exactly where `Lazy` does when it constructs.
 
-try { DbProviderFactories.GetFactory(SqlClientInvariantName); }
-catch (ArgumentException) { DbProviderFactories.RegisterFactory(...); }
-```
+Two things make that more than a refactor, and both are why it was deferred rather than done:
 
-**The flag is set before the registration it is meant to guard.** Thread A sets it and starts registering; thread B sees `true`, returns immediately, and calls `GetFactory` against a registry nothing has populated yet.
+- **A container cannot own `DbProviderFactories`.** DI defers construction of an *object*; this is a one-time side effect on a static registry the BCL owns. Even fully DI-ified, something performs a guarded registration — it just moves inside a singleton's constructor.
+- **The package deliberately loads in phases**, so that documents already open keep working before the rest of the extension is available. Where a registration belongs in that sequence is a question about the original design, and matching what Visual Studio 2026 expects of a modern extension is a substantial piece of work in its own right.
 
-net10 only because `DbProviderFactories` is a process-wide static registry with no ambient content on .NET Core — .NET Framework resolves the provider from machine.config and never enters this path.
-
-This is the same defect as `fixed-bugs.md` 1.4, one layer down: a one-time initialization whose "done" marker becomes visible before the work is. **Fix it the same way** — `Lazy<T>` with `LazyThreadSafetyMode.ExecutionAndPublication`, or a lock around the whole check-and-register — and note it is a real concurrency bug in shipping code, not only a test problem.
+Until that is decided, use `Lazy<T>` with `LazyThreadSafetyMode.ExecutionAndPublication` for any new one-time static initialization, and treat a hand-rolled `if (_flag) return;` guard as a defect on sight.
 
 ## 3. Build warnings — 181
 
@@ -188,7 +183,7 @@ This is the other half of the same question as 6.1: whether user-authored T4 cod
 
 ## Suggested order
 
-1. **2.5** — the `EnsureSqlClientRegistered` race. Named, root-caused, and a real concurrency bug in shipping code.
+1. **2.6** — the `DependencyResolver` registry race, the last traced intermittent. Two sightings, both in `DependencyResolverTests`.
 2. **1.5** — the unnamed intermittents. Costs nothing to progress: run every suite with trx from now on and the next sighting names itself.
 3. **2.1** — the 194 ignored tests. Largest and least certain; needs a decision about EF6 binaries first.
 4. **6.1 and 6.2** — the T4 registrations. Needs a scope decision about EDMX T4 codegen before either is worth touching.

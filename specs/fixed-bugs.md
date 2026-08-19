@@ -155,6 +155,36 @@ The eighth was only visible after the other seven were cleared; it is in a diffe
 
 **`MSTEST0003` is now 0 across the solution**, down from 98.
 
+### 2.5 `EnsureSqlClientRegistered` published its guard before doing the work — fixed 2026-08-19
+
+The named cause of one row of issue 1.5. `Create_creates_valid_EntityConnection` and `Create_creates_valid_EntityConnection_and_returns_EF_version` failed intermittently on net10 with:
+
+```
+System.ArgumentException: The specified invariant name 'System.Data.SqlClient'
+wasn't found in the list of registered .NET Data Providers.
+   at System.Data.Common.DbProviderFactories.GetFactory(String, Boolean)
+```
+
+**In production code**, `StoreSchemaConnectionFactory`:
+
+```csharp
+if (_sqlClientRegistrationChecked) { return; }
+_sqlClientRegistrationChecked = true;      // set before the work it guards
+
+try { DbProviderFactories.GetFactory(SqlClientInvariantName); }
+catch (ArgumentException) { DbProviderFactories.RegisterFactory(...); }
+```
+
+Thread A sets the flag and starts registering. Thread B sees `true`, returns early, and calls `GetFactory` against a registry nothing has populated yet. net10 only — .NET Framework resolves the provider from machine.config and never enters this path.
+
+Fixed with `Lazy<bool>` and `LazyThreadSafetyMode.ExecutionAndPublication`.
+
+**On the objection that this makes callers block.** It does, and that is the requirement rather than a side effect. The caller's next statement is `GetFactory(providerInvariantName)`, which throws if registration has not finished — so returning early *is* the bug, and the old code did not avoid blocking, it avoided correctness. The wait is bounded to the first call and only for threads arriving mid-registration; afterwards `Lazy<T>.Value` nulls its factory and the getter is a plain field read. Every correct one-time initialization has this shape: a static constructor blocks via the CLR, a `lock` blocks, and `IServiceCollection.AddSingleton` blocks inside the container when the singleton is first resolved.
+
+Verified: 12 runs of the affected assembly on net10 with trx on every run, zero recurrences. Both sightings that remained were a different, pre-existing intermittent — see `known-issues.md` 2.6.
+
+**This is a patch, not the architecture.** See `known-issues.md` 2.6 for what the real fix looks like and why it was deferred.
+
 ### 2.3 Store-building tests race under parallelism
 
 **The Visual Studio Modeling SDK cannot be driven from more than one thread in a process.** It assumes a single threaded host and keeps unsynchronized process wide state in at least two places:

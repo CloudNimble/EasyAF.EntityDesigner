@@ -22,7 +22,22 @@ namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb
     {
 #if NET
         private const string SqlClientInvariantName = "System.Data.SqlClient";
-        private static bool _sqlClientRegistrationChecked;
+
+        /// <summary>
+        ///     Registers the SQL Server ADO.NET provider factory, once per process.
+        /// </summary>
+        /// <remarks>
+        ///     A <see cref="Lazy{T}" /> rather than a bool flag, and that is the whole point of it.
+        ///     <see cref="SystemDataCommon.DbProviderFactories" /> is a process-wide static registry, so this runs
+        ///     exactly once and every caller must wait for it. The previous version set a
+        ///     <c>_sqlClientRegistrationChecked</c> flag <em>before</em> doing the registration it guarded, so a
+        ///     second thread saw the flag, returned early, and called
+        ///     <see cref="SystemDataCommon.DbProviderFactories.GetFactory(string)" /> against a registry nothing
+        ///     had populated yet - throwing "The specified invariant name 'System.Data.SqlClient' wasn't found in
+        ///     the list of registered .NET Data Providers". See specs/known-issues.md 2.5.
+        /// </remarks>
+        private static readonly Lazy<bool> SqlClientRegistration =
+            new Lazy<bool>(RegisterSqlClient, LazyThreadSafetyMode.ExecutionAndPublication);
 #endif
 
         /// <summary>
@@ -129,13 +144,21 @@ namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb
         private static void EnsureSqlClientRegistered()
         {
 #if NET
-            if (_sqlClientRegistrationChecked)
-            {
-                return;
-            }
+            _ = SqlClientRegistration.Value;
+#endif
+        }
 
-            _sqlClientRegistrationChecked = true;
-
+#if NET
+        /// <summary>
+        ///     Registers the factory unless the runtime already resolves the name.
+        /// </summary>
+        /// <returns>Always <see langword="true" />; the value exists only to give <see cref="Lazy{T}" /> a type.</returns>
+        /// <remarks>
+        ///     Runs exactly once per process, under <see cref="Lazy{T}" />. Registration is skipped when the name
+        ///     already resolves, so a host that registered its own factory keeps it.
+        /// </remarks>
+        private static bool RegisterSqlClient()
+        {
             try
             {
                 SystemDataCommon.DbProviderFactories.GetFactory(SqlClientInvariantName);
@@ -145,8 +168,10 @@ namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb
                 SystemDataCommon.DbProviderFactories.RegisterFactory(
                     SqlClientInvariantName, System.Data.SqlClient.SqlClientFactory.Instance);
             }
-#endif
+
+            return true;
         }
+#endif
 
         private static string ReplaceMdsKeywords(string connectionString)
         {
