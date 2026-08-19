@@ -716,7 +716,7 @@ namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
             }
 
             [TestMethod, Ignore("Different API Visibility between official dll and locally built")]
-            public static void CreateCollapsibleItems_creates_collapsible_item() {
+            public void CreateCollapsibleItems_creates_collapsible_item() {
                //var tableDetails = new[]
                //    {
                //        StoreModelBuilderTests.CreateRow(
@@ -755,7 +755,7 @@ namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
             }
 
             [TestMethod, Ignore("Different API Visibility between official dll and locally built")]
-            public static void CreateCollapsibleItems_does_not_create_collapsible_item_if_not_IsEntityDependentSideOfBothAssociations() {
+            public void CreateCollapsibleItems_does_not_create_collapsible_item_if_not_IsEntityDependentSideOfBothAssociations() {
                //var tableDetails = new[]
                //    {
                //        StoreModelBuilderTests.CreateRow(
@@ -790,7 +790,7 @@ namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
             }
 
             [TestMethod, Ignore("Different API Visibility between official dll and locally built")]
-            public static void
+            public void
             CreateCollapsibleItems_does_not_create_collapsible_item_if_not_IsAtLeastOneColumnOfBothDependentRelationshipColumnSetsNonNullable
             () {
                //var tableDetails = new[]
@@ -830,7 +830,7 @@ namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
 
             [TestMethod, Ignore("Different API Visibility between official dll and locally built")]
 
-            public static void CreateCollapsibleItems_does_not_create_collapsible_item_if_not_AreAllEntityColumnsMappedAsToColumns() {
+            public void CreateCollapsibleItems_does_not_create_collapsible_item_if_not_AreAllEntityColumnsMappedAsToColumns() {
                //var tableDetails = new[]
                //    {
                //        StoreModelBuilderTests.CreateRow(
@@ -868,7 +868,7 @@ namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
 
             [TestMethod, Ignore("Different API Visibility between official dll and locally built")]
 
-            public static void CreateCollapsibleItems_does_not_create_collapsible_item_if_IsAtLeastOneColumnFkInBothAssociations() {
+            public void CreateCollapsibleItems_does_not_create_collapsible_item_if_IsAtLeastOneColumnFkInBothAssociations() {
                //var tableDetails = new[]
                //    {
                //        StoreModelBuilderTests.CreateRow(
@@ -928,7 +928,7 @@ namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
 
             [TestMethod, Ignore("Different API Visibility between official dll and locally built")]
 
-            public static void GenerateAssociationSets_from_store_association_sets_creates_expected_mappings() {
+            public void GenerateAssociationSets_from_store_association_sets_creates_expected_mappings() {
                var tableDetails = new[]
                    {
                         StoreModelBuilderTests.CreateRow(
@@ -969,7 +969,7 @@ namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
             }
 
             [TestMethod]
-            public static void GenerateAssociationSets_from_collapsible_items_creates_expected_mappings() {
+            public void GenerateAssociationSets_from_collapsible_items_creates_expected_mappings() {
                var tableDetails = new[]
                    {
                         StoreModelBuilderTests.CreateRow(
@@ -1017,7 +1017,7 @@ namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
             }
 
             [TestMethod]
-            public static void GenerateAssociationSets_from_store_association_sets_creates_expected_instances() {
+            public void GenerateAssociationSets_from_store_association_sets_creates_expected_instances() {
                var tableDetails = new[]
                    {
                         StoreModelBuilderTests.CreateRow(
@@ -1079,7 +1079,7 @@ namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
             }
 
             [TestMethod]
-            public static void GenerateAssociationSets_from_collapsible_items_creates_expected_instances() {
+            public void GenerateAssociationSets_from_collapsible_items_creates_expected_instances() {
                var tableDetails = new[]
                    {
                         StoreModelBuilderTests.CreateRow(
@@ -1148,7 +1148,7 @@ namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
             }
 
             [TestMethod]
-            public static void GenerateAssociationType_from_store_association_type_creates_FK_association_in_Version3() {
+            public void GenerateAssociationType_from_store_association_type_creates_FK_association_in_Version3() {
                var tableDetails = new[]
                    {
                         StoreModelBuilderTests.CreateRow(
@@ -1191,7 +1191,7 @@ namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
             }
 
             [TestMethod]
-            public static void
+            public void
                 GenerateAssociationType_from_store_association_type_creates_non_FK_association_if_does_not_require_referential_constraint() {
                var tableDetails = new[]
                    {

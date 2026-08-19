@@ -11,7 +11,7 @@ namespace Microsoft.Data.Entity.Tests.Design.EntityFramework.ReverseEngineerDb
     public class UniqueIdentifierServiceTests
     {
         [TestMethod]
-        public static void RegisterUsedIdentifier_uses_the_specified_StringComparer_correctly()
+        public void RegisterUsedIdentifier_uses_the_specified_StringComparer_correctly()
         {
             const string identifierA = "Identifier";
             const string identifierB = "IdeNTiFieR";
@@ -28,7 +28,7 @@ namespace Microsoft.Data.Entity.Tests.Design.EntityFramework.ReverseEngineerDb
         }
 
         [TestMethod]
-        public static void AdjustIdentifier_with_Ordinal_comparer_and_identity_transform_returns_expected_result()
+        public void AdjustIdentifier_with_Ordinal_comparer_and_identity_transform_returns_expected_result()
         {
             const string identifier = "Identifier";
             const string adjustedIdentifier1 = "Identifier1";
@@ -44,7 +44,7 @@ namespace Microsoft.Data.Entity.Tests.Design.EntityFramework.ReverseEngineerDb
         }
 
         [TestMethod]
-        public static void AdjustIdentifier_with_OrdinalIgnoreCase_comparer_and_custom_transform_returns_expected_result()
+        public void AdjustIdentifier_with_OrdinalIgnoreCase_comparer_and_custom_transform_returns_expected_result()
         {
             const string identifier = "My.Identifier";
             const string usedIdentifier = "My_IdENtIfiEr";
@@ -63,7 +63,7 @@ namespace Microsoft.Data.Entity.Tests.Design.EntityFramework.ReverseEngineerDb
         }
 
         [TestMethod]
-        public static void TryGetAdjustedName_correctly_retrieves_the_adjusted_identifier_associated_with_an_object()
+        public void TryGetAdjustedName_correctly_retrieves_the_adjusted_identifier_associated_with_an_object()
         {
             const string identifier = "Identifier";
             const string adjustedIdentifier1 = "Identifier1";

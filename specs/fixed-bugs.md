@@ -107,6 +107,31 @@ This also resolved the `Microsoft.Data.Entity.Tests.Design` (net48) row of issue
 
 ## 2. Tests that never run
 
+### 2.2 17 tests declared `static` — fixed 2026-08-19
+
+MSTest will not run a `static` test method. It emits `MSTEST0003` and the method silently never executes — it is not even reported as skipped.
+
+| File | Count |
+|---|---|
+| `EntityFramework/ReverseEngineerDb/OneToOneMappingBuilderTests.GenerateEdmFunctionsTests.cs` | 11 |
+| `EntityFramework/ReverseEngineerDb/UniqueIdentifierServiceTests.cs` | 4 |
+| `EntityFramework/ReverseEngineerDb/DbDatabaseMappingBuilderTests.cs` | 2 |
+
+**They were not made static recently, and not to hide anything.** All 17 were already `public static void` at `721bc51` (2021-08-03), inherited from the original EF6 repository, where they were xUnit `[Fact]` methods. **xUnit runs static test methods; MSTest does not.** The January 2026 conversion from `[Fact]` to `[TestMethod]` turned a legal xUnit signature into one MSTest silently skips.
+
+Fixed by deleting the `static` keyword. Measured before and after on `Microsoft.Data.Entity.Tests.Design.EntityFramework`:
+
+| | Total | Passed | Skipped |
+|---|---|---|---|
+| Before | 390 | 295 | 95 |
+| After | **407** | **304** | **103** |
+
++17 collected, exactly the count expected. Nine of them run and **all nine pass**; the other eight carry `[Ignore]`. No new failures, on either target.
+
+Note the earlier entry located these files under `VersioningFacade`. They are in `Microsoft.Data.Entity.Tests.Design.EntityFramework`.
+
+**This did not clear MSTEST0003** — see `known-issues.md` 2.4, a second and unrelated cause that was hidden behind this one.
+
 ### 2.3 Store-building tests race under parallelism
 
 **The Visual Studio Modeling SDK cannot be driven from more than one thread in a process.** It assumes a single threaded host and keeps unsynchronized process wide state in at least two places:

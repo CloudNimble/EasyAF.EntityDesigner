@@ -257,7 +257,7 @@ namespace Microsoft.Data.Entity.Tests.Design.EntityFramework.ReverseEngineerDb
         }
 
         [TestMethod, Ignore("Different API Visiblity between official dll and locally built one")]
-        public static void BuildAssociationSetMappings_creates_valid_association_set_mappings()
+        public void BuildAssociationSetMappings_creates_valid_association_set_mappings()
         {
             //var mappingContext = CreateSimpleMappingContext(isForeignKey: false);
 
@@ -471,7 +471,7 @@ namespace Microsoft.Data.Entity.Tests.Design.EntityFramework.ReverseEngineerDb
         }
 
         [TestMethod, Ignore("Different API Visiblity between official dll and locally built")]
-        public static void BuildAssociationSetMappings_does_not_create_mappings_if_association_type_is_foreign_key()
+        public void BuildAssociationSetMappings_does_not_create_mappings_if_association_type_is_foreign_key()
         {
             //var mappingContext = CreateSimpleMappingContext(isForeignKey: true);
 

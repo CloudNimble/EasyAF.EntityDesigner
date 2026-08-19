@@ -10,10 +10,11 @@ Resolved issues move to `fixed-bugs.md` rather than staying here marked FIXED. *
 
 | Category | Count |
 |---|---|
-| Failing tests | 0 deterministic; 2 unnamed intermittents — see 1.5 |
-| Tests disabled with `[Ignore]` | 186 |
-| Tests that never run because of an invalid signature | 17 |
-| Build warnings | 284 |
+| Failing tests | 0 deterministic; 3 unnamed intermittents — see 1.5 |
+| Tests disabled with `[Ignore]` | 194 |
+| Tests that never run because of an invalid signature | 0 — fixed, see `fixed-bugs.md` 2.2 |
+| Live helpers wrongly marked `[TestMethod]` | 7 — see 2.4 |
+| Build warnings | needs a recount; the last figures predate 2.2 |
 | Packages with known vulnerabilities | 0 |
 | Minor defects logged for later | 6 — see section 5 |
 
@@ -31,7 +32,17 @@ Single-test failures seen during the 2026-08-16 project file work, each in a dif
 
 The third row is a fresh sighting, seen once and not reproduced: the assembly passed 295/295 on its own immediately afterwards, and three consecutive full-solution runs with trx enabled from the start were all clean. So the name escaped again — the trx run is the one that passes.
 
-**Neither name has ever been captured.** The console logger reports the count on the summary line but the name scrolls past in a full-solution run, and a rerun to capture it is exactly the run that passes. **Use `--logger "trx" --results-directory <dir>` from the start, not as a follow-up**, and read `outcome="Failed"` out of the `.trx`, or the name is lost every time.
+**Neither name has ever been captured**, and the reason is always the same mistake.
+
+> **Always run with `--logger "trx" --results-directory <dir>`. Every run, not just the one after you have already seen a failure.**
+
+An intermittent is by definition gone by the time you go looking for it. The console logger reports the count on the summary line but the name scrolls past in a full-solution run, so the instinct is to rerun with trx — and the rerun is the run that passes. Capturing on every run costs nothing and is the only thing that ever works; capturing reactively has now failed on four separate sightings.
+
+Read the names out with:
+
+```bash
+grep -ho 'testName="[^"]*"[^>]*outcome="Failed"' <dir>/*.trx
+```
 
 A third row of this issue — `Microsoft.Data.Entity.Tests.Design` (net48) — was named on 2026-08-18, turned out to be `Generate_returns_code`, and is fixed. See `fixed-bugs.md` 1.4.
 
@@ -60,25 +71,25 @@ This is the single largest hole in the suite. Fixing it means deciding whether t
 
 At minimum the reason strings should be normalized to one spelling so the count is greppable.
 
-### 2.2 17 tests declared `static`
+### 2.4 `[TestMethod]` on seven private helper methods
 
-MSTest will not run a `static` test method. It emits `MSTEST0003` (98 warnings) and the method silently never executes — it is not even reported as skipped.
+Surfaced by fixing 2.2, which was masking it. `MSTEST0003` still fires on seven methods, none of which is a test:
 
-| File | Count |
-|---|---|
-| `VersioningFacade/ReverseEngineerDb/OneToOneMappingBuilderTests.GenerateEdmFunctionsTests.cs` | 11 |
-| `VersioningFacade/ReverseEngineerDb/UniqueIdentifierServiceTests.cs` | 4 |
-| `VersioningFacade/ReverseEngineerDb/DbDatabaseMappingBuilderTests.cs` | 2 |
-
-**They were not made static recently, and not to hide anything.** All 17 were already `public static void` at `721bc51` (2021-08-03), inherited from the original EF6 repository, where they were xUnit `[Fact]` methods. **xUnit runs static test methods; MSTest does not.** The January 2026 conversion from `[Fact]` to `[TestMethod]` turned a legal xUnit signature into one MSTest silently skips.
-
-| File | Static | Framework then |
+| File | Method | Shape |
 |---|---|---|
-| `OneToOneMappingBuilderTests` (now `.GenerateEdmFunctionsTests`) | 11 of 45 | xUnit `[Fact]` |
-| `UniqueIdentifierServiceTests` | 4 of 4 | xUnit `[Fact]` |
-| `DbDatabaseMappingBuilderTests` | 2 of 14 | xUnit `[Fact]` |
+| `DbDatabaseMappingBuilderTests.cs` | `CreateSimpleMappingContext` | `private static SimpleMappingContext(bool)` |
+| `OneToOneMappingBuilderTests.cs` | `GetLazyLoadingMetadataProperty` | `private static MetadataProperty(Version)` |
+| `OneToOneMappingBuilderTests.GenerateEdmFunctionsTests.cs` | `CreateStoreModel` | `private static EdmModel(Version, params EdmFunction[])` |
+| `StoreModelBuilderTests.CreateAssociationSetsTests.cs` | `Check_does_not_create_set_if_end_entity_is_missing` | `private void(bool, bool)` |
+| `StoreModelBuilderTests.CreateAssociationSetsTests.cs` | `Check_two_column_relationship_..._pk_to_pk` | `private void(...)` |
+| `StoreModelBuilderTests.CreateAssociationSetsTests.cs` | `Check_two_column_relationship_..._pk_to_fk` | `private void(...)` |
+| `StoreModelBuilderTests.CreateAssociationSetsTests.cs` | `Check_cascade_delete_flag_is_reflected_by_delete_behavior` | `private void(...)` |
 
-**Fix:** delete the `static` keyword. There is no evidence they were failing — they simply stopped being collected when the framework changed under them. Worth checking whether any other `[Fact]` to `[TestMethod]` conversion in that batch carried a similar signature assumption.
+All seven are `private`, take parameters, and most return a value. All seven are **called by real tests** — verified, between 1 and 11 call sites each — so they are live helpers that picked up a stray `[TestMethod, Ignore(...)]` during the same `[Fact]` to `[TestMethod]` conversion that caused 2.2.
+
+**Fix:** delete the attribute, not the method. `[Ignore]` on a private method does nothing either, so both halves of the attribute are noise. Behaviour does not change; this only silences the analyzer and stops the methods reading as disabled tests.
+
+Worth doing at the same time: recount `MSTEST0003`. The old count of 98 was taken when 2.2 was still present.
 
 ## 3. Build warnings — 181
 
@@ -174,7 +185,7 @@ This is the other half of the same question as 6.1: whether user-authored T4 cod
 
 ## Suggested order
 
-1. **2.2** — delete `static` from 17 tests. Minutes, and it tells us whether they pass.
-2. **2.1** — the 186 ignored tests. Largest and least certain; needs a decision about EF6 binaries first.
-3. **1.5** — the two unnamed intermittents. Cheap to progress: run with trx from the start and capture the names.
+1. **2.4** — delete a stray attribute from seven helpers. Minutes, and it clears the rest of `MSTEST0003`.
+2. **1.5** — the unnamed intermittents. Costs nothing to progress: run every suite with trx from now on and the next sighting names itself.
+3. **2.1** — the 194 ignored tests. Largest and least certain; needs a decision about EF6 binaries first.
 4. **6.1 and 6.2** — the T4 registrations. Needs a scope decision about EDMX T4 codegen before either is worth touching.
