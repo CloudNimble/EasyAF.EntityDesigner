@@ -165,6 +165,10 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
 
             _floatingZoomControl.Commands.Add(_advancedLayoutCommand);
 
+            // TEMPORARY. Lets the connector routing modes be compared on a live diagram while the layout engine is
+            // being tuned. Remove once one of them is chosen; the shipping UI is meant to be the toggle alone.
+            _floatingZoomControl.Commands.Add(CreateRoutingCommand());
+
             // Calculate margin based on scrollbar width
             var rightMargin = scrollbarWidth + 4;  // scrollbar width + small gap
 
@@ -376,6 +380,65 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
 
             diagram.ShowGrid = _showGridCommand.IsChecked;
             diagram.PersistShowGrid();
+        }
+
+        /// <summary>
+        ///     Builds the temporary connector-routing picker.
+        /// </summary>
+        /// <remarks>
+        ///     TEMPORARY, for comparing routing modes on a real diagram. Selecting a mode sets it on the engine and
+        ///     immediately re-runs the layout, because the only reason to change it is to see the difference -
+        ///     unlike the Advanced toggle, where re-arranging on click would discard the user's positions.
+        /// </remarks>
+        private MenuCommandDefinition CreateRoutingCommand()
+        {
+            var routing = new MenuCommandDefinition
+            {
+                Id = "ConnectorRouting",
+                Label = "Routing",
+                Tooltip = "Connector routing (temporary)",
+                Children = []
+            };
+
+            foreach (var mode in (ConnectorRouting[])Enum.GetValues(typeof(ConnectorRouting)))
+            {
+                routing.Children.Add(
+                    new MenuCommandDefinition
+                    {
+                        Id = $"ConnectorRouting.{mode}",
+                        Label = mode.ToString(),
+                        Tooltip = $"Route connectors: {mode}",
+                        ExecuteAction = () => ApplyRouting(mode)
+                    });
+            }
+
+            return routing;
+        }
+
+        /// <summary>
+        ///     Sets the routing mode on the MSAGL engine and re-lays out the diagram.
+        /// </summary>
+        private void ApplyRouting(ConnectorRouting mode)
+        {
+            if (CurrentDiagram is not EntityDesignerSurface diagram
+                || diagram.LayoutManager?.LayoutEngines is null)
+            {
+                return;
+            }
+
+            if (!diagram.LayoutManager.LayoutEngines.TryGetValue(MsAglLayoutEngine.EngineKey, out var engine)
+                || engine is not MsAglLayoutEngine msagl)
+            {
+                return;
+            }
+
+            msagl.Routing = mode;
+
+            // Only redraw when that engine is the one in effect; otherwise the choice is stored for when it is.
+            if (ReferenceEquals(diagram.LayoutManager.Current, msagl))
+            {
+                diagram.AutoLayoutDiagram();
+            }
         }
 
         /// <summary>

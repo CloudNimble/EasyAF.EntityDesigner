@@ -28,6 +28,11 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Controls
         /// </summary>
         public DataTemplate SeparatorTemplate { get; set; }
 
+        /// <summary>
+        /// Gets or sets the template for commands that offer a choice from their children.
+        /// </summary>
+        public DataTemplate DropDownTemplate { get; set; }
+
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             if (item is MenuSeparatorDefinition)
@@ -37,6 +42,11 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Controls
 
             if (item is MenuCommandDefinition commandDef)
             {
+                if (commandDef.HasChildren)
+                {
+                    return DropDownTemplate;
+                }
+
                 return commandDef.IsToggle ? ToggleTemplate : ButtonTemplate;
             }
 

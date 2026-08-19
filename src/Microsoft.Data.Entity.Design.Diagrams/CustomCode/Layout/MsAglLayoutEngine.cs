@@ -12,6 +12,7 @@ using Microsoft.Msagl.Routing.Rectilinear;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Diagrams.GraphObject;
 using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.DiagramsResources;
+using MsAglLineSegment = Microsoft.Msagl.Core.Geometry.Curves.LineSegment;
 using MsAglNode = Microsoft.Msagl.Core.Layout.Node;
 using MsAglPoint = Microsoft.Msagl.Core.Geometry.Point;
 
@@ -41,6 +42,15 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
         /// </summary>
         internal const string EngineKey = "MsAgl";
 
+        /// <summary>
+        ///     Points sampled along each curved segment when flattening a route into a polyline.
+        /// </summary>
+        /// <remarks>
+        ///     Eight is enough that a connector-sized arc reads as a curve rather than a chord, without inflating
+        ///     the <c>ConnectorPoint</c> elements written to the EDMX more than it has to.
+        /// </remarks>
+        private const int CurveFlatteningSteps = 8;
+
         #endregion
 
         #region Properties
@@ -53,6 +63,15 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
         ///     the host, so taking this at construction would mean an instance per algorithm.
         /// </remarks>
         public LayoutAlgorithm Algorithm { get; set; } = LayoutAlgorithm.Layered;
+
+        /// <summary>
+        ///     How connectors are drawn. Defaults to <see cref="ConnectorRouting.Orthogonal" />.
+        /// </summary>
+        /// <remarks>
+        ///     A property for the same reason <see cref="Algorithm" /> is one: the engine is registered once for
+        ///     the life of the host.
+        /// </remarks>
+        public ConnectorRouting Routing { get; set; } = ConnectorRouting.Orthogonal;
 
         /// <inheritdoc />
         public override string DisplayName
@@ -88,9 +107,9 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
             {
                 var graph = BuildGraph(entityShapes, out var nodesByShape, out var connectorsByEdge);
 
-                LayoutHelpers.CalculateLayout(graph, MsAglConstants.CreateSettings(Algorithm), null);
-
-                RouteConnectors(graph);
+                // Places the shapes and routes the connectors in one pass. Routing is deliberately left to MSAGL
+                // rather than run afterwards - see RouteConnectors below for what that cost.
+                LayoutHelpers.CalculateLayout(graph, MsAglConstants.CreateSettings(Algorithm, Routing), null);
 
                 // MSAGL measures upward from the bottom left, the designer downward from the top left, so every
                 // coordinate is mirrored about the top edge on the way back.
@@ -231,29 +250,60 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
             return graph;
         }
 
+        // Routing as a separate pass after layout. Kept, commented out, because it is the thing to reach for if
+        // MSAGL's own routing is ever not enough - not because it should come back as it stands.
+        //
+        // Two things were wrong with it. The comment claimed LayoutHelpers.CalculateLayout ignores EdgeRoutingMode
+        // for a graph with no clusters; it does not - LayeredLayoutEngine reads the mode and has a Rectilinear case
+        // that builds this same router. And routing separately throws away the crossing reduction: the layered
+        // algorithm orders shapes so that edges flowing through its channels cross as little as possible, and a
+        // router run afterwards re-paths every edge independently as a shortest obstacle-avoiding route, with no
+        // knowledge of those channels. Only EdgeRoutingMode.SugiyamaSplines consumes that work.
+        //
+        // Note the engine's own call is tuned differently from this one: padding NodeSeparation/3 and a sparse
+        // visibility graph, against the fixed padding and dense graph below.
+        //
+        // private static void RouteConnectors(GeometryGraph graph)
+        // {
+        //     if (graph.Edges.Count == 0)
+        //     {
+        //         return;
+        //     }
+        //
+        //     var router = new RectilinearEdgeRouter(
+        //         graph,
+        //         MsAglConstants.RouterPadding,
+        //         MsAglConstants.RouterCornerFitRadius,
+        //         MsAglConstants.RouterUseSparseVisibilityGraph,
+        //         MsAglConstants.RouterEdgeSeparation);
+        //
+        //     router.Run();
+        // }
+
         /// <summary>
-        ///     Runs the rectilinear router over the laid out graph.
+        ///     Appends the start of <paramref name="segment" />, flattening it first when it is not a straight line.
         /// </summary>
+        /// <param name="points">The polyline being built.</param>
+        /// <param name="segment">The segment to append.</param>
         /// <remarks>
-        ///     Run explicitly rather than through the routing mode on the layout settings. For a graph with no
-        ///     clusters <c>LayoutHelpers.CalculateLayout</c> hands straight off to the layered engine, which emits
-        ///     its own splines and never consults <c>EdgeRoutingMode</c>.
+        ///     The designer draws connectors as polylines, so a curve has to be sampled into one. Taking only each
+        ///     segment's endpoints would turn a spline into the crude polygon through its corners - fine for the
+        ///     orthogonal routing, where every segment really is a line, and wrong for every other mode.
         /// </remarks>
-        private static void RouteConnectors(GeometryGraph graph)
+        private static void AddSegment(ICollection<MsAglPoint> points, ICurve segment)
         {
-            if (graph.Edges.Count == 0)
+            if (segment is MsAglLineSegment)
             {
+                points.Add(segment.Start);
+
                 return;
             }
 
-            var router = new RectilinearEdgeRouter(
-                graph,
-                MsAglConstants.RouterPadding,
-                MsAglConstants.RouterCornerFitRadius,
-                MsAglConstants.RouterUseSparseVisibilityGraph,
-                MsAglConstants.RouterEdgeSeparation);
-
-            router.Run();
+            for (var step = 0; step < CurveFlatteningSteps; step++)
+            {
+                var t = segment.ParStart + ((segment.ParEnd - segment.ParStart) * step / CurveFlatteningSteps);
+                points.Add(segment[t]);
+            }
         }
 
         /// <summary>
@@ -283,7 +333,11 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
                     break;
 
                 case Curve composite when composite.Segments.Count > 0:
-                    points.AddRange(composite.Segments.Select(segment => segment.Start));
+                    foreach (var segment in composite.Segments)
+                    {
+                        AddSegment(points, segment);
+                    }
+
                     points.Add(composite.Segments[composite.Segments.Count - 1].End);
                     break;
 

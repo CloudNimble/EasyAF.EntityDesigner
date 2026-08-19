@@ -79,14 +79,15 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
         #region Public Methods
 
         /// <summary>
-        ///     Builds the tuned settings for <paramref name="algorithm" />.
+        ///     Builds the tuned settings for <paramref name="algorithm" /> and <paramref name="routing" />.
         /// </summary>
-        /// <param name="algorithm">The algorithm to configure.</param>
+        /// <param name="algorithm">The algorithm that decides where shapes go.</param>
+        /// <param name="routing">How connectors between those shapes are drawn.</param>
         /// <returns>A fresh settings instance.</returns>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="algorithm" /> is not a known algorithm.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Either argument is not a known value.</exception>
         /// <example>
         ///     <code>
-        ///     var settings = MsAglConstants.CreateSettings(LayoutAlgorithm.Layered);
+        ///     var settings = MsAglConstants.CreateSettings(LayoutAlgorithm.Layered, ConnectorRouting.Orthogonal);
         ///     LayoutHelpers.CalculateLayout(graph, settings, null);
         ///     </code>
         /// </example>
@@ -95,12 +96,12 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
         ///     back to <c>Transformation</c> and the cluster and constraint collections - so a shared instance
         ///     would carry one diagram's state into the next.
         ///     <para>
-        ///     Edge routing is switched off in both. The engine runs the rectilinear router itself afterwards,
-        ///     because for a graph with no clusters <c>LayoutHelpers.CalculateLayout</c> goes straight to the
-        ///     layered engine and produces splines whatever the routing mode says.
+        ///     Routing is left to MSAGL, which performs it as part of the layout run rather than as a separate
+        ///     pass. That matters for <see cref="ConnectorRouting.Layered" />: only the routing MSAGL does itself
+        ///     follows the channels its crossing-reduction phase ordered, so routing afterwards discards that work.
         ///     </para>
         /// </remarks>
-        internal static LayoutAlgorithmSettings CreateSettings(LayoutAlgorithm algorithm)
+        internal static LayoutAlgorithmSettings CreateSettings(LayoutAlgorithm algorithm, ConnectorRouting routing)
         {
             LayoutAlgorithmSettings settings = algorithm switch
             {
@@ -116,7 +117,18 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
                 _ => throw new ArgumentOutOfRangeException(nameof(algorithm), algorithm, "Unknown layout algorithm.")
             };
 
-            settings.EdgeRoutingSettings.EdgeRoutingMode = EdgeRoutingMode.None;
+            settings.EdgeRoutingSettings.EdgeRoutingMode = routing switch
+            {
+                ConnectorRouting.Orthogonal => EdgeRoutingMode.Rectilinear,
+                ConnectorRouting.Layered => EdgeRoutingMode.SugiyamaSplines,
+                ConnectorRouting.Curved => EdgeRoutingMode.Spline,
+                ConnectorRouting.Straight => EdgeRoutingMode.StraightLine,
+                _ => throw new ArgumentOutOfRangeException(nameof(routing), routing, "Unknown connector routing.")
+            };
+
+            settings.EdgeRoutingSettings.Padding = RouterPadding;
+            settings.EdgeRoutingSettings.CornerRadius = RouterCornerFitRadius;
+            settings.EdgeRoutingSettings.EdgeSeparationRectilinear = RouterEdgeSeparation;
 
             return settings;
         }
