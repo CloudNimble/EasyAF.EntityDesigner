@@ -172,7 +172,6 @@ namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
             Check_does_not_create_set_if_end_entity_is_missing(sourceMissing: true, targetMissing: true);
         }
 
-        [TestMethod, Ignore("Different API Visibility between official dll and locally built")]
         private void Check_does_not_create_set_if_end_entity_is_missing(bool sourceMissing, bool targetMissing)
         {
             //var tableDetails = new[]
@@ -436,7 +435,6 @@ namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
                 EntityFrameworkVersion.Version3);
         }
 
-        [TestMethod, Ignore("Different API Visibility between official dll and locally built")]
         private void Check_two_column_relationship_expected_association_end_multiplicity_pk_to_pk(
             Version targetEntityFrameworkVersion)
         {
@@ -514,7 +512,6 @@ namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
                 expectedTargetEndMultiplicity: RelationshipMultiplicity.Many);
         }
 
-        [TestMethod, Ignore("Different API Visibility between official dll and locally built")]
         private void Check_two_column_relationship_expected_association_end_multiplicity_pk_to_fk(
             Version targetEntityFrameworkVersion,
             bool column1Nullable,
@@ -582,7 +579,6 @@ namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
                 isCascadeDelete: true, expectedDeleteBehavior: OperationAction.Cascade);
         }
 
-        [TestMethod, Ignore("Different API Visibility between official dll and locally built")]
         private void Check_cascade_delete_flag_is_reflected_by_delete_behavior(
             bool isCascadeDelete, OperationAction expectedDeleteBehavior)
         {

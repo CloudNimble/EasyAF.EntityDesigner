@@ -10,29 +10,30 @@ Resolved issues move to `fixed-bugs.md` rather than staying here marked FIXED. *
 
 | Category | Count |
 |---|---|
-| Failing tests | 0 deterministic; 3 unnamed intermittents — see 1.5 |
+| Failing tests | 0 deterministic; 1 named intermittent with a root cause — see 2.5; 2 still unnamed — see 1.5 |
 | Tests disabled with `[Ignore]` | 194 |
-| Tests that never run because of an invalid signature | 0 — fixed, see `fixed-bugs.md` 2.2 |
-| Live helpers wrongly marked `[TestMethod]` | 7 — see 2.4 |
-| Build warnings | needs a recount; the last figures predate 2.2 |
+| Tests that never run because of an invalid signature | 0 — fixed, see `fixed-bugs.md` 2.2 and 2.4 |
+| `MSTEST0003` warnings | 0 — was 98 |
+| Build warnings | needs a recount; the remaining figures predate 2.2 and 2.4 |
 | Packages with known vulnerabilities | 0 |
 | Minor defects logged for later | 6 — see section 5 |
 
 ## 1. Failing tests
 
-### 1.5 Two unnamed intermittent failures
+### 1.5 Intermittent single-test failures across assemblies
 
-Single-test failures seen during the 2026-08-16 project file work, each in a different assembly, each passing when that project was rerun on its own immediately afterwards:
+Single-test failures, each passing when that project was rerun on its own immediately afterwards:
 
-| Assembly | Target | Run |
+| Assembly | Target | Status |
 |---|---|---|
-| `Microsoft.Data.Entity.Tests.Design.VersioningFacade` | net10.0 | full solution, 294/295 |
-| `Microsoft.VisualStudio.Data.Entity.Tests.Package` | net48 | full solution, 59/60 (2026-08-17) |
-| `Microsoft.Data.Entity.Tests.Design.EntityFramework` | net10.0 | full solution, 294/295 (2026-08-19) |
+| `Microsoft.Data.Entity.Tests.Design` | net48 | **named and fixed** — `Generate_returns_code`, see `fixed-bugs.md` 1.4 |
+| `Microsoft.Data.Entity.Tests.Design.EntityFramework` | net10.0 | **named** — see 2.5, root cause found |
+| `Microsoft.Data.Entity.Tests.Design.VersioningFacade` | net10.0 | still unnamed, full solution 294/295 |
+| `Microsoft.VisualStudio.Data.Entity.Tests.Package` | net48 | still unnamed, full solution 59/60 (2026-08-17) |
 
-The third row is a fresh sighting, seen once and not reproduced: the assembly passed 295/295 on its own immediately afterwards, and three consecutive full-solution runs with trx enabled from the start were all clean. So the name escaped again — the trx run is the one that passes.
+**Two of the four are now identified, and both were the same defect shape: a one-time initialization whose "done" state becomes visible to another thread before the work is finished.** Start there for the remaining two.
 
-**Neither name has ever been captured**, and the reason is always the same mistake.
+The EntityFramework row was named on the **first run after trx logging became unconditional**, having escaped four reactive attempts before that. That is the whole lesson of this entry.
 
 > **Always run with `--logger "trx" --results-directory <dir>`. Every run, not just the one after you have already seen a failure.**
 
@@ -43,10 +44,6 @@ Read the names out with:
 ```bash
 grep -ho 'testName="[^"]*"[^>]*outcome="Failed"' <dir>/*.trx
 ```
-
-A third row of this issue — `Microsoft.Data.Entity.Tests.Design` (net48) — was named on 2026-08-18, turned out to be `Generate_returns_code`, and is fixed. See `fixed-bugs.md` 1.4.
-
-**Start with the same suspicion that one turned out to be:** a `Lazy`, `??=` or null-checked static that the failing class shares with its siblings, unsafe under `MethodLevel` parallelism. That is what 1.4 was, and `fixed-bugs.md` 1.1 and 2.3 were both shared-state problems too.
 
 Do not read the VersioningFacade row as pointing at `DbDatabaseMappingBuilderTests`. The string `Different API visibility between official dll and locally built one` appeared next to the failure in the console output and looks like an assertion message, but it is the `[Ignore]` reason on a skipped test in that file and has nothing to do with it.
 
@@ -71,32 +68,38 @@ This is the single largest hole in the suite. Fixing it means deciding whether t
 
 At minimum the reason strings should be normalized to one spelling so the count is greppable.
 
-### 2.4 `[TestMethod]` on seven private helper methods
+### 2.5 `StoreSchemaConnectionFactory.EnsureSqlClientRegistered` races — this is the 1.5 intermittent
 
-Surfaced by fixing 2.2, which was masking it. `MSTEST0003` still fires on seven methods, none of which is a test:
+**Named on the first run after trx logging became unconditional.** `Create_creates_valid_EntityConnection` and `Create_creates_valid_EntityConnection_and_returns_EF_version`, in `StoreSchemaConnectionFactoryTests`, net10 only:
 
-| File | Method | Shape |
-|---|---|---|
-| `DbDatabaseMappingBuilderTests.cs` | `CreateSimpleMappingContext` | `private static SimpleMappingContext(bool)` |
-| `OneToOneMappingBuilderTests.cs` | `GetLazyLoadingMetadataProperty` | `private static MetadataProperty(Version)` |
-| `OneToOneMappingBuilderTests.GenerateEdmFunctionsTests.cs` | `CreateStoreModel` | `private static EdmModel(Version, params EdmFunction[])` |
-| `StoreModelBuilderTests.CreateAssociationSetsTests.cs` | `Check_does_not_create_set_if_end_entity_is_missing` | `private void(bool, bool)` |
-| `StoreModelBuilderTests.CreateAssociationSetsTests.cs` | `Check_two_column_relationship_..._pk_to_pk` | `private void(...)` |
-| `StoreModelBuilderTests.CreateAssociationSetsTests.cs` | `Check_two_column_relationship_..._pk_to_fk` | `private void(...)` |
-| `StoreModelBuilderTests.CreateAssociationSetsTests.cs` | `Check_cascade_delete_flag_is_reflected_by_delete_behavior` | `private void(...)` |
+```
+System.ArgumentException: The specified invariant name 'System.Data.SqlClient'
+wasn't found in the list of registered .NET Data Providers.
+   at System.Data.Common.DbProviderFactories.GetFactory(String, Boolean)
+```
 
-All seven are `private`, take parameters, and most return a value. All seven are **called by real tests** — verified, between 1 and 11 call sites each — so they are live helpers that picked up a stray `[TestMethod, Ignore(...)]` during the same `[Fact]` to `[TestMethod]` conversion that caused 2.2.
+The cause is in **production code**, `Microsoft.Data.Entity.Design.EntityFramework/ReverseEngineerDb/StoreSchemaConnectionFactory.cs`:
 
-**Fix:** delete the attribute, not the method. `[Ignore]` on a private method does nothing either, so both halves of the attribute are noise. Behaviour does not change; this only silences the analyzer and stops the methods reading as disabled tests.
+```csharp
+if (_sqlClientRegistrationChecked) { return; }
+_sqlClientRegistrationChecked = true;      // set before the work it guards
 
-Worth doing at the same time: recount `MSTEST0003`. The old count of 98 was taken when 2.2 was still present.
+try { DbProviderFactories.GetFactory(SqlClientInvariantName); }
+catch (ArgumentException) { DbProviderFactories.RegisterFactory(...); }
+```
+
+**The flag is set before the registration it is meant to guard.** Thread A sets it and starts registering; thread B sees `true`, returns immediately, and calls `GetFactory` against a registry nothing has populated yet.
+
+net10 only because `DbProviderFactories` is a process-wide static registry with no ambient content on .NET Core — .NET Framework resolves the provider from machine.config and never enters this path.
+
+This is the same defect as `fixed-bugs.md` 1.4, one layer down: a one-time initialization whose "done" marker becomes visible before the work is. **Fix it the same way** — `Lazy<T>` with `LazyThreadSafetyMode.ExecutionAndPublication`, or a lock around the whole check-and-register — and note it is a real concurrency bug in shipping code, not only a test problem.
 
 ## 3. Build warnings — 181
 
 | Count | Code | What |
 |---|---|---|
 | 168 | NU1701 | package restored using `.NETFramework` fallback rather than a matching target |
-| 98 | MSTEST0003 | invalid test method signature — see 2.2 |
+| 0 | MSTEST0003 | was 98 — fixed, see `fixed-bugs.md` 2.2 and 2.4 |
 | 20 | SYSLIB0051 | obsolete formatter-based serialization |
 | 20 | MSB3245 | could not resolve `System.Data`, `System.Data.Entity`, `System.Drawing` |
 | 18 | NU1702 | project restored using a fallback framework |
@@ -185,7 +188,7 @@ This is the other half of the same question as 6.1: whether user-authored T4 cod
 
 ## Suggested order
 
-1. **2.4** — delete a stray attribute from seven helpers. Minutes, and it clears the rest of `MSTEST0003`.
+1. **2.5** — the `EnsureSqlClientRegistered` race. Named, root-caused, and a real concurrency bug in shipping code.
 2. **1.5** — the unnamed intermittents. Costs nothing to progress: run every suite with trx from now on and the next sighting names itself.
 3. **2.1** — the 194 ignored tests. Largest and least certain; needs a decision about EF6 binaries first.
 4. **6.1 and 6.2** — the T4 registrations. Needs a scope decision about EDMX T4 codegen before either is worth touching.

@@ -655,7 +655,6 @@ namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
                 generateForeignKeyProperties);
          }
 
-         [TestMethod, Ignore("Different API Visibility between official dll and locally built")]
          // When in doubt, use targetSchemaVersion == EntityFrameworkVersion.Version3
          private static EdmModel CreateStoreModel(Version targetSchemaVersion, params EdmFunction[] functions) {
             //var storeModel = new EdmModel(

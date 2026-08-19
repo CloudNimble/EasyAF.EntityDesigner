@@ -484,7 +484,6 @@ namespace Microsoft.Data.Entity.Tests.Design.EntityFramework.ReverseEngineerDb
 
             //Assert.Equal(0, associationSetMappings.Count());
         }
-        [TestMethod, Ignore("Different API Visiblity between official dll and locally built")]
         private static SimpleMappingContext CreateSimpleMappingContext(bool isForeignKey)
         {
             //var int32TypeUsage = TypeUsage.CreateDefaultTypeUsage(PrimitiveType.GetEdmPrimitiveType(PrimitiveTypeKind.Int32));

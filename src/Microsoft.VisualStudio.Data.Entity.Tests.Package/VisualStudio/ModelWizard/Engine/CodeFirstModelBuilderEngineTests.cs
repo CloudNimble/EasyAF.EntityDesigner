@@ -50,7 +50,6 @@ namespace Microsoft.VisualStudio.Data.Entity.Tests.Package.VisualStudio.ModelWiz
             //    errors.Single().Message);
         }
 
-        [TestMethod, Ignore("Different API Visiblity between official dll and locally built")]
         private static DbModel CreateDbModel(EdmModel conceptualModel, EdmModel storeModel)
         {
             //if (storeModel == null)

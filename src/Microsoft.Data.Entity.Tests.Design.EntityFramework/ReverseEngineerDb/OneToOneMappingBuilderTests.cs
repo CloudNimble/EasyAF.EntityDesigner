@@ -158,7 +158,6 @@ namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
                 //Assert.Equal("true", (string)lazyLoadingMetadataProperty.Value);
             }
 
-            [TestMethod, Ignore("API Differences between official dll and locally built one")]
             private static MetadataProperty GetLazyLoadingMetadataProperty(Version targetSchemaVersion)
             {
                 //    var storeModel =

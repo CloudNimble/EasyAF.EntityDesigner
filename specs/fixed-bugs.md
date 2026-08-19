@@ -132,6 +132,29 @@ Note the earlier entry located these files under `VersioningFacade`. They are in
 
 **This did not clear MSTEST0003** — see `known-issues.md` 2.4, a second and unrelated cause that was hidden behind this one.
 
+### 2.4 `[TestMethod]` on eight private helper methods — fixed 2026-08-19
+
+Surfaced by fixing 2.2, which was masking it. Eight private helpers had picked up a stray `[TestMethod, Ignore(...)]` during the same `[Fact]` to `[TestMethod]` conversion:
+
+| File | Method |
+|---|---|
+| `EntityFramework/.../DbDatabaseMappingBuilderTests.cs` | `CreateSimpleMappingContext` |
+| `EntityFramework/.../OneToOneMappingBuilderTests.cs` | `GetLazyLoadingMetadataProperty` |
+| `EntityFramework/.../OneToOneMappingBuilderTests.GenerateEdmFunctionsTests.cs` | `CreateStoreModel` |
+| `EntityFramework/.../StoreModelBuilderTests.CreateAssociationSetsTests.cs` | `Check_does_not_create_set_if_end_entity_is_missing` |
+| `EntityFramework/.../StoreModelBuilderTests.CreateAssociationSetsTests.cs` | `Check_two_column_relationship_..._pk_to_pk` |
+| `EntityFramework/.../StoreModelBuilderTests.CreateAssociationSetsTests.cs` | `Check_two_column_relationship_..._pk_to_fk` |
+| `EntityFramework/.../StoreModelBuilderTests.CreateAssociationSetsTests.cs` | `Check_cascade_delete_flag_is_reflected_by_delete_behavior` |
+| `Tests.Package/.../CodeFirstModelBuilderEngineTests.cs` | `CreateDbModel` |
+
+All are `private`, take parameters, and most return a value, so none could ever have been collected as a test. Seven are called by live tests; `CreateDbModel`'s call sites are commented out along with the tests that used them.
+
+**Fixed by deleting the attribute, not the method** — `[Ignore]` on a private method does nothing either, so both halves were noise. No behaviour change. The methods are kept because the commented-out tests around them will need them if those are ever restored.
+
+The eighth was only visible after the other seven were cleared; it is in a different assembly that the original 2.2 survey never covered.
+
+**`MSTEST0003` is now 0 across the solution**, down from 98.
+
 ### 2.3 Store-building tests race under parallelism
 
 **The Visual Studio Modeling SDK cannot be driven from more than one thread in a process.** It assumes a single threaded host and keeps unsynchronized process wide state in at least two places:
