@@ -3,6 +3,7 @@
 using System;
 using System.IO;
 using McMaster.Extensions.CommandLineUtils;
+using Microsoft.Data.Entity.Design.Diagrams.Layout;
 using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export;
 using Microsoft.Data.Entity.Design.Diagrams.Rendering.Headless;
 
@@ -30,6 +31,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Tools.Commands.Root
         #region Fields
 
         private readonly ExportManager _exportManager;
+        private readonly LayoutEngineManager _layoutManager;
 
         #endregion
 
@@ -39,9 +41,11 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Tools.Commands.Root
         /// Creates the command with the export manager configured for this host.
         /// </summary>
         /// <param name="exportManager">Writes the diagram in the requested format.</param>
-        public RenderCommand(ExportManager exportManager)
+        /// <param name="layoutManager">Arranges shapes the EDMX has no saved position for.</param>
+        public RenderCommand(ExportManager exportManager, LayoutEngineManager layoutManager)
         {
             _exportManager = exportManager ?? throw new ArgumentNullException(nameof(exportManager));
+            _layoutManager = layoutManager ?? throw new ArgumentNullException(nameof(layoutManager));
         }
 
         #endregion
@@ -131,7 +135,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Tools.Commands.Root
 
             try
             {
-                using (var loaded = EdmxDiagramLoader.Load(inputPath, Diagram))
+                using (var loaded = EdmxDiagramLoader.Load(inputPath, Diagram, _layoutManager))
                 {
                     var options = new DiagramExportOptions
                     {

@@ -42,7 +42,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
         /// <exception cref="ArgumentException">The engine assigned was not one of the registered engines.</exception>
         /// <remarks>
         ///     Assigning an unregistered engine throws rather than silently adopting it, so the set of engines
-        ///     stays the one the host chose and <see cref="Engines" /> never disagrees with what is running.
+        ///     stays the one the host chose and <see cref="LayoutEngines" /> never disagrees with what is running.
         /// </remarks>
         public LayoutEngineBase Current
         {
@@ -67,7 +67,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
         /// <summary>
         ///     The registered engines, keyed by <see cref="LayoutEngineBase.Key" />.
         /// </summary>
-        public IReadOnlyDictionary<string, LayoutEngineBase> Engines
+        public IReadOnlyDictionary<string, LayoutEngineBase> LayoutEngines
         {
             get { return _engines; }
         }

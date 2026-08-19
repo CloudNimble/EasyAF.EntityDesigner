@@ -50,15 +50,8 @@ namespace Microsoft.Data.Entity.Design.Diagrams.View
         [NonSerialized]
         internal AutoArrangeHelper Arranger = new AutoArrangeHelper();
 
-        /// <summary>
-        ///     The layout engines this surface can arrange itself with, and which one is in effect.
-        /// </summary>
-        /// <remarks>
-        ///     Seeded with the Modeling SDK's own layout so the designer behaves exactly as it always has until
-        ///     something moves <see cref="LayoutEngineManager.Current" />. See specs/diagram-layout-engines.md.
-        /// </remarks>
         [NonSerialized]
-        internal LayoutEngineManager LayoutEngines = new LayoutEngineManager([new DslLayoutEngine()]);
+        private LayoutEngineManager _layoutManager;
 
         private bool _displayNameAndType;
         private bool _disableFixUpDiagramSelection;
@@ -988,17 +981,41 @@ namespace Microsoft.Data.Entity.Design.Diagrams.View
         }
 
         /// <summary>
+        ///     The layout engines this surface can arrange itself with, and which one is in effect.
+        /// </summary>
+        /// <remarks>
+        ///     Supplied by the host, because the host is what composes the set: the package builds it from what
+        ///     it has registered, and the command line tool from its service provider. Null until then, and
+        ///     <see cref="AutoLayoutDiagram(IList)" /> does nothing while it is. See
+        ///     specs/diagram-layout-engines.md.
+        /// </remarks>
+        internal LayoutEngineManager LayoutManager
+        {
+            get { return _layoutManager; }
+            set { _layoutManager = value; }
+        }
+
+        /// <summary>
         ///     Arranges the given shapes using the current layout engine.
         /// </summary>
         /// <param name="shapes">The shapes to arrange.</param>
         /// <remarks>
-        ///     The surface does not know how the arranging is done. Which engine runs is
-        ///     <see cref="LayoutEngineManager.Current" />, moved by the designer's Advanced Layout toggle.
-        ///     See specs/diagram-layout-engines.md.
+        ///     Does nothing until the host has supplied <see cref="LayoutManager" />. Deserialization asks for a
+        ///     layout before the host has had a chance to, and those calls are dropped rather than queued — the
+        ///     host lays out once loading has finished and it owns a surface to lay out.
+        ///     <para>
+        ///     Which engine runs is <see cref="LayoutEngineManager.Current" />, moved by the designer's Advanced
+        ///     Layout toggle. See specs/diagram-layout-engines.md.
+        ///     </para>
         /// </remarks>
         public void AutoLayoutDiagram(IList shapes)
         {
-            LayoutEngines.Current.Layout(this, shapes);
+            if (LayoutManager is null)
+            {
+                return;
+            }
+
+            LayoutManager.Current.Layout(this, shapes);
         }
 
         /// <summary>

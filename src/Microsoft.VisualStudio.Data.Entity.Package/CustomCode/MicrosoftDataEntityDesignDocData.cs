@@ -42,6 +42,7 @@ using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Explorer;
+using Microsoft.Data.Entity.Design.Diagrams.Layout;
 using Microsoft.Data.Entity.Design.Diagrams.CustomSerializer;
 using Microsoft.Data.Entity.Design.Diagrams;
 using Microsoft.Data.Entity.Design.Diagrams.Rules;
@@ -590,6 +591,11 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
 
                     if (diagram != null)
                     {
+                        // Earliest point at which the package holds a surface, so this is where it hands over the
+                        // layout engines it registered during Initialize.
+                        diagram.LayoutManager = PackageManager.Package.GetService(typeof(LayoutEngineManager)) as LayoutEngineManager;
+                        Debug.Assert(diagram.LayoutManager != null, "LayoutEngineManager should have been registered by the package");
+
                         Debug.Assert(artifact.DesignerInfo() != null, "artifact.DesignerInfo should not be null");
                         Debug.Assert(artifact.DesignerInfo().Diagrams != null, "artifact.DesignerInfo.Diagrams should not be null");
 

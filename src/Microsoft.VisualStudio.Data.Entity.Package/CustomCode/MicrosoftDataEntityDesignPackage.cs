@@ -25,6 +25,7 @@ using Microsoft.VisualStudio.Data.Entity.Package.Theming;
 using Microsoft.VisualStudio.Data.Entity.Package.Navigation;
 using Microsoft.VisualStudio.Data.Entity.Package;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model;
+using Microsoft.Data.Entity.Design.Diagrams.Layout;
 
 namespace Microsoft.VisualStudio.Data.Entity.Package
 {
@@ -105,6 +106,14 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                     var editorPackageGuid = CommonPackageConstants.xmlEditorPackageGuid;
                     NativeMethods.ThrowOnFailure(vsShell.LoadPackage(ref editorPackageGuid, out IVsPackage editorPackage));
                 }
+
+                // Layout engines, registered as a package service so the designer surface can pull the manager
+                // out rather than construct one. Registration order is the priority order: the first engine is
+                // what a surface lays out with until something moves LayoutEngineManager.Current.
+                ((IServiceContainer)this).AddService(
+                    typeof(LayoutEngineManager),
+                    new LayoutEngineManager([new DslLayoutEngine()]),
+                    promote: false);
 
                 DocumentFrameMgr = new EntityDesignDocumentFrameMgr(PackageManager.Package);
                 ModelChangeEventListener = new ModelChangeEventListener();

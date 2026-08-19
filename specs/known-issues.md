@@ -97,6 +97,12 @@ Two more single-test failures during the 2026-08-16 project file work, each in a
 
 **Neither test name was captured**, which is the first thing to fix — the console logger reports the count on the summary line but the name scrolls past in a full-solution run. Use `--logger "trx" --results-directory <dir>` and read `outcome="Failed"` out of the `.trx`. Three consecutive full-solution runs with trx afterwards produced no failures at all, so the rate is low and matches 1.4's rough one-in-ten.
 
+**2026-08-18 — the `Microsoft.Data.Entity.Tests.Design` net48 name is now captured, and it is `Generate_returns_code`.** So that row is not a third distinct test; it is 1.4 seen from the other assembly that runs `DefaultCSharpEntityTypeGeneratorTests`. Reproduced 3 of 3 on the working tree with `--filter FullyQualifiedName~Generate_returns_code`, and 1 of 3 on a detached worktree at `3ac2cd0a` containing none of the layout-engine work — pre-existing, and the rate varies run to run as a flake does.
+
+That leaves 1.5 with two unnamed rows rather than three, and strengthens 1.4 as the single root cause to chase.
+
+A second trap worth recording, because it caused a misdiagnosis before the trx run settled it: **the console summary lines interleave in a full-solution run**, so a `Failed!` line can appear glued to the wrong assembly name. A run that read `...Duration: 2 sFailed! - Failed: 1, Passed: 294, Skipped: 95, Total: 390 - ...Diagrams.dll (net48)` was actually the EntityFramework assembly — `390 total / 95 skipped` is its shape, while `Tests.Design.Diagrams` has 5 tests. Match the counts to the assembly before believing the name, or just use trx.
+
 Do not read the VersioningFacade row as pointing at `DbDatabaseMappingBuilderTests`. The string `Different API visibility between official dll and locally built one` appeared next to the failure in the console output and looks like an assertion message, but it is the `[Ignore]` reason on a skipped test in that file and has nothing to do with it.
 
 The 2026-08-17 run failed two assemblies at once — `Tests.Design` and `Tests.Package` — and an immediate rerun of the identical binaries passed all fourteen assemblies with zero failures. The Package name was again not captured, because the trx rerun is what passed; **run with `--logger trx` from the start, not as a follow-up**, or the name is lost every time.

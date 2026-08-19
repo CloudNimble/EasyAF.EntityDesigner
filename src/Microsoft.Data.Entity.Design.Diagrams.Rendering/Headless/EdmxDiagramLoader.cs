@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.Data.Entity.Design.Diagrams.CustomSerializer;
+using Microsoft.Data.Entity.Design.Diagrams.Layout;
 using Microsoft.Data.Entity.Design.Diagrams.View;
 using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
 using Microsoft.Data.Entity.Design.Edmx;
@@ -31,13 +32,18 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Rendering.Headless
         /// <param name="diagramName">
         ///     Name of the diagram to render. When null or empty the first diagram in the file is used.
         /// </param>
+        /// <param name="layoutManager">
+        ///     The layout engines to hand the surface, from the host's container. When null the surface will not
+        ///     lay anything out, which only matters for a model whose shapes have no saved positions.
+        /// </param>
         /// <returns>The loaded diagram. Dispose it to release the underlying store and model manager.</returns>
         /// <exception cref="FileNotFoundException"><paramref name="edmxFilePath" /> does not exist.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The file could not be loaded as an Entity Designer artifact, is not designer safe, or does not contain
         ///     the requested diagram.
         /// </exception>
-        public static LoadedDiagram Load(string edmxFilePath, string diagramName = null)
+        public static LoadedDiagram Load(
+            string edmxFilePath, string diagramName = null, LayoutEngineManager layoutManager = null)
         {
             if (string.IsNullOrWhiteSpace(edmxFilePath))
             {
@@ -77,6 +83,10 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Rendering.Headless
                 }
 
                 var diagram = store.AttachDiagram(viewModel);
+
+                // TranslateDiagram below asks for a layout for any shape the EDMX has no position for, so the
+                // host's engines have to be in place before it runs.
+                diagram.LayoutManager = layoutManager;
 
                 // Fixup normally runs as elements are added, but the diagram did not exist yet at that point, so the
                 // shapes and connectors are created explicitly here instead.

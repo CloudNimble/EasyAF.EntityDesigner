@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Data.Entity.Design.Diagrams.Layout;
 using Microsoft.Data.Entity.Design.Diagrams.Tools.Commands.Root;
 using Microsoft.Data.Entity.Design.Diagrams.Tools.Export;
 using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export.Raster;
@@ -39,6 +40,11 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Tools
                     // Diagram.CreateBitmap needs Visual Studio, so this host rasterises the generated SVG instead.
                     services.AddSingleton<IRasterExporter, SvgRasterExporter>();
                     services.AddSingleton<ExportManager>();
+
+                    // Layout engines. Registration order is the priority order - LayoutEngineManager takes the
+                    // first as its default, and IEnumerable<T> resolves in the order registered here.
+                    services.AddSingleton<LayoutEngineBase, DslLayoutEngine>();
+                    services.AddSingleton<LayoutEngineManager>();
                 })
                 .RunCommandLineApplicationAsync<EntityDesignerRootCommand>(args);
         }
