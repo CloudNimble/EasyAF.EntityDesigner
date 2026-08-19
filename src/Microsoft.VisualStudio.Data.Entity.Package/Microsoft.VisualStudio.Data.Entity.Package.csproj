@@ -69,6 +69,7 @@
 
     <!-- Package References -->
     <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
         <PackageReference Include="Microsoft.Internal.VisualStudio.Interop" Version="17.10.39524" />
         <PackageReference Include="Microsoft.VisualStudio.ComponentModelHost" Version="17.10.191" />
         <PackageReference Include="Microsoft.VisualStudio.DataDesign.Interfaces" Version="17.10.40130" />

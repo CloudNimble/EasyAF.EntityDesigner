@@ -1,31 +1,31 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using IOleServiceProvider = Microsoft.VisualStudio.OLE.Interop.IServiceProvider;
+using Microsoft.Data.Entity.Design.Diagrams.Layout;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails;
+using Microsoft.VisualStudio.Data.Entity.Package.Navigation;
+using Microsoft.VisualStudio.Data.Entity.Package.Theming;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package;
+using Microsoft.VisualStudio.DataDesign.Interfaces;
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.Utilities;
 using System;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Windows.Threading;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.DataDesign.Interfaces;
-using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio.Utilities;
+using DIServiceProvider = Microsoft.Extensions.DependencyInjection.ServiceProvider;
+using IOleServiceProvider = Microsoft.VisualStudio.OLE.Interop.IServiceProvider;
 using ModelChangeEventArgs = Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package.ModelChangeEventArgs;
-using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.Data.Entity.Design.Edmx;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails;
-using Microsoft.VisualStudio.Data.Entity.Package.Theming;
-using Microsoft.VisualStudio.Data.Entity.Package.Navigation;
-using Microsoft.VisualStudio.Data.Entity.Package;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model;
-using Microsoft.Data.Entity.Design.Diagrams.Layout;
 
 namespace Microsoft.VisualStudio.Data.Entity.Package
 {
@@ -71,11 +71,32 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
         private MappingDetailsWindow _mappingDetailsWindow;
         private Dispatcher _dispatcher; // foreground thread
         private bool? _isBuildingFromCommandLine;
+        private DIServiceProvider _services;
         private uint _trackProjectRetargetingEventsCookie;
 
         public IEntityDesignCommandSet CommandSet { get; set; }
 
         #region Initialize/Dispose
+
+        /// <summary>
+        ///     Registers everything this package composes.
+        /// </summary>
+        /// <param name="services">The collection to register into.</param>
+        /// <remarks>
+        ///     Types, never instances: the container constructs them, which is what lets
+        ///     <see cref="LayoutEngineManager" /> take its engines through its constructor instead of being handed
+        ///     a list somebody else assembled.
+        ///     <para>
+        ///     Registration order is priority order. <see cref="LayoutEngineManager" /> makes the first engine
+        ///     current, and this container resolves <c>IEnumerable&lt;T&gt;</c> in the order registered here, so
+        ///     the engine listed first is the one a diagram lays out with until the toolbar moves it.
+        ///     </para>
+        /// </remarks>
+        private static void ConfigureServices(IServiceCollection services)
+        {
+            services.AddSingleton<LayoutEngineBase, DslLayoutEngine>();
+            services.AddSingleton<LayoutEngineManager>();
+        }
 
         protected override void Initialize()
         {
@@ -107,12 +128,16 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                     NativeMethods.ThrowOnFailure(vsShell.LoadPackage(ref editorPackageGuid, out IVsPackage editorPackage));
                 }
 
-                // Layout engines, registered as a package service so the designer surface can pull the manager
-                // out rather than construct one. Registration order is the priority order: the first engine is
-                // what a surface lays out with until something moves LayoutEngineManager.Current.
+                var services = new ServiceCollection();
+                ConfigureServices(services);
+                _services = services.BuildServiceProvider();
+
+                // Bridge the container to the service container that the rest of the package already asks. The
+                // callback overload means nothing is constructed until something requests it, and what comes
+                // back was built by the container rather than handed to it.
                 ((IServiceContainer)this).AddService(
                     typeof(LayoutEngineManager),
-                    new LayoutEngineManager([new DslLayoutEngine()]),
+                    (_, _) => _services.GetRequiredService<LayoutEngineManager>(),
                     promote: false);
 
                 DocumentFrameMgr = new EntityDesignDocumentFrameMgr(PackageManager.Package);
@@ -190,6 +215,8 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                 // --
 
                 // always dispose and null out items that use VS resources
+                _services?.Dispose();
+                _services = null;
                 _diagramTheme?.Dispose();
                 _diagramTheme = null;
                 _viewExplorerCmd = null;
