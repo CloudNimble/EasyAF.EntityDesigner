@@ -74,7 +74,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
         {
             // see if the browser is showing this
             var explorerWindow = PackageManager.Package.ExplorerWindow;
-            if (explorerWindow != null)
+            if (explorerWindow is not null)
             {
                 var explorerUri = EditingContextManager.GetArtifactUri(explorerWindow.Context);
                 if (UriComparer.OrdinalIgnoreCase.Equals(docUri, explorerUri))
@@ -86,7 +86,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
 
             // see if the mapping window is showing this
             var mappingWindow = PackageManager.Package.MappingDetailsWindow;
-            if (mappingWindow != null)
+            if (mappingWindow is not null)
             {
                 var mappingUri = EditingContextManager.GetArtifactUri(mappingWindow.Context);
                 if (UriComparer.OrdinalIgnoreCase.Equals(docUri, mappingUri))
@@ -101,7 +101,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
         {
             if (fFirstShow != 0)
             {
-                if (pFrame != null)
+                if (pFrame is not null)
                 {
                     EntityDesignFrameWrapper frameWrapper = new EntityDesignFrameWrapper(pFrame);
                     if (frameWrapper.IsEscherDocInXmlEditor)
@@ -143,7 +143,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
                     if (oldFrame.IsEscherDocInEntityDesigner)
                     {
                         VSArtifact oldVsArtifact = PackageManager.Package.ModelManager.GetArtifact(oldFrame.Uri) as VSArtifact;
-                        oldVsArtifact?.LayerManager.Unload();
+                        oldVsArtifact?.LayerManager?.Unload();
                     }
                 }
 
@@ -153,7 +153,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
                     if (newFrame.IsEscherDocInEntityDesigner)
                     {
                         VSArtifact vsArtifact = PackageManager.Package.ModelManager.GetArtifact(newFrame.Uri) as VSArtifact;
-                        vsArtifact?.LayerManager.Load();
+                        vsArtifact?.LayerManager?.Load();
                     }
                 }
             }

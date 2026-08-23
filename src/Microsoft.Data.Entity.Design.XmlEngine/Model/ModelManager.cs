@@ -240,7 +240,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
                     if (artifact is not null)
                     {
                         var artifactSet = GetArtifactSet(uri);
-                        Debug.Assert(artifactSet is not null);
+                        Debug.Assert(artifactSet is not null, "artifactSet is not null");
 
                         // need to dispose the artifact first, as it will try and access it's set
                         artifact.Dispose();
@@ -439,9 +439,17 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
         /// </summary>
         /// <param name="efArtifact">The artifact to register.</param>
         /// <param name="efArtifactSet">The set the artifact belongs to.</param>
+        /// <exception cref="Exception">Rethrows whatever <see cref="EFArtifact.Init"/> threw, after unregistering.</exception>
         /// <remarks>
         /// Registration is idempotent by omission rather than by error: an artifact that is already known is silently skipped
         /// after asserting, because double registration indicates a caller bug but should not corrupt an otherwise valid load.
+        /// <para>
+        /// The artifact is published to the lookup tables before <see cref="EFArtifact.Init"/> runs, because initialization
+        /// opens the document and can re-enter this manager for the same <see cref="Uri"/>; finding the in-flight artifact is
+        /// what stops that from starting a second load. An <see cref="EFArtifact.Init"/> that throws is therefore rolled back
+        /// here: it leaves the artifact with no XLinq node, and a caller that reached such an artifact through
+        /// <see cref="GetArtifact"/> would fault on the missing node rather than on the original failure.
+        /// </para>
         /// </remarks>
         internal void RegisterArtifact(EFArtifact efArtifact, EFArtifactSet efArtifactSet)
         {
@@ -449,22 +457,31 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
                 _artifactsByUri.ContainsKey(efArtifact.Uri) == false && _artifact2ArtifactSets.ContainsKey(efArtifact) == false,
                 "This artifact has been registered in model manager.");
 
-            if (_artifactsByUri.ContainsKey(efArtifact.Uri) == false
-                && _artifact2ArtifactSets.ContainsKey(efArtifact) == false)
+            if (_artifactsByUri.ContainsKey(efArtifact.Uri)
+                || _artifact2ArtifactSets.ContainsKey(efArtifact))
             {
-                if (efArtifactSet.Artifacts.Contains(efArtifact) == false)
-                {
-                    efArtifactSet.Add(efArtifact);
-                }
+                return;
+            }
 
-                _artifactsByUri[efArtifact.Uri] = efArtifact;
+            if (efArtifactSet.Artifacts.Contains(efArtifact) == false)
+            {
+                efArtifactSet.Add(efArtifact);
+            }
 
-                List<EFArtifactSet> artifactSetList = new List<EFArtifactSet>(1)
-                {
-                    efArtifactSet
-                };
-                _artifact2ArtifactSets[efArtifact] = artifactSetList;
+            _artifactsByUri[efArtifact.Uri] = efArtifact;
+            _artifact2ArtifactSets[efArtifact] = [efArtifactSet];
+
+            try
+            {
                 efArtifact.Init();
+            }
+            catch
+            {
+                _artifactsByUri.Remove(efArtifact.Uri);
+                _artifact2ArtifactSets.Remove(efArtifact);
+                efArtifactSet.RemoveArtifact(efArtifact);
+
+                throw;
             }
         }
 

@@ -34,8 +34,8 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio
         /// </summary>
         public VSXmlModelProvider(IServiceProvider services, IXmlDesignerPackage xmlDesignerPackage)
         {
-            Debug.Assert(services != null);
-            Debug.Assert(xmlDesignerPackage != null);
+            Debug.Assert(services != null, "services != null");
+            Debug.Assert(xmlDesignerPackage != null, "xmlDesignerPackage != null");
             _xmlDesignerPackage = xmlDesignerPackage;
             _services = services;
             if (_xmlStore == null)
@@ -149,19 +149,22 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio
 
             if (!_xmlModels.TryGetValue(sourceUri, out VSXmlModel vsXmlModel))
             {
-                XmlEditor.XmlModel xmlModel = null;
-                try
+                // OpenXmlModel loads the document into the XML editor, which pumps messages, so a shell callback can
+                // re-enter this method for the same Uri and cache a model before this call adds one.
+                XmlEditor.XmlModel xmlModel = _xmlStore.OpenXmlModel(sourceUri);
+                if (xmlModel is not null)
                 {
-                    xmlModel = _xmlStore.OpenXmlModel(sourceUri);
-                }
-                catch (Exception)
-                {
-                    xmlModel = null;
-                }
-                if (xmlModel != null)
-                {
-                    vsXmlModel = new VSXmlModel(_services, xmlModel);
-                    _xmlModels.Add(sourceUri, vsXmlModel);
+                    if (_xmlModels.TryGetValue(sourceUri, out VSXmlModel cached))
+                    {
+                        // Each OpenXmlModel needs a matching Dispose or the editor keeps the document referenced.
+                        xmlModel.Dispose();
+                        vsXmlModel = cached;
+                    }
+                    else
+                    {
+                        vsXmlModel = new VSXmlModel(_services, xmlModel);
+                        _xmlModels.Add(sourceUri, vsXmlModel);
+                    }
                 }
             }
 
@@ -273,7 +276,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio
             {
                 _xmlModels.Remove(oldName);
                 _xmlModels.Add(newName, vsXmlModel);
-                Debug.Assert(new Uri(vsXmlModel.Name) == newName);
+                Debug.Assert(new Uri(vsXmlModel.Name) == newName, "new Uri(vsXmlModel.Name) == newName");
                 return true;
             }
             return false;
@@ -284,7 +287,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio
             get { return _xmlStore?.UndoManager; }
             set
             {
-                Debug.Assert(_xmlStore != null);
+                Debug.Assert(_xmlStore != null, "_xmlStore != null");
                 _xmlStore?.UndoManager = value;
             }
         }

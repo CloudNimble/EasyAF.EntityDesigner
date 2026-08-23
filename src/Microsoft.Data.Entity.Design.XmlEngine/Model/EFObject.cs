@@ -165,7 +165,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
         internal ICollection<EFObject> GetAntiDependencies()
         {
             var artifactSet = Artifact.ModelManager.GetArtifactSet(Artifact.Uri);
-            Debug.Assert(artifactSet != null);
+            Debug.Assert(artifactSet != null, "artifactSet != null");
             if (artifactSet != null)
             {
                 return artifactSet.GetAntiDependencies(this);
@@ -355,11 +355,20 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
 
         internal TextSpan GetTextSpan()
         {
-            if (XObject == null)
+            if (XObject is null)
             {
+                // Deliberately avoids Identity, which reads Artifact.XObject - null on the very artifact this fires
+                // for, so it would throw and bury the diagnostic. EFTypeName, ToPrettyString and Uri walk parents
+                // only.
                 Debug.Fail(
-                    "We are trying to get a TextSpan for a Model element that doesn't have a valid XLinq node: " +
-                    EFTypeName);
+                    string.Format(
+                        CultureInfo.InvariantCulture,
+                        "Cannot get a TextSpan for a {0} with no XLinq node ({1}) in '{2}'. A null node means the "
+                        + "element was disposed, or its artifact's Init did not complete. IsDisposed={3}.",
+                        EFTypeName,
+                        ToPrettyString(),
+                        Artifact?.Uri,
+                        IsDisposed));
                 return new TextSpan();
             }
             else

@@ -77,15 +77,29 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
 
         internal virtual void Init()
         {
-            Debug.Assert(_xmlModelProvider != null, "An XmlModelProvider must be set prior to calling Init()");
-
-            _xmlModelProvider.TransactionCompleted += HandleXmlModelTransactionCompleted;
-            _xmlModelProvider.UndoRedoCompleted += HandleXmlModelUndoRedoCompleted;
+            Debug.Assert(_xmlModelProvider is not null, "An XmlModelProvider must be set prior to calling Init()");
 
             var xmlModel = _xmlModelProvider.GetXmlModel(_uri);
-            Debug.Assert(xmlModel != null);
+
+            // A missing model or document means the editor buffer is not available yet - during solution restore a
+            // frame can ask for the artifact before its document has loaded. Fail the load rather than build an
+            // artifact with no XLinq node: registering that leaves a half-loaded artifact that faults later when it
+            // is parsed or validated (a null-node TextSpan assert, then downstream NREs). RegisterArtifact rolls a
+            // throwing Init back out of the manager, and the next access - once the buffer is ready - reloads it,
+            // which is why a second open succeeds where the first did not.
+            if (xmlModel?.Document is null)
+            {
+                throw new InvalidOperationException(
+                    "No XML document is available for '" + _uri + "'; the document has not finished loading.");
+            }
 
             SetXObject(xmlModel.Document);
+
+            // Subscribed only once this artifact has its XLinq node. GetXmlModel above opens the document, which
+            // pumps messages, so an editing scope raised during that open reaches these handlers - and they route to
+            // ReloadArtifact and validation, which cannot run against an artifact that has no node yet.
+            _xmlModelProvider.TransactionCompleted += HandleXmlModelTransactionCompleted;
+            _xmlModelProvider.UndoRedoCompleted += HandleXmlModelUndoRedoCompleted;
 
             SetValidityDirtyForErrorClass(ErrorClass.All, true);
         }
@@ -724,7 +738,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
                             if (defaultableValueValue != null)
                             {
                                 // verify that the defaultableValue's value & the XAttribute's value are the same
-                                Debug.Assert(xattr.Value == defaultableValueValue);
+                                Debug.Assert(xattr.Value == defaultableValueValue, "xattr.Value == defaultableValueValue");
                             }
 #endif
                         }
@@ -786,7 +800,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
             // Since the XmlTransaction started in our model, the model already reflects these changes.
             foreach (var xmlChange in xmlTransactionEventArgs.Transaction.Changes())
             {
-                Debug.Assert(xmlChange.Node != null);
+                Debug.Assert(xmlChange.Node != null, "xmlChange.Node != null");
 
                 if (xmlChange.Node.NodeType == XmlNodeType.Element
                     || xmlChange.Node.NodeType == XmlNodeType.Attribute
@@ -850,7 +864,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
             {
                 IXmlNodeValueChange nodeValueChange = xmlChange as IXmlNodeValueChange;
                 XAttribute xattr = nodeValueChange.Node as XAttribute;
-                Debug.Assert(xattr != null);
+                Debug.Assert(xattr != null, "xattr != null");
                 property = xattr.Name.LocalName;
                 newValue = nodeValueChange.NewValue;
                 oldValue = nodeValueChange.OldValue;

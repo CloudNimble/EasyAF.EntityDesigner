@@ -286,9 +286,23 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package
                 // designer-related
                 if (frameWrapper.IsDesignerDocInDesigner)
                 {
+                    // Only ever reload an artifact that is ALREADY loaded - never initiate its first load here.
+                    // This runs on frame/selection changes, including during solution restore before a document's
+                    // own deferred load has happened. GetNewOrExistingContext would force that first load, whose
+                    // OpenXmlModel pumps messages; the shell's deferred doc-data load then runs inside that pump and
+                    // reads IsDesignerSafe on the artifact still inside its own Init - which has published itself to
+                    // the model manager but has no XLinq node yet - firing a null-node assert and validating a
+                    // half-built model. GetArtifact is a pure lookup that never loads: when it returns null the
+                    // document has not been loaded through the designer yet, and the normal doc-data load will load
+                    // and validate it properly. This hook exists only to honor a pending delayed reload.
+                    if (_package.ModelManager.GetArtifact(frameWrapper.Uri) is null)
+                    {
+                        return;
+                    }
+
                     var context = EditingContextManager.GetNewOrExistingContext(frameWrapper.Uri);
-                    var artifact = context.GetEFArtifactService().Artifact;
-                    if (artifact.RequireDelayedReload)
+                    var artifact = context?.GetEFArtifactService()?.Artifact;
+                    if (artifact is not null && artifact.RequireDelayedReload)
                     {
                         try
                         {
