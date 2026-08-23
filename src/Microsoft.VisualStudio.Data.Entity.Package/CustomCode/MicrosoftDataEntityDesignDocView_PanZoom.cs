@@ -9,6 +9,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
 using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Controls;
 using Microsoft.VisualStudio.Imaging;
 using Microsoft.VisualStudio.Modeling.Diagrams;
@@ -33,7 +34,8 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
         private DiagramSurfaceContextMenuService _contextMenuService;
         private FloatingZoomControl _floatingZoomControl;
         private ElementHost _floatingZoomHost;
-        private MenuCommandDefinition _advancedLayoutCommand;
+        private MenuCommandDefinition _clearGroupsCommand;
+        private MenuCommandDefinition _modernLayoutCommand;
         private MenuCommandDefinition _showGridCommand;
         private MenuCommandDefinition _snapToGridCommand;
 
@@ -152,22 +154,34 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                 "Auto-arrange entity layout"));
 
             // Chooses which engine the Layout command above runs. Sits next to it rather than with the grid
-            // toggles because it changes what that button does rather than what the surface looks like.
-            _advancedLayoutCommand = new MenuCommandDefinition
+            // toggles because it changes what that button does rather than what the surface looks like. It is a
+            // shortcut for the diagram's Layout Mode property, not a second setting - both write the same
+            // attribute, and the connector mode beside it in the property window is the finer control.
+            _modernLayoutCommand = new MenuCommandDefinition
             {
-                Id = "AdvancedLayout",
-                Tooltip = "Advanced Layout",
+                Id = "ModernLayout",
+                Tooltip = "Modern Layout",
                 Icon = KnownMonikers.MagicWand,
                 IsToggle = true,
                 IsChecked = false
             };
-            _advancedLayoutCommand.PropertyChanged += AdvancedLayoutCommand_PropertyChanged;
+            _modernLayoutCommand.PropertyChanged += ModernLayoutCommand_PropertyChanged;
 
-            _floatingZoomControl.Commands.Add(_advancedLayoutCommand);
+            _floatingZoomControl.Commands.Add(_modernLayoutCommand);
 
-            // TEMPORARY. Lets the connector routing modes be compared on a live diagram while the layout engine is
-            // being tuned. Remove once one of them is chosen; the shipping UI is meant to be the toggle alone.
-            _floatingZoomControl.Commands.Add(CreateRoutingCommand());
+            // Throws away the grouping so the next layout works it out again from scratch. Only meaningful in
+            // modern layout, so it is hidden entirely rather than shown disabled - the legacy toolbar should look
+            // the way it always has.
+            _clearGroupsCommand = new MenuCommandDefinition
+            {
+                Id = "ClearGroupNames",
+                Tooltip = "Clear group names",
+                Icon = KnownMonikers.ClearWindowContent,
+                ExecuteAction = () => (CurrentDiagram as EntityDesignerSurface)?.ClearGroupNames(),
+                IsVisible = false
+            };
+
+            _floatingZoomControl.Commands.Add(_clearGroupsCommand);
 
             // Calculate margin based on scrollbar width
             var rightMargin = scrollbarWidth + 4;  // scrollbar width + small gap
@@ -249,7 +263,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
 
             // Sync grid command states on first zoom event (when diagram is loaded)
             SyncGridCommandStates(diagram);
-            SyncAdvancedLayoutCommandState(diagram);
+            SyncModernLayoutCommandState(diagram);
 
             try
             {
@@ -383,123 +397,75 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
         }
 
         /// <summary>
-        ///     Builds the temporary connector-routing picker.
+        ///     Handler for the Modern Layout toggle, which records which engine the Layout command runs.
         /// </summary>
         /// <remarks>
-        ///     TEMPORARY, for comparing routing modes on a real diagram. Selecting a mode sets it on the engine and
-        ///     immediately re-runs the layout, because the only reason to change it is to see the difference -
-        ///     unlike the Advanced toggle, where re-arranging on click would discard the user's positions.
+        ///     Toggling writes the diagram's Layout Mode and nothing else; it does not lay the diagram out.
+        ///     Re-arranging everything the moment a toggle is clicked would throw away positions the user may
+        ///     have spent time on, so the Layout button beside it stays the thing that moves shapes.
         /// </remarks>
-        private MenuCommandDefinition CreateRoutingCommand()
-        {
-            var routing = new MenuCommandDefinition
-            {
-                Id = "ConnectorRouting",
-                Label = "Routing",
-                Tooltip = "Connector routing (temporary)",
-                Children = []
-            };
-
-            foreach (var mode in (ConnectorRouting[])Enum.GetValues(typeof(ConnectorRouting)))
-            {
-                routing.Children.Add(
-                    new MenuCommandDefinition
-                    {
-                        Id = $"ConnectorRouting.{mode}",
-                        Label = mode.ToString(),
-                        Tooltip = $"Route connectors: {mode}",
-                        ExecuteAction = () => ApplyRouting(mode)
-                    });
-            }
-
-            return routing;
-        }
-
-        /// <summary>
-        ///     Sets the routing mode on the MSAGL engine and re-lays out the diagram.
-        /// </summary>
-        private void ApplyRouting(ConnectorRouting mode)
-        {
-            if (CurrentDiagram is not EntityDesignerSurface diagram
-                || diagram.LayoutManager?.LayoutEngines is null)
-            {
-                return;
-            }
-
-            if (!diagram.LayoutManager.LayoutEngines.TryGetValue(MsAglLayoutEngine.EngineKey, out var engine)
-                || engine is not MsAglLayoutEngine msagl)
-            {
-                return;
-            }
-
-            msagl.Routing = mode;
-
-            // Only redraw when that engine is the one in effect; otherwise the choice is stored for when it is.
-            if (ReferenceEquals(diagram.LayoutManager.Current, msagl))
-            {
-                diagram.AutoLayoutDiagram();
-            }
-        }
-
-        /// <summary>
-        ///     Handler for the Advanced Layout toggle, which selects the engine the Layout command runs.
-        /// </summary>
-        /// <remarks>
-        ///     Toggling only changes which engine is current; it does not lay the diagram out. Re-arranging
-        ///     everything the moment a toggle is clicked would throw away positions the user may have spent time
-        ///     on, so the Layout button beside it stays the thing that moves shapes.
-        /// </remarks>
-        private void AdvancedLayoutCommand_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void ModernLayoutCommand_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName != nameof(MenuCommandDefinition.IsChecked))
             {
                 return;
             }
 
-            if (CurrentDiagram is not EntityDesignerSurface diagram
-                || diagram.LayoutManager is null)
+            if (CurrentDiagram is not EntityDesignerSurface diagram)
             {
                 return;
             }
 
-            var key = _advancedLayoutCommand.IsChecked ? MsAglLayoutEngine.EngineKey : DslLayoutEngine.EngineKey;
-
-            if (!diagram.LayoutManager.TrySetCurrent(key))
-            {
-                // The engine was not registered. Leave whatever is running in place and put the toggle back, so
-                // the button never claims a mode the designer is not actually in.
-                VsUtils.LogToActivityLog(
-                    $"AdvancedLayoutCommand: no layout engine registered under '{key}'.",
-                    __ACTIVITYLOG_ENTRYTYPE.ALE_WARNING);
-
-                SyncAdvancedLayoutCommandState(diagram);
-            }
+            diagram.PersistLayoutMode(_modernLayoutCommand.IsChecked ? LayoutMode.Modern : LayoutMode.Legacy);
         }
 
         /// <summary>
-        ///     Points the Advanced Layout toggle at whichever engine is actually current.
+        ///     Points the Modern Layout toggle, and the commands that only apply in that mode, at whichever mode
+        ///     the diagram is actually in.
         /// </summary>
-        private void SyncAdvancedLayoutCommandState(EntityDesignerSurface diagram)
+        /// <remarks>
+        ///     Also subscribes to the surface, because the mode can be changed from the property window without
+        ///     the toolbar hearing about it. Detaching first makes that idempotent, so calling this on every load
+        ///     and every change cannot stack up handlers.
+        /// </remarks>
+        private void SyncModernLayoutCommandState(EntityDesignerSurface diagram)
         {
-            if (_advancedLayoutCommand is null
-                || diagram.LayoutManager?.Current is null)
+            if (_modernLayoutCommand is null)
             {
                 return;
             }
 
-            var isAdvanced = string.Equals(
-                diagram.LayoutManager.Current.Key, MsAglLayoutEngine.EngineKey, StringComparison.OrdinalIgnoreCase);
+            diagram.LayoutInputsChanged -= Diagram_LayoutInputsChanged;
+            diagram.LayoutInputsChanged += Diagram_LayoutInputsChanged;
 
-            if (_advancedLayoutCommand.IsChecked == isAdvanced)
+            var isModern = diagram.LayoutMode == LayoutMode.Modern;
+
+            if (_clearGroupsCommand != null)
+            {
+                _clearGroupsCommand.IsVisible = isModern;
+            }
+
+            if (_modernLayoutCommand.IsChecked == isModern)
             {
                 return;
             }
 
             // Unhook while loading the state, the same as the grid toggles, so reflecting what is already current
             // does not read as the user asking to change it.
-            _advancedLayoutCommand.PropertyChanged -= AdvancedLayoutCommand_PropertyChanged;
-            _advancedLayoutCommand.IsChecked = isAdvanced;
-            _advancedLayoutCommand.PropertyChanged += AdvancedLayoutCommand_PropertyChanged;
+            _modernLayoutCommand.PropertyChanged -= ModernLayoutCommand_PropertyChanged;
+            _modernLayoutCommand.IsChecked = isModern;
+            _modernLayoutCommand.PropertyChanged += ModernLayoutCommand_PropertyChanged;
+        }
+
+        /// <summary>
+        ///     Re-reads the toolbar state after something changed the attributes the layout is computed from.
+        /// </summary>
+        private void Diagram_LayoutInputsChanged(object sender, EventArgs e)
+        {
+            if (sender is EntityDesignerSurface diagram)
+            {
+                SyncModernLayoutCommandState(diagram);
+            }
         }
 
         /// <summary>

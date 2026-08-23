@@ -273,27 +273,6 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Controls
             }
         }
 
-        /// <summary>
-        /// Handles a selection from a command that offers a choice from its children.
-        /// </summary>
-        /// <remarks>
-        /// The chosen child is executed, not the parent - the parent exists only to hold the list. Temporary,
-        /// alongside the routing mode command it was added for.
-        /// </remarks>
-        private void DropDownCommand_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (sender is not ComboBox comboBox
-                || comboBox.SelectedItem is not MenuCommandDefinition selected)
-            {
-                return;
-            }
-
-            if (!selected.Execute())
-            {
-                CommandExecuted?.Invoke(this, selected);
-            }
-        }
-
         private void ToggleCommand_CheckedChanged(object sender, RoutedEventArgs e)
         {
             if (sender is ToggleButton toggleButton && toggleButton.Tag is MenuCommandDefinition commandDef)

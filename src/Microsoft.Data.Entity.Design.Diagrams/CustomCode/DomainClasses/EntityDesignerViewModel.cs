@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.DiagramsResources;
 using ModelDesigner = Microsoft.Data.Entity.Design.Edmx.Designer;
@@ -201,7 +201,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
         private void OnContextDisposing(object sender, EventArgs e)
         {
             EditingContext context = (EditingContext)sender;
-            Debug.Assert(_editingContext == context);
+            Debug.Assert(_editingContext == context, "_editingContext == context");
             SetContext(null);
         }
 
@@ -427,6 +427,10 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
                 // we need to keep track of the entity shapes that needed to be auto layout.
                 List<ShapeElement> shapesToAutoLayout = new List<ShapeElement>();
 
+                // Set by any change to an attribute the arrangement is computed from, so that editing one in the
+                // property window shows its effect instead of quietly recording a preference.
+                var hasLayoutInputChanges = false;
+
                 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 // SECOND STEP: updating DSL Presentation Elements.
                 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -449,6 +453,8 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
                             {
                                 if (change.Changed.Artifact.IsDesignerSafe)
                                 {
+                                    hasLayoutInputChanges |= DiagramLayoutInput.Includes(change.Changed);
+
                                     if (change.Changed is DefaultableValue
                                         && change.Changed.Parent is Edmx.Designer.Diagram
                                         && ModelXRef.ContainsKey(change.Changed.Parent))
@@ -500,6 +506,23 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
                     && shapesToAutoLayout.Count > 0)
                 {
                     diagram.AutoLayoutDiagram(shapesToAutoLayout);
+                }
+                else if (hasLayoutInputChanges)
+                {
+                    // The whole diagram, not the shapes above: these attributes decide how everything is placed
+                    // relative to everything else, so arranging a subset would be arranging by half.
+                    //
+                    // Out here rather than inside the transaction above because a layout opens its own, both on
+                    // the store and on the model. AutoLayoutDiagram ignores a call made while one is already
+                    // running, which is what stops the group names it writes back from asking for another.
+                    diagram?.AutoLayoutDiagram();
+                }
+
+                if (hasLayoutInputChanges)
+                {
+                    // After the layout, so a listener that reads these attributes sees the finished state. The
+                    // toolbar needs this because the property window can change them behind its back.
+                    diagram?.NotifyLayoutInputsChanged();
                 }
             }
             finally
@@ -682,7 +705,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
                 }
                 else
                 {
-                    Debug.Assert(change.Type == EfiChange.EfiChangeType.Create);
+                    Debug.Assert(change.Type == EfiChange.EfiChangeType.Create, "change.Type == EfiChange.EfiChangeType.Create");
 
                     if (change.Changed is Edmx.Entity.EntityType entityType)
                     {
@@ -903,7 +926,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
         /// </summary>
         private void OnEFObjectUpdated(EfiChange change, ModelToDesignerModelXRefItem xref)
         {
-            Debug.Assert(change.Changed != null);
+            Debug.Assert(change.Changed != null, "change.Changed != null");
             var efObject = change.Changed;
 
             // Updating a base type is a special case, because it really means creating or deleting an inheritance connector
@@ -938,7 +961,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
         /// </summary>
         private void OnEFObjectCreatedOrUpdated(EFObject efObject, ModelToDesignerModelXRefItem xref)
         {
-            Debug.Assert(efObject != null);
+            Debug.Assert(efObject != null, "efObject != null");
 
             if (false == ModelHelper.IsInConceptualModel(efObject))
             {
@@ -1053,7 +1076,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
                 if (efElement is Edmx.Entity.NavigationProperty modelNavigationProperty)
                 {
                     Edmx.Entity.EntityType entityType = modelNavigationProperty.Parent as Edmx.Entity.EntityType;
-                    Debug.Assert(entityType != null);
+                    Debug.Assert(entityType != null, "entityType != null");
 
 
                     if (xref.GetExisting(entityType) is EntityType viewEntityType)
@@ -1127,7 +1150,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
                             if (property != null)
                             {
                                 Edmx.Entity.EntityType entityType = property.Parent as Edmx.Entity.EntityType;
-                                Debug.Assert(entityType != null);
+                                Debug.Assert(entityType != null, "entityType != null");
 
 
                                 if (xref.GetExisting(entityType) is EntityType viewEntityType)
@@ -1179,7 +1202,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
         /// </summary>
         private void OnEFObjectDeleted(EFObject efObject, ModelToDesignerModelXRefItem xref)
         {
-            Debug.Assert(efObject != null);
+            Debug.Assert(efObject != null, "efObject != null");
 
             // deleting key means that we will have to re-translate the properties of the
             // EntityType because the propertyRefs were deleted
@@ -1209,7 +1232,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
                 if (property != null)
                 {
                     Edmx.Entity.EntityType entityType = property.Parent as Edmx.Entity.EntityType;
-                    Debug.Assert(entityType != null);
+                    Debug.Assert(entityType != null, "entityType != null");
                     // if we are deleting whole EntityType this will be null
                     if (xref.GetExisting(entityType) is EntityType viewEntityType
                         && xref.GetExisting(property) is Property viewProperty)

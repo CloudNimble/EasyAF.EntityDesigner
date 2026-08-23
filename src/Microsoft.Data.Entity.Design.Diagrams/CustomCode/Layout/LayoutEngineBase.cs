@@ -2,6 +2,7 @@
 
 using System.Collections;
 using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.Layout
 {
@@ -10,11 +11,15 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
     ///     Arranges the shapes on an <see cref="EntityDesignerSurface" />.
     /// </summary>
     /// <remarks>
-    ///     Implementations are held by <see cref="LayoutEngineManager" /> and selected through its
-    ///     <see cref="LayoutEngineManager.Current" /> property, so a surface never names a concrete engine.
-    ///     An engine owns its own transaction and progress reporting, because how much work it does — and
-    ///     therefore whether the user needs to be told about it — is the engine's business rather than the
-    ///     surface's. See specs/diagram-layout-engines.md.
+    ///     Implementations are held by <see cref="LayoutEngineManager" /> and chosen by the diagram's own
+    ///     <see cref="Edmx.Designer.Diagram.LayoutMode" />, so a surface never names a concrete engine.
+    ///     <para>
+    ///     Engines carry no per-diagram state. One instance serves every open diagram, so everything that varies
+    ///     between diagrams arrives as an argument to <see cref="Layout" />. An engine owns its own transaction
+    ///     and progress reporting, because how much work it does - and therefore whether the user needs to be
+    ///     told about it - is the engine's business rather than the surface's.
+    ///     </para>
+    ///     See specs/diagram-layout-engines.md.
     /// </remarks>
     internal abstract class LayoutEngineBase
     {
@@ -27,13 +32,13 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
         public abstract string DisplayName { get; }
 
         /// <summary>
-        ///     The stable identifier this engine is registered under.
+        ///     The mode a diagram names to select this engine.
         /// </summary>
         /// <remarks>
-        ///     Persisted and passed on the command line, so it must not change once shipped. It is not the
-        ///     same thing as <see cref="DisplayName" />, which is free to be localized or reworded.
+        ///     Persisted as the <c>LayoutMode</c> attribute and passed on the command line, so the enum's member
+        ///     names are part of the file format. <see cref="DisplayName" /> is the one free to be reworded.
         /// </remarks>
-        public abstract string Key { get; }
+        public abstract LayoutMode Mode { get; }
 
         #endregion
 
@@ -48,12 +53,17 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
         ///     <see cref="Microsoft.VisualStudio.Modeling.Diagrams.ShapeElement.NestedChildShapes" /> down to the
         ///     handful of shapes a drag-and-drop just created.
         /// </param>
+        /// <param name="connectorMode">How the user wants the connectors drawn.</param>
         /// <remarks>
-        ///     A weakly typed <see cref="IList" /> rather than <c>IList&lt;ShapeElement&gt;</c> because that is
-        ///     what the Modeling SDK's own <c>AutoLayoutShapeElements</c> takes and what every existing caller
-        ///     already holds. Tightening it would push a cast onto all five call sites and buy nothing.
+        ///     <paramref name="shapes" /> is a weakly typed <see cref="IList" /> rather than
+        ///     <c>IList&lt;ShapeElement&gt;</c> because that is what the Modeling SDK's own
+        ///     <c>AutoLayoutShapeElements</c> takes and what every existing caller already holds. Tightening it
+        ///     would push a cast onto all five call sites and buy nothing.
+        ///     <para>
+        ///     An engine with only one way of drawing connectors ignores <paramref name="connectorMode" />.
+        ///     </para>
         /// </remarks>
-        public abstract void Layout(EntityDesignerSurface surface, IList shapes);
+        public abstract void Layout(EntityDesignerSurface surface, IList shapes, ConnectorMode connectorMode);
 
         #endregion
 

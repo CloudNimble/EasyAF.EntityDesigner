@@ -17,6 +17,7 @@ using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Immutability;
 using Diagram = Microsoft.Data.Entity.Design.Edmx.Designer.Diagram;
 using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.DiagramsResources;
+using ModelEntityTypeShape = Microsoft.Data.Entity.Design.Edmx.Designer.EntityTypeShape;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.View
 {
@@ -172,6 +173,20 @@ namespace Microsoft.Data.Entity.Design.Diagrams.View
                 return FromRoleLinkShapes.OfType<BinaryLinkShape>()
                     .Concat(ToRoleLinkShapes.OfType<BinaryLinkShape>());
             }
+        }
+
+        /// <summary>
+        ///     The EDMX shape this one is a view of, or <see langword="null" /> before the cross-reference that
+        ///     links the two has been built.
+        /// </summary>
+        /// <remarks>
+        ///     Where the attributes the designer does not draw live - <c>GroupName</c> among them. Mirrors
+        ///     <see cref="EntityDesignerSurface.ModelDiagram" />, so getting from a view object to its EDMX object
+        ///     reads the same at either level.
+        /// </remarks>
+        public ModelEntityTypeShape ModelShape
+        {
+            get { return Diagram?.ModelElement?.ModelXRef?.GetExisting(this) as ModelEntityTypeShape; }
         }
 
         public EntityType TypedModelElement

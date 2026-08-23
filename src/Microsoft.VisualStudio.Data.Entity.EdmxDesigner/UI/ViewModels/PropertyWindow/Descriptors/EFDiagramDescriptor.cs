@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using System.ComponentModel;
 using Microsoft.Data.Entity.Design.Edmx.Designer;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.PropertyWindow.Descriptors
 {
@@ -11,6 +14,75 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
         {
             get { return base.Name; }
             set { base.Name = value; }
+        }
+
+        /// <summary>
+        ///     How this diagram's connectors are drawn.
+        /// </summary>
+        /// <remarks>
+        ///     Reports <see cref="Edmx.Designer.ConnectorMode.Orthogonal" /> rather than the stored
+        ///     <see cref="Edmx.Designer.ConnectorMode.Legacy" /> while the diagram is in modern layout, because
+        ///     that is what the layout will actually do. Showing the stored value would offer the user a choice
+        ///     the converter beside it has already ruled out.
+        /// </remarks>
+        [LocCategory("PropertyWindow_Category_Layout")]
+        [LocDisplayName("PropertyWindow_DisplayName_ConnectorMode")]
+        [LocDescription("PropertyWindow_Description_ConnectorMode")]
+        [TypeConverter(typeof(ConnectorModeConverter))]
+        public ConnectorMode ConnectorMode
+        {
+            get
+            {
+                var stored = TypedEFElement.ConnectorMode.Value;
+
+                return stored == ConnectorMode.Legacy ? ConnectorMode.Orthogonal : stored;
+            }
+            set
+            {
+                if (value == ConnectorMode.Legacy || value == TypedEFElement.ConnectorMode.Value)
+                {
+                    return;
+                }
+
+                var cpc = PropertyWindowViewModelHelper.GetCommandProcessorContext();
+                CommandProcessor.InvokeSingleCommand(
+                    cpc, new UpdateDefaultableValueCommand<ConnectorMode>(TypedEFElement.ConnectorMode, value));
+            }
+        }
+
+        /// <summary>
+        ///     Which engine arranges this diagram.
+        /// </summary>
+        [LocCategory("PropertyWindow_Category_Layout")]
+        [LocDisplayName("PropertyWindow_DisplayName_LayoutMode")]
+        [LocDescription("PropertyWindow_Description_LayoutMode")]
+        public LayoutMode LayoutMode
+        {
+            get { return TypedEFElement.LayoutMode.Value; }
+            set
+            {
+                if (value == TypedEFElement.LayoutMode.Value)
+                {
+                    return;
+                }
+
+                var cpc = PropertyWindowViewModelHelper.GetCommandProcessorContext();
+                CommandProcessor.InvokeSingleCommand(
+                    cpc, new UpdateDefaultableValueCommand<LayoutMode>(TypedEFElement.LayoutMode, value));
+            }
+        }
+
+        /// <summary>
+        ///     Hides <see cref="ConnectorMode" /> unless the diagram is in modern layout.
+        /// </summary>
+        /// <remarks>
+        ///     Found by reflection on the "IsBrowsable" + property name convention, the same way
+        ///     <c>IsBrowsableDocumentation</c> is. The legacy engine draws the only connectors it knows how to
+        ///     draw, so offering a choice there would be offering one that does nothing.
+        /// </remarks>
+        internal bool IsBrowsableConnectorMode()
+        {
+            return TypedEFElement.LayoutMode.Value == LayoutMode.Modern;
         }
 
         public override string GetComponentName()

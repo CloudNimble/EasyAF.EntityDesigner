@@ -1320,11 +1320,32 @@ The exception also contains the following details: '{2}'.</value>
   <data name="PropertyWindow_Category_Diagram" xml:space="preserve">
     <value>Diagram</value>
   </data>
+  <data name="PropertyWindow_Category_Layout" xml:space="preserve">
+    <value>Layout</value>
+  </data>
+  <data name="PropertyWindow_Description_ConnectorMode" xml:space="preserve">
+    <value>How connectors are drawn when the diagram is laid out. Orthogonal uses right-angle segments routed around the shapes in the way. Layered follows the rows the layout created and usually crosses least. Curved routes smooth curves around the shapes. Straight draws direct lines over anything in between.</value>
+  </data>
   <data name="PropertyWindow_Description_EntityShapeColor" xml:space="preserve">
     <value>The color of the entity type shape.</value>
   </data>
+  <data name="PropertyWindow_Description_EntityShapeGroupName" xml:space="preserve">
+    <value>The group this shape belongs to. Shapes in the same group are placed together by a modern layout. Left empty, the layout guesses a group and writes it here, and never overwrites a name you have set.</value>
+  </data>
+  <data name="PropertyWindow_Description_LayoutMode" xml:space="preserve">
+    <value>Which engine arranges this diagram. Legacy uses the layout the designer has always used. Modern places the shapes and routes the connectors itself, and records the routes in the file.</value>
+  </data>
+  <data name="PropertyWindow_DisplayName_ConnectorMode" xml:space="preserve">
+    <value>Connector Mode</value>
+  </data>
   <data name="PropertyWindow_DisplayName_EntityShapeColor" xml:space="preserve">
     <value>Fill Color</value>
+  </data>
+  <data name="PropertyWindow_DisplayName_EntityShapeGroupName" xml:space="preserve">
+    <value>Group Name</value>
+  </data>
+  <data name="PropertyWindow_DisplayName_LayoutMode" xml:space="preserve">
+    <value>Layout Mode</value>
   </data>
   <data name="PropertyWindow_Description_SynchronizePropertyFacets" xml:space="preserve">
     <value>Updating the model will update entity property facets, such as nullability and precision, to match the mapped database columns' values.</value>

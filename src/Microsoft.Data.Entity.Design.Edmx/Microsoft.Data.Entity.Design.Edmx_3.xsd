@@ -110,7 +110,26 @@
     <xs:attribute name="ShowGrid" type="xs:boolean" use="optional" />
     <xs:attribute name="SnapToGrid" type="xs:boolean" use="optional" />
     <xs:attribute name="DisplayType" type="xs:boolean" use="optional" />
+    <xs:attribute name="LayoutMode" type="edmx:TLayoutMode" use="optional" />
+    <xs:attribute name="ConnectorMode" type="edmx:TConnectorMode" use="optional" />
   </xs:complexType>
+  <xs:simpleType name="TLayoutMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Legacy" />
+      <xs:enumeration value="Modern" />
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Legacy pairs with LayoutMode="Legacy" and with nothing else: the legacy engine draws the only connectors
+       it knows how to draw, and the four routed values are all modes of the modern engine. -->
+  <xs:simpleType name="TConnectorMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Legacy" />
+      <xs:enumeration value="Orthogonal" />
+      <xs:enumeration value="Layered" />
+      <xs:enumeration value="Curved" />
+      <xs:enumeration value="Straight" />
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="TEntityTypeShape">
     <xs:attribute name="EntityType" type="xs:string" use="required" />
     <xs:attribute name="PointX" type="xs:double" use="optional" />
@@ -119,6 +138,7 @@
     <xs:attribute name="Height" type="xs:double" use="optional" />
     <xs:attribute name="IsExpanded" type="xs:boolean" use="optional" />
     <xs:attribute name="FillColor" type="xs:string" use="optional"/>
+    <xs:attribute name="GroupName" type="xs:string" use="optional"/>
   </xs:complexType>
   <xs:complexType name="TAssociationConnector">
     <xs:sequence>

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
 using Microsoft.Msagl.Core.Layout;
 using Microsoft.Msagl.Core.Routing;
 using Microsoft.Msagl.Layout.Layered;
@@ -87,7 +88,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
         /// <exception cref="ArgumentOutOfRangeException">Either argument is not a known value.</exception>
         /// <example>
         ///     <code>
-        ///     var settings = MsAglConstants.CreateSettings(LayoutAlgorithm.Layered, ConnectorRouting.Orthogonal);
+        ///     var settings = MsAglConstants.CreateSettings(LayoutAlgorithm.Layered, ConnectorMode.Orthogonal);
         ///     LayoutHelpers.CalculateLayout(graph, settings, null);
         ///     </code>
         /// </example>
@@ -97,11 +98,11 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
         ///     would carry one diagram's state into the next.
         ///     <para>
         ///     Routing is left to MSAGL, which performs it as part of the layout run rather than as a separate
-        ///     pass. That matters for <see cref="ConnectorRouting.Layered" />: only the routing MSAGL does itself
+        ///     pass. That matters for <see cref="ConnectorMode.Layered" />: only the routing MSAGL does itself
         ///     follows the channels its crossing-reduction phase ordered, so routing afterwards discards that work.
         ///     </para>
         /// </remarks>
-        internal static LayoutAlgorithmSettings CreateSettings(LayoutAlgorithm algorithm, ConnectorRouting routing)
+        internal static LayoutAlgorithmSettings CreateSettings(LayoutAlgorithm algorithm, ConnectorMode routing)
         {
             LayoutAlgorithmSettings settings = algorithm switch
             {
@@ -119,11 +120,18 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
 
             settings.EdgeRoutingSettings.EdgeRoutingMode = routing switch
             {
-                ConnectorRouting.Orthogonal => EdgeRoutingMode.Rectilinear,
-                ConnectorRouting.Layered => EdgeRoutingMode.SugiyamaSplines,
-                ConnectorRouting.Curved => EdgeRoutingMode.Spline,
-                ConnectorRouting.Straight => EdgeRoutingMode.StraightLine,
-                _ => throw new ArgumentOutOfRangeException(nameof(routing), routing, "Unknown connector routing.")
+                ConnectorMode.Orthogonal => EdgeRoutingMode.Rectilinear,
+                ConnectorMode.Layered => EdgeRoutingMode.SugiyamaSplines,
+                ConnectorMode.Curved => EdgeRoutingMode.Spline,
+                ConnectorMode.Straight => EdgeRoutingMode.StraightLine,
+
+                // Legacy means the Modeling SDK draws the connectors, which is not something MSAGL can be
+                // configured to do. Reaching here means a diagram is in Modern layout with Legacy connectors,
+                // a pairing MsAglLayoutEngine is supposed to have normalized away before calling.
+                ConnectorMode.Legacy => throw new ArgumentOutOfRangeException(
+                    nameof(routing), routing, "MSAGL cannot draw legacy connectors."),
+
+                _ => throw new ArgumentOutOfRangeException(nameof(routing), routing, "Unknown connector mode.")
             };
 
             settings.EdgeRoutingSettings.Padding = RouterPadding;

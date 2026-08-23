@@ -1196,6 +1196,33 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Properties {
                 return ResourceManager.GetString("Tx_SetGridVisibility", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Clear Group Names.
+        /// </summary>
+        public static string Tx_ClearGroupNames {
+            get {
+                return ResourceManager.GetString("Tx_ClearGroupNames", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Set Group Names.
+        /// </summary>
+        public static string Tx_SetGroupNames {
+            get {
+                return ResourceManager.GetString("Tx_SetGroupNames", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Set Layout Mode.
+        /// </summary>
+        public static string Tx_SetLayoutMode {
+            get {
+                return ResourceManager.GetString("Tx_SetLayoutMode", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Set Member Format Value.

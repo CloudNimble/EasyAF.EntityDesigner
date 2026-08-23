@@ -10,7 +10,7 @@ Resolved issues move to `fixed-bugs.md` rather than staying here marked FIXED. *
 
 | Category | Count |
 |---|---|
-| Failing tests | 0 deterministic; 1 open intermittent — see 2.6; 2 still unnamed — see 1.5 |
+| Failing tests | 0 deterministic; 2 open intermittents — see 1.6 and 2.6; 2 still unnamed — see 1.5 |
 | Tests disabled with `[Ignore]` | 194 |
 | Tests that never run because of an invalid signature | 0 — fixed, see `fixed-bugs.md` 2.2 and 2.4 |
 | `MSTEST0003` warnings | 0 — was 98 |
@@ -46,6 +46,24 @@ grep -ho 'testName="[^"]*"[^>]*outcome="Failed"' <dir>/*.trx
 ```
 
 Do not read the VersioningFacade row as pointing at `DbDatabaseMappingBuilderTests`. The string `Different API visibility between official dll and locally built one` appeared next to the failure in the console output and looks like an assertion message, but it is the `[Ignore]` reason on a skipped test in that file and has nothing to do with it.
+
+### 1.6 `ConfigurationFileSchemaTests` shares one `XmlSchema` across parallel tests
+
+Seen 2026-08-20 in a full-solution run: `Schema_accepts_elements_under_entityFrameworkConfiguration_element_in_any_order` failed with
+
+```
+System.Xml.Schema.XmlSchemaValidationException: The 'defaultConnectionFactory' element is not declared.
+```
+
+It did not reproduce in 9 runs of the assembly or 6 of the class on their own. **Diagnosed, not yet fixed** — and the same shape as the two named in 1.5, so it belongs with them rather than in the unnamed pile.
+
+`ConfigurationFileSchemaTests` holds `ConfigurationFileSchema`, `HelperSchema` and `FakeXmlDocumentTransformationSchema` as `static readonly XmlSchema`, read once in the static constructor. Every test then calls `Validate`, which does `readerSettings.Schemas.Add(ConfigurationFileSchema)` on a fresh `XmlSchemaSet`.
+
+`XmlSchemaSet.Add(XmlSchema)` is not a read of the schema. It compiles it and mutates the instance — `IsCompiled`, the element and attribute tables, the set membership. The class has 58 tests and MSTest runs them in parallel at method level, so 58 threads hand the same three `XmlSchema` objects to 58 different sets. A test that reads the schema mid-compilation sees an element table that does not yet contain `defaultConnectionFactory`.
+
+The fix is to stop sharing the instances: parse the three schemas per `Validate` call. It is three small parses against a string and a file, 58 times, which is nothing next to a flake that only shows up under load.
+
+The reason it hides is the same as the others here — an unshared warm-cache rerun of one assembly has neither the concurrency nor the timing to hit the window.
 
 ## 2. Tests that never run
 

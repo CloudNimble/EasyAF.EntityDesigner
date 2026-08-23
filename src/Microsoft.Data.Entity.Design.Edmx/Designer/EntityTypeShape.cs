@@ -24,6 +24,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Designer
         internal static readonly string AttributeWidth = "Width";
         internal static readonly string AttributeIsExpanded = "IsExpanded";
         internal static readonly string AttributeFillColor = "FillColor";
+        internal static readonly string AttributeGroupName = "GroupName";
 
         private SingleItemBinding<EntityType> _entityTypeBinding;
         private DefaultableValue<double> _pointXAttr;
@@ -31,6 +32,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Designer
         private DefaultableValue<double> _widthAttr;
         private DefaultableValue<bool> _isExpandedAttr;
         private DefaultableValue<Color> _fillColorAttr;
+        private DefaultableValue<string> _groupNameAttr;
 
         internal EntityTypeShape(EFElement parent, XElement element)
             : base(parent, element)
@@ -93,6 +95,24 @@ namespace Microsoft.Data.Entity.Design.Edmx.Designer
             {
                 _fillColorAttr ??= new FillColorDefaultableValue(this);
                 return _fillColorAttr;
+            }
+        }
+
+        /// <summary>
+        ///     The group this shape belongs to, used to place related shapes together.
+        /// </summary>
+        /// <remarks>
+        ///     Per shape rather than per entity, so two diagrams over one model can group differently. Empty until
+        ///     something fills it in: a modern layout writes its detected groups here on the first pass and never
+        ///     overwrites a value that is already present, which is what lets the names be edited by hand and
+        ///     honoured from then on. See specs/diagram-layout-engines.md.
+        /// </remarks>
+        internal DefaultableValue<string> GroupName
+        {
+            get
+            {
+                _groupNameAttr ??= new GroupNameDefaultableValue(this);
+                return _groupNameAttr;
             }
         }
 
@@ -195,6 +215,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Designer
                 yield return Width;
                 yield return IsExpanded;
                 yield return FillColor;
+                yield return GroupName;
             }
         }
 
@@ -208,6 +229,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Designer
             s.Add(AttributeWidth);
             s.Add(AttributeIsExpanded);
             s.Add(AttributeFillColor);
+            s.Add(AttributeGroupName);
             return s;
         }
 #endif
@@ -228,6 +250,8 @@ namespace Microsoft.Data.Entity.Design.Edmx.Designer
             _isExpandedAttr = null;
             ClearEFObject(_fillColorAttr);
             _fillColorAttr = null;
+            ClearEFObject(_groupNameAttr);
+            _groupNameAttr = null;
             base.PreParse();
         }
 
@@ -243,6 +267,24 @@ namespace Microsoft.Data.Entity.Design.Edmx.Designer
         #endregion
 
         #region Helper Classes
+
+        private class GroupNameDefaultableValue : DefaultableValue<string>
+        {
+            internal GroupNameDefaultableValue(EFElement parent)
+                : base(parent, AttributeGroupName)
+            {
+            }
+
+            internal override string AttributeName
+            {
+                get { return AttributeGroupName; }
+            }
+
+            public override string DefaultValue
+            {
+                get { return String.Empty; }
+            }
+        }
 
         private class FillColorDefaultableValue : DefaultableValue<Color>
         {

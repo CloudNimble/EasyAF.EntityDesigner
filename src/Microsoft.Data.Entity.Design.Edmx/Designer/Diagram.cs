@@ -18,6 +18,8 @@ namespace Microsoft.Data.Entity.Design.Edmx.Designer
         internal static readonly string AttributeSnapToGrid = "SnapToGrid";
         internal static readonly string AttributeDisplayType = "DisplayType";
         internal static readonly string AttributeId = "DiagramId";
+        internal static readonly string AttributeLayoutMode = "LayoutMode";
+        internal static readonly string AttributeConnectorMode = "ConnectorMode";
 
         private readonly List<EntityTypeShape> _entityTypeShapes = [];
         private readonly List<AssociationConnector> _associationConnectors = [];
@@ -26,6 +28,8 @@ namespace Microsoft.Data.Entity.Design.Edmx.Designer
         private DefaultableValue<bool> _showGridAttr;
         private DefaultableValue<bool> _snapToGridAttr;
         private DefaultableValue<bool> _displayTypeAttr;
+        private DefaultableValue<LayoutMode> _layoutModeAttr;
+        private DefaultableValue<ConnectorMode> _connectorModeAttr;
         private DiagramIdDefaultableValue _id;
 
         internal Diagram(EFElement parent, XElement element)
@@ -80,6 +84,39 @@ namespace Microsoft.Data.Entity.Design.Edmx.Designer
             {
                 _snapToGridAttr ??= new SnapToGridDefaultableValue(this);
                 return _snapToGridAttr;
+            }
+        }
+
+        /// <summary>
+        ///     Which engine arranges this diagram.
+        /// </summary>
+        /// <remarks>
+        ///     Absent from every file written before this attribute existed, so the default has to be
+        ///     <see cref="Designer.LayoutMode.Legacy" /> for those to keep arranging the way they always have.
+        /// </remarks>
+        internal DefaultableValue<LayoutMode> LayoutMode
+        {
+            get
+            {
+                _layoutModeAttr ??= new LayoutModeDefaultableValue(this);
+                return _layoutModeAttr;
+            }
+        }
+
+        /// <summary>
+        ///     How this diagram's connectors are drawn.
+        /// </summary>
+        /// <remarks>
+        ///     Only meaningful alongside <see cref="Designer.LayoutMode.Modern" />. The legacy engine draws the only
+        ///     connectors it knows how to draw, so <see cref="Designer.LayoutMode.Legacy" /> pairs with
+        ///     <see cref="Designer.ConnectorMode.Legacy" /> and nothing else.
+        /// </remarks>
+        internal DefaultableValue<ConnectorMode> ConnectorMode
+        {
+            get
+            {
+                _connectorModeAttr ??= new ConnectorModeDefaultableValue(this);
+                return _connectorModeAttr;
             }
         }
 
@@ -203,6 +240,8 @@ namespace Microsoft.Data.Entity.Design.Edmx.Designer
                 yield return ShowGrid;
                 yield return SnapToGrid;
                 yield return DisplayType;
+                yield return LayoutMode;
+                yield return ConnectorMode;
                 yield return Id;
             }
         }
@@ -235,6 +274,8 @@ namespace Microsoft.Data.Entity.Design.Edmx.Designer
             s.Add(AttributeShowGrid);
             s.Add(AttributeSnapToGrid);
             s.Add(AttributeDisplayType);
+            s.Add(AttributeLayoutMode);
+            s.Add(AttributeConnectorMode);
             s.Add(AttributeId);
             return s;
         }
@@ -263,6 +304,10 @@ namespace Microsoft.Data.Entity.Design.Edmx.Designer
             _snapToGridAttr = null;
             ClearEFObject(_displayTypeAttr);
             _displayTypeAttr = null;
+            ClearEFObject(_layoutModeAttr);
+            _layoutModeAttr = null;
+            ClearEFObject(_connectorModeAttr);
+            _connectorModeAttr = null;
 
             ClearEFObjectCollection(_entityTypeShapes);
             ClearEFObjectCollection(_associationConnectors);
@@ -374,6 +419,42 @@ namespace Microsoft.Data.Entity.Design.Edmx.Designer
             public override bool DefaultValue
             {
                 get { return true; }
+            }
+        }
+
+        private class LayoutModeDefaultableValue : DefaultableValue<LayoutMode>
+        {
+            internal LayoutModeDefaultableValue(EFElement parent)
+                : base(parent, AttributeLayoutMode)
+            {
+            }
+
+            internal override string AttributeName
+            {
+                get { return AttributeLayoutMode; }
+            }
+
+            public override LayoutMode DefaultValue
+            {
+                get { return Designer.LayoutMode.Legacy; }
+            }
+        }
+
+        private class ConnectorModeDefaultableValue : DefaultableValue<ConnectorMode>
+        {
+            internal ConnectorModeDefaultableValue(EFElement parent)
+                : base(parent, AttributeConnectorMode)
+            {
+            }
+
+            internal override string AttributeName
+            {
+                get { return AttributeConnectorMode; }
+            }
+
+            public override ConnectorMode DefaultValue
+            {
+                get { return Designer.ConnectorMode.Legacy; }
             }
         }
 

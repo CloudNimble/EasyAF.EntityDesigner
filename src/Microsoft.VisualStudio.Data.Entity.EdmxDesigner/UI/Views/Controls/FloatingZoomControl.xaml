@@ -180,23 +180,6 @@
                     </ToggleButton>
                 </DataTemplate>
             </local:CommandTemplateSelector.ToggleTemplate>
-            <!-- Temporary: lets a command offer a choice from its Children. Used to compare connector routing
-                 modes on a live diagram; remove with that command. -->
-            <local:CommandTemplateSelector.DropDownTemplate>
-                <DataTemplate>
-                    <ComboBox Tag="{Binding}"
-                              ToolTip="{Binding Tooltip}"
-                              IsEnabled="{Binding IsEnabled}"
-                              ItemsSource="{Binding Children}"
-                              DisplayMemberPath="Label"
-                              SelectedIndex="0"
-                              Width="110"
-                              Height="24"
-                              Margin="4,0,0,0"
-                              VerticalContentAlignment="Center"
-                              SelectionChanged="DropDownCommand_SelectionChanged"/>
-                </DataTemplate>
-            </local:CommandTemplateSelector.DropDownTemplate>
             <local:CommandTemplateSelector.SeparatorTemplate>
                 <DataTemplate>
                     <Rectangle Width="1" Height="18"

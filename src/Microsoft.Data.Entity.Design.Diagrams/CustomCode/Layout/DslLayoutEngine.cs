@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using Microsoft.Data.Entity.Design.Diagrams.View;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Diagrams.GraphObject;
+using ConnectorMode = Microsoft.Data.Entity.Design.Edmx.Designer.ConnectorMode;
 using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.DiagramsResources;
+using LayoutMode = Microsoft.Data.Entity.Design.Edmx.Designer.LayoutMode;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.Layout
 {
@@ -28,11 +30,6 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
     {
 
         #region Fields
-
-        /// <summary>
-        ///     The key <see cref="DslLayoutEngine" /> is registered under.
-        /// </summary>
-        internal const string EngineKey = "Dsl";
 
         /// <summary>
         ///     Tells the layout to treat a shape as invisible: do not place it, and let other shapes sit on top.
@@ -60,9 +57,9 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
         }
 
         /// <inheritdoc />
-        public override string Key
+        public override LayoutMode Mode
         {
-            get { return EngineKey; }
+            get { return LayoutMode.Legacy; }
         }
 
         #endregion
@@ -70,7 +67,12 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
         #region Public Methods
 
         /// <inheritdoc />
-        public override void Layout(EntityDesignerSurface surface, IList shapes)
+        /// <remarks>
+        ///     <paramref name="connectorMode" /> is ignored. The SDK draws the connectors, and the styles below
+        ///     are dictated by the placement each pass is doing rather than by anything the user chose - which is
+        ///     the whole reason <see cref="ConnectorMode.Legacy" /> exists as a value.
+        /// </remarks>
+        public override void Layout(EntityDesignerSurface surface, IList shapes, ConnectorMode connectorMode)
         {
             if (surface is null || shapes is null)
             {

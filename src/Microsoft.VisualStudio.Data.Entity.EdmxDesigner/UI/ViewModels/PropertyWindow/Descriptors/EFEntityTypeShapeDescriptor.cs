@@ -60,5 +60,51 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
                 CommandProcessor.InvokeSingleCommand(cpc, new UpdateDefaultableValueCommand<Color>(_entityTypeShape.FillColor, value));
             }
         }
+
+        /// <summary>
+        ///     The group this shape belongs to, used to place related shapes together.
+        /// </summary>
+        /// <remarks>
+        ///     On the shape rather than the entity, so two diagrams over one model can group differently. A modern
+        ///     layout writes its guess here for any shape that has none, and never overwrites what it finds - so
+        ///     editing this is how a grouping gets corrected, and the correction survives every later layout.
+        /// </remarks>
+        [LocCategory("PropertyWindow_Category_Layout")]
+        [LocDisplayName("PropertyWindow_DisplayName_EntityShapeGroupName")]
+        [LocDescription("PropertyWindow_Description_EntityShapeGroupName")]
+        public string GroupName
+        {
+            get { return _entityTypeShape.GroupName.Value; }
+            set
+            {
+                var trimmed = value?.Trim() ?? string.Empty;
+
+                if (trimmed == GroupName)
+                {
+                    return;
+                }
+
+                // Null, not empty: an empty value writes GroupName="", which reads as "deliberately in no group"
+                // and would still send the grouping down its Explicit path. Clearing the box means clearing the
+                // attribute.
+                var cpc = PropertyWindowViewModelHelper.GetCommandProcessorContext();
+                CommandProcessor.InvokeSingleCommand(
+                    cpc,
+                    new UpdateDefaultableValueCommand<string>(
+                        _entityTypeShape.GroupName, trimmed.Length == 0 ? null : trimmed));
+            }
+        }
+
+        /// <summary>
+        ///     Hides <see cref="GroupName" /> unless the diagram is in modern layout.
+        /// </summary>
+        /// <remarks>
+        ///     Found by reflection on the "IsBrowsable" + property name convention. The legacy engine has no
+        ///     notion of groups, so editing this there would rearrange the diagram without using the value.
+        /// </remarks>
+        internal bool IsBrowsableGroupName()
+        {
+            return (_entityTypeShape?.Diagram as Diagram)?.LayoutMode.Value == LayoutMode.Modern;
+        }
     }
 }

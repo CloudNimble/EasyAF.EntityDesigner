@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using Microsoft.Data.Entity.Design.Diagrams.View.Events;
 using Microsoft.Data.Entity.Design.Diagrams.View;
@@ -52,6 +52,18 @@ namespace Microsoft.Data.Entity.Design.Diagrams.View
 
         [NonSerialized]
         private LayoutEngineManager _layoutManager;
+
+        /// <summary>
+        ///     Whether a layout is running on this surface right now.
+        /// </summary>
+        /// <remarks>
+        ///     A layout writes to the model - group names, and the connector routes - and those writes come back
+        ///     as model changes, one of which would otherwise ask for another layout. A plain field rather than
+        ///     anything thread-aware because a surface cannot be laid out from two threads anyway; see the class
+        ///     remarks.
+        /// </remarks>
+        [NonSerialized]
+        private bool _isLayingOut;
 
         private bool _displayNameAndType;
         private bool _disableFixUpDiagramSelection;
@@ -981,7 +993,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.View
         }
 
         /// <summary>
-        ///     The layout engines this surface can arrange itself with, and which one is in effect.
+        ///     The layout engines this surface can arrange itself with.
         /// </summary>
         /// <remarks>
         ///     Supplied by the host, because the host is what composes the set: the package builds it from what
@@ -996,7 +1008,40 @@ namespace Microsoft.Data.Entity.Design.Diagrams.View
         }
 
         /// <summary>
-        ///     Arranges the given shapes using the current layout engine.
+        ///     How this diagram's connectors are drawn, as recorded in the EDMX.
+        /// </summary>
+        /// <remarks>
+        ///     <see cref="Edmx.Designer.ConnectorMode.Legacy" /> when the model diagram cannot be reached, which
+        ///     is the same answer an unmodified file gives.
+        /// </remarks>
+        internal ConnectorMode ConnectorMode
+        {
+            get { return ModelDiagram?.ConnectorMode.Value ?? ConnectorMode.Legacy; }
+        }
+
+        /// <summary>
+        ///     Which engine arranges this diagram, as recorded in the EDMX.
+        /// </summary>
+        /// <remarks>
+        ///     <see cref="Edmx.Designer.LayoutMode.Legacy" /> when the model diagram cannot be reached, so a
+        ///     surface with no model behind it arranges the way the designer always has.
+        /// </remarks>
+        internal LayoutMode LayoutMode
+        {
+            get { return ModelDiagram?.LayoutMode.Value ?? LayoutMode.Legacy; }
+        }
+
+        /// <summary>
+        ///     The EDMX diagram this surface is a view of, or <see langword="null" /> before the cross-reference
+        ///     that links the two has been built.
+        /// </summary>
+        internal ModelDiagram ModelDiagram
+        {
+            get { return ModelElement?.ModelXRef?.GetExisting(this) as ModelDiagram; }
+        }
+
+        /// <summary>
+        ///     Arranges the given shapes using the engine this diagram asks for.
         /// </summary>
         /// <param name="shapes">The shapes to arrange.</param>
         /// <remarks>
@@ -1004,18 +1049,28 @@ namespace Microsoft.Data.Entity.Design.Diagrams.View
         ///     layout before the host has had a chance to, and those calls are dropped rather than queued — the
         ///     host lays out once loading has finished and it owns a surface to lay out.
         ///     <para>
-        ///     Which engine runs is <see cref="LayoutEngineManager.Current" />, moved by the designer's Advanced
-        ///     Layout toggle. See specs/diagram-layout-engines.md.
+        ///     Which engine runs is read from this diagram's own <see cref="LayoutMode" /> on every call rather
+        ///     than held anywhere, because the manager is shared by every open diagram and each one chooses for
+        ///     itself. See specs/diagram-layout-engines.md.
         ///     </para>
         /// </remarks>
         public void AutoLayoutDiagram(IList shapes)
         {
-            if (LayoutManager is null)
+            if (LayoutManager is null || _isLayingOut)
             {
                 return;
             }
 
-            LayoutManager.Current.Layout(this, shapes);
+            _isLayingOut = true;
+
+            try
+            {
+                LayoutManager.Resolve(LayoutMode).Layout(this, shapes, ConnectorMode);
+            }
+            finally
+            {
+                _isLayingOut = false;
+            }
         }
 
         /// <summary>
@@ -1099,7 +1154,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.View
             }
 
             ConceptualEntityModel model = ModelElement.ModelXRef.GetExisting(ModelElement) as ConceptualEntityModel;
-            Debug.Assert(model != null);
+            Debug.Assert(model != null, "model != null");
 
             var request = new NewEntityTypeRequestedEventArgs(model);
             NewEntityTypeRequested?.Invoke(this, request);
@@ -1154,9 +1209,9 @@ namespace Microsoft.Data.Entity.Design.Diagrams.View
 
             Edmx.Entity.EntityType modelEnd1Entity = ModelElement.ModelXRef.GetExisting(end1) as Edmx.Entity.EntityType;
             Edmx.Entity.EntityType modelEnd2Entity = ModelElement.ModelXRef.GetExisting(end2) as Edmx.Entity.EntityType;
-            Debug.Assert(modelEnd1Entity != null && modelEnd2Entity != null);
+            Debug.Assert(modelEnd1Entity != null && modelEnd2Entity != null, "modelEnd1Entity != null && modelEnd2Entity != null");
             ConceptualEntityModel model = modelEnd1Entity.Parent as ConceptualEntityModel;
-            Debug.Assert(model != null);
+            Debug.Assert(model != null, "model != null");
 
             var request = new NewAssociationRequestedEventArgs(model.EntityTypes(), modelEnd1Entity, modelEnd2Entity);
             NewAssociationRequested?.Invoke(this, request);
@@ -1195,11 +1250,11 @@ namespace Microsoft.Data.Entity.Design.Diagrams.View
             {
                 baseEntity = entityShape.ModelElement as ViewModelEntityType;
                 modelEntity = ModelElement.ModelXRef.GetExisting(baseEntity) as ConceptualEntityType;
-                Debug.Assert(modelEntity != null);
+                Debug.Assert(modelEntity != null, "modelEntity != null");
             }
 
             ConceptualEntityModel model = ModelElement.ModelXRef.GetExisting(ModelElement) as ConceptualEntityModel;
-            Debug.Assert(model != null);
+            Debug.Assert(model != null, "model != null");
 
             List<ConceptualEntityType> cets = new List<ConceptualEntityType>(model.EntityTypes().Cast<ConceptualEntityType>());
 
@@ -1227,9 +1282,9 @@ namespace Microsoft.Data.Entity.Design.Diagrams.View
             if (entityShape != null)
             {
                 baseEntity = entityShape.TypedModelElement;
-                Debug.Assert(baseEntity != null);
+                Debug.Assert(baseEntity != null, "baseEntity != null");
                 modelEntity = ModelElement.ModelXRef.GetExisting(baseEntity) as Edmx.Entity.EntityType;
-                Debug.Assert(modelEntity != null);
+                Debug.Assert(modelEntity != null, "modelEntity != null");
             }
 
             // get the necessary conceptual model elements
@@ -1307,6 +1362,140 @@ namespace Microsoft.Data.Entity.Design.Diagrams.View
                     }
                 }
             }
+        }
+
+        /// <summary>
+        ///     Raised after a change to one of the attributes the layout is computed from.
+        /// </summary>
+        /// <remarks>
+        ///     For hosts whose UI depends on those attributes - the toolbar's Modern-only commands - because they
+        ///     can be changed from the property window, which the toolbar knows nothing about.
+        /// </remarks>
+        internal event EventHandler LayoutInputsChanged;
+
+        /// <summary>
+        ///     Removes the group name from every shape on this diagram.
+        /// </summary>
+        /// <remarks>
+        ///     Clears the attribute rather than blanking it, so the file goes back to having nothing to say about
+        ///     grouping instead of saying "no group" in 38 places.
+        ///     <para>
+        ///     Clearing is a change to a layout input, so the diagram then arranges again and the grouping is
+        ///     detected from scratch - which is the point. Names the user typed are cleared along with the
+        ///     guesses, because there is no way to tell them apart once they are in the file, and a reset that
+        ///     left some of them behind would not be a reset.
+        ///     </para>
+        /// </remarks>
+        internal void ClearGroupNames()
+        {
+            var commands = new List<Command>();
+
+            foreach (var shape in NestedChildShapes.OfType<EntityTypeShape>())
+            {
+                var modelShape = shape.ModelShape;
+
+                if (modelShape is null || string.IsNullOrWhiteSpace(modelShape.GroupName.Value))
+                {
+                    continue;
+                }
+
+                commands.Add(new UpdateDefaultableValueCommand<string>(modelShape.GroupName, null));
+            }
+
+            if (commands.Count == 0)
+            {
+                return;
+            }
+
+            CommandProcessorContext cpc = new CommandProcessorContext(
+                ModelElement.EditingContext, EfiTransactionOriginator.EntityDesignerOriginatorId, EntityDesignerRes.Tx_ClearGroupNames);
+            new CommandProcessor(cpc, commands).Invoke();
+        }
+
+        /// <summary>
+        ///     Raises <see cref="LayoutInputsChanged" />.
+        /// </summary>
+        /// <remarks>
+        ///     Called by the view model once it has finished acting on a change to those attributes, so a
+        ///     listener sees the finished state rather than one part way through.
+        /// </remarks>
+        internal void NotifyLayoutInputsChanged()
+        {
+            LayoutInputsChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        /// <summary>
+        ///     Records a detected group name against every shape that does not already have one.
+        /// </summary>
+        /// <param name="groups">The group each shape was placed in.</param>
+        /// <remarks>
+        ///     A name already in the file is never overwritten. That is what closes the loop: the first layout
+        ///     persists its guess, the user corrects the names by hand, and every later layout sees them and
+        ///     takes the explicit path instead of guessing again.
+        ///     <para>
+        ///     One transaction for the lot, so a layout costs the user a single undo rather than one per shape.
+        ///     </para>
+        /// </remarks>
+        internal void PersistGroupNames(IReadOnlyDictionary<EntityTypeShape, string> groups)
+        {
+            if (groups is null || groups.Count == 0)
+            {
+                return;
+            }
+
+            var commands = new List<Command>();
+
+            foreach (var pair in groups)
+            {
+                var modelShape = pair.Key?.ModelShape;
+
+                if (modelShape is null
+                    || string.IsNullOrWhiteSpace(pair.Value)
+                    || !string.IsNullOrWhiteSpace(modelShape.GroupName.Value))
+                {
+                    continue;
+                }
+
+                commands.Add(new UpdateDefaultableValueCommand<string>(modelShape.GroupName, pair.Value));
+            }
+
+            if (commands.Count == 0)
+            {
+                return;
+            }
+
+            CommandProcessorContext cpc = new CommandProcessorContext(
+                ModelElement.EditingContext, EfiTransactionOriginator.EntityDesignerOriginatorId, EntityDesignerRes.Tx_SetGroupNames);
+            new CommandProcessor(cpc, commands).Invoke();
+        }
+
+        /// <summary>
+        ///     Records which engine should arrange this diagram.
+        /// </summary>
+        /// <param name="layoutMode">The engine to use from now on.</param>
+        /// <remarks>
+        ///     Writes only <see cref="LayoutMode" />. The connector mode is left alone, because an absent one
+        ///     already means "whatever the chosen engine does by default" and overwriting it here would discard a
+        ///     choice the user made in the property window the last time this diagram was in modern layout.
+        ///     <para>
+        ///     Recording the mode is all this does. Rearranging the moment it changes would throw away positions
+        ///     the user may have spent time on, so the Layout command stays the thing that moves shapes.
+        ///     </para>
+        /// </remarks>
+        internal void PersistLayoutMode(LayoutMode layoutMode)
+        {
+            var modelDiagram = ModelDiagram;
+            Debug.Assert(modelDiagram != null, "Model Diagram should be present");
+
+            if (modelDiagram is null || modelDiagram.LayoutMode.Value == layoutMode)
+            {
+                return;
+            }
+
+            CommandProcessorContext cpc = new CommandProcessorContext(
+                ModelElement.EditingContext, EfiTransactionOriginator.EntityDesignerOriginatorId, EntityDesignerRes.Tx_SetLayoutMode);
+            CommandProcessor.InvokeSingleCommand(
+                cpc, new UpdateDefaultableValueCommand<LayoutMode>(modelDiagram.LayoutMode, layoutMode));
         }
 
         internal void PersistShowGrid()

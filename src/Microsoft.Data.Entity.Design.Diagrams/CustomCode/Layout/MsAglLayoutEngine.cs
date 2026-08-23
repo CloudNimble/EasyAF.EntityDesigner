@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,9 @@ using Microsoft.Msagl.Miscellaneous;
 using Microsoft.Msagl.Routing.Rectilinear;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Diagrams.GraphObject;
+using ConnectorMode = Microsoft.Data.Entity.Design.Edmx.Designer.ConnectorMode;
 using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.DiagramsResources;
-using MsAglLineSegment = Microsoft.Msagl.Core.Geometry.Curves.LineSegment;
+using LayoutMode = Microsoft.Data.Entity.Design.Edmx.Designer.LayoutMode;
 using MsAglNode = Microsoft.Msagl.Core.Layout.Node;
 using MsAglPoint = Microsoft.Msagl.Core.Geometry.Point;
 
@@ -38,18 +40,24 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
         #region Fields
 
         /// <summary>
-        ///     The key <see cref="MsAglLayoutEngine" /> is registered under.
-        /// </summary>
-        internal const string EngineKey = "MsAgl";
-
-        /// <summary>
-        ///     Points sampled along each curved segment when flattening a route into a polyline.
+        ///     The connector mode used when a diagram in this layout mode does not name a usable one.
         /// </summary>
         /// <remarks>
-        ///     Eight is enough that a connector-sized arc reads as a curve rather than a chord, without inflating
-        ///     the <c>ConnectorPoint</c> elements written to the EDMX more than it has to.
+        ///     Reached when a hand-edited file pairs <see cref="LayoutMode.Modern" /> with
+        ///     <see cref="ConnectorMode.Legacy" />, which nothing in the designer produces. Substituting the
+        ///     default costs that diagram its preferred connectors; refusing to lay out would cost it the whole
+        ///     arrangement.
         /// </remarks>
-        private const int CurveFlatteningSteps = 8;
+        private const ConnectorMode DefaultConnectorMode = ConnectorMode.Orthogonal;
+
+        /// <summary>
+        ///     What the graph's root cluster is called.
+        /// </summary>
+        /// <remarks>
+        ///     Never shown. It exists only because the root's user data cannot be null - see
+        ///     <c>AddClusters</c>.
+        /// </remarks>
+        private const string RootClusterName = "<root>";
 
         #endregion
 
@@ -60,18 +68,10 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
         /// </summary>
         /// <remarks>
         ///     A property rather than a constructor argument because the engine is registered once for the life of
-        ///     the host, so taking this at construction would mean an instance per algorithm.
+        ///     the host, so taking this at construction would mean an instance per algorithm. Unlike the connector
+        ///     mode it is not persisted per diagram, because nothing offers it to the user yet.
         /// </remarks>
         public LayoutAlgorithm Algorithm { get; set; } = LayoutAlgorithm.Layered;
-
-        /// <summary>
-        ///     How connectors are drawn. Defaults to <see cref="ConnectorRouting.Orthogonal" />.
-        /// </summary>
-        /// <remarks>
-        ///     A property for the same reason <see cref="Algorithm" /> is one: the engine is registered once for
-        ///     the life of the host.
-        /// </remarks>
-        public ConnectorRouting Routing { get; set; } = ConnectorRouting.Orthogonal;
 
         /// <inheritdoc />
         public override string DisplayName
@@ -80,9 +80,9 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
         }
 
         /// <inheritdoc />
-        public override string Key
+        public override LayoutMode Mode
         {
-            get { return EngineKey; }
+            get { return LayoutMode.Modern; }
         }
 
         #endregion
@@ -90,7 +90,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
         #region Public Methods
 
         /// <inheritdoc />
-        public override void Layout(EntityDesignerSurface surface, IList shapes)
+        public override void Layout(EntityDesignerSurface surface, IList shapes, ConnectorMode connectorMode)
         {
             if (surface is null || shapes is null)
             {
@@ -103,13 +103,20 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
                 return;
             }
 
+            var routing = connectorMode == ConnectorMode.Legacy ? DefaultConnectorMode : connectorMode;
+
+            // Grouped before anything is placed, and written back before anything is moved, so the names the
+            // layout used are the names in the file even if the arrangement is later undone.
+            var groups = GroupingLayout.Group(entityShapes);
+            surface.PersistGroupNames(groups);
+
             using (surface.BeginLongOperation())
             {
-                var graph = BuildGraph(entityShapes, out var nodesByShape, out var connectorsByEdge);
+                var graph = BuildGraph(entityShapes, groups, out var nodesByShape, out var connectorsByEdge);
 
                 // Places the shapes and routes the connectors in one pass. Routing is deliberately left to MSAGL
                 // rather than run afterwards - see RouteConnectors below for what that cost.
-                LayoutHelpers.CalculateLayout(graph, MsAglConstants.CreateSettings(Algorithm, Routing), null);
+                LayoutHelpers.CalculateLayout(graph, MsAglConstants.CreateSettings(Algorithm, routing), null);
 
                 // MSAGL measures upward from the bottom left, the designer downward from the top left, so every
                 // coordinate is mirrored about the top edge on the way back.
@@ -187,6 +194,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
         ///     Builds the MSAGL graph that mirrors the given shapes and the connectors between them.
         /// </summary>
         /// <param name="entityShapes">The shapes to lay out.</param>
+        /// <param name="groups">The group each shape belongs to, which becomes an MSAGL cluster.</param>
         /// <param name="nodesByShape">Receives the shape to node mapping, for writing positions back.</param>
         /// <param name="connectorsByEdge">Receives the edge to connector mapping, for writing routes back.</param>
         /// <returns>The graph, ready to lay out.</returns>
@@ -201,6 +209,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
         /// </remarks>
         private static GeometryGraph BuildGraph(
             IReadOnlyList<EntityTypeShape> entityShapes,
+            IReadOnlyDictionary<EntityTypeShape, string> groups,
             out IDictionary<EntityTypeShape, MsAglNode> nodesByShape,
             out IDictionary<Edge, BinaryLinkShape> connectorsByEdge)
         {
@@ -247,7 +256,63 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
                 }
             }
 
+            AddClusters(graph, groups, nodesByShape);
+
             return graph;
+        }
+
+        /// <summary>
+        ///     Turns the detected groups into MSAGL clusters, so each group is placed as a block.
+        /// </summary>
+        /// <param name="graph">The graph being built.</param>
+        /// <param name="groups">The group each shape belongs to.</param>
+        /// <param name="nodesByShape">The node standing in for each shape.</param>
+        /// <remarks>
+        ///     Nothing is added for a single group. One cluster holding everything is the same arrangement with
+        ///     an extra layout pass over it, and MSAGL's clustered path is the more expensive of the two.
+        ///     <para>
+        ///     <c>RootCluster.UserData</c> has to be non-null. MSAGL looks each cluster up in the settings'
+        ///     cluster table on the way in, including the root, and a null key throws out of
+        ///     <c>Dictionary.ContainsKey</c> before any layout happens.
+        ///     </para>
+        /// </remarks>
+        private static void AddClusters(
+            GeometryGraph graph,
+            IReadOnlyDictionary<EntityTypeShape, string> groups,
+            IDictionary<EntityTypeShape, MsAglNode> nodesByShape)
+        {
+            if (groups is null || groups.Count == 0)
+            {
+                return;
+            }
+
+            var byGroup = groups
+                .Where(pair => nodesByShape.ContainsKey(pair.Key))
+                .GroupBy(pair => pair.Value, StringComparer.Ordinal)
+                .ToList();
+
+            if (byGroup.Count < 2)
+            {
+                return;
+            }
+
+            graph.RootCluster.UserData = RootClusterName;
+
+            foreach (var group in byGroup)
+            {
+                var cluster = new Cluster
+                {
+                    UserData = group.Key,
+                    RectangularBoundary = new RectangularClusterBoundary()
+                };
+
+                foreach (var pair in group)
+                {
+                    cluster.AddChild(nodesByShape[pair.Key]);
+                }
+
+                graph.RootCluster.AddChild(cluster);
+            }
         }
 
         // Routing as a separate pass after layout. Kept, commented out, because it is the thing to reach for if
@@ -281,32 +346,6 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
         // }
 
         /// <summary>
-        ///     Appends the start of <paramref name="segment" />, flattening it first when it is not a straight line.
-        /// </summary>
-        /// <param name="points">The polyline being built.</param>
-        /// <param name="segment">The segment to append.</param>
-        /// <remarks>
-        ///     The designer draws connectors as polylines, so a curve has to be sampled into one. Taking only each
-        ///     segment's endpoints would turn a spline into the crude polygon through its corners - fine for the
-        ///     orthogonal routing, where every segment really is a line, and wrong for every other mode.
-        /// </remarks>
-        private static void AddSegment(ICollection<MsAglPoint> points, ICurve segment)
-        {
-            if (segment is MsAglLineSegment)
-            {
-                points.Add(segment.Start);
-
-                return;
-            }
-
-            for (var step = 0; step < CurveFlatteningSteps; step++)
-            {
-                var t = segment.ParStart + ((segment.ParEnd - segment.ParStart) * step / CurveFlatteningSteps);
-                points.Add(segment[t]);
-            }
-        }
-
-        /// <summary>
         ///     Converts a routed curve into designer edge points, mirroring it back into designer coordinates.
         /// </summary>
         /// <param name="curve">The curve MSAGL routed, which may be null when routing failed.</param>
@@ -333,11 +372,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
                     break;
 
                 case Curve composite when composite.Segments.Count > 0:
-                    foreach (var segment in composite.Segments)
-                    {
-                        AddSegment(points, segment);
-                    }
-
+                    points.AddRange(composite.Segments.Select(segment => segment.Start));
                     points.Add(composite.Segments[composite.Segments.Count - 1].End);
                     break;
 

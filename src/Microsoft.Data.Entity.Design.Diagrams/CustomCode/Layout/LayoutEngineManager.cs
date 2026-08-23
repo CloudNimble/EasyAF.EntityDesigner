@@ -3,71 +3,46 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.Layout
 {
 
     /// <summary>
-    ///     Holds the available layout engines and tracks which one is in effect.
+    ///     Holds the available layout engines and hands out the one a diagram asked for.
     /// </summary>
     /// <example>
     ///     <code>
-    ///     var manager = new LayoutEngineManager([new DslLayoutEngine()]);
-    ///     manager.TrySetCurrent(DslLayoutEngine.EngineKey);
-    ///     manager.Current.Layout(surface, shapes);
+    ///     var manager = new LayoutEngineManager([new DslLayoutEngine(), new MsAglLayoutEngine()]);
+    ///     manager.Resolve(LayoutMode.Modern).Layout(surface, shapes, ConnectorMode.Orthogonal);
     ///     </code>
     /// </example>
     /// <remarks>
-    ///     Engines are supplied at construction and keyed by <see cref="LayoutEngineBase.Key" />, so the set is
-    ///     a decision the host makes once and tests can replace wholesale. <see cref="Current" /> is what the
-    ///     designer's toolbar toggle moves. See specs/diagram-layout-engines.md.
+    ///     Engines are supplied at construction and keyed by <see cref="LayoutEngineBase.Mode" />, so the set is
+    ///     a decision the host makes once and tests can replace wholesale.
+    ///     <para>
+    ///     There is deliberately no current engine. One manager serves every open diagram, and each diagram
+    ///     carries its own <see cref="Edmx.Designer.Diagram.LayoutMode" />, so a single shared selection would
+    ///     be wrong for every diagram but the last one touched.
+    ///     </para>
+    ///     See specs/diagram-layout-engines.md.
     /// </remarks>
     internal sealed class LayoutEngineManager
     {
 
         #region Fields
 
-        private readonly Dictionary<string, LayoutEngineBase> _engines;
-        private LayoutEngineBase _current;
+        private readonly LayoutEngineBase _default;
+        private readonly Dictionary<LayoutMode, LayoutEngineBase> _engines;
 
         #endregion
 
         #region Properties
 
         /// <summary>
-        ///     The engine that <see cref="View.EntityDesignerSurface.AutoLayoutDiagram(System.Collections.IList)" />
-        ///     will use.
+        ///     The registered engines, keyed by <see cref="LayoutEngineBase.Mode" />.
         /// </summary>
-        /// <exception cref="ArgumentNullException">A null engine was assigned.</exception>
-        /// <exception cref="ArgumentException">The engine assigned was not one of the registered engines.</exception>
-        /// <remarks>
-        ///     Assigning an unregistered engine throws rather than silently adopting it, so the set of engines
-        ///     stays the one the host chose and <see cref="LayoutEngines" /> never disagrees with what is running.
-        /// </remarks>
-        public LayoutEngineBase Current
-        {
-            get { return _current; }
-            set
-            {
-                if (value is null)
-                {
-                    throw new ArgumentNullException(nameof(value));
-                }
-
-                if (!_engines.ContainsKey(value.Key))
-                {
-                    throw new ArgumentException(
-                        $"'{value.Key}' is not a registered layout engine.", nameof(value));
-                }
-
-                _current = value;
-            }
-        }
-
-        /// <summary>
-        ///     The registered engines, keyed by <see cref="LayoutEngineBase.Key" />.
-        /// </summary>
-        public IReadOnlyDictionary<string, LayoutEngineBase> LayoutEngines
+        public IReadOnlyDictionary<LayoutMode, LayoutEngineBase> LayoutEngines
         {
             get { return _engines; }
         }
@@ -77,18 +52,18 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
         #region Constructors
 
         /// <summary>
-        ///     Registers <paramref name="engines" /> and makes the first one current.
+        ///     Registers <paramref name="engines" />, the first of which becomes the fallback.
         /// </summary>
-        /// <param name="engines">The engines to register. Must contain at least one, with distinct keys.</param>
+        /// <param name="engines">The engines to register. Must contain at least one, with distinct modes.</param>
         /// <exception cref="ArgumentNullException"><paramref name="engines" /> is <see langword="null" />.</exception>
         /// <exception cref="ArgumentException">
         ///     <paramref name="engines" /> is empty, contains a null entry, or contains two engines with the
-        ///     same <see cref="LayoutEngineBase.Key" />.
+        ///     same <see cref="LayoutEngineBase.Mode" />.
         /// </exception>
         /// <remarks>
-        ///     The first engine wins by default because the caller's ordering is the only statement of intent
-        ///     available here, and a manager with no current engine would push a null check onto every layout
-        ///     call site.
+        ///     The first engine is the fallback because the caller's ordering is the only statement of intent
+        ///     available here, and a manager that could return nothing would push a null check onto every
+        ///     layout call site.
         /// </remarks>
         public LayoutEngineManager(IEnumerable<LayoutEngineBase> engines)
         {
@@ -109,15 +84,15 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
                 throw new ArgumentException("Layout engines cannot be null.", nameof(engines));
             }
 
-            var duplicate = ordered.GroupBy(engine => engine.Key).FirstOrDefault(group => group.Count() > 1);
+            var duplicate = ordered.GroupBy(engine => engine.Mode).FirstOrDefault(group => group.Count() > 1);
             if (duplicate is not null)
             {
                 throw new ArgumentException(
-                    $"More than one layout engine is registered under the key '{duplicate.Key}'.", nameof(engines));
+                    $"More than one layout engine is registered for the mode '{duplicate.Key}'.", nameof(engines));
             }
 
-            _engines = ordered.ToDictionary(engine => engine.Key, StringComparer.OrdinalIgnoreCase);
-            _current = ordered[0];
+            _engines = ordered.ToDictionary(engine => engine.Mode);
+            _default = ordered[0];
         }
 
         #endregion
@@ -125,27 +100,17 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
         #region Public Methods
 
         /// <summary>
-        ///     Makes the engine registered under <paramref name="key" /> current.
+        ///     Returns the engine registered for <paramref name="mode" />, or the fallback when none is.
         /// </summary>
-        /// <param name="key">The key of the engine to select.</param>
-        /// <returns>
-        ///     <see langword="true" /> if an engine was registered under <paramref name="key" />; otherwise
-        ///     <see langword="false" />, leaving <see cref="Current" /> unchanged.
-        /// </returns>
+        /// <param name="mode">The mode the diagram asked for.</param>
+        /// <returns>An engine, never <see langword="null" />.</returns>
         /// <remarks>
-        ///     Returns false rather than throwing because the callers are a toolbar toggle and a command line
-        ///     argument, both of which want to fall back to what is already running instead of failing.
+        ///     Falls back rather than throwing because the value comes out of a file a user can hand-edit, and
+        ///     an unrecognized mode should cost a diagram its preferred arrangement, not its ability to open.
         /// </remarks>
-        public bool TrySetCurrent(string key)
+        public LayoutEngineBase Resolve(LayoutMode mode)
         {
-            if (string.IsNullOrWhiteSpace(key) || !_engines.TryGetValue(key, out var engine))
-            {
-                return false;
-            }
-
-            _current = engine;
-
-            return true;
+            return _engines.TryGetValue(mode, out var engine) ? engine : _default;
         }
 
         #endregion

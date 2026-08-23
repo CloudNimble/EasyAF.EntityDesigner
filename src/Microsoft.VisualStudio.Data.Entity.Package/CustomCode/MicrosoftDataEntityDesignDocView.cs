@@ -589,6 +589,16 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                         continue;
                     }
                 }
+                else if (o is EntityDesignerSurface surface)
+                {
+                    // Clicking the diagram background selects the surface itself. Its ModelElement is the view
+                    // model, which is not cross-referenced to anything, so the generic path below finds nothing
+                    // and the raw DSL diagram reaches the property window instead of the model diagram that
+                    // carries the layout settings. The surface is the presentation element that IS cross
+                    // referenced, so take it directly.
+                    presElem = surface;
+                    dslElem = null;
+                }
                 else if (presElem != null)
                 {
                     // if this is a shape, gets it corresponding DSL object
@@ -601,12 +611,12 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                 }
 
                 // there might be no ModelElement corresponding to the selected object
-                if (dslElem != null)
+                if (dslElem != null || presElem is EntityDesignerSurface)
                 {
                     EFObject modelElem;
                     // If an EntityType is selected in DSL canvas, we want to show the property of the EntityTypeShape.
-                    if (dslElem is EntityType
-                        && presElem != null)
+                    if (dslElem is null
+                        || (dslElem is EntityType && presElem != null))
                     {
                         modelElem = XRef.GetExisting(presElem);
                     }
