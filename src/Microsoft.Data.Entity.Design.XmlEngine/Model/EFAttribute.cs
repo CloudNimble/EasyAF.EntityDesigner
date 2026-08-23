@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
 using System.Diagnostics;
@@ -39,7 +39,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
         internal static string GetXAttributeValue(XAttribute attribute)
         {
             EFAttribute attr = ModelItemAnnotation.GetModelItem(attribute) as EFAttribute;
-            Debug.Assert(attr != null);
+            Debug.Assert(attr != null, "attr != null");
             if (attr != null)
             {
                 return attr.GetXAttributeValue();
@@ -77,7 +77,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
         internal static void SetXAttributeValue(XAttribute attribute, string newValue)
         {
             EFAttribute attr = ModelItemAnnotation.GetModelItem(attribute) as EFAttribute;
-            Debug.Assert(attr != null);
+            Debug.Assert(attr != null, "attr != null");
             attr?.SetXAttributeValue(newValue);
         }
 
@@ -123,7 +123,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
         {
             if (XAttribute != null)
             {
-                Debug.Assert(XAttribute.Parent != null);
+                Debug.Assert(XAttribute.Parent != null, "XAttribute.Parent != null");
                 XAttribute.Remove();
                 SetXObject(null);
             }

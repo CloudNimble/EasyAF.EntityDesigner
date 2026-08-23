@@ -199,7 +199,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
             /// <param name="treeControl">The VirtualTreeControl that contains the object that generated the event.</param>
             public static void Notify(int accessibilityEvent, int row, int column, VirtualTreeControl treeControl)
             {
-                Debug.Assert(ShouldNotify(accessibilityEvent, treeControl));
+                Debug.Assert(ShouldNotify(accessibilityEvent, treeControl), "ShouldNotify(accessibilityEvent, treeControl)");
                 if ((treeControl == null)
                     || (row < 0)
                     || (column < 0))

@@ -2061,7 +2061,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
                 return Path.Combine(GetProjectRoot(project, serviceProvider).FullName, projectItemName);
             }
 
-            Debug.Assert(projectItem.FileCount == 1);
+            Debug.Assert(projectItem.FileCount == 1, "projectItem.FileCount == 1");
 
             return projectItem.FileNames[0];
         }

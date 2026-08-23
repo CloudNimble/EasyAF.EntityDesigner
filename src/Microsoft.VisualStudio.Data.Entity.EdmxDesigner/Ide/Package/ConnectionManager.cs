@@ -223,7 +223,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
                         break;
                     }
 
-                    Debug.Assert(project is not null);
+                    Debug.Assert(project is not null, "project is not null");
                     if (project is not null)
                     {
                         VsUtils.LogOutputWindowPaneMessage(project, s);
@@ -1582,7 +1582,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
                             break;
                         }
 
-                        Debug.Assert(project is not null);
+                        Debug.Assert(project is not null, "project is not null");
                         if (project is not null)
                         {
                             VsUtils.LogOutputWindowPaneMessage(project, s);

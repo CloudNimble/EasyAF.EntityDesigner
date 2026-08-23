@@ -17,10 +17,10 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Rules
         public override void ElementPropertyChanged(ElementPropertyChangedEventArgs e)
         {
             EntityTypeShape entityShape = e.ModelElement as EntityTypeShape;
-            Debug.Assert(entityShape != null);
+            Debug.Assert(entityShape != null, "entityShape != null");
 
             var tx = ModelUtils.GetCurrentTx(entityShape.Store);
-            Debug.Assert(tx != null);
+            Debug.Assert(tx != null, "tx != null");
             if (tx != null
                 && !tx.IsSerializing)
             {

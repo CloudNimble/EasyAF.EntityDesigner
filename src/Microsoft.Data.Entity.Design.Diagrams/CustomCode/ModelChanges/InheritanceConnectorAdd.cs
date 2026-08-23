@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
@@ -41,7 +41,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
                 {
                     EntityType modelEntity = modelEntityTypeBase.Parent as EntityType;
                     Diagram modelDiagram = viewModel.ModelXRef.GetExisting(inheritanceConnector.Diagram) as Diagram;
-                    Debug.Assert(modelEntity != null && modelDiagram != null);
+                    Debug.Assert(modelEntity != null && modelDiagram != null, "modelEntity != null && modelDiagram != null");
                     if (modelEntity != null
                         && modelDiagram != null)
                     {

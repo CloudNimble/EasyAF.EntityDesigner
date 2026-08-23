@@ -161,7 +161,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
         /// <returns>True if the items are equal</returns>
         public override bool Equals(object obj)
         {
-            Debug.Assert(false); // There is no need to compare these
+            Debug.Assert(false, "false"); // There is no need to compare these
             return false;
         }
 
@@ -183,7 +183,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
         /// <returns>Always returns false, there is no need to compare VirtualTreeLabelEditData structures.</returns>
         public static bool operator ==(VirtualTreeLabelEditData operand1, VirtualTreeLabelEditData operand2)
         {
-            Debug.Assert(false); // There is no need to compare these
+            Debug.Assert(false, "false"); // There is no need to compare these
             return false;
         }
 
@@ -195,7 +195,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
         /// <returns>Always returns false, there is no need to compare VirtualTreeLabelEditData structures.</returns>
         public static bool Compare(VirtualTreeLabelEditData operand1, VirtualTreeLabelEditData operand2)
         {
-            Debug.Assert(false); // There is no need to compare these
+            Debug.Assert(false, "false"); // There is no need to compare these
             return false;
         }
 
@@ -207,7 +207,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
         /// <returns>Always returns true, there is no need to compare VirtualTreeLabelEditData structures.</returns>
         public static bool operator !=(VirtualTreeLabelEditData operand1, VirtualTreeLabelEditData operand2)
         {
-            Debug.Assert(false); // There is no need to compare these
+            Debug.Assert(false, "false"); // There is no need to compare these
             return true;
         }
 

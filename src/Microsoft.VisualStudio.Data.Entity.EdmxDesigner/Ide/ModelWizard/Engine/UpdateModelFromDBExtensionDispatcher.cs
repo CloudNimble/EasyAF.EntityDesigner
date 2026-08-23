@@ -43,7 +43,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
 
         protected override ModelGenerationExtensionContext CreateContext()
         {
-            Debug.Assert(VsUtils.EntityFrameworkSupportedInProject(Project, PackageManager.Package, allowMiscProject: false));
+            Debug.Assert(VsUtils.EntityFrameworkSupportedInProject(Project, PackageManager.Package, allowMiscProject: false), "VsUtils.EntityFrameworkSupportedInProject(Project, PackageManager.Package, allowMiscProject: false)");
 
             var targetSchemaVersion = EdmUtils.GetEntityFrameworkVersion(Project, PackageManager.Package);
             return new UpdateModelFromDatabaseExtensionContextImpl(

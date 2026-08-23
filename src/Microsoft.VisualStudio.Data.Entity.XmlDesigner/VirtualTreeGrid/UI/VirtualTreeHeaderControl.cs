@@ -691,7 +691,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
                                                 style = VirtualTreeColumnHeaderClickStyle.DividerDoubleClick;
                                                 break;
                                             default:
-                                                Debug.Assert(false); // Shouldn't be here
+                                                Debug.Assert(false, "false"); // Shouldn't be here
                                                 return;
                                         }
                                         myAssociatedControl.OnRawColumnHeaderEvent(

@@ -73,7 +73,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyW
 
         protected void AddMapping(T value, string displayValue)
         {
-            Debug.Assert(!_mappingDone);
+            Debug.Assert(!_mappingDone, "!_mappingDone");
             _valueToDisplayMapping[value] = displayValue;
             _displayToValueMapping[displayValue] = value;
         }

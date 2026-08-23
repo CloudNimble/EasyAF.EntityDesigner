@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using Microsoft.Data.Entity.Design.Diagrams.ModelChanges;
 using Microsoft.Data.Entity.Design.Diagrams.Utils;
@@ -30,7 +30,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Rules
             base.ElementPropertyChanged(e);
 
             NavigationProperty changedNavigationProperty = e.ModelElement as NavigationProperty;
-            Debug.Assert(changedNavigationProperty != null);
+            Debug.Assert(changedNavigationProperty != null, "changedNavigationProperty != null");
             Debug.Assert(
                 changedNavigationProperty.EntityType != null && changedNavigationProperty.EntityType.EntityDesignerViewModel != null);
 
@@ -39,7 +39,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Rules
                 && (changedNavigationProperty.EntityType.EntityDesignerViewModel != null))
             {
                 var tx = ModelUtils.GetCurrentTx(e.ModelElement.Store);
-                Debug.Assert(tx != null);
+                Debug.Assert(tx != null, "tx != null");
                 // don't do the auto update stuff if we are in the middle of deserialization
                 if (tx != null
                     && !tx.IsSerializing)

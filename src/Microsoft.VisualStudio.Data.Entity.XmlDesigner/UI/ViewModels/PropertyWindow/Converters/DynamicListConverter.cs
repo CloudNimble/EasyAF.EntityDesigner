@@ -166,7 +166,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyW
             {
                 InitializeMapping(_context);
                 var displayValue = value as string;
-                Debug.Assert(displayValue != null);
+                Debug.Assert(displayValue != null, "displayValue != null");
                 if (!string.IsNullOrEmpty(displayValue))
                 {
                     if (!_displayToValueMapping.TryGetValue(displayValue, out TValue rawValue))

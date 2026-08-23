@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
 using System.Diagnostics;
@@ -719,7 +719,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio
             {
                 var offset1 = Marshal.OffsetOf(typeof(NCCALCSIZE_PARAMS), "rgrc0");
                 var offset2 = Marshal.OffsetOf(typeof(RECT), "top");
-                Debug.Assert(((int)offset1 + (int)offset2) == rgrc0TopOffset);
+                Debug.Assert(((int)offset1 + (int)offset2) == rgrc0TopOffset, "((int)offset1 + (int)offset2) == rgrc0TopOffset");
             }
 #endif
         }
@@ -926,7 +926,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio
 #if DEBUG
             static NMHEADER()
             {
-                Debug.Assert((int)Marshal.OffsetOf(typeof(NMHEADER), "iItem") == iItemOffset);
+                Debug.Assert((int)Marshal.OffsetOf(typeof(NMHEADER), "iItem") == iItemOffset, "(int)Marshal.OffsetOf(typeof(NMHEADER), \"iItem\") == iItemOffset");
             }
 #endif
         }
@@ -1024,7 +1024,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio
             [SuppressMessage("Microsoft.Usage", "CA2207:InitializeValueTypeStaticFieldsInline")]
             static WINDOWPOS()
             {
-                Debug.Assert((int)Marshal.OffsetOf(typeof(WINDOWPOS), "flags") == (Environment.Is64BitProcess ? flagsOffset64Bit : flagsOffset));
+                Debug.Assert((int)Marshal.OffsetOf(typeof(WINDOWPOS), "flags") == (Environment.Is64BitProcess ? flagsOffset64Bit : flagsOffset), "(int)Marshal.OffsetOf(typeof(WINDOWPOS), \"flags\") == (Environment.Is64BitProcess ? flagsOffset64Bit : flagsOffset)");
             }
 #endif
         }

@@ -37,7 +37,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views
         {
             if (_operation != null)
             {
-                Debug.Assert(_operation.Status == DispatcherOperationStatus.Pending);
+                Debug.Assert(_operation.Status == DispatcherOperationStatus.Pending, "_operation.Status == DispatcherOperationStatus.Pending");
                 _operation.Abort();
                 _operation = null;
             }
@@ -52,7 +52,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views
         {
             if (_operation == null)
             {
-                Debug.Assert(_callback != null);
+                Debug.Assert(_callback != null, "_callback != null");
 
                 _operation =
                     Dispatcher.CurrentDispatcher.BeginInvoke(
@@ -79,7 +79,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views
         {
             try
             {
-                Debug.Assert(_operation != null && _operation.Status == DispatcherOperationStatus.Executing);
+                Debug.Assert(_operation != null && _operation.Status == DispatcherOperationStatus.Executing, "_operation != null && _operation.Status == DispatcherOperationStatus.Executing");
                 _callback(arg);
             }
             finally

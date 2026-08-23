@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
 using System.Collections.Generic;
@@ -304,7 +304,7 @@ namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb
 
         private static ReferentialConstraint GetReferentialConstraint(AssociationSet associationSet)
         {
-            Debug.Assert(associationSet.ElementType.ReferentialConstraints.Count == 1);
+            Debug.Assert(associationSet.ElementType.ReferentialConstraints.Count == 1, "associationSet.ElementType.ReferentialConstraints.Count == 1");
 
             return associationSet.ElementType.ReferentialConstraints[0];
         }

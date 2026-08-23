@@ -464,7 +464,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
         {
             if (XElement != null)
             {
-                Debug.Assert(XElement.Parent != null);
+                Debug.Assert(XElement.Parent != null, "XElement.Parent != null");
                 XElement.Remove();
                 SetXObject(null);
             }

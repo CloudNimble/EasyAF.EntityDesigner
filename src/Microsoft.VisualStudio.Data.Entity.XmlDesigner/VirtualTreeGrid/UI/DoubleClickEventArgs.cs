@@ -99,7 +99,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
                     if (myHitInfo.HitTarget == VirtualTreeHitTargets.Uninitialized)
                     {
                         myHitInfo = myParent.HitInfo(myX, myY);
-                        Debug.Assert(myHitInfo.HitTarget != VirtualTreeHitTargets.Uninitialized);
+                        Debug.Assert(myHitInfo.HitTarget != VirtualTreeHitTargets.Uninitialized, "myHitInfo.HitTarget != VirtualTreeHitTargets.Uninitialized");
                     }
                     var row = -1;
                     var column = 0;

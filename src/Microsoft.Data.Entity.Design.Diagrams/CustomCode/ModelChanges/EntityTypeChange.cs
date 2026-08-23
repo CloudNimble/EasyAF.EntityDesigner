@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
 using Microsoft.Data.Entity.Design.Diagrams.Rules;
@@ -26,7 +26,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
             if (viewModel != null)
             {
                 Edmx.Entity.EntityType entityType = viewModel.ModelXRef.GetExisting(_entityType) as Edmx.Entity.EntityType;
-                Debug.Assert(entityType != null);
+                Debug.Assert(entityType != null, "entityType != null");
                 Command c = new EntityDesignRenameCommand(entityType, _entityType.Name, true);
                 CommandProcessor cp = new CommandProcessor(cpc, c);
                 cp.Invoke();

@@ -50,7 +50,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common
 
             IVsUIShell uiShell = global::Microsoft.VisualStudio.Shell.Package.GetGlobalService(typeof(SVsUIShell)) as IVsUIShell;
 
-            Debug.Assert(uiShell != null);
+            Debug.Assert(uiShell != null, "uiShell != null");
             var result = (int)(DialogResult.OK);
 
             if (uiShell != null)
@@ -147,7 +147,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common
 
             IVsRunningDocumentTable rdt = global::Microsoft.VisualStudio.Shell.Package.GetGlobalService(typeof(IVsRunningDocumentTable)) as IVsRunningDocumentTable;
 
-            Debug.Assert(rdt != null);
+            Debug.Assert(rdt != null, "rdt != null");
             if (rdt != null)
             {
                 var unknownDocData = IntPtr.Zero;

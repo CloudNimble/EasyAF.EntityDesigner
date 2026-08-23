@@ -188,7 +188,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model.StandAlone
                 model.SetName(newName);
                 _models.Remove(oldName);
                 _models.Add(newName, model);
-                Debug.Assert(new Uri(model.Name) == newName);
+                Debug.Assert(new Uri(model.Name) == newName, "new Uri(model.Name) == newName");
                 return true;
             }
             return false;

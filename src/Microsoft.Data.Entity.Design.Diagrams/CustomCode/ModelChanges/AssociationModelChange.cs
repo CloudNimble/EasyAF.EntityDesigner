@@ -62,7 +62,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
                 false, // uniquify names
                 _request.CreateForeignKeyProperties);
             CommandProcessor.InvokeSingleCommand(cpc, cmd);
-            Debug.Assert(cmd.CreatedAssociation != null);
+            Debug.Assert(cmd.CreatedAssociation != null, "cmd.CreatedAssociation != null");
         }
 
         #endregion

@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
 using System.Diagnostics;
@@ -24,7 +24,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Rules
             base.ElementAdded(e);
 
             EntityDesignerViewModel model = e.ModelElement as EntityDesignerViewModel;
-            Debug.Assert(model != null);
+            Debug.Assert(model != null, "model != null");
 
             if (model != null)
             {

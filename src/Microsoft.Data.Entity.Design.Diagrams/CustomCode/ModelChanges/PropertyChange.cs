@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
@@ -26,7 +26,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
             if (viewModel != null)
             {
                 Edmx.Entity.Property property = viewModel.ModelXRef.GetExisting(_property) as Edmx.Entity.Property;
-                Debug.Assert(property != null);
+                Debug.Assert(property != null, "property != null");
 
                 Command c = new EntityDesignRenameCommand(property, _property.Name, true);
                 CommandProcessor cp = new CommandProcessor(cpc, c);

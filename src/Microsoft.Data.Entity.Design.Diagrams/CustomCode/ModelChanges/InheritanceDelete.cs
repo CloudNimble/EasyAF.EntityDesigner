@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
@@ -23,7 +23,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
             if (viewModel != null)
             {
                 ConceptualEntityType derivedEntity = viewModel.ModelXRef.GetExisting(Inheritance.TargetEntityType) as ConceptualEntityType;
-                Debug.Assert(derivedEntity != null);
+                Debug.Assert(derivedEntity != null, "derivedEntity != null");
                 if (derivedEntity != null)
                 {
                     viewModel.ModelXRef.Remove(derivedEntity.BaseType, Inheritance);

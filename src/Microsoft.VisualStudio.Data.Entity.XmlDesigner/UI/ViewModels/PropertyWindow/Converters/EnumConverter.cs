@@ -16,7 +16,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyW
         protected override void PopulateMapping()
         {
             var type = typeof(TEnum);
-            Debug.Assert(type.IsEnum);
+            Debug.Assert(type.IsEnum, "type.IsEnum");
             if (type.IsEnum)
             {
                 var enumValues = type.GetFields(BindingFlags.Public | BindingFlags.Static);

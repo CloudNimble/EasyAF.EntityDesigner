@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
 using System.Collections;
@@ -182,7 +182,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
             switch (style)
             {
                 case ObjectStyle.ExpandedBranch:
-                    Debug.Assert(column == 0); // Simple-celled columns shouldn't ask for an expansion
+                    Debug.Assert(column == 0, "column == 0"); // Simple-celled columns shouldn't ask for an expansion
                     return _currentBranches[row].Branch;
 
                 case ObjectStyle.TrackingObject:
@@ -277,7 +277,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
         {
             if (column == 0)
             {
-                Debug.Assert(row < _currentBranches.Count);
+                Debug.Assert(row < _currentBranches.Count, "row < _currentBranches.Count");
                 return _currentBranches[row].Name;
             }
 
@@ -473,7 +473,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
         /// </summary>
         public int GetJaggedColumnCount(int row)
         {
-            Debug.Assert(false); // Should not be called unless TreeFlags.JaggedColumnCount is set
+            Debug.Assert(false, "false"); // Should not be called unless TreeFlags.JaggedColumnCount is set
             return _columns.Length;
             ;
         }

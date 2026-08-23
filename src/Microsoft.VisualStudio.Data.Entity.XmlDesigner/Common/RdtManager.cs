@@ -868,7 +868,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common
             docData = null;
 
             var rdt = Instance.GetRunningDocumentTable();
-            Debug.Assert(rdt is not null);
+            Debug.Assert(rdt is not null, "rdt is not null");
             if (rdt is not null)
             {
 

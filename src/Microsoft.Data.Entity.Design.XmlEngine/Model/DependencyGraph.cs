@@ -182,7 +182,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
             {
                 _dictionary.Add(t);
                 _queue.AddLast(t);
-                Debug.Assert(_dictionary.Count == _queue.Count);
+                Debug.Assert(_dictionary.Count == _queue.Count, "_dictionary.Count == _queue.Count");
             }
 
             internal bool Contains(R t)
@@ -195,7 +195,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
                 var t = _queue.First.Value;
                 _queue.RemoveFirst();
                 _dictionary.Remove(t);
-                Debug.Assert(_dictionary.Count == _queue.Count);
+                Debug.Assert(_dictionary.Count == _queue.Count, "_dictionary.Count == _queue.Count");
                 return t;
             }
 

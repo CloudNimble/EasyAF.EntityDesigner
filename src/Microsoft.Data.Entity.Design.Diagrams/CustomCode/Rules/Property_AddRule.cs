@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using Microsoft.Data.Entity.Design.Diagrams.ModelChanges;
 using Microsoft.Data.Entity.Design.Diagrams.Utils;
@@ -24,15 +24,15 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Rules
             base.ElementAdded(e);
 
             Property addedProperty = e.ModelElement as Property;
-            Debug.Assert(addedProperty != null);
-            Debug.Assert(addedProperty.EntityType != null && addedProperty.EntityType.EntityDesignerViewModel != null);
+            Debug.Assert(addedProperty != null, "addedProperty != null");
+            Debug.Assert(addedProperty.EntityType != null && addedProperty.EntityType.EntityDesignerViewModel != null, "addedProperty.EntityType != null && addedProperty.EntityType.EntityDesignerViewModel != null");
 
             if (addedProperty != null
                 && addedProperty.EntityType != null
                 && addedProperty.EntityType.EntityDesignerViewModel != null)
             {
                 var tx = ModelUtils.GetCurrentTx(e.ModelElement.Store);
-                Debug.Assert(tx != null);
+                Debug.Assert(tx != null, "tx != null");
                 if (tx != null
                     && !tx.IsSerializing)
                 {

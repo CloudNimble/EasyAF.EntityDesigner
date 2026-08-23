@@ -45,7 +45,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyW
                     break;
                 }
 
-                Debug.Assert(editingContext != null);
+                Debug.Assert(editingContext != null, "editingContext != null");
 
                 if (editingContext != null)
                 {

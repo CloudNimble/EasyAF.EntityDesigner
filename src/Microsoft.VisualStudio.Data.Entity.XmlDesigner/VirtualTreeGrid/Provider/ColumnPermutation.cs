@@ -270,7 +270,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
             int lastPermutedColumn;
             int anchorColumn;
             var nativeColumn = myVisibleColumns[permutedColumn];
-            Debug.Assert(permutedColumn != -1);
+            Debug.Assert(permutedColumn != -1, "permutedColumn != -1");
 
             firstPermutedColumn = lastPermutedColumn = anchorColumn = permutedColumn;
             var haveAnchor = nativeColumn <= lastNativeNonBlankColumn;

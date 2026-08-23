@@ -327,7 +327,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model
             //   and EF6 EntityFramework.dll in which case we allow opening both v2 and v3 edmx files
 
             var project = GetProject();
-            Debug.Assert(project != null);
+            Debug.Assert(project != null, "project != null");
 
             IsVersionSafe =
                 VsUtils.EntityFrameworkSupportedInProject(project, ServiceProvider, allowMiscProject: true) &&

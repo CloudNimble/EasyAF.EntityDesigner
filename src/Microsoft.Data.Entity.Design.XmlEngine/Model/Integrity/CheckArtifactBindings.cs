@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
 using System.Collections.Generic;
@@ -53,8 +53,8 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Integrity
         /// <param name="bindingsToRebind"></param>
         internal static void ScheduleBindingsForRebind(CommandProcessorContext cpc, ICollection<ItemBinding> bindingsToRebind)
         {
-            Debug.Assert(cpc != null);
-            Debug.Assert(bindingsToRebind != null);
+            Debug.Assert(cpc != null, "cpc != null");
+            Debug.Assert(bindingsToRebind != null, "bindingsToRebind != null");
 
             if (bindingsToRebind.Count > 0)
             {
@@ -75,8 +75,8 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Integrity
         /// <param name="artifactSet"></param>
         internal static void ScheduleUnknownBindingsForRebind(CommandProcessorContext cpc, EFArtifactSet artifactSet)
         {
-            Debug.Assert(cpc != null);
-            Debug.Assert(artifactSet != null);
+            Debug.Assert(cpc != null, "cpc != null");
+            Debug.Assert(artifactSet != null, "artifactSet != null");
 
             UnknownBindingVisitor ubv = new UnknownBindingVisitor();
             foreach (var artifact in artifactSet.Artifacts)

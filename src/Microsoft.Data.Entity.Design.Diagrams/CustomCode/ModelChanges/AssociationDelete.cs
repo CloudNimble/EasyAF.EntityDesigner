@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
@@ -25,7 +25,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
             if (viewModel != null)
             {
                 Edmx.Entity.Association association = viewModel.ModelXRef.GetExisting(_association) as Edmx.Entity.Association;
-                Debug.Assert(association != null);
+                Debug.Assert(association != null, "association != null");
                 DeleteEFElementCommand.DeleteInTransaction(cpc, association);
                 viewModel.ModelXRef.Remove(association, _association);
             }

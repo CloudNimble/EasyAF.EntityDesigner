@@ -2922,7 +2922,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
                             if (targetCoordinate.IsValid)
                             {
                                 iNewCaret = targetCoordinate.Row;
-                                Debug.Assert(targetCoordinate.Column == sourceColumn);
+                                Debug.Assert(targetCoordinate.Column == sourceColumn, "targetCoordinate.Column == sourceColumn");
                                 if (iNewCaret == iCaret)
                                 {
                                     findNextItemWithDown = true;
@@ -2972,7 +2972,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
                                 iNewCaret = VirtualTreeConstant.NullIndex;
                                 break;
                             }
-                            Debug.Assert(sourceColumn == targetCoordinate.Column); // Down needs to stay in the same column
+                            Debug.Assert(sourceColumn == targetCoordinate.Column, "sourceColumn == targetCoordinate.Column"); // Down needs to stay in the same column
                             iNewCaret = targetCoordinate.Row;
                             TopIndex = iNewCaret - caretChangeCount - 1;
                         }
@@ -3023,7 +3023,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
                             if (targetCoordinate.IsValid)
                             {
                                 iNewCaret = targetCoordinate.Row;
-                                Debug.Assert(targetCoordinate.Column == sourceColumn);
+                                Debug.Assert(targetCoordinate.Column == sourceColumn, "targetCoordinate.Column == sourceColumn");
                                 if (iNewCaret == iCaret)
                                 {
                                     findNextItemWithUp = true;
@@ -3054,7 +3054,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
                                 iNewCaret = VirtualTreeConstant.NullIndex;
                                 break;
                             }
-                            Debug.Assert(sourceColumn == targetCoordinate.Column);
+                            Debug.Assert(sourceColumn == targetCoordinate.Column, "sourceColumn == targetCoordinate.Column");
                             TopIndex = iNewCaret = targetCoordinate.Row;
                         }
                     }
@@ -3115,7 +3115,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
             }
             if (iNewCaret != VirtualTreeConstant.NullIndex)
             {
-                Debug.Assert(iNewCaret < myTree.VisibleItemCount);
+                Debug.Assert(iNewCaret < myTree.VisibleItemCount, "iNewCaret < myTree.VisibleItemCount");
                 var preserveSelection = e.Control;
                 var forceSelectCaret = ModifySelectionAction.None;
                 if (targetColumn != sourceColumn)
@@ -5276,7 +5276,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
                     }
                 }
             }
-            Debug.Assert(target != VirtualTreeHitTargets.Uninitialized);
+            Debug.Assert(target != VirtualTreeHitTargets.Uninitialized, "target != VirtualTreeHitTargets.Uninitialized");
             return new VirtualTreeHitInfo(absIndex, column, nativeColumn, rawRow, rawColumn, target | blankTargetBit);
 
             /*INDEX index;
@@ -5640,7 +5640,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
             }
             set
             {
-                Debug.Assert(value == null);
+                Debug.Assert(value == null, "value == null");
                 myStringFormat?.Dispose();
                 myStringFormat = null;
             }
@@ -5732,7 +5732,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
             DrawItemEventArgs e, int column, int nativeColumn, bool windowFocused, bool itemFocused, bool columnSelected,
             bool dontDrawLeadingGridline, bool trailingColumn, Rectangle itemBounds)
         {
-            Debug.Assert(Redraw && myUpdateCount == 0); // Handled very early in WmReflectDrawItem
+            Debug.Assert(Redraw && myUpdateCount == 0, "Redraw && myUpdateCount == 0"); // Handled very early in WmReflectDrawItem
             if (e.Index == -1)
             {
                 return; // UNDONE: Draw focus rect in empty list
@@ -6107,7 +6107,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
                                 stringWidth = -1;
                             }
 
-                            Debug.Assert(textBounds.Left == 0);
+                            Debug.Assert(textBounds.Left == 0, "textBounds.Left == 0");
                             if ((stringWidth + stringBounds.Left) < textBounds.Width)
                             {
                                 // Blit the end clean and the part under the string with the background brush
@@ -6235,7 +6235,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
             }
             set
             {
-                Debug.Assert(value == null); // Delayed generation in getter
+                Debug.Assert(value == null, "value == null"); // Delayed generation in getter
                 focusPen = null;
             }
         }
@@ -6795,7 +6795,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
 
             //myFirstMaxIndex and myLastMaxIndex needed to be adjusted.  However, there is
             //no reason to recalculate the entire visible width in most circumstances.
-            Debug.Assert(myLastMaxIndex != VirtualTreeConstant.NullIndex || myFirstMaxIndex == VirtualTreeConstant.NullIndex);
+            Debug.Assert(myLastMaxIndex != VirtualTreeConstant.NullIndex || myFirstMaxIndex == VirtualTreeConstant.NullIndex, "myLastMaxIndex != VirtualTreeConstant.NullIndex || myFirstMaxIndex == VirtualTreeConstant.NullIndex");
                 //Setting one is sufficient
             if (myFirstMaxIndex == VirtualTreeConstant.NullIndex)
             {
@@ -6874,7 +6874,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
 
             //myFirstMaxIndex and myLastMaxIndex needed to be adjusted.  However, there is
             //no reason to recalculate the entire visible width in most circumstances.
-            Debug.Assert(myLastMaxIndex != VirtualTreeConstant.NullIndex || myFirstMaxIndex == VirtualTreeConstant.NullIndex);
+            Debug.Assert(myLastMaxIndex != VirtualTreeConstant.NullIndex || myFirstMaxIndex == VirtualTreeConstant.NullIndex, "myLastMaxIndex != VirtualTreeConstant.NullIndex || myFirstMaxIndex == VirtualTreeConstant.NullIndex");
                 //"Setting one is sufficient");
 
             //Just to be safe in case we missed a case, fill in defaults here
@@ -6956,7 +6956,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
             }
             else
             {
-                Debug.Assert(myFirstMaxIndex <= parentIndex && myLastMaxIndex <= parentIndex && myLastMaxIndex <= parentIndex + change);
+                Debug.Assert(myFirstMaxIndex <= parentIndex && myLastMaxIndex <= parentIndex && myLastMaxIndex <= parentIndex + change, "myFirstMaxIndex <= parentIndex && myLastMaxIndex <= parentIndex && myLastMaxIndex <= parentIndex + change");
                     //"Missed a case");
                 //Last max is contained in list, but first is before
                 myLastMaxIndex = parentIndex;
@@ -7204,7 +7204,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
                     iLastToCheck = oldTopIndex - 1;
                 }
             }
-            Debug.Assert(iFirstToCheck >= newTopIndexAdjusted && iLastToCheck <= iLastVisible); //Missed a case
+            Debug.Assert(iFirstToCheck >= newTopIndexAdjusted && iLastToCheck <= iLastVisible, "iFirstToCheck >= newTopIndexAdjusted && iLastToCheck <= iLastVisible"); //Missed a case
             //This happens fairly often and I don't know why. Investigate. For now, get by with swapping the two
             //VSASSERT(iLastToCheck+1>=iFirstToCheck, "Invalid first to last range of visible items! Please report bug with a consisent repro.");
             if (iLastToCheck + 1 < iFirstToCheck)
@@ -7375,7 +7375,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
             }
             var maxWidth = 1;
 
-            Debug.Assert(count < 0x10000000); //Something is wrong with the count of visible items. Defaulting to 1
+            Debug.Assert(count < 0x10000000, "count < 0x10000000"); //Something is wrong with the count of visible items. Defaulting to 1
             if (count >= 0x10000000)
             {
                 count = 1;
@@ -7565,7 +7565,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
             }
             set
             {
-                Debug.Assert(value == null);
+                Debug.Assert(value == null, "value == null");
                 myBoldFont?.Dispose();
                 myBoldFont = null;
                 myBoldFont = value;
@@ -7891,7 +7891,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
             get { return (myTree == null) ? 0 : myTree.VisibleItemCount; }
             set
             {
-                Debug.Assert(IsHandleCreated);
+                Debug.Assert(IsHandleCreated, "IsHandleCreated");
                 if (myMouseOverIndex >= value)
                 {
                     // hide the tooltip if the new item count makes the current index invalid
@@ -8187,7 +8187,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
 
         private void ImageListRecreated(object sender, EventArgs e)
         {
-            Debug.Assert(sender == myImageList);
+            Debug.Assert(sender == myImageList, "sender == myImageList");
             SetImageList(myImageList);
         }
 
@@ -8859,7 +8859,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
         /// <param name="dragArgs">DragEventArgs</param>
         protected override void OnDragEnter(DragEventArgs dragArgs)
         {
-            //Debug.Assert(myDropRow == VirtualTreeConstant.NullIndex);
+            //Debug.Assert(myDropRow == VirtualTreeConstant.NullIndex, "myDropRow == VirtualTreeConstant.NullIndex");
             var clientPoint = PointToClient(new Point(dragArgs.X, dragArgs.Y));
             var hitInfo = HitInfo(clientPoint.X, clientPoint.Y);
             var targetRow = hitInfo.Row;
@@ -9493,7 +9493,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
 
             private void FreeStringBuffer()
             {
-                Debug.Assert(myStringBuffer != IntPtr.Zero);
+                Debug.Assert(myStringBuffer != IntPtr.Zero, "myStringBuffer != IntPtr.Zero");
                 if (Marshal.SystemDefaultCharSize == 1)
                 {
                     Marshal.FreeCoTaskMem(myStringBuffer);
@@ -9900,7 +9900,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
         private IVirtualTreeInPlaceControl DoLabelEdit(
             int absRow, int column, int message, bool explicitActivation, ref bool immediateActivation)
         {
-            Debug.Assert(!explicitActivation || !immediateActivation);
+            Debug.Assert(!explicitActivation || !immediateActivation, "!explicitActivation || !immediateActivation");
             if (!GetAnyStyleFlag(VTCStyleFlags.LabelEditsMask))
             {
                 return null;
@@ -10114,7 +10114,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
             //
             // We are using the Window Id of the control as a BOOL to
             // state if it is dirty or not.
-            Debug.Assert(GetStateFlag(VTCStateFlags.LabelEditActive));
+            Debug.Assert(GetStateFlag(VTCStateFlags.LabelEditActive), "GetStateFlag(VTCStateFlags.LabelEditActive)");
             if (GetStateFlag(VTCStateFlags.LabelEditProcessing))
             {
                 // We are in the process of processing an update now, bail out
@@ -10168,7 +10168,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
                                 goto case LabelEditResult.CancelEdit;
                                 //NYI: Need to get a posting mechanism here, probably through
                                 //BeginInvoke, to call back and reopen the edit window at a later time.
-                                //Debug.Assert(!fCloseWindow);
+                                //Debug.Assert(!fCloseWindow, "!fCloseWindow");
                                 //SetStateFlag(VTCStateFlags.LabelEditProcessing, false);
                                 //myInPlaceControl.SelectAllText();
                                 //break;
@@ -11034,7 +11034,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
                 }
             }
             var info = Tree.GetItemInfo(row, nativeColumn, true);
-            Debug.Assert(!info.Blank);
+            Debug.Assert(!info.Blank, "!info.Blank");
             if (info.Blank)
             {
                 return null;
@@ -11161,7 +11161,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
                 VirtualTreeControl ctl, int baseRow, int nativeBaseColumn, int localColumn, bool returnColumn)
             {
                 // Note:  if this logic changes, corresponding change should be made to IsSimpleItem below.
-                Debug.Assert(localColumn > 0);
+                Debug.Assert(localColumn > 0, "localColumn > 0");
                 AccessibleObject retVal = null;
                 var tree = ctl.Tree;
                 var info = tree.GetItemInfo(baseRow, nativeBaseColumn, false);
@@ -11370,7 +11370,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
 
                 // Get information about the branch and tree state at this
                 // position in the tree.
-                Debug.Assert(!info.Blank); // Adjust row and column before creating here to take care of blanks
+                Debug.Assert(!info.Blank, "!info.Blank"); // Adjust row and column before creating here to take care of blanks
                 if (displayColumn < 0)
                 {
                     displayColumn = 0;

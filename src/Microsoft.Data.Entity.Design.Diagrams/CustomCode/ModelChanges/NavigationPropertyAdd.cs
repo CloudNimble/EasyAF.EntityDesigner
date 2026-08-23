@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
@@ -29,7 +29,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
                 EntityType entityType = viewModel.ModelXRef.GetExisting(_property.EntityType) as EntityType;
                 ConceptualEntityType cet = entityType as ConceptualEntityType;
                 Debug.Assert(entityType != null ? cet != null : true, "EntityType is not ConceptualEntityType");
-                Debug.Assert(entityType != null);
+                Debug.Assert(entityType != null, "entityType != null");
 
                 if (cet != null)
                 {

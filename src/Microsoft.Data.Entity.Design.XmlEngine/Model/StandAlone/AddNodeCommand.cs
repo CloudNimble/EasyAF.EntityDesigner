@@ -73,7 +73,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model.StandAlone
         public override void Undo()
         {
             AddNodeChange c = (AddNodeChange)Change;
-            Debug.Assert(c.Parent is not null);
+            Debug.Assert(c.Parent is not null, "c.Parent is not null");
             var node = Change.Node;
             if (node is XNode xn)
             {

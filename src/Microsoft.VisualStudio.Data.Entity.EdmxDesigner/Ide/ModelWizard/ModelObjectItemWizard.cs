@@ -206,7 +206,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard
                 throw new WizardCancelledException();
             }
 
-            Debug.Assert(ReferenceEquals(_modelBuilderSettings, form.ModelBuilderSettings));
+            Debug.Assert(ReferenceEquals(_modelBuilderSettings, form.ModelBuilderSettings), "ReferenceEquals(_modelBuilderSettings, form.ModelBuilderSettings)");
         }
 
         private void ClearErrors()

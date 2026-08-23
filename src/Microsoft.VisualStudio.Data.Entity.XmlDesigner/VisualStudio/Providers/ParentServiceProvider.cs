@@ -24,7 +24,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Providers
         {
             object service = null;
 
-            Debug.Assert(null != provider);
+            Debug.Assert(null != provider, "null != provider");
             if (null != provider)
             {
                 if (provider.GetService(typeof(IVsWindowFrame)) is IVsWindowFrame ourFrame)
@@ -36,7 +36,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Providers
                     {
                         IVsWindowFrame parentFrame = (IVsWindowFrame)@var;
                         hr = parentFrame.GetProperty((int)__VSFPROPID.VSFPROPID_DocView, out @var);
-                        Debug.Assert(NativeMethods.Succeeded(hr));
+                        Debug.Assert(NativeMethods.Succeeded(hr), "NativeMethods.Succeeded(hr)");
                         if (NativeMethods.Succeeded(hr))
                         {
                             if (@var is IServiceProvider parentViewProvider)

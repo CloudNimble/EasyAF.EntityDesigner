@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -237,7 +237,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams
 
             // get our artifact
             EntityDesignArtifact artifact = viewModel.EditingContext?.GetEFArtifactService()?.Artifact as EntityDesignArtifact;
-            Debug.Assert(artifact != null);
+            Debug.Assert(artifact != null, "artifact != null");
 
             SerializationResult serializationResult = new SerializationResult();
 
@@ -320,7 +320,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams
 
             // get our artifact
             var artifact = viewModel.EditingContext?.GetEFArtifactService()?.Artifact;
-            Debug.Assert(artifact != null);
+            Debug.Assert(artifact != null, "artifact != null");
             if (!artifact.IsDesignerSafe)
             {
                 return;

@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
 using System.Collections.Generic;
@@ -213,7 +213,7 @@ namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb
                     globallyUniqueTypeNames);
             }
 
-            Debug.Assert(storeAssociationSet.AssociationSetEnds.Count == 2);
+            Debug.Assert(storeAssociationSet.AssociationSetEnds.Count == 2, "storeAssociationSet.AssociationSetEnds.Count == 2");
             var storeSetEnd0 = storeAssociationSet.AssociationSetEnds[0];
             var storeSetEnd1 = storeAssociationSet.AssociationSetEnds[1];
 
@@ -227,7 +227,7 @@ namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb
                 conceptualEntitySet1,
                 null);
 
-            Debug.Assert(conceptualAssociationSet.AssociationSetEnds.Count == 2);
+            Debug.Assert(conceptualAssociationSet.AssociationSetEnds.Count == 2, "conceptualAssociationSet.AssociationSetEnds.Count == 2");
             var conceptualSetEnd0 = conceptualAssociationSet.AssociationSetEnds[0];
             var conceptualSetEnd1 = conceptualAssociationSet.AssociationSetEnds[1];
 
@@ -290,7 +290,7 @@ namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb
                 conceptualEntitySet1,
                 null);
 
-            Debug.Assert(conceptualAssociationSet.AssociationSetEnds.Count == 2);
+            Debug.Assert(conceptualAssociationSet.AssociationSetEnds.Count == 2, "conceptualAssociationSet.AssociationSetEnds.Count == 2");
             var conceptualSetEnd0 = conceptualAssociationSet.AssociationSetEnds[0];
             var conceptualSetEnd1 = conceptualAssociationSet.AssociationSetEnds[1];
 
@@ -305,7 +305,7 @@ namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb
             AssociationType storeAssociationType,
             UniqueIdentifierService globallyUniqueTypeNames)
         {
-            Debug.Assert(storeAssociationType.RelationshipEndMembers.Count == 2);
+            Debug.Assert(storeAssociationType.RelationshipEndMembers.Count == 2, "storeAssociationType.RelationshipEndMembers.Count == 2");
 
             AssociationEndMember storeEndMember0 = (AssociationEndMember)storeAssociationType.RelationshipEndMembers[0];
             AssociationEndMember storeEndMember1 = (AssociationEndMember)storeAssociationType.RelationshipEndMembers[1];
@@ -410,8 +410,8 @@ namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb
             SimpleMappingContext mappingContext,
             AssociationType storeAssociationType)
         {
-            Debug.Assert(storeAssociationType != null);
-            Debug.Assert(storeAssociationType.ReferentialConstraints.Count <= 1);
+            Debug.Assert(storeAssociationType != null, "storeAssociationType != null");
+            Debug.Assert(storeAssociationType.ReferentialConstraints.Count <= 1, "storeAssociationType.ReferentialConstraints.Count <= 1");
 
             if (storeAssociationType.ReferentialConstraints.Count == 0)
             {

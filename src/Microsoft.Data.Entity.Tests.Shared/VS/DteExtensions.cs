@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 #region Using Statements
 
@@ -233,7 +233,7 @@ namespace Microsoft.Data.Entity.Tests.Shared.VS
         public static Project FindProject(this DTE dte, string name)
         {
             Debug.Assert(dte != null, "FindProject: Dte is null");
-            Debug.Assert(!string.IsNullOrEmpty(name));
+            Debug.Assert(!string.IsNullOrEmpty(name), "!string.IsNullOrEmpty(name)");
 
             foreach (Project project in dte.Solution.Projects)
             {

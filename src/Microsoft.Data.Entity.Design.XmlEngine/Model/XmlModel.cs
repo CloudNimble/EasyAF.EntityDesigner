@@ -144,7 +144,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
                 }
                 else
                 {
-                    Debug.Assert(ts.iEndLine > line);
+                    Debug.Assert(ts.iEndLine > line, "ts.iEndLine > line");
                     if (ts.iStartIndex <= col)
                     {
                         return 0;

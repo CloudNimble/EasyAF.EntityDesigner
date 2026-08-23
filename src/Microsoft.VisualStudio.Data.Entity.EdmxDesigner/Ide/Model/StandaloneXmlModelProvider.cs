@@ -128,7 +128,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model
         {
             Debug.Assert(serviceProvider != null, "serviceProvider != null");
             Debug.Assert(projectItem != null, "projectItem != null");
-            Debug.Assert(VsUtils.EntityFrameworkSupportedInProject(projectItem.ContainingProject, serviceProvider, false));
+            Debug.Assert(VsUtils.EntityFrameworkSupportedInProject(projectItem.ContainingProject, serviceProvider, false), "VsUtils.EntityFrameworkSupportedInProject(projectItem.ContainingProject, serviceProvider, false)");
             Debug.Assert(serializers != null && converters != null, "extensions must not be null");
             Debug.Assert(serializers.Any() || converters.Any(), "at least one extension expected");
 

@@ -27,7 +27,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
         {
             get
             {
-                Debug.Assert(IsHandleCreated); // Should only be called while painting
+                Debug.Assert(IsHandleCreated, "IsHandleCreated"); // Should only be called while painting
                 if (0 == (myStyleFlags & VTCStyleFlags.MaskHasIndentBitmaps))
                 {
                     return null;
@@ -43,7 +43,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
             }
             private set
             {
-                Debug.Assert(value == null); // Delayed generation in getter
+                Debug.Assert(value == null, "value == null"); // Delayed generation in getter
                 myIndentBmp = null;
             }
         }

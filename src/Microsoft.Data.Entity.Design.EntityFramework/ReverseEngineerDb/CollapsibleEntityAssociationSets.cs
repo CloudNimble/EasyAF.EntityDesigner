@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
 using System.Collections.Generic;
@@ -100,7 +100,7 @@ namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb
             {
                 foreach (var set in item.AssociationSets)
                 {
-                    Debug.Assert(set.AssociationSetEnds.Count == 2);
+                    Debug.Assert(set.AssociationSetEnds.Count == 2, "set.AssociationSetEnds.Count == 2");
 
                     var entitySet0 = set.AssociationSetEnds[0].EntitySet;
                     var entitySet1 = set.AssociationSetEnds[1].EntitySet;
@@ -128,7 +128,7 @@ namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb
         public AssociationSetEndDetails GetStoreAssociationSetEnd(int index)
         {
             Debug.Assert((index & 0xFFFE) == 0, "index can only be 0 or 1");
-            Debug.Assert(AssociationSets.Count == 2);
+            Debug.Assert(AssociationSets.Count == 2, "AssociationSets.Count == 2");
 
             var definingSet = AssociationSets[index];
             var multiplicitySet = AssociationSets[(index + 1) % 2];

@@ -54,13 +54,13 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyW
             {
                 // multi selection
                 var selectedItems = selection as object[];
-                Debug.Assert(selectedItems != null);
+                Debug.Assert(selectedItems != null, "selectedItems != null");
                 if (selectedItems != null)
                 {
                     foreach (var item in selectedItems)
                     {
                         selectedObj = item as TSelectedObj;
-                        Debug.Assert(selectedObj != null);
+                        Debug.Assert(selectedObj != null, "selectedObj != null");
                         if (selectedObj != null)
                         {
                             yield return selectedObj;

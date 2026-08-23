@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Rules
 
         internal static ViewModelChangeContext GetNewOrExistingContext(Transaction tx)
         {
-            Debug.Assert(tx != null);
+            Debug.Assert(tx != null, "tx != null");
             ViewModelChangeContext context = null;
             tx.Context.ContextInfo.TryGetValue(Guid, out object o);
             if (o == null)
@@ -25,20 +25,20 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Rules
             else
             {
                 context = o as ViewModelChangeContext;
-                Debug.Assert(context != null);
+                Debug.Assert(context != null, "context != null");
             }
             return context;
         }
 
         internal static ViewModelChangeContext GetExistingContext(Transaction tx)
         {
-            Debug.Assert(tx != null);
+            Debug.Assert(tx != null, "tx != null");
             ViewModelChangeContext context = null;
             tx.Context.ContextInfo.TryGetValue(Guid, out object o);
             if (o != null)
             {
                 context = o as ViewModelChangeContext;
-                Debug.Assert(context != null);
+                Debug.Assert(context != null, "context != null");
             }
 
             return context;

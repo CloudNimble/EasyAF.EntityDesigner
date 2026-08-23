@@ -77,7 +77,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.UI
             [DebuggerStepThrough]
             get
             {
-                Debug.Assert(_diagramImage != null);
+                Debug.Assert(_diagramImage != null, "_diagramImage != null");
                 return _diagramImage != null ? _diagramImage.Size : Size.Empty;
             }
             set
@@ -116,7 +116,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.UI
             [DebuggerStepThrough]
             get
             {
-                Debug.Assert(Enabled);
+                Debug.Assert(Enabled, "Enabled");
                 if (Enabled)
                 {
                     var viewBounds = DiagramClientView.ViewBounds;
@@ -137,7 +137,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.UI
 
         private Point DiagramToImage(PointD worldPoint)
         {
-            Debug.Assert(Enabled);
+            Debug.Assert(Enabled, "Enabled");
             if (Enabled)
             {
                 var ds = DiagramClientView.WorldToDevice(new SizeD(worldPoint.X, worldPoint.Y));
@@ -151,10 +151,10 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.UI
 
         private Size DiagramToImage(SizeD worldSize)
         {
-            Debug.Assert(Enabled);
+            Debug.Assert(Enabled, "Enabled");
             if (Enabled)
             {
-                Debug.Assert(Enabled);
+                Debug.Assert(Enabled, "Enabled");
                 var ds = DiagramClientView.WorldToDevice(worldSize);
                 return new Size((int)(ds.Width * _imageScale), (int)(ds.Height * _imageScale));
             }
@@ -166,7 +166,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.UI
 
         private PointD ImageToDiagram(Point imagePoint)
         {
-            Debug.Assert(Enabled);
+            Debug.Assert(Enabled, "Enabled");
             if (Enabled)
             {
                 var s = DiagramClientView.DeviceToWorld(
@@ -187,7 +187,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.UI
 
         private void SetViewLocation(PointD viewLocation)
         {
-            Debug.Assert(Enabled);
+            Debug.Assert(Enabled, "Enabled");
             if (Enabled)
             {
                 Invalidate(Rectangle.Inflate(ImageViewBounds, 2, 2));
@@ -285,14 +285,14 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.UI
 
                 graphics.SetClip(new Rectangle(imageLocation, imageSize), CombineMode.Exclude);
                 var diagramBackgroundBrush = Diagram.StyleSet.GetBrush(DiagramBrushes.DiagramBackground);
-                Debug.Assert(diagramBackgroundBrush != null);
+                Debug.Assert(diagramBackgroundBrush != null, "diagramBackgroundBrush != null");
                 graphics.FillRectangle(diagramBackgroundBrush, clientRect);
                 graphics.ResetClip();
 
                 graphics.DrawImage(DiagramImage, imageLocation.X, imageLocation.Y, imageSize.Width, imageSize.Height);
 
                 var zoomLassoPen = Diagram.StyleSet.GetPen(DiagramPens.ZoomLasso);
-                Debug.Assert(zoomLassoPen != null);
+                Debug.Assert(zoomLassoPen != null, "zoomLassoPen != null");
                 graphics.DrawRectangle(zoomLassoPen, ImageViewBounds);
             }
             else
@@ -370,13 +370,13 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.UI
 
         internal void StartMove()
         {
-            Debug.Assert(Enabled);
+            Debug.Assert(Enabled, "Enabled");
             if (!Enabled)
             {
                 return;
             }
 
-            Debug.Assert(_mouseMode == MouseMode.None);
+            Debug.Assert(_mouseMode == MouseMode.None, "_mouseMode == MouseMode.None");
             if (_mouseMode == MouseMode.None)
             {
                 Capture = true;

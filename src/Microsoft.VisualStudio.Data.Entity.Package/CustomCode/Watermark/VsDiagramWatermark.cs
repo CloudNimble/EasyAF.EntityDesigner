@@ -267,7 +267,7 @@ namespace Microsoft.VisualStudio.Data.Entity.Package.Watermark
             }
 
             var project = VSHelpers.GetProjectForDocument(artifact.Uri.LocalPath, PackageManager.Package);
-            Debug.Assert(project != null);
+            Debug.Assert(project != null, "project != null");
 
             if (!VsUtils.EntityFrameworkSupportedInProject(project, PackageManager.Package, allowMiscProject: true))
             {

@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using Ole = Microsoft.VisualStudio.OLE.Interop;
 using System;
@@ -426,7 +426,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common
         private object QueryService(Guid serviceGuid)
         {
             Ole.IServiceProvider parentOleProvider = _parentProvider as Ole.IServiceProvider;
-            Debug.Assert(parentOleProvider != null);
+            Debug.Assert(parentOleProvider != null, "parentOleProvider != null");
 
             object service = null;
 

@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
@@ -33,14 +33,14 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
                 Association modelAssociation = viewModel.ModelXRef.GetExisting(associationConnector.ModelElement) as Association;
                 Diagram modelDiagram = viewModel.ModelXRef.GetExisting(associationConnector.Diagram) as Diagram;
 
-                Debug.Assert(modelAssociation != null && modelDiagram != null);
+                Debug.Assert(modelAssociation != null && modelDiagram != null, "modelAssociation != null && modelDiagram != null");
                 if (modelAssociation != null
                     && modelDiagram != null)
                 {
                     CreateAssociationConnectorCommand cmd = new CreateAssociationConnectorCommand(modelDiagram, modelAssociation);
                     CommandProcessor.InvokeSingleCommand(cpc, cmd);
                     var modelAssociationConnector = cmd.AssociationConnector;
-                    Debug.Assert(modelAssociationConnector != null);
+                    Debug.Assert(modelAssociationConnector != null, "modelAssociationConnector != null");
                     viewModel.ModelXRef.Add(modelAssociationConnector, associationConnector, viewModel.EditingContext);
                 }
             }

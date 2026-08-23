@@ -140,7 +140,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid
             {
                 Application.DoEvents();
                 int result = NativeMethods.MsgWaitForMultipleObjects(0, Array.Empty<IntPtr>(), true, 250, NativeMethods.QS_ALLINPUT);
-                Debug.Assert(result != NativeMethods.WAIT_FAILED);
+                Debug.Assert(result != NativeMethods.WAIT_FAILED, "result != NativeMethods.WAIT_FAILED");
             }
         }
 

@@ -107,7 +107,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package
 
         private void OnEditingContextDisposing(object sender, EventArgs e)
         {
-            Debug.Assert(Context == sender);
+            Debug.Assert(Context == sender, "Context == sender");
             Context = null;
         }
 

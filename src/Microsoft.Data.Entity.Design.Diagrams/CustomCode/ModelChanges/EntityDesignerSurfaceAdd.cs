@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Diagrams.View;
@@ -28,13 +28,13 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
             if (viewModel != null)
             {
                 var artifact = cpc.Artifact;
-                Debug.Assert(artifact != null && artifact.DesignerInfo() != null && artifact.DesignerInfo().Diagrams != null);
+                Debug.Assert(artifact != null && artifact.DesignerInfo() != null && artifact.DesignerInfo().Diagrams != null, "artifact != null && artifact.DesignerInfo() != null && artifact.DesignerInfo().Diagrams != null");
                 if (artifact != null
                     && artifact.DesignerInfo() != null
                     && artifact.DesignerInfo().Diagrams != null)
                 {
                     var modelDiagram = CreateDiagramCommand.CreateDiagramWithDefaultName(cpc);
-                    Debug.Assert(modelDiagram != null);
+                    Debug.Assert(modelDiagram != null, "modelDiagram != null");
                     using (var t = diagram.Store.TransactionManager.BeginTransaction("Set Diagram Id", false))
                     {
                         diagram.DiagramId = modelDiagram.Id.Value;

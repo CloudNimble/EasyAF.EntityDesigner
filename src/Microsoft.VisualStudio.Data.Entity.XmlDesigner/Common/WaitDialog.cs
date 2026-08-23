@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
 using System.Diagnostics;
@@ -18,10 +18,10 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common
         internal WaitDialog(IServiceProvider site, string caption, bool cancelable, bool supportsPercentage = false)
         {
             IVsThreadedWaitDialogFactory factory = site.GetService(typeof(SVsThreadedWaitDialogFactory)) as IVsThreadedWaitDialogFactory;
-            Debug.Assert(factory != null);
+            Debug.Assert(factory != null, "factory != null");
 
             ThrowOnFailure(factory.CreateInstance(out _waitDialog));
-            Debug.Assert(_waitDialog != null);
+            Debug.Assert(_waitDialog != null, "_waitDialog != null");
 
             _caption = caption;
             _cancelable = cancelable;

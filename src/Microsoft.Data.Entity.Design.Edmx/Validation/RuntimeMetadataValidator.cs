@@ -133,7 +133,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
             {
                 EdmItemCollection edmItemCollection = EdmItemCollection.Create(new[] { reader }, null, out IList<EdmSchemaError> modelErrors);
 
-                Debug.Assert(modelErrors != null);
+                Debug.Assert(modelErrors != null, "modelErrors != null");
 
                 ProcessErrors(modelErrors, designArtifact, ErrorClass.Runtime_CSDL);
                 return edmItemCollection;
@@ -178,7 +178,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
                 StoreItemCollection storeItemCollection =
                     StoreItemCollection.Create(new[] { reader }, null, _dependencyResolver, out IList<EdmSchemaError> storeErrors);
 
-                Debug.Assert(storeErrors != null);
+                Debug.Assert(storeErrors != null, "storeErrors != null");
 
                 // also process cached errors and warnings (if any) from reverse engineering db
                 ProcessErrors(
@@ -235,7 +235,7 @@ namespace Microsoft.Data.Entity.Design.Edmx.Validation
                     StorageMappingItemCollection.Create(
                         edmItemCollection, storeItemCollection, new[] { reader }, null, out IList<EdmSchemaError> mappingErrors);
 
-                Debug.Assert(mappingErrors != null);
+                Debug.Assert(mappingErrors != null, "mappingErrors != null");
 
                 ProcessErrors(mappingErrors, designArtifact, ErrorClass.Runtime_MSL);
                 return mappingItemCollection;

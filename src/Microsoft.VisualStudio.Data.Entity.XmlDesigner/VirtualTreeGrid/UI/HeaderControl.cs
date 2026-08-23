@@ -27,7 +27,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
 
         private void RepositionHeaderContainer()
         {
-            Debug.Assert(!GetStateFlag(VTCStateFlags.WindowPositionChanging));
+            Debug.Assert(!GetStateFlag(VTCStateFlags.WindowPositionChanging), "!GetStateFlag(VTCStateFlags.WindowPositionChanging)");
             if (myHeaderContainer == null)
             {
                 return;

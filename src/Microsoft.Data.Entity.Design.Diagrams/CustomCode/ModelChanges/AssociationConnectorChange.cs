@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
 using System.Collections.Generic;
@@ -42,7 +42,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
                     modelAssociationConnector = viewModel.ModelXRef.GetExisting(associationConnector) as Edmx.Designer.AssociationConnector;
                 }
 
-                Debug.Assert(modelAssociationConnector != null);
+                Debug.Assert(modelAssociationConnector != null, "modelAssociationConnector != null");
                 if (modelAssociationConnector != null)
                 {
                     if (domainPropertyId == LinkShape.EdgePointsDomainPropertyId)

@@ -54,7 +54,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui
                 }
                 else
                 {
-                    Debug.Assert(Wizard.MovingPrevious);
+                    Debug.Assert(Wizard.MovingPrevious, "Wizard.MovingPrevious");
 
                     // Schedule a call to Wizard.OnPrevious()
                     Wizard.BeginInvoke((MethodInvoker)Wizard.OnPrevious);

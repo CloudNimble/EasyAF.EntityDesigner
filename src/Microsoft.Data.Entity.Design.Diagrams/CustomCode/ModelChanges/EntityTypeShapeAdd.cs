@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
@@ -31,14 +31,14 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
             {
                 EntityType entityType = viewModel.ModelXRef.GetExisting(entityTypeShape.ModelElement) as EntityType;
                 Diagram diagram = viewModel.ModelXRef.GetExisting(entityTypeShape.Diagram) as Diagram;
-                Debug.Assert(entityType != null && diagram != null);
+                Debug.Assert(entityType != null && diagram != null, "entityType != null && diagram != null");
                 if (entityType != null
                     && diagram != null)
                 {
                     CreateEntityTypeShapeCommand cmd = new CreateEntityTypeShapeCommand(diagram, entityType);
                     CommandProcessor.InvokeSingleCommand(cpc, cmd);
                     var modelEntityShape = cmd.EntityTypeShape;
-                    Debug.Assert(modelEntityShape != null);
+                    Debug.Assert(modelEntityShape != null, "modelEntityShape != null");
                     viewModel.ModelXRef.Add(modelEntityShape, entityTypeShape, viewModel.EditingContext);
                 }
             }

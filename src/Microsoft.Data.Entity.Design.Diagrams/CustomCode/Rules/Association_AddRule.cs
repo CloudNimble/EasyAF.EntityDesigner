@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Diagrams.ModelChanges;
@@ -26,10 +26,10 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Rules
 
             Association addedAssociation = e.ModelElement as Association;
 
-            Debug.Assert(addedAssociation != null);
-            Debug.Assert(addedAssociation.SourceEntityType != null);
-            Debug.Assert(addedAssociation.TargetEntityType != null);
-            Debug.Assert(addedAssociation.SourceEntityType.EntityDesignerViewModel != null);
+            Debug.Assert(addedAssociation != null, "addedAssociation != null");
+            Debug.Assert(addedAssociation.SourceEntityType != null, "addedAssociation.SourceEntityType != null");
+            Debug.Assert(addedAssociation.TargetEntityType != null, "addedAssociation.TargetEntityType != null");
+            Debug.Assert(addedAssociation.SourceEntityType.EntityDesignerViewModel != null, "addedAssociation.SourceEntityType.EntityDesignerViewModel != null");
 
             if (addedAssociation != null
                 && addedAssociation.SourceEntityType != null
@@ -37,7 +37,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Rules
                 && addedAssociation.SourceEntityType.EntityDesignerViewModel != null)
             {
                 var tx = ModelUtils.GetCurrentTx(e.ModelElement.Store);
-                Debug.Assert(tx != null);
+                Debug.Assert(tx != null, "tx != null");
                 if (tx != null
                     && !tx.IsSerializing)
                 {

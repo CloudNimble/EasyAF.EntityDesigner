@@ -76,7 +76,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.UI
             {
                 // Give this form a nice shadow.
                 var createParams = base.CreateParams;
-                Debug.Assert(createParams != null);
+                Debug.Assert(createParams != null, "createParams != null");
                 createParams.ClassStyle |= 0x00020000;
                 return createParams;
             }
@@ -84,8 +84,8 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.UI
 
         protected override void OnLoad(EventArgs e)
         {
-            Debug.Assert(e != null);
-            Debug.Assert(_panZoomPanel != null);
+            Debug.Assert(e != null, "e != null");
+            Debug.Assert(_panZoomPanel != null, "_panZoomPanel != null");
 
             var initialMousePos = Cursor.Position;
             _panZoomPanel.MouseUp += delegate

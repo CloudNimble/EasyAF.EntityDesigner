@@ -54,7 +54,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
 
         protected virtual void UpdateDesignerInfo(EdmxHelper edmxHelper, ModelBuilderSettings settings)
         {
-            Debug.Assert(edmxHelper != null);
+            Debug.Assert(edmxHelper != null, "edmxHelper != null");
 
             edmxHelper.UpdateDesignerOptionProperty(
                 OptionsDesignerInfo.AttributeEnablePluralization, settings.UsePluralizationService);

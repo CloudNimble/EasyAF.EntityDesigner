@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
 using System.Diagnostics;
@@ -63,7 +63,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
                     EntityTypeShapeAdd.StaticInvoke(cpc, entityTypeShape);
                     modelEntityShape = viewModel.ModelXRef.GetExisting(entityTypeShape) as Edmx.Designer.EntityTypeShape;
                 }
-                Debug.Assert(modelEntityShape != null);
+                Debug.Assert(modelEntityShape != null, "modelEntityShape != null");
                 if (modelEntityShape != null)
                 {
                     if (domainPropertyId == NodeShape.AbsoluteBoundsDomainPropertyId)

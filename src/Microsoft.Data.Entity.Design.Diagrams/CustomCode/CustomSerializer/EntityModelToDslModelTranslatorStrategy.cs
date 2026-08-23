@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using DslModeling = Microsoft.VisualStudio.Modeling;
 using ModelDiagram = Microsoft.Data.Tools.Model.Diagram;
@@ -214,7 +214,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.CustomSerializer
             foreach (var property in entityType.Properties())
             {
                 var viewProperty = TranslateProperty(viewET, property);
-                Debug.Assert(viewProperty != null);
+                Debug.Assert(viewProperty != null, "viewProperty != null");
                 if (viewProperty != null)
                 {
                     viewET.Properties.Add(viewProperty);

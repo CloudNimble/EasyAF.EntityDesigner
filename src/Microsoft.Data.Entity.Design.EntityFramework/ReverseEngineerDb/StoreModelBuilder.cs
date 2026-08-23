@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
 using System.Collections.Generic;
@@ -406,7 +406,7 @@ namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb
             invalidKeyTypeColumns = [];
             foreach (var row in columns)
             {
-                Debug.Assert(row.ColumnName != null);
+                Debug.Assert(row.ColumnName != null, "row.ColumnName != null");
 
                 var property = CreateProperty(row, errors);
                 if (property != null)
@@ -1095,7 +1095,7 @@ namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb
 
         private static AssociationSet CreateAssociationSet(AssociationType associationType, EntityRegister entityRegister)
         {
-            Debug.Assert(associationType.AssociationEndMembers.Count == 2);
+            Debug.Assert(associationType.AssociationEndMembers.Count == 2, "associationType.AssociationEndMembers.Count == 2");
 
             var sourceEnd = associationType.AssociationEndMembers[0];
             var targetEnd = associationType.AssociationEndMembers[1];

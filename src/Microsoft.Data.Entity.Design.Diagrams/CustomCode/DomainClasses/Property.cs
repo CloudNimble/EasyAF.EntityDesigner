@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using Microsoft.Data.Entity.Design.Diagrams.ModelChanges;
 using Microsoft.Data.Entity.Design.Diagrams.Rules;
@@ -22,7 +22,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
             {
                 var viewModel = EntityType.EntityDesignerViewModel;
                 var tx = ModelUtils.GetCurrentTx(Store);
-                Debug.Assert(tx != null);
+                Debug.Assert(tx != null, "tx != null");
                 if (tx != null
                     && !tx.IsSerializing)
                 {

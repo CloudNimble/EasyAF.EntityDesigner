@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using Microsoft.Data.Entity.Design.Diagrams.ModelChanges;
 using Microsoft.Data.Entity.Design.Diagrams.Utils;
@@ -24,14 +24,14 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Rules
             base.ElementAdded(e);
 
             EntityType addedEntity = e.ModelElement as EntityType;
-            Debug.Assert(addedEntity != null);
-            Debug.Assert(addedEntity.EntityDesignerViewModel != null);
+            Debug.Assert(addedEntity != null, "addedEntity != null");
+            Debug.Assert(addedEntity.EntityDesignerViewModel != null, "addedEntity.EntityDesignerViewModel != null");
 
             if ((addedEntity != null)
                 && (addedEntity.EntityDesignerViewModel != null))
             {
                 var viewModel = addedEntity.EntityDesignerViewModel;
-                Debug.Assert(viewModel != null);
+                Debug.Assert(viewModel != null, "viewModel != null");
 
                 var tx = ModelUtils.GetCurrentTx(e.ModelElement.Store);
                 Debug.Assert(tx != null, "Make sure we have a Current Active Tx");

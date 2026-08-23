@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using EDMModelUtils = Microsoft.Data.Entity.Design.Edmx.ModelHelper;
 using System;
@@ -29,7 +29,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Rules
 
             Property changedProperty = e.ModelElement as Property;
 
-            Debug.Assert(changedProperty != null);
+            Debug.Assert(changedProperty != null, "changedProperty != null");
 
             // this rule will fire if a PropertyRef gets deleted (this happens if a keyed property that has a sibling keyed property is deleted),
             // in which case we ignore this change.
@@ -38,7 +38,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Rules
                 return;
             }
 
-            Debug.Assert(changedProperty.EntityType != null && changedProperty.EntityType.EntityDesignerViewModel != null);
+            Debug.Assert(changedProperty.EntityType != null && changedProperty.EntityType.EntityDesignerViewModel != null, "changedProperty.EntityType != null && changedProperty.EntityType.EntityDesignerViewModel != null");
 
             if (changedProperty != null
                 && changedProperty.EntityType != null
@@ -60,7 +60,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Rules
                 }
 
                 var tx = ModelUtils.GetCurrentTx(e.ModelElement.Store);
-                Debug.Assert(tx != null);
+                Debug.Assert(tx != null, "tx != null");
                 // don't do the auto update stuff if we are in the middle of deserialization
                 if (tx != null
                     && !tx.IsSerializing)

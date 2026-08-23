@@ -103,7 +103,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
         /// <param name="fireEvents">True if this routine should fire selection events</param>
         private void SetSelectionColumn(int column, ColumnPermutation oldPermutation, bool fireEvents)
         {
-            Debug.Assert(oldPermutation != null || column != mySelectionColumn);
+            Debug.Assert(oldPermutation != null || column != mySelectionColumn, "oldPermutation != null || column != mySelectionColumn");
             var iCaret = CurrentIndex;
             DismissLabelEdit(false, false);
             var oldColumn = mySelectionColumn;
@@ -269,7 +269,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
                     {
                         ++nextFilterIndex;
                     }
-                    Debug.Assert(oldIndices[nextFilterIndex] == oldIter.RowInTree);
+                    Debug.Assert(oldIndices[nextFilterIndex] == oldIter.RowInTree, "oldIndices[nextFilterIndex] == oldIter.RowInTree");
 
                     // Record the column in the array, the iterator is no longer using this filter slot
                     oldIndices[nextFilterIndex] = oldIter.ColumnInTree;

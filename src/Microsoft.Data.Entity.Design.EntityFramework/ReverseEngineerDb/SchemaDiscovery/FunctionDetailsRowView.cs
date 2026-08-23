@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
 using System.Data.Entity.Core.Metadata.Edm;
@@ -12,7 +12,7 @@ namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb.SchemaD
 
         protected FunctionDetailsRowView(object[] values)
         {
-            Debug.Assert(values != null);
+            Debug.Assert(values != null, "values != null");
 
             Values = values;
         }

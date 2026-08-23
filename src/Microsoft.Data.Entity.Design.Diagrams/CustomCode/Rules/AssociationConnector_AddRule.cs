@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using Microsoft.Data.Entity.Design.Diagrams.ModelChanges;
 using Microsoft.Data.Entity.Design.Diagrams.Utils;
@@ -15,10 +15,10 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Rules
         public override void ElementAdded(ElementAddedEventArgs e)
         {
             AssociationConnector associationConnector = e.ModelElement as AssociationConnector;
-            Debug.Assert(associationConnector != null);
+            Debug.Assert(associationConnector != null, "associationConnector != null");
 
             var tx = ModelUtils.GetCurrentTx(associationConnector.Store);
-            Debug.Assert(tx != null);
+            Debug.Assert(tx != null, "tx != null");
             if (tx != null
                 && !tx.IsSerializing)
             {

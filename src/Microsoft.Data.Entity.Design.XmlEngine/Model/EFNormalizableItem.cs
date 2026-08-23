@@ -16,7 +16,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
         internal static string GetLocalNameFromNormalizedName(Symbol normalizedName)
         {
             var localName = normalizedName.GetLocalName();
-            Debug.Assert(string.IsNullOrEmpty(localName) == false);
+            Debug.Assert(string.IsNullOrEmpty(localName) == false, "string.IsNullOrEmpty(localName) == false");
             return localName;
         }
 

@@ -54,8 +54,8 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                 TREENODE parentNode, PositionTracker[] positions, int positionIndex, int relativeRow, int relativeColumn,
                 ref NODEPOSITIONTRACKER lastTracker)
             {
-                Debug.Assert((lastTracker == null) || (lastTracker.myNext == null));
-                Debug.Assert(!parentNode.NoTracking);
+                Debug.Assert((lastTracker == null) || (lastTracker.myNext == null), "(lastTracker == null) || (lastTracker.myNext == null)");
+                Debug.Assert(!parentNode.NoTracking, "!parentNode.NoTracking");
                 var retVal = false;
                 NODEPOSITIONTRACKER newTracker = null;
                 if (parentNode.DefaultTracking)
@@ -97,7 +97,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
             public void OnParentNodeDeleted()
             {
                 // Called on the first item of the sibling chain on a parent object
-                Debug.Assert(myParentNode != null && myParentNode.FirstPositionTracker == this);
+                Debug.Assert(myParentNode != null && myParentNode.FirstPositionTracker == this, "myParentNode != null && myParentNode.FirstPositionTracker == this");
                 myParentNode.FirstPositionTracker = null;
                 var ntCur = this;
                 while (ntCur != null)
@@ -235,7 +235,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
 
             public static void DetachTrackers(ref NODEPOSITIONTRACKER ntFirst, ref NODEPOSITIONTRACKER_Dynamic ntDetached)
             {
-                Debug.Assert(ntFirst != null); // Precondition, check before calling
+                Debug.Assert(ntFirst != null, "ntFirst != null"); // Precondition, check before calling
                 NODEPOSITIONTRACKER_Dynamic ntHead = (NODEPOSITIONTRACKER_Dynamic)ntFirst;
                 var ntNext = ntHead;
                 NODEPOSITIONTRACKER_Dynamic ntCur = null;
@@ -458,7 +458,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                 {
                     sn = sn.NextSibling;
                 }
-                Debug.Assert(sn != null);
+                Debug.Assert(sn != null, "sn != null");
                 return sn.Column;
             }
         }
@@ -539,7 +539,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
             /// <returns></returns>
             public int GetOffset(int affectedColumn)
             {
-                Debug.Assert(affectedColumn < myCount);
+                Debug.Assert(affectedColumn < myCount, "affectedColumn < myCount");
                 if (myCount == 1)
                 {
                     return myOffset;
@@ -990,7 +990,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                 {
                     return;
                 }
-                Debug.Assert(tn.FirstPositionTracker == null);
+                Debug.Assert(tn.FirstPositionTracker == null, "tn.FirstPositionTracker == null");
                 tn.FirstPositionTracker = FirstPositionTracker;
                 FirstPositionTracker = null;
                 NODEPOSITIONTRACKER.UpdateParentNode(tn.FirstPositionTracker, tn);
@@ -1530,7 +1530,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                 while (sn != null)
                 {
                     tn = sn.RootNode;
-                    Debug.Assert(tn.ImmedSubItemGain == 0); // A root node is not visible and should have no immediate subitem rows
+                    Debug.Assert(tn.ImmedSubItemGain == 0, "tn.ImmedSubItemGain == 0"); // A root node is not visible and should have no immediate subitem rows
                     if (tn.Expanded)
                     {
                         curGain = tn.TotalCount;
@@ -1594,7 +1594,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
 
             public override sealed SubItemCellStyles SubItemStyle(int column)
             {
-                Debug.Assert((Branch as IMultiColumnBranch) != null); // Caught in ColumnCount
+                Debug.Assert((Branch as IMultiColumnBranch) != null, "(Branch as IMultiColumnBranch) != null"); // Caught in ColumnCount
                 return (Branch as IMultiColumnBranch).ColumnStyles(column);
             }
         }
@@ -1681,7 +1681,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
             {
                 get
                 {
-                    Debug.Assert(branch != null);
+                    Debug.Assert(branch != null, "branch != null");
                     return (TREENODE)Dictionary[branch];
                 }
             }
@@ -1729,7 +1729,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                 }
                 else
                 {
-                    Debug.Assert(value.PrevNode != null);
+                    Debug.Assert(value.PrevNode != null, "value.PrevNode != null");
                     value.PrevNode.NextNode = existing.NextNode;
                     value.NextNode?.PrevNode = value.PrevNode;
                 }
@@ -1771,7 +1771,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
 
             protected override sealed void GetNextSection()
             {
-                Debug.Assert(CurrentBranch == null);
+                Debug.Assert(CurrentBranch == null, "CurrentBranch == null");
                 var startRow = NextStartRow;
                 myTree.EnumOrderedListItems(
                     ref startRow, EnumerationColumn, ColumnPermutation, ReturnBlankAnchors, out IBranch branch, out int treeColumn, out int firstRelRow,
@@ -1812,7 +1812,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
 
             protected override sealed void GetNextSection()
             {
-                Debug.Assert(CurrentBranch == null);
+                Debug.Assert(CurrentBranch == null, "CurrentBranch == null");
                 var startRow = NextStartRow;
                 myTree.EnumSingleColumnOrderedListItems(ref startRow, out IBranch branch, out int firstRelRow, out int lastRelRow, out int sectionLevel);
                 NextStartRow = startRow;
@@ -2237,7 +2237,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                     if (myRootNode != null)
                     {
                         FreeRecursive(ref myRootNode);
-                        Debug.Assert(myRootNode == null);
+                        Debug.Assert(myRootNode == null, "myRootNode == null");
                     }
                     tn.Index = VirtualTreeConstant.NullIndex;
                     ClearPositionCache();
@@ -2253,7 +2253,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                 else if (myRootNode != null)
                 {
                     FreeRecursive(ref myRootNode);
-                    Debug.Assert(myRootNode == null);
+                    Debug.Assert(myRootNode == null, "myRootNode == null");
                 }
                 Refresh();
             }
@@ -2275,7 +2275,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
         protected void Realign(IBranch branch)
         {
             var tn = LocateTrackedNode(branch);
-            Debug.Assert(tn != null); //Expect LocateTrackedNode to throw otherwise
+            Debug.Assert(tn != null, "tn != null"); //Expect LocateTrackedNode to throw otherwise
             int startFullCount;
             int startExpandedSubItemGain;
             while (tn != null)
@@ -2322,7 +2322,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                 singleView = singleTree as SingleColumnView;
             }
             var tn = LocateTrackedNode(branch);
-            Debug.Assert(tn != null); //Expect LocateTrackedNode to throw otherwise
+            Debug.Assert(tn != null, "tn != null"); //Expect LocateTrackedNode to throw otherwise
             VirtualTreeCoordinate coordinate = new VirtualTreeCoordinate();
             int prevAbsIndex;
             int prevAbsIndexSingleColumn;
@@ -2524,7 +2524,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
         protected void InsertItems(IBranch branch, int after, int count)
         {
             var tn = LocateTrackedNode(branch);
-            Debug.Assert(tn != null); //Expect LocateTrackedNode to throw otherwise
+            Debug.Assert(tn != null, "tn != null"); //Expect LocateTrackedNode to throw otherwise
             if (after < 0)
             {
                 after = -1;
@@ -2611,7 +2611,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
         protected void DeleteItems(IBranch branch, int start, int count)
         {
             var tn = LocateTrackedNode(branch);
-            Debug.Assert(tn != null); //Expect LocateTrackedNode to throw otherwise
+            Debug.Assert(tn != null, "tn != null"); //Expect LocateTrackedNode to throw otherwise
             if (start >= 0
                 && start < tn.ImmedCount)
             {
@@ -2750,7 +2750,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
             var tn = LocateTrackedNode(branch);
             ITree singleTree = null;
             SingleColumnView singleView = null;
-            Debug.Assert(tn != null); //Expect LocateTrackedNode to throw otherwise
+            Debug.Assert(tn != null, "tn != null"); //Expect LocateTrackedNode to throw otherwise
             while (tn != null)
             {
                 int changeAfter;
@@ -3273,7 +3273,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                 {
                     var sn = tnChild.SubItemAtColumn(localColumn);
                     var tnSubItemRoot = sn?.RootNode;
-                    Debug.Assert(tnChild == null || !tnChild.ComplexSubItem); // A complex subitem should track to column 0
+                    Debug.Assert(tnChild == null || !tnChild.ComplexSubItem, "tnChild == null || !tnChild.ComplexSubItem"); // A complex subitem should track to column 0
                     if (tnSubItemRoot != null
                         && tnSubItemRoot.Expanded
                         && tnSubItemRoot.FullCount > 0)
@@ -3375,9 +3375,9 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                         }
                         else
                         {
-                            Debug.Assert(pos.SubItemOffset > 0);
+                            Debug.Assert(pos.SubItemOffset > 0, "pos.SubItemOffset > 0");
                             tnChild = pos.ParentNode.GetChildNode(pos.Index);
-                            Debug.Assert(tnChild != null); // Can't get a subitem offset without a node
+                            Debug.Assert(tnChild != null, "tnChild != null"); // Can't get a subitem offset without a node
                             if (column == 0)
                             {
                                 // A blank item in the first column
@@ -3451,7 +3451,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                 } // if (MultiColumnSupport)
                 else
                 {
-                    Debug.Assert(column == 0);
+                    Debug.Assert(column == 0, "column == 0");
                     if (!blankItem)
                     {
                         info.Expanded = pos.IsExpanded(column);
@@ -3574,7 +3574,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                 {
                     throw new ArgumentException(VirtualTreeStrings.GetString(VirtualTreeStrings.ComplexColumnRootException));
                 }
-                Debug.Assert(column == 0); // column resolved by TrackCell for a complex item
+                Debug.Assert(column == 0, "column == 0"); // column resolved by TrackCell for a complex item
             }
             else
             {
@@ -3585,7 +3585,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                 {
                     var sn = tn.SubItemAtColumn(column);
                     tn = sn?.RootNode;
-                    Debug.Assert(tn == null || !tn.ComplexSubItem); // A complex subitem should track to column 0
+                    Debug.Assert(tn == null || !tn.ComplexSubItem, "tn == null || !tn.ComplexSubItem"); // A complex subitem should track to column 0
                 }
             }
             var retVal = 0;
@@ -3835,7 +3835,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
         /// <returns>A valid coordinate, or VirtualTreeCoordinate.Invalid if the item does not currently appear.</returns>
         private static VirtualTreeCoordinate FindAbsoluteIndex(TREENODE tn, int index, out int singleColumnSubItemAdjust)
         {
-            Debug.Assert(tn != null);
+            Debug.Assert(tn != null, "tn != null");
             TREENODE tnTmp;
             var isExpanded = false;
             var column = 0;
@@ -3954,7 +3954,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                 {
                     throw new ArgumentException(VirtualTreeStrings.GetString(VirtualTreeStrings.ComplexColumnRootException));
                 }
-                Debug.Assert(column == 0); // column resolved by TrackCell for a complex item
+                Debug.Assert(column == 0, "column == 0"); // column resolved by TrackCell for a complex item
             }
             else
             {
@@ -4979,7 +4979,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
             DelayTurnOffRedraw();
             // Begin shuffling list by retrieving PositionTracker arrays from
             // all of our listeners (if any).
-            Debug.Assert(myPositionManager == null); // Should be long gone at this point
+            Debug.Assert(myPositionManager == null, "myPositionManager == null"); // Should be long gone at this point
             // Check after as well, Before is useless without an After listener
             if (ListShuffleBeginning != null
                 && ListShuffleEnding != null)
@@ -5173,7 +5173,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
         {
             var tnNextNode = LocateTrackedNode(branch);
             TREENODE tn;
-            Debug.Assert(tnNextNode != null); //Expect LocateTrackedNode to throw otherwise
+            Debug.Assert(tnNextNode != null, "tnNextNode != null"); //Expect LocateTrackedNode to throw otherwise
             int killCount;
             int subItemKillCount;
             var enableSingleColumnEvent = GetStateFlag(TreeStateFlags.FireSingleColumnItemCountChanged)
@@ -5182,7 +5182,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
             var notify = enableNormalEvent || enableSingleColumnEvent;
             while (null != (tn = tnNextNode))
             {
-                Debug.Assert(!tn.ComplexSubItem); // Not handled, UNDONE_MC
+                Debug.Assert(!tn.ComplexSubItem, "!tn.ComplexSubItem"); // Not handled, UNDONE_MC
                 var absIndex = -1;
                 var singleColumnAbsIndex = -1;
                 var notifyColumn = 0;
@@ -5245,7 +5245,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                 }
                 else
                 {
-                    Debug.Assert(myRootNode != null && myRootNode.Branch == branch);
+                    Debug.Assert(myRootNode != null && myRootNode.Branch == branch, "myRootNode != null && myRootNode.Branch == branch");
                     (this as ITree).Root = null;
                     break;
                 }
@@ -5379,7 +5379,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                         if (tn2.FirstPositionTracker != null)
                         {
                             NODEPOSITIONTRACKER_Dynamic.DetachTrackers(ref tn2.FirstPositionTracker, ref ntDetached);
-                            Debug.Assert(tn2.FirstPositionTracker == null);
+                            Debug.Assert(tn2.FirstPositionTracker == null, "tn2.FirstPositionTracker == null");
                         }
                         DestroyTreeNode(ref tn2);
                     }
@@ -5413,7 +5413,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
 
         private void RemoveTrackedNode(IBranch branch, TREENODE tn)
         {
-            Debug.Assert(myNodeTracker != null);
+            Debug.Assert(myNodeTracker != null, "myNodeTracker != null");
             myNodeTracker.Remove(branch, tn);
         }
 
@@ -5424,14 +5424,14 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
 
         private TREENODE LocateTrackedNode(IBranch branch)
         {
-            Debug.Assert(myNodeTracker != null);
+            Debug.Assert(myNodeTracker != null, "myNodeTracker != null");
             return myNodeTracker[branch];
         }
 
         private static TREENODE CreateTreeNode(
             TREENODE startNode, IBranch branch, VirtualTree tree, bool allowMultiColumn, bool inSubItemColumn, bool multiColumnParent)
         {
-            Debug.Assert(startNode == null || (startNode.Branch == null && startNode.GetType() == typeof(TREENODE_Complex)));
+            Debug.Assert(startNode == null || (startNode.Branch == null && startNode.GetType() == typeof(TREENODE_Complex)), "startNode == null || (startNode.Branch == null && startNode.GetType() == typeof(TREENODE_Complex))");
             BranchFeatures tf;
             TREENODE retVal;
             tf = branch.Features;
@@ -5704,8 +5704,8 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
             // create a new tree node for each row. We walk all columns
             // in a given row to make it easier to build the TREENODE list
             // attached to the parent.
-            Debug.Assert(tn.FirstChild == null);
-            Debug.Assert(tn.ComplexColumns); // Check before calling
+            Debug.Assert(tn.FirstChild == null, "tn.FirstChild == null");
+            Debug.Assert(tn.ComplexColumns, "tn.ComplexColumns"); // Check before calling
             IMultiColumnBranch mcBranch = tn.Branch as IMultiColumnBranch;
             var columnCount = (mcBranch == null) ? 1 : mcBranch.ColumnCount;
             totalIncrease = 0;
@@ -5745,7 +5745,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                     }
                     // Walk the columns that matter and link up the returned tree nodes
                     tnPrevHint = null;
-                    Debug.Assert(tn.FirstChild == null); // This is initial expansion only
+                    Debug.Assert(tn.FirstChild == null, "tn.FirstChild == null"); // This is initial expansion only
                     for (iRow = 0; iRow < maxRow; ++iRow)
                     {
                         snPrev = null;
@@ -5832,7 +5832,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
         protected void UpdateCellStyle(IBranch branch, int row, int column, bool makeComplex)
         {
             var tnNext = LocateTrackedNode(branch);
-            Debug.Assert(tnNext != null); //Expect LocateTrackedNode to throw otherwise
+            Debug.Assert(tnNext != null, "tnNext != null"); //Expect LocateTrackedNode to throw otherwise
             var keyOffSubItemRoot = !makeComplex && row == -1 && column == 0;
             if (!keyOffSubItemRoot)
             {
@@ -5975,7 +5975,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                                 // to the row we are curently expanding. We need this call to get the affectedSubItemColumns.
                                 TrackCell(
                                     absRow, ref adjustColumn, ref parentRowOffset, ref affectedSubItemColumns, ref singleColumnSubItemAdjust);
-                                Debug.Assert(adjustColumn == 0);
+                                Debug.Assert(adjustColumn == 0, "adjustColumn == 0");
                                     // This should pick up the new list now in this cell, so the column will always be zero
                                 ChangeFullCountRecursive(
                                     tnChild, 0, subItemIncr, null, ref affectedSubItemColumns, out int rowIncr, out SubItemColumnAdjustment[] subItemChanges);
@@ -6031,7 +6031,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
             snPrev = null;
             if (subItemExpansion)
             {
-                Debug.Assert(pos.SubItemOffset == 0); // TrackIndex messed up
+                Debug.Assert(pos.SubItemOffset == 0, "pos.SubItemOffset == 0"); // TrackIndex messed up
                 tnSubItemAnchor = tnCur;
                 if (tnCur != null)
                 {
@@ -6171,8 +6171,8 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                     // value is calculated in the call to AdjustSubItemGain, which is
                     // why we do not call that function here. However, ChangeFullCountRecursive
                     // also adjusts the following two values, so we compensate here.
-                    Debug.Assert(tnCur.FullCount == Math.Abs(itemExpansionCount));
-                    Debug.Assert(tnCur.FullSubItemGain == Math.Abs(subItemExpansionCount));
+                    Debug.Assert(tnCur.FullCount == Math.Abs(itemExpansionCount), "tnCur.FullCount == Math.Abs(itemExpansionCount)");
+                    Debug.Assert(tnCur.FullSubItemGain == Math.Abs(subItemExpansionCount), "tnCur.FullSubItemGain == Math.Abs(subItemExpansionCount)");
                     tnCur.FullCount -= itemExpansionCount;
                     tnCur.FullSubItemGain -= subItemExpansionCount;
                     tnRecurseOn = tnCur;
@@ -6211,7 +6211,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                             // A subitem root node always has a parent node in the owning branch
                             var subItemRoot = tn.Parent;
                             var totalIncr = itemIncr + subItemIncr;
-                            Debug.Assert(subItemRoot != null);
+                            Debug.Assert(subItemRoot != null, "subItemRoot != null");
                             itemIncr = 0;
                             // Recalculate, see if this has affected the parent total
                             subItemIncr = subItemRoot.AdjustSubItemGain();
@@ -6325,7 +6325,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                         if (tn.SubItemRoot)
                         {
                             // A subitem root node always has a parent node in the owning branch
-                            Debug.Assert(tn.Parent != null);
+                            Debug.Assert(tn.Parent != null, "tn.Parent != null");
                             tn = tn.Parent;
                             itemIncr = 0;
                             // Recalculate, see if this has affected the parent total
@@ -6394,7 +6394,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                         if (tn.SubItemRoot)
                         {
                             // A subitem root node always has a parent node in the owning branch
-                            Debug.Assert(tn.Parent != null);
+                            Debug.Assert(tn.Parent != null, "tn.Parent != null");
                             tn = tn.Parent;
                             itemIncr = 0;
                             // Recalculate, see if this has affected the parent total
@@ -6481,7 +6481,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
             {
                 return VirtualTreeCoordinate.Invalid;
             }
-            Debug.Assert(tn.NextNode == null); // Branch is in multiple places in the tree. The one we get is undefined. Benign assert.
+            Debug.Assert(tn.NextNode == null, "tn.NextNode == null"); // Branch is in multiple places in the tree. The one we get is undefined. Benign assert.
             var tnStartNode = tn;
             TREENODE tnFirstUnexpanded = null;
             TREENODE tnAttachCache;
@@ -6547,7 +6547,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                             tn.FullCount -= changeCount;
                             tn.FullSubItemGain -= subItemChangeCount;
                             tnFirstUnexpanded ??= tn;
-                            Debug.Assert(tn.Branch != null);
+                            Debug.Assert(tn.Branch != null, "tn.Branch != null");
                             tn.Expanded = true;
                             ChangeFullCountRecursive(tn, changeCount, subItemChangeCount, tnFirstUnexpanded, out subItemRemainder);
                             totalSubItemChangeCount += subItemRemainder;
@@ -6790,11 +6790,11 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
             // changes that partially expanded the tree and need to be accounted for.
             if ((totalChangeCount + totalSubItemChangeCount) > 0)
             {
-                Debug.Assert(tnFirstUnexpanded != null); // The count can't change if nothing expanded
+                Debug.Assert(tnFirstUnexpanded != null, "tnFirstUnexpanded != null"); // The count can't change if nothing expanded
                 // There is a lot of extra work to do if we have to fire redraw events
                 if (ItemCountChanged != null)
                 {
-                    Debug.Assert(tnFirstUnexpanded.Parent != null); // The root node is always expanded
+                    Debug.Assert(tnFirstUnexpanded.Parent != null, "tnFirstUnexpanded.Parent != null"); // The root node is always expanded
                     var parentRowOffset = 0;
                     AffectedSubItems affectedSubItemColumns = new AffectedSubItems(true);
                     var adjustColumn = firstUnexpandedColumnOffset;
@@ -6881,7 +6881,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
 
             var tnFirst = LocateTrackedNode(branch);
             var tn = tnFirst;
-            Debug.Assert(tn != null); //Expect LocateTrackedNode to throw otherwise
+            Debug.Assert(tn != null, "tn != null"); //Expect LocateTrackedNode to throw otherwise
             if (startIndex != -1)
             {
                 // Use the original count if newCount not specified
@@ -6921,7 +6921,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                         tn.Dynamic = true; // Set regardless
                         tn = tn.NextNode;
                     }
-                    Debug.Assert(tnFirst.Dynamic); // LocateTrackedNode wouldn't have worked without this
+                    Debug.Assert(tnFirst.Dynamic, "tnFirst.Dynamic"); // LocateTrackedNode wouldn't have worked without this
                     // Get the branch out of the tracked list altogether. Readding the list of
                     // nodes with the replacement branch is deferred until all the work is done because
                     // it is possible to replace with an existing branch, or expand the existing branch
@@ -7001,7 +7001,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                     tn.SetFlags(newBranch.Features);
                     tn.Dynamic = wasDynamic; // Don't allow this one to change
 
-                    Debug.Assert(newBranch != null);
+                    Debug.Assert(newBranch != null, "newBranch != null");
                     if (tn.Dynamic)
                     {
                         myNodeTracker.ReBranchTreeNode(newBranch, tn);
@@ -7216,7 +7216,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                         // UNDONE: The original condition on the if was > 0, but that took out one too many levels.
                         // We need to figure out if this is the correct code for removeLevels == 0, or if
                         // we ever call with this value.
-                        Debug.Assert(removeLevels == 1);
+                        Debug.Assert(removeLevels == 1, "removeLevels == 1");
                         // No levels were removed. Explicitly pull in-range items from this list into the
                         // dummy list. We can't use CollectChildBranches here without making it understand
                         // the range issues, which isn't worth it.
@@ -7604,7 +7604,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                 // Not checked before calling CollectChildBranches so that TestReattachBranch has a chance
                 return;
             }
-            Debug.Assert((tnAttach == null) || (tnAttach.NextSibling == null)); // Bad attach point
+            Debug.Assert((tnAttach == null) || (tnAttach.NextSibling == null), "(tnAttach == null) || (tnAttach.NextSibling == null)"); // Bad attach point
             parentExpanded = parentExpanded && tnProcessParent.Expanded;
             if (levelShift <= 1)
             {
@@ -7798,7 +7798,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                 }
                 if (tnPrev != null)
                 {
-                    Debug.Assert(tnPrev.Index != tnHintChild.Index);
+                    Debug.Assert(tnPrev.Index != tnHintChild.Index, "tnPrev.Index != tnHintChild.Index");
                     tnPrev.NextSibling = tnHintChild;
                 }
                 else
@@ -8022,7 +8022,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
             VirtualTreeCoordinate ITree.GetNavigationTarget(
                 TreeNavigation direction, int sourceRow, int sourceColumn, ColumnPermutation columnPermutation)
             {
-                Debug.Assert(sourceColumn == 0);
+                Debug.Assert(sourceColumn == 0, "sourceColumn == 0");
                 sourceColumn = 0;
                 var targetRow = sourceRow;
                 if (myParent.myRootNode == null)

@@ -104,7 +104,7 @@ namespace Microsoft.Data.Entity.Design.XmlEngine.Model
             }
             else
             {
-                Debug.Assert(false);
+                Debug.Assert(false, "false");
                 return value.ToString();
             }
         }

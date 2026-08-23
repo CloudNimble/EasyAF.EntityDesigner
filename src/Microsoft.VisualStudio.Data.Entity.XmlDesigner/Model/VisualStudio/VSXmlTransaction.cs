@@ -115,7 +115,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio
         public override IEnumerable<IXmlChange> Changes(XmlModel model)
         {
             VSXmlModel vsXmlModel = model as VSXmlModel;
-            Debug.Assert(vsXmlModel != null);
+            Debug.Assert(vsXmlModel != null, "vsXmlModel != null");
             if (vsXmlModel != null)
             {
                 var internalModel = vsXmlModel.XmlModel;

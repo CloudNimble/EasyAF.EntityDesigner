@@ -229,7 +229,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                     myTrailingBlanks = 0;
                 }
                 myCurrentRow = testIndex - 1;
-                Debug.Assert(myCurrentRow < myLimitRow);
+                Debug.Assert(myCurrentRow < myLimitRow, "myCurrentRow < myLimitRow");
                     // The limit row is based on the last filter row. If this assert fails, mark trailing filter rows and get out
                 myNextStartRow = testIndex;
             }
@@ -291,7 +291,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
                     myCurrentRow = testIndex - 1;
 
                     // The limit row is based on the last filter row. If this assert fails, mark trailing filter rows and get out
-                    Debug.Assert(myCurrentRow < myLimitRow);
+                    Debug.Assert(myCurrentRow < myLimitRow, "myCurrentRow < myLimitRow");
                     myNextStartRow = testIndex;
                 }
                 else
@@ -321,7 +321,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provide
 
         private bool Cycle()
         {
-            Debug.Assert(myCycle);
+            Debug.Assert(myCycle, "myCycle");
             myIsSimpleCell = false;
             myTrailingBlanks = 0;
             myBranch = null;

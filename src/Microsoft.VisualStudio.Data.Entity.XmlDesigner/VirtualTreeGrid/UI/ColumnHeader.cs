@@ -168,7 +168,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
 
             public ColumnHeaderBounds(VirtualTreeColumnHeader[] headers)
             {
-                Debug.Assert(headers != null && headers.Length > 0);
+                Debug.Assert(headers != null && headers.Length > 0, "headers != null && headers.Length > 0");
                 myHeaders = headers;
                 var headersCount = headers.Length;
                 var fixedWidth = 0;
@@ -301,7 +301,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
 
             private void EnsureColumnWidths(int controlWidth)
             {
-                Debug.Assert(myVariableBounds != null && myColumnWidths != null);
+                Debug.Assert(myVariableBounds != null && myColumnWidths != null, "myVariableBounds != null && myColumnWidths != null");
                 if (myColumnWidths[0] == -1) // Dirty flag, recalculate
                 {
                     // Figure out which variable items are below their minimum and
@@ -369,7 +369,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
                             else
                             {
                                 prevPercentage = myHeaders[i].Percentage;
-                                Debug.Assert(prevPercentage != 0f);
+                                Debug.Assert(prevPercentage != 0f, "prevPercentage != 0f");
                             }
                             totalWidth += myColumnWidths[i];
                         }
@@ -472,7 +472,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
             /// <returns>The total width required to display the headers.</returns>
             private float CalculateNonFixedControlWidth(int controlWidth)
             {
-                Debug.Assert(myVariableBounds != null); // Don't call otherwise
+                Debug.Assert(myVariableBounds != null, "myVariableBounds != null"); // Don't call otherwise
                 var boundsCount = myVariableBounds.Length;
                 var testWidth = controlWidth - myTotalFixedWidth;
                 if (testWidth <= myVariableBounds[boundsCount - 1].FixedThreshold)
@@ -526,7 +526,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
 
             private void GetVariableColumnBounds(int controlWidth, int leftColumn, int rightColumn, out float itemLeft, out float itemRight)
             {
-                Debug.Assert(myVariableBounds != null);
+                Debug.Assert(myVariableBounds != null, "myVariableBounds != null");
                 float leftTotal = 0;
                 float rightTotal = 0;
 
@@ -646,7 +646,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
             /// </param>
             public void BeginColumnAdjustment(int adjustingColumn, int columnLeft, int adjustMouseX)
             {
-                Debug.Assert(AllowColumnAdjustment(adjustingColumn));
+                Debug.Assert(AllowColumnAdjustment(adjustingColumn), "AllowColumnAdjustment(adjustingColumn)");
                 myAdjustingColumn = adjustingColumn;
                 myAdjustMouseX = adjustMouseX;
                 var header = myHeaders[adjustingColumn];
@@ -656,7 +656,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
                     // nonadjustable, in which case we lock it in place. Limit lower by minimum pixel width;
                     if (!header.IsColumnAdjustable)
                     {
-                        Debug.Assert(header.Percentage == 0f); // Percentage-based columns are always adjustable
+                        Debug.Assert(header.Percentage == 0f, "header.Percentage == 0f"); // Percentage-based columns are always adjustable
                         myAdjustMinX = myAdjustMaxX = columnLeft + header.Width;
                     }
                     else
@@ -667,8 +667,8 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
                 }
                 else
                 {
-                    Debug.Assert(myVariableBounds != null);
-                    Debug.Assert(myColumnWidths[0] != -1); // VirtualTreeControl.LimitRectToColumn calls GetColumnBounds, which sets this
+                    Debug.Assert(myVariableBounds != null, "myVariableBounds != null");
+                    Debug.Assert(myColumnWidths[0] != -1, "myColumnWidths[0] != -1"); // VirtualTreeControl.LimitRectToColumn calls GetColumnBounds, which sets this
                     // Don't size smaller than the minimum 
                     myAdjustMinX = columnLeft + header.Width;
                     var allowedTrailingAdjustment = myColumnWidths[adjustingColumn];
@@ -1086,7 +1086,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
             }
             else
             {
-                Debug.Assert(newPermutation != null); // Other cases in first if should all have been covered
+                Debug.Assert(newPermutation != null, "newPermutation != null"); // Other cases in first if should all have been covered
                 int i;
                 var visibleColumns = newPermutation.VisibleColumnCount;
                 var totalColumns = newPermutation.FullColumnCount;
@@ -1130,7 +1130,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
                             lastPercentageColumn_Visible = currentVisibleColumn;
                         }
                         ++currentVisibleColumn;
-                        Debug.Assert(currentVisibleColumn <= visibleColumns);
+                        Debug.Assert(currentVisibleColumn <= visibleColumns, "currentVisibleColumn <= visibleColumns");
                     }
                 }
 
@@ -1342,7 +1342,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
                 }
                 if (myFullHeaders != null)
                 {
-                    Debug.Assert(myFullHeaders.Length != 0);
+                    Debug.Assert(myFullHeaders.Length != 0, "myFullHeaders.Length != 0");
                     if (expectedColumns != 0
                         && myFullHeaders.Length != expectedColumns)
                     {
@@ -1905,7 +1905,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
             {
                 if (myBorderOffset == -1)
                 {
-                    Debug.Assert(!GetStateFlag(VTCStateFlags.WindowPositionChanging));
+                    Debug.Assert(!GetStateFlag(VTCStateFlags.WindowPositionChanging), "!GetStateFlag(VTCStateFlags.WindowPositionChanging)");
                     var nonClientWidth = Width - ClientSize.Width;
                     if (HasVerticalScrollBar)
                     {
@@ -1915,8 +1915,8 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
                             nonClientWidth = 0;
                         }
                     }
-                    Debug.Assert((nonClientWidth % 1) == 0);
-                    Debug.Assert(nonClientWidth >= 0);
+                    Debug.Assert((nonClientWidth % 1) == 0, "(nonClientWidth % 1) == 0");
+                    Debug.Assert(nonClientWidth >= 0, "nonClientWidth >= 0");
                     myBorderOffset = nonClientWidth / 2;
                 }
                 return myBorderOffset;

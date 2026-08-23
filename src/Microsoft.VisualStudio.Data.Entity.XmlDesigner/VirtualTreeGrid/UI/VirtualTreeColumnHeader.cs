@@ -341,7 +341,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            Debug.Assert(false); // There is no need to compare these
+            Debug.Assert(false, "false"); // There is no need to compare these
             return false;
         }
 
@@ -359,7 +359,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
         /// </summary>
         public static bool operator ==(VirtualTreeColumnHeader operand1, VirtualTreeColumnHeader operand2)
         {
-            Debug.Assert(false); // There is no need to compare these
+            Debug.Assert(false, "false"); // There is no need to compare these
             return false;
         }
 
@@ -368,7 +368,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
         /// </summary>
         public static bool Compare(VirtualTreeColumnHeader operand1, VirtualTreeColumnHeader operand2)
         {
-            Debug.Assert(false); // There is no need to compare these
+            Debug.Assert(false, "false"); // There is no need to compare these
             return false;
         }
 
@@ -377,7 +377,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
         /// </summary>
         public static bool operator !=(VirtualTreeColumnHeader operand1, VirtualTreeColumnHeader operand2)
         {
-            Debug.Assert(false); // There is no need to compare these
+            Debug.Assert(false, "false"); // There is no need to compare these
             return true;
         }
 

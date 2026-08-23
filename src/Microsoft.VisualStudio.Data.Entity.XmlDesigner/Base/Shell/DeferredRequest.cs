@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
 using System.Diagnostics;
@@ -23,7 +23,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
 
         internal DeferredRequest(Callback callback)
         {
-            Debug.Assert(callback != null);
+            Debug.Assert(callback != null, "callback != null");
             _callback = callback;
         }
 

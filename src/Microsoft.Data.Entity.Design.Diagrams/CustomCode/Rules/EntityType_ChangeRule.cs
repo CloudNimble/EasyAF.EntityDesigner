@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using Microsoft.Data.Entity.Design.Diagrams.ModelChanges;
 using Microsoft.Data.Entity.Design.Diagrams.Utils;
@@ -36,15 +36,15 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Rules
             }
 
             EntityType changedEntity = e.ModelElement as EntityType;
-            Debug.Assert(changedEntity != null);
-            Debug.Assert(changedEntity.EntityDesignerViewModel != null);
+            Debug.Assert(changedEntity != null, "changedEntity != null");
+            Debug.Assert(changedEntity.EntityDesignerViewModel != null, "changedEntity.EntityDesignerViewModel != null");
 
             if (changedEntity != null
                 && changedEntity.EntityDesignerViewModel != null)
             {
                 var viewModel = changedEntity.EntityDesignerViewModel;
                 var tx = ModelUtils.GetCurrentTx(e.ModelElement.Store);
-                Debug.Assert(tx != null);
+                Debug.Assert(tx != null, "tx != null");
                 // don't do the auto update stuff if we are in the middle of deserialization
                 if (tx != null
                     && !tx.IsSerializing)

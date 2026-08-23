@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System;
 using System.ComponentModel.Design;
@@ -888,7 +888,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
                             // HACK: demand loading can cause re-entrancy when we access this list for the first time.
                             InVirtualTreeEdit = true;
 
-                            Debug.Assert(column == 0); // Simple-celled columns shouldn't ask for an expansion
+                            Debug.Assert(column == 0, "column == 0"); // Simple-celled columns shouldn't ask for an expansion
                             // Use the override to get the appropriate branch
                             var newBranch = GetExpandedBranch(row);
                             if (newBranch != null)

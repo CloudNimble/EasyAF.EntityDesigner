@@ -336,7 +336,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views.Explorer
                 }
             }
 
-            Debug.Assert(treeViewItem == null || treeViewItem.DataContext == explorerElement);
+            Debug.Assert(treeViewItem == null || treeViewItem.DataContext == explorerElement, "treeViewItem == null || treeViewItem.DataContext == explorerElement");
 
             return treeViewItem;
         }
@@ -751,7 +751,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views.Explorer
         internal void OnMouseDownAncestorOfSearchResultItemStyle(object sender)
         {
             var treeViewItem = ExplorerUtility.FindVisualAncestorOfType<ExplorerTreeViewItem>(sender as FrameworkElement);
-            Debug.Assert(treeViewItem != null);
+            Debug.Assert(treeViewItem != null, "treeViewItem != null");
             if (treeViewItem != null)
             {
                 FocusTreeViewItem(treeViewItem);

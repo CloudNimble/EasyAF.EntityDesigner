@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
@@ -36,7 +36,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
                 Debug.Assert(s != null ? source != null : true, "EntityType is not ConceptualEntityType");
                 Debug.Assert(t != null ? target != null : true, "EntityType is not ConceptualEntityType");
 
-                Debug.Assert(source != null && target != null);
+                Debug.Assert(source != null && target != null, "source != null && target != null");
                 var modelAssociation = CreateConceptualAssociationCommand.CreateAssociationAndAssociationSetWithDefaultNames(
                     cpc, source, target);
                 viewModel.ModelXRef.Add(modelAssociation, _association, viewModel.EditingContext);
