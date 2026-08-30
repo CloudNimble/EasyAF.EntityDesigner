@@ -37,6 +37,8 @@ namespace Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering.Export
 
         private readonly List<Association> _associations = [];
         private readonly List<Entity> _entities = [];
+        private bool _enableGrouping;
+        private bool _generateGroupNames;
 
         #endregion
 
@@ -93,6 +95,41 @@ namespace Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering.Export
         }
 
         /// <summary>
+        ///     Sets the routing recorded on an association's connector, so a test can compose the exact - including
+        ///     deliberately malformed - <c>ManuallyRouted</c> / <c>ConnectorPoint</c> combinations the loader has to
+        ///     survive.
+        /// </summary>
+        /// <param name="principal">The association's principal entity.</param>
+        /// <param name="dependent">The association's dependent entity.</param>
+        /// <param name="manuallyRouted">The value to write for <c>ManuallyRouted</c>.</param>
+        /// <param name="points">The connector points to write, if any.</param>
+        /// <returns>This builder.</returns>
+        public TestEdmxBuilder Route(string principal, string dependent, bool manuallyRouted, params (double X, double Y)[] points)
+        {
+            var association = _associations.Single(
+                candidate => candidate.Principal == principal && candidate.Dependent == dependent);
+
+            association.ManuallyRouted = manuallyRouted;
+            association.ConnectorPoints = points;
+
+            return this;
+        }
+
+        /// <summary>
+        ///     Sets the diagram's grouping switches. Both default to off, matching a real diagram.
+        /// </summary>
+        /// <param name="enable">Whether a modern layout clusters shapes into groups.</param>
+        /// <param name="generateNames">Whether it writes a detected group name onto a shape that has none.</param>
+        /// <returns>This builder.</returns>
+        public TestEdmxBuilder Grouping(bool enable, bool generateNames = false)
+        {
+            _enableGrouping = enable;
+            _generateGroupNames = generateNames;
+
+            return this;
+        }
+
+        /// <summary>
         ///     Writes the model to a temporary .edmx file.
         /// </summary>
         /// <returns>The full path of the file. The caller is responsible for deleting it.</returns>
@@ -140,7 +177,7 @@ namespace Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering.Export
             edmx.AppendLine(@"  <Designer xmlns=""http://schemas.microsoft.com/ado/2009/11/edmx"">");
             edmx.AppendLine(@"    <Diagrams>");
             edmx.AppendLine(
-                @"      <Diagram DiagramId=""aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"" Name=""Diagram1"" ZoomLevel=""100"" LayoutMode=""Modern"">");
+                $@"      <Diagram DiagramId=""aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"" Name=""Diagram1"" ZoomLevel=""100"" LayoutMode=""Modern"" EnableGrouping=""{(_enableGrouping ? "true" : "false")}"" GenerateGroupNames=""{(_generateGroupNames ? "true" : "false")}"">");
 
             BuildDiagram(edmx);
 
@@ -219,8 +256,23 @@ namespace Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering.Export
 
             foreach (var association in _associations)
             {
+                var manual = association.ManuallyRouted ? "true" : "false";
+
+                if (association.ConnectorPoints is null || association.ConnectorPoints.Length == 0)
+                {
+                    edmx.AppendLine(
+                        $@"        <AssociationConnector Association=""{Namespace}.{association.Name}"" ManuallyRouted=""{manual}"" />");
+                    continue;
+                }
+
                 edmx.AppendLine(
-                    $@"        <AssociationConnector Association=""{Namespace}.{association.Name}"" ManuallyRouted=""false"" />");
+                    $@"        <AssociationConnector Association=""{Namespace}.{association.Name}"" ManuallyRouted=""{manual}"">");
+                foreach (var point in association.ConnectorPoints)
+                {
+                    edmx.AppendLine(
+                        $@"          <ConnectorPoint PointX=""{point.X.ToString("F3", CultureInfo.InvariantCulture)}"" PointY=""{point.Y.ToString("F3", CultureInfo.InvariantCulture)}"" />");
+                }
+                edmx.AppendLine(@"        </AssociationConnector>");
             }
         }
 
@@ -265,7 +317,11 @@ namespace Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering.Export
 
             #region Properties
 
+            public (double X, double Y)[] ConnectorPoints { get; set; }
+
             public string Dependent { get; }
+
+            public bool ManuallyRouted { get; set; }
 
             public string Name { get; }
 

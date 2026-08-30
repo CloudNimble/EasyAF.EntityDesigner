@@ -7,7 +7,15 @@ using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.PropertyWindow.Converters;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using DslAssociation = Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association;
+using DslConnector = Microsoft.Data.Entity.Design.Diagrams.View.AssociationConnector;
+using DslSurface = Microsoft.Data.Entity.Design.Diagrams.View.EntityDesignerSurface;
+using DslViewModel = Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityDesignerViewModel;
+using DslXRef = Microsoft.Data.Entity.Design.Diagrams.CustomSerializer.ModelToDesignerModelXRef;
+using ModelConnector = Microsoft.Data.Entity.Design.Edmx.Designer.AssociationConnector;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.PropertyWindow.Descriptors
 {
@@ -84,6 +92,74 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
                     cp.Invoke();
                 }
             }
+        }
+
+        /// <summary>
+        ///     Whether the connector on the active diagram keeps a route the user drew by hand. Set it back to
+        ///     <see langword="false" /> to discard that route and let the layout engine route the connector
+        ///     automatically again.
+        /// </summary>
+        /// <remarks>
+        ///     Backed by the <c>ManuallyRouted</c> attribute on the diagram's <c>AssociationConnector</c>, not on
+        ///     the association: an association can appear on several diagrams, so the value is read and written on
+        ///     the connector belonging to the diagram the user is looking at. Editing it rides the same in-memory
+        ///     model as every other property - dirty until an explicit Save - and setting it back off clears the
+        ///     saved points so the engine re-routes. See specs/diagram-layout-engines.md.
+        /// </remarks>
+        [LocCategory("PropertyWindow_Category_Routing")]
+        [LocDisplayName("PropertyWindow_DisplayName_ConnectorManuallyRouted")]
+        [LocDescription("PropertyWindow_Description_ConnectorManuallyRouted")]
+        [MergableProperty(false)]
+        public bool ManuallyRouted
+        {
+            get { return ResolveActiveConnector()?.Model.ManuallyRouted.Value ?? false; }
+            set
+            {
+                if (ResolveActiveConnector() is not { } connector
+                    || value == connector.Model.ManuallyRouted.Value)
+                {
+                    return;
+                }
+
+                var cpc = PropertyWindowViewModelHelper.GetCommandProcessorContext();
+
+                if (value)
+                {
+                    // Pin the route the connector is drawn with now, so "manually routed" is a real saved route
+                    // rather than an empty one the loader has to fall back from.
+                    var points = connector.Dsl.EdgePoints
+                        .Cast<Microsoft.VisualStudio.Modeling.Diagrams.EdgePoint>()
+                        .Select(point => new KeyValuePair<double, double>(point.Point.X, point.Point.Y))
+                        .ToList();
+
+                    new CommandProcessor(
+                        cpc,
+                        new SetConnectorPointsCommand(connector.Model, points),
+                        new UpdateDefaultableValueCommand<bool>(connector.Model.ManuallyRouted, true))
+                        .Invoke();
+                }
+                else
+                {
+                    // Discard the hand-drawn route so the layout engine routes the connector automatically again.
+                    new CommandProcessor(
+                        cpc,
+                        new SetConnectorPointsCommand(connector.Model, new List<KeyValuePair<double, double>>()),
+                        new UpdateDefaultableValueCommand<bool>(connector.Model.ManuallyRouted, false))
+                        .Invoke();
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Hides <see cref="ManuallyRouted" /> unless the selection maps to a connector on the active diagram.
+        /// </summary>
+        /// <remarks>
+        ///     Found by reflection on the "IsBrowsable" + property name convention. An association selected in the
+        ///     Model Browser has no connector to route, so the property has nothing to act on there.
+        /// </remarks>
+        public bool IsBrowsableManuallyRouted()
+        {
+            return ResolveActiveConnector() is not null;
         }
 
         [LocCategory("PropertyWindow_Category_Constraint")]
@@ -338,6 +414,57 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
                 return ModelConstants.OnDeleteAction_None;
             }
             return null;
+        }
+
+        /// <summary>
+        ///     Finds the <see cref="ModelConnector" /> for this association on the active diagram, paired with its
+        ///     DSL shape. Returns <see langword="null" /> when the association is not shown on an active diagram.
+        /// </summary>
+        /// <remarks>
+        ///     The association maps to one DSL view element per open diagram; the one whose surface is the live
+        ///     view is the connector the user selected. Resolving through the shape (rather than searching the
+        ///     model's diagrams) is what keeps a multi-diagram model unambiguous.
+        /// </remarks>
+        private (ModelConnector Model, DslConnector Dsl)? ResolveActiveConnector()
+        {
+            if (TypedEFElement is not { } association
+                || EditingContext is null)
+            {
+                return null;
+            }
+
+            // The association maps to one connector per open diagram. Collect the candidates, then prefer the one
+            // on the diagram whose view is live; fall back to the only candidate when a single diagram is open and
+            // its view has not reported active yet, so the property never vanishes in the common case.
+            var candidates = new List<(ModelConnector Model, DslConnector Dsl, bool IsActive)>();
+
+            foreach (var dslElement in DslXRef.GetExisting(EditingContext, association))
+            {
+                if (dslElement is not DslAssociation dslAssociation)
+                {
+                    continue;
+                }
+
+                var dslConnector = Microsoft.VisualStudio.Modeling.Diagrams.PresentationViewsSubject
+                    .GetPresentation(dslAssociation)
+                    .OfType<DslConnector>()
+                    .FirstOrDefault();
+
+                if (dslConnector?.Diagram is DslSurface surface
+                    && surface.ModelElement is DslViewModel viewModel
+                    && viewModel.ModelXRef.GetExisting(dslConnector) is ModelConnector modelConnector)
+                {
+                    candidates.Add((modelConnector, dslConnector, surface.ActiveDiagramView is not null));
+                }
+            }
+
+            var chosen = candidates.FirstOrDefault(candidate => candidate.IsActive);
+            if (chosen.Model is null && candidates.Count == 1)
+            {
+                chosen = candidates[0];
+            }
+
+            return chosen.Model is null ? null : (chosen.Model, chosen.Dsl);
         }
     }
 }

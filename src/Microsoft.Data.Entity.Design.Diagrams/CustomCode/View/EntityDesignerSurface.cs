@@ -1032,6 +1032,31 @@ namespace Microsoft.Data.Entity.Design.Diagrams.View
         }
 
         /// <summary>
+        ///     Whether a modern layout clusters this diagram's shapes into groups, as recorded in the EDMX.
+        /// </summary>
+        /// <remarks>
+        ///     Off when the model diagram cannot be reached, matching its default. See
+        ///     specs/diagram-layout-engines.md.
+        /// </remarks>
+        internal bool EnableGrouping
+        {
+            get { return ModelDiagram?.EnableGrouping.Value ?? false; }
+        }
+
+        /// <summary>
+        ///     Whether a modern layout writes a detected group name onto a shape that has none, as recorded in the
+        ///     EDMX.
+        /// </summary>
+        /// <remarks>
+        ///     Off when the model diagram cannot be reached, matching its default. Subordinate to
+        ///     <see cref="EnableGrouping" />. See specs/diagram-layout-engines.md.
+        /// </remarks>
+        internal bool GenerateGroupNames
+        {
+            get { return ModelDiagram?.GenerateGroupNames.Value ?? false; }
+        }
+
+        /// <summary>
         ///     The EDMX diagram this surface is a view of, or <see langword="null" /> before the cross-reference
         ///     that links the two has been built.
         /// </summary>
@@ -1066,6 +1091,35 @@ namespace Microsoft.Data.Entity.Design.Diagrams.View
             try
             {
                 LayoutManager.Resolve(LayoutMode).Layout(this, shapes, ConnectorMode);
+            }
+            finally
+            {
+                _isLayingOut = false;
+            }
+        }
+
+        /// <summary>
+        ///     Re-routes the given connectors in place, without moving any shape, using the engine this diagram
+        ///     asks for.
+        /// </summary>
+        /// <param name="connectors">The connectors to redraw.</param>
+        /// <remarks>
+        ///     The counterpart to <see cref="AutoLayoutDiagram(IList)" /> for "redraw this connector" - it changes
+        ///     no shape position and leaves each connector's <c>ManuallyRouted</c> flag alone. Shares the same
+        ///     <see cref="LayoutManager" /> guard, so a redraw asked for mid-layout is dropped rather than nested.
+        /// </remarks>
+        public void RerouteConnectors(IList connectors)
+        {
+            if (LayoutManager is null || _isLayingOut)
+            {
+                return;
+            }
+
+            _isLayingOut = true;
+
+            try
+            {
+                LayoutManager.Resolve(LayoutMode).RouteConnectors(this, connectors);
             }
             finally
             {

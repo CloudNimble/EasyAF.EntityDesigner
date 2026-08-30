@@ -1323,6 +1323,12 @@ The exception also contains the following details: '{2}'.</value>
   <data name="PropertyWindow_Category_Layout" xml:space="preserve">
     <value>Layout</value>
   </data>
+  <data name="PropertyWindow_Category_ModernLayoutOptions" xml:space="preserve">
+    <value>Modern Layout Options</value>
+  </data>
+  <data name="PropertyWindow_Category_Routing" xml:space="preserve">
+    <value>Routing</value>
+  </data>
   <data name="PropertyWindow_Description_ConnectorMode" xml:space="preserve">
     <value>How connectors are drawn when the diagram is laid out. Orthogonal uses right-angle segments routed around the shapes in the way. Layered follows the rows the layout created and usually crosses least. Curved routes smooth curves around the shapes. Straight draws direct lines over anything in between.</value>
   </data>
@@ -1332,8 +1338,17 @@ The exception also contains the following details: '{2}'.</value>
   <data name="PropertyWindow_Description_EntityShapeGroupName" xml:space="preserve">
     <value>The group this shape belongs to. Shapes in the same group are placed together by a modern layout. Left empty, the layout guesses a group and writes it here, and never overwrites a name you have set.</value>
   </data>
+  <data name="PropertyWindow_Description_ConnectorManuallyRouted" xml:space="preserve">
+    <value>Whether this connector keeps a route you drew by hand. Set automatically when you drag the connector. Set it back to False to discard the hand-drawn route and let the layout route the connector automatically again.</value>
+  </data>
   <data name="PropertyWindow_Description_LayoutMode" xml:space="preserve">
     <value>Which engine arranges this diagram. Legacy uses the layout the designer has always used. Modern places the shapes and routes the connectors itself, and records the routes in the file.</value>
+  </data>
+  <data name="PropertyWindow_Description_EnableGrouping" xml:space="preserve">
+    <value>Whether a modern layout clusters related shapes into groups and places each group together. Off by default. When off, shapes are arranged without grouping.</value>
+  </data>
+  <data name="PropertyWindow_Description_GenerateGroupNames" xml:space="preserve">
+    <value>Whether a modern layout guesses a group for each shape that has none and writes it into the Group Name field. Off by default, and has no effect while Grouping is off. A name you have set is never changed.</value>
   </data>
   <data name="PropertyWindow_DisplayName_ConnectorMode" xml:space="preserve">
     <value>Connector Mode</value>
@@ -1344,8 +1359,17 @@ The exception also contains the following details: '{2}'.</value>
   <data name="PropertyWindow_DisplayName_EntityShapeGroupName" xml:space="preserve">
     <value>Group Name</value>
   </data>
+  <data name="PropertyWindow_DisplayName_ConnectorManuallyRouted" xml:space="preserve">
+    <value>Manually Routed</value>
+  </data>
   <data name="PropertyWindow_DisplayName_LayoutMode" xml:space="preserve">
     <value>Layout Mode</value>
+  </data>
+  <data name="PropertyWindow_DisplayName_EnableGrouping" xml:space="preserve">
+    <value>Grouping</value>
+  </data>
+  <data name="PropertyWindow_DisplayName_GenerateGroupNames" xml:space="preserve">
+    <value>Generate Group Names</value>
   </data>
   <data name="PropertyWindow_Description_SynchronizePropertyFacets" xml:space="preserve">
     <value>Updating the model will update entity property facets, such as nullability and precision, to match the mapped database columns' values.</value>

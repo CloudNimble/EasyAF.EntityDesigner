@@ -151,6 +151,29 @@ An existing value is never overwritten. That is what closes the loop: the first 
 
 "Never overwritten" has to hold for **placement**, not only for the file. The reference-table post-pass originally moved every lookup table to its owner's group including ones the user had named, so a shape kept its name in the EDMX while being laid out somewhere else. It now skips any candidate that already has a `GroupName`. The guard in `PersistGroupNames` is a second line of defence at the write boundary; with the post-pass fixed, no current path reaches it.
 
+### Grouping and name generation are opt-in
+
+Grouping was originally always on in Modern mode, and it always wrote names back. On a real diagram that made the arrangement worse rather than better and filled the file with guessed names nobody asked for. Both are now separate `Diagram` settings, each a `bool` shown in the property window in Modern mode, and **both default to off**:
+
+- **`EnableGrouping`** ("Grouping") — whether the layout clusters shapes at all.
+- **`GenerateGroupNames`** ("Generate Group Names") — whether the layout writes a detected group name back onto a shape that has none.
+
+They are independent switches, but name generation is subordinate to grouping. The rules, exactly:
+
+1. **Grouping off → no clusters and no generation, whatever `GenerateGroupNames` says.** Off means the arrangement is ungrouped; a generator with nothing to generate for is not run. So `GenerateGroupNames` on while `EnableGrouping` is off generates nothing.
+2. **Grouping on, generation off → cluster by names already in the file only.** `GroupingLayout.GroupByExisting` maps just the shapes that carry a `GroupName`; the rest are laid out free. Detection (colour/hub/structural) does not run and nothing is written back. This is how a user groups strictly by names they typed.
+3. **Grouping on, generation on → detect, cluster, and write back.** The full `GroupingLayout.Group` runs and `PersistGroupNames` records a name for every shape that had none.
+4. **Clearing group names obeys the same gate.** The clear button removes the attributes and re-lays out (clearing is a layout input). Regeneration only happens if *both* switches are on; with grouping off, or generation off, the names stay cleared.
+5. **An existing value is never touched when generation is on.** Unchanged from *Write-back* above — `PersistGroupNames` writes only shapes with no name, and the reference-table post-pass skips named shapes.
+
+The gate lives in `MsAglLayoutEngine.Layout`, which reads `EntityDesignerSurface.EnableGrouping` / `.GenerateGroupNames` and either calls `GroupingLayout.Group` (+ `PersistGroupNames`), calls `GroupByExisting`, or passes no groups at all. Both attributes are in `DiagramLayoutInput`, so toggling either one re-runs the layout.
+
+### Property order
+
+`LayoutMode` should read first, since it decides whether the other three (`ConnectorMode`, `EnableGrouping`, `GenerateGroupNames`) mean anything. The stock Visual Studio Properties window feeds off `ICustomTypeDescriptor` and sorts alphabetically both by category and, within a category, by display name — the descriptor's own order is ignored — so nothing can move a property ahead of its alphabetical neighbours *inside* a category.
+
+The fix is to split the category rather than fight the sort. `LayoutMode` sits alone in **Layout**; the other three sit in **Modern Layout Options**. Categories sort alphabetically too, and "Layout" precedes "Modern Layout Options", so Layout Mode reads first and the modern-only knobs follow as a labelled block. This also reads better: the block is exactly the settings that do nothing until `LayoutMode` is Modern, and its name says so.
+
 ## Traversal
 
 No new data model. `GroupingLayout` operates on real `EntityTypeShape`s.
@@ -172,7 +195,7 @@ So `EntityTypeShape` gains `ConnectedLinks`, returning `IEnumerable<BinaryLinkSh
 
 The DSL routing is the reason this work exists. Shipping MSAGL placement on top of it would be measuring the new thing through the defect it replaces.
 
-`MsAglLayoutEngine` always sets `ManuallyRouted = true` and assigns `EdgePoints`; routes are required to be persisted. The first version of the engine does this, the same as every version after it.
+`MsAglLayoutEngine` assigns `EdgePoints` on every connector it routes so the routes are persisted. It originally also set `ManuallyRouted = true` on all of them; that was wrong and is superseded by *Connector routing and provenance* below — the flag now means "a human authored this route" and the engine never sets it.
 
 **None of the persistence is new code.** The path exists end to end:
 
@@ -186,10 +209,146 @@ AssociationConnector_ChangeRule       fires on EdgePoints + ManuallyRouted, Time
 
 Turning Modern mode off is also already implemented. Setting `ManuallyRouted = false` runs `SetConnectorPointsCommand` with an empty list, stripping every `<ConnectorPoint>` and handing routing back to DSL. The toggle maps directly onto the flag.
 
-Two consequences to accept:
+One consequence to accept:
 
-- **Connectors will not reroute when the user drags a shape**, because that is what `ManuallyRouted` means. Modern mode needs a defined answer here — see *Spike first*.
 - **The EDMX grows.** A 39-entity model has roughly 113 connectors; at two to four points each that is 250–450 new elements, and a visible diff every time layout re-runs.
+
+## Connector routing and provenance
+
+The legacy designer's worst routing bug: hand-fix a bad route, and it comes back on reopen. The cause is that `ManuallyRouted` was overloaded to mean two things — *provenance* ("a human authored this route") and the *SDK directive* ("don't JIT-route this link"). `EntityTypeShape_ChangeRule` cleared the directive whenever a shape moved, and that clear flowed to `ManuallyRoutedChange`, which strips the persisted `ConnectorPoints` and writes `ManuallyRouted="false"`. A transient "recalc because geometry moved" destroyed the durable "a human authored this".
+
+**The principle: `ManuallyRouted` is provenance, and provenance is sacred.**
+
+- Set **true** only by a human dragging a connector. Set **false** only by an explicit user reset. No shape move, collapse, expand, auto-layout, or engine bake ever changes it.
+- On load, a connector with `ManuallyRouted="true"` and points is restored verbatim and never auto-routed. This already works; the bug was upstream, in the clearing.
+
+### The rules
+
+1. **Never auto-clear.** `EntityTypeShape_ChangeRule` no longer sets `link.ManuallyRouted = false` on shape move / expand. This one change fixes the reported bug: a hand-fixed route now survives reopen.
+2. **Reopen verbatim.** Hand-dragged connectors load exactly as saved; the rest are drawn by the active engine (Legacy: SDK JIT; Modern: MSAGL).
+3. **Move / collapse keeps the route hand-routed.** When a shape moves, the Modeling SDK re-routes the connector to track the shape but **keeps `ManuallyRouted` set** — it is never reverted to an auto-route. (Implementation note: the SDK does the endpoint tracking itself; an earlier plan to hand-translate the endpoint was removed once testing showed the SDK already re-routes a still-`ManuallyRouted` link on move. The interior bends are the SDK's to keep or rebuild; what the fix guarantees is that the connector stays hand-routed and reopens to its saved points.)
+4. **Persistence is the normal flow.** Every write above goes through the in-memory model → dirty → explicit VS Save. Nothing writes the `.edmx` directly, and the headless renderer never saves. (Verified: the only direct `.Save` calls are SVG/PNG/Mermaid *output* and the one-time `MigrateDiagramInformationCommand`.)
+
+Rules 1–4 are implemented. Two further behaviours — the engine skipping hand-routed connectors on a re-bake, and the re-bake dialog — are **not yet built**, because they turn out to require the *ephemeral engine routes* change below rather than a small addition.
+
+### Ephemeral engine routes (not yet built)
+
+`ManuallyRouted` is strictly human. That has a consequence: an engine-baked route cannot be persisted as `ManuallyRouted=true` (that would be a lie the engine-skip and the dialog then can't see through), and it cannot be persisted as `ManuallyRouted=false` with points either (the loader ignores points when the flag is false). So **engine routes are not persisted at all — they are recomputed on open.** Only human routes persist. This is the design the "strictly human" decision forces, and it has a nice side effect: the `.edmx` stops carrying hundreds of engine `ConnectorPoint`s and no longer churns on every layout.
+
+The unit of work:
+
+- A **persist guard**: connector changes made *during a layout* are view-only and never persisted (so an engine bake leaves the persisted flag `false`). The connector change rules check the surface's "laying out" state.
+- **Recompute on open**: a Modern diagram routes its non-human connectors when it loads (VS and the headless renderer both), keeping the persisted shape positions — so this needs a route-only pass, not a full re-layout that would move shapes.
+- **Engine skip**: with the persisted flag now honestly human-only, `MsAglLayoutEngine` skips connectors whose persisted `ManuallyRouted` is true. (This was drafted and backed out — it is incoherent until the guard and recompute above exist, because today the engine still marks its own routes manual.)
+- **Re-bake dialog**: with hand-routed connectors identifiable, a Modern re-bake asks (in VS) whether to keep or clear them, remembering the answer in `ManualRouteRebakePolicy` (`Ask`/`Keep`/`Clear`, default `Ask`; headless treats `Ask` as `Keep` and never writes). The attribute and `RebakePolicy` enum are already in place.
+
+Most of this is VS-transaction behaviour that can only be verified in the running VSIX, so it is its own unit rather than part of the provenance fix.
+
+OOB interop was dropped as a goal: the stock EF6 designer can't render a `Microsoft.Data.SqlClient` model at all (provider validation fails → XML editor), so keeping engine routes stock-compatible protects nobody. That is what lets `ManuallyRouted` mean one honest thing instead of two.
+
+### Implementation checklist
+
+- [x] `EntityTypeShape_ChangeRule` — removed the `ManuallyRouted = false` loop; still emits the position `EntityTypeShapeChange`. **This is the fix.**
+- [x] ~~Endpoint re-attach~~ — **not needed.** Testing showed the SDK already re-routes a still-`ManuallyRouted` link to track a moved shape; a hand-written translation only fought it and was removed.
+- [x] `Diagram` + `Edmx_3.xsd` — added `ManualRouteRebakePolicy` (`Ask`/`Keep`/`Clear`, default `Ask`) and the `RebakePolicy` enum. *(Plumbing in place; consumed by the re-bake dialog in the ephemeral-routes unit.)*
+- [x] Tests — provenance survives move / resize; auto stays auto; load keeps `ManuallyRouted`; malformed XML (`ManuallyRouted="false"` with points → treated as auto; `"true"` with none → drawable fallback, no crash).
+- [ ] **Ephemeral engine routes (own unit, mostly VS):** persist guard, recompute-on-open (route-only), engine skip, re-bake dialog. See *Ephemeral engine routes* above. Decided (forced by "strictly human"); not yet built.
+
+## Redrawing a single connector (implemented)
+
+Right-clicking an association gives a **Redraw Route** item that re-routes just that one connector through the active engine, moving nothing else. It exists for the common annoyance the property-window toggle does not cover: a connector whose route paints badly and that the user wants the engine to redo in place.
+
+`LayoutEngineBase` gained a placement-free counterpart to `Layout`:
+
+```
+RouteConnectors(EntityDesignerSurface surface, IList connectors)   // route these in place, move no shape
+```
+
+- **MSAGL**: builds a graph with *every* shape as a fixed obstacle at its current position and edges only for the named connectors, runs `RectilinearEdgeRouter` (no `CalculateLayout`, so nothing is placed), and writes each edge back. It reuses `ApplyConnectorRoutes`, which now takes `markManuallyRouted` — a full layout owns its routes and passes `true`; a redraw passes **`false`** and leaves the flag exactly as it found it. Coordinates map designer→MSAGL as `(x·scale, −y·scale)`, so reading the result back through the `origin=(0,0)` mirror returns points in the shapes' own coordinates (no shift, because shapes don't move).
+- **DSL/Legacy**: freezes every shape (`SaveLayoutFlags` + `NoMoveShapeFlags`) and asks the SDK to re-route just those links at right angles. A connector the user hand-routed stays as the SDK leaves it — Legacy has no notion of overriding a frozen route.
+
+`EntityDesignerSurface.RerouteConnectors(IList)` is the entry point, mirroring `AutoLayoutDiagram` (same `_isLayingOut` guard). The context-menu handler calls it with the one connector.
+
+**The flag is deliberately left alone.** A redraw only repaints; whether the route is a human's or the engine's is not its call to change, and the in-memory view model owns what is painted (persistence follows the normal dirty→Save path). This is the behavior the user asked for: "if I'm clicking a route to fix its painting, the flag is likely already true — just don't touch it." Headless tests (`MsAglLayoutEngineTests`) hold both halves: shapes never move, and the flag comes back exactly as it went in (mutation-checked — stamping it fails the test).
+
+## How a property edit reaches the diagram (the two-model round-trip)
+
+This is the plumbing every property-window change rides, routing included. It has been re-derived from the code several times; this is the authoritative writeup. Verify against the cited `file:symbol` before trusting it — the code is the source of truth.
+
+### Two models, one bridge
+
+There are two parallel object graphs, and almost everything here is about keeping them in step:
+
+- **The EDMX designer model** — `Microsoft.Data.Entity.Design.Edmx.*`. Plain objects over the XLinq tree (`EFObject`/`EFElement`), e.g. `Edmx.Entity.Association`, and the diagram shapes `Edmx.Designer.EntityTypeShape` / `AssociationConnector` / `InheritanceConnector`. Attributes are `DefaultableValue<T>` (`Connector.ManuallyRouted`, `EntityTypeShape.FillColor`/`GroupName`). This is what gets serialized to the `.edmx`.
+- **The DSL view model** — `Microsoft.Data.Entity.Design.Diagrams.*`, living in a Modeling-SDK `Store`. Model elements (`Diagrams.ViewModel.Association`, `Diagrams.ViewModel.EntityType`) plus presentation/shape elements (`Diagrams.View.EntityTypeShape`, `Diagrams.View.AssociationConnector` — a `LinkShape` — and `EntityDesignerSurface`, the diagram). This is what draws on screen.
+
+**The bridge is `ModelToDesignerModelXRef`** (`CustomSerializer/ModelToDesignerModelXRef.cs`), stored as a `ContextItem` on the `EditingContext` and reachable as `viewModel.ModelXRef`. It maps EDMX `EFObject` ⇄ DSL `ModelElement`, **keyed per `Partition`**. Each open diagram is one `Partition` = one `EntityDesignerViewModel` = one `DiagramId`. So `xref.GetExisting(efObject)` returns *a list* — one DSL element per diagram the object appears on — and `xref.GetExisting(dslElement)` returns the single EDMX object. Both connectors and shapes are registered here (`EntityModelToDslModelTranslatorStrategy` calls `ModelXRef.Add(modelAssociationConnector, dslAssociationConnector, …)`).
+
+### Active diagram
+
+Multiple diagrams can be open. Each `EntityDesignerViewModel` carries a `DiagramId`; the **active** one is the view model whose `GetDiagram().ActiveDiagramView` is non-null. Model→DSL translation is gated on `modelDiagramObject.Diagram.Id == DiagramId` (`EntityDesignerViewModel.cs` ~line 487 and `ProcessSingleDiagramModelChange` ~line 631), so a change to one diagram's shape never redraws another's. When code has only an EDMX object and needs "the connector the user is looking at", it resolves through the active partition.
+
+### Property window: selection → descriptor
+
+`MicrosoftDataEntityDesignDocView.ConvertDslModelElementArrayToItemDescriptors` turns the DSL selection into descriptors:
+
+- It takes the selected presentation element's `.ModelElement` (the DSL model element) and calls `XRef.GetExisting(dslElem)` to get the EDMX object, then `PropertyWindowViewModel.GetObjectDescriptor(efObject, …)`.
+- `PropertyWindowViewModel.ObjectDescriptorTypes` maps EDMX type → descriptor: `Association → EFAssociationDescriptor`, `EntityTypeShape → EFEntityTypeShapeDescriptor`, `Diagram → EFDiagramDescriptor`, …
+- **Entity shapes are special-cased**: for a shape the code resolves `XRef.GetExisting(presElem)` (the shape itself), so `EntityTypeShape` reaches `EFEntityTypeShapeDescriptor` and can show shape-only properties (`FillColor`, `GroupName`).
+- **A selected connector resolves to its `Association`, not the connector shape.** `presElem.ModelElement` for a DSL `AssociationConnector` is the DSL `Association`, so `EFAssociationDescriptor` is shown. The connector shape (which holds `ManuallyRouted`) is *not* the descriptor's object — the descriptor reaches it via the xref/active-diagram when it needs it.
+- Whatever lands here also becomes `EntityDesignerSelection.PrimarySelection`, which the command layer reads as `SelectedEFObject` and acts on via `SelectedEFObject.XObject` (`MicrosoftDataEntityDesignCommandSet.cs`). **This is why you don't casually redirect connector selection to the connector shape** — Delete/Rename would then target the `<Connector>` node instead of the association.
+
+### Descriptor edits are EDMX-model commands, and stay in memory until Save
+
+Descriptor setters do **not** poke the DSL. They run a command against the EDMX object through `PropertyWindowViewModelHelper.GetCommandProcessorContext()`:
+
+```csharp
+CommandProcessor.InvokeSingleCommand(cpc, new UpdateDefaultableValueCommand<Color>(shape.FillColor, value));
+```
+
+That change dirties the document and is only written to disk on an explicit VS **Save**. Nothing in this path touches the `.edmx` file directly — the in-memory model *is* the working copy. (Same guarantee the routing sections rely on.)
+
+### The round-trip, both directions
+
+**DSL → EDMX model** (user drags a shape/connector). SDK change rules fire on commit and translate the view change into EDMX commands:
+
+```
+EntityTypeShape_ChangeRule (LocalCommit)      shape moved/resized/expanded
+AssociationConnector_ChangeRule (TopLevelCommit)   EdgePoints / ManuallyRouted changed
+  -> ViewModelChangeContext.ViewModelChanges.Add(new …Change(dslElem, propId))
+     AssociationConnectorChange.StaticInvoke:
+       ManuallyRouted flipped false  -> SetConnectorPointsCommand(model, empty)   // strips <ConnectorPoint>s
+       always                        -> UpdateDefaultableValueCommand<bool>(model.ManuallyRouted, dsl.ManuallyRouted)
+       EdgePoints changed & routed   -> SetConnectorPointsCommand(model, points)
+```
+
+**EDMX model → DSL** (a command changed the model — from the property window, undo, update-from-DB, or the DSL→model leg above). `EntityDesignerViewModel.OnModelChangesCommitted` → `ProcessModelChanges` walks every committed `EfiChange`, and for each diagram object in *this* diagram calls `EntityModelToDslModelTranslatorStrategy.TranslateDiagramObject`, which dispatches to:
+
+- `TranslateAssociationConnectors` / `TranslateInheritanceConnectors`: set `dslConnector.ManuallyRouted = model.ManuallyRouted.Value`; **if the flag is false or there are no points, add the connector to `shapesToAutoLayout`**; otherwise load the persisted `ConnectorPoint`s into `EdgePoints`.
+- shape translators: push `FillColor`, bounds, etc. onto the DSL shape.
+
+### Routing is the engine's job, reached from here
+
+`ProcessModelChanges` finishes by handing the queued shapes to the layout **engine**, never to DSL line-drawing:
+
+```
+ProcessModelChanges  ->  diagram.AutoLayoutDiagram(shapesToAutoLayout)     // or AutoLayoutDiagram() when a layout input changed
+                          -> LayoutManager.Resolve(LayoutMode).Layout(surface, shapes, ConnectorMode)   // LayoutEngineBase override
+```
+
+So a connector whose `ManuallyRouted` becomes false is re-routed by the active engine (`DslLayoutEngine` or `MsAglLayoutEngine`) on the next translate, because it was queued into `shapesToAutoLayout`. `DiagramLayoutInput.Includes` decides which model changes trigger a *full* re-layout vs. a targeted one, and `AutoLayoutDiagram` no-ops re-entrant calls (`_isLayingOut`) so a layout's own write-backs don't recurse.
+
+### `ManuallyRouted` in the property window (implemented)
+
+Selecting a connector shows `EFAssociationDescriptor`; it now carries a **Routing → Manually Routed** boolean. The path needs no selection redirect and no new DSL code:
+
+1. `EFAssociationDescriptor.ResolveActiveConnector()` maps the bound `Association` to the `Edmx.Designer.AssociationConnector` on the **active diagram**. It walks `ModelToDesignerModelXRef.GetExisting(context, association)` (one DSL element per open diagram), takes each connector's presentation shape (`PresentationViewsSubject.GetPresentation`), and picks the one whose surface has a live `ActiveDiagramView` — falling back to the sole candidate when a single diagram is open. Multi-diagram stays unambiguous because the connector identity comes from the shape, not a search of the model's diagrams.
+2. The getter reads that connector's `ManuallyRouted.Value`. `IsBrowsableManuallyRouted()` hides the property when no connector resolves (e.g. the association selected in the Model Browser).
+3. The setter writes through the standard command path, so everything is in-memory/dirty until Save and `Association` stays the selected object (no Delete/Rename regression):
+   - **Off** → `SetConnectorPointsCommand(connector, [])` + `UpdateDefaultableValueCommand<bool>(…, false)`. Clearing the points mirrors the drag path's `AssociationConnectorChange`; the model→DSL translate (`TranslateAssociationConnectors`) then queues the connector into `shapesToAutoLayout` and `AutoLayoutDiagram` re-routes it **through the engine**.
+   - **On** → persists the connector's *current* `EdgePoints` as `ConnectorPoint`s, then sets the flag true — so "manually routed" is always a real saved route, never the empty-points fallback. (This is the "pin the current route" direction; the feature the user asked for is Off.)
+
+This is VS-only: it needs a live `ActiveDiagramView` and the property-window command context, so it is verified by building and exercising it in the running VSIX, not headlessly. Resources: `PropertyWindow_Category_Routing`, `PropertyWindow_DisplayName_ConnectorManuallyRouted`, `PropertyWindow_Description_ConnectorManuallyRouted`.
 
 ## Where the settings live
 
@@ -307,15 +466,11 @@ What the mutation pass caught, recorded because both are the kind of thing that 
 - `Layout_leaves_a_group_name_already_in_the_file_alone` originally named a group on `Show`, and passed with the never-overwrite guard deleted. Under the `Explicit` strategy a named shape's detected group *is* its stored name, so writing it back changes nothing. The only entity whose detected group can differ from its stored one is a lookup table, because the post-pass moves it — which is how the placement bug above was found.
 - No test can now distinguish the guard in `PersistGroupNames`, since the post-pass fix upholds the invariant before the write is reached. It is kept as defence at the write boundary, not claimed as covered.
 
-## Spike first
+## Shape-move staleness
 
-**Does a persisted route go stale when the user drags a shape?**
+**Does a persisted route go stale when the user drags a shape?** Yes — a `ManuallyRouted` link's `EdgePoints` are absolute, so the SDK freezes them and the endpoint detaches from the moved shape. That is exactly why the legacy code cleared the flag on move (and lost the route as a result).
 
-This is unresolved and now sits on the main path, since every connector in Modern mode is manually routed. The shipped DSL documentation is auto-generated stubs and says nothing useful.
-
-The spike is a small addition to `HeadlessRoutingSpikeTests`: set `ManuallyRouted = true` with known `EdgePoints`, move a shape, assert whether `EdgePoints` changed. Run it before writing `MsAglLayoutEngine`.
-
-The answer decides the UX. If DSL keeps endpoints attached to the shape and only middle segments go wrong, staleness is tolerable and a manual re-run suffices. If the whole polyline freezes in place, Modern mode needs re-layout or targeted re-routing on shape move.
+The answer, per *Connector routing and provenance*: the flag is left true, and the SDK re-routes the connector to track the shape on its own — testing showed a still-`ManuallyRouted` link is re-routed by the SDK on move, so no hand-written endpoint translation is needed (an early attempt at one was removed for fighting the SDK). What the fix guarantees is that the connector stays hand-routed and reopens to its saved points; the legacy defect was the flag being cleared on move, not the SDK's re-routing.
 
 ## Correction to another spec
 
@@ -323,6 +478,6 @@ The answer decides the UX. If DSL keeps endpoints attached to the shape and only
 
 ## Open questions
 
-1. **Shape-move behaviour in Modern mode.** Blocked on the spike above.
+1. ~~**Shape-move behaviour in Modern mode.**~~ **Answered:** provenance is sacred (`ManuallyRouted` never auto-cleared); manual routes re-attach their endpoint on move and keep their interior; the Modern engine skips them; a re-bake honours `ManualRouteRebakePolicy`. See *Connector routing and provenance*.
 2. ~~**Does the toggle state persist?**~~ **Answered: yes.** `LayoutMode` on `TDiagram`, as the alternative in this entry proposed. Inferring it from `ManuallyRouted="true"` across every connector was rejected for the reason given: it cannot be told apart from a user hand-routing one connector.
 3. ~~**No UI for editing `GroupName`.**~~ **Answered: it is on the shape's property sheet**, beside `Fill Color`, from the first release rather than later.

@@ -20,6 +20,9 @@ namespace Microsoft.Data.Entity.Design.Edmx.Designer
         internal static readonly string AttributeId = "DiagramId";
         internal static readonly string AttributeLayoutMode = "LayoutMode";
         internal static readonly string AttributeConnectorMode = "ConnectorMode";
+        internal static readonly string AttributeEnableGrouping = "EnableGrouping";
+        internal static readonly string AttributeGenerateGroupNames = "GenerateGroupNames";
+        internal static readonly string AttributeManualRouteRebakePolicy = "ManualRouteRebakePolicy";
 
         private readonly List<EntityTypeShape> _entityTypeShapes = [];
         private readonly List<AssociationConnector> _associationConnectors = [];
@@ -30,6 +33,9 @@ namespace Microsoft.Data.Entity.Design.Edmx.Designer
         private DefaultableValue<bool> _displayTypeAttr;
         private DefaultableValue<LayoutMode> _layoutModeAttr;
         private DefaultableValue<ConnectorMode> _connectorModeAttr;
+        private DefaultableValue<bool> _enableGroupingAttr;
+        private DefaultableValue<bool> _generateGroupNamesAttr;
+        private DefaultableValue<RebakePolicy> _manualRouteRebakePolicyAttr;
         private DiagramIdDefaultableValue _id;
 
         internal Diagram(EFElement parent, XElement element)
@@ -117,6 +123,55 @@ namespace Microsoft.Data.Entity.Design.Edmx.Designer
             {
                 _connectorModeAttr ??= new ConnectorModeDefaultableValue(this);
                 return _connectorModeAttr;
+            }
+        }
+
+        /// <summary>
+        ///     Whether a modern layout clusters shapes into groups.
+        /// </summary>
+        /// <remarks>
+        ///     Only meaningful alongside <see cref="Designer.LayoutMode.Modern" />, and off by default: grouping
+        ///     helps some diagrams and hurts others, so it is opt-in rather than imposed. See
+        ///     specs/diagram-layout-engines.md.
+        /// </remarks>
+        internal DefaultableValue<bool> EnableGrouping
+        {
+            get
+            {
+                _enableGroupingAttr ??= new EnableGroupingDefaultableValue(this);
+                return _enableGroupingAttr;
+            }
+        }
+
+        /// <summary>
+        ///     Whether a modern layout writes a detected group name onto a shape that has none.
+        /// </summary>
+        /// <remarks>
+        ///     Off by default, and subordinate to <see cref="EnableGrouping" />: with grouping off nothing is
+        ///     generated regardless of this value. See specs/diagram-layout-engines.md.
+        /// </remarks>
+        internal DefaultableValue<bool> GenerateGroupNames
+        {
+            get
+            {
+                _generateGroupNamesAttr ??= new GenerateGroupNamesDefaultableValue(this);
+                return _generateGroupNamesAttr;
+            }
+        }
+
+        /// <summary>
+        ///     What a modern re-layout does to connectors a human has hand-routed.
+        /// </summary>
+        /// <remarks>
+        ///     Defaults to <see cref="RebakePolicy.Ask" /> so nothing is discarded without the user's say-so. See
+        ///     specs/diagram-layout-engines.md.
+        /// </remarks>
+        internal DefaultableValue<RebakePolicy> ManualRouteRebakePolicy
+        {
+            get
+            {
+                _manualRouteRebakePolicyAttr ??= new ManualRouteRebakePolicyDefaultableValue(this);
+                return _manualRouteRebakePolicyAttr;
             }
         }
 
@@ -242,6 +297,9 @@ namespace Microsoft.Data.Entity.Design.Edmx.Designer
                 yield return DisplayType;
                 yield return LayoutMode;
                 yield return ConnectorMode;
+                yield return EnableGrouping;
+                yield return GenerateGroupNames;
+                yield return ManualRouteRebakePolicy;
                 yield return Id;
             }
         }
@@ -276,6 +334,9 @@ namespace Microsoft.Data.Entity.Design.Edmx.Designer
             s.Add(AttributeDisplayType);
             s.Add(AttributeLayoutMode);
             s.Add(AttributeConnectorMode);
+            s.Add(AttributeEnableGrouping);
+            s.Add(AttributeGenerateGroupNames);
+            s.Add(AttributeManualRouteRebakePolicy);
             s.Add(AttributeId);
             return s;
         }
@@ -308,6 +369,12 @@ namespace Microsoft.Data.Entity.Design.Edmx.Designer
             _layoutModeAttr = null;
             ClearEFObject(_connectorModeAttr);
             _connectorModeAttr = null;
+            ClearEFObject(_enableGroupingAttr);
+            _enableGroupingAttr = null;
+            ClearEFObject(_generateGroupNamesAttr);
+            _generateGroupNamesAttr = null;
+            ClearEFObject(_manualRouteRebakePolicyAttr);
+            _manualRouteRebakePolicyAttr = null;
 
             ClearEFObjectCollection(_entityTypeShapes);
             ClearEFObjectCollection(_associationConnectors);
@@ -455,6 +522,60 @@ namespace Microsoft.Data.Entity.Design.Edmx.Designer
             public override ConnectorMode DefaultValue
             {
                 get { return Designer.ConnectorMode.Legacy; }
+            }
+        }
+
+        private class EnableGroupingDefaultableValue : DefaultableValue<bool>
+        {
+            internal EnableGroupingDefaultableValue(EFElement parent)
+                : base(parent, AttributeEnableGrouping)
+            {
+            }
+
+            internal override string AttributeName
+            {
+                get { return AttributeEnableGrouping; }
+            }
+
+            public override bool DefaultValue
+            {
+                get { return false; }
+            }
+        }
+
+        private class GenerateGroupNamesDefaultableValue : DefaultableValue<bool>
+        {
+            internal GenerateGroupNamesDefaultableValue(EFElement parent)
+                : base(parent, AttributeGenerateGroupNames)
+            {
+            }
+
+            internal override string AttributeName
+            {
+                get { return AttributeGenerateGroupNames; }
+            }
+
+            public override bool DefaultValue
+            {
+                get { return false; }
+            }
+        }
+
+        private class ManualRouteRebakePolicyDefaultableValue : DefaultableValue<RebakePolicy>
+        {
+            internal ManualRouteRebakePolicyDefaultableValue(EFElement parent)
+                : base(parent, AttributeManualRouteRebakePolicy)
+            {
+            }
+
+            internal override string AttributeName
+            {
+                get { return AttributeManualRouteRebakePolicy; }
+            }
+
+            public override RebakePolicy DefaultValue
+            {
+                get { return RebakePolicy.Ask; }
             }
         }
 

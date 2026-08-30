@@ -699,6 +699,21 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
                     $"Select the {targetNavProp.Name} navigation property"));
             }
 
+            // Redraw is a modern-layout affordance: it re-routes through the swappable engine. In Legacy the SDK
+            // owns routing, so the item has nothing to offer and is left off the menu entirely.
+            if ((connector.Diagram as EntityDesignerSurface)?.LayoutMode == Microsoft.Data.Entity.Design.Edmx.Designer.LayoutMode.Modern)
+            {
+                // Separator before the routing section
+                _associationMenu.MenuItems.Add(MenuSeparatorDefinition.Instance);
+
+                // Redraw just this connector's route, leaving every shape - and the ManuallyRouted flag - alone.
+                _associationMenu.MenuItems.Add(new MenuCommandDefinition(
+                    "RedrawConnector",
+                    "Redraw Route",
+                    KnownMonikers.Refresh,
+                    "Re-route this connector using the diagram's layout engine"));
+            }
+
             // Separator before Show section
             _associationMenu.MenuItems.Add(MenuSeparatorDefinition.Instance);
 
@@ -756,6 +771,10 @@ namespace Microsoft.VisualStudio.Data.Entity.Package
 
                 case "SelectTargetProperty":
                     ExecuteSelectProperty(diagram, association?.TargetEntityType, association?.TargetNavigationProperty);
+                    break;
+
+                case "RedrawConnector":
+                    diagram.RerouteConnectors(new[] { _currentAssociation });
                     break;
 
                 case "ShowInModelBrowser":

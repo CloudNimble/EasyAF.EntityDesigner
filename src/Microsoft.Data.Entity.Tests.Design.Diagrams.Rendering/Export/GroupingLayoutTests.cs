@@ -157,7 +157,7 @@ namespace Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering.Export
         [TestMethod]
         public void Layout_records_the_groups_it_detected_on_shapes_that_had_none()
         {
-            WithLoaded(ColouredMediaModel(), loaded =>
+            WithLoaded(ColouredMediaModel().Grouping(enable: true, generateNames: true), loaded =>
             {
                 loaded.Diagram.AutoLayoutDiagram();
 
@@ -165,6 +165,46 @@ namespace Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering.Export
                 {
                     shape.ModelShape.GroupName.Value.Should().NotBeNullOrWhiteSpace(
                         $"the guess for '{shape.Name}' has to reach the file for anyone to correct it");
+                }
+            });
+        }
+
+        [TestMethod]
+        public void Grouping_off_generates_no_names_even_with_generation_on()
+        {
+            // Rule: generation is subordinate to grouping. With grouping off there is nothing to generate for,
+            // whatever the generate flag says. See specs/diagram-layout-engines.md.
+            WithLoaded(ColouredMediaModel().Grouping(enable: false, generateNames: true), loaded =>
+            {
+                loaded.Diagram.AutoLayoutDiagram();
+
+                foreach (var shape in Shapes(loaded))
+                {
+                    shape.ModelShape.GroupName.Value.Should().BeNullOrWhiteSpace(
+                        $"'{shape.Name}' must keep no group while grouping is off");
+                }
+            });
+        }
+
+        [TestMethod]
+        public void Grouping_on_with_generation_off_writes_no_names()
+        {
+            // Rule: grouping on, generation off clusters by names already in the file and invents none.
+            var builder = ColouredMediaModel()
+                .Shape("Post", groupName: "Publishing")
+                .Grouping(enable: true, generateNames: false);
+
+            WithLoaded(builder, loaded =>
+            {
+                loaded.Diagram.AutoLayoutDiagram();
+
+                Find(Shapes(loaded), "Post").ModelShape.GroupName.Value.Should().Be(
+                    "Publishing", "a name already in the file is what the clustering uses");
+
+                foreach (var shape in Shapes(loaded).Where(shape => shape.TypedModelElement.Name != "Post"))
+                {
+                    shape.ModelShape.GroupName.Value.Should().BeNullOrWhiteSpace(
+                        $"'{shape.TypedModelElement.Name}' had no group and generation is off, so none should be written");
                 }
             });
         }
@@ -188,7 +228,9 @@ namespace Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering.Export
         [TestMethod]
         public void Layout_leaves_a_group_name_already_in_the_file_alone()
         {
-            var builder = ColouredMediaModel().Shape("PostType", groupName: "Taxonomy");
+            var builder = ColouredMediaModel()
+                .Shape("PostType", groupName: "Taxonomy")
+                .Grouping(enable: true, generateNames: true);
 
             WithLoaded(builder, loaded =>
             {
@@ -202,7 +244,11 @@ namespace Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering.Export
         [TestMethod]
         public void ClearGroupNames_drops_the_names_in_the_file_including_ones_the_user_set()
         {
-            var builder = ColouredMediaModel().Shape("PostType", groupName: "Taxonomy");
+            // Grouping and generation both on, so clearing re-derives - the case where the reset has to be shown
+            // to override even names the user set.
+            var builder = ColouredMediaModel()
+                .Shape("PostType", groupName: "Taxonomy")
+                .Grouping(enable: true, generateNames: true);
 
             WithLoaded(builder, loaded =>
             {
@@ -228,11 +274,34 @@ namespace Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering.Export
         }
 
         [TestMethod]
+        public void Clearing_group_names_with_generation_off_leaves_them_cleared()
+        {
+            // Rule: clearing re-lays out, but with generation off nothing comes back. There is a stable state
+            // here where the file has no group names and keeps it. See specs/diagram-layout-engines.md.
+            var builder = ColouredMediaModel()
+                .Shape("PostType", groupName: "Taxonomy")
+                .Grouping(enable: true, generateNames: false);
+
+            WithLoaded(builder, loaded =>
+            {
+                loaded.Diagram.AutoLayoutDiagram();
+
+                loaded.Diagram.ClearGroupNames();
+
+                foreach (var shape in Shapes(loaded))
+                {
+                    shape.ModelShape.GroupName.Value.Should().BeNullOrWhiteSpace(
+                        $"'{shape.TypedModelElement.Name}' must stay cleared while generation is off");
+                }
+            });
+        }
+
+        [TestMethod]
         public void Changing_a_group_name_rearranges_the_diagram_on_its_own()
         {
             // No AutoLayoutDiagram call anywhere in this test. Editing the attribute is the whole trigger, which
             // is what the property window does and what was missing.
-            WithLoaded(ColouredMediaModel(), loaded =>
+            WithLoaded(ColouredMediaModel().Grouping(enable: true, generateNames: true), loaded =>
             {
                 loaded.Diagram.AutoLayoutDiagram();
 

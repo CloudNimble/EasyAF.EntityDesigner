@@ -46,7 +46,9 @@ namespace Microsoft.Data.Entity.Design.Edmx.Designer
             return attribute.Parent switch
             {
                 Diagram => string.Equals(name, Diagram.AttributeLayoutMode, StringComparison.Ordinal)
-                    || string.Equals(name, Diagram.AttributeConnectorMode, StringComparison.Ordinal),
+                    || string.Equals(name, Diagram.AttributeConnectorMode, StringComparison.Ordinal)
+                    || string.Equals(name, Diagram.AttributeEnableGrouping, StringComparison.Ordinal)
+                    || string.Equals(name, Diagram.AttributeGenerateGroupNames, StringComparison.Ordinal),
 
                 EntityTypeShape => string.Equals(name, EntityTypeShape.AttributeGroupName, StringComparison.Ordinal),
 

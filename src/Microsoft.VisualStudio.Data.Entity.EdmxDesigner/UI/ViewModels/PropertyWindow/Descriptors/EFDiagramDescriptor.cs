@@ -25,7 +25,7 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
         ///     that is what the layout will actually do. Showing the stored value would offer the user a choice
         ///     the converter beside it has already ruled out.
         /// </remarks>
-        [LocCategory("PropertyWindow_Category_Layout")]
+        [LocCategory("PropertyWindow_Category_ModernLayoutOptions")]
         [LocDisplayName("PropertyWindow_DisplayName_ConnectorMode")]
         [LocDescription("PropertyWindow_Description_ConnectorMode")]
         [TypeConverter(typeof(ConnectorModeConverter))]
@@ -73,6 +73,50 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
         }
 
         /// <summary>
+        ///     Whether a modern layout clusters this diagram's shapes into groups.
+        /// </summary>
+        [LocCategory("PropertyWindow_Category_ModernLayoutOptions")]
+        [LocDisplayName("PropertyWindow_DisplayName_EnableGrouping")]
+        [LocDescription("PropertyWindow_Description_EnableGrouping")]
+        public bool EnableGrouping
+        {
+            get { return TypedEFElement.EnableGrouping.Value; }
+            set
+            {
+                if (value == TypedEFElement.EnableGrouping.Value)
+                {
+                    return;
+                }
+
+                var cpc = PropertyWindowViewModelHelper.GetCommandProcessorContext();
+                CommandProcessor.InvokeSingleCommand(
+                    cpc, new UpdateDefaultableValueCommand<bool>(TypedEFElement.EnableGrouping, value));
+            }
+        }
+
+        /// <summary>
+        ///     Whether a modern layout writes a detected group name onto a shape that has none.
+        /// </summary>
+        [LocCategory("PropertyWindow_Category_ModernLayoutOptions")]
+        [LocDisplayName("PropertyWindow_DisplayName_GenerateGroupNames")]
+        [LocDescription("PropertyWindow_Description_GenerateGroupNames")]
+        public bool GenerateGroupNames
+        {
+            get { return TypedEFElement.GenerateGroupNames.Value; }
+            set
+            {
+                if (value == TypedEFElement.GenerateGroupNames.Value)
+                {
+                    return;
+                }
+
+                var cpc = PropertyWindowViewModelHelper.GetCommandProcessorContext();
+                CommandProcessor.InvokeSingleCommand(
+                    cpc, new UpdateDefaultableValueCommand<bool>(TypedEFElement.GenerateGroupNames, value));
+            }
+        }
+
+        /// <summary>
         ///     Hides <see cref="ConnectorMode" /> unless the diagram is in modern layout.
         /// </summary>
         /// <remarks>
@@ -81,6 +125,29 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Property
         ///     draw, so offering a choice there would be offering one that does nothing.
         /// </remarks>
         internal bool IsBrowsableConnectorMode()
+        {
+            return TypedEFElement.LayoutMode.Value == LayoutMode.Modern;
+        }
+
+        /// <summary>
+        ///     Hides <see cref="EnableGrouping" /> unless the diagram is in modern layout.
+        /// </summary>
+        /// <remarks>
+        ///     The legacy engine has no notion of groups. Found by the "IsBrowsable" + property name convention.
+        /// </remarks>
+        internal bool IsBrowsableEnableGrouping()
+        {
+            return TypedEFElement.LayoutMode.Value == LayoutMode.Modern;
+        }
+
+        /// <summary>
+        ///     Hides <see cref="GenerateGroupNames" /> unless the diagram is in modern layout.
+        /// </summary>
+        /// <remarks>
+        ///     Shown independently of <see cref="EnableGrouping" />: the two are separate switches, and with
+        ///     grouping off nothing is generated regardless of this value.
+        /// </remarks>
+        internal bool IsBrowsableGenerateGroupNames()
         {
             return TypedEFElement.LayoutMode.Value == LayoutMode.Modern;
         }

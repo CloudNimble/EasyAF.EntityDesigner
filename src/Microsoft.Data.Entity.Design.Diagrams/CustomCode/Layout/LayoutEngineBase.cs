@@ -65,6 +65,24 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
         /// </remarks>
         public abstract void Layout(EntityDesignerSurface surface, IList shapes, ConnectorMode connectorMode);
 
+        /// <summary>
+        ///     Re-routes <paramref name="connectors" /> in place, without moving any shape.
+        /// </summary>
+        /// <param name="surface">The diagram the connectors belong to.</param>
+        /// <param name="connectors">
+        ///     The connectors to re-route, as <see cref="Microsoft.VisualStudio.Modeling.Diagrams.BinaryLinkShape" />s.
+        ///     Anything in the list that is not a routable connector is ignored.
+        /// </param>
+        /// <remarks>
+        ///     This is placement-free: every shape stays exactly where it is and only the named connectors are
+        ///     redrawn, using the rest of the diagram as obstacles. It exists for "redraw this connector" - a user
+        ///     who dislikes how one route paints and wants the engine to redo just that one. The connector's
+        ///     <see cref="Microsoft.VisualStudio.Modeling.Diagrams.LinkShape.ManuallyRouted" /> flag is left
+        ///     untouched: whether the new route is a human's or the engine's is not this method's call to change,
+        ///     and the in-memory view model owns what is painted. See specs/diagram-layout-engines.md.
+        /// </remarks>
+        public abstract void RouteConnectors(EntityDesignerSurface surface, IList connectors);
+
         #endregion
 
     }

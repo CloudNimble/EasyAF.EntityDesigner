@@ -112,7 +112,19 @@
     <xs:attribute name="DisplayType" type="xs:boolean" use="optional" />
     <xs:attribute name="LayoutMode" type="edmx:TLayoutMode" use="optional" />
     <xs:attribute name="ConnectorMode" type="edmx:TConnectorMode" use="optional" />
+    <xs:attribute name="EnableGrouping" type="xs:boolean" use="optional" />
+    <xs:attribute name="GenerateGroupNames" type="xs:boolean" use="optional" />
+    <xs:attribute name="ManualRouteRebakePolicy" type="edmx:TRebakePolicy" use="optional" />
   </xs:complexType>
+  <!-- What a modern re-layout does to hand-routed connectors. Ask prompts (VS only); Keep/Clear are the
+       remembered answers. Absent means Ask. -->
+  <xs:simpleType name="TRebakePolicy">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Ask" />
+      <xs:enumeration value="Keep" />
+      <xs:enumeration value="Clear" />
+    </xs:restriction>
+  </xs:simpleType>
   <xs:simpleType name="TLayoutMode">
     <xs:restriction base="xs:string">
       <xs:enumeration value="Legacy" />

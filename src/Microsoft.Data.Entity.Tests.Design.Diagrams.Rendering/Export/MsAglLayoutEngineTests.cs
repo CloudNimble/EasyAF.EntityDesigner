@@ -115,12 +115,104 @@ namespace Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering.Export
             }
         }
 
+        [TestMethod]
+        public void RouteConnectors_redraws_the_connector_without_moving_any_shape()
+        {
+            var edmxPath = TestEdmx.Write();
+
+            try
+            {
+                using (var loaded = EdmxDiagramLoader.Load(edmxPath, layoutManager: CreateManager()))
+                {
+                    var shapes = loaded.Diagram.NestedChildShapes.OfType<EntityTypeShape>().ToList();
+                    var connector = loaded.Diagram.NestedChildShapes.OfType<BinaryLinkShape>().First();
+
+                    loaded.Diagram.AutoLayoutDiagram();
+
+                    // Clear the route first, so points coming back proves the redraw actually ran rather than the
+                    // call being dropped by the laying-out guard.
+                    ClearRoute(connector);
+                    var positionsBefore = shapes.Select(s => s.AbsoluteBounds).ToList();
+
+                    loaded.Diagram.RerouteConnectors(new[] { connector });
+
+                    connector.EdgePoints.Should().NotBeNull();
+                    connector.EdgePoints.Count.Should().BeGreaterThanOrEqualTo(
+                        2, "the redraw must produce a drawable route for the connector");
+
+                    var positionsAfter = shapes.Select(s => s.AbsoluteBounds).ToList();
+                    positionsAfter.Should().Equal(
+                        positionsBefore, "a redraw re-routes only the connector and must never move a shape");
+                }
+            }
+            finally
+            {
+                File.Delete(edmxPath);
+            }
+        }
+
+        [TestMethod]
+        public void RouteConnectors_leaves_the_manually_routed_flag_exactly_as_it_found_it()
+        {
+            var edmxPath = TestEdmx.Write();
+
+            try
+            {
+                using (var loaded = EdmxDiagramLoader.Load(edmxPath, layoutManager: CreateManager()))
+                {
+                    var connector = loaded.Diagram.NestedChildShapes.OfType<BinaryLinkShape>().First();
+
+                    loaded.Diagram.AutoLayoutDiagram();
+
+                    // A redraw repaints the route; whose route it is - human or engine - is not its call to change.
+                    foreach (var flag in new[] { false, true })
+                    {
+                        SetManuallyRouted(connector, flag);
+                        ClearRoute(connector);
+
+                        loaded.Diagram.RerouteConnectors(new[] { connector });
+
+                        connector.EdgePoints.Count.Should().BeGreaterThanOrEqualTo(2, "the redraw ran");
+                        connector.ManuallyRouted.Should().Be(flag, "a redraw must never touch the provenance flag");
+                    }
+                }
+            }
+            finally
+            {
+                File.Delete(edmxPath);
+            }
+        }
+
         /// <summary>
         ///     A manager whose only engine is the MSAGL one, so <c>AutoLayoutDiagram</c> exercises it.
         /// </summary>
         private static LayoutEngineManager CreateManager()
         {
             return new LayoutEngineManager([new MsAglLayoutEngine()]);
+        }
+
+        /// <summary>
+        ///     Sets a connector's <c>ManuallyRouted</c> flag inside its own store transaction.
+        /// </summary>
+        private static void SetManuallyRouted(BinaryLinkShape connector, bool value)
+        {
+            using (var tx = connector.Store.TransactionManager.BeginTransaction("Set ManuallyRouted"))
+            {
+                connector.ManuallyRouted = value;
+                tx.Commit();
+            }
+        }
+
+        /// <summary>
+        ///     Empties a connector's route inside its own store transaction, so a later redraw has to rebuild it.
+        /// </summary>
+        private static void ClearRoute(BinaryLinkShape connector)
+        {
+            using (var tx = connector.Store.TransactionManager.BeginTransaction("Clear route"))
+            {
+                connector.EdgePoints = new EdgePointCollection();
+                tx.Commit();
+            }
         }
 
         /// <summary>

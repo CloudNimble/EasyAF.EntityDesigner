@@ -59,6 +59,12 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
         /// </remarks>
         private const string RootClusterName = "<root>";
 
+        /// <summary>
+        ///     The grouping handed to the graph builder when grouping is off - no shape in any cluster.
+        /// </summary>
+        private static readonly IReadOnlyDictionary<EntityTypeShape, string> EmptyGroups =
+            new Dictionary<EntityTypeShape, string>();
+
         #endregion
 
         #region Properties
@@ -105,10 +111,28 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
 
             var routing = connectorMode == ConnectorMode.Legacy ? DefaultConnectorMode : connectorMode;
 
+            // Grouping and name generation are opt-in, both off by default, and name generation is subordinate to
+            // grouping - so nothing is generated while grouping is off, whatever the generate flag says. See
+            // specs/diagram-layout-engines.md.
+            //   grouping off            -> no clusters, nothing written
+            //   grouping on, gen off     -> cluster by names already in the file only
+            //   grouping on, gen on      -> detect, cluster, and write back (never overwriting)
             // Grouped before anything is placed, and written back before anything is moved, so the names the
             // layout used are the names in the file even if the arrangement is later undone.
-            var groups = GroupingLayout.Group(entityShapes);
-            surface.PersistGroupNames(groups);
+            IReadOnlyDictionary<EntityTypeShape, string> groups;
+            if (!surface.EnableGrouping)
+            {
+                groups = EmptyGroups;
+            }
+            else if (surface.GenerateGroupNames)
+            {
+                groups = GroupingLayout.Group(entityShapes);
+                surface.PersistGroupNames(groups);
+            }
+            else
+            {
+                groups = GroupingLayout.GroupByExisting(entityShapes);
+            }
 
             using (surface.BeginLongOperation())
             {
@@ -132,8 +156,88 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
                     () =>
                     {
                         ApplyShapePositions(nodesByShape, origin);
-                        ApplyConnectorRoutes(connectorsByEdge, origin);
+                        ApplyConnectorRoutes(connectorsByEdge, origin, markManuallyRouted: true);
                     });
+            }
+        }
+
+        /// <inheritdoc />
+        public override void RouteConnectors(EntityDesignerSurface surface, IList connectors)
+        {
+            if (surface is null || connectors is null)
+            {
+                return;
+            }
+
+            var links = connectors.OfType<BinaryLinkShape>().ToList();
+            if (links.Count == 0)
+            {
+                return;
+            }
+
+            // Every shape on the surface is an obstacle, placed at its current position - nothing moves. The graph
+            // carries only the connectors being redrawn as edges, so the router paths those and leaves the rest.
+            // Designer coordinates map to MSAGL's (Y up) as (x*scale, -y*scale); feeding that in and reading it back
+            // through the origin=(0,0) mirror in ApplyConnectorRoutes returns points in the shapes' own coordinates.
+            var graph = new GeometryGraph();
+            var nodesByShape = new Dictionary<EntityTypeShape, MsAglNode>();
+
+            foreach (var shape in surface.NestedChildShapes.OfType<EntityTypeShape>())
+            {
+                var bounds = shape.AbsoluteBounds;
+                var center = new MsAglPoint(
+                    (bounds.X + bounds.Width / 2.0) * MsAglConstants.DpiScale,
+                    -(bounds.Y + bounds.Height / 2.0) * MsAglConstants.DpiScale);
+
+                var node = new MsAglNode(
+                    CurveFactory.CreateRectangle(
+                        bounds.Width * MsAglConstants.DpiScale,
+                        bounds.Height * MsAglConstants.DpiScale,
+                        center),
+                    shape);
+
+                graph.Nodes.Add(node);
+                nodesByShape[shape] = node;
+            }
+
+            var connectorsByEdge = new Dictionary<Edge, BinaryLinkShape>();
+            var seen = new HashSet<BinaryLinkShape>();
+
+            foreach (var link in links)
+            {
+                if (!seen.Add(link)
+                    || link.FromShape is not EntityTypeShape from
+                    || link.ToShape is not EntityTypeShape to
+                    || !nodesByShape.TryGetValue(from, out var fromNode)
+                    || !nodesByShape.TryGetValue(to, out var toNode))
+                {
+                    continue;
+                }
+
+                var edge = new Edge(fromNode, toNode);
+                graph.Edges.Add(edge);
+                connectorsByEdge[edge] = link;
+            }
+
+            if (connectorsByEdge.Count == 0)
+            {
+                return;
+            }
+
+            using (surface.BeginLongOperation())
+            {
+                var router = new RectilinearEdgeRouter(
+                    graph,
+                    MsAglConstants.RouterPadding,
+                    MsAglConstants.RouterCornerFitRadius,
+                    MsAglConstants.RouterUseSparseVisibilityGraph,
+                    MsAglConstants.RouterEdgeSeparation);
+                router.Run();
+
+                // markManuallyRouted: false - a redraw repaints the route and leaves its provenance flag alone.
+                surface.InDiagramTransaction(
+                    EntityDesignerRes.Tx_LayoutDiagram,
+                    () => ApplyConnectorRoutes(connectorsByEdge, new MsAglPoint(0.0, 0.0), markManuallyRouted: false));
             }
         }
 
@@ -149,9 +253,14 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
         ///     what makes the connector change rules persist the points to the EDMX. An edge the router could not
         ///     path is left alone rather than given a straight line, so a failure is visible instead of quietly
         ///     drawn through whatever is in the way.
+        ///     <para>
+        ///     A full layout owns the routes it produces and sets the flag; a "redraw this connector" pass leaves
+        ///     the flag as it found it (<paramref name="markManuallyRouted" /> is <see langword="false" />) - it is
+        ///     only repainting one connector, not deciding whose route it is.
+        ///     </para>
         /// </remarks>
         private static void ApplyConnectorRoutes(
-            IDictionary<Edge, BinaryLinkShape> connectorsByEdge, MsAglPoint origin)
+            IDictionary<Edge, BinaryLinkShape> connectorsByEdge, MsAglPoint origin, bool markManuallyRouted)
         {
             foreach (var pair in connectorsByEdge)
             {
@@ -161,7 +270,11 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
                     continue;
                 }
 
-                pair.Value.ManuallyRouted = true;
+                if (markManuallyRouted)
+                {
+                    pair.Value.ManuallyRouted = true;
+                }
+
                 pair.Value.EdgePoints = points;
             }
         }

@@ -134,6 +134,40 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
         ///     <c>PlaceReferenceTablesWithOwners</c> then runs regardless of which one it was - a colour grouping
         ///     wants its uncoloured lookup tables pulled to their owners just as much as a structural one does.
         /// </remarks>
+        /// <summary>
+        ///     Groups shapes by the <c>GroupName</c> already recorded on them, detecting nothing and writing
+        ///     nothing.
+        /// </summary>
+        /// <param name="shapes">The shapes to group.</param>
+        /// <returns>
+        ///     A map containing only the shapes that carry a non-empty <c>GroupName</c>, each to that name.
+        ///     Shapes with no name are absent, so a caller leaves them ungrouped.
+        /// </returns>
+        /// <remarks>
+        ///     Used when grouping is on but name generation is off: the user gets clusters for the names they
+        ///     typed and nothing invented on top. See specs/diagram-layout-engines.md.
+        /// </remarks>
+        internal static IReadOnlyDictionary<EntityTypeShape, string> GroupByExisting(IReadOnlyList<EntityTypeShape> shapes)
+        {
+            var groups = new Dictionary<EntityTypeShape, string>();
+
+            if (shapes is null)
+            {
+                return groups;
+            }
+
+            foreach (var shape in shapes)
+            {
+                var name = shape?.ModelShape?.GroupName.Value;
+                if (!string.IsNullOrWhiteSpace(name))
+                {
+                    groups[shape] = name.Trim();
+                }
+            }
+
+            return groups;
+        }
+
         internal static IReadOnlyDictionary<EntityTypeShape, string> Group(IReadOnlyList<EntityTypeShape> shapes)
         {
             var groups = new Dictionary<EntityTypeShape, string>();

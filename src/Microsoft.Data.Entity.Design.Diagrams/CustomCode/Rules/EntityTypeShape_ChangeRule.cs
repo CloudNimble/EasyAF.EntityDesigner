@@ -57,10 +57,11 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Rules
                 if (e.DomainProperty.Id == NodeShape.AbsoluteBoundsDomainPropertyId
                     || e.DomainProperty.Id == NodeShape.IsExpandedDomainPropertyId)
                 {
-                    foreach (var link in entityShape.Link)
-                    {
-                        link.ManuallyRouted = false;
-                    }
+                    // Deliberately does NOT clear ManuallyRouted on the connected links. Clearing it here is what
+                    // made the legacy designer throw away a hand-fixed route on the next nudge and bring the bad
+                    // auto-route back on reopen. With the flag left alone, the Modeling SDK keeps the routed
+                    // connector's interior bends and re-attaches only its endpoint to the moved shape - which is
+                    // exactly the minimal adjustment wanted. See specs/diagram-layout-engines.md.
                     ViewModelChangeContext.GetNewOrExistingContext(tx)
                         .ViewModelChanges.Add(new EntityTypeShapeChange(entityShape, e.DomainProperty.Id));
                 }

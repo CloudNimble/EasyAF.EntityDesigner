@@ -34,8 +34,8 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio
         /// </summary>
         public VSXmlModelProvider(IServiceProvider services, IXmlDesignerPackage xmlDesignerPackage)
         {
-            Debug.Assert(services != null, "services != null");
-            Debug.Assert(xmlDesignerPackage != null, "xmlDesignerPackage != null");
+            Debug.Assert(services != null);
+            Debug.Assert(xmlDesignerPackage != null);
             _xmlDesignerPackage = xmlDesignerPackage;
             _services = services;
             if (_xmlStore == null)
@@ -276,7 +276,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio
             {
                 _xmlModels.Remove(oldName);
                 _xmlModels.Add(newName, vsXmlModel);
-                Debug.Assert(new Uri(vsXmlModel.Name) == newName, "new Uri(vsXmlModel.Name) == newName");
+                Debug.Assert(new Uri(vsXmlModel.Name) == newName);
                 return true;
             }
             return false;
@@ -287,7 +287,7 @@ namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio
             get { return _xmlStore?.UndoManager; }
             set
             {
-                Debug.Assert(_xmlStore != null, "_xmlStore != null");
+                Debug.Assert(_xmlStore != null);
                 _xmlStore?.UndoManager = value;
             }
         }

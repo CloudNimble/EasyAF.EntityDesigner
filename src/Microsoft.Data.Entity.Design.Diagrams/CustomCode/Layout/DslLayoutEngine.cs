@@ -135,6 +135,52 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Layout
             } // restore cursor
         }
 
+        /// <inheritdoc />
+        /// <remarks>
+        ///     Legacy routing is the SDK's own. This freezes every shape so nothing moves, then asks the SDK to
+        ///     re-route just the given connectors at right angles. A connector the user has manually routed is left
+        ///     as the SDK leaves it - Legacy has no notion of overriding a frozen route, and the flag is untouched
+        ///     either way.
+        /// </remarks>
+        public override void RouteConnectors(EntityDesignerSurface surface, IList connectors)
+        {
+            if (surface is null || connectors is null)
+            {
+                return;
+            }
+
+            var links = new ArrayList();
+            foreach (var connector in connectors)
+            {
+                if (connector is BinaryLinkShape link)
+                {
+                    links.Add(link);
+                }
+            }
+
+            if (links.Count == 0)
+            {
+                return;
+            }
+
+            using (surface.BeginLongOperation())
+            {
+                surface.InDiagramTransaction(
+                    EntityDesignerRes.Tx_LayoutDiagram,
+                    () =>
+                    {
+                        using (new SaveLayoutFlags(new ArrayList(surface.NestedChildShapes), NoMoveShapeFlags))
+                        {
+                            surface.AutoLayoutShapeElements(
+                                links,
+                                VGRoutingStyle.VGRouteRightAngle,
+                                PlacementValueStyle.VGPlaceUndirected,
+                                false);
+                        }
+                    });
+            }
+        }
+
         #endregion
 
         #region Private Methods
