@@ -4,10 +4,10 @@
         <RootNamespace>Microsoft.Data.Entity.Design.Diagrams.Tools</RootNamespace>
         <AssemblyName>Microsoft.Data.Entity.Design.Diagrams.Tools</AssemblyName>
 
-        <!-- net10.0-windows, not net10.0: the renderer sits on the WinForms/WPF based Modeling SDK assemblies. -->
-        <TargetFrameworks>net10.0-windows</TargetFrameworks>
-        <UseWindowsForms>true</UseWindowsForms>
-        <UseWPF>true</UseWPF>
+        <!-- net10.0, not net10.0-windows: PackAsTool rejects any TargetPlatformIdentifier (NETSDK1146), so a
+             -windows moniker makes this unshippable as a dotnet tool. The Windows Desktop assemblies come from
+             the FrameworkReference below. Windows only at runtime either way. -->
+        <TargetFrameworks>net10.0</TargetFrameworks>
 
         <!-- Directory.Build.props flattens output, which collides when multi-targeting. -->
         <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
@@ -27,6 +27,10 @@
         <ToolCommandName>dotnet-edmx</ToolCommandName>
         <PackAsTool>true</PackAsTool>
     </PropertyGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.WindowsDesktop.App" />
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="McMaster.Extensions.Hosting.CommandLine" />
