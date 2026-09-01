@@ -1,5 +1,12 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using FluentAssertions;
+using Microsoft.Data.Entity.Design.DatabaseGeneration;
+using Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators;
+using Microsoft.Data.Entity.Design.DatabaseGeneration.Properties;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Common;
@@ -8,13 +15,6 @@ using System.Data.Entity.Infrastructure.DependencyResolution;
 using System.Globalization;
 using System.Linq;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators;
-using Microsoft.Data.Entity.Design.DatabaseGeneration.Properties;
-using Moq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentAssertions;
-using Microsoft.Data.Entity.Design.DatabaseGeneration;
-using Microsoft.Data.Entity.Design.EntityFramework;
 
 namespace Microsoft.Data.Entity.Tests.Design.DatabaseGeneration
 {

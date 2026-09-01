@@ -1,12 +1,6 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.Globalization;
 using Microsoft.Data.Entity.Design.Diagrams.CustomSerializer;
-using Microsoft.Data.Entity.Design.Diagrams.View;
 using Microsoft.Data.Entity.Design.Diagrams.Utils;
 using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
@@ -14,6 +8,11 @@ using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Diagrams.GraphObject;
 using Microsoft.VisualStudio.Modeling.Immutability;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+using System.Globalization;
 using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.DiagramsResources;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.View

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer;
 using System.Windows;
 using System.Windows.Controls;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views.Explorer
 {

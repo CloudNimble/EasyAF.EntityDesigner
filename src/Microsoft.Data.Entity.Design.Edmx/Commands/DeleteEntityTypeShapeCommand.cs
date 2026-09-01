@@ -1,9 +1,9 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.Diagnostics;
-using System.Linq;
 using Microsoft.Data.Entity.Design.Edmx.Designer;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using System.Diagnostics;
+using System.Linq;
 
 namespace Microsoft.Data.Entity.Design.Edmx.Commands
 {

@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using DslModeling = global::Microsoft.VisualStudio.Modeling;
-using DslDesign = global::Microsoft.VisualStudio.Modeling.Design;
 using Microsoft.Data.Entity.Design.Diagrams.DescriptionProviders;
+using DslDesign = global::Microsoft.VisualStudio.Modeling.Design;
+using DslModeling = global::Microsoft.VisualStudio.Modeling;
 namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
 {
 	/// <summary>

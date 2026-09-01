@@ -1,5 +1,21 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetails;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.EntityDesigner;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails.Columns;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views.Explorer;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using Microsoft.VisualStudio.Modeling.Shell;
 using System;
 using System.Collections;
@@ -11,24 +27,6 @@ using System.Globalization;
 using System.Runtime.InteropServices;
 using VsErrorHandler = Microsoft.VisualStudio.ErrorHandler;
 using VsShell = Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
-using Microsoft.Data.Entity.Design.XmlEngine.Context;
-using Microsoft.Data.Entity.Design.Edmx.Mapping;
-using Microsoft.Data.Entity.Design.Edmx.Entity;
-using Microsoft.Data.Entity.Design.Edmx;
-using Microsoft.Data.Entity.Design.Edmx.Designer;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views.Explorer;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails.Columns;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetails;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.EntityDesigner;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails
 {

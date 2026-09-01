@@ -7,7 +7,6 @@ using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Util;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer;

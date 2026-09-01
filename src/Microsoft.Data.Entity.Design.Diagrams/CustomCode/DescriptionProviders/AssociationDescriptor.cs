@@ -1,10 +1,10 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
+using Microsoft.VisualStudio.Modeling.Design;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
-using Microsoft.VisualStudio.Modeling.Design;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.DescriptionProviders
 {

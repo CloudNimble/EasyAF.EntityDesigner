@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.VisualStudio.Modeling;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Microsoft.VisualStudio.Modeling;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.Rules
 {

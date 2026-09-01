@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using EnvDTE;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
 using Microsoft.VisualStudio.Data.Entity.Extensibility;
 using System;
 using System.Collections.Generic;

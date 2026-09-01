@@ -1,13 +1,11 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Microsoft.Data.Entity.Design.Diagrams.View.Events;
-using Microsoft.Data.Entity.Design.Diagrams.View;
-using Microsoft.Data.Entity.Design.Diagrams.View.Events;
 using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
 using Microsoft.Data.Entity.Design.Diagrams.Layout;
 using Microsoft.Data.Entity.Design.Diagrams.ModelChanges;
 using Microsoft.Data.Entity.Design.Diagrams.Rules;
 using Microsoft.Data.Entity.Design.Diagrams.Utils;
+using Microsoft.Data.Entity.Design.Diagrams.View.Events;
 using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
 using Microsoft.Data.Entity.Design.Edmx;
 using Microsoft.Data.Entity.Design.Edmx.Commands;

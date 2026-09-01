@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.IO;
-using System.Linq;
 using FluentAssertions;
 using Microsoft.Data.Entity.Design.Diagrams.Rendering.Headless;
 using Microsoft.Data.Entity.Design.Diagrams.View;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
+using System.Linq;
 
 namespace Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering.Export
 {

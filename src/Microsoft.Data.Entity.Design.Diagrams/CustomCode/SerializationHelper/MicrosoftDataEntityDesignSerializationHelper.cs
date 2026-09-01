@@ -1,17 +1,17 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.Diagrams.CustomSerializer;
+using Microsoft.Data.Entity.Design.Diagrams.Utils;
+using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.VisualStudio.Modeling;
+using Microsoft.VisualStudio.Modeling.Diagrams;
+using Microsoft.VisualStudio.Modeling.Validation;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
-using Microsoft.Data.Entity.Design.Diagrams.View;
-using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
-using Microsoft.VisualStudio.Modeling;
-using Microsoft.VisualStudio.Modeling.Diagrams;
-using Microsoft.VisualStudio.Modeling.Validation;
-using Microsoft.Data.Entity.Design.Edmx;
-using Microsoft.Data.Entity.Design.Diagrams.Utils;
-using Microsoft.Data.Entity.Design.Diagrams.CustomSerializer;
 
 namespace Microsoft.Data.Entity.Design.Diagrams
 {

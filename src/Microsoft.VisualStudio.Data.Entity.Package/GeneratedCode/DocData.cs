@@ -7,13 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using DslShell = global::Microsoft.VisualStudio.Modeling.Shell;
-using DslModeling = global::Microsoft.VisualStudio.Modeling;
-using DslValidation = global::Microsoft.VisualStudio.Modeling.Validation;
-using DslDiagrams = global::Microsoft.VisualStudio.Modeling.Diagrams;
-using VSShellInterop = global::Microsoft.VisualStudio.Shell.Interop;
 using global::System.Linq;
 using System.Diagnostics;
+using DslDiagrams = global::Microsoft.VisualStudio.Modeling.Diagrams;
+using DslModeling = global::Microsoft.VisualStudio.Modeling;
+using DslShell = global::Microsoft.VisualStudio.Modeling.Shell;
+using DslValidation = global::Microsoft.VisualStudio.Modeling.Validation;
+using VSShellInterop = global::Microsoft.VisualStudio.Shell.Interop;
 
 namespace Microsoft.VisualStudio.Data.Entity.Package
 {

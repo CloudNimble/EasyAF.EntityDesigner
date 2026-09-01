@@ -1,5 +1,14 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.Edmx.Commands;
+using Microsoft.Data.Entity.Design.Edmx.Database;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
+using Microsoft.Data.Entity.Design.Edmx.Validation;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,15 +22,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.Edmx.Commands;
-using Microsoft.Data.Entity.Design.Edmx.Database;
-using Microsoft.Data.Entity.Design.Edmx.Designer;
-using Microsoft.Data.Entity.Design.Edmx.Entity;
-using Microsoft.Data.Entity.Design.Edmx.Mapping;
-using Microsoft.Data.Entity.Design.Edmx.Validation;
-using Microsoft.Data.Entity.Design.EntityFramework;
-using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using AssociationSet = Microsoft.Data.Entity.Design.Edmx.Entity.AssociationSet;
 using ComplexType = Microsoft.Data.Entity.Design.Edmx.Entity.ComplexType;
 using EntitySet = Microsoft.Data.Entity.Design.Edmx.Entity.EntitySet;

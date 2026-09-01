@@ -2,7 +2,6 @@
 
 using Microsoft.Data.Entity.Design.Edmx.Entity;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;

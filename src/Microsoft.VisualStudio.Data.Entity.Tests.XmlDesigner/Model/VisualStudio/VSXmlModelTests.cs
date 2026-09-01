@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.Xml.Linq;
 using FluentAssertions;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.VisualStudio.TextManager.Interop;
 using Microsoft.VisualStudio.XmlEditor;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
+using System;
+using System.Xml.Linq;
 
 namespace Microsoft.VisualStudio.Data.Entity.Tests.XmlDesigner.Model.VisualStudio
 {

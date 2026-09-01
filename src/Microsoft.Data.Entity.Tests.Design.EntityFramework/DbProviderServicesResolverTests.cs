@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using SystemDataCommon = System.Data.Common;
+using FluentAssertions;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Data.Entity.Core.Common;
 using System.Data.Entity.Core.Common.CommandTrees;
-using Moq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentAssertions;
-using Microsoft.Data.Entity.Design.EntityFramework;
+using SystemDataCommon = System.Data.Common;
 
 namespace Microsoft.Data.Entity.Tests.Design.EntityFramework
 {

@@ -2,7 +2,6 @@
 
 using System;
 using System.Windows.Forms;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI
 {

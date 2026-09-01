@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using DslShell = global::Microsoft.VisualStudio.Modeling.Shell;
-using VSShell = global::Microsoft.VisualStudio.Shell;
-using DslModeling = global::Microsoft.VisualStudio.Modeling;
 using DslDiagrams = global::Microsoft.VisualStudio.Modeling.Diagrams;
+using DslModeling = global::Microsoft.VisualStudio.Modeling;
+using DslShell = global::Microsoft.VisualStudio.Modeling.Shell;
 using DslValidation = global::Microsoft.VisualStudio.Modeling.Validation;
+using VSShell = global::Microsoft.VisualStudio.Shell;
 
 namespace Microsoft.VisualStudio.Data.Entity.Package
 {

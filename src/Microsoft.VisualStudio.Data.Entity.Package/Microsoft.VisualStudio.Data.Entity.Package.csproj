@@ -5,6 +5,9 @@
         <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
         <!-- Opt out of Central Package Management - VSSDK manages its own package versions -->
         <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+        <!-- Singular TargetFramework on purpose, unlike every other project here. Even a single valued
+             TargetFrameworks triggers MSBuild's outer/inner cross targeting build, which makes the
+             Microsoft.VsSDK.targets import at the bottom of this file fail with MSB4019. -->
         <TargetFramework>net48</TargetFramework>
         <!-- .NET SDK 10+ requires this for non-string resources (images, icons, etc.) -->
         <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>

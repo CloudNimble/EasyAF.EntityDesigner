@@ -1,18 +1,18 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using EnvDTE;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.VisualStudio.Data.Core;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 using Microsoft.VisualStudio.Data.Services;
 using System;
 using System.Data.Entity.Core.EntityClient;
 using System.Diagnostics;
-using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.Data.Entity.Design.Edmx.Entity;
-using Microsoft.Data.Entity.Design.Edmx;
-using Microsoft.Data.Entity.Design.EntityFramework;
-using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
 {

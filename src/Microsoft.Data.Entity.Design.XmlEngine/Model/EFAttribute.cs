@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.XmlEngine.Model.XLinqAnnotations;
 using System;
 using System.Diagnostics;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.XmlEngine.Model.XLinqAnnotations;
 
 namespace Microsoft.Data.Entity.Design.XmlEngine.Model
 {

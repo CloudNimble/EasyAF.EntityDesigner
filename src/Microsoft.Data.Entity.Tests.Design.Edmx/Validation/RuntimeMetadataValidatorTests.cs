@@ -3,6 +3,16 @@
 // Resharper wants to remove the below but do not - it causes build errors
 // Resharper wants to remove the above but do not - it causes build errors
 
+using FluentAssertions;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
+using Microsoft.Data.Entity.Design.Edmx.Validation;
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Common;
@@ -11,18 +21,8 @@ using System.Data.Entity.Infrastructure.DependencyResolution;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
-using Moq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentAssertions;
 using ComplexType = Microsoft.Data.Entity.Design.Edmx.Entity.ComplexType;
 using DesignAssociationSetMapping = Microsoft.Data.Entity.Design.Edmx.Mapping.AssociationSetMapping;
-using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
-using Microsoft.Data.Entity.Design.XmlEngine.Common;
-using Microsoft.Data.Entity.Design.Edmx.Entity;
-using Microsoft.Data.Entity.Design.Edmx.Mapping;
-using Microsoft.Data.Entity.Design.Edmx.Validation;
-using Microsoft.Data.Entity.Design.Edmx;
 
 namespace Microsoft.Data.Entity.Tests.Design.Edmx.Validation
 {

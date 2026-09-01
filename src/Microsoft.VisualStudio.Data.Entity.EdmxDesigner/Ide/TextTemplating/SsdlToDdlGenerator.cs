@@ -3,7 +3,6 @@
 using Microsoft.Data.Entity.Design.DatabaseGeneration;
 using Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators;
 using Microsoft.Data.Entity.Design.EntityFramework;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

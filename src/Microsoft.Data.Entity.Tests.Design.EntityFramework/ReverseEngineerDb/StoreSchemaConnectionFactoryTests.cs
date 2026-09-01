@@ -1,19 +1,19 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using SystemDataCommon = System.Data.Common;
+using FluentAssertions;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using Moq.Protected;
 using System;
 using System.Data.Entity.Core;
 using System.Data.Entity.Core.Common;
 using System.Data.Entity.Infrastructure.DependencyResolution;
 using System.IO;
-using Microsoft.Data.Entity.Design.EntityFramework;
 using System.Security;
 using System.Xml;
-using Moq;
-using Moq.Protected;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentAssertions;
-using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb;
+using SystemDataCommon = System.Data.Common;
 
 namespace Microsoft.Data.Entity.Tests.Design.EntityFramework.ReverseEngineerDb
 {

@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
 using Microsoft.Data.Entity.Design.Diagrams.Rules;
 using Microsoft.Data.Entity.Design.Diagrams.View;
 using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
 using Microsoft.VisualStudio.Modeling;
+using System;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.Rendering.Headless
 {

@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.Diagnostics;
-using System.Linq;
 using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.VisualStudio.Modeling.Diagrams;
+using System;
+using System.Diagnostics;
+using System.Linq;
 using Diagram = Microsoft.Data.Entity.Design.Edmx.Designer.Diagram;
 using EntityType = Microsoft.Data.Entity.Design.Edmx.Entity.EntityType;
 using EntityTypeShape = Microsoft.Data.Entity.Design.Diagrams.View.EntityTypeShape;

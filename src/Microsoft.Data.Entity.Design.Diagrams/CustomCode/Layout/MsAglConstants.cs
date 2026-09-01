@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
 using Microsoft.Data.Entity.Design.Edmx.Designer;
 using Microsoft.Msagl.Core.Layout;
 using Microsoft.Msagl.Core.Routing;
 using Microsoft.Msagl.Layout.Layered;
 using Microsoft.Msagl.Layout.MDS;
+using System;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.Layout
 {

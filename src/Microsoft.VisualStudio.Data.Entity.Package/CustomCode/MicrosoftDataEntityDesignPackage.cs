@@ -1,9 +1,9 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using Microsoft.Data.Entity.Design.Diagrams.Layout;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Data.Entity.Design.Edmx;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;

@@ -1,7 +1,9 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using VsShell = Microsoft.VisualStudio.Shell.Interop;
-using VsTextMgr = Microsoft.VisualStudio.TextManager.Interop;
+using EnvDTE;
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,10 +12,8 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
-using EnvDTE;
-using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.Data.Entity.Design.XmlEngine.Common;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using VsShell = Microsoft.VisualStudio.Shell.Interop;
+using VsTextMgr = Microsoft.VisualStudio.TextManager.Interop;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common
 {

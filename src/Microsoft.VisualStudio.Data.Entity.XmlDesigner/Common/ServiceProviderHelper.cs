@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Ole = Microsoft.VisualStudio.OLE.Interop;
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using Microsoft.Data.Entity.Design.XmlEngine.Common;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using Ole = Microsoft.VisualStudio.OLE.Interop;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common
 {

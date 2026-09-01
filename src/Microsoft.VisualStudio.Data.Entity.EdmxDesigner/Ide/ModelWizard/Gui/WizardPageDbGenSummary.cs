@@ -2,11 +2,9 @@
 
 using Microsoft.Data.Entity.Design.DatabaseGeneration;
 using Microsoft.Data.Entity.Design.Edmx;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.WizardFramework;
 using System;

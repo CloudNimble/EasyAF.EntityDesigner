@@ -1,8 +1,8 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.VisualStudio.TestTools.VsIdeTesting;
 using System;
 using System.Threading;
-using Microsoft.VisualStudio.TestTools.VsIdeTesting;
 
 namespace Microsoft.Data.Entity.Tests.Shared.VS
 {

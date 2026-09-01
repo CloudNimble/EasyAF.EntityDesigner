@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using XmlDesignerBaseTextSpan = Microsoft.Data.Entity.Design.XmlEngine.Model.TextSpan;
-using VSTextSpan = Microsoft.VisualStudio.TextManager.Interop.TextSpan;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using System;
 using System.Diagnostics;
 using System.Windows.Threading;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using VSTextSpan = Microsoft.VisualStudio.TextManager.Interop.TextSpan;
+using XmlDesignerBaseTextSpan = Microsoft.Data.Entity.Design.XmlEngine.Model.TextSpan;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio
 {

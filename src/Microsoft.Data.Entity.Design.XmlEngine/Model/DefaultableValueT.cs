@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
 using System;
 using System.Diagnostics;
 using System.Globalization;
-using Microsoft.Data.Entity.Design.XmlEngine.Common;
-using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
 
 namespace Microsoft.Data.Entity.Design.XmlEngine.Model
 {

@@ -1,15 +1,15 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using EnvDTE;
+using Microsoft.VisualStudio.PlatformUI;
+using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.TextManager.Interop;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using EnvDTE;
-using Microsoft.VisualStudio.PlatformUI;
-using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio.TextManager.Interop;
 using VSErrorHandler = Microsoft.VisualStudio.ErrorHandler;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio

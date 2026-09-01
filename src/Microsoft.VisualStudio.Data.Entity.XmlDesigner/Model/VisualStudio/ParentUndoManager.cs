@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.Diagnostics;
 using Microsoft.VisualStudio.OLE.Interop;
+using System.Diagnostics;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio
 {

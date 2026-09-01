@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.Linq;
 using FluentAssertions;
-using Microsoft.Data.Entity.Design.Diagrams.Rules;
 using Microsoft.Data.Entity.Design.Diagrams;
+using Microsoft.Data.Entity.Design.Diagrams.Rules;
 using Microsoft.Data.Entity.Design.Diagrams.View;
 using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Linq;
 
 namespace Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering.Export
 {

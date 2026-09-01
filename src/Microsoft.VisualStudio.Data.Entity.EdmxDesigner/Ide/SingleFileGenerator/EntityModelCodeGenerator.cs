@@ -1,6 +1,14 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using EnvDTE;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
+using Microsoft.Data.Entity.Design.XmlEngine.Util;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.Collections.Generic;
@@ -10,15 +18,6 @@ using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
-using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
-using Microsoft.Data.Entity.Design.XmlEngine.Util;
-using Microsoft.Data.Entity.Design.Edmx;
-using Microsoft.Data.Entity.Design.EntityFramework;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.SingleFileGenerator
 {

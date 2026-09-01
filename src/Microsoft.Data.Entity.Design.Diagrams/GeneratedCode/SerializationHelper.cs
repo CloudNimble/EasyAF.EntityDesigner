@@ -8,9 +8,9 @@
 //------------------------------------------------------------------------------
 
 using System.Linq;
+using DslDiagrams = global::Microsoft.VisualStudio.Modeling.Diagrams;
 using DslModeling = global::Microsoft.VisualStudio.Modeling;
 using DslValidation = global::Microsoft.VisualStudio.Modeling.Validation;
-using DslDiagrams = global::Microsoft.VisualStudio.Modeling.Diagrams;
 
 namespace Microsoft.Data.Entity.Design.Diagrams
 {

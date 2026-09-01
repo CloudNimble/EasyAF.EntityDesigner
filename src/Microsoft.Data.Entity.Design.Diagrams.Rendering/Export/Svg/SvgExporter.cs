@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.VisualStudio.Modeling.Diagrams;
 using System;
 using System.Globalization;
 using System.IO;
 using System.Text;
-using Microsoft.Data.Entity.Design.Diagrams.View;
-using Microsoft.VisualStudio.Modeling.Diagrams;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.Rendering.Export.Svg
 {

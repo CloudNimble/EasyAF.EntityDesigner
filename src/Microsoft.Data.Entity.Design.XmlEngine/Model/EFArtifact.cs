@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.XLinqAnnotations;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
-using Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor;
-using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
-using Microsoft.Data.Entity.Design.XmlEngine.Model.XLinqAnnotations;
-using Microsoft.Data.Entity.Design.XmlEngine.Common;
 
 namespace Microsoft.Data.Entity.Design.XmlEngine.Model
 {

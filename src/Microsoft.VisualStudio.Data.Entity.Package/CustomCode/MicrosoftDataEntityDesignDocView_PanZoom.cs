@@ -1,26 +1,23 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Controls;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using Microsoft.VisualStudio.Imaging;
+using Microsoft.VisualStudio.Modeling.Diagrams;
+using Microsoft.VisualStudio.Modeling.Shell;
+using Microsoft.VisualStudio.PlatformUI;
 using System;
-using Microsoft.Data.Entity.Design.Diagrams.Layout;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
-using Microsoft.Data.Entity.Design.Diagrams.View;
-using Microsoft.Data.Entity.Design.Edmx.Designer;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Controls;
-using Microsoft.VisualStudio.Imaging;
-using Microsoft.VisualStudio.Modeling.Diagrams;
-using Microsoft.VisualStudio.Modeling.Shell;
-using Microsoft.VisualStudio.PlatformUI;
-using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
-using Microsoft.VisualStudio.Data.Entity.Package;
 
 namespace Microsoft.VisualStudio.Data.Entity.Package
 {

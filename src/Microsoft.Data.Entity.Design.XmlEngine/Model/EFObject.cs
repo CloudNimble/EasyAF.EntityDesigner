@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using EFVisitor = Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor.Visitor;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.XLinqAnnotations;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.XmlEngine.Model.XLinqAnnotations;
-using Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor;
+using EFVisitor = Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor.Visitor;
 
 namespace Microsoft.Data.Entity.Design.XmlEngine.Model
 {

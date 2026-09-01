@@ -5,7 +5,6 @@ using Microsoft.Data.Entity.Design.Edmx;
 using Microsoft.Data.Entity.Design.Edmx.Designer;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.VisualStudio.Data.Core;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using Microsoft.VisualStudio.DataTools.Interop;

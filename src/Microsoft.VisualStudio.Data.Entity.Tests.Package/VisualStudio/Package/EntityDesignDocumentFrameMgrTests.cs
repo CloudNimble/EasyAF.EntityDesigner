@@ -1,13 +1,13 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using Moq;
-using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using System;
 
 namespace Microsoft.VisualStudio.Data.Entity.Tests.Package.VisualStudio.Package
 {

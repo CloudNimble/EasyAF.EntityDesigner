@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
-using Diagram = Microsoft.Data.Entity.Design.Edmx.Designer.Diagram;
 using Microsoft.Data.Entity.Design.Edmx.Commands;
 using Microsoft.Data.Entity.Design.Edmx.Entity;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using System.Diagnostics;
+using Diagram = Microsoft.Data.Entity.Design.Edmx.Designer.Diagram;
 using EntityType = Microsoft.Data.Entity.Design.Edmx.Entity.EntityType;
 using InheritanceConnector = Microsoft.Data.Entity.Design.Diagrams.View.InheritanceConnector;
 

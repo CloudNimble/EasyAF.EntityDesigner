@@ -1,9 +1,5 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Data.Entity.Design.Diagrams.View;
 using Microsoft.Msagl.Core.Geometry;
 using Microsoft.Msagl.Core.Geometry.Curves;
@@ -12,6 +8,10 @@ using Microsoft.Msagl.Miscellaneous;
 using Microsoft.Msagl.Routing.Rectilinear;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Diagrams.GraphObject;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using ConnectorMode = Microsoft.Data.Entity.Design.Edmx.Designer.ConnectorMode;
 using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.DiagramsResources;
 using LayoutMode = Microsoft.Data.Entity.Design.Edmx.Designer.LayoutMode;

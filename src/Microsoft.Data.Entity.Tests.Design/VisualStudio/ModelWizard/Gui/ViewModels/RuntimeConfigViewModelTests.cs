@@ -1,13 +1,12 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.Linq;
 using FluentAssertions;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui.ViewModels;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui.ViewModels;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
+using System;
+using System.Linq;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Gui.ViewModels
 {

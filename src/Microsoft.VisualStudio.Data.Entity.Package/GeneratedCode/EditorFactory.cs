@@ -7,8 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using VSShellInterop = global::Microsoft.VisualStudio.Shell.Interop;
 using DslShell = global::Microsoft.VisualStudio.Modeling.Shell;
+using VSShellInterop = global::Microsoft.VisualStudio.Shell.Interop;
 
 namespace Microsoft.VisualStudio.Data.Entity.Package
 {

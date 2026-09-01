@@ -1,6 +1,12 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
 using EnvDTE;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.Diagnostics;
@@ -9,12 +15,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Xml.Linq;
 using Command = Microsoft.Data.Entity.Design.XmlEngine.Model.Commands.Command;
-using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
-using Microsoft.Data.Entity.Design.Edmx;
-using Microsoft.Data.Entity.Design.Edmx.Designer;
-using Microsoft.Data.Entity.Design.EntityFramework;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model.Commands
 {

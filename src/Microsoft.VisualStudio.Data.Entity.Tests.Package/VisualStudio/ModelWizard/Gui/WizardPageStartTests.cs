@@ -1,24 +1,24 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
 using EnvDTE;
+using FluentAssertions;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
+using Microsoft.Data.Entity.Tests.Design.TestHelpers;
+using Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Gui;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Moq.Protected;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
-using Microsoft.Data.Entity.Tests.Design.TestHelpers;
 using VSLangProj;
 using VsWebSite;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentAssertions;
-using Microsoft.Data.Entity.Design.XmlEngine.Common;
-using Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Gui;
-using Microsoft.Data.Entity.Design.EntityFramework;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 
 namespace Microsoft.VisualStudio.Data.Entity.Tests.Package.VisualStudio.ModelWizard.Gui
 {

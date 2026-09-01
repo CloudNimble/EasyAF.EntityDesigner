@@ -1,9 +1,5 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using Microsoft.Data.Entity.Design.Diagrams.CustomSerializer;
 using Microsoft.Data.Entity.Design.Diagrams.Layout;
 using Microsoft.Data.Entity.Design.Diagrams.View;
@@ -14,6 +10,10 @@ using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.StandAlone;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using EngineUtils = Microsoft.Data.Entity.Design.XmlEngine.Util.Utils;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.Rendering.Headless

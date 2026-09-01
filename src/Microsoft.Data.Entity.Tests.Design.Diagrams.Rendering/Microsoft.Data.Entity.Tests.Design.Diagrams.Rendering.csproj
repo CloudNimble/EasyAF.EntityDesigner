@@ -3,8 +3,6 @@
   <PropertyGroup>
     <!-- Builds a DSL Store, which is not safe to use concurrently. See Directory.Build.props. -->
     <UsesDslStore>true</UsesDslStore>
-    <!-- Clears the net48 default from Directory.Build.props so TargetFrameworks below applies. -->
-    <TargetFramework></TargetFramework>
     <!-- Must match the renderer: the Modeling SDK types under test are WinForms and WPF based, so a plain
          net10.0 target cannot load System.Windows.Forms and every test that builds a Store fails. -->
     <TargetFrameworks>net48;net10.0-windows</TargetFrameworks>

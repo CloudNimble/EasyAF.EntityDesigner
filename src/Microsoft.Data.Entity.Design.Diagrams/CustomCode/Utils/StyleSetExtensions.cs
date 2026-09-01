@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.Drawing;
 using Microsoft.VisualStudio.Modeling.Diagrams;
+using System.Drawing;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.Utils
 {

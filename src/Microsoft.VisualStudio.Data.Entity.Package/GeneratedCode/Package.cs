@@ -7,17 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using VSShellInterop = global::Microsoft.VisualStudio.Shell.Interop;
-using VSShell = global::Microsoft.VisualStudio.Shell;
-using DslShell = global::Microsoft.VisualStudio.Modeling.Shell;
-using DslDesign = global::Microsoft.VisualStudio.Modeling.Design;
-using DslModeling = global::Microsoft.VisualStudio.Modeling;
-using VSTextTemplatingHost = global::Microsoft.VisualStudio.TextTemplating.VSHost;
 using System;
 using System.Diagnostics;
 using System.Drawing.Design;
 using System.Linq;
 using System.Windows.Forms;
+using DslDesign = global::Microsoft.VisualStudio.Modeling.Design;
+using DslModeling = global::Microsoft.VisualStudio.Modeling;
+using DslShell = global::Microsoft.VisualStudio.Modeling.Shell;
+using VSShell = global::Microsoft.VisualStudio.Shell;
+using VSShellInterop = global::Microsoft.VisualStudio.Shell.Interop;
+using VSTextTemplatingHost = global::Microsoft.VisualStudio.TextTemplating.VSHost;
 	
 namespace Microsoft.VisualStudio.Data.Entity.Package
 {

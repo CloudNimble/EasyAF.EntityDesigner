@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.Linq;
 using FluentAssertions;
 using Microsoft.Data.Entity.Design.Diagrams;
 using Microsoft.Data.Entity.Design.Diagrams.Layout;
@@ -12,6 +11,7 @@ using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Diagrams.GraphObject;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering.Export
 {

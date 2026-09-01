@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb;
+using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb.SchemaDiscovery;
+using Microsoft.Data.Entity.Tests.Design.EntityFramework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Data.Entity.Core.Common;
 using System.Data.Entity.Infrastructure.DependencyResolution;
-using Moq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb.SchemaDiscovery;
-using Microsoft.Data.Entity.Design.EntityFramework;
-using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb;
-using Microsoft.Data.Entity.Tests.Design.EntityFramework;
 
 namespace Microsoft.Data.Entity.Tests.Design.VersioningFacade.ReverseEngineerDb
 {

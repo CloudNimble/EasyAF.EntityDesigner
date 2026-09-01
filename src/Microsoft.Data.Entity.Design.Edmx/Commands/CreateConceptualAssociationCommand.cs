@@ -1,16 +1,16 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Data.Entity.Infrastructure.Pluralization;
-using System.Diagnostics;
-using System.Globalization;
 using Microsoft.Data.Entity.Design.Edmx.Designer;
 using Microsoft.Data.Entity.Design.Edmx.Entity;
 using Microsoft.Data.Entity.Design.Edmx.Integrity;
 using Microsoft.Data.Entity.Design.EntityFramework;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity.Infrastructure.Pluralization;
+using System.Diagnostics;
+using System.Globalization;
 
 namespace Microsoft.Data.Entity.Design.Edmx.Commands
 {

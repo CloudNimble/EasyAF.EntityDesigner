@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
 using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export;
 using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export.Raster;
 using Microsoft.Data.Entity.Design.Diagrams.View;
 using Microsoft.VisualStudio.Modeling.Diagrams;
+using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 
 namespace Microsoft.VisualStudio.Data.Entity.Package.Export
 {

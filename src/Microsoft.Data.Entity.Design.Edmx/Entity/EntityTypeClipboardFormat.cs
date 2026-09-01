@@ -1,13 +1,12 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.Edmx.Designer;
+using Microsoft.Data.Entity.Design.XmlEngine.Common.Diagnostics;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using Microsoft.Data.Entity.Design.Edmx.Designer;
-using Microsoft.Data.Entity.Design.Edmx.Designer;
-using Microsoft.Data.Entity.Design.XmlEngine.Common.Diagnostics;
 
 namespace Microsoft.Data.Entity.Design.Edmx.Entity
 {

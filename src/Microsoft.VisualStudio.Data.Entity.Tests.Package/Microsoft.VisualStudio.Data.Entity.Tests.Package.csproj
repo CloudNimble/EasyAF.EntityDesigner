@@ -3,6 +3,7 @@
   <PropertyGroup>
     <RootNamespace>Microsoft.VisualStudio.Data.Entity.Tests.Package</RootNamespace>
     <AssemblyName>Microsoft.VisualStudio.Data.Entity.Tests.Package</AssemblyName>
+    <TargetFrameworks>net48</TargetFrameworks>
     <NoWarn>$(NoWarn);VSTHRD010</NoWarn>
   </PropertyGroup>
 

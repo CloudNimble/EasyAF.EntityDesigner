@@ -1,14 +1,13 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.Security;
-using System.Security.Permissions;
-using System.Windows.Forms;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using Microsoft.VisualStudio.PlatformUI;
+using System;
+using System.Security;
+using System.Security.Permissions;
+using System.Windows.Forms;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid
 {

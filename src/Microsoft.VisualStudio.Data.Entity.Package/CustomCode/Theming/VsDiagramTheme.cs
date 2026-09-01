@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
 using Microsoft.Data.Entity.Design.Diagrams.View;
 using Microsoft.VisualStudio.PlatformUI;
+using System;
 
 namespace Microsoft.VisualStudio.Data.Entity.Package.Theming
 {

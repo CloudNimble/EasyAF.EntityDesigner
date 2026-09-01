@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Data.Entity.Core.Metadata.Edm;
-using System.Diagnostics;
-using System.Xml;
 using Microsoft.Data.Entity.Design.Edmx.Entity;
 using Microsoft.Data.Entity.Design.Edmx.Mapping;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Integrity;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity.Core.Metadata.Edm;
+using System.Diagnostics;
+using System.Xml;
 using EntityType = Microsoft.Data.Entity.Design.Edmx.Entity.EntityType;
 
 namespace Microsoft.Data.Entity.Design.Edmx.Integrity

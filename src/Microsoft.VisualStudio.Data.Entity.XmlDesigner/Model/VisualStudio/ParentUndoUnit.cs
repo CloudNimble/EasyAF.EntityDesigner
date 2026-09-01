@@ -1,10 +1,10 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using VSErrorHandler = Microsoft.VisualStudio.ErrorHandler;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using Microsoft.VisualStudio.OLE.Interop;
 using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.OLE.Interop;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using VSErrorHandler = Microsoft.VisualStudio.ErrorHandler;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio
 {

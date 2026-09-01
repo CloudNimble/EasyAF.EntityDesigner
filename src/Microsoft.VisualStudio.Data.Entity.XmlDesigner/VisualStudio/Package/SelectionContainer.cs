@@ -1,8 +1,5 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Windows.Threading;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
@@ -11,6 +8,9 @@ using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Descriptors;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Providers;
 using Microsoft.VisualStudio.Shell.Interop;
+using System;
+using System.Collections.Generic;
+using System.Windows.Threading;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package
 {

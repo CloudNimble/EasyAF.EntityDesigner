@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.IO;
-using System.Text;
 using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export;
 using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export.Raster;
 using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export.Svg;
 using Microsoft.Data.Entity.Design.Diagrams.View;
 using SkiaSharp;
 using Svg.Skia;
+using System;
+using System.IO;
+using System.Text;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.Tools.Export
 {

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.Xml.Linq;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.VisualStudio.XmlEditor;
+using System.Xml.Linq;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio
 {

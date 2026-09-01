@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using Microsoft.VisualStudio.Shell.Interop;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common
 {

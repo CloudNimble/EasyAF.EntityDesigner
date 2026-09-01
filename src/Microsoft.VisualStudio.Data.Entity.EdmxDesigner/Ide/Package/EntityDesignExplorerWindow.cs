@@ -1,22 +1,21 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Explorer;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views.Explorer;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package;
 using Microsoft.VisualStudio.Modeling.Shell;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
-using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
-using Microsoft.Data.Entity.Design.Edmx.Entity;
-using Microsoft.Data.Entity.Design.Edmx;
-using Microsoft.Data.Entity.Design.Edmx.Commands;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views.Explorer;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Explorer;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package
 {

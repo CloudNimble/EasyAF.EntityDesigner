@@ -1,8 +1,8 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.Globalization;
 using Microsoft.Data.Entity.Design.Edmx.Entity;
 using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb;
+using System.Globalization;
 
 namespace Microsoft.Data.Entity.Design.Edmx.Database
 {

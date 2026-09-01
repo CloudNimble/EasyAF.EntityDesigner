@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.Edmx.Designer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Data.Entity.Design.Edmx.Designer;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.Layout
 {

@@ -2,7 +2,22 @@
 
 using EnvDTE;
 using EnvDTE80;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Integrity;
+using Microsoft.Data.Entity.Design.Edmx.Validation;
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.Extensibility;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using Microsoft.VisualStudio.Data.Services;
 using Microsoft.VisualStudio.Modeling.Shell;
 using Microsoft.VisualStudio.Shell;
@@ -17,22 +32,6 @@ using System.Runtime.InteropServices;
 using System.Xml;
 using Command = Microsoft.Data.Entity.Design.XmlEngine.Model.Commands.Command;
 using IOleServiceProvider = Microsoft.VisualStudio.OLE.Interop.IServiceProvider;
-using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
-using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
-using Microsoft.Data.Entity.Design.XmlEngine.Common;
-using Microsoft.Data.Entity.Design.XmlEngine.Context;
-using Microsoft.VisualStudio.Data.Entity.Extensibility;
-using Microsoft.Data.Entity.Design.Edmx.Entity;
-using Microsoft.Data.Entity.Design.Edmx.Integrity;
-using Microsoft.Data.Entity.Design.Edmx.Validation;
-using Microsoft.Data.Entity.Design.Edmx;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard
 {

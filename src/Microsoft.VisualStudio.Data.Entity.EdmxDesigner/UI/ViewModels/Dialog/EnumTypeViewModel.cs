@@ -3,7 +3,6 @@
 using Microsoft.Data.Entity.Design.Edmx;
 using Microsoft.Data.Entity.Design.Edmx.Entity;
 using Microsoft.Data.Entity.Design.Edmx.Validation;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

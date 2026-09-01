@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb.SchemaDiscovery;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Common;
@@ -10,7 +11,6 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using MetadataItemHelper = Microsoft.Data.Entity.Design.EntityFramework.Metadata.MetadataItemHelper;
-using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb.SchemaDiscovery;
 
 namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb
 {

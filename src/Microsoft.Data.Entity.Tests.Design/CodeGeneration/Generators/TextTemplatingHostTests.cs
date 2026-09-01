@@ -1,12 +1,12 @@
-using System;
-using System.CodeDom.Compiler;
-using System.Text;
+using FluentAssertions;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Generators;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.VisualStudio.TextTemplating;
 using Microsoft.VisualStudio.TextTemplating.VSHost;
 using Moq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentAssertions;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Generators;
+using System;
+using System.CodeDom.Compiler;
+using System.Text;
 
 namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration.Generators
 {

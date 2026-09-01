@@ -3,7 +3,6 @@
 using EnvDTE;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
 using Microsoft.VisualStudio.Data.Entity.Extensibility;
 using System;
 using System.Diagnostics;

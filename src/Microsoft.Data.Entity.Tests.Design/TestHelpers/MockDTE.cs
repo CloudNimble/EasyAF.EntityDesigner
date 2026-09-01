@@ -1,12 +1,12 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using EnvDTE;
+using Microsoft.VisualStudio.Shell.Interop;
+using Moq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using EnvDTE;
-using Microsoft.VisualStudio.Shell.Interop;
-using Moq;
 using VSLangProj;
 using VSLangProj80;
 using VsWebSite;

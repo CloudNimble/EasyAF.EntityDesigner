@@ -1,10 +1,10 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Core.EntityClient;
-using Moq;
 
 namespace Microsoft.Data.Entity.Tests.Design.EntityFramework.ReverseEngineerDb.SchemaDiscovery
 {

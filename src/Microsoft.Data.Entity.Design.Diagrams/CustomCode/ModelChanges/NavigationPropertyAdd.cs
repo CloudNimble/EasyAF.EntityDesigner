@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
 using Microsoft.Data.Entity.Design.Diagrams.Rules;
 using Microsoft.Data.Entity.Design.Edmx.Commands;
 using Microsoft.Data.Entity.Design.Edmx.Entity;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using System.Diagnostics;
 using NavigationProperty = Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges

@@ -1,13 +1,5 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.ComponentModel.Design;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System.Windows;
-using System.Windows.Forms;
-using System.Windows.Forms.Integration;
-using System.Windows.Input;
 using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
@@ -16,6 +8,14 @@ using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Views.Explorer;
 using Microsoft.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using System;
+using System.ComponentModel.Design;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Windows;
+using System.Windows.Forms;
+using System.Windows.Forms.Integration;
+using System.Windows.Input;
 using Cursor = System.Windows.Forms.Cursor;
 using Cursors = System.Windows.Forms.Cursors;
 using MenuItem = System.Windows.Controls.MenuItem;

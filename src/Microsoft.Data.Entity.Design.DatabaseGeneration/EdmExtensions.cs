@@ -1,5 +1,8 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.DatabaseGeneration.Properties;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.Data.Entity.Design.EntityFramework.Metadata;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Mapping;
@@ -12,9 +15,6 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.DatabaseGeneration.Properties;
-using Microsoft.Data.Entity.Design.EntityFramework;
-using Microsoft.Data.Entity.Design.EntityFramework.Metadata;
 
 namespace Microsoft.Data.Entity.Design.DatabaseGeneration
 {

@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using DslModeling = global::Microsoft.VisualStudio.Modeling;
-using DslDesign = global::Microsoft.VisualStudio.Modeling.Design;
-using Microsoft.Data.Entity.Design.Diagrams.NameProviders;
 using Microsoft.Data.Entity.Design.Diagrams.DescriptionProviders;
+using Microsoft.Data.Entity.Design.Diagrams.NameProviders;
+using DslDesign = global::Microsoft.VisualStudio.Modeling.Design;
+using DslModeling = global::Microsoft.VisualStudio.Modeling;
 namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
 {
 	/// <summary>

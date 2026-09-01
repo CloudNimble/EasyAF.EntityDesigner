@@ -10,6 +10,7 @@ using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Util;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Dialog;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Core.Controls;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Commands;
@@ -26,7 +27,6 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using Key = System.Windows.Input.Key;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Dialog;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Explorer
 {

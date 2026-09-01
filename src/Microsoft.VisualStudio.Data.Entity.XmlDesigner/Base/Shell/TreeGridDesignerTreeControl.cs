@@ -1,5 +1,12 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using Microsoft.VisualStudio.Modeling.Diagrams;
+using Microsoft.VisualStudio.Shell.Interop;
 using System;
 using System.Collections;
 using System.Collections.Specialized;
@@ -9,14 +16,6 @@ using System.Diagnostics;
 using System.Drawing.Design;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
-using Microsoft.VisualStudio.Modeling.Diagrams;
-using Microsoft.VisualStudio.Shell.Interop;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
 {

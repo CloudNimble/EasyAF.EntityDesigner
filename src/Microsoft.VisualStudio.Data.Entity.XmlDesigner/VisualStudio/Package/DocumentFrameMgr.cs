@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Util;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
+using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.Telemetry;
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio.Telemetry;
-using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.Data.Entity.Design.XmlEngine.Context;
-using Microsoft.Data.Entity.Design.XmlEngine.Util;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package
 {

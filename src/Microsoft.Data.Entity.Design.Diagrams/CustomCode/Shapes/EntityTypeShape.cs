@@ -1,20 +1,19 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using System.Drawing;
-using System.Globalization;
-using System.Windows.Forms;
-using Microsoft.Data.Entity.Design.Diagrams.View;
 using Microsoft.Data.Entity.Design.Diagrams.Utils;
 using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
 using Microsoft.Data.Entity.Design.Edmx.Designer;
 using Microsoft.VisualStudio.Modeling;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Modeling.Immutability;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
+using System.Globalization;
+using System.Linq;
+using System.Windows.Forms;
 using Diagram = Microsoft.Data.Entity.Design.Edmx.Designer.Diagram;
 using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.DiagramsResources;
 using ModelEntityTypeShape = Microsoft.Data.Entity.Design.Edmx.Designer.EntityTypeShape;

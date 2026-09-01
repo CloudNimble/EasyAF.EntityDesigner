@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.Diagrams.View;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using Microsoft.Data.Entity.Design.Diagrams.View;
 using EntityDesignerDiagramConstant = Microsoft.Data.Entity.Design.Edmx.Designer.EntityDesignerDiagramConstant;
 using ModelConstants = Microsoft.Data.Entity.Design.Edmx.ModelConstants;
 using ViewModelAssociation = Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association;

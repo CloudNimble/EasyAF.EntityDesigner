@@ -1,11 +1,11 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
 using Microsoft.Data.Entity.Design.Edmx;
 using Microsoft.Data.Entity.Design.Edmx.Entity;
 using Microsoft.VisualStudio.Modeling;
+using System;
+using System.Diagnostics;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.NameProviders
 {

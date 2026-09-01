@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.XmlEditor;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using IServiceProvider = System.IServiceProvider;
 using XmlModel = Microsoft.Data.Entity.Design.XmlEngine.Model.XmlModel;
 

@@ -1,17 +1,17 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.Diagrams.Layout;
+using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export;
+using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export.Raster;
+using Microsoft.Data.Entity.Design.Diagrams.Tools.Commands.Root;
+using Microsoft.Data.Entity.Design.Diagrams.Tools.Export;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Data.Entity.Design.Diagrams.Layout;
-using Microsoft.Data.Entity.Design.Diagrams.Tools.Commands.Root;
-using Microsoft.Data.Entity.Design.Diagrams.Tools.Export;
-using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export.Raster;
-using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.Tools
 {

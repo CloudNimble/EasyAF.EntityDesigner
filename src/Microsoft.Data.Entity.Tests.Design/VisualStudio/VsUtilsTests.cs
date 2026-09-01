@@ -1,5 +1,15 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using EnvDTE;
+using FluentAssertions;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.Data.Entity.Tests.Design.TestHelpers;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Shell.Design;
+using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using Moq.Protected;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
@@ -7,20 +17,10 @@ using System.Data.Common;
 using System.Data.Entity.Infrastructure.DependencyResolution;
 using System.IO;
 using System.Linq;
-using EnvDTE;
-using Microsoft.VisualStudio.Shell.Design;
-using Microsoft.VisualStudio.Shell.Interop;
-using Moq;
-using Moq.Protected;
-using Microsoft.Data.Entity.Tests.Design.TestHelpers;
 using VSLangProj;
 using VSLangProj80;
 using VsWebSite;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentAssertions;
 using DbProviderServices = System.Data.Entity.Core.Common.DbProviderServices;
-using Microsoft.Data.Entity.Design.EntityFramework;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio
 {

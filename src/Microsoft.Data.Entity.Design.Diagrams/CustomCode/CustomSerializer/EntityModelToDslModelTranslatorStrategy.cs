@@ -1,32 +1,32 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using DslModeling = Microsoft.VisualStudio.Modeling;
-using ModelDiagram = Microsoft.Data.Tools.Model.Diagram;
-using ViewModelDiagram = Microsoft.VisualStudio.Modeling.Diagrams;
+using Microsoft.Data.Entity.Design.Diagrams.ModelChanges;
+using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
+using Microsoft.VisualStudio.Modeling.Diagrams;
+using Microsoft.VisualStudio.Modeling.Diagrams.GraphObject;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using Microsoft.Data.Entity.Design.Diagrams.View;
-using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
-using Microsoft.VisualStudio.Modeling.Diagrams;
-using Microsoft.VisualStudio.Modeling.Diagrams.GraphObject;
+using DslModeling = Microsoft.VisualStudio.Modeling;
 using EntityDesignerResources = Microsoft.Data.Entity.Design.Diagrams.Properties.DiagramsResources;
 using ModelAssociation = Microsoft.Data.Entity.Design.Edmx.Entity.Association;
+using ModelDiagram = Microsoft.Data.Tools.Model.Diagram;
 using ModelEntityType = Microsoft.Data.Entity.Design.Edmx.Entity.EntityType;
 using ModelNavigationProperty = Microsoft.Data.Entity.Design.Edmx.Entity.NavigationProperty;
 using ModelProperty = Microsoft.Data.Entity.Design.Edmx.Entity.Property;
 using ViewModelAssociation = Microsoft.Data.Entity.Design.Diagrams.ViewModel.Association;
+using ViewModelDiagram = Microsoft.VisualStudio.Modeling.Diagrams;
 using ViewModelEntityType = Microsoft.Data.Entity.Design.Diagrams.ViewModel.EntityType;
 using ViewModelNavigationProperty = Microsoft.Data.Entity.Design.Diagrams.ViewModel.NavigationProperty;
 using ViewModelProperty = Microsoft.Data.Entity.Design.Diagrams.ViewModel.Property;
-using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
-using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
-using Microsoft.Data.Entity.Design.XmlEngine.Context;
-using Microsoft.Data.Entity.Design.Edmx;
-using Microsoft.Data.Entity.Design.Diagrams.ModelChanges;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.CustomSerializer
 {

@@ -3,6 +3,7 @@
   <PropertyGroup>
     <RootNamespace>Microsoft.Data.Entity.Design.Diagrams</RootNamespace>
     <AssemblyName>Microsoft.Data.Entity.Design.Diagrams</AssemblyName>
+    <TargetFrameworks>net48</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
     <NoWarn>$(NoWarn);VSTHRD010;VSSDK006;VSTHRD001;CS3014</NoWarn>

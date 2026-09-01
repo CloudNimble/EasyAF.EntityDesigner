@@ -1,15 +1,14 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.Diagnostics;
 using Microsoft.Data.Entity.Design.Diagrams.View;
-using Microsoft.VisualStudio.Modeling.Shell;
-using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.Data.Entity.Design.Edmx.Entity;
 using Microsoft.Data.Entity.Design.Edmx;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
-using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using Microsoft.VisualStudio.Modeling.Shell;
+using System.Diagnostics;
 
 namespace Microsoft.VisualStudio.Data.Entity.Package.Navigation
 {

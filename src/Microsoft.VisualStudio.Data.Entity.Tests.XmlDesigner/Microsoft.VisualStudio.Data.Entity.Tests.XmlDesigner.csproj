@@ -3,6 +3,7 @@
   <PropertyGroup>
     <RootNamespace>Microsoft.VisualStudio.Data.Entity.Tests.XmlDesigner</RootNamespace>
     <AssemblyName>Microsoft.VisualStudio.Data.Entity.Tests.XmlDesigner</AssemblyName>
+    <TargetFrameworks>net48</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>

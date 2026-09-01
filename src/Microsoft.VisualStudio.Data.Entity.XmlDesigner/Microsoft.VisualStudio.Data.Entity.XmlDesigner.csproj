@@ -3,6 +3,7 @@
   <PropertyGroup>
     <RootNamespace>Microsoft.VisualStudio.Data.Entity.XmlDesigner</RootNamespace>
     <AssemblyName>Microsoft.VisualStudio.Data.Entity.XmlDesigner</AssemblyName>
+    <TargetFrameworks>net48</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
     <NoWarn>$(NoWarn);VSTHRD010;VSTHRD001;VSSDK006</NoWarn>

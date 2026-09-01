@@ -1,12 +1,12 @@
-﻿using System;
-using System.Data.Entity.Core.EntityClient;
-using System.Data.Entity.Infrastructure.DependencyResolution;
-using Moq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.Data.Entity.Design.EntityFramework;
 using Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using System;
+using System.Data.Entity.Core.EntityClient;
+using System.Data.Entity.Infrastructure.DependencyResolution;
 
 namespace Microsoft.VisualStudio.Data.Entity.Tests.Package.VisualStudio.ModelWizard.Engine
 {

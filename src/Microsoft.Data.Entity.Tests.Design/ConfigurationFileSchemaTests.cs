@@ -1,13 +1,13 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentAssertions;
 
 namespace Microsoft.Data.Entity.Tests.Design
 {

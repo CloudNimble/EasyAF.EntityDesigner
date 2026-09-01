@@ -1,12 +1,12 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common;
 using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Security;
 using System.Security.Permissions;
 using System.Windows.Forms;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
 {

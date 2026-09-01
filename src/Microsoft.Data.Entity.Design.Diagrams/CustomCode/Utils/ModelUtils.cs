@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using EDMModelHelper = Microsoft.Data.Entity.Design.Edmx.ModelHelper;
-using Microsoft.VisualStudio.Modeling;
-using Microsoft.Data.Entity.Design.XmlEngine.Context;
 using Microsoft.Data.Entity.Design.Diagrams.CustomSerializer;
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.VisualStudio.Modeling;
+using EDMModelHelper = Microsoft.Data.Entity.Design.Edmx.ModelHelper;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.Utils
 {

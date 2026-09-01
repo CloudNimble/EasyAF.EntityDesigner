@@ -1,11 +1,11 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.EntityFramework;
 using System;
 using System.Globalization;
 using System.IO;
 using System.Xml;
 using System.Xml.Xsl;
-using Microsoft.Data.Entity.Design.EntityFramework;
 
 namespace Microsoft.Data.Entity.Design.Edmx.MetadataConverter
 {

@@ -1,18 +1,18 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.Xml.Linq;
 using EnvDTE;
+using FluentAssertions;
+using Microsoft.Data.Entity.Tests.Design.TestHelpers;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility;
+using Microsoft.VisualStudio.Data.Entity.Extensibility;
 using Microsoft.VisualStudio.Data.Entity.Package;
 using Microsoft.VisualStudio.Shell.Interop;
-using Moq;
-using Microsoft.Data.Entity.Tests.Design.TestHelpers;
-using VSLangProj;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentAssertions;
+using Moq;
+using System;
+using System.Xml.Linq;
+using VSLangProj;
 using Resources = Microsoft.VisualStudio.Data.Entity.EdmxDesigner.EdmxDesignerResources;
-using Microsoft.VisualStudio.Data.Entity.Extensibility;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility;
 
 namespace Microsoft.VisualStudio.Data.Entity.Tests.Package
 {

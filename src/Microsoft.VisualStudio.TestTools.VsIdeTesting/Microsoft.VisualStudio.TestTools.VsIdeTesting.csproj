@@ -3,6 +3,7 @@
   <PropertyGroup>
     <RootNamespace>Microsoft.VisualStudio.TestTools.VsIdeTesting</RootNamespace>
     <AssemblyName>Microsoft.VisualStudio.QualityTools.VsIdeTestHostFramework</AssemblyName>
+    <TargetFrameworks>net48</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>

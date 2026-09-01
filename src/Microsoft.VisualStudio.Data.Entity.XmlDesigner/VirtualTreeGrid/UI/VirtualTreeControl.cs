@@ -1,5 +1,10 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Accessibility;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using Microsoft.Win32;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,12 +21,6 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using System.Windows.Forms.VisualStyles;
-using Accessibility;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
-using Microsoft.Win32;
 using Timer = System.Windows.Forms.Timer;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.UI

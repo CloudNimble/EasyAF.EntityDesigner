@@ -1,12 +1,12 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Win32;
 using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
-using Microsoft.Win32;
 
 namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common
 {

@@ -1,9 +1,9 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.Globalization;
 using Microsoft.Data.Entity.Design.Edmx.Validation;
 using Microsoft.VisualStudio.Modeling.Validation;
+using System;
+using System.Globalization;
 using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.DiagramsResources;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel

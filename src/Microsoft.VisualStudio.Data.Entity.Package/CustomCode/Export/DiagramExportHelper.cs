@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.Diagnostics;
-using System.IO;
 using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export;
 using Microsoft.Data.Entity.Design.Diagrams.View;
+using System.Diagnostics;
+using System.IO;
 
 namespace Microsoft.VisualStudio.Data.Entity.Package.Export
 {

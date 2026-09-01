@@ -2,12 +2,12 @@
 
 #region Using Statements
 
-using System;
-using System.Diagnostics;
-using System.IO;
 using EnvDTE;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using System;
+using System.Diagnostics;
+using System.IO;
 using Constants = EnvDTE.Constants;
 using IServiceProvider = Microsoft.VisualStudio.OLE.Interop.IServiceProvider;
 

@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.IO;
 using Microsoft.Data.Entity.Design.Edmx;
 using Microsoft.Data.Entity.Design.Edmx.Designer;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.Rendering.Headless
 {

@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.IO;
 using McMaster.Extensions.CommandLineUtils;
 using Microsoft.Data.Entity.Design.Diagrams.Layout;
 using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export;
 using Microsoft.Data.Entity.Design.Diagrams.Rendering.Headless;
+using System;
+using System.IO;
 
 namespace Microsoft.Data.Entity.Design.Diagrams.Tools.Commands.Root
 {
@@ -187,7 +187,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Tools.Commands.Root
                 }
 
                 throw new ArgumentException(
-                    $"Unknown format '{Format}'. Valid formats: {string.Join(", ", Enum.GetNames(typeof(ExportFormat))).ToLowerInvariant()}.");
+                    $"Unknown format '{Format}'. Valid formats: {string.Join(", ", Enum.GetNames<ExportFormat>()).ToLowerInvariant()}.");
             }
 
             if (!string.IsNullOrWhiteSpace(Output))

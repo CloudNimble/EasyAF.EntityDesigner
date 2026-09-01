@@ -3,7 +3,6 @@
 using EnvDTE;
 using EnvDTE80;
 using Microsoft.Data.Entity.Design.XmlEngine.Common;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
 using Microsoft.VisualStudio.TextManager.Interop;
 using System;

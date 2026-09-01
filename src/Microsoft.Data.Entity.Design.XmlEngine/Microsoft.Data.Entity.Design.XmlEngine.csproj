@@ -6,8 +6,6 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <NoWarn>$(NoWarn);VSTHRD001;VSSDK006</NoWarn>
 
-    <!-- Clears the net48 default from Directory.Build.props so TargetFrameworks below applies. -->
-    <TargetFramework></TargetFramework>
     <TargetFrameworks>netstandard2.0;net10.0</TargetFrameworks>
     <RuntimeIdentifier></RuntimeIdentifier>
     <!-- Directory.Build.props flattens output, which collides when multi-targeting. -->

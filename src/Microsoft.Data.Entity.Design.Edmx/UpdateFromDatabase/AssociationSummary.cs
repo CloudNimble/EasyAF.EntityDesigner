@@ -1,11 +1,11 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.Collections.Generic;
-using System.Text;
 using Microsoft.Data.Entity.Design.Edmx.Database;
 using Microsoft.Data.Entity.Design.Edmx.Entity;
 using Microsoft.Data.Entity.Design.XmlEngine.Common.Diagnostics;
 using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Microsoft.Data.Entity.Design.Edmx.UpdateFromDatabase
 {

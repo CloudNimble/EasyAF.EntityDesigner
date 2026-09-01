@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using SystemDataCommon = System.Data.Common;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,6 +14,7 @@ using System.Globalization;
 using System.Linq;
 using System.Security;
 using System.Threading;
+using SystemDataCommon = System.Data.Common;
 
 namespace Microsoft.Data.Entity.Design.EntityFramework.ReverseEngineerDb
 {

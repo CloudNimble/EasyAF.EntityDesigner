@@ -1,19 +1,19 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
-using System.Windows;
+using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export;
 using Microsoft.Data.Entity.Design.Diagrams.View;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu;
 using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu;
+using Microsoft.VisualStudio.Data.Entity.Package.Export;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package;
 using Microsoft.VisualStudio.Imaging;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.Data.Entity.Design.Edmx;
-using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
-using Microsoft.VisualStudio.Data.Entity.Package.Export;
-using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export;
+using System;
+using System.Windows;
 
 namespace Microsoft.VisualStudio.Data.Entity.Package
 {

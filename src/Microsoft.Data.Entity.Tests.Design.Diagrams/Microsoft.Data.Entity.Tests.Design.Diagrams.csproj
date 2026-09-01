@@ -5,6 +5,7 @@
     <UsesDslStore>true</UsesDslStore>
     <RootNamespace>Microsoft.Data.Entity.Tests.Design.Diagrams</RootNamespace>
     <AssemblyName>Microsoft.Data.Entity.Tests.Design.Diagrams</AssemblyName>
+    <TargetFrameworks>net48</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>

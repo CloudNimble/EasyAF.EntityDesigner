@@ -1,5 +1,13 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
+using Microsoft.Data.Entity.Design.Edmx.Validation.RuntimeErrorCodes;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
+using Microsoft.Data.Entity.Design.XmlEngine.Util;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Mapping;
@@ -10,18 +18,10 @@ using System.Globalization;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
-using NavigationProperty = Microsoft.Data.Entity.Design.Edmx.Entity.NavigationProperty;
-using ReferentialConstraint = Microsoft.Data.Entity.Design.Edmx.Entity.ReferentialConstraint;
 using AssociationSetMapping = Microsoft.Data.Entity.Design.Edmx.Mapping.AssociationSetMapping;
 using ModificationFunctionMapping = Microsoft.Data.Entity.Design.Edmx.Mapping.ModificationFunctionMapping;
-using Microsoft.Data.Entity.Design.XmlEngine.Model;
-using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
-using Microsoft.Data.Entity.Design.XmlEngine.Common;
-using Microsoft.Data.Entity.Design.XmlEngine.Util;
-using Microsoft.Data.Entity.Design.Edmx.Validation.RuntimeErrorCodes;
-using Microsoft.Data.Entity.Design.Edmx.Entity;
-using Microsoft.Data.Entity.Design.Edmx.Mapping;
-using Microsoft.Data.Entity.Design.EntityFramework;
+using NavigationProperty = Microsoft.Data.Entity.Design.Edmx.Entity.NavigationProperty;
+using ReferentialConstraint = Microsoft.Data.Entity.Design.Edmx.Entity.ReferentialConstraint;
 
 namespace Microsoft.Data.Entity.Design.Edmx.Validation
 {

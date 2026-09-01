@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export;
+using Microsoft.VisualStudio.PlatformUI;
 using System;
 using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
-using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export;
-using Microsoft.VisualStudio.PlatformUI;
 using EntityDesignerResources = Microsoft.Data.Entity.Design.Diagrams.Properties.DiagramsResources;
 
 namespace Microsoft.VisualStudio.Data.Entity.Package.Export

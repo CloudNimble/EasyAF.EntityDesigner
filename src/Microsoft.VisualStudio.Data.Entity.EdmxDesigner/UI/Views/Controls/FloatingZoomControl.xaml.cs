@@ -1,5 +1,8 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu;
+using Microsoft.VisualStudio.Modeling.Diagrams;
+using Microsoft.VisualStudio.PlatformUI;
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -7,9 +10,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu;
-using Microsoft.VisualStudio.Modeling.Diagrams;
-using Microsoft.VisualStudio.PlatformUI;
 
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Controls
 {

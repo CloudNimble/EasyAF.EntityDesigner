@@ -7,8 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using DslModeling = global::Microsoft.VisualStudio.Modeling;
 using DslDiagrams = global::Microsoft.VisualStudio.Modeling.Diagrams;
+using DslModeling = global::Microsoft.VisualStudio.Modeling;
 using DslShell = global::Microsoft.VisualStudio.Modeling.Shell;
 
 namespace Microsoft.VisualStudio.Data.Entity.Package

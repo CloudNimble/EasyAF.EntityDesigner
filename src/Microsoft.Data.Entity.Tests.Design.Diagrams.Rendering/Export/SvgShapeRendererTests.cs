@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.Drawing;
-using System.Text;
-using Microsoft.VisualStudio.Modeling;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using Microsoft.Data.Entity.Design.Diagrams.Rendering.Export.Svg;
+using Microsoft.VisualStudio.Modeling;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Drawing;
+using System.Text;
 
 namespace Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering.Export
 {

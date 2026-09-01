@@ -8,7 +8,6 @@ using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
 using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.EntityDesigner;
-using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Common;
 using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;

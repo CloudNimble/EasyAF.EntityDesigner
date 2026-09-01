@@ -1,9 +1,9 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.Diagrams.Rules;
+using Microsoft.Data.Entity.Design.Diagrams.View;
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.Data.Entity.Design.Diagrams.View;
-using Microsoft.Data.Entity.Design.Diagrams.Rules;
 
 namespace Microsoft.Data.Entity.Design.Diagrams
 {
