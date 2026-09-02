@@ -1,0 +1,62 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using System.Diagnostics;
+using Diagram = Microsoft.Data.Entity.Design.Edmx.Designer.Diagram;
+using EntityType = Microsoft.Data.Entity.Design.Edmx.Entity.EntityType;
+using InheritanceConnector = Microsoft.Data.Entity.Design.Diagrams.View.InheritanceConnector;
+
+namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
+{
+    internal class InheritanceConnectorAdd : InheritanceConnectorModelChange
+    {
+        internal InheritanceConnectorAdd(InheritanceConnector inheritanceConnector)
+            : base(inheritanceConnector)
+        {
+        }
+
+        internal override void Invoke(CommandProcessorContext cpc)
+        {
+            StaticInvoke(cpc, InheritanceConnector);
+        }
+
+        internal static void StaticInvoke(CommandProcessorContext cpc, InheritanceConnector inheritanceConnector)
+        {
+            // if there was a circular inheritance, this connector will be deleted, if so, we just return
+            if (inheritanceConnector.IsDeleted)
+            {
+                return;
+            }
+
+            var viewModel = inheritanceConnector.GetRootViewModel();
+            Debug.Assert(
+                viewModel != null, "Unable to find root view model from inheritance connector: " + inheritanceConnector.AccessibleName);
+
+            if (viewModel != null)
+            {
+                if (viewModel.ModelXRef.GetExisting(inheritanceConnector.ModelElement) is EntityTypeBaseType modelEntityTypeBase)
+                {
+                    EntityType modelEntity = modelEntityTypeBase.Parent as EntityType;
+                    Diagram modelDiagram = viewModel.ModelXRef.GetExisting(inheritanceConnector.Diagram) as Diagram;
+                    Debug.Assert(modelEntity != null && modelDiagram != null, "modelEntity != null && modelDiagram != null");
+                    if (modelEntity != null
+                        && modelDiagram != null)
+                    {
+                        CreateInheritanceConnectorCommand cmd = new CreateInheritanceConnectorCommand(modelDiagram, modelEntity);
+                        CommandProcessor.InvokeSingleCommand(cpc, cmd);
+                        var modelInheritanceConnector = cmd.InheritanceConnector;
+                        viewModel.ModelXRef.Add(modelInheritanceConnector, inheritanceConnector, viewModel.EditingContext);
+                    }
+                }
+            }
+        }
+
+        internal override int InvokeOrderPriority
+        {
+            get { return 150; }
+        }
+    }
+}

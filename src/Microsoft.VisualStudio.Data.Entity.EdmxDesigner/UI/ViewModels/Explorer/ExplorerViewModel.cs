@@ -1,0 +1,35 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer
+{
+
+    // <summary>
+    //     contains the ViewModel to support the Explorer View of the
+    //     conceptual and storage spaces
+    // </summary>
+    internal class ExplorerViewModel : IExplorerViewModel
+    {
+        public ExplorerViewModel(EditingContext editingContext, ExplorerRootNode edmRootNode)
+        {
+            EditingContext = editingContext;
+            EDMRootNode = edmRootNode;
+        }
+
+        #region Properties
+
+        public EditingContext EditingContext { get; set; }
+
+        public ExplorerEFElement RootNode
+        {
+            get { return EDMRootNode; }
+        }
+
+        public ExplorerRootNode EDMRootNode { get; set; }
+
+        #endregion
+    }
+
+}

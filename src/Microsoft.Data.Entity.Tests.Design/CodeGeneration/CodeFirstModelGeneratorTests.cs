@@ -1,18 +1,18 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using EnvDTE;
+using FluentAssertions;
+using Microsoft.Data.Entity.Tests.Design.TestHelpers;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.IO;
 using System.Linq;
-using EnvDTE;
-using FluentAssertions;
-using Microsoft.Data.Entity.Design.CodeGeneration;
-using Microsoft.Data.Entity.Tests.Design.TestHelpers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using Resources = Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Properties.Resources;
 
 namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
 {
@@ -56,7 +56,7 @@ namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
 
             files.Length.Should().Be(1);
             files[0].Key.Should().Be("MyContext.cs");
-            files[0].Value.Should().Contain(Resources.CodeFirstCodeFile_DbSetComment_CS);
+            files[0].Value.Should().Contain(ModelWizardResources.CodeFirstCodeFile_DbSetComment_CS);
         }
 
         [TestMethod]
@@ -79,7 +79,7 @@ namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
 
             files.Length.Should().Be(1);
             files[0].Key.Should().Be("MyContext.vb");
-            files[0].Value.Should().Contain(Resources.CodeFirstCodeFile_DbSetComment_VB);
+            files[0].Value.Should().Contain(ModelWizardResources.CodeFirstCodeFile_DbSetComment_VB);
         }
 
         // Test stopped working with 15.6 Preview 7 - plan to re-enable with https://github.com/aspnet/EntityFramework6/issues/541
@@ -144,7 +144,7 @@ namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
 
                     var ex = act.Should().Throw<CodeFirstModelGenerationException>().Which;
 
-                    ex.Message.Should().Be(string.Format(Resources.ErrorGeneratingCodeFirstModel, "MyContext.cs"));
+                    ex.Message.Should().Be(string.Format(ModelWizardResources.ErrorGeneratingCodeFirstModel, "MyContext.cs"));
                     ex.InnerException.Message.Should().Contain(token);
                 }
                 finally
@@ -180,7 +180,7 @@ namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration
 
                     var ex = act.Should().Throw<CodeFirstModelGenerationException>().Which;
 
-                    ex.Message.Should().Be(string.Format(Resources.ErrorGeneratingCodeFirstModel, "Entity.cs"));
+                    ex.Message.Should().Be(string.Format(ModelWizardResources.ErrorGeneratingCodeFirstModel, "Entity.cs"));
                     ex.InnerException.Message.Should().Contain(token);
                 }
                 finally

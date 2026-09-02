@@ -1,0 +1,68 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Microsoft.Data.Entity.Design.XmlEngine</RootNamespace>
+    <AssemblyName>Microsoft.Data.Entity.Design.XmlEngine</AssemblyName>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <NoWarn>$(NoWarn);VSTHRD001;VSSDK006</NoWarn>
+
+    <TargetFrameworks>netstandard2.0;net10.0</TargetFrameworks>
+    <RuntimeIdentifier></RuntimeIdentifier>
+    <!-- Directory.Build.props flattens output, which collides when multi-targeting. -->
+    <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- XmlModelProvider.GetObjectData carries a declarative CAS demand. The attribute is inert on
+         .NET Core, but the runtime still has to load the assembly that declares it. -->
+    <PackageReference Include="System.Security.Permissions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Common\CommonResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CommonResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <!-- InternalsVisibleTo for other projects that need access to internals -->
+  <ItemGroup>
+    <!-- Primary projects that depend on this assembly -->
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.DatabaseGeneration, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.EdmxDesigner, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.Package, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Diagrams, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Diagrams.Rendering, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.XmlDesigner, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.DataSourceWizardExtension, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Edmx, $(StrongNamePublicKey)" />
+    <!-- Test projects -->
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.Diagrams, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.Edmx, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.Tests.Package, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.Tests.XmlDesigner, $(StrongNamePublicKey)" />
+    <!-- Legacy test projects -->
+    <InternalsVisibleTo Include="EFDesigner.InProcTests, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="EFDesigner.FunctionalTests, $(StrongNamePublicKey)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Common\CommonResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommonResource.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>

@@ -1,12 +1,12 @@
-using System.Collections;
 using EnvDTE;
 using FluentAssertions;
-using Microsoft.Data.Entity.Design.CodeGeneration;
-using Microsoft.Data.Entity.Design.CodeGeneration.Generators;
-using Microsoft.Data.Entity.Design.Common;
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
 using Microsoft.Data.Entity.Tests.Design.TestHelpers;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Generators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System.Collections;
 using System.Linq;
 using VSLangProj;
 

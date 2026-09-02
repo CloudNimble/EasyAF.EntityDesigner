@@ -1,0 +1,36 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using System;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetails
+{
+    // <summary>
+    //     Contains the ViewModel to support the Mapping Details View.  The root node may
+    //     be driving either an entity mapping UI or an association mapping UI.
+    // </summary>
+    internal class MappingViewModel : IDisposable
+    {
+        private MappingEFElement _rootNode;
+
+        internal MappingViewModel(EditingContext editingContext, MappingEFElement rootNode)
+        {
+            EditingContext = editingContext;
+            _rootNode = rootNode;
+        }
+
+        public void Dispose()
+        {
+            _rootNode?.Dispose();
+            _rootNode = null;
+        }
+
+        internal EditingContext EditingContext { get; set; }
+
+        internal MappingEFElement RootNode
+        {
+            get { return _rootNode; }
+            set { _rootNode = value; }
+        }
+    }
+}

@@ -1,0 +1,32 @@
+﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using System.Windows.Forms;
+
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell
+{
+    internal class TreeGridDesignerWatermarkInfo
+    {
+        internal TreeGridDesignerWatermarkInfo(string text, params LinkData[] linkDatum)
+        {
+            WatermarkText = text;
+            WatermarkLinkData = linkDatum;
+        }
+
+        internal string WatermarkText { get; private set; }
+        internal LinkData[] WatermarkLinkData { get; private set; }
+
+        internal class LinkData
+        {
+            internal LinkData(int linkStart, int linkLength, LinkLabelLinkClickedEventHandler handler)
+            {
+                LinkStart = linkStart;
+                LinkLength = linkLength;
+                LinkClickedHandler = handler;
+            }
+
+            public int LinkStart { get; private set; }
+            public int LinkLength { get; private set; }
+            public LinkLabelLinkClickedEventHandler LinkClickedHandler { get; private set; }
+        }
+    }
+}

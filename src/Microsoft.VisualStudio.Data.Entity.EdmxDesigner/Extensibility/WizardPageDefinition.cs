@@ -1,0 +1,29 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.WizardFramework;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility
+{
+    internal class WizardPageDefinition
+    {
+        internal WizardPage WizardPage { get; private set; }
+
+        internal string WizardPageId { get; private set; }
+
+        // <summary>
+        //     Allows creation of a definition that is composed of a new WizardPage
+        // </summary>
+        internal WizardPageDefinition(WizardPage wizardPage)
+        {
+            WizardPage = wizardPage;
+        }
+
+        // <summary>
+        //     Allows creation of a definition that is composed of a WizardPageKind enum value representing an existing core wizard page
+        // </summary>
+        internal WizardPageDefinition(string wizardPageId)
+        {
+            WizardPageId = wizardPageId;
+        }
+    }
+}

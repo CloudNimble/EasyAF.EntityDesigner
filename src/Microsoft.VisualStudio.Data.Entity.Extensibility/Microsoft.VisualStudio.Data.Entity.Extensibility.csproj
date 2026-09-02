@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <RootNamespace>Microsoft.VisualStudio.Data.Entity.Extensibility</RootNamespace>
+        <AssemblyName>Microsoft.VisualStudio.Data.Entity.Extensibility</AssemblyName>
+
+        <TargetFrameworks>netstandard2.0;net10.0</TargetFrameworks>
+        <RuntimeIdentifier></RuntimeIdentifier>
+        <!-- Directory.Build.props flattens output, which collides when multi-targeting: every framework would
+             write to the same folder and overwrite the last. Each framework needs its own subfolder. -->
+        <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
+
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.VisualStudio.Interop" />
+        <!-- MEF ships in the framework on .NET Framework and as a package elsewhere. -->
+        <PackageReference Include="System.ComponentModel.Composition" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Update="Properties\ExtensibilityResources.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>ExtensibilityResources.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.EdmxDesigner, $(StrongNamePublicKey)" />
+        <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.Package, $(StrongNamePublicKey)" />
+        <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.EntityFramework, $(StrongNamePublicKey)" />
+        <!-- Test projects -->
+        <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design, $(StrongNamePublicKey)" />
+        <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.Tests.Package, $(StrongNamePublicKey)" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Properties\ExtensibilityResources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>ExtensibilityResources.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+</Project>

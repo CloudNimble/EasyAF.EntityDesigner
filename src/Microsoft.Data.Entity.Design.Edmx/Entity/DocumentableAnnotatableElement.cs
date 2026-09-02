@@ -1,0 +1,32 @@
+﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using System.Xml.Linq;
+
+namespace Microsoft.Data.Entity.Design.Edmx.Entity
+{
+
+    internal abstract class DocumentableAnnotatableElement : EFDocumentableItem
+    {
+        internal DocumentableAnnotatableElement(EFElement parent, XElement element)
+            : base(parent, element)
+        {
+        }
+
+        // This will be called from the child EFObject's constructor, so not all of the member variables may be hooked up yet. 
+        // be careful.  referencing certain fields may cause null-reference exceptions 
+        internal override void GetXLinqInsertPosition(EFElement child, out XNode insertAt, out bool insertBefore)
+        {
+            if (child is Documentation)
+            {
+                // base class will return correct position to insert the Documentation element - these always need to go first
+                base.GetXLinqInsertPosition(child, out insertAt, out insertBefore);
+            }
+            else
+            {
+                AnnotatableElement.GetInsertPointForAnnotatableElements(this, out insertAt, out insertBefore);
+            }
+        }
+    }
+
+}

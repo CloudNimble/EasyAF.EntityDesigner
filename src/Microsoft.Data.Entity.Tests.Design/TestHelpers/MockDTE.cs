@@ -1,12 +1,12 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using EnvDTE;
+using Microsoft.VisualStudio.Shell.Interop;
+using Moq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using EnvDTE;
-using Microsoft.VisualStudio.Shell.Interop;
-using Moq;
 using VSLangProj;
 using VSLangProj80;
 using VsWebSite;
@@ -281,9 +281,16 @@ namespace Microsoft.Data.Entity.Tests.Design.TestHelpers
 
             Mock<VSWebSite> vsWebSite = new Mock<VSWebSite>();
             Mock<AssemblyReferences> vsAssemblyReferences = new Mock<AssemblyReferences>();
+
+            // Both overloads are needed. foreach binds to the strongly typed AssemblyReferences.GetEnumerator(),
+            // not the IEnumerable one, so setting up only the latter leaves the former returning null and the
+            // loop throws. Each is a lambda so every enumeration gets a fresh enumerator rather than sharing one
+            // that is already exhausted. CreateVsProject2 does the same thing, which is why it works.
+            vsAssemblyReferences.Setup(r => r.GetEnumerator())
+                .Returns(() => references.GetEnumerator());
             vsAssemblyReferences.As<IEnumerable>()
                 .Setup(r => r.GetEnumerator())
-                .Returns(references.GetEnumerator());
+                .Returns(() => references.GetEnumerator());
 
             vsWebSite.SetupGet(p => p.References).Returns(vsAssemblyReferences.Object);
 

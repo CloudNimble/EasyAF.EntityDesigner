@@ -1,0 +1,44 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer
+{
+    internal class ExplorerEnumType : EntityDesignExplorerEFElement
+    {
+        public ExplorerEnumType(EditingContext context, EnumType enumType, ExplorerEFElement parent)
+            : base(context, enumType, parent)
+        {
+            // do nothing
+        }
+
+        // whether the name of the Enum Type is editable inline in the Explorer
+        public override bool IsEditableInline
+        {
+            get { return true; }
+        }
+
+        protected override void InsertChild(EFElement efElementToInsert)
+        {
+            // do nothing
+        }
+
+        protected override void LoadChildrenFromModel()
+        {
+            // do nothing.
+        }
+
+        protected override void LoadWpfChildrenCollection()
+        {
+            // do nothing
+        }
+
+        internal override string ExplorerImageResourceKeyName
+        {
+            get { return "EnumPngIcon"; }
+        }
+    }
+}

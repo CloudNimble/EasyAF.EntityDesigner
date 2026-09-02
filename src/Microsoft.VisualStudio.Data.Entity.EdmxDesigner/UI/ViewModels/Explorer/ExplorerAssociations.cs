@@ -1,0 +1,130 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer
+{
+    // <summary>
+    //     Dummy element which contains the Associations
+    // </summary>
+    internal class ExplorerAssociations : EntityDesignExplorerEFElement
+    {
+        private readonly TypedChildList<ExplorerAssociation> _associations =
+            new TypedChildList<ExplorerAssociation>();
+
+        public ExplorerAssociations(string name, EditingContext context, ExplorerEFElement parent)
+            : base(context, null, parent)
+        {
+            if (name != null)
+            {
+                base.Name = name;
+            }
+        }
+
+        #region Properties
+
+        public IList<ExplorerAssociation> Associations
+        {
+            get { return _associations.ChildList; }
+        }
+
+        #endregion
+
+        private void LoadAssociationsFromModel()
+        {
+            // load children from model
+            // note: have to go to parent to get this as this is a dummy node
+            if (Parent.ModelItem is BaseEntityModel entityModel)
+            {
+                foreach (var child in entityModel.Associations())
+                {
+                    if (child.EntityModel.IsCSDL)
+                    {
+                        _associations.Insert(
+                            (ExplorerConceptualAssociation)
+                            ModelToExplorerModelXRef.GetNewOrExisting(_context, child, this, typeof(ExplorerConceptualAssociation)));
+                    }
+                    else
+                    {
+                        _associations.Insert(
+                            (ExplorerStorageAssociation)
+                            ModelToExplorerModelXRef.GetNewOrExisting(_context, child, this, typeof(ExplorerStorageAssociation)));
+                    }
+                }
+            }
+        }
+
+        protected override void LoadChildrenFromModel()
+        {
+            LoadAssociationsFromModel();
+        }
+
+        protected override void LoadWpfChildrenCollection()
+        {
+            _children.Clear();
+
+            foreach (var child in Associations)
+            {
+                _children.Add(child);
+            }
+        }
+
+        protected override void InsertChild(EFElement efElementToInsert)
+        {
+            if (efElementToInsert is Association assoc)
+            {
+                var explorerAssociation = AddAssociation(assoc);
+                var index = _associations.IndexOf(explorerAssociation);
+                _children.Insert(index, explorerAssociation);
+            }
+            else
+            {
+                base.InsertChild(efElementToInsert);
+            }
+        }
+
+        protected override bool RemoveChild(ExplorerEFElement efElementToRemove)
+        {
+            if (efElementToRemove is not ExplorerAssociation explorerAssociation)
+            {
+                Debug.Fail(
+                    string.Format(
+                        CultureInfo.CurrentCulture, EdmxDesignerResources.BadRemoveBadChildType,
+                        efElementToRemove.GetType().FullName, Name, GetType().FullName));
+                return false;
+            }
+
+            var indexOfRemovedChild = _associations.Remove(explorerAssociation);
+            return (indexOfRemovedChild < 0) ? false : true;
+        }
+
+        private ExplorerAssociation AddAssociation(Association assoc)
+        {
+            ExplorerAssociation explorerAssociation = null;
+            if (assoc.EntityModel.IsCSDL)
+            {
+                explorerAssociation =
+                    ModelToExplorerModelXRef.GetNew(_context, assoc, this, typeof(ExplorerConceptualAssociation)) as
+                    ExplorerConceptualAssociation;
+            }
+            else
+            {
+                explorerAssociation =
+                    ModelToExplorerModelXRef.GetNew(_context, assoc, this, typeof(ExplorerStorageAssociation)) as ExplorerStorageAssociation;
+            }
+            _associations.Insert(explorerAssociation);
+            return explorerAssociation;
+        }
+
+        internal override string ExplorerImageResourceKeyName
+        {
+            get { return "FolderPngIcon"; }
+        }
+    }
+}

@@ -1,0 +1,35 @@
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Configuration;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Configuration.Properties;
+using System.Data.Entity.Core.Metadata.Edm;
+using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
+using System.Linq;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Discoverers.Properties
+{
+    internal class FixedLengthDiscoverer : LengthDiscovererBase
+    {
+        public override IConfiguration Discover(EdmProperty property, DbModel model)
+        {
+            Debug.Assert(property != null, "property is null.");
+            Debug.Assert(model != null, "model is null.");
+
+            if (!_lengthTypes.Contains(property.PrimitiveType.PrimitiveTypeKind))
+            {
+                // Doesn't apply
+                return null;
+            }
+
+            if (// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+property.IsFixedLength != true)
+            {
+                // By convention
+                return null;
+            }
+
+            return new FixedLengthConfiguration();
+        }
+    }
+}
+

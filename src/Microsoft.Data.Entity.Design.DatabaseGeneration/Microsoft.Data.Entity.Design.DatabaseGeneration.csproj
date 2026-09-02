@@ -3,33 +3,40 @@
   <PropertyGroup>
     <RootNamespace>Microsoft.Data.Entity.Design.DatabaseGeneration</RootNamespace>
     <AssemblyName>Microsoft.Data.Entity.Design.DatabaseGeneration</AssemblyName>
+    <!-- netstandard2.1 rather than 2.0 because VersioningFacade bottoms out there. -->
+    <TargetFrameworks>net48;netstandard2.1;net10.0</TargetFrameworks>
+    <RuntimeIdentifier></RuntimeIdentifier>
+    <!-- Directory.Build.props flattens output, which collides when multi-targeting. -->
+    <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="System.Activities" />
-    <Reference Include="System.Runtime.DurableInstancing" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.EntityFramework\Microsoft.Data.Entity.Design.EntityFramework.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.XmlEngine\Microsoft.Data.Entity.Design.XmlEngine.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Microsoft.Data.Entity.Design.VersioningFacade\Microsoft.Data.Entity.Design.VersioningFacade.csproj" />
-    <ProjectReference Include="..\Microsoft.Data.Tools.Design.XmlCore\Microsoft.Data.Tools.Design.XmlCore.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
+    <EmbeddedResource Update="Properties\DatabaseGenerationResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>DatabaseGenerationResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
   <!-- InternalsVisibleTo for other projects that need access to internals -->
   <ItemGroup>
     <!-- Primary projects that depend on this assembly -->
-    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.EdmxDesigner, $(StrongNamePublicKey)" />
     <!-- Legacy test projects -->
     <InternalsVisibleTo Include="EFDesigner.InProcTests, $(StrongNamePublicKey)" />
     <!-- Modern test projects -->
     <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.DatabaseGeneration, $(StrongNamePublicKey)" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\DatabaseGenerationResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DatabaseGenerationResources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>

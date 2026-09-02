@@ -8,6 +8,7 @@
         <IsSampleProject Condition="$(MSBuildProjectName.ToLower().Contains('.samples'))">true</IsSampleProject>
         <IsTemplateProject Condition="$(MSBuildProjectName.ToLower().Contains('.templates.'))">true</IsTemplateProject>
         <IsTemplatePackageProject Condition="$(MSBuildProjectName.ToLower().Contains('.templates.package'))">true</IsTemplatePackageProject>
+        <IsDotNetTool Condition=" '$(PackAsTool)' == 'true' ">true</IsDotNetTool>
         <IsNetCore Condition=" '$(TargetFramework)' == 'net8.0' OR '$(TargetFramework)' == 'net9.0' OR '$(TargetFramework)' == 'net10.0' ">true</IsNetCore>
         <IsPrimaryProject Condition=" ('$(IsBenchmarkProject)' != 'true' And '$(IsTestProject)' != 'true' And '$(IsTestAssetProject)' != 'true' And '$(IsSampleProject)' != 'true' And '$(IsSampleProject)' != 'true') or '$(IsTemplatePackageProject)' == 'true' ">true</IsPrimaryProject>
         <IncludeReadmeFile Condition="Exists('$(MSBuildProjectDirectory)\readme.md')">true</IncludeReadmeFile>
@@ -41,16 +42,8 @@
         <NeutralLanguage>en-US</NeutralLanguage>
     </PropertyGroup>
 
-    <!-- Project type detection -->
-    <PropertyGroup>
-        <IsTestProject Condition="$(MSBuildProjectName.ToLower().Contains('.tests.'))">true</IsTestProject>
-        <IsPrimaryProject Condition=" '$(IsTestProject)' != 'true' ">true</IsPrimaryProject>
-    </PropertyGroup>
-
     <!-- Primary project settings -->
     <PropertyGroup Condition=" '$(IsPrimaryProject)' == 'true' ">
-        <TargetFramework>net48</TargetFramework>
-        <RuntimeIdentifier>win</RuntimeIdentifier>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
         <!-- Output paths - don't append framework/runtime to output -->
@@ -69,8 +62,6 @@
     <!-- Test project settings -->
     <PropertyGroup Condition=" '$(IsTestProject)' == 'true' ">
 
-        <TargetFramework>net48</TargetFramework>
-        <RuntimeIdentifier>win</RuntimeIdentifier>
         <IsPackable>false</IsPackable>
 
         <!-- Output paths - don't append framework/runtime to output -->
@@ -114,9 +105,7 @@
         <InternalsVisibleTo Include="DynamicProxyGenAssembly2, PublicKey=0024000004800000940000000602000000240000525341310004000001000100c547cac37abd99c8db225ef2f6c8a3602f3b3606cc9891605d02baa56104f4cfc0734aa39b93bf7852f7d9266654753cc297e7d2edfe0bac1cdcf9f717241550e0a7b191195b7667bb4f64bcb8e2121380fd1d9d46ad2d92d2d15605093924cceaf74c4861eff62abf69b9291ed0a340e113be11e6a7d3113e92484cf7045cc7" />
     </ItemGroup>
 
-    <ItemGroup Condition=" $(IsTestProject) != 'true' and $(IsSampleProject) != 'true' and $(IsTemplateProject) != 'true' ">
-        <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
-    </ItemGroup>
+
 
     <!-- Test project package references -->
     <ItemGroup Condition=" '$(IsTestProject)' == 'true' ">
@@ -126,12 +115,27 @@
         <PackageReference Include="MSTest" />
 
         <!-- Enable parallel test execution in MSTest 4 and later -->
-        <AssemblyAttribute Include="Microsoft.VisualStudio.TestTools.UnitTesting.Parallelize">
+        <AssemblyAttribute Condition=" '$(UsesDslStore)' != 'true' "
+                           Include="Microsoft.VisualStudio.TestTools.UnitTesting.Parallelize">
             <_Parameter1>Workers = 0</_Parameter1>
             <_Parameter1_IsLiteral>true</_Parameter1_IsLiteral>
             <_Parameter2>Scope = Microsoft.VisualStudio.TestTools.UnitTesting.ExecutionScope.MethodLevel</_Parameter2>
             <_Parameter2_IsLiteral>true</_Parameter2_IsLiteral>
         </AssemblyAttribute>
+
+        <!-- Test assemblies that build a DSL Store cannot run tests concurrently, so they opt out by setting
+             UsesDslStore. The Visual Studio Modeling SDK assumes a single threaded host and keeps unsynchronized
+             process wide state: StoreDiagramMappingData holds a static Dictionary keyed by Store which
+             DiagramCommittingRule writes to on every transaction commit, and store construction mutates a shared
+             serializer registry through DomainXmlSerializerDirectory.InternalAddBehavior. Concurrent access
+             produces null references, "Collection was modified", or a torn dictionary that crashes the test host.
+
+             This is declared per assembly rather than per class on purpose. [DoNotParallelize] on individual
+             classes only works if every future author remembers it, and the failures are intermittent enough to
+             pass code review. Locking store construction is not sufficient either - it was tried, and the commit
+             path still raced. -->
+        <AssemblyAttribute Condition=" '$(UsesDslStore)' == 'true' "
+                           Include="Microsoft.VisualStudio.TestTools.UnitTesting.DoNotParallelize" />
     </ItemGroup>
 
 

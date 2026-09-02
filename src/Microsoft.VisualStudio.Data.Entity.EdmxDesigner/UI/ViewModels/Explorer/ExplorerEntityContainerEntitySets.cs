@@ -1,0 +1,107 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer
+{
+    // <summary>
+    //     Dummy element which contains the EntitySets inside the EntityContainer
+    // </summary>
+    internal class ExplorerEntityContainerEntitySets : EntityDesignExplorerEFElement
+    {
+        private readonly TypedChildList<ExplorerEntitySet> _entitySets =
+            new TypedChildList<ExplorerEntitySet>();
+
+        public ExplorerEntityContainerEntitySets(string name, EditingContext context, ExplorerEFElement parent)
+            : base(context, null, parent)
+        {
+            if (name != null)
+            {
+                base.Name = name;
+            }
+        }
+
+        public IList<ExplorerEntitySet> EntitySets
+        {
+            get { return _entitySets.ChildList; }
+        }
+
+        private void LoadEntitySetsFromModel()
+        {
+            // load children from model
+            // note: have to go to parent to get this as this is a dummy node
+            if (Parent.ModelItem is BaseEntityContainer entityModel)
+            {
+                foreach (var child in entityModel.EntitySets())
+                {
+                    _entitySets.Insert(
+                        (ExplorerEntitySet)
+                        ModelToExplorerModelXRef.GetNewOrExisting(_context, child, this, typeof(ExplorerEntitySet)));
+                }
+            }
+        }
+
+        protected override void LoadChildrenFromModel()
+        {
+            LoadEntitySetsFromModel();
+        }
+
+        protected override void LoadWpfChildrenCollection()
+        {
+            _children.Clear();
+
+            foreach (var child in EntitySets)
+            {
+                _children.Add(child);
+            }
+        }
+
+        protected override void InsertChild(EFElement efElementToInsert)
+        {
+            if (efElementToInsert is EntitySet entitySet)
+            {
+                var explorerEntitySet = AddEntitySet(entitySet);
+                var index = _entitySets.IndexOf(explorerEntitySet);
+                _children.Insert(index, explorerEntitySet);
+            }
+            else
+            {
+                base.InsertChild(efElementToInsert);
+            }
+        }
+
+        protected override bool RemoveChild(ExplorerEFElement efElementToRemove)
+        {
+            if (efElementToRemove is not ExplorerEntitySet explorerEntitySet)
+            {
+                Debug.Fail(
+                    string.Format(
+                        CultureInfo.CurrentCulture, EdmxDesignerResources.BadRemoveBadChildType,
+                        efElementToRemove.GetType().FullName, Name, GetType().FullName));
+                return false;
+            }
+
+            var indexOfRemovedChild = _entitySets.Remove(explorerEntitySet);
+            return (indexOfRemovedChild < 0) ? false : true;
+        }
+
+        private ExplorerEntitySet AddEntitySet(EntitySet entitySet)
+        {
+            ExplorerEntitySet explorerEntitySet =
+                ModelToExplorerModelXRef.GetNew(_context, entitySet, this, typeof(ExplorerEntitySet)) as ExplorerEntitySet;
+            _entitySets.Insert(explorerEntitySet);
+            return explorerEntitySet;
+        }
+
+        internal override string ExplorerImageResourceKeyName
+        {
+            get { return "FolderPngIcon"; }
+        }
+    }
+}

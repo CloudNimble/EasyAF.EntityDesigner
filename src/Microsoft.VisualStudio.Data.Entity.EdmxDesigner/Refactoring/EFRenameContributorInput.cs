@@ -1,0 +1,59 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Refactoring;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Refactoring
+{
+    internal class EFRenameContributorInput : ContributorInput
+    {
+        private readonly EFObject _objectToBeRenamed;
+        private readonly string _oldName;
+        private readonly string _newName;
+
+        internal EFRenameContributorInput(EFObject objectToBeRenamed, string newName, string oldName)
+        {
+            ArgumentValidation.CheckForNullReference(objectToBeRenamed, "objectToBeRenamed");
+            ArgumentValidation.CheckForNullReference(newName, "newName");
+            ArgumentValidation.CheckForNullReference(oldName, "oldName");
+
+            _objectToBeRenamed = objectToBeRenamed;
+            _oldName = oldName;
+            _newName = newName;
+        }
+
+        internal string NewName
+        {
+            get { return _newName; }
+        }
+
+        internal EFObject ObjectToBeRenamed
+        {
+            get { return _objectToBeRenamed; }
+        }
+
+        internal string OldName
+        {
+            get { return _oldName; }
+        }
+
+        public override bool Equals(object obj)
+        {
+            var isEqual = false;
+            if (obj is EFRenameContributorInput otherInput)
+            {
+                isEqual = (_objectToBeRenamed == otherInput._objectToBeRenamed) &&
+                          string.CompareOrdinal(_newName, otherInput._newName) == 0 &&
+                          string.CompareOrdinal(_oldName, otherInput._oldName) == 0;
+            }
+
+            return isEqual;
+        }
+
+        public override int GetHashCode()
+        {
+            return _objectToBeRenamed.GetHashCode() ^ _newName.GetHashCode() ^ _oldName.GetHashCode();
+        }
+    }
+}

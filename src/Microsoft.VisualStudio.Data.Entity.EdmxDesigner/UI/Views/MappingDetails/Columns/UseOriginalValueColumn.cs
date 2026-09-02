@@ -1,0 +1,106 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetails;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetails.Functions;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails.Columns
+{
+    internal class UseOriginalValueColumn : BaseColumn
+    {
+        public UseOriginalValueColumn()
+            : base(EdmxDesignerResources.MappingDetails_UseOriginalValueColumn)
+        {
+        }
+
+        protected override float GetWidthPercentage()
+        {
+            // constant size for this column, we are just a checkbox
+            return 0.12f;
+        }
+
+        internal override bool ColumnIsCheckBox
+        {
+            get { return true; }
+        }
+
+        internal override CheckBoxState GetCheckBoxValue(object component)
+        {
+            if (component is MappingFunctionScalarProperty mfsp
+                && mfsp.MappingModificationFunctionMapping != null
+                && mfsp.MappingModificationFunctionMapping.ModificationFunctionType == ModificationFunctionType.Update)
+            {
+                if (mfsp.ModelItem != null)
+                {
+                    return (mfsp.UseOriginalValue ? CheckBoxState.Checked : CheckBoxState.Unchecked);
+                }
+                else
+                {
+                    return CheckBoxState.UncheckedDisabled;
+                }
+            }
+
+            return CheckBoxState.Unsupported;
+        }
+
+        internal override StateRefreshChanges ToggleCheckBoxValue(object component)
+        {
+            if (component is MappingFunctionScalarProperty mfsp
+                &&
+                mfsp.ModelItem != null)
+            {
+                mfsp.UseOriginalValue = !mfsp.UseOriginalValue;
+                return StateRefreshChanges.Parents | StateRefreshChanges.Current;
+            }
+
+            return StateRefreshChanges.None;
+        }
+
+        internal override object GetInPlaceEdit(object component, ref string alternateText)
+        {
+            return null;
+        }
+
+        internal override bool IsDeleteSupported(object component)
+        {
+            return false;
+        }
+
+        public override object /* PropertyDescriptor */ GetValue(object component)
+        {
+            return string.Empty;
+        }
+
+        public override void /* PropertyDescriptor */ SetValue(object component, object value)
+        {
+        }
+
+        internal override TreeGridDesignerValueSupportedStates GetValueSupported(object component)
+        {
+            if (component is MappingFunctionEntityType
+                || component is MappingModificationFunctionMapping
+                || component is MappingFunctionScalarProperties
+                || component is MappingResultBindings
+                || component is MappingResultBinding)
+            {
+                return TreeGridDesignerValueSupportedStates.None;
+            }
+            else
+            {
+                return base.GetValueSupported(component);
+            }
+        }
+
+        internal override void EnsureTypeConverters(MappingEFElement element)
+        {
+            if (_converter == null
+                || _currentElement != element)
+            {
+                _currentElement = element;
+                _converter = null;
+            }
+        }
+    }
+}

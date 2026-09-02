@@ -1,0 +1,20 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Base.Host
+{
+    // <summary>
+    //     This class defines an Escher service that provides a schema
+    //     designer given a DesignerContext.
+    // </summary>
+    internal abstract class MappingDesignerFactory
+    {
+        // <summary>
+        //     Creates a new designer.
+        // </summary>
+        // <param name="context">
+        //     The designer context that provides contextual information to the designer.
+        // </param>
+        // <exception cref="ArgumentNullException"> if context is null.</exception>
+        internal abstract MappingDesigner CreateDesigner(MappingDesignerContext context);
+    }
+}

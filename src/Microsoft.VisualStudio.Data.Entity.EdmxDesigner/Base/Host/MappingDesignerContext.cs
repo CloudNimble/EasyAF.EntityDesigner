@@ -1,0 +1,31 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Base.Host
+{
+    // <summary>
+    //     The MappingDesignerContext provides contextual services to the
+    //     designer.  All IO through the designer is handled through the
+    //     provider objects offered through this class.
+    //     Any provider may be null.  If null, the features the designer
+    //     offers that require the provider will be not-enabled.  If enough
+    //     providers are null the designer will do nothing.
+    // </summary>
+    internal class MappingDesignerContext
+    {
+        // <summary>
+        //     Provides access to the given provider to the designer.  If this
+        //     value is null those features of the designer that rely on this
+        //     provider will not be available.
+        // </summary>
+        internal ModelInformationProvider ModelInformationProvider { get; set; }
+
+        // <summary>
+        //     Provides access to the given provider to the designer.  If this
+        //     value is null those features of the designer that rely on this
+        //     provider will not be available.
+        // </summary>
+        internal XmlModelProvider XmlModelProvider { get; set; }
+    }
+}

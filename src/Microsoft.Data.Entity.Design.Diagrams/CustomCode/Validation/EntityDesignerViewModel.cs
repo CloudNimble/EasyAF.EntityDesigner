@@ -1,0 +1,34 @@
+﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.VisualStudio.Modeling.Validation;
+
+namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
+{
+    [ValidationState(ValidationState.Disabled)]
+    internal partial class EntityDesignerViewModel
+    {
+#if false
+        Temporarily keep this as a reference for when we remove DSL validation.  
+        This will get validated by the runtime.
+
+        /// <summary>
+        /// Validate model Namespace
+        /// </summary>
+        /// <param name="context"></param>
+        [ValidationMethod(ValidationCategories.Open | ValidationCategories.Save, CustomCategory = "OnTransactionCommited")]
+        private void ValidateNamespace(ValidationContext context)
+        {
+            if (String.IsNullOrEmpty(this.Namespace))
+            {
+                string message = String.Format(CultureInfo.CurrentCulture, Properties.EntityDesignerRes.Error_ModelNamespaceEmpty);
+                context.LogError(message, Properties.EntityDesignerRes.ErrorCode_ModelNamespaceEmpty, this);
+            }
+            else if (EdmxAttributeContentValidator.IsValidCSDLNamespaceName(this.Namespace) == false)
+            {
+                string message = String.Format(CultureInfo.CurrentCulture, Properties.EntityDesignerRes.Error_ModelNamespaceInvalid, this.Namespace);
+                context.LogError(message, Properties.EntityDesignerRes.ErrorCode_ModelNamespaceInvalid, this);
+            }
+        }
+#endif
+    }
+}

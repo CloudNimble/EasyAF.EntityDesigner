@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.Collections;
-using System.Collections.Generic;
-using Microsoft.Data.Entity.Design.CodeGeneration.Extensions;
+using FluentAssertions;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using FluentAssertions;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration.Extensions
 {

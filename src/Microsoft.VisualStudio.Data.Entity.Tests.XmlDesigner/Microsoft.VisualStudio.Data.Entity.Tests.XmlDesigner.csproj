@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Microsoft.VisualStudio.Data.Entity.Tests.XmlDesigner</RootNamespace>
+    <AssemblyName>Microsoft.VisualStudio.Data.Entity.Tests.XmlDesigner</AssemblyName>
+    <TargetFrameworks>net48</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Shell.15.0" />
+    <PackageReference Include="Microsoft.VisualStudio.XmlEditor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.Edmx\Microsoft.Data.Entity.Design.Edmx.csproj" />
+    <ProjectReference Include="..\Microsoft.VisualStudio.Data.Entity.XmlDesigner\Microsoft.VisualStudio.Data.Entity.XmlDesigner.csproj" />
+  </ItemGroup>
+
+</Project>

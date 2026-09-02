@@ -1,0 +1,32 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using System;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Explorer
+{
+    // <summary>
+    //     Context Item that contains IDiagramManager instance.
+    //     This is used by ModelBrowser/Explorer code to do diagram operation.
+    //     (for example: OpenDiagram, CloseDiagram, CloseAllDiagrams).
+    // </summary>
+    internal class DiagramManagerContextItem : ContextItem
+    {
+        private IDiagramManager _diagramManager;
+
+        internal void SetViewManager(IDiagramManager diagramManager)
+        {
+            _diagramManager = diagramManager;
+        }
+
+        internal IDiagramManager DiagramManager
+        {
+            get { return _diagramManager; }
+        }
+
+        internal override Type ItemType
+        {
+            get { return typeof(DiagramManagerContextItem); }
+        }
+    }
+}

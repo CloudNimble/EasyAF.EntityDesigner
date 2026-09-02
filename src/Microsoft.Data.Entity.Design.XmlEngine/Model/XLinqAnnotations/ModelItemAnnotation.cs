@@ -1,0 +1,35 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using System.Xml.Linq;
+
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model.XLinqAnnotations
+{
+    internal static class ModelItemAnnotation
+    {
+        internal static EFObject GetModelItem(XObject xobject)
+        {
+            var mia = xobject.Annotation<EFObject>();
+            while (mia == null
+                   && xobject.Parent != null)
+            {
+                mia = xobject.Parent.Annotation<EFObject>();
+                xobject = xobject.Parent;
+            }
+
+            return mia;
+        }
+
+        internal static void SetModelItem(XObject xobject, EFObject efobject)
+        {
+            if (xobject.Annotation<EFObject>() == null)
+            {
+                xobject.AddAnnotation(efobject);
+            }
+            else
+            {
+                xobject.RemoveAnnotations<EFObject>();
+                xobject.AddAnnotation(efobject);
+            }
+        }
+    }
+}

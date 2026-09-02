@@ -1,0 +1,53 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer
+{
+    internal abstract class EntityDesignExplorerEFElement : ExplorerEFElement
+    {
+        protected EntityDesignExplorerEFElement(EditingContext context, EFElement modelItem, ExplorerEFElement parent)
+            : base(context, modelItem, parent)
+        {
+        }
+
+        protected override void InsertChild(EFElement efElementToInsert)
+        {
+            if (efElementToInsert is Documentation)
+            {
+                // the ViewModel does not keep track of Documentation
+                // elements for any ExplorerEFElement but it is not 
+                // an error - so just return
+                return;
+            }
+
+            base.InsertChild(efElementToInsert);
+        }
+
+        // Override EditableName to catch CommandValidationFailedException
+        public override string EditableName
+        {
+            get { return base.EditableName; }
+            set
+            {
+                try
+                {
+                    base.EditableName = value;
+                }
+                catch (CommandValidationFailedException cvfe)
+                {
+                    // if attempt to rename fails show error dialog and
+                    // re-throw which will cause calling code to revert
+                    // display name to original name
+                    VsUtils.ShowErrorDialog(cvfe.Message);
+                    throw;
+                }
+            }
+        }
+    }
+}

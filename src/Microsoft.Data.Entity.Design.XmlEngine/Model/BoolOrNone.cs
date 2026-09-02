@@ -1,0 +1,29 @@
+﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using System;
+
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model
+{
+    /// <summary>
+    ///     Class that represents a choice between true, false or '(None)' i.e. "not set"
+    /// </summary>
+    [Serializable]
+    internal class BoolOrNone : StringOrPrimitive<bool>
+    {
+        internal static readonly BoolOrNone NoneValue = new BoolOrNone(global::Microsoft.Data.Entity.Design.XmlEngine.XmlEngineResources.NoneDisplayValueUsedForUX);
+        internal static readonly BoolOrNone TrueValue = new BoolOrNone(true);
+        internal static readonly BoolOrNone FalseValue = new BoolOrNone(false);
+
+        private BoolOrNone(bool primitiveValue)
+            : base(primitiveValue)
+        {
+            // only use static values above
+        }
+
+        private BoolOrNone(string stringVal)
+            : base(stringVal)
+        {
+            // only use static values above
+        }
+    }
+}

@@ -1,0 +1,57 @@
+﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Edmx.Designer;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using System.Diagnostics;
+using System.Linq;
+
+namespace Microsoft.Data.Entity.Design.Edmx.Commands
+{
+    internal class DeleteEntityTypeShapeCommand : DeleteEFElementCommand
+    {
+        /// <summary>
+        ///     Deletes the passed in EntityTypeShape and the associated connectors.
+        /// </summary>
+        /// <param name="entityType"></param>
+        internal DeleteEntityTypeShapeCommand(EntityTypeShape entityTypeShape)
+            : base(entityTypeShape)
+        {
+        }
+
+        private EntityTypeShape EntityTypeShape
+        {
+            get
+            {
+                EntityTypeShape elem = EFElement as EntityTypeShape;
+                Debug.Assert(elem != null, "underlying element does not exist or is not an EntityTypeShape");
+                if (elem == null)
+                {
+                    throw new InvalidModelItemException();
+                }
+                return elem;
+            }
+        }
+
+        /// <summary>
+        ///     We override this method to do some specialized processing of removing connectors associated with the shape.
+        /// </summary>
+        /// <param name="cpc"></param>
+        protected override void RemoveAntiDeps(CommandProcessorContext cpc)
+        {
+            var associationConnectors = ModelHelper.GetListOfAssociationConnectorsForEntityTypeShape(EntityTypeShape).ToArray();
+            foreach (var associationConnector in associationConnectors)
+            {
+                DeleteEFElementCommand.DeleteInTransaction(cpc, associationConnector);
+            }
+
+            var inheritanceConnectors = ModelHelper.GetListOfInheritanceConnectorsForEntityTypeShape(EntityTypeShape).ToArray();
+            foreach (var inheritanceConnector in inheritanceConnectors)
+            {
+                DeleteEFElementCommand.DeleteInTransaction(cpc, inheritanceConnector);
+            }
+
+            // process the remaining antiDeps normally
+            base.RemoveAntiDeps(cpc);
+        }
+    }
+}

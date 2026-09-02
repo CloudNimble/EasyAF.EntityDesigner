@@ -1,0 +1,50 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Diagrams.ModelChanges;
+using Microsoft.Data.Entity.Design.Diagrams.Utils;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
+using Microsoft.VisualStudio.Modeling;
+using System.Diagnostics;
+
+namespace Microsoft.Data.Entity.Design.Diagrams.Rules
+{
+    /// <summary>
+    ///     Rule fired when an Association is created
+    /// </summary>
+    [RuleOn(typeof(Association), FireTime = TimeToFire.TopLevelCommit)]
+    internal sealed class Association_AddRule : AddRule
+    {
+        /// <summary>
+        ///     Do the following when a new Association is created:
+        ///     - Initialize the "End1" and "End2" properties (displayed on the connector decorators)
+        ///     - Set the "Name" property to a sensible default
+        ///     - Update the navigation property of the Source and Target entities
+        /// </summary>
+        public override void ElementAdded(ElementAddedEventArgs e)
+        {
+            base.ElementAdded(e);
+
+            Association addedAssociation = e.ModelElement as Association;
+
+            Debug.Assert(addedAssociation != null, "addedAssociation != null");
+            Debug.Assert(addedAssociation.SourceEntityType != null, "addedAssociation.SourceEntityType != null");
+            Debug.Assert(addedAssociation.TargetEntityType != null, "addedAssociation.TargetEntityType != null");
+            Debug.Assert(addedAssociation.SourceEntityType.EntityDesignerViewModel != null, "addedAssociation.SourceEntityType.EntityDesignerViewModel != null");
+
+            if (addedAssociation != null
+                && addedAssociation.SourceEntityType != null
+                && addedAssociation.TargetEntityType != null
+                && addedAssociation.SourceEntityType.EntityDesignerViewModel != null)
+            {
+                var tx = ModelUtils.GetCurrentTx(e.ModelElement.Store);
+                Debug.Assert(tx != null, "tx != null");
+                if (tx != null
+                    && !tx.IsSerializing)
+                {
+                    // create the new association
+                    ViewModelChangeContext.GetNewOrExistingContext(tx).ViewModelChanges.Add(new AssociationAdd(addedAssociation));
+                }
+            }
+        }
+    }
+}

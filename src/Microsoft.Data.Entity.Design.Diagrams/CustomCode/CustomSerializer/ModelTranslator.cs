@@ -1,0 +1,28 @@
+﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using DslModeling = Microsoft.VisualStudio.Modeling;
+
+namespace Microsoft.Data.Entity.Design.Diagrams.CustomSerializer
+{
+    internal class ModelTranslator<T>
+        where T : BaseTranslatorStrategy
+    {
+        protected T _translatorStrategy;
+
+        internal ModelTranslator(T translatorStrategy)
+        {
+            _translatorStrategy = translatorStrategy;
+        }
+
+        internal DslModeling.ModelElement TranslateModelToDslModel(EFObject modelElement, DslModeling.Partition partition)
+        {
+            return _translatorStrategy.TranslateModelToDslModel(modelElement, partition);
+        }
+
+        internal DslModeling.ModelElement SynchronizeSingleDslModelElement(DslModeling.ModelElement parentViewModel, EFObject modelElement)
+        {
+            return _translatorStrategy.SynchronizeSingleDslModelElement(parentViewModel, modelElement);
+        }
+    }
+}

@@ -1,0 +1,54 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using System.Diagnostics;
+using Association = Microsoft.Data.Entity.Design.Edmx.Entity.Association;
+using AssociationConnector = Microsoft.Data.Entity.Design.Diagrams.View.AssociationConnector;
+using Diagram = Microsoft.Data.Entity.Design.Edmx.Designer.Diagram;
+
+namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
+{
+    internal class AssociationConnectorAdd : AssociationConnectorModelChange
+    {
+        internal AssociationConnectorAdd(AssociationConnector associationConnector)
+            : base(associationConnector)
+        {
+        }
+
+        internal override void Invoke(CommandProcessorContext cpc)
+        {
+            StaticInvoke(cpc, AssociationConnector);
+        }
+
+        internal static void StaticInvoke(CommandProcessorContext cpc, AssociationConnector associationConnector)
+        {
+            var viewModel = associationConnector.GetRootViewModel();
+            Debug.Assert(
+                viewModel != null, "Unable to find root view model from association connector: " + associationConnector.AccessibleName);
+
+            if (viewModel != null)
+            {
+                Association modelAssociation = viewModel.ModelXRef.GetExisting(associationConnector.ModelElement) as Association;
+                Diagram modelDiagram = viewModel.ModelXRef.GetExisting(associationConnector.Diagram) as Diagram;
+
+                Debug.Assert(modelAssociation != null && modelDiagram != null, "modelAssociation != null && modelDiagram != null");
+                if (modelAssociation != null
+                    && modelDiagram != null)
+                {
+                    CreateAssociationConnectorCommand cmd = new CreateAssociationConnectorCommand(modelDiagram, modelAssociation);
+                    CommandProcessor.InvokeSingleCommand(cpc, cmd);
+                    var modelAssociationConnector = cmd.AssociationConnector;
+                    Debug.Assert(modelAssociationConnector != null, "modelAssociationConnector != null");
+                    viewModel.ModelXRef.Add(modelAssociationConnector, associationConnector, viewModel.EditingContext);
+                }
+            }
+        }
+
+        internal override int InvokeOrderPriority
+        {
+            get { return 150; }
+        }
+    }
+}

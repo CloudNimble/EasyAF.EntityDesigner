@@ -1,0 +1,74 @@
+﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using System;
+using System.Diagnostics;
+
+namespace Microsoft.Data.Entity.Design.Edmx.Commands
+{
+    /// <summary>
+    ///     Use this command to change aspects of a ResultBinding inside a function mapping.
+    ///     Example:
+    ///     &lt;InsertFunction FunctionName=&quot;PerfDB.Store.sp_insert_test_metric&quot;&gt;
+    ///     &lt;ResultBinding ColumnName=&quot;id&quot; Name=&quot;id&quot; /&gt;
+    ///     &lt;/InsertFunction&gt;
+    ///     These can live as direct children of a ModificationFunction (not Delete).  The different
+    ///     thing with these, is that ColumnName does NOT point to a Property in an S-Side entity but
+    ///     to a column in the function's result set.  These "column names" cannot be validated until runtime.
+    /// </summary>
+    internal class ChangeResultBindingCommand : Command
+    {
+        private readonly ResultBinding _binding;
+        private readonly Property _entityProperty;
+        private readonly string _columnName;
+
+        /// <summary>
+        ///     This method lets you change aspects of a ResultBinding.
+        /// </summary>
+        /// <param name="sp">Must point to a valid ResultBinding</param>
+        /// <param name="entityProperty">Can be null</param>
+        /// <param name="columnName">Can be null</param>
+        internal ChangeResultBindingCommand(ResultBinding binding, Property entityProperty, string columnName)
+        {
+            Debug.Assert(!(entityProperty == null && columnName == null), "All optional arguments can't be null");
+            CommandValidation.ValidateResultBinding(binding);
+            if (entityProperty != null)
+            {
+                CommandValidation.ValidateConceptualEntityProperty(entityProperty);
+            }
+
+            _binding = binding;
+            _entityProperty = entityProperty;
+            _columnName = columnName;
+        }
+
+        protected override void InvokeInternal(CommandProcessorContext cpc)
+        {
+            // safety check, this should never be hit
+            Debug.Assert(_binding != null, "InvokeInternal is called when _binding is null.");
+            if (_binding == null)
+            {
+                throw new InvalidOperationException("InvokeInternal is called when _binding is null");
+            }
+
+            // set new values in if we were sent them
+            if (_entityProperty != null
+                && _binding.Name.Target != _entityProperty)
+            {
+                _binding.Name.SetRefName(_entityProperty);
+            }
+
+            // set new values in if we were sent them
+            if (_columnName != null
+                && !string.Equals(_binding.ColumnName.Value, _columnName, StringComparison.CurrentCulture))
+            {
+                _binding.ColumnName.Value = _columnName;
+            }
+
+            XmlModelHelper.NormalizeAndResolve(_binding);
+        }
+    }
+}

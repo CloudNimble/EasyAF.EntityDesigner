@@ -1,0 +1,295 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using Microsoft.VisualStudio.OLE.Interop;
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.XmlEditor;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using IServiceProvider = System.IServiceProvider;
+using XmlModel = Microsoft.Data.Entity.Design.XmlEngine.Model.XmlModel;
+
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio
+{
+    /// <summary>
+    ///     The VS implementation of the XmlModelProvider. This uses
+    ///     our VSModelInformationService to provide the model data.
+    /// </summary>
+    internal sealed class VSXmlModelProvider : XmlModelProvider
+    {
+        private readonly IServiceProvider _services;
+        private XmlStore _xmlStore;
+        private Dictionary<Uri, VSXmlModel> _xmlModels = [];
+
+        private Dictionary<XmlEditingScope, VSXmlTransaction> _txDictionary =
+            [];
+
+        private readonly IXmlDesignerPackage _xmlDesignerPackage;
+
+        /// <summary>
+        ///     Create a new XML model provider.
+        /// </summary>
+        public VSXmlModelProvider(IServiceProvider services, IXmlDesignerPackage xmlDesignerPackage)
+        {
+            Debug.Assert(services != null);
+            Debug.Assert(xmlDesignerPackage != null);
+            _xmlDesignerPackage = xmlDesignerPackage;
+            _services = services;
+            if (_xmlStore == null)
+            {
+                XmlEditorService xmlEditorService = (XmlEditorService)services.GetService(
+                    typeof(XmlEditorService));
+                _xmlStore = xmlEditorService.CreateXmlStore();
+                _xmlStore.EditingScopeCompleted += OnXmlModelTransactionCompleted;
+                _xmlStore.UndoRedoCompleted += OnXmlModelUndoRedoCompleted;
+            }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (_txDictionary != null)
+                {
+                    try
+                    {
+                        foreach (var tx in _txDictionary.Values)
+                        {
+                            tx.Dispose();
+                        }
+                    }
+                    finally
+                    {
+                        _txDictionary = null;
+                    }
+                }
+
+                if (_xmlModels != null)
+                {
+                    try
+                    {
+                        foreach (var vsXmlModel in _xmlModels.Values)
+                        {
+                            vsXmlModel.Dispose();
+                        }
+                    }
+                    finally
+                    {
+                        _xmlModels = null;
+                    }
+                }
+
+                if (_xmlStore != null)
+                {
+                    try
+                    {
+                        _xmlStore.EditingScopeCompleted -= OnXmlModelTransactionCompleted;
+                        _xmlStore.UndoRedoCompleted -= OnXmlModelUndoRedoCompleted;
+                        _xmlStore.Dispose();
+                    }
+                    finally
+                    {
+                        _xmlStore = null;
+                    }
+                }
+            }
+
+            base.Dispose(disposing);
+        }
+
+        /// <summary>
+        ///     Returns the Xml model for a given file token, or null
+        ///     if there is no Xml model for the token.
+        /// </summary>
+        public override XmlModel GetXmlModel(Uri sourceUri)
+        {
+            Debug.Assert(_xmlDesignerPackage.IsForegroundThread, "Can't request an XmlModel on background thread");
+
+            // assert that an entry already exists in the RDT for this document and confirm with the designer package that the entry
+            // is owned by the designer.  If this is not the case, the xml editor will create a doc data, and this may not be the doc 
+            // data we want.  This can result in failure to open the document in the desired designer because the editor is incorrect.
+#if DEBUG
+            var skipChecks = false;
+
+            // The behaviour of VsShellUtilities.IsDocumentOpen changed in VS2013. In VS2012 IsDocumentOpen would return true if the document
+            // has been loaded even though loading the solution has not finished yet. In VS2013 IsOpenDocument returns false if the solution
+            // is still being loaded. This caused multiple asserts when opening a project after VS was closed when edmx file was active/opened
+            // See http://entityframework.codeplex.com/workitem/1163 for more details and repro steps.
+            var solution = (IVsSolution)_services.GetService(typeof (IVsSolution));
+            if (solution != null && NativeMethods.Succeeded(solution.GetProperty((int)__VSPROPID2.VSPROPID_IsSolutionOpeningDocs, out object propertyValue)))
+            {
+                skipChecks = true;
+            }
+
+            // Alert: when we try to load the XmlModel for diagram file, the document is not opened in VS.
+            //  The If statement is added to skip the check for diagram files.
+            if (!skipChecks
+                && sourceUri.LocalPath.EndsWith(".edmx", StringComparison.OrdinalIgnoreCase))
+            {
+                var isDocumentOpen = VsShellUtilities.IsDocumentOpen(
+                    _services, sourceUri.LocalPath, Guid.Empty, out IVsUIHierarchy hier, out uint itemId, out IVsWindowFrame windowFrame);
+
+                Debug.Assert(isDocumentOpen, "Running Document Table does not contain document in GetXmlModel()");
+                if (isDocumentOpen)
+                {
+                    var frameWrapper = _xmlDesignerPackage.DocumentFrameMgr.CreateFrameWrapper(windowFrame);
+                    Debug.Assert(frameWrapper != null, "Could not construct FrameWrapper for IVsWindowFrame in debug code in GetXmlModel()");
+                    if (frameWrapper != null)
+                    {
+                        Debug.Assert(
+                            frameWrapper.IsDesignerDocInDesigner,
+                            "We are trying to GetXmlModel() for a document that is not owned by the designer");
+                    }
+                }
+            }
+#endif
+
+            if (!_xmlModels.TryGetValue(sourceUri, out VSXmlModel vsXmlModel))
+            {
+                // OpenXmlModel loads the document into the XML editor, which pumps messages, so a shell callback can
+                // re-enter this method for the same Uri and cache a model before this call adds one.
+                XmlEditor.XmlModel xmlModel = _xmlStore.OpenXmlModel(sourceUri);
+                if (xmlModel is not null)
+                {
+                    if (_xmlModels.TryGetValue(sourceUri, out VSXmlModel cached))
+                    {
+                        // Each OpenXmlModel needs a matching Dispose or the editor keeps the document referenced.
+                        xmlModel.Dispose();
+                        vsXmlModel = cached;
+                    }
+                    else
+                    {
+                        vsXmlModel = new VSXmlModel(_services, xmlModel);
+                        _xmlModels.Add(sourceUri, vsXmlModel);
+                    }
+                }
+            }
+
+            return vsXmlModel;
+        }
+
+        public override IEnumerable<XmlModel> OpenXmlModels
+        {
+            get
+            {
+                if (_xmlModels is null)
+                {
+                    yield break;
+                }
+
+                foreach (var xmlModel in _xmlModels.Values)
+                {
+                    yield return xmlModel;
+                }
+            }
+        }
+
+        public override void CloseXmlModel(Uri xmlModelUri)
+        {
+            // Note: _xmlModels can be null if we have already been disposed
+            if (_xmlModels != null
+                && _xmlModels.TryGetValue(xmlModelUri, out VSXmlModel vsXmlModel))
+            {
+                _xmlModels.Remove(xmlModelUri);
+                vsXmlModel.Dispose();
+            }
+            base.CloseXmlModel(xmlModelUri);
+        }
+
+        public override XmlTransaction BeginTransaction(string name, object userState)
+        {
+            var editorTx = _xmlStore.BeginEditingScope(name, userState);
+            var tx = GetTransaction(editorTx);
+            return tx;
+        }
+
+        public override void BeginUndoScope(string name)
+        {
+            if (UndoManager is ParentUndoManager pum)
+            {
+                pum.StartParentUndoScope(name);
+            }
+        }
+
+        public override void EndUndoScope()
+        {
+            if (UndoManager is ParentUndoManager pum)
+            {
+                pum.CloseParentUndoScope();
+            }
+        }
+
+        public override XmlTransaction CurrentTransaction
+        {
+            get
+            {
+                if (_xmlStore.CurrentEditingScope == null)
+                {
+                    return null;
+                }
+                return GetTransaction(_xmlStore.CurrentEditingScope);
+            }
+        }
+
+        internal VSXmlTransaction GetTransaction(XmlEditingScope editorTx)
+        {
+            if (!(_txDictionary.TryGetValue(editorTx, out VSXmlTransaction tx)))
+            {
+                tx = new VSXmlTransaction(this, editorTx);
+                _txDictionary[editorTx] = tx;
+            }
+            return tx;
+        }
+
+        private void OnXmlModelTransactionCompleted(object senderId, XmlEditingScopeEventArgs e)
+        {
+            _xmlDesignerPackage.InvokeOnForeground(
+                () =>
+                    {
+                        var designerTx = ((senderId != null) && (senderId is XmlStore) && (senderId == _xmlStore));
+                        XmlTransaction tx = GetTransaction(e.EditingScope);
+                        XmlTransactionEventArgs args = new XmlTransactionEventArgs(tx, designerTx);
+                        OnTransactionCompleted(args);
+                        _txDictionary.Remove(e.EditingScope);
+                    });
+        }
+
+        private void OnXmlModelUndoRedoCompleted(object senderId, XmlEditingScopeEventArgs e)
+        {
+            _xmlDesignerPackage.InvokeOnForeground(
+                () =>
+                    {
+                        var designerTx = ((senderId != null) && (senderId is XmlStore) && (senderId == _xmlStore));
+                        XmlTransaction tx = GetTransaction(e.EditingScope);
+                        XmlTransactionEventArgs args = new XmlTransactionEventArgs(tx, designerTx);
+                        OnUndoRedoCompleted(args);
+                        _txDictionary.Remove(e.EditingScope);
+                    });
+        }
+
+        public override bool RenameXmlModel(Uri oldName, Uri newName)
+        {
+            if (_xmlModels.TryGetValue(oldName, out VSXmlModel vsXmlModel))
+            {
+                _xmlModels.Remove(oldName);
+                _xmlModels.Add(newName, vsXmlModel);
+                Debug.Assert(new Uri(vsXmlModel.Name) == newName);
+                return true;
+            }
+            return false;
+        }
+
+        public IOleUndoManager UndoManager
+        {
+            get { return _xmlStore?.UndoManager; }
+            set
+            {
+                Debug.Assert(_xmlStore != null);
+                _xmlStore?.UndoManager = value;
+            }
+        }
+    }
+}

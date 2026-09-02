@@ -1,12 +1,11 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.StandAlone;
 using System;
 using System.Diagnostics;
 using System.Linq;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
-using Microsoft.Data.Tools.XmlDesignerBase.Model;
-using Microsoft.Data.Tools.XmlDesignerBase.Model.StandAlone;
 
 namespace Microsoft.Data.Entity.Tests.Shared.EFDesigner
 {

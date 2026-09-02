@@ -1,0 +1,49 @@
+﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using System.Diagnostics;
+using System.Globalization;
+using System.Xml.Linq;
+
+namespace Microsoft.Data.Entity.Design.Edmx.Mapping
+{
+    internal class UpdateFunction : ModificationFunction
+    {
+        internal static readonly string ElementName = "UpdateFunction";
+
+        internal UpdateFunction(EFElement parent, XElement element)
+            : base(parent, element)
+        {
+            Debug.Assert(parent is ModificationFunctionMapping, "parent should be a ModificationFunctionMapping");
+            _functionType = ModificationFunctionType.Update;
+        }
+
+        private string DisplayNameInternal(bool localize)
+        {
+            string resource;
+            if (localize)
+            {
+                resource = EdmxResources.MappingModel_UpdateFunctionDisplayName;
+            }
+            else
+            {
+                resource = "{0} (UpdateFunction)";
+            }
+
+            return string.Format(
+                CultureInfo.CurrentCulture,
+                resource,
+                FunctionName.RefName);
+        }
+
+        internal override string DisplayName
+        {
+            get { return DisplayNameInternal(true); }
+        }
+
+        internal override string NonLocalizedDisplayName
+        {
+            get { return DisplayNameInternal(false); }
+        }
+    }
+}

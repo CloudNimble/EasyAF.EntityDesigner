@@ -1,0 +1,44 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using FluentAssertions;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using System;
+using System.Xml.Linq;
+
+namespace Microsoft.Data.Entity.Tests.Design.XmlEngine.Model.Validation
+{
+    [TestClass]
+    public class XObjectLineNumberServiceTests
+    {
+        [TestMethod]
+        public void GetLineNumber_returns_line_number_from_text_span()
+        {
+            Mock<XmlModelProvider> mockModelProvider = new Mock<XmlModelProvider>();
+            mockModelProvider
+                .Setup(m => m.GetTextSpanForXObject(It.IsAny<XObject>(), It.IsAny<Uri>()))
+                .Returns(new TextSpan { iStartLine = 42 });
+
+            using (var mockModel = mockModelProvider.Object)
+            {
+                new XObjectLineNumberService(mockModel).GetLineNumber(null, null).Should().Be(42);
+            }
+        }
+
+        [TestMethod]
+        public void GetColumnNumber_returns_column_number_from_text_span()
+        {
+            Mock<XmlModelProvider> mockModelProvider = new Mock<XmlModelProvider>();
+            mockModelProvider
+                .Setup(m => m.GetTextSpanForXObject(It.IsAny<XObject>(), It.IsAny<Uri>()))
+                .Returns(new TextSpan { iStartIndex = 42 });
+
+            using (var mockModel = mockModelProvider.Object)
+            {
+                new XObjectLineNumberService(mockModel).GetColumnNumber(null, null).Should().Be(42);
+            }
+        }
+    }
+}

@@ -1,0 +1,26 @@
+﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model.Visitor
+{
+    internal class StateChangingVisitor : Visitor
+    {
+        private readonly EFElementState _state;
+
+        internal StateChangingVisitor(EFElementState state)
+        {
+            _state = state;
+        }
+
+        internal override void Visit(IVisitable visitable)
+        {
+            // if this is an EFElement and it is a higher state than
+            // what we want to set it to, set it
+            if (visitable is EFElement item
+                &&
+                item.State > _state)
+            {
+                item.State = _state;
+            }
+        }
+    }
+}

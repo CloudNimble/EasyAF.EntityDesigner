@@ -1,0 +1,77 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.PropertyWindow.Converters;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow;
+using System;
+using System.ComponentModel;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.PropertyWindow.Descriptors
+{
+    internal class EFParameterDescriptor : EFAnnotatableElementDescriptor<Parameter>
+    {
+        internal override bool IsReadOnlyName()
+        {
+            return true;
+        }
+
+        internal static bool CanResetType()
+        {
+            // cannot call Reset on Type attribute as this passes null to the Type setter which
+            // removes the attribute which is a schema violation
+            return false;
+        }
+
+        [LocCategory("PropertyWindow_Category_General")]
+        [LocDisplayName("PropertyWindow_DisplayName_Type")]
+        [TypeConverter(typeof(ScalarTypeConverter<EFParameterDescriptor, Parameter>))]
+        public string Type
+        {
+            get { return TypedEFElement.Type.Value; }
+            set
+            {
+                var cpc = PropertyWindowViewModelHelper.GetCommandProcessorContext();
+                UpdateDefaultableValueCommand<string> cmd = new UpdateDefaultableValueCommand<string>(TypedEFElement.Type, value);
+                CommandProcessor.InvokeSingleCommand(cpc, cmd);
+            }
+        }
+
+        [LocCategory("PropertyWindow_Category_General")]
+        [LocDisplayName("PropertyWindow_DisplayName_Parameter")]
+        [LocDescription("PropertyWindow_Description_Parameter")]
+        public string Parameter
+        {
+            get
+            {
+                if (TypedEFElement.Parent != null)
+                {
+                    if (TypedEFElement.Parent is FunctionImport functionImport)
+                    {
+                        if (functionImport.Function != null)
+                        {
+                            foreach (var efsParameter in functionImport.Function.Parameters())
+                            {
+                                if (efsParameter.LocalName.Value == TypedEFElement.LocalName.Value)
+                                {
+                                    return efsParameter.LocalName.Value;
+                                }
+                            }
+                        }
+                    }
+                }
+                return String.Empty;
+            }
+        }
+
+        public override string GetComponentName()
+        {
+            return TypedEFElement.NormalizedNameExternal;
+        }
+
+        public override string GetClassName()
+        {
+            return "Parameter";
+        }
+    }
+}

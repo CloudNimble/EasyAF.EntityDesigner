@@ -1,0 +1,45 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Diagrams.ModelChanges;
+using Microsoft.Data.Entity.Design.Diagrams.Utils;
+using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
+using Microsoft.VisualStudio.Modeling;
+using Microsoft.VisualStudio.Modeling.Diagrams;
+using System.Diagnostics;
+
+namespace Microsoft.Data.Entity.Design.Diagrams.Rules
+{
+    /// <summary>
+    ///     Rule fired when an Inheritance is created
+    /// </summary>
+    [RuleOn(typeof(Inheritance), FireTime = TimeToFire.TopLevelCommit)]
+    internal sealed class Inheritance_DeleteRule : DeleteRule
+    {
+        public override void ElementDeleted(ElementDeletedEventArgs e)
+        {
+            base.ElementDeleted(e);
+
+            if (e.ModelElement is Inheritance inheritance)
+            {
+                if (inheritance.TargetEntityType != null)
+                {
+                    // We need to invalidate the target entitytypeshape element; so base type name will be updated correctly.
+                    foreach (var pe in PresentationViewsSubject.GetPresentation(inheritance.TargetEntityType))
+                    {
+                        EntityTypeShape entityShape = pe as EntityTypeShape;
+                        entityShape?.Invalidate();
+                    }
+                }
+
+                var tx = ModelUtils.GetCurrentTx(inheritance.Store);
+                Debug.Assert(tx != null, "tx != null");
+                if (tx != null
+                    && !tx.IsSerializing)
+                {
+                    ViewModelChangeContext.GetNewOrExistingContext(tx).ViewModelChanges.Add(new InheritanceDelete(inheritance));
+                }
+            }
+        }
+    }
+}

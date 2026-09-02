@@ -1,0 +1,109 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.Explorer;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.Explorer
+{
+    // <summary>
+    //     Dummy element which contains the FunctionImports from the ConceptualEntityContainer
+    // </summary>
+    internal class ExplorerFunctionImports : EntityDesignExplorerEFElement
+    {
+        private readonly TypedChildList<ExplorerFunctionImport> _functionImports =
+            new TypedChildList<ExplorerFunctionImport>();
+
+        public ExplorerFunctionImports(string name, EditingContext context, ExplorerEFElement parent)
+            : base(context, null, parent)
+        {
+            if (name != null)
+            {
+                base.Name = name;
+            }
+        }
+
+        public IList<ExplorerFunctionImport> FunctionImports
+        {
+            get { return _functionImports.ChildList; }
+        }
+
+        private void LoadFunctionImportsFromModel()
+        {
+            // load children from model
+            // note: have to go to parent to get this as this is a dummy node
+            if (Parent.ModelItem is ConceptualEntityModel entityModel)
+            {
+                if (entityModel.FirstEntityContainer is ConceptualEntityContainer entityContainer)
+                {
+                    foreach (var child in entityContainer.FunctionImports())
+                    {
+                        _functionImports.Insert(
+                            (ExplorerFunctionImport)
+                            ModelToExplorerModelXRef.GetNewOrExisting(_context, child, this, typeof(ExplorerFunctionImport)));
+                    }
+                }
+            }
+        }
+
+        protected override void LoadChildrenFromModel()
+        {
+            LoadFunctionImportsFromModel();
+        }
+
+        protected override void LoadWpfChildrenCollection()
+        {
+            _children.Clear();
+            foreach (var child in FunctionImports)
+            {
+                _children.Add(child);
+            }
+        }
+
+        protected override void InsertChild(EFElement efElementToInsert)
+        {
+            if (efElementToInsert is FunctionImport funcImport)
+            {
+                var explorerFuncImport = AddFunctionImport(funcImport);
+                var index = _functionImports.IndexOf(explorerFuncImport);
+                _children.Insert(index, explorerFuncImport);
+            }
+            else
+            {
+                base.InsertChild(efElementToInsert);
+            }
+        }
+
+        protected override bool RemoveChild(ExplorerEFElement efElementToRemove)
+        {
+            if (efElementToRemove is not ExplorerFunctionImport explorerFuncImport)
+            {
+                Debug.Fail(
+                    string.Format(
+                        CultureInfo.CurrentCulture, EdmxDesignerResources.BadRemoveBadChildType, efElementToRemove.GetType().FullName, Name,
+                        GetType().FullName));
+                return false;
+            }
+
+            var indexOfRemovedChild = _functionImports.Remove(explorerFuncImport);
+            return (indexOfRemovedChild < 0) ? false : true;
+        }
+
+        private ExplorerFunctionImport AddFunctionImport(FunctionImport funcImport)
+        {
+            ExplorerFunctionImport explorerFuncImport =
+                ModelToExplorerModelXRef.GetNew(_context, funcImport, this, typeof(ExplorerFunctionImport)) as ExplorerFunctionImport;
+            _functionImports.Insert(explorerFuncImport);
+            return explorerFuncImport;
+        }
+
+        internal override string ExplorerImageResourceKeyName
+        {
+            get { return "FolderPngIcon"; }
+        }
+    }
+}

@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
 using FluentAssertions;
-using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Gui.ViewModels;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Gui.ViewModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Resources = Microsoft.Data.Entity.Design.Resources;
+using System;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Gui.ViewModels
 {
@@ -18,7 +18,7 @@ namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Gui.ViewMo
             EntityFrameworkVersionOption option = new EntityFrameworkVersionOption(version);
 
             option.Name.Should().Be(
-                string.Format(Resources.EntityFrameworkVersionName, new Version(version.Major, version.Minor)));
+                string.Format(EdmxDesignerResources.EntityFrameworkVersionName, new Version(version.Major, version.Minor)));
             option.Version.Should().BeSameAs(version);
         }
 
@@ -29,7 +29,7 @@ namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.ModelWizard.Gui.ViewMo
             EntityFrameworkVersionOption option = new EntityFrameworkVersionOption(version);
 
             option.Name.Should().Be(
-                string.Format(Resources.EntityFrameworkVersionName, "6.x"));
+                string.Format(EdmxDesignerResources.EntityFrameworkVersionName, "6.x"));
             option.Version.Should().BeSameAs(version);
         }
 

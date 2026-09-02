@@ -1,0 +1,113 @@
+﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Edmx.Designer;
+using Microsoft.Data.Entity.Design.Edmx.Integrity;
+using Microsoft.Data.Entity.Design.Edmx.UpdateFromDatabase;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Validation;
+using System;
+using System.Diagnostics;
+
+namespace Microsoft.Data.Entity.Design.Edmx.Commands
+{
+    internal class UpdateModelFromDatabaseCommand : Command
+    {
+        private readonly Action<ErrorInfo, string> _logError;
+        private readonly EFArtifact _newArtifactFromDB;
+
+        /// <summary>
+        ///     Creates the command.
+        /// </summary>
+        /// <param name="newArtifactFromDB">The artifact reverse engineered from the current database.</param>
+        /// <param name="logError">
+        ///     Reports a warning the update could not resolve. Passed through to
+        ///     <see cref="UpdateConceptualAndMappingModelsCommand" />; warnings are discarded when it is not supplied.
+        /// </param>
+        internal UpdateModelFromDatabaseCommand(EFArtifact newArtifactFromDB, Action<ErrorInfo, string> logError = null)
+        {
+            _newArtifactFromDB = newArtifactFromDB;
+            _logError = logError;
+        }
+
+        protected override void InvokeInternal(CommandProcessorContext cpc)
+        {
+            var service = cpc.EditingContext.GetEFArtifactService();
+            var artifact = service.Artifact;
+            Debug.Assert(artifact != null, "Null Artifact");
+            if (null == artifact)
+            {
+                return;
+            }
+
+            // construct a mapping of the existing model's C-side objects
+            // and their S-side identities before anything is updated
+            ExistingModelSummary existingModel = new ExistingModelSummary(artifact);
+
+            // replace the old SSDL with the new and fixup any references 
+            // in the MSL that broke because of the replacement of the SSDL
+            // (i.e. the S-side Alias and S-side EntityContainer name)
+            ReplaceSsdlCommand replaceSsdlCommand = new ReplaceSsdlCommand(_newArtifactFromDB.StorageModel());
+            CommandProcessor.InvokeSingleCommand(cpc, replaceSsdlCommand);
+
+            // remove any mappings with references which no longer work 
+            // with the new SSDL
+            DeleteUnboundMappingsCommand deleteUnboundMappingsCommand = new DeleteUnboundMappingsCommand();
+            CommandProcessor.InvokeSingleCommand(cpc, deleteUnboundMappingsCommand);
+
+            // remove any mappings which should no longer be mapped with the new SSDL
+            // but actually are because a new S-side object with identical name
+            // but different identity has been added
+            DeleteChangedIdentityMappingsCommand deleteChangedIdentityMappingsCommand = new DeleteChangedIdentityMappingsCommand(existingModel);
+            CommandProcessor.InvokeSingleCommand(cpc, deleteChangedIdentityMappingsCommand);
+
+            // from the temp model for the updated database determine which 
+            // C-side objects need to be added/updated and then update the
+            // C- and M- side models appropriately
+            UpdatedModelSummary modelFromUpdatedDatabase = new UpdatedModelSummary(_newArtifactFromDB);
+            UpdateConceptualAndMappingModelsCommand updateCsdlAndMslCommand =
+                new UpdateConceptualAndMappingModelsCommand(existingModel, modelFromUpdatedDatabase, _logError);
+            CommandProcessor.InvokeSingleCommand(cpc, updateCsdlAndMslCommand);
+
+            // fix up Function Import parameters and add integrity checks
+            if (artifact.MappingModel() != null
+                && artifact.MappingModel().FirstEntityContainerMapping != null)
+            {
+                // Function Import parameters are now out-of-date compared to the updated Function ones.
+                // We need to update them as otherwise there is no way to do so using Escher.
+                foreach (var fim in artifact.MappingModel().FirstEntityContainerMapping.FunctionImportMappings())
+                {
+                    if (null != fim.FunctionImportName
+                        && null != fim.FunctionImportName.Target
+                        && null != fim.FunctionName
+                        && null != fim.FunctionName.Target)
+                    {
+                        CreateFunctionImportCommand.UpdateFunctionImportParameters(
+                            cpc, fim.FunctionImportName.Target, fim.FunctionName.Target);
+                    }
+                }
+
+                // Add integrity checks to enforce mapping rules
+                foreach (var esm in artifact.MappingModel().FirstEntityContainerMapping.EntitySetMappings())
+                {
+                    EnforceEntitySetMappingRules.AddRule(cpc, esm);
+                }
+
+                // add the integrity check to propagate all appropriate StoreGeneratedPattern values to the S-side
+                // Note: should not propagate "None"/defaulted values to prevent those C-side values overwriting
+                // correctly updated S-side StoreGeneratedPattern values which were just received from the runtime
+                PropagateStoreGeneratedPatternToStorageModel.AddRule(cpc, artifact, false);
+
+                // Add integrity check to enforce synchronizing C-side Property facets to S-side values
+                var shouldSynchronizePropertyFacets = ModelHelper.GetDesignerPropertyValueFromArtifactAsBool(
+                    OptionsDesignerInfo.ElementName,
+                    OptionsDesignerInfo.AttributeSynchronizePropertyFacets, OptionsDesignerInfo.SynchronizePropertyFacetsDefault(artifact),
+                    artifact);
+                if (shouldSynchronizePropertyFacets)
+                {
+                    PropagateStoragePropertyFacetsToConceptualModel.AddRule(cpc, artifact);
+                }
+            }
+        }
+    }
+}

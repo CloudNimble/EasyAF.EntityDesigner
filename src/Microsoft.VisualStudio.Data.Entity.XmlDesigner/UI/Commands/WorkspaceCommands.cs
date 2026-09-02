@@ -1,0 +1,17 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using System.Windows.Input;
+
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.Commands
+{
+    internal static class WorkspaceCommands
+    {
+        public static RoutedCommand ZoomIn = new RoutedCommand("ZoomIn", typeof(WorkspaceCommands));
+        public static RoutedCommand ZoomOut = new RoutedCommand("ZoomOut", typeof(WorkspaceCommands));
+        public static RoutedCommand Activate = new RoutedCommand("Activate", typeof(WorkspaceCommands));
+        public static RoutedCommand PutInRenameMode = new RoutedCommand("PutInRenameMode", typeof(WorkspaceCommands));
+#if VIEWSOURCE
+        public static RoutedCommand ViewSource = new RoutedCommand("ViewSource", typeof(WorkspaceCommands));
+#endif
+    }
+}

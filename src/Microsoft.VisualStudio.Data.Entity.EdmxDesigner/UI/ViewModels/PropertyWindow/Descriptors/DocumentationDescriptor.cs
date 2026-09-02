@@ -1,0 +1,108 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Edmx.Commands;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Converters;
+using System;
+using System.ComponentModel;
+using System.ComponentModel.Design;
+using System.Diagnostics;
+using System.Drawing.Design;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.PropertyWindow.Descriptors
+{
+    [TypeConverter(typeof(ExpandablePropertyConverter))]
+    internal class DocumentationDescriptor
+    {
+        private readonly EFDocumentableItem _efElement;
+        private readonly bool _isReadOnly;
+
+        public DocumentationDescriptor(EFDocumentableItem efElement)
+        {
+            Debug.Assert(efElement.HasDocumentationElement, "element does not have documentation element");
+            _efElement = efElement;
+            _isReadOnly = IsCsdlElement(_efElement);
+        }
+
+        public override string ToString()
+        {
+            return String.Empty;
+        }
+
+        private bool IsReadOnly
+        {
+            get { return _isReadOnly; }
+        }
+
+        public bool IsReadOnlySummary()
+        {
+            return IsReadOnly;
+        }
+
+        public bool IsReadOnlyLongDescription()
+        {
+            return IsReadOnly;
+        }
+
+        [LocCategory("PropertyWindow_Category_General")]
+        [LocDisplayName("PropertyWindow_DisplayName_Summary")]
+        [LocDescription("PropertyWindow_Description_Summary")]
+        [Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
+        public string Summary
+        {
+            get
+            {
+                if (_efElement.Documentation != null
+                    && _efElement.Documentation.Summary != null)
+                {
+                    return _efElement.Documentation.Summary.Text;
+                }
+
+                return String.Empty;
+            }
+            set
+            {
+                var cpc = PropertyWindowViewModelHelper.GetCommandProcessorContext();
+                SetDocumentationSummaryCommand cmd = new SetDocumentationSummaryCommand(_efElement, value);
+                CommandProcessor.InvokeSingleCommand(cpc, cmd);
+            }
+        }
+
+        [LocCategory("PropertyWindow_Category_General")]
+        [LocDisplayName("PropertyWindow_DisplayName_LongDescription")]
+        [LocDescription("PropertyWindow_Description_LongDescription")]
+        [Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
+        public string LongDescription
+        {
+            get
+            {
+                if (_efElement.Documentation != null
+                    && _efElement.Documentation.LongDescription != null)
+                {
+                    return _efElement.Documentation.LongDescription.Text;
+                }
+
+                return String.Empty;
+            }
+            set
+            {
+                var cpc = PropertyWindowViewModelHelper.GetCommandProcessorContext();
+                SetDocumentationLongDescriptionCommand cmd = new SetDocumentationLongDescriptionCommand(_efElement, value);
+                CommandProcessor.InvokeSingleCommand(cpc, cmd);
+            }
+        }
+
+        private static bool IsCsdlElement(EFElement element)
+        {
+            if (element.GetParentOfType(typeof(BaseEntityModel)) is BaseEntityModel entityModel
+                && entityModel.IsCSDL)
+            {
+                return false;
+            }
+            return true;
+        }
+    }
+}

@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <RootNamespace>Microsoft.Data.Entity.Design.Diagrams.Tools</RootNamespace>
+        <AssemblyName>Microsoft.Data.Entity.Design.Diagrams.Tools</AssemblyName>
+
+        <!-- net10.0, not net10.0-windows: PackAsTool rejects any TargetPlatformIdentifier (NETSDK1146), so a
+             -windows moniker makes this unshippable as a dotnet tool. The Windows Desktop assemblies come from
+             the FrameworkReference below. Windows only at runtime either way. -->
+        <TargetFrameworks>net10.0</TargetFrameworks>
+
+        <!-- Directory.Build.props flattens output, which collides when multi-targeting. -->
+        <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
+        <OutputType>Exe</OutputType>
+        <!-- The Modeling SDK's GraphObject layout engine has an x64 native dependency. Without this the net48 exe
+             defaults to AnyCPU with Prefer32Bit, launches 32 bit, and fails to load it with a BadImageFormatException. -->
+        <PlatformTarget>x64</PlatformTarget>
+        <NoWarn>$(NoWarn);CA1822;NU1701;NU1608;</NoWarn>
+
+        <Title>Microsoft.Data.Entity.Design.Diagrams.Tools</Title>
+        <Description>Command line tool for rendering EDMX diagrams without Visual Studio.</Description>
+        <CLSCompliant>false</CLSCompliant>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <PackageId>EasyAF.Edmx.DiagramTools</PackageId>
+        <ToolCommandName>dotnet-edmx</ToolCommandName>
+        <PackAsTool>true</PackAsTool>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.WindowsDesktop.App" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="McMaster.Extensions.Hosting.CommandLine" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" />
+        <PackageReference Include="Microsoft.Extensions.Logging" />
+        <PackageReference Include="Svg.Skia" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Microsoft.Data.Entity.Design.Diagrams.Rendering\Microsoft.Data.Entity.Design.Diagrams.Rendering.csproj" />
+    </ItemGroup>
+
+</Project>

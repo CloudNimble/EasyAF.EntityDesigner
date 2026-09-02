@@ -1,0 +1,122 @@
+﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio.Package;
+using Microsoft.VisualStudio.Shell.Interop;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using VSErrorHandler = Microsoft.VisualStudio.ErrorHandler;
+
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio
+
+{
+    /// <summary>
+    ///     This class will find all  files in the specified VS project or VS solution with the specified input.
+    ///     The input could be an extension, file name with extension, or file full-path name.
+    /// </summary>
+    internal class VSFileFinder
+    {
+        internal struct VSFileInfo
+        {
+            internal string Path;
+            internal uint ItemId;
+            internal IVsHierarchy Hierarchy;
+        }
+
+        private readonly List<VSFileInfo> _paths = [];
+
+        private readonly string _input;
+
+        internal VSFileFinder(string input)
+        {
+            _input = input;
+        }
+
+        private static bool DoItemNamesComparison(string input, VsProjectItemPath projectItemPath)
+        {
+            // If input contains "\" character, the user might want to do search by full path name.
+            if (input.Contains("\\"))
+            {
+                return projectItemPath.Path.EndsWith(input, StringComparison.OrdinalIgnoreCase);
+            }
+            else
+            {
+                return projectItemPath.RelativePath.EndsWith(input, StringComparison.OrdinalIgnoreCase);
+            }
+        }
+
+        internal List<VSFileInfo> MatchingFiles
+        {
+            get { return _paths; }
+        }
+
+        internal List<VSFileInfo> FindInProject(IVsHierarchy projectHierarchy)
+        {
+            if (projectHierarchy is IVsProject4 vsp4)
+            {
+                // use IVsProject4 if available - it is much faster than the  other mechanism, but all projects may not implement it
+                FindInProjectFast(vsp4, projectHierarchy);
+            }
+            else
+            {
+                HierarchyVisitor visitor = new HierarchyVisitor(AddMatchFileInfoToResult);
+                visitor.VisitHierarchy(projectHierarchy);
+            }
+
+            return _paths;
+        }
+
+        private void FindInProjectFast(IVsProject4 vsp4, IVsHierarchy projectHierarchy)
+        {
+            uint celt = 0;
+            uint[] rgItemIds = null;
+
+            //
+            // call this method twice, first time is to get the count, second time is to get the data.
+            //
+            VSErrorHandler.ThrowOnFailure(vsp4.GetFilesEndingWith(_input, celt, rgItemIds, out uint pcActual));
+            if (pcActual > 0)
+            {
+                // now we know the actual size of the array to allocate, so invoke again
+                celt = pcActual;
+                rgItemIds = new uint[celt];
+                VSErrorHandler.ThrowOnFailure(vsp4.GetFilesEndingWith(_input, celt, rgItemIds, out pcActual));
+                Debug.Assert(celt == pcActual, "unexpected number of entries returned from GetFilesEndingWith()");
+
+                for (var i = 0; i < celt; i++)
+                {
+                    // NOTE:  in cpp, this property is not the full path.  It is the full path in c# & vb projects.
+                    var hr = projectHierarchy.GetProperty(rgItemIds[i], (int)__VSHPROPID.VSHPROPID_SaveName, out object pvar);
+                    if (VSErrorHandler.Succeeded(hr)
+                        && pvar is string path)
+                    {
+                        // Dev10 Bug 653879: Retrieving project item absolute URL is expensive so retrieve when we actually need it.
+                        VSFileInfo fileInfo;
+                        fileInfo.ItemId = rgItemIds[i];
+                        fileInfo.Path = path;
+                        fileInfo.Hierarchy = projectHierarchy;
+                        _paths.Add(fileInfo);
+                    }
+                }
+            }
+        }
+
+        private void AddMatchFileInfoToResult(IVsHierarchy item, uint id, VsProjectItemPath projectItemPath)
+        {
+            if (DoItemNamesComparison(_input, projectItemPath))
+            {
+                var path = projectItemPath.Path;
+                FileInfo fi = new FileInfo(path);
+                if (fi.Exists)
+                {
+                    VSFileInfo vsFileInfo;
+                    vsFileInfo.Path = path;
+                    vsFileInfo.ItemId = id;
+                    vsFileInfo.Hierarchy = item;
+                    _paths.Add(vsFileInfo);
+                }
+            }
+        }
+    }
+}

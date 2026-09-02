@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System;
 using FluentAssertions;
-using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.Data.Entity.Design.VisualStudio;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Resources = Microsoft.Data.Entity.Design.Resources;
+using System;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio
 {
@@ -37,7 +37,7 @@ namespace Microsoft.Data.Entity.Tests.Design.VisualStudio
 
             entityFrameworkVersionName.Should().Be(
                 string.Format(
-                    Resources.EntityFrameworkVersionName,
+                    EdmxDesignerResources.EntityFrameworkVersionName,
                     new Version(entityFrameworkVersion.Major, entityFrameworkVersion.Minor)));
         }
 
@@ -50,7 +50,7 @@ namespace Microsoft.Data.Entity.Tests.Design.VisualStudio
             var entityFrameworkVersionName = RuntimeVersion.GetName(entityFrameworkVersion, null);
 
             entityFrameworkVersionName.Should().Be(
-                string.Format(Resources.EntityFrameworkVersionName, new Version(5, 0)));
+                string.Format(EdmxDesignerResources.EntityFrameworkVersionName, new Version(5, 0)));
         }
 
         [TestMethod]
@@ -74,7 +74,7 @@ namespace Microsoft.Data.Entity.Tests.Design.VisualStudio
                     RuntimeVersion.GetName(entityFrameworkVersion, targetNetFrameworkVersion);
 
                 entityFrameworkVersionName.Should().Be(
-                    string.Format(Resources.EntityFrameworkVersionName, new Version(4, 0)));
+                    string.Format(EdmxDesignerResources.EntityFrameworkVersionName, new Version(4, 0)));
             }
         }
 

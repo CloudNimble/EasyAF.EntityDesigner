@@ -1,0 +1,24 @@
+﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using System;
+
+namespace Microsoft.Data.Entity.Design.Edmx.Designer
+{
+    internal class DiagramElementNameCommittedArgs : EventArgs
+    {
+        internal DiagramElementNameCommittedArgs(string shapeName)
+        {
+            ShapeName = shapeName;
+            PropertyName = null;
+        }
+
+        internal DiagramElementNameCommittedArgs(string shapeName, string propertyName)
+        {
+            ShapeName = shapeName;
+            PropertyName = propertyName;
+        }
+
+        internal string ShapeName { get; private set; }
+        internal string PropertyName { get; private set; }
+    }
+}

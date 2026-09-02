@@ -1,0 +1,134 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetails.Functions;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails.Branches
+{
+    // <summary>
+    //     This branch shows the scalar property mappings.
+    // </summary>
+    internal class ParameterBranch : TreeGridDesignerBranch
+    {
+        private MappingFunctionScalarProperties _mappingFunctionScalarProperties;
+
+        internal ParameterBranch(
+            MappingFunctionScalarProperties mappingFunctionScalarProperties, TreeGridDesignerColumnDescriptor[] columns)
+            : base(mappingFunctionScalarProperties, columns)
+        {
+            _mappingFunctionScalarProperties = mappingFunctionScalarProperties;
+        }
+
+        public ParameterBranch()
+        {
+        }
+
+        public override bool Initialize(object component, TreeGridDesignerColumnDescriptor[] columns)
+        {
+            if (!base.Initialize(component, columns))
+            {
+                return false;
+            }
+
+            if (component is MappingFunctionScalarProperties mappingFunctionScalarProperties)
+            {
+                _mappingFunctionScalarProperties = mappingFunctionScalarProperties;
+            }
+
+            return true;
+        }
+
+        internal override object GetElement(int index)
+        {
+            return _mappingFunctionScalarProperties.Children[index];
+        }
+
+        internal override object GetCreatorElement()
+        {
+            return null;
+        }
+
+        internal override int GetIndexForElement(object element)
+        {
+            for (var i = 0; i < _mappingFunctionScalarProperties.Children.Count; i++)
+            {
+                if (element == _mappingFunctionScalarProperties.Children[i])
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
+        internal override int ElementCount
+        {
+            get { return _mappingFunctionScalarProperties.Children.Count; }
+        }
+
+        protected override VirtualTreeDisplayData GetDisplayData(int row, int column, VirtualTreeDisplayDataMasks requiredData)
+        {
+            var data = base.GetDisplayData(row, column, requiredData);
+
+            // construct underlying parameter
+            Parameter param = null;
+            if (row < ElementCount)
+            {
+                if (GetElement(row) is MappingFunctionScalarProperty mfsp)
+                {
+                    param = mfsp.StoreParameter;
+                }
+            }
+
+            if (column == 0)
+            {
+                data.Image = data.SelectedImage = MappingDetailsImages.ICONS_PARAMETER;
+                data.ImageList = MappingDetailsImages.GetIconsImageList();
+            }
+            else if (column == 1)
+            {
+                // direction of arrow icon depends on InOut of underlying parameter
+                if (null != param
+                    && Parameter.InOutMode.Out == param.InOut)
+                {
+                    data.Image = data.SelectedImage = MappingDetailsImages.ARROWS_RIGHT;
+                }
+                else if (null != param
+                         && Parameter.InOutMode.InOut == param.InOut)
+                {
+                    data.Image = data.SelectedImage = MappingDetailsImages.ARROWS_BOTH;
+                }
+                else
+                {
+                    data.Image = data.SelectedImage = MappingDetailsImages.ARROWS_LEFT;
+                }
+                data.ImageList = MappingDetailsImages.GetArrowsImageList();
+            }
+            else if (column == 2)
+            {
+                // do not show icon for Out parameters
+                if (null != param
+                    && Parameter.InOutMode.Out != param.InOut)
+                {
+                    if (_mappingFunctionScalarProperties.ScalarProperties.Count > row
+                        && _mappingFunctionScalarProperties.ScalarProperties[row].ScalarProperty != null
+                        && _mappingFunctionScalarProperties.ScalarProperties[row].ScalarProperty.Name.Status == BindingStatus.Known
+                        && _mappingFunctionScalarProperties.ScalarProperties[row].ScalarProperty.Name.Target.IsKeyProperty)
+                    {
+                        data.Image = data.SelectedImage = MappingDetailsImages.ICONS_PROPERTY_KEY;
+                    }
+                    else
+                    {
+                        data.Image = data.SelectedImage = MappingDetailsImages.ICONS_PROPERTY;
+                    }
+                    data.ImageList = MappingDetailsImages.GetIconsImageList();
+                }
+            }
+
+            return data;
+        }
+    }
+}

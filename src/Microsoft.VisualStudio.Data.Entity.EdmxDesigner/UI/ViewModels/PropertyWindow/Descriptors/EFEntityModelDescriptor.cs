@@ -1,0 +1,612 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.PropertyWindow.Converters;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Converters;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Globalization;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.PropertyWindow.Descriptors
+{
+    internal class EFEntityModelDescriptor : EFAnnotatableElementDescriptor<ConceptualEntityModel>,
+                                             IEFConnectionDesignerDescriptorAddOn,
+                                             IEFOptionsDesignerDescriptorAddOn
+    {
+        private EFConnectionDesignerInfoDescriptor _EFConnectionDesignerInfoDescriptor;
+        private EFOptionsDesignerInfoDescriptor _EFOptionsDesignerInfoDescriptor;
+
+        internal override void Initialize(EFObject obj, EditingContext editingContext, bool runningInVS)
+        {
+            base.Initialize(obj, editingContext, runningInVS);
+            if (obj != null)
+            {
+                LoadDesignerInfoAndDescriptors(editingContext, obj.Artifact);
+            }
+        }
+
+        private void LoadDesignerInfoAndDescriptors(EditingContext editingContext, EFArtifact artifact)
+        {
+            if (artifact != null
+                && artifact.DesignerInfo() != null)
+            {
+
+                var foundConnectionDesignerInfo = artifact.DesignerInfo()
+                    .TryGetDesignerInfo(ConnectionDesignerInfo.ElementName, out DesignerInfo connectionDesignerInfo);
+
+                if (foundConnectionDesignerInfo)
+                {
+                    ConnectionDesignerInfo connectionDesigner = connectionDesignerInfo as ConnectionDesignerInfo;
+                    Debug.Assert(connectionDesigner != null, "DesignerInfo with element name 'Connection' must be a ConnectionDesignerInfo");
+
+                    if (connectionDesigner != null)
+                    {
+                        // if the owner of the edmx file is a website, then we can 
+                        // only have one possible value (EmbedInOutputAssembly) for metadata artifact processing
+                        // however the item template just adds CopyToOutputDirectory, so we need to fix it
+                        var project = VSHelpers.GetProjectForDocument(artifact.Uri.LocalPath, PackageManager.Package);
+                        if (project != null)
+                        {
+                            var appType = VsUtils.GetApplicationType(PackageManager.Package, project);
+                            if (appType == VisualStudioProjectSystem.Website)
+                            {
+                                var mapDefault = ConnectionManager.GetMetadataArtifactProcessingDefault();
+                                if (connectionDesigner.MetadataArtifactProcessingProperty != null
+                                    && connectionDesigner.MetadataArtifactProcessingProperty.ValueAttr.Value != mapDefault)
+                                {
+                                    CommandProcessorContext cpc = new CommandProcessorContext(
+                                        editingContext, EfiTransactionOriginator.PropertyWindowOriginatorId,
+                                        EdmxDesignerResources.Tx_ChangeMetadataArtifactProcessing);
+                                    UpdateDefaultableValueCommand<string> cmd =
+                                        new UpdateDefaultableValueCommand<string>(
+                                            connectionDesigner.MetadataArtifactProcessingProperty.ValueAttr, mapDefault);
+                                    CommandProcessor.InvokeSingleCommand(cpc, cmd);
+                                }
+                            }
+                        }
+
+                        _EFConnectionDesignerInfoDescriptor = new EFConnectionDesignerInfoDescriptor();
+                        _EFConnectionDesignerInfoDescriptor.Initialize(connectionDesigner, editingContext);
+                    }
+                }
+
+                var foundOptionsDesignerInfo = artifact.DesignerInfo()
+                    .TryGetDesignerInfo(OptionsDesignerInfo.ElementName, out DesignerInfo optionsDesignerInfo);
+
+                if (foundOptionsDesignerInfo)
+                {
+                    _EFOptionsDesignerInfoDescriptor = new EFOptionsDesignerInfoDescriptor();
+                    _EFOptionsDesignerInfoDescriptor.Initialize(optionsDesignerInfo as OptionsDesignerInfo, editingContext);
+                }
+            }
+        }
+
+        [LocCategory("PropertyWindow_Category_Schema")]
+        [LocDisplayName("PropertyWindow_DisplayName_Namespace")]
+        [LocDescription("PropertyWindow_Descritpion_Namespace")]
+        public string Namespace
+        {
+            get { return TypedEFElement.Namespace.Value; }
+            set
+            {
+                var cpc = PropertyWindowViewModelHelper.GetCommandProcessorContext();
+                Command c = new RenameConceptualNamespaceCommand(TypedEFElement, value);
+                CommandProcessor cp = new CommandProcessor(cpc, c);
+                cp.Invoke();
+            }
+        }
+
+        [LocCategory("PropertyWindow_Category_Schema")]
+        [LocDisplayName("PropertyWindow_DisplayName_EntityContainerName")]
+        [LocDescription("PropertyWindow_Descritpion_EntityContainerName")]
+        public string EntityContainerName
+        {
+            get
+            {
+                var container = TypedEFElement.FirstEntityContainer;
+                if (container != null)
+                {
+                    return container.LocalName.Value;
+                }
+                return null;
+            }
+
+            set
+            {
+                var container = TypedEFElement.FirstEntityContainer;
+                var previousContainerName = container.LocalName.Value;
+                if (value == previousContainerName)
+                {
+                    // no change to name - just return
+                    return;
+                }
+
+                // if the set of existing connection string names contains the one you're
+                // trying to change to then raise an error message
+                if (null != TypedEFElement.Artifact
+                    &&
+                    null != TypedEFElement.Artifact.Uri
+                    &&
+                    null != TypedEFElement.Artifact.Uri.LocalPath)
+                {
+                    var project = VSHelpers.GetProjectForDocument(TypedEFElement.Artifact.Uri.LocalPath, PackageManager.Package);
+                    if (null != project)
+                    {
+                        if (PackageManager.Package.ConnectionManager.HasConnectionString(project, value))
+                        {
+                            var msg = string.Format(CultureInfo.CurrentCulture, EdmxDesignerResources.DuplicateEntityContainerName, value);
+                            throw new CommandValidationFailedException(msg);
+                        }
+                    }
+                }
+
+                // otherwise implement the name change
+                if (container != null)
+                {
+                    var cpc = PropertyWindowViewModelHelper.GetCommandProcessorContext();
+                    Command c = new EntityDesignRenameCommand(container, value, true);
+                    CommandProcessor cp = new CommandProcessor(cpc, c);
+                    cp.Invoke();
+                }
+            }
+        }
+
+        [LocCategory("PropertyWindow_Category_Schema")]
+        [LocDisplayName("PropertyWindow_DisplayName_EntityContainerAccess")]
+        // Localized description is returned dynamically based on the Target Fx (see DescriptionEntityContainerAccess())
+        [TypeConverter(typeof(AccessConverter))]
+        public string EntityContainerAccess
+        {
+            get
+            {
+                if (TypedEFElement.FirstEntityContainer is ConceptualEntityContainer container
+                    && container.TypeAccess != null)
+                {
+                    return container.TypeAccess.Value;
+                }
+                return null;
+            }
+
+            set
+            {
+                if (TypedEFElement.FirstEntityContainer is ConceptualEntityContainer container
+                    && container.TypeAccess != null)
+                {
+                    var cpc = PropertyWindowViewModelHelper.GetCommandProcessorContext();
+                    Command c = new UpdateDefaultableValueCommand<string>(container.TypeAccess, value);
+                    CommandProcessor cp = new CommandProcessor(cpc, c);
+                    cp.Invoke();
+                }
+            }
+        }
+
+        internal virtual string DescriptionEntityContainerAccess()
+        {
+            if (!EdmFeatureManager.GetEntityContainerTypeAccessFeatureState(TypedEFElement.Artifact.SchemaVersion)
+                       .IsEnabled())
+            {
+                return String.Format(
+                    CultureInfo.CurrentCulture, "({0}) {1}", EdmxDesignerResources.DisabledFeatureTooltip,
+                    EdmxDesignerResources.PropertyWindow_Description_EntityContainerAccess);
+            }
+            return EdmxDesignerResources.PropertyWindow_Description_EntityContainerAccess;
+        }
+
+        internal virtual bool IsReadOnlyEntityContainerAccess()
+        {
+            return (!EdmFeatureManager.GetEntityContainerTypeAccessFeatureState(TypedEFElement.Artifact.SchemaVersion)
+                           .IsEnabled());
+        }
+
+        [LocCategory("PropertyWindow_Category_Connection")]
+        [LocDisplayName("PropertyWindow_DisplayName_ConnectionString")]
+        [LocDescription("PropertyWindow_Description_ConnectionString")]
+        public string ConnectionString
+        {
+            get
+            {
+                var container = TypedEFElement.FirstEntityContainer;
+                if (container != null)
+                {
+                    var documentPath = EditingContext.GetEFArtifactService().Artifact.Uri.LocalPath;
+                    var project = VSHelpers.GetProjectForDocument(documentPath, PackageManager.Package);
+                    var connectionString = ConnectionManager.GetConnectionStringObject(project, container.LocalName.Value);
+                    if (connectionString != null)
+                    {
+                        return connectionString.Text;
+                    }
+                }
+                return null;
+            }
+        }
+
+        #region EFDesignerModelDescriptor proxy properties
+
+        [LocCategory("PropertyWindow_Category_Connection")]
+        [LocDisplayName("PropertyWindow_DisplayName_MetadataArtifactProcessing")]
+        [LocDescription("PropertyWindow_Description_MetadataArtifactProcessing")]
+        [TypeConverter(typeof(MetadataArtifactProcessingConverter))]
+        public string MetadataArtifactProcessing
+        {
+            get
+            {
+                if (_EFConnectionDesignerInfoDescriptor != null)
+                {
+                    return _EFConnectionDesignerInfoDescriptor.MetadataArtifactProcessing;
+                }
+                else
+                {
+                    return String.Empty;
+                }
+            }
+            set
+            {
+                _EFConnectionDesignerInfoDescriptor?.MetadataArtifactProcessing = value;
+            }
+        }
+
+        [LocCategory("PropertyWindow_Category_Schema")]
+        [LocDisplayName("PropertyWindow_DisplayName_ValidateOnBuild")]
+        [LocDescription("PropertyWindow_Description_ValidateOnBuild")]
+        [TypeConverter(typeof(BoolConverter))]
+        public bool ValidateOnBuild
+        {
+            get
+            {
+                if (_EFOptionsDesignerInfoDescriptor != null)
+                {
+                    return _EFOptionsDesignerInfoDescriptor.ValidateOnBuild;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            set
+            {
+                _EFOptionsDesignerInfoDescriptor?.ValidateOnBuild = value;
+            }
+        }
+
+        [LocCategory("PropertyWindow_Category_Schema")]
+        [LocDisplayName("PropertyWindow_DisplayName_PluralizeNewObjects")]
+        [LocDescription("PropertyWindow_Description_PluralizeNewObjects")]
+        [TypeConverter(typeof(BoolConverter))]
+        public bool PluralizeNewObjects
+        {
+            get
+            {
+                if (_EFOptionsDesignerInfoDescriptor != null)
+                {
+                    return _EFOptionsDesignerInfoDescriptor.PluralizeNewObjects;
+                }
+                else
+                {
+                    return OptionsDesignerInfo.EnablePluralizationDefault;
+                }
+            }
+            set
+            {
+                _EFOptionsDesignerInfoDescriptor?.PluralizeNewObjects = value;
+            }
+        }
+
+        [LocCategory("PropertyWindow_Category_DatabaseScriptGeneration")]
+        [LocDisplayName("PropertyWindow_DisplayName_DDLGenerationTemplate")]
+        [LocDescription("PropertyWindow_Description_DDLGenerationTemplate")]
+        [TypeConverter(typeof(DbGenTemplateFileListConverter))]
+        public string DDLGenerationTemplate
+        {
+            get
+            {
+                if (_EFOptionsDesignerInfoDescriptor != null)
+                {
+                    return _EFOptionsDesignerInfoDescriptor.DDLGenerationTemplate;
+                }
+                else
+                {
+                    return DatabaseGenerationEngine.DefaultTemplatePath;
+                }
+            }
+            set
+            {
+                _EFOptionsDesignerInfoDescriptor?.DDLGenerationTemplate = value;
+            }
+        }
+
+        [LocCategory("PropertyWindow_Category_DatabaseScriptGeneration")]
+        [LocDisplayName("PropertyWindow_DisplayName_DatabaseSchemaName")]
+        [LocDescription("PropertyWindow_Description_DatabaseSchemaName")]
+        public string DatabaseSchemaName
+        {
+            get
+            {
+                if (_EFOptionsDesignerInfoDescriptor != null)
+                {
+                    return _EFOptionsDesignerInfoDescriptor.DatabaseSchemaName;
+                }
+                else
+                {
+                    return DatabaseGenerationEngine.DefaultDatabaseSchemaName;
+                }
+            }
+            set
+            {
+                _EFOptionsDesignerInfoDescriptor?.DatabaseSchemaName = value;
+            }
+        }
+
+        [LocCategory("PropertyWindow_Category_Schema")]
+        [LocDisplayName("PropertyWindow_DisplayName_ProcessDependentTemplatesOnSave")]
+        [LocDescription("PropertyWindow_Description_ProcessDependentTemplatesOnSave")]
+        [TypeConverter(typeof(BoolConverter))]
+        public bool ProcessDependentTemplatesOnSave
+        {
+            get
+            {
+                if (_EFOptionsDesignerInfoDescriptor != null)
+                {
+                    return _EFOptionsDesignerInfoDescriptor.ProcessDependentTemplatesOnSave;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            set
+            {
+                _EFOptionsDesignerInfoDescriptor?.ProcessDependentTemplatesOnSave = value;
+            }
+        }
+
+        [LocCategory("PropertyWindow_Category_CodeGeneration")]
+        [LocDisplayName("PropertyWindow_DisplayName_CodeGenerationStrategy")]
+        [LocDescription("PropertyWindow_Description_CodeGenerationStrategy")]
+        [TypeConverter(typeof(CodeGenerationStrategyConverter))]
+        public string CodeGenerationStrategy
+        {
+            get
+            {
+                if (_EFOptionsDesignerInfoDescriptor != null)
+                {
+                    return _EFOptionsDesignerInfoDescriptor.CodeGenerationStrategy;
+                }
+                else
+                {
+                    return String.Empty;
+                }
+            }
+            set
+            {
+                _EFOptionsDesignerInfoDescriptor?.CodeGenerationStrategy = value;
+            }
+        }
+
+        [LocCategory("PropertyWindow_Category_Schema")]
+        [LocDisplayName("PropertyWindow_DisplayName_SynchronizePropertyFacets")]
+        [LocDescription("PropertyWindow_Description_SynchronizePropertyFacets")]
+        [TypeConverter(typeof(BoolConverter))]
+        public bool SynchronizePropertyFacets
+        {
+            get
+            {
+                if (_EFOptionsDesignerInfoDescriptor != null)
+                {
+                    return _EFOptionsDesignerInfoDescriptor.SynchronizePropertyFacets;
+                }
+                else
+                {
+                    return OptionsDesignerInfo.SynchronizePropertyFacetsDefault(TypedEFElement.Artifact);
+                }
+            }
+            set
+            {
+                _EFOptionsDesignerInfoDescriptor?.SynchronizePropertyFacets = value;
+            }
+        }
+
+        [LocCategory("PropertyWindow_Category_Connection")]
+        [LocDisplayName("PropertyWindow_DisplayName_UseLegacyProvider")]
+        [LocDescription("PropertyWindow_Description_UseLegacyProvider")]
+        [TypeConverter(typeof(BoolConverter))]
+        public bool UseLegacyProvider
+        {
+            get
+            {
+                return _EFOptionsDesignerInfoDescriptor != null
+                           ? _EFOptionsDesignerInfoDescriptor.UseLegacyProvider
+                           : OptionsDesignerInfo.UseLegacyProviderDefault;
+            }
+        }
+
+        #endregion
+
+        [LocCategory("PropertyWindow_Category_CodeGeneration")]
+        [LocDisplayName("PropertyWindow_DisplayName_LazyLoadingEnabled")]
+        [TypeConverter(typeof(BoolConverter))]
+        public bool LazyLoadingEnabled
+        {
+            get
+            {
+                // If LazyLoading is not supported, we want to show false regardless what is in the model.
+                if (EdmFeatureManager.GetLazyLoadingFeatureState(TypedEFElement.Artifact.SchemaVersion).IsEnabled())
+                {
+                    if (TypedEFElement.FirstEntityContainer is ConceptualEntityContainer container)
+                    {
+                        return container.LazyLoadingEnabled.Value;
+                    }
+                }
+                return false;
+            }
+            set
+            {
+                if (TypedEFElement.FirstEntityContainer is ConceptualEntityContainer container)
+                {
+                    var cpc = PropertyWindowViewModelHelper.GetCommandProcessorContext();
+                    Command c = new UpdateDefaultableValueCommand<bool>(container.LazyLoadingEnabled, value);
+                    CommandProcessor cp = new CommandProcessor(cpc, c);
+                    cp.Invoke();
+                }
+            }
+        }
+
+        internal bool IsReadOnlyLazyLoadingEnabled()
+        {
+            return (!EdmFeatureManager.GetLazyLoadingFeatureState(TypedEFElement.Artifact.SchemaVersion).IsEnabled());
+        }
+
+        internal bool IsReadOnlyCodeGenerationStrategy()
+        {
+            if (TypedEFElement.Artifact.SchemaVersion < EntityFrameworkVersion.Version3 || UseLegacyProvider)
+            {
+                return false;
+            }
+
+            var originalPath = TypedEFElement.Artifact.Uri.LocalPath;
+            var project = VSHelpers.GetProjectForDocument(originalPath, PackageManager.Package);
+            var entityFrameworkAssemblyVersion = VsUtils.GetInstalledEntityFrameworkAssemblyVersion(project);
+            return entityFrameworkAssemblyVersion != null && entityFrameworkAssemblyVersion >= RuntimeVersion.Version6;
+        }
+
+        internal virtual string DescriptionLazyLoadingEnabled()
+        {
+            if (!EdmFeatureManager.GetLazyLoadingFeatureState(TypedEFElement.Artifact.SchemaVersion).IsEnabled())
+            {
+                return String.Format(
+                    CultureInfo.CurrentCulture, "({0}) {1}", EdmxDesignerResources.DisabledFeatureTooltip,
+                    EdmxDesignerResources.PropertyWindow_Description_LazyLoadingEnabled);
+            }
+            return EdmxDesignerResources.PropertyWindow_Description_LazyLoadingEnabled;
+        }
+
+        [LocCategory("PropertyWindow_Category_CodeGeneration")]
+        [LocDisplayName("PropertyWindow_DisplayName_UseStrongSpatialTypes")]
+        [TypeConverter(typeof(BoolConverter))]
+        public bool UseStrongSpatialTypes
+        {
+            get
+            {
+                // If UseStrongSpatialTypes is not supported, we want to show true regardless what is in the model.
+                if (EdmFeatureManager.GetUseStrongSpatialTypesFeatureState(TypedEFElement.Artifact.SchemaVersion)
+                        .IsEnabled())
+                {
+                    var cem = TypedEFElement;
+                    if (cem != null)
+                    {
+                        return cem.UseStrongSpatialTypes.Value;
+                    }
+                }
+
+                return true;
+            }
+            set
+            {
+                var cem = TypedEFElement;
+                if (cem != null)
+                {
+                    var cpc = PropertyWindowViewModelHelper.GetCommandProcessorContext();
+                    Command c = new UpdateDefaultableValueCommand<bool>(cem.UseStrongSpatialTypes, value);
+                    CommandProcessor cp = new CommandProcessor(cpc, c);
+                    cp.Invoke();
+                }
+            }
+        }
+
+        internal bool IsReadOnlyUseStrongSpatialTypes()
+        {
+            // TODO: when runtime support for the other (true) setting of this attribute is available replace the "return true" below by the commented line below it
+            return true;
+            // return (!EdmFeatureManager.GetUseStrongSpatialTypesFeatureState(TypedEFElement.Artifact.SchemaVersion));
+        }
+
+        internal virtual string DescriptionUseStrongSpatialTypes()
+        {
+            if (!EdmFeatureManager.GetUseStrongSpatialTypesFeatureState(TypedEFElement.Artifact.SchemaVersion)
+                     .IsEnabled())
+            {
+                return String.Format(
+                    CultureInfo.CurrentCulture, "({0}) {1}", EdmxDesignerResources.DisabledFeatureTooltip,
+                    EdmxDesignerResources.PropertyWindow_Description_UseStrongSpatialTypes);
+            }
+            return EdmxDesignerResources.PropertyWindow_Description_UseStrongSpatialTypes;
+        }
+
+        public override string GetComponentName()
+        {
+            return TypedEFElement.NormalizedNameExternal;
+        }
+
+        public override string GetClassName()
+        {
+            return "ConceptualEntityModel";
+        }
+
+        public override object GetDescriptorDefaultValue(string propertyDescriptorMethodName)
+        {
+            if (propertyDescriptorMethodName.Equals("Alias"))
+            {
+                return TypedEFElement.Alias.DefaultValue;
+            }
+            if (propertyDescriptorMethodName.Equals("EntityContainerAccess"))
+            {
+                if (TypedEFElement.FirstEntityContainer is ConceptualEntityContainer container
+                    && container.TypeAccess != null)
+                {
+                    return container.TypeAccess.DefaultValue;
+                }
+            }
+            if (propertyDescriptorMethodName.Equals("LazyLoadingEnabled"))
+            {
+                if (TypedEFElement.FirstEntityContainer is ConceptualEntityContainer container
+                    && container.LazyLoadingEnabled != null)
+                {
+                    return container.LazyLoadingEnabled.DefaultValue;
+                }
+            }
+            if (propertyDescriptorMethodName.Equals("UseStrongSpatialTypes"))
+            {
+                var cem = TypedEFElement;
+                if (cem != null
+                    && cem.UseStrongSpatialTypes != null)
+                {
+                    return cem.UseStrongSpatialTypes.DefaultValue;
+                }
+            }
+
+            object defaultValue = null;
+
+            // Ask the Connections TypeDescriptor if it can decide the default value
+            if (_EFConnectionDesignerInfoDescriptor != null)
+            {
+                defaultValue = _EFConnectionDesignerInfoDescriptor.GetDescriptorDefaultValue(propertyDescriptorMethodName);
+            }
+
+            // Ask the Options TypeDescriptor if it can decide the default value
+            if (defaultValue == null
+                && _EFOptionsDesignerInfoDescriptor != null)
+            {
+                defaultValue = _EFOptionsDesignerInfoDescriptor.GetDescriptorDefaultValue(propertyDescriptorMethodName);
+            }
+
+            if (defaultValue != null)
+            {
+                return defaultValue;
+            }
+            return base.GetDescriptorDefaultValue(propertyDescriptorMethodName);
+        }
+    }
+}

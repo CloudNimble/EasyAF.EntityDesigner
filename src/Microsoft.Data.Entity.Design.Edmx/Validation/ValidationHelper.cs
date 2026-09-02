@@ -1,0 +1,31 @@
+﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using System.Linq;
+
+namespace Microsoft.Data.Entity.Design.Edmx.Validation
+{
+    internal static class ValidationHelper
+    {
+        internal static bool IsStorageModelEmpty(EFArtifact artifact)
+        {
+            var result = false;
+
+            var storageModel = artifact.StorageModel();
+            if (storageModel != null)
+            {
+                if (storageModel.FirstEntityContainer is StorageEntityContainer container)
+                {
+                    var element = container.Children.OfType<EFElement>().FirstOrDefault<EFElement>();
+                    if (element == null)
+                    {
+                        result = true;
+                    }
+                }
+            }
+
+            return result;
+        }
+    }
+}

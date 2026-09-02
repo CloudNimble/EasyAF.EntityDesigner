@@ -1,6 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <TargetFrameworks>net48;net10.0</TargetFrameworks>
+    <RuntimeIdentifier></RuntimeIdentifier>
+    <!-- Directory.Build.props flattens output, which collides when multi-targeting. -->
+    <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
     <RootNamespace>Microsoft.Data.Entity.Tests.Design.DatabaseGeneration</RootNamespace>
     <AssemblyName>Microsoft.Data.Entity.Tests.Design.DatabaseGeneration</AssemblyName>
   </PropertyGroup>
@@ -11,7 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Microsoft.Data.Entity.Design.DatabaseGeneration\Microsoft.Data.Entity.Design.DatabaseGeneration.csproj" />
-    <ProjectReference Include="..\Microsoft.Data.Entity.Design.VersioningFacade\Microsoft.Data.Entity.Design.VersioningFacade.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.EntityFramework\Microsoft.Data.Entity.Design.EntityFramework.csproj" />
   </ItemGroup>
 
 </Project>

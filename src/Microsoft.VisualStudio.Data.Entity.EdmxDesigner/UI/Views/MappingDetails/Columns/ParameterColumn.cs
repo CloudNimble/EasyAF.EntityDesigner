@@ -1,0 +1,254 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetails;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetails.Functions;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell;
+using System;
+using System.Diagnostics;
+using System.Windows.Forms;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails.Columns
+{
+
+    // <summary>
+    //     Based on the type of item being shown, show the correct text for the Column Name column.
+    // </summary>
+    internal class ParameterColumn : BaseColumn
+    {
+        public ParameterColumn()
+            : base(EdmxDesignerResources.MappingDetails_ParameterName)
+        {
+        }
+
+        public override object /* PropertyDescriptor */ GetValue(object component)
+        {
+            if (component is MappingEFElement elem)
+            {
+                EnsureTypeConverters(elem);
+                return new MappingLovEFElement(elem, elem.Name);
+            }
+
+            return MappingEFElement.LovBlankPlaceHolder;
+        }
+
+        // <summary>
+        //     Overriding this allows the list-of-values dropdowns to use
+        //     the converter to convert back from a string to an object (in our
+        //     case a MappingLovEFElement object)
+        // </summary>
+        public override Type /* PropertyDescriptor */ PropertyType
+        {
+            get { return typeof(ParameterColumnConverter); }
+        }
+
+        internal override bool IsDeleteSupported(object component)
+        {
+            if (component is MappingResultBinding
+                ||
+                component is MappingModificationFunctionMapping)
+            {
+                MappingEFElement mappingElement = component as MappingEFElement;
+
+                Debug.Assert(mappingElement != null, "The component should be a MappingEFElement");
+                if (mappingElement.ModelItem != null)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // This method receives changes as MappingLovElements (user used the mouse)
+        // or as strings (user used the keyboard)
+        public override void /* PropertyDescriptor */ SetValue(object component, object value)
+        {
+            // the user clicked off of the drop-down without choosing a value
+            if (value == null
+                || MappingEFElement.LovBlankPlaceHolder == value)
+            {
+                return;
+            }
+
+            // if they picked on the "Empty" placeholder, ignore it
+            if (MappingEFElement.LovEmptyPlaceHolder == value)
+            {
+                return;
+            }
+
+            // see if the incoming value is a string
+            var valueAsString = value as string;
+            MappingLovEFElement lovElement = value as MappingLovEFElement;
+            if (lovElement == null
+                && valueAsString == null)
+            {
+                Debug.Fail(
+                    "value is not a MappingLovEFElement nor a string. Actual type is " + value.GetType().FullName);
+                return;
+            }
+
+            if (component is MappingResultBinding mrb)
+            {
+                if (mrb.ModelItem != null)
+                {
+                    if (string.IsNullOrEmpty(valueAsString))
+                    {
+                        // they cleared out the columnName field, so delete it
+                        mrb.Delete(null);
+                        OnValueChanged(this, new ColumnValueChangedEventArgs(TreeGridDesignerBranchChangedArgs.DeleteItemArgs));
+                        return;
+                    }
+                    else
+                    {
+                        // they just changed the columnName, just update it in place
+                        mrb.ColumnName = valueAsString;
+                        OnValueChanged(this, ColumnValueChangedEventArgs.Default);
+                    }
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(valueAsString) == false)
+                    {
+                        // a brand new one, so create it
+                        if (mrb.CreateModelItem(null, Host.Context, valueAsString))
+                        {
+                            // only invoke this if the model item was actually created
+                            OnValueChanged(this, new ColumnValueChangedEventArgs(TreeGridDesignerBranchChangedArgs.InsertItemArgs));
+                        }
+                    }
+                }
+
+                return;
+            }
+
+            // the trid will sometimes send an empty string when the user drops down a list
+            // and then clicks away; if this happens just leave
+            // Note: _very_ important not to turn this into a string.IsNullOrEmpty() check.
+            // If you do and a MappingLovElement is passed to this method everything below this
+            // if() will not be executed.
+            if (string.Empty == valueAsString)
+            {
+                return;
+            }
+
+            if (component is MappingModificationFunctionMapping mfm)
+            {
+                // if value is a string then we've called SetValue after an edit using keyboard
+                // so lookup correct MappingLovElement and use that going forward
+                lovElement = mfm.GetLovElementFromLovElementOrString(lovElement, valueAsString, ListOfValuesCollection.FirstColumn);
+                if (lovElement == null)
+                {
+                    return;
+                }
+
+                if (MappingEFElement.LovDeletePlaceHolder == lovElement)
+                {
+                    // they selected the delete me row, so clear out the item's ModelItem but don't remove
+                    // the node from the parent so that it can revert to its "CreateNode" text
+                    mfm.DeleteModelItem(null);
+                }
+                else if (MappingEFElement.LovEmptyPlaceHolder == lovElement)
+                {
+                    return;
+                }
+                else
+                {
+                    Function func = lovElement.ModelElement as Function;
+                    Debug.Assert(
+                        func != null,
+                        "component is a MappingModificationFunctionMapping but value.ModelElement is of type " + value.GetType().FullName);
+
+                    if (func != null)
+                    {
+                        if (mfm.ModelItem != null)
+                        {
+                            // they switched to a different one so delete the old underlying model item and then create a new one
+                            CommandProcessorContext cpc = new CommandProcessorContext(
+                                Host.Context, EfiTransactionOriginator.MappingDetailsOriginatorId, EdmxDesignerResources.Tx_UpdateMappingFragment);
+                            mfm.SwitchModelItem(cpc, Host.Context, func, true);
+                        }
+                        else
+                        {
+                            mfm.CreateModelItem(null, Host.Context, func);
+                        }
+                    }
+                }
+
+                OnValueChanged(this, new ColumnValueChangedEventArgs(new TreeGridDesignerBranchChangedArgs()));
+                return;
+            }
+        }
+
+        internal override TreeGridDesignerValueSupportedStates GetValueSupported(object component)
+        {
+            _currentElement = component as MappingEFElement;
+
+            if (component is MappingFunctionEntityType
+                || component is MappingFunctionScalarProperties
+                || component is MappingFunctionScalarProperty
+                || component is MappingResultBindings)
+            {
+                return TreeGridDesignerValueSupportedStates.None;
+            }
+            else
+            {
+                return base.GetValueSupported(component);
+            }
+        }
+
+        internal override void EnsureTypeConverters(MappingEFElement element)
+        {
+            if (_converter == null
+                || _currentElement != element)
+            {
+                // create initial type converter
+                _currentElement = element;
+                if (element is MappingResultBinding)
+                {
+                    _converter = new NoDropDownParameterColumnConverter();
+                }
+                else
+                {
+                    _converter = new ParameterColumnConverter();
+                }
+            }
+        }
+
+        internal override object GetInPlaceEdit(object component, ref string alternateText)
+        {
+            // calling EnsureTypeConverters() ensures the right type converter
+            // is in place when a drop-down is navigated to using the keyboard
+            EnsureTypeConverters(component as MappingEFElement);
+
+            if (component is MappingResultBinding mrb)
+            {
+                if (mrb.ResultBinding == null)
+                {
+                    alternateText = String.Empty;
+                }
+                return typeof(TreeGridDesignerInPlaceEdit);
+            }
+            else
+            {
+                return base.GetInPlaceEdit(component, ref alternateText);
+            }
+        }
+
+        internal override bool AllowKeyDownProcessing(KeyEventArgs e, object component)
+        {
+            // if the in place edit is a regular text box and Delete key is pressed, we should disallow special key processing.
+            if (component is MappingResultBinding mrb
+                && e.KeyCode == Keys.Delete)
+            {
+                return false;
+            }
+            else
+            {
+                return base.AllowKeyDownProcessing(e, component);
+            }
+        }
+    }
+
+}

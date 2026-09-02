@@ -1,0 +1,488 @@
+﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Diagrams.View;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Eventing;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.ContextMenu;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Controls;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using Microsoft.VisualStudio.Imaging;
+using Microsoft.VisualStudio.Modeling.Diagrams;
+using Microsoft.VisualStudio.Modeling.Shell;
+using Microsoft.VisualStudio.PlatformUI;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
+using System.Windows.Forms.Integration;
+
+namespace Microsoft.VisualStudio.Data.Entity.Package
+{
+    /// <summary>
+    ///     This partial class adds the floating zoom control and context menu to the diagram canvas.
+    /// </summary>
+    internal partial class MicrosoftDataEntityDesignDocView
+    {
+        private readonly List<Action> _themeChangedActions = [];
+
+        private DiagramSurfaceContextMenuService _contextMenuService;
+        private FloatingZoomControl _floatingZoomControl;
+        private ElementHost _floatingZoomHost;
+        private MenuCommandDefinition _clearGroupsCommand;
+        private MenuCommandDefinition _modernLayoutCommand;
+        private MenuCommandDefinition _showGridCommand;
+        private MenuCommandDefinition _snapToGridCommand;
+
+        /// <summary>
+        ///     Override the base class method to add the floating zoom control,
+        ///     context menu, and theme support to the diagram view.
+        /// </summary>
+        public override VSDiagramView CreateDiagramView()
+        {
+            // Let the base class create and initialise the standard view
+            var view = base.CreateDiagramView();
+            Debug.Assert(view.DiagramClientView != null, "DiagramClientView was null");
+
+            // Add handler for ZoomChanged event so we can persist
+            // zoom level regardless of where the change came from
+            view.DiagramClientView.ZoomChanged += DiagramClientView_ZoomChanged;
+
+            // Standard view sometimes contains a phantom panel that interferes with controls
+            var fantomPanel = view.Controls.OfType<Panel>().FirstOrDefault();
+            if (fantomPanel != null)
+            {
+                view.Controls.Remove(fantomPanel);
+            }
+
+            var vscroll = view.Controls.OfType<VScrollBar>().FirstOrDefault();
+            Debug.Assert(vscroll != null, "couldn't find the vertical scroll bar");
+
+            var scrollbarWidth = vscroll.Width;
+
+            // Set theme colors before returning new view.
+            UpdateTheme(view);
+
+            // Hookup event handler so that we can keep colors updated if user changes theme.
+            VSColorTheme.ThemeChanged += VSColorTheme_ThemeChanged;
+
+            // Initialize the Windows 11-style context menu for the diagram surface
+            _contextMenuService = new DiagramSurfaceContextMenuService(this, view.DiagramClientView);
+
+            // Add floating zoom control in the top-right corner
+            _floatingZoomControl = new FloatingZoomControl();
+            _floatingZoomControl.AttachToDiagramView(view);
+
+            
+            // Add Zoom to 100% command
+            _floatingZoomControl.Commands.Add(new MenuCommandDefinition(
+                "Zoom100",
+                "Zoom to 100%",
+                KnownMonikers.ViewBox,
+                () => CurrentDesigner?.ZoomAtViewCenter(1),
+                "Zoom to 100%"));
+
+            // Add Zoom to Fit command
+            _floatingZoomControl.Commands.Add(new MenuCommandDefinition(
+                "ZoomToFit",
+                "Zoom to Fit",
+                KnownMonikers.FitToScreen,
+                () => (CurrentDiagram as EntityDesignerSurface)?.ZoomToFit(),
+                "Zoom to fit all entities"));
+
+            // Add separator before toggle commands
+            _floatingZoomControl.Commands.Add(MenuSeparatorDefinition.Instance);
+
+            // Create grid toggle commands
+            _showGridCommand = new MenuCommandDefinition
+            {
+                Id = "ShowGrid",
+                Tooltip = "Show Grid",
+                Icon = KnownMonikers.Grid,
+                IsToggle = true,
+                IsChecked = false
+            };
+            _showGridCommand.PropertyChanged += ShowGridCommand_PropertyChanged;
+
+            _snapToGridCommand = new MenuCommandDefinition
+            {
+                Id = "SnapToGrid",
+                Tooltip = "Snap to Grid",
+                Icon = KnownMonikers.SnapToGrid,
+                IsToggle = true,
+                IsChecked = false
+            };
+            _snapToGridCommand.PropertyChanged += SnapToGridCommand_PropertyChanged;
+
+            // Add commands to the floating zoom control
+            _floatingZoomControl.Commands.Add(_showGridCommand);
+            _floatingZoomControl.Commands.Add(_snapToGridCommand);
+
+            // Add separator before expand/collapse commands
+            _floatingZoomControl.Commands.Add(MenuSeparatorDefinition.Instance);
+
+            // Add Expand All command
+            _floatingZoomControl.Commands.Add(new MenuCommandDefinition(
+                "ExpandAll",
+                "Expand All",
+                KnownMonikers.ExpandAll,
+                () => (CurrentDiagram as EntityDesignerSurface)?.ExpandAllEntityTypeShapes(),
+                "Expand all entity shapes"));
+
+            // Add Collapse All command
+            _floatingZoomControl.Commands.Add(new MenuCommandDefinition(
+                "CollapseAll",
+                "Collapse All",
+                KnownMonikers.CollapseAll,
+                () => (CurrentDiagram as EntityDesignerSurface)?.CollapseAllEntityTypeShapes(),
+                "Collapse all entity shapes"));
+
+            // Add separator before zoom/layout commands
+            _floatingZoomControl.Commands.Add(MenuSeparatorDefinition.Instance);
+
+            // Add Layout command
+            _floatingZoomControl.Commands.Add(new MenuCommandDefinition(
+                "Layout",
+                "Auto Layout",
+                KnownMonikers.ShowAllFiles,
+                () => (CurrentDiagram as EntityDesignerSurface)?.AutoLayoutDiagram(),
+                "Auto-arrange entity layout"));
+
+            // Chooses which engine the Layout command above runs. Sits next to it rather than with the grid
+            // toggles because it changes what that button does rather than what the surface looks like. It is a
+            // shortcut for the diagram's Layout Mode property, not a second setting - both write the same
+            // attribute, and the connector mode beside it in the property window is the finer control.
+            _modernLayoutCommand = new MenuCommandDefinition
+            {
+                Id = "ModernLayout",
+                Tooltip = "Modern Layout",
+                Icon = KnownMonikers.MagicWand,
+                IsToggle = true,
+                IsChecked = false
+            };
+            _modernLayoutCommand.PropertyChanged += ModernLayoutCommand_PropertyChanged;
+
+            _floatingZoomControl.Commands.Add(_modernLayoutCommand);
+
+            // Throws away the grouping so the next layout works it out again from scratch. Only meaningful in
+            // modern layout, so it is hidden entirely rather than shown disabled - the legacy toolbar should look
+            // the way it always has.
+            _clearGroupsCommand = new MenuCommandDefinition
+            {
+                Id = "ClearGroupNames",
+                Tooltip = "Clear group names",
+                Icon = KnownMonikers.ClearWindowContent,
+                ExecuteAction = () => (CurrentDiagram as EntityDesignerSurface)?.ClearGroupNames(),
+                IsVisible = false
+            };
+
+            _floatingZoomControl.Commands.Add(_clearGroupsCommand);
+
+            // Calculate margin based on scrollbar width
+            var rightMargin = scrollbarWidth + 4;  // scrollbar width + small gap
+
+            _floatingZoomHost = new ElementHost
+            {
+                Child = _floatingZoomControl,
+                BackColor = Color.Transparent,
+                AutoSize = true,
+                Height = 36,
+                Anchor = AnchorStyles.Top | AnchorStyles.Right
+            };
+
+            // Position in top-right corner with margin matching scrollbar
+            _floatingZoomHost.Left = view.Width - _floatingZoomHost.Width - rightMargin - 10;
+            _floatingZoomHost.Top = rightMargin - 10;  // Same distance from top as from right, adjusted up
+
+            // Update position when view is resized
+            view.ClientSizeChanged += (sender, e) =>
+            {
+                _floatingZoomHost.Left = view.Width - _floatingZoomHost.Width - rightMargin - 10;
+            };
+
+            view.Controls.Add(_floatingZoomHost);
+            _floatingZoomHost.BringToFront();
+
+            // The model diagram is not loaded yet at this point, so the commands start disabled and are enabled once
+            // the designer is actually able to service them.
+            UpdateCommandAvailability();
+
+            return view;
+        }
+
+        /// <summary>
+        ///     Set colors, e.g. background and watermark,
+        ///     and colorize icons according to the theme
+        /// </summary>
+        private void UpdateTheme(VSDiagramView view)
+        {
+            if (view.HasWatermark)
+            {
+                VSHelpers.AssignLinkLabelColor(view.Watermark);
+            }
+
+            view.BackColor = VSColorTheme.GetThemedColor(EnvironmentColors.ScrollBarBackgroundColorKey);
+
+            foreach (var action in _themeChangedActions)
+            {
+                action();
+            }
+
+            view.Invalidate();
+        }
+
+        /// <summary>
+        ///     Handle updates to VS theme
+        /// </summary>
+        private void VSColorTheme_ThemeChanged(ThemeChangedEventArgs e)
+        {
+            UpdateTheme(CurrentDesigner);
+        }
+
+        /// <summary>
+        ///     Handler for ZoomChanged event that will persist current zoom level when changed
+        /// </summary>
+        private void DiagramClientView_ZoomChanged(object sender, DiagramEventArgs e)
+        {
+            // Re-evaluate before the guard below: this is the point at which the model diagram has typically finished
+            // loading, and the commands need to be enabled once it has.
+            UpdateCommandAvailability();
+
+            // make sure that the Model Diagram has already been created or translated before persisting ZoomLevel
+            if (CurrentDiagram is not EntityDesignerSurface diagram
+                || DocData is not MicrosoftDataEntityDesignDocData docData
+                || !docData.IsModelDiagramLoaded)
+            {
+                return;
+            }
+
+            // Sync grid command states on first zoom event (when diagram is loaded)
+            SyncGridCommandStates(diagram);
+            SyncModernLayoutCommandState(diagram);
+
+            try
+            {
+                diagram.PersistZoomLevel();
+            }
+            catch (FileNotEditableException fileNotEditableException)
+            {
+                VsUtils.ShowErrorDialog(fileNotEditableException.Message);
+            }
+        }
+
+        /// <summary>
+        ///     Gets a value indicating whether a designer instance is loaded and able to service commands.
+        /// </summary>
+        /// <remarks>
+        ///     The floating zoom control is created with the view, which happens even for a model that never becomes
+        ///     designer-safe. Until the model diagram is loaded there is nothing behind the commands to act on.
+        /// </remarks>
+        private bool IsDesignerAvailable
+        {
+            get
+            {
+                return CurrentDiagram is EntityDesignerSurface
+                       && DocData is MicrosoftDataEntityDesignDocData docData
+                       && docData.IsModelDiagramLoaded;
+            }
+        }
+
+        /// <summary>
+        ///     Subscribes to the doc data's model-diagram-loaded notification and evaluates availability immediately.
+        /// </summary>
+        /// <remarks>
+        ///     The doc view's LoadView runs before the doc data's OnDocumentLoaded, so the model diagram is never
+        ///     loaded yet at the point the view would naturally check. Evaluating immediately as well as on the event
+        ///     covers a reload, where the diagram is already loaded by the time the view is rebuilt.
+        /// </remarks>
+        private void HookModelDiagramLoaded()
+        {
+            if (DocData is MicrosoftDataEntityDesignDocData docData)
+            {
+                docData.ModelDiagramLoaded -= ModelDiagramLoaded_Handler;
+                docData.ModelDiagramLoaded += ModelDiagramLoaded_Handler;
+            }
+
+            UpdateCommandAvailability();
+        }
+
+        /// <summary>
+        ///     Handles the doc data reporting that the model diagram finished loading.
+        /// </summary>
+        /// <param name="sender">The doc data raising the notification.</param>
+        /// <param name="e">Unused.</param>
+        private void ModelDiagramLoaded_Handler(object sender, EventArgs e)
+        {
+            UpdateCommandAvailability();
+        }
+
+        /// <summary>
+        ///     Enables or disables the floating zoom control's commands to match whether a designer instance is loaded.
+        /// </summary>
+        /// <remarks>
+        ///     Without this the commands stay enabled over a blank designer, and invoking one reaches code that
+        ///     assumes a model diagram exists.
+        /// </remarks>
+        private void UpdateCommandAvailability()
+        {
+            if (_floatingZoomControl is null)
+            {
+                return;
+            }
+
+            var isAvailable = IsDesignerAvailable;
+
+            // Record each part of the predicate, so a control that is unexpectedly disabled says which condition
+            // was not met rather than leaving the next person to guess.
+            VsUtils.LogToActivityLog(
+                $"UpdateCommandAvailability: isAvailable={isAvailable}, "
+                + $"diagramIsEntityDesignerSurface={CurrentDiagram is EntityDesignerSurface}, "
+                + $"docDataIsEscherDocData={DocData is MicrosoftDataEntityDesignDocData}, "
+                + $"isModelDiagramLoaded={(DocData as MicrosoftDataEntityDesignDocData)?.IsModelDiagramLoaded}");
+            foreach (var command in _floatingZoomControl.Commands)
+            {
+                if (command is MenuCommandDefinition menuCommand)
+                {
+                    menuCommand.IsEnabled = isAvailable;
+                }
+            }
+
+            _floatingZoomControl.IsEnabled = isAvailable;
+        }
+
+        /// <summary>
+        ///     Syncs the grid toggle command states with the diagram's current settings.
+        /// </summary>
+        private void SyncGridCommandStates(EntityDesignerSurface diagram)
+        {
+            if (_showGridCommand != null && _showGridCommand.IsChecked != diagram.ShowGrid)
+            {
+                // Temporarily unhook the event to avoid persisting the state we're loading
+                _showGridCommand.PropertyChanged -= ShowGridCommand_PropertyChanged;
+                _showGridCommand.IsChecked = diagram.ShowGrid;
+                _showGridCommand.PropertyChanged += ShowGridCommand_PropertyChanged;
+            }
+
+            if (_snapToGridCommand != null && _snapToGridCommand.IsChecked != diagram.SnapToGrid)
+            {
+                // Temporarily unhook the event to avoid persisting the state we're loading
+                _snapToGridCommand.PropertyChanged -= SnapToGridCommand_PropertyChanged;
+                _snapToGridCommand.IsChecked = diagram.SnapToGrid;
+                _snapToGridCommand.PropertyChanged += SnapToGridCommand_PropertyChanged;
+            }
+        }
+
+        /// <summary>
+        ///     Handler for ShowGrid command's IsChecked property changes
+        /// </summary>
+        private void ShowGridCommand_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName != nameof(MenuCommandDefinition.IsChecked))
+            {
+                return;
+            }
+
+            if (CurrentDiagram is not EntityDesignerSurface diagram)
+            {
+                return;
+            }
+
+            diagram.ShowGrid = _showGridCommand.IsChecked;
+            diagram.PersistShowGrid();
+        }
+
+        /// <summary>
+        ///     Handler for the Modern Layout toggle, which records which engine the Layout command runs.
+        /// </summary>
+        /// <remarks>
+        ///     Toggling writes the diagram's Layout Mode and nothing else; it does not lay the diagram out.
+        ///     Re-arranging everything the moment a toggle is clicked would throw away positions the user may
+        ///     have spent time on, so the Layout button beside it stays the thing that moves shapes.
+        /// </remarks>
+        private void ModernLayoutCommand_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName != nameof(MenuCommandDefinition.IsChecked))
+            {
+                return;
+            }
+
+            if (CurrentDiagram is not EntityDesignerSurface diagram)
+            {
+                return;
+            }
+
+            diagram.PersistLayoutMode(_modernLayoutCommand.IsChecked ? LayoutMode.Modern : LayoutMode.Legacy);
+        }
+
+        /// <summary>
+        ///     Points the Modern Layout toggle, and the commands that only apply in that mode, at whichever mode
+        ///     the diagram is actually in.
+        /// </summary>
+        /// <remarks>
+        ///     Also subscribes to the surface, because the mode can be changed from the property window without
+        ///     the toolbar hearing about it. Detaching first makes that idempotent, so calling this on every load
+        ///     and every change cannot stack up handlers.
+        /// </remarks>
+        private void SyncModernLayoutCommandState(EntityDesignerSurface diagram)
+        {
+            if (_modernLayoutCommand is null)
+            {
+                return;
+            }
+
+            diagram.LayoutInputsChanged -= Diagram_LayoutInputsChanged;
+            diagram.LayoutInputsChanged += Diagram_LayoutInputsChanged;
+
+            var isModern = diagram.LayoutMode == LayoutMode.Modern;
+
+            if (_clearGroupsCommand != null)
+            {
+                _clearGroupsCommand.IsVisible = isModern;
+            }
+
+            if (_modernLayoutCommand.IsChecked == isModern)
+            {
+                return;
+            }
+
+            // Unhook while loading the state, the same as the grid toggles, so reflecting what is already current
+            // does not read as the user asking to change it.
+            _modernLayoutCommand.PropertyChanged -= ModernLayoutCommand_PropertyChanged;
+            _modernLayoutCommand.IsChecked = isModern;
+            _modernLayoutCommand.PropertyChanged += ModernLayoutCommand_PropertyChanged;
+        }
+
+        /// <summary>
+        ///     Re-reads the toolbar state after something changed the attributes the layout is computed from.
+        /// </summary>
+        private void Diagram_LayoutInputsChanged(object sender, EventArgs e)
+        {
+            if (sender is EntityDesignerSurface diagram)
+            {
+                SyncModernLayoutCommandState(diagram);
+            }
+        }
+
+        /// <summary>
+        ///     Handler for SnapToGrid command's IsChecked property changes
+        /// </summary>
+        private void SnapToGridCommand_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName != nameof(MenuCommandDefinition.IsChecked))
+            {
+                return;
+            }
+
+            if (CurrentDiagram is not EntityDesignerSurface diagram)
+            {
+                return;
+            }
+
+            diagram.SnapToGrid = _snapToGridCommand.IsChecked;
+            diagram.PersistSnapToGrid();
+        }
+
+    }
+}

@@ -1,0 +1,28 @@
+﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using System.Diagnostics;
+using System.Xml.Linq;
+
+namespace Microsoft.Data.Entity.Design.Edmx.Entity
+{
+    internal abstract class TextNode : EFElement
+    {
+        internal TextNode(EFContainer parent, XElement element)
+            : base(parent, element)
+        {
+        }
+
+        protected override void OnChildDeleted(EFContainer efContainer)
+        {
+            Debug.Fail("This node does not have any children");
+        }
+
+        internal string Text
+        {
+            get { return XElement.Value; }
+
+            set { XElement.Value = value; }
+        }
+    }
+}

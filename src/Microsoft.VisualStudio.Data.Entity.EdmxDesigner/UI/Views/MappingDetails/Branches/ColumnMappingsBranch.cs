@@ -1,0 +1,105 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetails.Tables;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VirtualTreeGrid.Provider;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails.Branches
+{
+    // <summary>
+    //     The purpose of this class is to create the container node for the column mappings.  So,
+    //     there is only ever one item, one row.
+    // </summary>
+    internal class ColumnMappingsBranch : TreeGridDesignerBranch
+    {
+        private MappingStorageEntityType _mappingStorageEntityType;
+
+        internal ColumnMappingsBranch(MappingStorageEntityType mappingStorageEntityType, TreeGridDesignerColumnDescriptor[] columns)
+            : base(mappingStorageEntityType, columns)
+        {
+            _mappingStorageEntityType = mappingStorageEntityType;
+        }
+
+        public ColumnMappingsBranch()
+        {
+        }
+
+        public override bool Initialize(object component, TreeGridDesignerColumnDescriptor[] columns)
+        {
+            if (!base.Initialize(component, columns))
+            {
+                return false;
+            }
+
+            if (component is MappingStorageEntityType mappingStorageEntityType)
+            {
+                _mappingStorageEntityType = mappingStorageEntityType;
+            }
+
+            return true;
+        }
+
+        protected override string GetText(int row, int column)
+        {
+            if (column == 0)
+            {
+                return base.GetText(row, column);
+            }
+            else
+            {
+                // this branch just displays text in the first column
+                return string.Empty;
+            }
+        }
+
+        internal override object GetElement(int index)
+        {
+            return _mappingStorageEntityType.ColumnMappings;
+        }
+
+        internal override object GetCreatorElement()
+        {
+            return null;
+        }
+
+        internal override int GetIndexForElement(object element)
+        {
+            return 0;
+        }
+
+        internal override int ElementCount
+        {
+            get { return 1; }
+        }
+
+        protected override bool IsExpandable(int index)
+        {
+            return (index < ElementCount);
+        }
+
+        protected override IBranch GetExpandedBranch(int index)
+        {
+            if (index < ElementCount)
+            {
+                if (GetElement(index) is MappingColumnMappings mcm)
+                {
+                    return new ScalarPropertyBranch(mcm, GetColumns());
+                }
+            }
+
+            return null;
+        }
+
+        protected override VirtualTreeDisplayData GetDisplayData(int row, int column, VirtualTreeDisplayDataMasks requiredData)
+        {
+            var data = base.GetDisplayData(row, column, requiredData);
+            if (column == 0)
+            {
+                data.Image = data.SelectedImage = MappingDetailsImages.ICONS_FOLDER;
+                data.ImageList = MappingDetailsImages.GetIconsImageList();
+            }
+
+            return data;
+        }
+    }
+}
