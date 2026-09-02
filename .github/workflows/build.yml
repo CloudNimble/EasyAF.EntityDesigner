@@ -20,11 +20,16 @@ on:
 permissions:
   contents: write
   actions: write
+  # Required for NuGet Trusted Publishing: nuget/login exchanges this OIDC token for a short lived API key.
+  id-token: write
 
 env:
   SOLUTION_FILE: src/EasyAF.EntityDesigner.slnx
   CONFIGURATION: Release
-  VSIX_PROJECT: src/Microsoft.Data.Entity.Design.Package/Microsoft.Data.Entity.Design.Package.csproj
+  VSIX_PROJECT: src/Microsoft.VisualStudio.Data.Entity.Package/Microsoft.VisualStudio.Data.Entity.Package.csproj
+  VSIX_PROJECT_DIR: src/Microsoft.VisualStudio.Data.Entity.Package
+  # Packed on its own, not from the solution: every other project here ships inside the VSIX, not to NuGet.
+  TOOL_PROJECT: src/Microsoft.Data.Entity.Design.Diagrams.Tools/Microsoft.Data.Entity.Design.Diagrams.Tools.csproj
 
 jobs:
   build:
@@ -34,20 +39,23 @@ jobs:
     outputs:
       version: ${{ steps.version.outputs.VERSION }}
       vsix_name: ${{ steps.vsix.outputs.name }}
+      tool_version: ${{ steps.toolversion.outputs.TOOL_VERSION }}
+      tool_next_patch: ${{ steps.toolversion.outputs.NEXT_PATCH }}
+      branch_type: ${{ steps.toolversion.outputs.BRANCH_TYPE }}
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: '10.0.x'
 
       - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v2
+        uses: microsoft/setup-msbuild@v3
 
       - name: Calculate Version
         id: version
@@ -67,11 +75,46 @@ jobs:
           echo "VERSION=$version" >> $env:GITHUB_OUTPUT
           Write-Host "📦 Version: $version"
 
+      - name: Calculate Tool Version
+        id: toolversion
+        shell: pwsh
+        run: |
+          # The dotnet tool versions independently of the VSIX. The VSIX major tracks the Visual Studio version,
+          # which is meaningless for a CLI that never loads in the shell, and the date based build number carries
+          # no upgrade signal for `dotnet tool update`. Semantic versioning off its own repo variables instead,
+          # incremented after a successful push, the same scheme Breakdance uses.
+          $major = "${{ vars.TOOL_VERSION_MAJOR }}"
+          if ([string]::IsNullOrEmpty($major)) { $major = "1" }
+
+          $minor = "${{ vars.TOOL_VERSION_MINOR }}"
+          if ([string]::IsNullOrEmpty($minor)) { $minor = "0" }
+
+          $patch = "${{ vars.TOOL_VERSION_PATCH }}"
+          if ([string]::IsNullOrEmpty($patch)) { $patch = "0" }
+
+          $ref = "${{ github.ref }}"
+          if ($ref -eq "refs/heads/main") {
+            $toolVersion = "$major.$minor.$patch"
+            $nextPatch = [int]$patch + 1
+            echo "NEXT_PATCH=$nextPatch" >> $env:GITHUB_OUTPUT
+            echo "BRANCH_TYPE=main" >> $env:GITHUB_OUTPUT
+            Write-Host "Tool version: $toolVersion (next patch will be $nextPatch)"
+          }
+          else {
+            # Never published, but keeps the packed artifact on a PR distinguishable and ordered below the release.
+            $timestamp = Get-Date -Format "yyyyMMdd-HHmmss" -AsUTC
+            $toolVersion = "$major.$minor.$patch-CI-$timestamp"
+            echo "BRANCH_TYPE=feature" >> $env:GITHUB_OUTPUT
+            Write-Host "Tool version: $toolVersion"
+          }
+
+          echo "TOOL_VERSION=$toolVersion" >> $env:GITHUB_OUTPUT
+
       - name: Update VSIX Version
         uses: cezarypiatek/VsixVersionAction@1.2
         with:
           version: ${{ steps.version.outputs.VERSION }}
-          vsix-manifest-file: src\Microsoft.Data.Entity.Design.Package\source.extension.vsixmanifest
+          vsix-manifest-file: src\Microsoft.VisualStudio.Data.Entity.Package\source.extension.vsixmanifest
 
       - name: Restore Dependencies
         run: dotnet restore ${{ env.SOLUTION_FILE }}
@@ -86,21 +129,35 @@ jobs:
         id: vsix
         shell: pwsh
         run: |
-          $vsix = Get-ChildItem -Path . -Filter "*.vsix" -Recurse | Select-Object -First 1
-          if ($vsix) {
-            Write-Output "name=$($vsix.Name)" >> $env:GITHUB_OUTPUT
-            Write-Output "path=$($vsix.FullName)" >> $env:GITHUB_OUTPUT
-            Write-Host "Found VSIX: $($vsix.FullName)"
-          } else {
-            Write-Error "No VSIX file found"
+          # Scoped to the VSIX project's configuration output. A bare recursive search from the repo root can
+          # match a stale bin\Debug copy and publish the wrong build.
+          $outDir = Join-Path "${{ env.VSIX_PROJECT_DIR }}" "bin\${{ env.CONFIGURATION }}"
+          $vsix = Get-ChildItem -Path $outDir -Filter "*.vsix" -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
+          if (-not $vsix) {
+            Write-Error "No VSIX file found under $outDir"
             exit 1
           }
+          Write-Output "name=$($vsix.Name)" >> $env:GITHUB_OUTPUT
+          Write-Output "path=$($vsix.FullName)" >> $env:GITHUB_OUTPUT
+          Write-Host "Found VSIX: $($vsix.FullName) ($([math]::Round($vsix.Length / 1MB, 2)) MB)"
 
       - name: Upload VSIX Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: vsix-package
           path: ${{ steps.vsix.outputs.path }}
+          retention-days: 30
+
+      # PackageVersion only, not Version: the assemblies keep the solution wide date stamp from the build above,
+      # while the NuGet package carries the tool's own semantic version.
+      - name: Pack Tool
+        run: dotnet pack ${{ env.TOOL_PROJECT }} -c ${{ env.CONFIGURATION }} --no-build --output ./artifacts /p:PackageVersion=${{ steps.toolversion.outputs.TOOL_VERSION }}
+
+      - name: Upload NuGet Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: nuget-packages
+          path: ./artifacts/*.nupkg
           retention-days: 30
 
   publish:
@@ -115,24 +172,74 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Download VSIX Artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: vsix-package
           path: ./artifacts
 
       - name: Publish to VS Marketplace
-        uses: cezarypiatek/VsixPublisherAction@1.1
+        uses: cezarypiatek/VsixPublisherAction@1.2
         with:
           extension-file: ./artifacts/${{ needs.build.outputs.vsix_name }}
-          publish-manifest-file: ./src/Microsoft.Data.Entity.Design.Package/publishManifest.json
+          publish-manifest-file: ./src/Microsoft.VisualStudio.Data.Entity.Package/publishManifest.json
           personal-access-code: ${{ secrets.VS_MARKETPLACE_PAT }}
+
+  publish-nuget:
+    name: Publish to NuGet
+    needs: build
+    runs-on: windows-latest
+    # Must match the Environment on the nuget.org Trusted Publishing policy. Without it nuget/login finds no
+    # matching policy and the push fails.
+    environment: production
+    if: |
+      github.ref == 'refs/heads/main' && (
+        github.event_name == 'push' ||
+        (github.event_name == 'workflow_dispatch' && github.event.inputs.publish_to_marketplace == 'true')
+      )
+
+    steps:
+      - name: Download NuGet Artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: nuget-packages
+          path: ./artifacts
+
+      - name: NuGet login (Trusted Publishing)
+        uses: nuget/login@v1
+        id: nuget_login
+        with:
+          user: ${{ secrets.NUGET_USER }}
+
+      - name: Push to NuGet
+        shell: bash
+        run: dotnet nuget push ./artifacts/*.nupkg --api-key ${{ steps.nuget_login.outputs.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+
+      # Runs only after a successful push, so a failed release does not burn a version number. Needs a PAT:
+      # the default GITHUB_TOKEN cannot write repository variables.
+      - name: Increment tool patch version
+        if: needs.build.outputs.branch_type == 'main'
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+        run: |
+          $nextPatch = "${{ needs.build.outputs.tool_next_patch }}"
+          Write-Host "Updating TOOL_VERSION_PATCH to $nextPatch"
+
+          try {
+            gh variable set TOOL_VERSION_PATCH --body "$nextPatch" --repo ${{ github.repository }}
+            Write-Host "Successfully updated TOOL_VERSION_PATCH to $nextPatch"
+          }
+          catch {
+            Write-Host "WARNING: Failed to update TOOL_VERSION_PATCH: $($_.Exception.Message)"
+            # Don't fail the release for this.
+          }
 
   create-release:
     name: Create GitHub Release
-    needs: [build, publish]
+    needs: [build, publish, publish-nuget]
     runs-on: ubuntu-latest
     if: success()
 
@@ -141,13 +248,13 @@ jobs:
 
     steps:
       - name: Download VSIX Artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: vsix-package
           path: ./artifacts
 
       - name: Create Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: v${{ needs.build.outputs.version }}
           name: v${{ needs.build.outputs.version }}
@@ -157,6 +264,15 @@ jobs:
             ### Installation
             - Download and double-click the VSIX file, or
             - Install from [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=CloudNimble.EasyAF-EntityDesigner)
+
+            ### Command line tool
+            The `dotnet edmx` renderer ships separately on NuGet and versions independently of the extension.
+
+            ```
+            dotnet tool install --global EasyAF.Edmx.DiagramTools --version ${{ needs.build.outputs.tool_version }}
+            ```
+
+            [EasyAF.Edmx.DiagramTools ${{ needs.build.outputs.tool_version }}](https://www.nuget.org/packages/EasyAF.Edmx.DiagramTools/${{ needs.build.outputs.tool_version }})
 
             ### What's Changed
             See [commit history](https://github.com/${{ github.repository }}/commits/v${{ needs.build.outputs.version }}) for details.
