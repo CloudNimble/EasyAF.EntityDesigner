@@ -35,6 +35,9 @@ It's now refreshed with a lighter codebase, modern UI enhanced by WPF, and a bev
 | High-Res Image Export              | ❌                 | ✅                    |
 | SVG Export                         | ❌                 | ✅                    |
 | Mermaid Diagram Export             | ❌                 | ✅                    |
+| Headless Rendering (No VS Needed)  | ❌                 | ✅                    |
+| `dotnet` Global Tool CLI           | ❌                 | ✅                    |
+| Modern (MSAGL) Layout Engine       | ❌                 | ✅                    |
 
 # Why Now?
 
@@ -46,17 +49,83 @@ In fact, Entity Framework 6.5 runs **great** on modern .NET, It's a valid compat
 
 We don't need something new here. We just need something that works.
 
+# Getting Started with AI
+
+Handing an AI your database schema usually means one of two bad trades: thousands of tokens of EDMX XML, most of it namespace declarations and designer coordinates, or raw T-SQL that describes tables but not the conceptual model you actually think in.
+
+`dotnet edmx` gives you a third option. Because the designer no longer needs a Visual Studio shell, the same engine that draws your diagrams can run from a terminal, a build script, or an agent — and emit your model as **Mermaid**, which is compact, readable, and already understood by every major model.
+
+## Installation
+
+```bash
+dotnet tool install --global EasyAF.Edmx.DiagramTools
+```
+
+The tool is Windows-only and requires the .NET 10 runtime. Update or remove it with:
+
+```bash
+dotnet tool update --global EasyAF.Edmx.DiagramTools
+dotnet tool uninstall --global EasyAF.Edmx.DiagramTools
+```
+
+## Commands
+
+### `edmx render`
+
+Renders the diagrams in an EDMX file to SVG, a raster image, or Mermaid.
+
+```bash
+edmx render [options] <Input>
+```
+
+| Argument / Option | Description                                                                     |
+| ----------------- | ------------------------------------------------------------------------------- |
+| `<Input>`         | Path to the `.edmx` file to render.                                             |
+| `-d\|--diagram`    | Name of the diagram to render. Defaults to the first one in the file.           |
+| `-f\|--format`     | `svg`, `png`, `jpg`, `bmp`, `gif`, `tiff` or `mermaid`. Inferred from `--output` when omitted. |
+| `-o\|--output`     | File to write. Defaults to the input name with the format's extension.          |
+| `--show-types`    | Show property data types alongside property names.                              |
+| `--transparent`   | Render with a transparent background. SVG and raster only.                      |
+
+### Examples
+
+Give an agent the conceptual model instead of the file:
+
+```bash
+edmx render Northwind.edmx -f mermaid -o Northwind.mmd
+```
+
+```
+erDiagram
+    Order ||--o{ OrderDetail : FK_Order_Details_Orders
+    Shipper |o--o{ Order : FK_Orders_Shippers
+    Employee |o--o{ Employee : FK_Employees_Employees
+    Employee }o--o{ Territory : EmployeeTerritories
+```
+
+Entities, cardinality, relationship names, self-references and many-to-many joins — in a few dozen tokens rather than a few thousand.
+
+Include column data types when the agent needs them:
+
+```bash
+edmx render Northwind.edmx -f mermaid --show-types
+```
+
+Produce a diagram for docs or a pull request:
+
+```bash
+edmx render Northwind.edmx -o docs/schema.svg --transparent
+```
+
 # Planned Improvements
 
 ### Features
-- Updated layout engine for cleaner diagram re-organization
 - New "Dark Mode" rendering style
 - More control over SVG outputs
 - Better integration with EasyAF tooling
+- Additional CLI commands beyond `render`
+- Richer Mermaid output, including entity attributes
 
 ### Codebase
-- Continued simplification and modernization
-- Move DSL-related code to a single assembly
-- Consolidate projects that don't need to be separated
 - Better leverage C# 14 language features
 - Improve test coverage
