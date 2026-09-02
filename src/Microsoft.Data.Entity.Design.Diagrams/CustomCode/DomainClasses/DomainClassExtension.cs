@@ -1,0 +1,49 @@
+﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
+using Microsoft.VisualStudio.Modeling;
+using Microsoft.VisualStudio.Modeling.Diagrams;
+using System.Diagnostics;
+using System.Linq;
+
+namespace Microsoft.Data.Entity.Design.Diagrams.DomainClasses
+{
+    internal static class DomainClassExtension
+    {
+        /// <summary>
+        ///     Return DSL root view model for the given model element.
+        ///     In multiple diagram world, each diagram will have a root view model.
+        /// </summary>
+        /// <param name="modelElement"></param>
+        /// <returns></returns>
+        internal static EntityDesignerViewModel GetRootViewModel(this ModelElement modelElement)
+        {
+            // if model element is a shape element, we should be able to find root view model from the shape element's diagram.
+            if (modelElement is ShapeElement shapeElement)
+            {
+                Debug.Assert(
+                    shapeElement.Diagram != null,
+                    "ShapeElement's Diagram should never be null. Element name: " + shapeElement.AccessibleName + ", type: "
+                    + shapeElement.GetType().Name);
+
+                if (shapeElement.Diagram != null)
+                {
+                    return shapeElement.Diagram.ModelElement as EntityDesignerViewModel;
+                }
+            }
+            else
+            {
+                Debug.Assert(modelElement.Partition != null, "ModelElement's Partition should never be null.");
+                if (modelElement.Partition != null)
+                {
+                    Debug.Assert(modelElement.Partition.ElementDirectory != null, "Why ModelElement Partition's ElementDirectory is null?");
+                    if (modelElement.Partition.ElementDirectory != null)
+                    {
+                        return modelElement.Partition.ElementDirectory.FindElements<EntityDesignerViewModel>().FirstOrDefault();
+                    }
+                }
+            }
+            return null;
+        }
+    }
+}

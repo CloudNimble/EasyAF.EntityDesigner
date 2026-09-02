@@ -1,0 +1,24 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using EnvDTE;
+using Microsoft.Data.Entity.Design.XmlEngine.Common;
+using Microsoft.VisualStudio.Shell.Interop;
+using System;
+using System.Collections.Generic;
+using System.IO;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
+{
+    interface IVsUtils
+    {
+        ProjectItem FindFirstProjectItemWithName(ProjectItems projectItems, string nameToMatch);
+        uint GetProjectItemId(IVsHierarchy hierarchy, ProjectItem projectItem);
+        IVsHierarchy GetVsHierarchy(Project project, IServiceProvider serviceProvider);
+        DirectoryInfo GetProjectRoot(Project project, IServiceProvider serviceProvider);
+        VisualStudioProjectSystem GetApplicationType(IServiceProvider serviceProvider, Project project);
+        LangEnum GetLanguageForProject(Project project);
+        void WriteCheckoutXmlFilesInProject(IDictionary<string, object> filesMap);
+        void WriteCheckoutTextFilesInProject(IDictionary<string, object> filesMap);
+        void ShowErrorDialog(string message);
+    }
+}

@@ -1,19 +1,11 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using EnvDTE;
 using System;
 using System.Collections.Generic;
-using EnvDTE;
 
 namespace Microsoft.Data.Entity.Tests.Shared.VS
 {
-    public enum OperationType
-    {
-        UI,
-        Model,
-        MenuCommand,
-        Keyboard,
-        Custom
-    }
 
     public class DesignerUtilities
     {
@@ -179,4 +171,5 @@ namespace Microsoft.Data.Entity.Tests.Shared.VS
             }
         }
     }
+
 }

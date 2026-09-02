@@ -1,25 +1,22 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Data.Entity.Design.DatabaseGeneration.Properties;
+using Microsoft.Data.Entity.Design.EntityFramework;
 using System;
-using System.Activities;
-using System.Activities.Hosting;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Xml.Linq;
-using Microsoft.Data.Entity.Design.DatabaseGeneration.Properties;
-using Microsoft.Data.Entity.Design.VersioningFacade;
 
 namespace Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators
 {
     /// <summary>
     ///     Generates mapping specification language (MSL) based on the provided conceptual schema definition language (CSDL).
     /// </summary>
-    public class CsdlToMsl : IGenerateActivityOutput
+    public class CsdlToMsl : ISchemaGenerator
     {
-        private OutputGeneratorActivity _activity;
         private static string _mslUri;
         private static XNamespace _msl;
 
@@ -36,32 +33,25 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators
 
         #endregion Test code only
 
-        #region IGenerateActivityOutput Members
+        #region ISchemaGenerator Members
 
         // TODO perhaps build an in-memory "inference" model that keeps track of the assumptions we make (association/entity type names, etc.)
         /// <summary>
         ///     Generates mapping specification language (MSL) based on the provided conceptual schema definition language (CSDL).
         /// </summary>
-        /// <typeparam name="T"> The type of the activity output. </typeparam>
-        /// <param name="owningActivity"> The currently executing activity. </param>
-        /// <param name="context"> The activity context that contains the state of the workflow. </param>
-        /// <param name="inputs"> Contains the incoming CSDL. </param>
-        /// <returns> Mapping specification language (MSL) of type T based on the provided conceptual schema definition language (CSDL). </returns>
-        public T GenerateActivityOutput<T>(
-            OutputGeneratorActivity owningActivity, NativeActivityContext context, IDictionary<string, object> inputs) where T : class
+        /// <param name="edmItemCollection">The conceptual model to generate mappings for.</param>
+        /// <param name="edmParameterBag">Supplies the target Entity Framework version that determines the MSL namespace.</param>
+        /// <returns> Mapping specification language (MSL) based on the provided conceptual schema definition language (CSDL). </returns>
+        public string Generate(EdmItemCollection edmItemCollection, EdmParameterBag edmParameterBag)
         {
-            _activity = owningActivity;
-
-            inputs.TryGetValue(EdmConstants.csdlInputName, out object o);
-            if (o is not EdmItemCollection edmItemCollection)
+            if (edmItemCollection is null)
             {
-                throw new InvalidOperationException(Resources.ErrorCouldNotFindCSDL);
+                throw new InvalidOperationException(DatabaseGenerationResources.ErrorCouldNotFindCSDL);
             }
 
-            var symbolResolver = context.GetExtension<SymbolResolver>();
-            if (symbolResolver[typeof(EdmParameterBag).Name] is not EdmParameterBag edmParameterBag)
+            if (edmParameterBag is null)
             {
-                throw new InvalidOperationException(Resources.ErrorNoEdmParameterBag);
+                throw new InvalidOperationException(DatabaseGenerationResources.ErrorNoEdmParameterBag);
             }
 
             // Find the TargetVersion parameter
@@ -70,7 +60,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators
             {
                 throw new InvalidOperationException(
                     String.Format(
-                        CultureInfo.CurrentCulture, Resources.ErrorNoParameterDefined, EdmParameterBag.ParameterName.TargetVersion));
+                        CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorNoParameterDefined, EdmParameterBag.ParameterName.TargetVersion));
             }
 
             // Find the MSL namespace parameter
@@ -94,9 +84,9 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators
             }
             catch (Exception e)
             {
-                throw new ArgumentException(String.Format(CultureInfo.CurrentCulture, Resources.ErrorSerializing_CsdlToMsl, e.Message), e);
+                throw new ArgumentException(String.Format(CultureInfo.CurrentCulture, DatabaseGenerationResources.ErrorSerializing_CsdlToMsl, e.Message), e);
             }
-            return serializedMappingElement as T;
+            return serializedMappingElement;
         }
 
         #endregion

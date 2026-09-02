@@ -1,0 +1,36 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Configuration.NavigationProperties;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Extensions;
+using System.Data.Entity.Core.Metadata.Edm;
+using System.Diagnostics;
+using System.Linq;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Discoverers.NavigationProperties
+{
+    internal static class MultiplicityDiscoverer
+    {
+        public static MultiplicityConfiguration Discover(NavigationProperty navigationProperty, out bool isDefault)
+        {
+            Debug.Assert(navigationProperty != null, "navigationProperty is null.");
+
+            EntityType entityType = (EntityType)navigationProperty.DeclaringType;
+            var otherEntityType = navigationProperty.ToEndMember.GetEntityType();
+            var otherNavigationProperty = otherEntityType.NavigationProperties.First(
+                p => p.ToEndMember == navigationProperty.FromEndMember);
+
+            isDefault = (navigationProperty.FromEndMember.RelationshipMultiplicity == RelationshipMultiplicity.Many
+                    || otherNavigationProperty.FromEndMember.RelationshipMultiplicity == RelationshipMultiplicity.Many)
+                && !entityType.NavigationProperties.Where(p => p.ToEndMember.GetEntityType() == otherEntityType)
+                    .MoreThan(1);
+
+            return new MultiplicityConfiguration
+                {
+                    LeftEntityType = entityType,
+                    LeftNavigationProperty = navigationProperty,
+                    RightNavigationProperty = otherNavigationProperty
+                };
+        }
+    }
+}
+

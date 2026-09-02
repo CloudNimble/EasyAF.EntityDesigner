@@ -1,0 +1,78 @@
+﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using System;
+using System.Diagnostics;
+using System.Globalization;
+
+namespace Microsoft.Data.Entity.Design.Edmx.Commands
+{
+    /// <summary>
+    ///     Command for changing complex property type
+    /// </summary>
+    internal class ChangeComplexPropertyTypeCommand : Command
+    {
+        private readonly ComplexConceptualProperty _property;
+        private readonly ComplexType _newType;
+
+        internal ChangeComplexPropertyTypeCommand(ComplexConceptualProperty property, ComplexType newType)
+        {
+            CommandValidation.ValidateProperty(property);
+            CommandValidation.ValidateComplexType(newType);
+
+            _property = property;
+            _newType = newType;
+        }
+
+        protected override void PreInvoke(CommandProcessorContext cpc)
+        {
+            base.PreInvoke(cpc);
+
+            // first make sure that we are changing the type
+            if (_property != null
+                && _property.ComplexType.Target != _newType)
+            {
+                foreach (var cp in _property.GetAntiDependenciesOfType<ComplexProperty>())
+                {
+                    // delete all related ComplexProperty mappings when the property type changes
+                    DeleteEFElementCommand.DeleteInTransaction(cpc, cp);
+                }
+            }
+        }
+
+        protected override void InvokeInternal(CommandProcessorContext cpc)
+        {
+            Debug.Assert(_property != null, "Property is null");
+
+            if (_property == null)
+            {
+                throw new InvalidOperationException("InvokeInternal is called when _property is null.");
+            }
+
+            if (_property.ComplexType.Target == _newType)
+            {
+                // no change needed
+                return;
+            }
+
+            // check for ComplexType circular definition
+            if (_property.Parent is ComplexType parent)
+            {
+                if (ModelHelper.ContainsCircularComplexTypeDefinition(parent, _newType))
+                {
+                    throw new CommandValidationFailedException(
+                        String.Format(
+                            CultureInfo.CurrentCulture, EdmxResources.Error_CircularComplexTypeDefinitionOnChange, _newType.LocalName.Value));
+                }
+            }
+
+            // Update to new type
+            _property.ComplexType.SetRefName(_newType);
+            _property.ComplexType.Rebind();
+            Debug.Assert(_property.ComplexType.Status == BindingStatus.Known, "Rebind for the ComplexType failed");
+        }
+    }
+}

@@ -1,0 +1,27 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using System.Xml.Linq;
+
+namespace Microsoft.Data.Entity.Design.Edmx.Mapping
+{
+    internal class FunctionImportComplexTypeMapping : FunctionImportTypeMapping
+    {
+        internal static readonly string ElementName = "ComplexTypeMapping";
+
+        internal FunctionImportComplexTypeMapping(ResultMapping parent, XElement element)
+            : base(parent, element)
+        {
+        }
+
+        internal override string EFTypeName
+        {
+            get { return ElementName; }
+        }
+
+        internal ComplexType ComplexType
+        {
+            get { return TypeName.Target as ComplexType; }
+        }
+    }
+}

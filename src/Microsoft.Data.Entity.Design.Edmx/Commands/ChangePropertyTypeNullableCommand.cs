@@ -1,0 +1,34 @@
+﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+
+namespace Microsoft.Data.Entity.Design.Edmx.Commands
+{
+    internal class ChangePropertyTypeNullableCommand : UpdateDefaultableValueCommand<BoolOrNone>
+    {
+        public Property Property { get; set; }
+
+        internal bool? Nullable
+        {
+            get { return Value == null ? (bool?)null : Value.PrimitiveValue; }
+        }
+
+        public ChangePropertyTypeNullableCommand()
+            : base(null, null)
+        {
+        }
+
+        internal ChangePropertyTypeNullableCommand(Property property, BoolOrNone value)
+            : base(property.Nullable, value)
+        {
+            Property = property;
+        }
+
+        internal ChangePropertyTypeNullableCommand(Property property, bool? value)
+            : this(property, BoolOrNoneConverter.ValueConverterForBool(value))
+        {
+        }
+    }
+}

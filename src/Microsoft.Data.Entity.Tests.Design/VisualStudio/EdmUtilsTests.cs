@@ -1,24 +1,24 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using EnvDTE;
+using FluentAssertions;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.Data.Entity.Tests.Design.TestHelpers;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
-using EnvDTE;
-using Microsoft.Data.Entity.Design.Model;
-using Microsoft.Data.Entity.Design.Model.Commands;
-using Microsoft.Data.Entity.Design.Model.Designer;
-using Microsoft.Data.Entity.Design.VersioningFacade;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
-using Microsoft.Data.Tools.XmlDesignerBase.Model;
-using Microsoft.VisualStudio.Shell.Interop;
-using Moq;
-using Microsoft.Data.Entity.Tests.Design.TestHelpers;
-using Microsoft.Data.Entity.Design.VisualStudio;
 using VSLangProj;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentAssertions;
-using Resources = Microsoft.Data.Entity.Design.Resources;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio
 {
@@ -335,7 +335,7 @@ namespace Microsoft.Data.Entity.Tests.Design.VisualStudio
                 mockLogger.Object);
 
             var expectedErrorMessage =
-                string.Format(Resources.ErrorDuringSqlDatabaseFileUpgrade, null, "Loading Failed");
+                string.Format(EdmxDesignerResources.ErrorDuringSqlDatabaseFileUpgrade, null, "Loading Failed");
 
             mockLogger
                 .Verify(l => l.LogMessage(2, It.IsAny<string>(), It.IsAny<string>(), expectedErrorMessage), Times.Once());

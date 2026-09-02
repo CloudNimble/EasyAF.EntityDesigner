@@ -1,0 +1,304 @@
+<vs:DialogWindow x:Class="Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs.NewFunctionImportDialog"
+                 x:ClassModifier="internal"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:vs="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0"
+                 xmlns:shell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
+                 xmlns:dialogs="clr-namespace:Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs"
+                 mc:Ignorable="d"
+                 d:DesignWidth="550"
+                 d:DesignHeight="650"
+                 Width="550"
+                 Height="650"
+                 MinWidth="500"
+                 MinHeight="550"
+                 ShowInTaskbar="False"
+                 WindowStartupLocation="CenterOwner"
+                 ResizeMode="CanResize"
+                 FontFamily="{DynamicResource VsFont.EnvironmentFontFamily}"
+                 FontSize="{DynamicResource VsFont.EnvironmentFontSize}"
+                 Background="{DynamicResource VsBrush.ToolWindowBackground}"
+                 Title="{x:Static dialogs:DialogsResource.NewFunctionImportDialog_Title}"
+                 HasHelpButton="False">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="DialogStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Function Import Name -->
+        <TextBlock Grid.Row="0"
+                   Text="{x:Static dialogs:DialogsResource.NewFunctionImportDialog_FunctionImportLabel}"
+                   Margin="0,0,0,4"/>
+        <TextBox x:Name="FunctionImportNameTextBox"
+                 Grid.Row="1"
+                 Margin="0,0,0,8"
+                 TextChanged="FunctionImportNameTextBox_TextChanged"
+                 AutomationProperties.Name="{x:Static dialogs:DialogsResource.NewFunctionImportDialog_FunctionImportLabel}"/>
+
+        <!-- Is Composable Checkbox -->
+        <CheckBox x:Name="FunctionImportComposableCheckBox"
+                  Grid.Row="2"
+                  Content="Is Composable"
+                  Margin="0,0,0,12"
+                  Click="FunctionImportComposableCheckBox_Click"
+                  AutomationProperties.Name="Is Composable"/>
+
+        <!-- Stored Procedure Name -->
+        <TextBlock Grid.Row="3"
+                   Text="{x:Static dialogs:DialogsResource.NewFunctionImportDialog_StoredProcNameLabel}"
+                   Margin="0,0,0,4"/>
+        <ComboBox x:Name="StoredProcComboBox"
+                  Grid.Row="4"
+                  Margin="0,0,0,12"
+                  SelectionChanged="StoredProcComboBox_SelectionChanged"
+                  AutomationProperties.Name="{x:Static dialogs:DialogsResource.NewFunctionImportDialog_StoredProcNameLabel}"/>
+
+        <!-- Returns Collection GroupBox -->
+        <GroupBox Grid.Row="5"
+                  Header="{x:Static dialogs:DialogsResource.NewFunctionImportDialog_ReturnTypeLabel}"
+                  Margin="0,0,0,12"
+                  Padding="8">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- None Return Type -->
+                <RadioButton x:Name="EmptyReturnTypeButton"
+                             Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                             Content="{x:Static dialogs:DialogsResource.NewFunctionImportDialog_EmptyReturnTypeLabel}"
+                             Margin="0,0,0,8"
+                             Checked="ReturnTypeButton_CheckedChanged"
+                             KeyDown="ReturnTypeButton_KeyDown"
+                             AutomationProperties.Name="{x:Static dialogs:DialogsResource.NewFunctionImportDialog_EmptyReturnTypeLabel}"/>
+
+                <!-- Scalar Return Type -->
+                <RadioButton x:Name="ScalarTypeReturnButton"
+                             Grid.Row="1" Grid.Column="0"
+                             Content="{x:Static dialogs:DialogsResource.NewFunctionImportDialog_ScalarsTypeReturnLabel}"
+                             Margin="0,0,8,8"
+                             VerticalAlignment="Center"
+                             Checked="ReturnTypeButton_CheckedChanged"
+                             KeyDown="ReturnTypeButton_KeyDown"
+                             AutomationProperties.Name="{x:Static dialogs:DialogsResource.NewFunctionImportDialog_ScalarsTypeReturnLabel}"/>
+                <ComboBox x:Name="ScalarTypeReturnComboBox"
+                          Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                          Margin="0,0,0,8"
+                          SelectionChanged="ScalarTypeReturnComboBox_SelectionChanged"
+                          AutomationProperties.Name="{x:Static dialogs:DialogsResource.NewFunctionImportDialog_ScalarsTypeReturnAccessibleName}"/>
+
+                <!-- Complex Return Type -->
+                <RadioButton x:Name="ComplexTypeReturnButton"
+                             Grid.Row="2" Grid.Column="0"
+                             Content="{x:Static dialogs:DialogsResource.NewFunctionImportDialog_ComplexTypeReturnLabel}"
+                             Margin="0,0,8,8"
+                             VerticalAlignment="Center"
+                             Checked="ReturnTypeButton_CheckedChanged"
+                             KeyDown="ReturnTypeButton_KeyDown"
+                             AutomationProperties.Name="{x:Static dialogs:DialogsResource.NewFunctionImportDialog_ComplexTypeReturnLabel}"/>
+                <ComboBox x:Name="ComplexTypeReturnComboBox"
+                          Grid.Row="2" Grid.Column="1"
+                          Margin="0,0,8,8"
+                          IsEditable="False"
+                          SelectionChanged="ComplexTypeReturnComboBox_SelectionChanged"
+                          AutomationProperties.Name="{x:Static dialogs:DialogsResource.NewFunctionImportDialog_ComplexTypeReturnAccessibleName}"/>
+                <Button x:Name="UpdateComplexTypeButton"
+                        Grid.Row="2" Grid.Column="2"
+                        Content="Update..."
+                        MinWidth="75"
+                        Height="23"
+                        Margin="0,0,0,8"
+                        Click="UpdateComplexTypeButton_Click"
+                        AutomationProperties.Name="Update Complex Type"/>
+
+                <!-- Entity Return Type -->
+                <RadioButton x:Name="EntityTypeReturnButton"
+                             Grid.Row="3" Grid.Column="0"
+                             Content="{x:Static dialogs:DialogsResource.NewFunctionImportDialog_EntityTypeReturnLabel}"
+                             Margin="0,0,8,0"
+                             VerticalAlignment="Center"
+                             Checked="ReturnTypeButton_CheckedChanged"
+                             KeyDown="ReturnTypeButton_KeyDown"
+                             AutomationProperties.Name="{x:Static dialogs:DialogsResource.NewFunctionImportDialog_EntityTypeReturnLabel}"/>
+                <ComboBox x:Name="EntityTypeReturnComboBox"
+                          Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
+                          SelectionChanged="EntityTypeReturnComboBox_SelectionChanged"
+                          AutomationProperties.Name="{x:Static dialogs:DialogsResource.NewFunctionImportDialog_EntityTypeReturnAccessibleName}"/>
+            </Grid>
+        </GroupBox>
+
+        <!-- Return Type Shape GroupBox -->
+        <GroupBox x:Name="ReturnTypeShapeGroup"
+                  Grid.Row="6"
+                  Header="Return Type Shape"
+                  Margin="0,0,0,12"
+                  Padding="8">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Get Column Information Button -->
+                <Button x:Name="GetColumnInformationButton"
+                        Grid.Row="0"
+                        Content="{x:Static dialogs:DialogsResource.NewFunctionImportDialog_ClickToExecute}"
+                        MinWidth="150"
+                        Height="23"
+                        HorizontalAlignment="Left"
+                        Margin="0,0,0,8"
+                        Click="GetColumnInformationButton_Click"
+                        AutomationProperties.Name="Get Column Information"/>
+
+                <!-- Return Type Shape Panel with TabControl and ListView -->
+                <Border Grid.Row="1"
+                        BorderBrush="{DynamicResource VsBrush.ActiveBorder}"
+                        BorderThickness="1"
+                        Margin="0,0,0,8">
+                    <Grid>
+                        <!-- Tab Control for different states (hidden tabs) -->
+                        <TabControl x:Name="ReturnTypeShapeTabControl"
+                                    BorderThickness="0"
+                                    Padding="0"
+                                    Background="Transparent">
+                            <TabControl.Resources>
+                                <Style TargetType="TabItem">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </Style>
+                            </TabControl.Resources>
+
+                            <!-- Select Tab -->
+                            <TabItem x:Name="SelectTabPage">
+                                <Grid Background="{DynamicResource VsBrush.Window}">
+                                    <TextBlock Text="{x:Static dialogs:DialogsResource.NewFunctionImportDialog_SelectStoredProcedure}"
+                                               Margin="8"
+                                               TextWrapping="Wrap"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                </Grid>
+                            </TabItem>
+
+                            <!-- Detecting Tab -->
+                            <TabItem x:Name="DetectingTabPage">
+                                <Grid Background="{DynamicResource VsBrush.Window}">
+                                    <TextBlock Text="{x:Static dialogs:DialogsResource.NewFunctionImportDialog_Executing}"
+                                               Margin="8"
+                                               TextWrapping="Wrap"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                </Grid>
+                            </TabItem>
+
+                            <!-- Detect Tab -->
+                            <TabItem x:Name="DetectTabPage">
+                                <Grid Background="{DynamicResource VsBrush.Window}">
+                                    <TextBlock Text="{x:Static dialogs:DialogsResource.NewFunctionImportDialog_ClickToExecute}"
+                                               Margin="8"
+                                               TextWrapping="Wrap"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                </Grid>
+                            </TabItem>
+
+                            <!-- Detect Error Tab -->
+                            <TabItem x:Name="DetectErrorTabPage">
+                                <Grid Background="{DynamicResource VsBrush.Window}">
+                                    <TextBlock x:Name="DetectErrorLabel"
+                                               Margin="8"
+                                               TextWrapping="Wrap"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                </Grid>
+                            </TabItem>
+
+                            <!-- Connection Tab -->
+                            <TabItem x:Name="ConnectionTabPage">
+                                <Grid Background="{DynamicResource VsBrush.Window}">
+                                    <TextBlock Text="{x:Static dialogs:DialogsResource.NewFunctionImportDialog_NoConnectionMsg}"
+                                               Margin="8"
+                                               TextWrapping="Wrap"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                                </Grid>
+                            </TabItem>
+                        </TabControl>
+
+                        <!-- ListView for return type columns -->
+                        <ListView x:Name="ReturnTypeShapeListView"
+                                  Visibility="Collapsed"
+                                  AutomationProperties.Name="Return Type Columns">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn x:Name="ColumnAction" Header="Action" Width="60"/>
+                                    <GridViewColumn x:Name="ColumnName" Header="Column" Width="100"/>
+                                    <GridViewColumn x:Name="ColumnEdmType" Header="EDM Type" Width="80"/>
+                                    <GridViewColumn x:Name="ColumnDbType" Header="DB Type" Width="80"/>
+                                    <GridViewColumn x:Name="ColumnNullable" Header="Nullable" Width="60"/>
+                                    <GridViewColumn x:Name="ColumnMaxLength" Header="Max Length" Width="75"/>
+                                    <GridViewColumn x:Name="ColumnPrecision" Header="Precision" Width="65"/>
+                                    <GridViewColumn x:Name="ColumnScale" Header="Scale" Width="50"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                </Border>
+
+                <!-- Create New Complex Type Button -->
+                <Button x:Name="CreateNewComplexTypeButton"
+                        Grid.Row="2"
+                        Content="Create New Complex Type"
+                        MinWidth="150"
+                        Height="23"
+                        HorizontalAlignment="Left"
+                        Click="CreateNewComplexTypeButton_Click"
+                        AutomationProperties.Name="Create New Complex Type"/>
+            </Grid>
+        </GroupBox>
+
+        <!-- Button Panel -->
+        <StackPanel Grid.Row="7"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Button x:Name="OkButton"
+                    Content="{x:Static dialogs:DialogsResource.OKButton_Text}"
+                    MinWidth="75"
+                    Height="23"
+                    Margin="0,0,8,0"
+                    Click="OkButton_Click"
+                    IsDefault="True"
+                    AutomationProperties.Name="{x:Static dialogs:DialogsResource.OKButton_AccessibleName}"/>
+            <Button Content="{x:Static dialogs:DialogsResource.CancelButton_Text}"
+                    MinWidth="75"
+                    Height="23"
+                    IsCancel="True"
+                    AutomationProperties.Name="{x:Static dialogs:DialogsResource.CancelButton_AccessibleName}"/>
+        </StackPanel>
+    </Grid>
+</vs:DialogWindow>

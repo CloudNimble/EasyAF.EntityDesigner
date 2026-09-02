@@ -1,0 +1,38 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using FluentAssertions;
+using Microsoft.Data.Entity.Design.Edmx.MetadataConverter;
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Xml;
+
+namespace Microsoft.Data.Entity.Tests.Design.Edmx.MetadataConverter
+{
+    [TestClass]
+    public class MetadataConverterDriverTests
+    {
+        [TestMethod]
+        public void Convert_returns_null_for_non_SqlCE()
+        {
+            XmlDocument xmlDoc = new XmlDocument();
+
+            foreach (var edmxNs in SchemaManager.GetEDMXNamespaceNames())
+            {
+                xmlDoc.LoadXml(string.Format("<Edmx xmlns=\"{0}\" />", edmxNs));
+                MetadataConverterDriver.Instance.Convert(xmlDoc).Should().BeNull();
+            }
+        }
+
+        [TestMethod]
+        public void Convert_returns_converted_xml_for_SqlCE()
+        {
+            XmlDocument xmlDoc = new XmlDocument();
+
+            foreach (var edmxNs in SchemaManager.GetEDMXNamespaceNames())
+            {
+                xmlDoc.LoadXml(string.Format("<Edmx xmlns=\"{0}\" />", edmxNs));
+                MetadataConverterDriver.SqlCeInstance.Convert(xmlDoc).Should().NotBeNull();
+            }
+        }
+    }
+}

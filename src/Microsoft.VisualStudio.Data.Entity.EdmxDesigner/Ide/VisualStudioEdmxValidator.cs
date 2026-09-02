@@ -1,0 +1,174 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using EnvDTE;
+using Microsoft.Data.Entity.Design.Edmx;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.Data.Entity.Design.XmlEngine.Util;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Model;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Model.VisualStudio;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.VisualStudio;
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using IServiceProvider = Microsoft.VisualStudio.OLE.Interop.IServiceProvider;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide
+{
+    internal static class VisualStudioEdmxValidator
+    {
+        internal static bool LoadAndValidateAllFilesInProject(
+            IVsHierarchy pHierProj, bool doEscherValidation, Func<EFArtifact, bool> shouldValidateArtifact)
+        {
+            // clear all errors for this project
+            ErrorListHelper.ClearHierarchyErrors(pHierProj);
+
+            VSFileFinder fileFinder = new VSFileFinder(EntityDesignArtifact.ExtensionEdmx);
+            fileFinder.FindInProject(pHierProj);
+
+            List<VSFileFinder.VSFileInfo> edmxFilesToValidate = new List<VSFileFinder.VSFileInfo>(fileFinder.MatchingFiles);
+
+            return LoadAndValidateFiles(edmxFilesToValidate, doEscherValidation, shouldValidateArtifact);
+        }
+
+        internal static bool LoadAndValidateFiles(params Uri[] uris)
+        {
+            List<VSFileFinder.VSFileInfo> filesToValidate = new List<VSFileFinder.VSFileInfo>();
+            foreach (var uri in uris)
+            {
+                VSFileFinder.VSFileInfo fileInfo;
+
+                VSHelpers.GetProjectAndFileInfoForPath(
+                    uri.LocalPath, PackageManager.Package, out IVsHierarchy projectHierarchy, out Project project, out uint itemId, out bool isDocumentInProject);
+                fileInfo.Hierarchy = projectHierarchy;
+                fileInfo.ItemId = itemId;
+                fileInfo.Path = uri.LocalPath;
+
+                filesToValidate.Add(fileInfo);
+            }
+
+            return LoadAndValidateFiles(filesToValidate, doEscherValidation: true, shouldValidateArtifact: a => true);
+        }
+
+        private static bool LoadAndValidateFiles(
+            IEnumerable<VSFileFinder.VSFileInfo> edmxFilesToValidate, bool doEscherValidation, Func<EFArtifact, bool> shouldValidateArtifact)
+        {
+            var validationSuccessful = true;
+
+            // load all the artifacts, and clear out the error list for them.
+            using (EntityDesignModelManager modelManager = new EntityDesignModelManager(new VSArtifactFactory(), new VSArtifactSetFactory()))
+            {
+                foreach (var vsFileInfo in edmxFilesToValidate)
+                {
+                    var uri = Utils.FileName2Uri(vsFileInfo.Path);
+                    try
+                    {
+                        var artifact = GetArtifactForValidation(uri, vsFileInfo.Hierarchy, modelManager);
+                        if (artifact != null
+                            && shouldValidateArtifact(artifact))
+                        {
+                            // we need to continue validating even if validation for an artifact failed so just
+                            // set the flag and continue validating.
+                            if (!ValidateArtifactAndWriteErrors(artifact, vsFileInfo, doEscherValidation))
+                            {
+                                validationSuccessful = false;
+                            }
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        // an exception occurred loading the document, so add an error for it into the error pane.
+                        var errorList = ErrorListHelper.GetSingleDocErrorList(vsFileInfo.Hierarchy, vsFileInfo.ItemId);
+
+                        Debug.Assert(errorList != null, "errorList is null!");
+
+                        errorList.AddItem(
+                            EFModelErrorTaskFactory
+                                .CreateErrorTask(uri.LocalPath, e, vsFileInfo.Hierarchy, vsFileInfo.ItemId));
+
+                        validationSuccessful = false;
+                    }
+                }
+            }
+
+            return validationSuccessful;
+        }
+
+        private static bool ValidateArtifactAndWriteErrors(EFArtifact artifact, VSFileFinder.VSFileInfo vsFileInfo, bool doEscherValidation)
+        {
+            return ValidateArtifactAndWriteErrors(artifact, vsFileInfo.Hierarchy, vsFileInfo.ItemId, doEscherValidation);
+        }
+
+        private static bool ValidateArtifactAndWriteErrors(
+            EFArtifact artifact, IVsHierarchy hierarchy, uint itemId, bool doEscherValidation)
+        {
+            Debug.Assert(artifact != null, "artifact != null!");
+            Debug.Assert(hierarchy != null, "project hierarchy is null!");
+            Debug.Assert(itemId != VSConstants.VSITEMID_NIL, "itemid is nil");
+
+            var errorList = ErrorListHelper.GetSingleDocErrorList(hierarchy, itemId);
+            Debug.Assert(errorList != null, "Couldn't get error list for artifact " + artifact.Uri);
+
+            errorList.Clear();
+
+            EntityDesignArtifactSet artifactSet = (EntityDesignArtifactSet)artifact.ArtifactSet;
+            Debug.Assert(
+                artifactSet.Artifacts.OfType<EntityDesignArtifact>().Count() == 1,
+                "Expected there is 1 instance of EntityDesignArtifact; Actual:" +
+                artifactSet.Artifacts.OfType<EntityDesignArtifact>().Count());
+
+            VsUtils.EnsureProvider(artifact);
+            ((EntityDesignModelManager)artifact.ModelManager)
+                .ValidateAndCompileMappings(artifactSet, doEscherValidation);
+
+            var errors = artifactSet.GetArtifactOnlyErrors(artifact);
+
+            if (errors.Count > 0)
+            {
+                ErrorListHelper.AddErrorInfosToErrorList(errors, hierarchy, itemId, errorList);
+                return false;
+            }
+
+            return true;
+        }
+
+        private static EFArtifact GetArtifactForValidation(Uri uri, IVsHierarchy hierarchy, ModelManager modelManager)
+        {
+            var modelListener = PackageManager.Package.ModelChangeEventListener;
+            hierarchy.GetSite(out IServiceProvider oleServiceProvider);
+            System.IServiceProvider sp = new ServiceProvider(oleServiceProvider);
+
+            EFArtifact artifact = null;
+            //
+            // If we opened the document with Escher, then use the XmlEditor's xlinq tree
+            // If we opened the document with the xml editor, but not escher, then 
+            // we don't want to use the XmlEditor's xlinq tree, because then we would be receiving events when
+            // the document changes, and we currently don't support that.
+            //
+
+            if (VSHelpers.GetDocData(sp, uri.LocalPath) is IEntityDesignDocData escherDocData)
+            {
+                artifact = PackageManager.Package.ModelManager.GetNewOrExistingArtifact(
+                    uri, new VSXmlModelProvider(PackageManager.Package, PackageManager.Package));
+                modelListener?.OnBeforeValidateModel(VSHelpers.GetProject(hierarchy), artifact, true);
+            }
+            else
+            {
+                if (Path.GetExtension(uri.LocalPath).Equals(EntityDesignArtifact.ExtensionEdmx, StringComparison.OrdinalIgnoreCase))
+                {
+                    // no doc data exists for this document, so load it into a temp model manager that can be disposed of when we're done. 
+                    // Using the LoaderBasedXmlModelProvider will let us catch XML scanner and parser errors (the xml editor will try to 
+                    // recover from these, and we won't know that the problem occurred. 
+                    artifact = modelManager.GetNewOrExistingArtifact(uri, new StandaloneXmlModelProvider(PackageManager.Package));
+                    modelListener?.OnBeforeValidateModel(VSHelpers.GetProject(hierarchy), artifact, true);
+                }
+            }
+
+            return artifact;
+        }
+    }
+}

@@ -1,0 +1,148 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Microsoft.Data.Entity.Design.Diagrams</RootNamespace>
+    <AssemblyName>Microsoft.Data.Entity.Design.Diagrams</AssemblyName>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <NoWarn>$(NoWarn);VSTHRD010;VSSDK006;VSTHRD001;CS3014</NoWarn>
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+    <!-- Required for non-string resources (images, icons) in resx files -->
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+    <!-- Assembly properties -->
+    <Title>Microsoft.Data.Entity.Design.Diagrams</Title>
+    <Description>Microsoft.Data.Entity.Design.Diagrams.dll</Description>
+    <!-- DSL-generated code is not CLS-compliant -->
+    <CLSCompliant>false</CLSCompliant>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <!-- GeneratedCode\Serializer.cs uses ImportAttribute. This used to arrive transitively through the
+         Visual Studio Shell packages, which the designer no longer references. -->
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk" />
+    <PackageReference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams" />
+    <PackageReference Include="System.Resources.Extensions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.Edmx\Microsoft.Data.Entity.Design.Edmx.csproj" />
+    <ProjectReference Include="..\Microsoft.Data.Entity.Design.XmlEngine\Microsoft.Data.Entity.Design.XmlEngine.csproj" />
+  </ItemGroup>
+
+  <!-- ReliabilityContract attribute -->
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.ConstrainedExecution.ReliabilityContract">
+      <_Parameter1>System.Runtime.ConstrainedExecution.Consistency.MayCorruptProcess</_Parameter1>
+      <_Parameter1_IsLiteral>true</_Parameter1_IsLiteral>
+      <_Parameter2>System.Runtime.ConstrainedExecution.Cer.None</_Parameter2>
+      <_Parameter2_IsLiteral>true</_Parameter2_IsLiteral>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <!-- InternalsVisibleTo for projects that need access to internal types -->
+  <ItemGroup>
+    <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.Package, $(StrongNamePublicKey)" />
+    <!-- The designer's UI lives here and works against the surface, which is internal to this assembly. -->
+    <InternalsVisibleTo Include="Microsoft.VisualStudio.Data.Entity.EdmxDesigner, $(StrongNamePublicKey)" />
+    <!-- The renderer works directly against the DSL shapes and connectors, which are internal to this assembly, and
+         the command line tool implements IRasterExporter against the same diagram type. -->
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Diagrams.Rendering, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Design.Diagrams.Tools, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.Diagrams, $(StrongNamePublicKey)" />
+    <InternalsVisibleTo Include="Microsoft.Data.Entity.Tests.Design.Diagrams.Rendering, $(StrongNamePublicKey)" />
+  </ItemGroup>
+
+  <!-- DSL Definition -->
+  <ItemGroup>
+    <None Update="DslDefinition.dsl">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="DslDefinition.dsl.diagram">
+      <DependentUpon>DslDefinition.dsl</DependentUpon>
+    </None>
+  </ItemGroup>
+
+  <!-- T4 templates and the checked-in output each one owns. Every GeneratedCode\X.tt produces X.cs apart
+       from the two overridden below. LastGenOutput is what Visual Studio overwrites when the custom tool
+       runs, so a wrong value here does not just mislabel the tree - it writes a file that should not exist.
+       GeneratedCode\Templates\*.tt is deliberately out of reach: * does not cross directory separators, so
+       the forked template bodies never get a Generator and are never transformed on their own. -->
+  <ItemGroup>
+    <None Update="GeneratedCode\*.tt">
+      <LastGenOutput>%(Filename).cs</LastGenOutput>
+    </None>
+    <Compile Update="GeneratedCode\*.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>%(Filename).tt</DependentUpon>
+    </Compile>
+    <!-- The two non-.cs outputs, nested under the template that writes them. The SDK's default globs
+         already classify them: the resx as EmbeddedResource, the xsd as None. The xsd previously carried
+         a Content Update with CopyToOutputDirectory, which matched nothing because the file is not a
+         Content item - and nothing reads it at runtime, so it is left uncopied rather than promoted. -->
+  </ItemGroup>
+
+  <!-- Content files -->
+  <ItemGroup>
+    <Content Include="Resources\*.png" />
+  </ItemGroup>
+
+  <!-- Embedded Resources -->
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\*.cur" />
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <!-- Makes `msbuild /t:TransformAll` regenerate GeneratedCode\*.cs from DslDefinition.dsl outside the IDE.
+       TransformOnBuild is deliberately left off: the generated code is checked in, and regeneration needs
+       DslTemplatesSrc plus the DSL SDK's DslDirectiveProcessor, neither of which a plain build should require. -->
+  <PropertyGroup>
+    <!-- Environment variables arrive as properties, so capture this before the default below overwrites it.
+         It is the only way to tell whether the template host will actually see %DslTemplatesSrc%. -->
+    <DslTemplatesSrcFromEnvironment>$(DslTemplatesSrc)</DslTemplatesSrcFromEnvironment>
+    <DslSdkPath Condition="'$(DslSdkPath)' == ''">$(VsInstallRoot)\Common7\IDE\Extensions\Microsoft\DSL SDK\DSL Designer\$(VisualStudioVersion)</DslSdkPath>
+    <!-- The GeneratedCode templates include %DslTemplatesSrc%\Dsl\*.tt, and those in turn include Dsl\*.tt
+         relative to the include search path, so both point at the TextTemplates folder itself. -->
+    <DslTemplatesSrc Condition="'$(DslTemplatesSrc)' == ''">$(DslSdkPath)\TextTemplates</DslTemplatesSrc>
+    <IncludeFolders Condition="'$(IncludeFolders)' == ''">$(DslTemplatesSrc)</IncludeFolders>
+    <!-- The TextTemplating targets only add PublicAssemblies and PrivateAssemblies to the transform's
+         reference path when this is set, and DslDirectiveProcessor needs the Modeling SDK from there. -->
+    <VsIdePath Condition="'$(VsIdePath)' == ''">$(VsInstallRoot)\Common7\IDE</VsIdePath>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Resolves the `Dsl` directive that reads DslDefinition.dsl. Registered in Visual Studio's private
+         registry hive, so it has to be named explicitly for a command line transform. -->
+    <DirectiveProcessor Include="DslDirectiveProcessor">
+      <Class>Microsoft.VisualStudio.Modeling.DslDefinition.DslDirectiveProcessor</Class>
+      <CodeBase>$(DslSdkPath)\Microsoft.VisualStudio.Modeling.Sdk.DslDefinition.dll</CodeBase>
+    </DirectiveProcessor>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TextTemplating\Microsoft.TextTemplating.targets" Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TextTemplating\Microsoft.TextTemplating.targets')" />
+
+  <!-- The templates include %DslTemplatesSrc%\Dsl\*.tt. The text templating host expands real environment
+       variables there, not MSBuild properties, and MSBuild's property function allowlist blocks
+       System.Environment::SetEnvironmentVariable, so the variable has to come from the environment.
+       Without it the include path stays literal and every transform fails - but the task still overwrites
+       its outputs first, so fail before that happens rather than after. -->
+  <Target Name="CheckDslTemplatesSrcEnvironment" BeforeTargets="TransformAll;TransformDslTemplates">
+    <Error Condition="'$(DslTemplatesSrcFromEnvironment)' == ''" Text="Set the DslTemplatesSrc environment variable before regenerating: &quot;$(DslTemplatesSrc)&quot;. The text templating host expands it inside the templates' include directives, and it cannot be supplied as an MSBuild property." />
+  </Target>
+
+</Project>

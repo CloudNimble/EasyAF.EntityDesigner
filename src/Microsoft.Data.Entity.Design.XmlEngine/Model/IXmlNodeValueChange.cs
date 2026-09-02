@@ -1,0 +1,22 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+namespace Microsoft.Data.Entity.Design.XmlEngine.Model
+{
+
+    /// <summary>
+    ///     This API supports the Entity Framework infrastructure and is not intended to be used directly from your code.
+    /// </summary>
+    public interface IXmlNodeValueChange : IXmlChange
+    {
+        /// <summary>
+        ///     This API supports the Entity Framework infrastructure and is not intended to be used directly from your code.
+        /// </summary>
+        string OldValue { get; }
+
+        /// <summary>
+        ///     This API supports the Entity Framework infrastructure and is not intended to be used directly from your code.
+        /// </summary>
+        string NewValue { get; }
+    }
+
+}

@@ -1,0 +1,53 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using EnvDTE;
+using Microsoft.VisualStudio.Data.Entity.Extensibility;
+using System;
+using System.Xml.Linq;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Extensibility
+{
+    internal class ModelGenerationExtensionContextImpl : ModelGenerationExtensionContext
+    {
+        private readonly Project _project;
+        private readonly Version _targetSchemaVersion;
+        private readonly XDocument _currentXDocument;
+        private readonly XDocument _documentFromDatabase;
+        private readonly WizardKind _wizardKind;
+
+        internal ModelGenerationExtensionContextImpl(
+            Project project, Version targetSchemaVersion, XDocument currentXDocument, XDocument documentFromDatabase, WizardKind wizardKind)
+        {
+            _project = project;
+            _targetSchemaVersion = targetSchemaVersion;
+            _currentXDocument = currentXDocument;
+            _documentFromDatabase = documentFromDatabase;
+            _wizardKind = wizardKind;
+        }
+
+        public override Project Project
+        {
+            get { return _project; }
+        }
+
+        public override Version EntityFrameworkVersion
+        {
+            get { return _targetSchemaVersion; }
+        }
+
+        public override XDocument CurrentDocument
+        {
+            get { return _currentXDocument; }
+        }
+
+        public override XDocument GeneratedDocument
+        {
+            get { return _documentFromDatabase; }
+        }
+
+        public override WizardKind WizardKind
+        {
+            get { return _wizardKind; }
+        }
+    }
+}

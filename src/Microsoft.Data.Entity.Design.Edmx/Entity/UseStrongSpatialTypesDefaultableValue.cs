@@ -1,0 +1,39 @@
+﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.EntityFramework;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+
+namespace Microsoft.Data.Entity.Design.Edmx.Entity
+{
+    internal class UseStrongSpatialTypesDefaultableValue : DefaultableValue<bool>
+    {
+        internal const string AttributeUseStrongSpatialTypes = "UseStrongSpatialTypes";
+
+        internal UseStrongSpatialTypesDefaultableValue(EFElement parent)
+            : base(parent, AttributeUseStrongSpatialTypes, SchemaManager.GetAnnotationNamespaceName())
+        {
+        }
+
+        internal override string AttributeName
+        {
+            get { return AttributeUseStrongSpatialTypes; }
+        }
+
+        /// <summary>
+        ///     The non-existence of the attribute should be interpreted as true.
+        /// </summary>
+        public override bool DefaultValue
+        {
+            get { return true; }
+        }
+
+        internal override bool ValidateValueAgainstSchema()
+        {
+            if (EdmFeatureManager.GetUseStrongSpatialTypesFeatureState(Parent.Artifact.SchemaVersion).IsEnabled())
+            {
+                return true;
+            }
+            return false;
+        }
+    }
+}

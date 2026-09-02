@@ -1,0 +1,92 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Diagrams.DomainClasses;
+using Microsoft.Data.Entity.Design.Edmx.Commands;
+using Microsoft.Data.Entity.Design.Edmx.Designer;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using Microsoft.VisualStudio.Modeling.Diagrams;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using AssociationConnector = Microsoft.Data.Entity.Design.Diagrams.View.AssociationConnector;
+
+namespace Microsoft.Data.Entity.Design.Diagrams.ModelChanges
+{
+    internal class AssociationConnectorChange : AssociationConnectorModelChange
+    {
+        private readonly Guid _domainPropertyId;
+
+        internal AssociationConnectorChange(AssociationConnector associationConnector, Guid domainPropertyId)
+            : base(associationConnector)
+        {
+            _domainPropertyId = domainPropertyId;
+        }
+
+        internal override void Invoke(CommandProcessorContext cpc)
+        {
+            StaticInvoke(cpc, AssociationConnector, _domainPropertyId);
+        }
+
+        internal static void StaticInvoke(CommandProcessorContext cpc, AssociationConnector associationConnector, Guid domainPropertyId)
+        {
+            var viewModel = associationConnector.GetRootViewModel();
+            Debug.Assert(viewModel != null, "Unable to find root view model from AssociationConnector: " + associationConnector);
+
+            if (viewModel != null)
+            {
+                Connector modelAssociationConnector =
+                    viewModel.ModelXRef.GetExisting(associationConnector) as Edmx.Designer.AssociationConnector;
+                if (modelAssociationConnector == null)
+                {
+                    AssociationConnectorAdd.StaticInvoke(cpc, associationConnector);
+                    modelAssociationConnector = viewModel.ModelXRef.GetExisting(associationConnector) as Edmx.Designer.AssociationConnector;
+                }
+
+                Debug.Assert(modelAssociationConnector != null, "modelAssociationConnector != null");
+                if (modelAssociationConnector != null)
+                {
+                    if (domainPropertyId == LinkShape.EdgePointsDomainPropertyId)
+                    {
+                        List<KeyValuePair<double, double>> points = null;
+                        if (associationConnector.ManuallyRouted
+                            && associationConnector.EdgePoints.Count > 0)
+                        {
+                            points = new List<KeyValuePair<double, double>>(associationConnector.EdgePoints.Count);
+                            foreach (EdgePoint point in associationConnector.EdgePoints)
+                            {
+                                points.Add(new KeyValuePair<double, double>(point.Point.X, point.Point.Y));
+                            }
+                        }
+
+                        if (points != null)
+                        {
+                            SetConnectorPointsCommand cmd = new SetConnectorPointsCommand(modelAssociationConnector, points);
+                            CommandProcessor.InvokeSingleCommand(cpc, cmd);
+                        }
+                    }
+                    else if (domainPropertyId == LinkShape.ManuallyRoutedDomainPropertyId)
+                    {
+                        // if the connectors are not manually routed, we need to clean up all the connector points in the association connectors.
+                        if (associationConnector.ManuallyRouted == false
+                            && modelAssociationConnector.ConnectorPoints != null
+                            && modelAssociationConnector.ConnectorPoints.Count > 0)
+                        {
+                            List<KeyValuePair<double, double>> points = new List<KeyValuePair<double, double>>();
+                            SetConnectorPointsCommand setConnectorPointCmd = new SetConnectorPointsCommand(modelAssociationConnector, points);
+                            CommandProcessor.InvokeSingleCommand(cpc, setConnectorPointCmd);
+                        }
+
+                        UpdateDefaultableValueCommand<bool> cmd = new UpdateDefaultableValueCommand<bool>(
+                            modelAssociationConnector.ManuallyRouted, associationConnector.ManuallyRouted);
+                        CommandProcessor.InvokeSingleCommand(cpc, cmd);
+                    }
+                }
+            }
+        }
+
+        internal override int InvokeOrderPriority
+        {
+            get { return 240; }
+        }
+    }
+}

@@ -1,0 +1,33 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Descriptors
+{
+
+    /// <summary>
+    ///     this class is defined so that all generic types defined by derived types
+    ///     have a common base type
+    /// </summary>
+    internal abstract class ObjectDescriptor : IPropertyDescriptorDefaultsProvider
+    {
+        /// <summary>
+        ///     returns the EFObject object that is wrapped by the descriptor
+        /// </summary>
+        /// <returns></returns>
+        public abstract EFObject WrappedItem { get; }
+
+        public abstract EditingContext EditingContext { get; }
+
+        internal virtual void Initialize(EFObject obj, EditingContext editingContext)
+        {
+            Initialize(obj, editingContext, true);
+        }
+
+        internal abstract void Initialize(EFObject obj, EditingContext editingContext, bool runningInVS);
+
+        public abstract object GetDescriptorDefaultValue(string propertyDescriptorMethodName);
+    }
+
+}

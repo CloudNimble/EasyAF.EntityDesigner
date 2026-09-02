@@ -1,0 +1,28 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Extensions
+{
+    internal static class StringExtensions
+    {
+        public static bool EqualsIgnoreCase(this string a, string b)
+        {
+            Debug.Assert(!string.IsNullOrEmpty(a), "a is null or empty.");
+            Debug.Assert(!string.IsNullOrEmpty(b), "b is null or empty.");
+
+            return string.Equals(a, b, StringComparison.OrdinalIgnoreCase);
+        }
+
+        public static bool ContainsIgnoreCase(this IEnumerable<string> source, string value)
+        {
+            Debug.Assert(source != null, "source is null.");
+            Debug.Assert(!string.IsNullOrEmpty(value), "value is null or empty.");
+
+            return source.Contains(value, StringComparer.OrdinalIgnoreCase);
+        }
+    }
+}

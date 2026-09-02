@@ -1,0 +1,79 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Diagrams.ModelChanges;
+using Microsoft.Data.Entity.Design.Diagrams.Utils;
+using Microsoft.Data.Entity.Design.Diagrams.ViewModel;
+using Microsoft.Data.Entity.Design.Edmx.Validation;
+using Microsoft.VisualStudio.Modeling;
+using System;
+using System.Diagnostics;
+using System.Globalization;
+using EntityDesignerRes = Microsoft.Data.Entity.Design.Diagrams.Properties.DiagramsResources;
+
+namespace Microsoft.Data.Entity.Design.Diagrams.Rules
+{
+    /// <summary>
+    ///     Rule fired when an EntityType changes
+    /// </summary>
+    [RuleOn(typeof(EntityType), FireTime = TimeToFire.TopLevelCommit)]
+    internal sealed class EntityType_ChangeRule : ChangeRule
+    {
+        /// <summary>
+        ///     Do the following when an EntityType changes:
+        ///     - Update roles in related Associations
+        /// </summary>
+        /// <param name="e"></param>
+        public override void ElementPropertyChanged(ElementPropertyChangedEventArgs e)
+        {
+            base.ElementPropertyChanged(e);
+
+            // if the element is deleted or about to be deleted, this rule will get fired.
+            // Just return immediately here because we don't care if the entity-type's property has changed.
+            if (e.ModelElement.IsDeleted
+                || e.ModelElement.IsDeleting)
+            {
+                return;
+            }
+
+            EntityType changedEntity = e.ModelElement as EntityType;
+            Debug.Assert(changedEntity != null, "changedEntity != null");
+            Debug.Assert(changedEntity.EntityDesignerViewModel != null, "changedEntity.EntityDesignerViewModel != null");
+
+            if (changedEntity != null
+                && changedEntity.EntityDesignerViewModel != null)
+            {
+                var viewModel = changedEntity.EntityDesignerViewModel;
+                var tx = ModelUtils.GetCurrentTx(e.ModelElement.Store);
+                Debug.Assert(tx != null, "tx != null");
+                // don't do the auto update stuff if we are in the middle of deserialization
+                if (tx != null
+                    && !tx.IsSerializing)
+                {
+                    // are they changing the name?
+                    if (e.DomainProperty.Id == NameableItem.NameDomainPropertyId)
+                    {
+                        // if we are creating this Entity, there is no 'change' to do
+                        if (viewModel.ModelXRef.GetExisting(changedEntity) == null)
+                        {
+                            return;
+                        }
+
+                        if (!EdmxAttributeContentValidator.IsValidCsdlEntityTypeName(changedEntity.Name))
+                        {
+                            throw new InvalidOperationException(
+                                String.Format(CultureInfo.CurrentCulture, EntityDesignerRes.Error_EntityNameInvalid, changedEntity.Name));
+                        }
+
+                        if (ModelUtils.IsUniqueName(changedEntity, changedEntity.Name, viewModel.EditingContext) == false)
+                        {
+                            throw new InvalidOperationException(
+                                String.Format(CultureInfo.CurrentCulture, EntityDesignerRes.Error_EntityNameDuplicate, changedEntity.Name));
+                        }
+
+                        ViewModelChangeContext.GetNewOrExistingContext(tx).ViewModelChanges.Add(new EntityTypeChange(changedEntity));
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,36 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.PropertyWindow.Descriptors;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Converters;
+using System.Diagnostics;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.PropertyWindow.Converters
+{
+    internal class EFNameableItemListConverter : DynamicListConverter<EntitySet, EFEntityTypeDescriptor>
+    {
+        protected override void PopulateMappingForSelectedObject(EFEntityTypeDescriptor selectedObject)
+        {
+            Debug.Assert(selectedObject != null, "selectedObject should not be null");
+
+            if (selectedObject != null)
+            {
+                var currentType = selectedObject.TypedEFElement;
+
+                Debug.Assert(currentType != null, "currentType should not be null for selectedObject " + selectedObject);
+                if (currentType != null)
+                {
+                    var entityContainer = currentType.EntityModel.EntityContainer;
+                    Debug.Assert(entityContainer != null, "BaseEntityContainer should not be null for selectedObject " + selectedObject);
+                    if (entityContainer != null)
+                    {
+                        foreach (var es in entityContainer.EntitySets())
+                        {
+                            AddMapping(es, es.NormalizedNameExternal);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,38 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Reflection;
+
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Converters
+{
+    /// <summary>
+    ///     type converter for enums, with support for a Description attribute on the enum values
+    ///     for localization support.
+    /// </summary>
+    internal class EnumConverter<TEnum> : FixedListConverter<TEnum>
+    {
+        protected override void PopulateMapping()
+        {
+            var type = typeof(TEnum);
+            Debug.Assert(type.IsEnum, "type.IsEnum");
+            if (type.IsEnum)
+            {
+                var enumValues = type.GetFields(BindingFlags.Public | BindingFlags.Static);
+                foreach (var enumValue in enumValues)
+                {
+                    DescriptionAttribute descriptionAttr = null;
+                    foreach (Attribute attr in enumValue.GetCustomAttributes(typeof(DescriptionAttribute), false))
+                    {
+                        descriptionAttr = attr as DescriptionAttribute;
+                        break;
+                    }
+                    TEnum value = (TEnum)Enum.Parse(type, enumValue.Name);
+                    var displayValue = (descriptionAttr != null) ? descriptionAttr.Description : value.ToString();
+                    AddMapping(value, displayValue);
+                }
+            }
+        }
+    }
+}

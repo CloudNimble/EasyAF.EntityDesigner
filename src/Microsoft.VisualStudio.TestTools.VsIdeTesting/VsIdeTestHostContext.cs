@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.Diagnostics.CodeAnalysis;
+using EnvDTE;
 using System;
 using System.Diagnostics;
-using EnvDTE;
+using System.Diagnostics.CodeAnalysis;
 
 [module: SuppressMessage("Microsoft.Naming", "CA1706:ShortAcronymsShouldBeUppercase",
     Scope = "namespace", Target = "Microsoft.VisualStudio.TestTools.VsIdeTesting")] // Be consistent with VS Interop Assemblies.

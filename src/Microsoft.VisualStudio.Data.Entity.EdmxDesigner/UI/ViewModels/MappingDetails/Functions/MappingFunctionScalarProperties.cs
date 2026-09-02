@@ -1,0 +1,160 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
+using Microsoft.Data.Entity.Design.XmlEngine.Context;
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails.Branches;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails.Columns;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell;
+using System.Collections.Generic;
+using System.Diagnostics;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetails.Functions
+{
+    [TreeGridDesignerRootBranch(typeof(ParametersBranch))]
+    [TreeGridDesignerColumn(typeof(ParameterColumn), Order = 1)]
+    internal class MappingFunctionScalarProperties : MappingFunctionMappingRoot
+    {
+        private IList<MappingFunctionScalarProperty> _scalarProperties;
+
+        public MappingFunctionScalarProperties(EditingContext context, ModificationFunction functionMapping, MappingEFElement parent)
+            : base(context, functionMapping, parent)
+        {
+        }
+
+        internal ModificationFunction ModificationFunction
+        {
+            get { return ModelItem as ModificationFunction; }
+        }
+
+        internal Function Function
+        {
+            get
+            {
+                if (ModificationFunction == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return ModificationFunction.FunctionName.Target;
+                }
+            }
+        }
+
+        internal override string Name
+        {
+            get { return EdmxDesignerResources.MappingDetails_Parameters; }
+        }
+
+        // we override this property because we don't want to use the base setter; otherwise
+        // we'll replace the XRef for the function so that it points here and not to the 
+        // MappingModificationFunctionMapping (our parent)
+        internal override EFElement ModelItem
+        {
+            get { return _modelItem; }
+            set
+            {
+                _modelItem = value;
+                _isDisposed = false;
+            }
+        }
+
+        internal void LoadScalarProperties()
+        {
+            if (null == _scalarProperties)
+            {
+                _scalarProperties = [];
+
+                // load children from model
+                // note: have to go to parent to get this as this is a dummy node
+                if (Function != null
+                    && MappingFunctionEntityType != null
+                    && MappingFunctionEntityType.EntityType != null)
+                {
+                    var entityType = MappingFunctionEntityType.EntityType;
+
+                    // loop through all of the 'parameters' in the function
+                    foreach (var parm in Function.Parameters())
+                    {
+                        FunctionScalarProperty existingScalarProperty = null;
+
+                        // for each column, see if we are already have a scalar property
+                        var antiDeps = parm.GetAntiDependenciesOfType<FunctionScalarProperty>();
+                        foreach (var scalarProperty in antiDeps)
+                        {
+                            // this FunctionScalarProperty could be right under the function, nested inside an AssociationEnd, 
+                            // or N levels deep inside a complex type hierarchy
+
+                            // if we find one, validate it
+                            if (scalarProperty != null
+                                && scalarProperty.Name.Status == BindingStatus.Known
+                                && scalarProperty.GetParentOfType(typeof(ModificationFunction)) is ModificationFunction spmf
+                                && ModificationFunction == spmf)
+                            {
+                                // make sure we are looking at something mapped by the entity type we are mapping
+                                if (entityType != spmf.ModificationFunctionMapping.EntityTypeMapping.FirstBoundConceptualEntityType)
+                                {
+                                    continue;
+                                }
+
+                                // we are already mapping this 
+                                existingScalarProperty = scalarProperty;
+                                break;
+                            }
+                        }
+
+                        // if we didn't find one, then create a dummy row with just the column info
+                        if (existingScalarProperty == null)
+                        {
+                            MappingFunctionScalarProperty msp = new MappingFunctionScalarProperty(_context, null, this);
+                            msp.StoreParameter = parm;
+                            _scalarProperties.Add(msp);
+                        }
+                        else
+                        {
+                            MappingFunctionScalarProperty msp =
+                                (MappingFunctionScalarProperty)
+                                ModelToMappingModelXRef.GetNewOrExisting(_context, existingScalarProperty, this);
+                            _scalarProperties.Add(msp);
+                        }
+                    }
+                }
+            }
+        }
+
+        [DebuggerDisplay("ScalarProperties must not be invoked by Debugger just to show its value in the Autos Window")]
+        internal IList<MappingFunctionScalarProperty> ScalarProperties
+        {
+            get
+            {
+                LoadScalarProperties();
+                return _scalarProperties;
+            }
+        }
+
+        protected override void LoadChildrenCollection()
+        {
+            LoadScalarProperties();
+            _children.Clear();
+            foreach (var child in ScalarProperties)
+            {
+                _children.Add(child);
+            }
+        }
+
+        protected override void OnChildDeleted(MappingEFElement melem)
+        {
+            MappingFunctionScalarProperty child = melem as MappingFunctionScalarProperty;
+            Debug.Assert(child != null, "Unknown child being deleted");
+            if (child != null)
+            {
+                _children.Remove(child);
+                return;
+            }
+
+            base.OnChildDeleted(melem);
+        }
+    }
+}

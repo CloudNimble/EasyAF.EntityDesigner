@@ -1,0 +1,22 @@
+﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using System.Data.Entity.Core.Metadata.Edm;
+using System.Data.Entity.Infrastructure;
+using System.Xml;
+
+namespace Microsoft.Data.Entity.Design.EntityFramework.Serialization
+{
+    /// <summary>
+    /// Allows using MslSerializer from EntityFramework.dll from assemblies that have not been granted
+    /// the permission to access internal members of EntityFramework.dll.
+    /// </summary>
+    internal class MslSerializerWrapper
+    {
+        private readonly MslSerializer _serializer = new MslSerializer();
+
+        public bool Serialize(DbModel edmModel, XmlWriter xmlWriter)
+        {
+            return _serializer.Serialize(edmModel.DatabaseMapping, xmlWriter);
+        }
+    }
+}

@@ -1,0 +1,166 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetails;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetails.Associations;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetails.FunctionImports;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetails.Functions;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.ViewModels.MappingDetails.Tables;
+using Microsoft.VisualStudio.Data.Entity.XmlDesigner.Base.Shell;
+using System;
+using System.Diagnostics;
+
+namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.MappingDetails.Columns
+{
+
+    // <summary>
+    //     Based on the type of item being shown, show the correct text for the Operator column.
+    // </summary>
+    internal class OperatorColumn : BaseColumn
+    {
+        internal static readonly MappingLovEFElement ArrowIconPlaceholder = new MappingLovEFElement(" ");
+
+        public OperatorColumn()
+            : base(EdmxDesignerResources.MappingDetails_Operator)
+        {
+        }
+
+        protected override float GetWidthPercentage()
+        {
+            // constant size for the Operator column
+            return 0.10f;
+        }
+
+        public override object /* PropertyDescriptor */ GetValue(object component)
+        {
+            if (component is MappingCondition mc)
+            {
+                EnsureTypeConverters(mc);
+                return mc.Operator;
+            }
+
+            if (component is MappingScalarProperty msp)
+            {
+                EnsureTypeConverters(msp);
+                return ArrowIconPlaceholder;
+            }
+
+            if (component is MappingEndScalarProperty mesp)
+            {
+                EnsureTypeConverters(mesp);
+                return ArrowIconPlaceholder;
+            }
+
+            if (component is MappingFunctionScalarProperty mfsp)
+            {
+                EnsureTypeConverters(mfsp);
+                return ArrowIconPlaceholder;
+            }
+
+            if (component is MappingResultBinding mrb)
+            {
+                EnsureTypeConverters(mrb);
+                return ArrowIconPlaceholder;
+            }
+
+            return MappingEFElement.LovBlankPlaceHolder;
+        }
+
+        // <summary>
+        //     Overriding this allows the list-of-values dropdowns to use
+        //     the converter to convert back from a string to an object (in our
+        //     case a MappingLovEFElement object)
+        // </summary>
+        public override Type /* PropertyDescriptor */ PropertyType
+        {
+            get { return typeof(OperatorColumnConverter); }
+        }
+
+        internal override bool IsDeleteSupported(object component)
+        {
+            return false;
+        }
+
+        // This method receives changes as MappingLovElements (user used the mouse)
+        // or as strings (user used the keyboard)
+        public override void /* PropertyDescriptor */ SetValue(object component, object value)
+        {
+            // if they picked on the "Empty" placeholder, ignore it
+            if (MappingEFElement.LovEmptyPlaceHolder == value)
+            {
+                return;
+            }
+
+            // if we get a blank, that is never valid
+            if (value == null
+                || MappingEFElement.LovBlankPlaceHolder == value)
+            {
+                return;
+            }
+
+            MappingLovEFElement lovElement = value as MappingLovEFElement;
+            var valueAsString = value as string;
+
+            Debug.Assert(
+                lovElement != null || valueAsString != null,
+                "value is not a MappingLovEFElement nor a string. Actual type is " + value.GetType().FullName);
+            if (lovElement == null
+                && string.IsNullOrEmpty(valueAsString))
+            {
+                // Both null is an error condition and should not happen.
+                // But the trid will sometimes send an empty string when the user drops down a list
+                // and then clicks away; in both cases just return without doing anything.
+                return;
+            }
+
+            if (component is MappingCondition mc)
+            {
+                Debug.Assert(mc.ModelItem != null, "MappingCondition should not have null ModelItem");
+                lovElement = mc.GetLovElementFromLovElementOrString(lovElement, valueAsString, ListOfValuesCollection.SecondColumn);
+                if (lovElement != null)
+                {
+                    mc.Operator = lovElement;
+                    OnValueChanged(this, ColumnValueChangedEventArgs.Default);
+                }
+                return;
+            }
+        }
+
+        internal override TreeGridDesignerValueSupportedStates GetValueSupported(object component)
+        {
+            if (component is MappingColumnMappings
+                || component is MappingConceptualEntityType
+                || component is MappingStorageEntityType
+                || component is MappingScalarProperty
+                || component is MappingAssociationSet
+                || component is MappingAssociationSetEnd
+                || component is MappingEndScalarProperty
+                || component is MappingFunctionEntityType
+                || component is MappingModificationFunctionMapping
+                || component is MappingFunctionScalarProperties
+                || component is MappingFunctionScalarProperty
+                || component is MappingResultBindings
+                || component is MappingResultBinding
+                || component is MappingFunctionImport
+                || component is MappingFunctionImportScalarProperty)
+            {
+                return TreeGridDesignerValueSupportedStates.None;
+            }
+            else
+            {
+                return base.GetValueSupported(component);
+            }
+        }
+
+        internal override void EnsureTypeConverters(MappingEFElement element)
+        {
+            if (_converter == null
+                || _currentElement != element)
+            {
+                // create initial type converter
+                _currentElement = element;
+                _converter = new OperatorColumnConverter();
+            }
+        }
+    }
+
+}

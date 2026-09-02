@@ -1,10 +1,10 @@
-﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using Microsoft.Win32;
 using System;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
-using Microsoft.Win32;
 
 namespace Microsoft.Data.Entity.Tests.Shared
 {
@@ -52,17 +52,17 @@ namespace Microsoft.Data.Entity.Tests.Shared
             _wizardFrameworkResourceLookup = new AssemblyResourceLookup(
                 Assembly.LoadFile(filepath), "Microsoft.WizardFramework.Properties.Resources");
 
-            filepath = Path.Combine(_vsInstallDir, "Microsoft.Data.Entity.Design.Package.dll");
+            filepath = Path.Combine(_vsInstallDir, "Microsoft.VisualStudio.Data.Entity.Package.dll");
             _designPackageResourceLookup = new AssemblyResourceLookup(
-                Assembly.LoadFile(filepath), "Microsoft.Data.Entity.Design.Package.Resources");
+                Assembly.LoadFile(filepath), "Microsoft.VisualStudio.Data.Entity.Package.PackageResources");
 
-            filepath = Path.Combine(_vsInstallDir, "Microsoft.Data.Entity.Design.dll");
+            filepath = Path.Combine(_vsInstallDir, "Microsoft.VisualStudio.Data.Entity.EdmxDesigner.dll");
             _modelWizardResourceLookup = new AssemblyResourceLookup(
-                Assembly.LoadFile(filepath), "Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Properties.Resources");
+                Assembly.LoadFile(filepath), "Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties.ModelWizardResources");
             _viewsDialogsResourceLookup = new AssemblyResourceLookup(
-                Assembly.LoadFile(filepath), "Microsoft.Data.Entity.Design.UI.Views.Dialogs.DialogsResource");
+                Assembly.LoadFile(filepath), "Microsoft.VisualStudio.Data.Entity.EdmxDesigner.UI.Views.Dialogs.DialogsResource");
             _entityDesignResourceLookup = new AssemblyResourceLookup(
-                Assembly.LoadFile(filepath), "Microsoft.Data.Entity.Design.Resources");
+                Assembly.LoadFile(filepath), "Microsoft.VisualStudio.Data.Entity.EdmxDesigner.EdmxDesignerResources");
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace Microsoft.Data.Entity.Tests.Shared
 
         /// <summary>
         ///     Look up resource string in all relevant resource tables for the
-        ///     Microsoft.Data.Entity.Design.dll reference file.
+        ///     Microsoft.VisualStudio.Data.Entity.EdmxDesigner.dll reference file.
         /// </summary>
         /// <param name="key">Resource string key</param>
         /// <returns>Real display string</returns>

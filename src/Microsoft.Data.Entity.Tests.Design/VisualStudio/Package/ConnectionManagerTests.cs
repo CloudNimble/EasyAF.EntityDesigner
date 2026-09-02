@@ -1,21 +1,21 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
-using System.Xml;
 using EnvDTE;
+using FluentAssertions;
+using Microsoft.Data.Entity.Tests.Design.TestHelpers;
 using Microsoft.VisualStudio.Data.Core;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.Package;
 using Microsoft.VisualStudio.DataTools.Interop;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.VSDesigner.Data.Local;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Microsoft.Data.Entity.Tests.Design.TestHelpers;
-using Microsoft.Data.Entity.Design;
-using Microsoft.Data.Entity.Design.VisualStudio;
-using Microsoft.Data.Entity.Design.VisualStudio.Package;
+using System.Xml;
 using VSLangProj;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentAssertions;
 
 namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.Package
 {
@@ -207,12 +207,12 @@ namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.Package
             Action actRuntime = () => ConnectionManager.TranslateConnectionStringFromRunTime(mockServiceProvider.Object,
                 Mock.Of<Project>(), "My.Db", "connectionString");
             actRuntime.Should().Throw<ArgumentException>()
-                .WithMessage(string.Format(Resources.CannotTranslateRuntimeConnectionString, string.Empty, "connectionString"));
+                .WithMessage(string.Format(EdmxDesignerResources.CannotTranslateRuntimeConnectionString, string.Empty, "connectionString"));
 
             Action actDesignTime = () => ConnectionManager.TranslateConnectionStringFromDesignTime(mockServiceProvider.Object,
                 Mock.Of<Project>(), "My.Db", "connectionString");
             actDesignTime.Should().Throw<ArgumentException>()
-                .WithMessage(string.Format(Resources.CannotTranslateDesignTimeConnectionString, string.Empty, "connectionString"));
+                .WithMessage(string.Format(EdmxDesignerResources.CannotTranslateDesignTimeConnectionString, string.Empty, "connectionString"));
         }
 
         [TestMethod]
@@ -255,12 +255,12 @@ namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.Package
                 .Setup(p => p.GetService(typeof(IDTAdoDotNetProviderMapper)))
                 .Returns(mockProviderMapper.Object);
 
-            var ddexNotInstalledMessage = string.Format(Resources.DDEXNotInstalled, "My.Db");
+            var ddexNotInstalledMessage = string.Format(EdmxDesignerResources.DDEXNotInstalled, "My.Db");
 
             Action actRuntime = () => ConnectionManager.TranslateConnectionStringFromRunTime(mockServiceProvider.Object,
                 Mock.Of<Project>(), "My.Db", "connectionString");
             actRuntime.Should().Throw<ArgumentException>()
-                .WithMessage(string.Format(Resources.CannotTranslateRuntimeConnectionString, ddexNotInstalledMessage, "connectionString"));
+                .WithMessage(string.Format(EdmxDesignerResources.CannotTranslateRuntimeConnectionString, ddexNotInstalledMessage, "connectionString"));
 
             mockProviderMapper
                 .Verify(
@@ -270,7 +270,7 @@ namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.Package
             Action actDesignTime = () => ConnectionManager.TranslateConnectionStringFromDesignTime(mockServiceProvider.Object,
                 Mock.Of<Project>(), "My.Db", "connectionString");
             actDesignTime.Should().Throw<ArgumentException>()
-                .WithMessage(string.Format(Resources.CannotTranslateDesignTimeConnectionString, ddexNotInstalledMessage, "connectionString"));
+                .WithMessage(string.Format(EdmxDesignerResources.CannotTranslateDesignTimeConnectionString, ddexNotInstalledMessage, "connectionString"));
         }
 
         [TestMethod]
@@ -344,7 +344,7 @@ namespace Microsoft.Data.Entity.Tests.Design.VisualStudio.Package
                 configXml.LoadXml(config);
 
                 Action act = () => ConnectionManager.AddConnectionStringElement(configXml, "MyDb", "db=mydb", "fancyDb");
-                act.Should().Throw<XmlException>().WithMessage(Resources.ConnectionManager_CorruptConfig);
+                act.Should().Throw<XmlException>().WithMessage(EdmxDesignerResources.ConnectionManager_CorruptConfig);
             }
         }
 

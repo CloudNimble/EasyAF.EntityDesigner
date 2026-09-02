@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
 
+using FluentAssertions;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.CodeGeneration.Generators;
+using Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Properties;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using FluentAssertions;
-using Microsoft.Data.Entity.Design.CodeGeneration.Generators;
-using Microsoft.Data.Entity.Design.VisualStudio.ModelWizard.Properties;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration.Generators
 {
@@ -24,7 +24,7 @@ namespace Microsoft.Data.Entity.Tests.Design.CodeGeneration.Generators
             var ctorComment = NormalizeCode(
                 string.Format(
                     CultureInfo.CurrentCulture,
-                    Resources.CodeFirstCodeFile_CtorComment_VB,
+                    ModelWizardResources.CodeFirstCodeFile_CtorComment_VB,
                     "MyContext",
                     "ConsoleApplication.Data"));
 
@@ -40,7 +40,7 @@ Public Class MyContext
         MyBase.New(""name=MyContextConnString"")
     End Sub
 
-    " + NormalizeCode(Resources.CodeFirstCodeFile_DbSetComment_VB) + @"
+    " + NormalizeCode(ModelWizardResources.CodeFirstCodeFile_DbSetComment_VB) + @"
     ' Public Overridable Property MyEntities() As DbSet(Of MyEntity)
 
 End Class

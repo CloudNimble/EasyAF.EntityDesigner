@@ -1,0 +1,20 @@
+﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.XmlEngine.Model;
+using System.Xml.Linq;
+
+namespace Microsoft.Data.Entity.Design.Edmx.Entity
+{
+    internal abstract class CommandTextBase : EFElement
+    {
+        internal CommandTextBase(EFElement parent, XElement element)
+            : base(parent, element)
+        {
+        }
+
+        internal string Command
+        {
+            get { return XElement.Value; }
+        }
+    }
+}

@@ -1,0 +1,64 @@
+﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using Microsoft.Data.Entity.Design.Edmx.Mapping;
+using Microsoft.Data.Entity.Design.XmlEngine.Model.Commands;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+
+namespace Microsoft.Data.Entity.Design.Edmx.Commands
+{
+    internal class CreateOrUpdateEndPropertyCommand : CreateEndPropertyCommand
+    {
+        internal IEnumerable<Property> ConceptualKeyProperties { get; set; }
+        internal IEnumerable<Property> StorageKeyProperties { get; set; }
+
+        internal CreateOrUpdateEndPropertyCommand(Func<Command, CommandProcessorContext, bool> bindingAction)
+            : base(bindingAction)
+        {
+        }
+
+        protected override void InvokeInternal(CommandProcessorContext cpc)
+        {
+            var endProperty = AssociationSetMapping.EndProperties().FirstOrDefault(
+                ep =>
+                string.Equals(ep.Name.XAttribute.Value, AssociationSetEnd.GetRefNameForBinding(ep.Name), StringComparison.CurrentCulture));
+
+            // EndProperty does not exist, create it
+            if (endProperty == null)
+            {
+                base.InvokeInternal(cpc);
+                endProperty = EndProperty;
+                Debug.Assert(endProperty != null, "Could not create end property");
+            }
+
+            // Update Scalar properties
+            if (endProperty != null)
+            {
+                List<ScalarProperty> oldScalarProperties = endProperty.ScalarProperties().ToList();
+                foreach (var oldProperty in oldScalarProperties)
+                {
+                    oldProperty.Delete();
+                }
+
+                Debug.Assert(
+                    ConceptualKeyProperties.Count() == StorageKeyProperties.Count(),
+                    "Found different number of keys in storage and conceptual models");
+
+                var conceptualEnumerator = ConceptualKeyProperties.GetEnumerator();
+                var storageEnumerator = StorageKeyProperties.GetEnumerator();
+
+                while (conceptualEnumerator.MoveNext()
+                       && storageEnumerator.MoveNext())
+                {
+                    CreateEndScalarPropertyCommand createEndScalarCommand = new CreateEndScalarPropertyCommand(
+                        endProperty, conceptualEnumerator.Current, storageEnumerator.Current);
+
+                    CommandProcessor.InvokeSingleCommand(cpc, createEndScalarCommand);
+                }
+            }
+        }
+    }
+}

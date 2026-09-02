@@ -1,0 +1,199 @@
+﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+using Microsoft.Data.Entity.Design.Edmx.Entity;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using DslResources = Microsoft.Data.Entity.Design.Diagrams.Properties.DiagramsResources;
+
+namespace Microsoft.Data.Entity.Design.Diagrams.ViewModel
+{
+    abstract partial class EntityTypeBase
+    {
+        public string EntitySetName
+        {
+            get
+            {
+                if (EntityDesignerViewModel != null)
+                {
+                    if (EntityDesignerViewModel.ModelXRef.GetExisting(this) is Edmx.Entity.EntityType modelEntityType)
+                    {
+                        var entitySet = modelEntityType.EntitySet;
+                        if (entitySet != null)
+                        {
+                            return entitySet.DisplayName;
+                        }
+                    }
+                }
+
+                return "";
+            }
+        }
+
+        public string GetBaseTypeNameValue()
+        {
+            // optimistic fix for https://entityframework.codeplex.com/workitem/1143
+            var modelXRef = EntityDesignerViewModel.ModelXRef;
+            if (modelXRef == null)
+            {
+                return string.Empty;
+            }
+
+            // We need to look at the model to get the base-type name; the view-model might not have it.
+            // In multiple diagram scenario, the base entity-type might not exist in the current diagram.
+            if (modelXRef.GetExisting(this) is ConceptualEntityType modelEntityType
+                && modelEntityType.BaseType != null
+                && modelEntityType.BaseType.Target != null)
+            {
+                return modelEntityType.BaseType.Target.DisplayName.Trim();
+            }
+            return String.Empty;
+        }
+
+        public bool GetHasBaseTypeValue()
+        {
+            return (String.IsNullOrEmpty(GetBaseTypeNameValue()) == false);
+        }
+
+        /// <summary>
+        ///     Walks entity properties and returns a comma-separated string with key property names
+        /// </summary>
+        /// <param name="separator"></param>
+        /// <returns></returns>
+        public string GetKeyNamesSeparatedBy(string separator)
+        {
+            var separatedKeys = String.Empty;
+
+            try
+            {
+                List<string> keyList = new List<String>();
+                foreach (var property in GetKeyProperties())
+                {
+                    keyList.Add(property.Name);
+                }
+
+                separatedKeys = String.Join(separator, keyList.ToArray());
+            }
+            catch (InvalidOperationException)
+            {
+                // Detected circular inheritance, nothing to do!
+            }
+
+            return separatedKeys;
+        }
+
+        /// <summary>
+        ///     Recursively walks the base type hierarchy and returns properties that are keys.
+        ///     Also checks for circular inheritance and throws an InvalidOperationException if found.
+        /// </summary>
+        /// <returns></returns>
+        internal List<Property> GetKeyProperties()
+        {
+            var circularPath = String.Empty;
+            if (HasCircularInheritance(out circularPath))
+            {
+                throw new InvalidOperationException(
+                    String.Format(
+                        CultureInfo.CurrentCulture,
+                        DslResources.Error_CircularEntityInheritanceFound,
+                        Name, circularPath));
+            }
+
+            List<Property> keyProperties = new List<Property>();
+            if (BaseType != null)
+            {
+                keyProperties.AddRange(BaseType.GetKeyProperties());
+            }
+            else
+            {
+                keyProperties.AddRange(GetLocalKeyProperties());
+            }
+            return keyProperties;
+        }
+
+        /// <summary>
+        ///     Returns a list of key properties that are defined locally in this Entity.
+        /// </summary>
+        /// <returns></returns>
+        internal List<Property> GetLocalKeyProperties()
+        {
+            List<Property> keyProperties = new List<Property>();
+            foreach (var property in Properties)
+            {
+                if (property is ScalarProperty scalarProperty
+                    && scalarProperty.EntityKey)
+                {
+                    keyProperties.Add(property);
+                }
+            }
+            return keyProperties;
+        }
+
+        /// <summary>
+        ///     Detects if this entity has a circular inheritance
+        /// </summary>
+        /// <param name="circularPathFound"></param>
+        /// <returns></returns>
+        internal bool HasCircularInheritance(out string circularPathFound)
+        {
+            var hasCircularInheritance = false;
+
+            Dictionary<EntityTypeBase, int> visited = new Dictionary<EntityTypeBase, int>
+            {
+                { this, 0 }
+            };
+
+            var circularPath = Name;
+            circularPathFound = circularPath;
+            var baseType = BaseType;
+
+            while (baseType != null)
+            {
+                circularPath += " -> " + baseType.Name;
+                if (visited.ContainsKey(baseType))
+                {
+                    circularPathFound = circularPath;
+                    hasCircularInheritance = true;
+                    break;
+                }
+                visited.Add(baseType, 0);
+                baseType = baseType.BaseType;
+            }
+
+            return hasCircularInheritance;
+        }
+
+        public override string ToString()
+        {
+            return Name;
+        }
+
+        /// <summary>
+        ///     Returns all properties and navigation properties names (recursively including baseType properties)
+        /// </summary>
+        /// <returns></returns>
+        internal List<string> GetPropertiesNames()
+        {
+            List<string> names = null;
+            if (BaseType != null)
+            {
+                names = BaseType.GetPropertiesNames();
+            }
+            else
+            {
+                names = [];
+            }
+
+            foreach (var property in Properties)
+            {
+                names.Add(property.Name);
+            }
+            foreach (var navProp in NavigationProperties)
+            {
+                names.Add(navProp.Name);
+            }
+
+            return names;
+        }
+    }
+}

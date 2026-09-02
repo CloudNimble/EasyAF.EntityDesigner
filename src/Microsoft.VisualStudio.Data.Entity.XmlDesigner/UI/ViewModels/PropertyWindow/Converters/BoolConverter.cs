@@ -1,0 +1,16 @@
+// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the MIT license.  See License.txt in the project root for license information.
+
+namespace Microsoft.VisualStudio.Data.Entity.XmlDesigner.UI.ViewModels.PropertyWindow.Converters
+{
+    /// <summary>
+    ///     type converter for list of bool values
+    /// </summary>
+    internal class BoolConverter : FixedListConverter<bool>
+    {
+        protected override void PopulateMapping()
+        {
+            AddMapping(true, ControlsResources.PropertyWindow_Value_True);
+            AddMapping(false, ControlsResources.PropertyWindow_Value_False);
+        }
+    }
+}
