@@ -9,6 +9,7 @@ namespace Microsoft.Data.Entity.Design.Diagrams.Tools.Commands.Root
     /// Root command for the Entity Designer command line tool.
     /// </summary>
     [Command(Name = "edmx", Description = "Entity Designer commands for working with EDMX files outside Visual Studio.")]
+    [Subcommand(typeof(DdlCommand))]
     [Subcommand(typeof(RenderCommand))]
     internal partial class EntityDesignerRootCommand
     {

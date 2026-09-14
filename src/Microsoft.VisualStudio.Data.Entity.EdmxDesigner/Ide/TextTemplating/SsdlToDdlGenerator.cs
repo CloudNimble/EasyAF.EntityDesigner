@@ -10,13 +10,12 @@ using System.Globalization;
 namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.TextTemplating
 {
     /// <summary>
-    ///     Renders data definition language from a store model by running a T4 template through Visual Studio's text
-    ///     templating service.
+    ///     Renders data definition language from a store model by running a custom T4 template through Visual Studio's
+    ///     text templating service.
     /// </summary>
     /// <remarks>
-    ///     This was <c>SsdlToDdlActivity</c>, a Windows Workflow activity. It lives in this assembly rather than
-    ///     Microsoft.Data.Entity.Design.DatabaseGeneration because it depends on the Visual Studio T4 host;
-    ///     <see cref="IDdlGenerator" /> is the seam that keeps that dependency from reaching the generation assembly.
+    ///     The in-box SSDL-to-SQL path is <see cref="SsdlToDdl" />, which does not need a template file. This class remains
+    ///     for users who set the EDMX "DDL Generation Template" property to their own <c>.tt</c> file.
     /// </remarks>
     public sealed class SsdlToDdlGenerator : IDdlGenerator
     {

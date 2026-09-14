@@ -6,9 +6,9 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators
     ///     Produces the data definition language (DDL) that creates a database for a store model.
     /// </summary>
     /// <remarks>
-    ///     The in-box implementation runs a T4 template through Visual Studio's text templating service, which is why it
-    ///     lives in Microsoft.Data.Entity.Design rather than here. Inverting the dependency this way keeps this assembly
-    ///     free of any Visual Studio reference, so it can target .NET Standard alongside .NET Framework.
+    ///     The in-box implementation is <see cref="SsdlToDdl" />, which lives in this assembly so the Visual Studio wizard
+    ///     and the command-line tool share one generator. A Visual Studio host may still supply a T4-backed implementation
+    ///     when the user has chosen a custom <c>.tt</c> file.
     /// </remarks>
     public interface IDdlGenerator
     {
@@ -18,7 +18,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators
         /// </summary>
         /// <param name="ssdl">The store model to create objects for.</param>
         /// <param name="existingSsdl">The store model currently recorded in the .edmx file, used to drop stale objects. May be empty.</param>
-        /// <param name="edmParameterBag">The parameters the generator needs, such as the provider invariant name and DDL template path.</param>
+        /// <param name="edmParameterBag">The parameters the generator needs, such as the provider invariant name and database name.</param>
         /// <returns>The generated DDL script.</returns>
         string Generate(string ssdl, string existingSsdl, EdmParameterBag edmParameterBag);
     }
