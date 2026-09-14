@@ -2,6 +2,7 @@
 
 using EnvDTE;
 using Microsoft.Data.Entity.Design.DatabaseGeneration;
+using Microsoft.Data.Entity.Design.DatabaseGeneration.OutputGenerators;
 using Microsoft.Data.Entity.Design.Edmx;
 using Microsoft.Data.Entity.Design.Edmx.Commands;
 using Microsoft.Data.Entity.Design.Edmx.Designer;
@@ -496,7 +497,35 @@ namespace Microsoft.VisualStudio.Data.Entity.EdmxDesigner.Ide.ModelWizard.Engine
                 syncContext, assemblyLoader, targetVersion, providerInvariantName, providerManifestToken, providerConnectionString,
                 databaseSchemaName, databaseName, templatePath, artifactPath);
 
-            return new DatabaseScriptGenerator(new SsdlToDdlGenerator()).Generate(edmItemCollection, existingSsdl, parameters);
+            return new DatabaseScriptGenerator(CreateDdlGenerator(templatePath)).Generate(edmItemCollection, existingSsdl, parameters);
+        }
+
+        /// <summary>
+        ///     Uses the in-box C# generator for the shipped SSDL-to-SQL template, and the Visual Studio T4 host only when
+        ///     the user has selected a custom <c>.tt</c> file.
+        /// </summary>
+        private static IDdlGenerator CreateDdlGenerator(string templatePath)
+        {
+            if (IsInboxDdlTemplate(templatePath))
+            {
+                return new SsdlToDdl();
+            }
+
+            return new SsdlToDdlGenerator();
+        }
+
+        /// <summary>
+        ///     Returns whether <paramref name="templatePath" /> is the shipped SSDL-to-SQL template, which is now
+        ///     implemented in C# and no longer requires a file on disk.
+        /// </summary>
+        private static bool IsInboxDdlTemplate(string templatePath)
+        {
+            if (String.IsNullOrWhiteSpace(templatePath))
+            {
+                return true;
+            }
+
+            return String.Equals(Path.GetFileName(templatePath), DefaultTemplateName, StringComparison.OrdinalIgnoreCase);
         }
 
         // <summary>

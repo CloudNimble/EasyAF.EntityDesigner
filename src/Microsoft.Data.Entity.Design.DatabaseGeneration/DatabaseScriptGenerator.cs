@@ -29,7 +29,7 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration
     /// </remarks>
     /// <example>
     ///     <code>
-    ///     var generator = new DatabaseScriptGenerator(new SsdlToDdlGenerator());
+    ///     var generator = new DatabaseScriptGenerator();
     ///     DatabaseScript script = generator.Generate(edmItemCollection, existingSsdl, parameters);
     ///     Console.WriteLine(script.Ddl);
     ///     </code>
@@ -45,6 +45,15 @@ namespace Microsoft.Data.Entity.Design.DatabaseGeneration
         #endregion
 
         #region Constructors
+
+        /// <summary>
+        ///     Creates a generator that uses the in-box <see cref="CsdlToSsdl" />, <see cref="CsdlToMsl" />, and
+        ///     <see cref="SsdlToDdl" /> generators.
+        /// </summary>
+        public DatabaseScriptGenerator()
+            : this(new SsdlToDdl())
+        {
+        }
 
         /// <summary>
         ///     Creates a generator that uses the in-box <see cref="CsdlToSsdl" /> and <see cref="CsdlToMsl" /> generators.

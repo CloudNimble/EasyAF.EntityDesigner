@@ -41,6 +41,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Microsoft.Data.Entity.Design.DatabaseGeneration\Microsoft.Data.Entity.Design.DatabaseGeneration.csproj" />
         <ProjectReference Include="..\Microsoft.Data.Entity.Design.Diagrams.Rendering\Microsoft.Data.Entity.Design.Diagrams.Rendering.csproj" />
     </ItemGroup>
 
